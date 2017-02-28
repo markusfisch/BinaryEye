@@ -240,6 +240,9 @@ class CameraActivity : AppCompatActivity() {
 				camera.setPreviewCallback { data, _ -> frameData = data }
 			}
 
+			override fun onPreviewStarted(camera: Camera) {
+			}
+
 			override fun onCameraStopping(camera: Camera) {
 				camera.setPreviewCallback(null)
 			}
