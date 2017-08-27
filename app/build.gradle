@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'net.ltgt.errorprone'
+
+configurations.errorprone {
+	resolutionStrategy.force 'com.google.errorprone:error_prone_core:2.0.19'
+}
+
+android {
+	compileSdkVersion sdk_version
+	buildToolsVersion build_tools_version
+
+	defaultConfig {
+		minSdkVersion 9
+		targetSdkVersion sdk_version
+
+		versionCode 1
+		versionName '0.0.0'
+
+		renderscriptTargetApi 24
+		renderscriptSupportModeEnabled true
+	}
+
+	buildTypes {
+		debug {
+			applicationIdSuffix '.debug'
+		}
+
+		release {
+			minifyEnabled true
+			shrinkResources true
+		}
+	}
+
+	lintOptions {
+		// because at the time of writing, even the latest version
+		// of RenderScript is raising this error no matter if
+		// renderscriptTargetApi matches targetSdkVersion
+		disable 'GradleCompatible'
+	}
+}
+
+dependencies {
+	compile fileTree(dir: 'libs', include: '*')
+	compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+	compile "com.android.support:appcompat-v7:$support_version"
+	compile "com.android.support:design:$support_version"
+	compile project(':cameraview')
+}

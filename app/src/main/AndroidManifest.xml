@@ -1,0 +1,46 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	package="de.markusfisch.android.binaryeye"
+	android:installLocation="auto">
+	<supports-screens
+		android:anyDensity="true"
+		android:largeScreens="true"
+		android:normalScreens="true"
+		android:resizeable="true"
+		android:smallScreens="true"
+		android:xlargeScreens="true"/>
+	<uses-permission android:name="android.permission.CAMERA"/>
+	<uses-permission android:name="android.permission.VIBRATE"/>
+	<uses-feature android:name="android.hardware.camera"/>
+	<uses-feature android:name="android.hardware.camera.autofocus"/>
+	<application
+		tools:ignore="UnusedAttribute"
+		android:allowBackup="true"
+		android:fullBackupContent="true"
+		android:label="@string/app_name"
+		android:icon="@mipmap/ic_launcher"
+		android:theme="@style/AppTheme">
+		<activity
+			android:name=".activity.SplashActivity"
+			android:label="@string/app_name"
+			android:theme="@style/SplashTheme">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+		<activity
+			android:name=".activity.MainActivity"
+			android:label="@string/scan_code">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<category android:name="android.intent.category.BROWSABLE"/>
+				<data
+					android:host="www.markusfisch.de"
+					android:pathPrefix="/BinaryEye"
+					android:scheme="http"/>
+			</intent-filter>
+		</activity>
+	</application>
+</manifest>

@@ -1,0 +1,23 @@
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<TextView
+		android:id="@+id/text"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="16dp"/>
+	<android.support.design.widget.FloatingActionButton
+		tools:ignore="UnusedAttribute"
+		android:id="@+id/share"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentEnd="true"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentBottom="true"
+		android:layout_margin="20dp"
+		android:src="@drawable/ic_action_share"
+		app:elevation="4dp"/>
+</RelativeLayout>

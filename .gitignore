@@ -1,0 +1,8 @@
+*.swp
+.gradle
+.idea
+build
+local.properties
+gradle.properties
+infer-out
+*.iml
