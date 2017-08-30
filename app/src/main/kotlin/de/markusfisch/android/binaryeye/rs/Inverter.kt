@@ -11,21 +11,31 @@ class Inverter(context: Context) {
 	private val rs: RenderScript = RenderScript.create(context)
 	private val inverterScript: ScriptC_invert = ScriptC_invert(rs)
 
+	private var alloc: Allocation? = null
+	private var dest: Bitmap? = null
+
 	fun destroy() {
+		alloc?.destroy()
+		alloc = null
+		dest?.recycle()
+		dest = null
 		inverterScript.destroy()
 		rs.destroy()
 	}
 
 	fun convert(bitmap: Bitmap): Bitmap {
-		val allocation = Allocation.createFromBitmap(
-				rs,
-				bitmap,
-				Allocation.MipmapControl.MIPMAP_NONE,
-				Allocation.USAGE_SCRIPT)
+		if (dest == null) {
+			dest = bitmap.copy(bitmap.getConfig(), true)
+			alloc = Allocation.createFromBitmap(
+					rs,
+					dest,
+					Allocation.MipmapControl.MIPMAP_NONE,
+					Allocation.USAGE_SCRIPT)
+		}
 
-		inverterScript.forEach_invert(allocation, allocation)
-		allocation.copyTo(bitmap)
+		inverterScript.forEach_invert(alloc, alloc)
+		alloc?.copyTo(dest)
 
-		return bitmap
+		return dest!!
 	}
 }

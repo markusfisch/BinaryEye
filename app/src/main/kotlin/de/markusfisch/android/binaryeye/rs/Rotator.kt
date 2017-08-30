@@ -9,63 +9,69 @@ import android.support.v8.renderscript.RenderScript
 
 class Rotator(context: Context) {
 	private val rs: RenderScript = RenderScript.create(context)
-	private var rotatorScript: ScriptC_rotator = ScriptC_rotator(rs)
+	private val rotatorScript: ScriptC_rotator = ScriptC_rotator(rs)
+
+	private var sourceAlloc: Allocation? = null
+	private var destAlloc: Allocation? = null
+	private var dest: Bitmap? = null
 
 	fun destroy() {
+		sourceAlloc?.destroy()
+		sourceAlloc = null
+		destAlloc?.destroy()
+		destAlloc = null
+		dest?.recycle()
+		dest = null
 		rotatorScript.destroy()
 		rs.destroy()
 	}
 
 	fun convert(bitmap: Bitmap, frameOrientation: Int): Bitmap {
 		var orientation = frameOrientation
-		var width = bitmap.width
-		var height = bitmap.height
 
 		orientation = orientation % 360 / 90
 		if (orientation == 0) {
 			return bitmap
 		}
 
-		rotatorScript._inWidth = width
-		rotatorScript._inHeight = height
-		val sourceAllocation = Allocation.createFromBitmap(
-				rs,
-				bitmap,
-				Allocation.MipmapControl.MIPMAP_NONE,
-				Allocation.USAGE_SCRIPT)
-		rotatorScript._inImage = sourceAllocation
+		if (dest == null) {
+			var width = bitmap.width
+			var height = bitmap.height
 
-		when (orientation) {
-			1, 3 -> {
-				val tmp = width
-				width = height
-				height = tmp
+			sourceAlloc = Allocation.createFromBitmap(
+					rs,
+					bitmap,
+					Allocation.MipmapControl.MIPMAP_NONE,
+					Allocation.USAGE_SCRIPT)
+			rotatorScript._inImage = sourceAlloc
+			rotatorScript._inWidth = width
+			rotatorScript._inHeight = height
+
+			when (orientation) {
+				1, 3 -> {
+					val tmp = width
+					width = height
+					height = tmp
+				}
 			}
-		}
 
-		val target = Bitmap.createBitmap(
-				width,
-				height,
-				Bitmap.Config.ARGB_8888)
-		val targetAllocation = Allocation.createFromBitmap(
-				rs,
-				target,
-				Allocation.MipmapControl.MIPMAP_NONE,
-				Allocation.USAGE_SCRIPT)
+			dest = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+			destAlloc = Allocation.createFromBitmap(
+					rs,
+					dest,
+					Allocation.MipmapControl.MIPMAP_NONE,
+					Allocation.USAGE_SCRIPT)
+		} else {
+			sourceAlloc?.copyFrom(bitmap)
+		}
 
 		when (orientation) {
-			1 -> rotatorScript.forEach_rotate90(
-					targetAllocation,
-					targetAllocation)
-			2 -> rotatorScript.forEach_rotate180(
-					targetAllocation,
-					targetAllocation)
-			3 -> rotatorScript.forEach_rotate270(
-					targetAllocation,
-					targetAllocation)
+			1 -> rotatorScript.forEach_rotate90(destAlloc, destAlloc)
+			2 -> rotatorScript.forEach_rotate180(destAlloc, destAlloc)
+			3 -> rotatorScript.forEach_rotate270(destAlloc, destAlloc)
 		}
+		destAlloc?.copyTo(dest)
 
-		targetAllocation.copyTo(target)
-		return target
+		return dest!!
 	}
 }

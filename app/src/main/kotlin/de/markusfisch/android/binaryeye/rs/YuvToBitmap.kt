@@ -16,6 +16,7 @@ class YuvToBitmap(context: Context) {
 	private var yuvAllocation: Allocation? = null
 	private var rgbaAllocation: Allocation? = null
 	private var yuvToRgbaScript: ScriptIntrinsicYuvToRGB? = null
+	private var dest: Bitmap? = null
 
 	fun destroy() {
 		yuvToRgbaScript?.destroy()
@@ -28,37 +29,35 @@ class YuvToBitmap(context: Context) {
 		yuvAllocation = null
 		rgbaAllocation?.destroy()
 		rgbaAllocation = null
+		dest?.recycle()
+		dest = null
 		rs.destroy()
 	}
 
 	fun convert(data: ByteArray, width: Int, height: Int): Bitmap {
-		if (yuvAllocation == null) {
-			init(data, width, height)
+		if (dest == null) {
+			yuvType = Type.createX(rs, Element.U8(rs), data.size)
+			yuvType?.let {
+				yuvAllocation = Allocation.createTyped(rs, yuvType,
+						Allocation.USAGE_SCRIPT)
+			}
+
+			rgbaType = Type.createXY(rs, Element.RGBA_8888(rs), width, height)
+			rgbaType?.let {
+				rgbaAllocation = Allocation.createTyped(rs, rgbaType)
+			}
+
+			yuvToRgbaScript = ScriptIntrinsicYuvToRGB.create(rs,
+					Element.U8_4(rs))
+			yuvToRgbaScript?.setInput(yuvAllocation)
+
+			dest = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
 		}
 
 		yuvAllocation?.copyFrom(data)
 		yuvToRgbaScript?.forEach(rgbaAllocation)
+		rgbaAllocation?.copyTo(dest)
 
-		val bitmap = Bitmap.createBitmap(width, height,
-				Bitmap.Config.ARGB_8888)
-		rgbaAllocation?.copyTo(bitmap)
-
-		return bitmap
-	}
-
-	private fun init(data: ByteArray, width: Int, height: Int) {
-		yuvType = Type.createX(rs, Element.U8(rs), data.size)
-		yuvType?.let {
-			yuvAllocation = Allocation.createTyped(rs, yuvType,
-					Allocation.USAGE_SCRIPT)
-		}
-
-		rgbaType = Type.createXY(rs, Element.RGBA_8888(rs), width, height)
-		rgbaType?.let {
-			rgbaAllocation = Allocation.createTyped(rs, rgbaType)
-		}
-
-		yuvToRgbaScript = ScriptIntrinsicYuvToRGB.create(rs, Element.U8_4(rs))
-		yuvToRgbaScript?.setInput(yuvAllocation)
+		return dest!!
 	}
 }
