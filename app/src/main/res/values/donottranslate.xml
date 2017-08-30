@@ -1,0 +1,20 @@
+<resources>
+	<string name="app_name">Binary Eye</string>
+	<string name="aztec">AZTEC</string>
+	<string name="codabar">CODABAR</string>
+	<string name="code_39">CODE 39</string>
+	<string name="code_93">CODE 93</string>
+	<string name="code_128">CODE 128</string>
+	<string name="data_matrix">DATA MATRIX</string>
+	<string name="ean_8">EAN 8</string>
+	<string name="ean_13">EAN 13</string>
+	<string name="itf">ITF</string>
+	<string name="maxicode">MAXICODE</string>
+	<string name="pdf_417">PDF 417</string>
+	<string name="qr_code">QR CODE</string>
+	<string name="rss_14">RSS 14</string>
+	<string name="rss_expanded">RSS EXPANDED</string>
+	<string name="upc_a">UPC A</string>
+	<string name="upc_e">UPC E</string>
+	<string name="upc_ean_extension">UPC EAN EXTENSION</string>
+</resources>

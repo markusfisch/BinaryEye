@@ -1,0 +1,15 @@
+<resources>
+	<string-array name="barcode_formats">
+		<item>@string/aztec</item>
+		<item>@string/codabar</item>
+		<item>@string/code_39</item>
+		<item>@string/code_128</item>
+		<item>@string/data_matrix</item>
+		<item>@string/ean_8</item>
+		<item>@string/ean_13</item>
+		<item>@string/itf</item>
+		<item>@string/pdf_417</item>
+		<item>@string/qr_code</item>
+		<item>@string/upc_a</item>
+	</string-array>
+</resources>

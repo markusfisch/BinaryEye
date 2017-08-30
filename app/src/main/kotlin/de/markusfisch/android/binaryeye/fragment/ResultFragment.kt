@@ -2,7 +2,6 @@ package de.markusfisch.android.binaryeye.fragment
 
 import de.markusfisch.android.binaryeye.R
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -42,7 +41,7 @@ class ResultFragment : Fragment() {
 			inflater: LayoutInflater,
 			container: ViewGroup?,
 			state: Bundle?): View {
-		activity.setTitle(R.string.result)
+		activity.setTitle(R.string.content)
 
 		content = arguments?.getString(RESULT) ?: ""
 
@@ -51,8 +50,7 @@ class ResultFragment : Fragment() {
 				container,
 				false)
 
-		val textView = view.findViewById<TextView>(R.id.text)
-		textView.text = content
+		view.findViewById<TextView>(R.id.content).text = content
 
 		view.findViewById<View>(R.id.share).setOnClickListener { _ ->
 			share(content)

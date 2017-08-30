@@ -45,6 +45,7 @@ class LockOnView : SurfaceView {
 	private lateinit var markerTopRight: Bitmap
 	private lateinit var markerBottomLeft: Bitmap
 	private lateinit var markerBottomRight: Bitmap
+
 	private var markerSize: Int = 0
 	private var minSize: Int = 0
 	private var thread: Thread? = null

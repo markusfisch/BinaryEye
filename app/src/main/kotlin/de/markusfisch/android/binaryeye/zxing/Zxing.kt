@@ -5,6 +5,7 @@ import com.google.zxing.BinaryBitmap
 import com.google.zxing.DecodeHintType
 import com.google.zxing.LuminanceSource
 import com.google.zxing.MultiFormatReader
+import com.google.zxing.MultiFormatWriter
 import com.google.zxing.ReaderException
 import com.google.zxing.Result
 import com.google.zxing.RGBLuminanceSource
@@ -17,6 +18,36 @@ import java.util.EnumMap
 import java.util.EnumSet
 
 class Zxing {
+	companion object {
+		private val black = 0xff000000.toInt()
+		private val white = 0xffffffff.toInt()
+
+		fun encodeAsBitmap(
+				text: String,
+				format: BarcodeFormat,
+				width: Int,
+				height: Int): Bitmap? {
+			val result = MultiFormatWriter().encode(text, format,
+					width, height, null)
+			val w = result.getWidth()
+			val h = result.getHeight()
+			val pixels = IntArray(w * h)
+			var offset = 0
+			for (y in 0..h - 1) {
+				for (x in 0..w - 1) {
+					pixels[offset + x] = if (result.get(x, y))
+						black
+					else
+						white
+				}
+				offset += w
+			}
+			val bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+			bitmap.setPixels(pixels, 0, width, 0, 0, w, h)
+			return bitmap
+		}
+	}
+
 	private val multiFormatReader: MultiFormatReader = MultiFormatReader()
 
 	init {

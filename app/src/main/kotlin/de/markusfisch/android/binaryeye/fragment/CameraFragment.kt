@@ -6,6 +6,7 @@ import com.google.zxing.ResultPoint
 import de.markusfisch.android.cameraview.widget.CameraView
 
 import de.markusfisch.android.binaryeye.activity.MainActivity
+import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.rs.Inverter
 import de.markusfisch.android.binaryeye.rs.Rotator
 import de.markusfisch.android.binaryeye.rs.YuvToBitmap
@@ -13,17 +14,17 @@ import de.markusfisch.android.binaryeye.widget.LockOnView
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.binaryeye.R
 
-import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.Rect
 import android.hardware.Camera
 import android.os.Bundle
 import android.os.Vibrator
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 
@@ -46,6 +47,7 @@ class CameraFragment : Fragment() {
 	private lateinit var yuvToBitmap: YuvToBitmap
 	private lateinit var rotator: Rotator
 	private lateinit var inverter: Inverter
+
 	private var decoding = false
 	private var decodingThread: Thread? = null
 	private var frameData: ByteArray? = null
@@ -54,6 +56,11 @@ class CameraFragment : Fragment() {
 	private var frameOrientation: Int = 0
 	private var odd = false
 	private var flash = false
+
+	override fun onCreate(state: Bundle?) {
+		super.onCreate(state)
+		setHasOptionsMenu(true)
+	}
 
 	override fun onCreateView(
 			inflater: LayoutInflater,
@@ -90,12 +97,8 @@ class CameraFragment : Fragment() {
 				container,
 				false)
 
-		val fab = view.findViewById<View>(R.id.flash)
-		if (context.packageManager.hasSystemFeature(
-				PackageManager.FEATURE_CAMERA_FLASH)) {
-			fab.setOnClickListener { _ -> toggleTorchMode() }
-		} else {
-			fab.visibility = View.GONE
+		view.findViewById<View>(R.id.create).setOnClickListener { _ ->
+			addFragment(fragmentManager, CreateBarcodeFragment())
 		}
 
 		return view
@@ -124,6 +127,24 @@ class CameraFragment : Fragment() {
 		cameraView.close()
 		cameraView.visibility = View.GONE
 		lockOnView.visibility = View.GONE
+	}
+
+	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+		inflater.inflate(R.menu.fragment_camera, menu)
+		if (!context.packageManager.hasSystemFeature(
+				PackageManager.FEATURE_CAMERA_FLASH)) {
+			menu.findItem(R.id.flash).setVisible(false)
+		}
+	}
+
+	override fun onOptionsItemSelected(item: MenuItem): Boolean {
+		return when (item.itemId) {
+			R.id.flash -> {
+				toggleTorchMode()
+				true
+			}
+			else -> super.onOptionsItemSelected(item)
+		}
 	}
 
 	private fun toggleTorchMode() {
@@ -177,11 +198,8 @@ class CameraFragment : Fragment() {
 		vibrator.vibrate(100)
 		lockOnView.lock(getRelativeBounds(result.resultPoints), 250)
 		lockOnView.postDelayed({
-			fragmentManager?.beginTransaction()
-					?.replace(R.id.content_frame,
-							ResultFragment.newInstance(result.text))
-					?.addToBackStack(null)
-					?.commit()
+			addFragment(fragmentManager,
+					ResultFragment.newInstance(result.text))
 		}, 500)
 	}
 

@@ -2,19 +2,21 @@ package de.markusfisch.android.binaryeye.activity
 
 import de.markusfisch.android.cameraview.widget.CameraView
 
+import de.markusfisch.android.binaryeye.app.addFragment
+import de.markusfisch.android.binaryeye.app.setFragment
 import de.markusfisch.android.binaryeye.fragment.CameraFragment
+import de.markusfisch.android.binaryeye.fragment.CreateBarcodeFragment
 import de.markusfisch.android.binaryeye.view.SystemBarMetrics
 import de.markusfisch.android.binaryeye.widget.LockOnView
 import de.markusfisch.android.binaryeye.R
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
-import android.support.v4.app.FragmentManager
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.app.ActionBar
 import android.support.v7.widget.Toolbar
 import android.view.View
 import android.view.Window
@@ -62,11 +64,14 @@ class MainActivity : AppCompatActivity() {
 		checkPermissions()
 
 		if (state == null) {
-			supportFragmentManager
-					.beginTransaction()
-					.replace(R.id.content_frame, CameraFragment())
-					.commit()
+			setFragment(supportFragmentManager, CameraFragment())
+			handleSendText(intent)
 		}
+	}
+
+	override protected fun onNewIntent(intent: Intent) {
+		super.onNewIntent(intent)
+		handleSendText(intent)
 	}
 
 	private fun checkPermissions() {
@@ -87,6 +92,23 @@ class MainActivity : AppCompatActivity() {
 	private fun canBack() {
 		supportActionBar?.setDisplayHomeAsUpEnabled(
 				supportFragmentManager.backStackEntryCount > 0)
+	}
+
+	private fun handleSendText(intent: Intent) {
+		val type = intent.getType()
+		var text = intent.getStringExtra(Intent.EXTRA_TEXT)
+		if (!Intent.ACTION_SEND.equals(intent.getAction()) ||
+				type == null ||
+				!"text/plain".equals(type) ||
+				text == null) {
+			return;
+		}
+
+		// consume this intent
+		intent.setAction(null)
+
+		addFragment(supportFragmentManager,
+				CreateBarcodeFragment.newInstance(text))
 	}
 
 	companion object {
