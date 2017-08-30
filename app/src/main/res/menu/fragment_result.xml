@@ -11,4 +11,9 @@
 		android:title="@string/open_url"
 		android:icon="@drawable/ic_action_open"
 		material:showAsAction="ifRoom"/>
+	<item
+		android:id="@+id/create"
+		android:title="@string/create"
+		android:icon="@drawable/ic_action_create"
+		material:showAsAction="ifRoom"/>
 </menu>

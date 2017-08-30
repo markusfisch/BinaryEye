@@ -1,5 +1,6 @@
 package de.markusfisch.android.binaryeye.fragment
 
+import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.R
 
 import android.content.Context
@@ -14,7 +15,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.EditText
 import android.widget.Toast
 
 class ResultFragment : Fragment() {
@@ -30,7 +31,7 @@ class ResultFragment : Fragment() {
 		}
 	}
 
-	private lateinit var content: String
+	private lateinit var contentView: EditText
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -43,17 +44,17 @@ class ResultFragment : Fragment() {
 			state: Bundle?): View {
 		activity.setTitle(R.string.content)
 
-		content = arguments?.getString(RESULT) ?: ""
-
 		val view = inflater.inflate(
 				R.layout.fragment_result,
 				container,
 				false)
 
-		view.findViewById<TextView>(R.id.content).text = content
+		val content = arguments?.getString(RESULT) ?: ""
+		contentView = view.findViewById<EditText>(R.id.content)
+		contentView.setText(content)
 
 		view.findViewById<View>(R.id.share).setOnClickListener { _ ->
-			share(content)
+			share(getContent())
 		}
 
 		return view
@@ -66,15 +67,24 @@ class ResultFragment : Fragment() {
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return when (item.itemId) {
 			R.id.copy_to_clipboard -> {
-				copyToClipboard(content)
+				copyToClipboard(getContent())
 				true
 			}
 			R.id.open_url -> {
-				openUrl(content)
+				openUrl(getContent())
+				true
+			}
+			R.id.create -> {
+				addFragment(fragmentManager,
+						CreateBarcodeFragment.newInstance(getContent()))
 				true
 			}
 			else -> super.onOptionsItemSelected(item)
 		}
+	}
+
+	private fun getContent(): String {
+		return contentView.getText().toString()
 	}
 
 	private fun copyToClipboard(text: String) {
