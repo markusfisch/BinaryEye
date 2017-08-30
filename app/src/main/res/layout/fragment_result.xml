@@ -4,11 +4,15 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
-	<TextView
+	<EditText
 		android:id="@+id/content"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:padding="16dp"/>
+		android:layout_height="wrap_content"
+		android:layout_margin="16dp"
+		android:gravity="start|top"
+		android:imeOptions="flagNoExtractUi"
+		android:inputType="textMultiLine"
+		android:typeface="monospace"/>
 	<android.support.design.widget.FloatingActionButton
 		tools:ignore="UnusedAttribute"
 		android:id="@+id/share"
