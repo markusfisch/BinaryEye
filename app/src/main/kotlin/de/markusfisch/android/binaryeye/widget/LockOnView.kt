@@ -165,8 +165,9 @@ class LockOnView : SurfaceView {
 			SystemBarMetrics.getStatusAndToolBarHeight(context)
 		else
 			0
-		val paddingLeftRight = padding * 2
-		val paddingTopBottom = top + padding
+		val navBar = SystemBarMetrics.getNavigationBarSize(res)
+		val paddingLeftRight = padding * 2 + navBar.x
+		val paddingTopBottom = top + padding + navBar.y
 		val innerWidth = width - paddingLeftRight
 		val innerHeight = height - paddingTopBottom
 		val size = Math.min(innerWidth, innerHeight)
