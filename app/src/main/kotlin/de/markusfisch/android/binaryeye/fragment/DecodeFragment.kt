@@ -20,16 +20,16 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 
-class ResultFragment : Fragment() {
+class DecodeFragment : Fragment() {
 	companion object {
-		private val RESULT = "result"
+		private val CONTENT = "content"
 		private val FORMAT = "format"
 
 		fun newInstance(content: String, format: BarcodeFormat): Fragment {
 			val args = Bundle()
-			args.putString(RESULT, content)
+			args.putString(CONTENT, content)
 			args.putSerializable(FORMAT, format)
-			val fragment = ResultFragment()
+			val fragment = DecodeFragment()
 			fragment.arguments = args
 			return fragment
 		}
@@ -50,11 +50,11 @@ class ResultFragment : Fragment() {
 		activity.setTitle(R.string.content)
 
 		val view = inflater.inflate(
-				R.layout.fragment_result,
+				R.layout.fragment_decode,
 				container,
 				false)
 
-		val content = arguments?.getString(RESULT) ?: ""
+		val content = arguments?.getString(CONTENT) ?: ""
 		format = arguments?.getSerializable(FORMAT) as BarcodeFormat? ?:
 				BarcodeFormat.QR_CODE
 
@@ -69,7 +69,7 @@ class ResultFragment : Fragment() {
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-		inflater.inflate(R.menu.fragment_result, menu)
+		inflater.inflate(R.menu.fragment_decode, menu)
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -84,9 +84,7 @@ class ResultFragment : Fragment() {
 			}
 			R.id.create -> {
 				addFragment(fragmentManager,
-						ComposeFragment.newInstance(
-								getContent(),
-								format))
+						EncodeFragment.newInstance(getContent(), format))
 				true
 			}
 			else -> super.onOptionsItemSelected(item)

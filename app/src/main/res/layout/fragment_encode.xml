@@ -54,8 +54,8 @@
 			android:hint="@string/input_content_here"/>
 		<Button
 			style="@style/Button"
-			android:id="@+id/create"
+			android:id="@+id/encode"
 			android:layout_width="match_parent"
-			android:text="@string/create"/>
+			android:text="@string/encode"/>
 	</LinearLayout>
 </ScrollView>

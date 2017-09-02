@@ -101,7 +101,7 @@ class CameraFragment : Fragment() {
 				false)
 
 		view.findViewById<View>(R.id.create).setOnClickListener { _ ->
-			addFragment(fragmentManager, ComposeFragment())
+			addFragment(fragmentManager, EncodeFragment())
 		}
 
 		return view
@@ -211,7 +211,7 @@ class CameraFragment : Fragment() {
 		vibrator.vibrate(100)
 		lockOnView.lock(getRelativeBounds(result.resultPoints), 250)
 		lockOnView.postDelayed({
-			addFragment(fragmentManager, ResultFragment.newInstance(
+			addFragment(fragmentManager, DecodeFragment.newInstance(
 					result.text,
 					result.getBarcodeFormat()))
 		}, 500)

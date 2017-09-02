@@ -19,7 +19,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 
-class ComposeFragment : Fragment() {
+class EncodeFragment : Fragment() {
 	companion object {
 		private val CONTENT = "content"
 		private val FORMAT = "format"
@@ -30,7 +30,7 @@ class ComposeFragment : Fragment() {
 			val args = Bundle()
 			args.putString(CONTENT, content)
 			args.putSerializable(FORMAT, format)
-			val fragment = ComposeFragment()
+			val fragment = EncodeFragment()
 			fragment.setArguments(args)
 			return fragment
 		}
@@ -57,10 +57,10 @@ class ComposeFragment : Fragment() {
 			inflater: LayoutInflater,
 			container: ViewGroup?,
 			state: Bundle?): View {
-		activity.setTitle(R.string.create_barcode)
+		activity.setTitle(R.string.compose_barcode)
 
 		val view = inflater.inflate(
-				R.layout.fragment_compose,
+				R.layout.fragment_encode,
 				container,
 				false)
 
@@ -83,7 +83,7 @@ class ComposeFragment : Fragment() {
 					args.getSerializable(FORMAT) as BarcodeFormat?))
 		}
 
-		view.findViewById<View>(R.id.create).setOnClickListener { v ->
+		view.findViewById<View>(R.id.encode).setOnClickListener { v ->
 			val format = writers.get(formatView.getSelectedItemPosition())
 			var size = getSize(sizeBarView.getProgress())
 			val content = contentView.getText().toString()

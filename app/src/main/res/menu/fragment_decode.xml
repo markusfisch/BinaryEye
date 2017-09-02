@@ -13,7 +13,7 @@
 		material:showAsAction="ifRoom"/>
 	<item
 		android:id="@+id/create"
-		android:title="@string/create"
+		android:title="@string/compose_barcode"
 		android:icon="@drawable/ic_action_create"
 		material:showAsAction="ifRoom"/>
 </menu>

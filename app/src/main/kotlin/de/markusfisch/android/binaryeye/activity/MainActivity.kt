@@ -5,7 +5,7 @@ import de.markusfisch.android.cameraview.widget.CameraView
 import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.setFragment
 import de.markusfisch.android.binaryeye.fragment.CameraFragment
-import de.markusfisch.android.binaryeye.fragment.ComposeFragment
+import de.markusfisch.android.binaryeye.fragment.EncodeFragment
 import de.markusfisch.android.binaryeye.view.SystemBarMetrics
 import de.markusfisch.android.binaryeye.widget.LockOnView
 import de.markusfisch.android.binaryeye.R
@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity() {
 		intent.setAction(null)
 
 		addFragment(supportFragmentManager,
-				ComposeFragment.newInstance(text))
+				EncodeFragment.newInstance(text))
 	}
 
 	companion object {
