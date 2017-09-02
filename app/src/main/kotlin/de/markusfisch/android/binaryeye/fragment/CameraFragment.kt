@@ -7,9 +7,7 @@ import de.markusfisch.android.cameraview.widget.CameraView
 
 import de.markusfisch.android.binaryeye.activity.MainActivity
 import de.markusfisch.android.binaryeye.app.addFragment
-import de.markusfisch.android.binaryeye.rs.Inverter
-import de.markusfisch.android.binaryeye.rs.Rotator
-import de.markusfisch.android.binaryeye.rs.YuvToBitmap
+import de.markusfisch.android.binaryeye.rs.YuvToGray
 import de.markusfisch.android.binaryeye.widget.LockOnView
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.binaryeye.R
@@ -46,9 +44,7 @@ class CameraFragment : Fragment() {
 	private lateinit var vibrator: Vibrator
 	private lateinit var cameraView: CameraView
 	private lateinit var lockOnView: LockOnView
-	private lateinit var yuvToBitmap: YuvToBitmap
-	private lateinit var rotator: Rotator
-	private lateinit var inverter: Inverter
+	private lateinit var yuvToGray: YuvToGray
 
 	private var decoding = false
 	private var decodingThread: Thread? = null
@@ -72,9 +68,7 @@ class CameraFragment : Fragment() {
 		vibrator = activity.getSystemService(
 				Context.VIBRATOR_SERVICE) as Vibrator
 
-		yuvToBitmap = YuvToBitmap(context)
-		rotator = Rotator(context)
-		inverter = Inverter(context)
+		yuvToGray = YuvToGray(context)
 
 		cameraView = (activity as MainActivity).cameraView
 		cameraView.setOnCameraListener(object : CameraView.OnCameraListener {
@@ -109,9 +103,7 @@ class CameraFragment : Fragment() {
 
 	override fun onDestroyView() {
 		super.onDestroyView()
-		yuvToBitmap.destroy()
-		rotator.destroy()
-		inverter.destroy()
+		yuvToGray.destroy()
 	}
 
 	override fun onResume() {
@@ -196,14 +188,8 @@ class CameraFragment : Fragment() {
 
 	private fun decodeFrame(): Result? {
 		frameData ?: return null
-		var bitmap = yuvToBitmap.convert(frameData!!, frameWidth, frameHeight)
-		bitmap = rotator.convert(bitmap, frameOrientation)
-		odd = odd xor true
-		if (odd) {
-			// invert every other frame to also read inverted barcodes
-			bitmap = inverter.convert(bitmap)
-		}
-		return zxing.decodeBitmap(bitmap)
+		return zxing.decodeBitmap(yuvToGray.convert(
+				frameData!!, frameWidth, frameHeight, frameOrientation))
 	}
 
 	private fun found(result: Result) {
