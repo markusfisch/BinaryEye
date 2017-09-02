@@ -95,13 +95,13 @@ class LockOnView : SurfaceView {
 		val matrix = Matrix()
 		matrix.setScale(-1f, 1f)
 		markerTopRight = Bitmap.createBitmap(markerTopLeft,
-				0, 0, width, height, matrix, false);
+				0, 0, width, height, matrix, false)
 		matrix.setScale(1f, -1f)
 		markerBottomLeft = Bitmap.createBitmap(markerTopLeft,
-				0, 0, width, height, matrix, false);
+				0, 0, width, height, matrix, false)
 		matrix.setScale(-1f, -1f)
 		markerBottomRight = Bitmap.createBitmap(markerTopLeft,
-				0, 0, width, height, matrix, false);
+				0, 0, width, height, matrix, false)
 	}
 
 	private fun initSurfaceHolder(context: Context) {

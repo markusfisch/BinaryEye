@@ -15,9 +15,11 @@ import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.binaryeye.R
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Rect
 import android.hardware.Camera
+import android.net.Uri
 import android.os.Bundle
 import android.os.Vibrator
 import android.support.v4.app.Fragment
@@ -144,6 +146,10 @@ class CameraFragment : Fragment() {
 				toggleTorchMode()
 				true
 			}
+			R.id.info -> {
+				openReadme()
+				true
+			}
 			else -> super.onOptionsItemSelected(item)
 		}
 	}
@@ -154,9 +160,14 @@ class CameraFragment : Fragment() {
 		parameters?.setFlashMode(if (flash)
 			Camera.Parameters.FLASH_MODE_OFF
 		else
-			Camera.Parameters.FLASH_MODE_TORCH);
+			Camera.Parameters.FLASH_MODE_TORCH)
 		flash = flash xor true
 		parameters?.let { camera.setParameters(parameters) }
+	}
+
+	private fun openReadme() {
+		startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(
+				"https://github.com/markusfisch/BinaryEye/blob/master/README.md")))
 	}
 
 	private fun startDecoding() {

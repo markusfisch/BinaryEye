@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
 		if (!Intent.ACTION_SEND.equals(intent.getAction()) ||
 				!"text/plain".equals(type) ||
 				text.isEmpty()) {
-			return;
+			return
 		}
 
 		// consume this intent

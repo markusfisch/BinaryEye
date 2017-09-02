@@ -2,6 +2,11 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:material="http://schemas.android.com/apk/res-auto">
 	<item
+		android:id="@+id/info"
+		android:title="@string/info"
+		android:icon="@drawable/ic_action_info"
+		material:showAsAction="ifRoom"/>
+	<item
 		android:id="@+id/flash"
 		android:title="@string/flash"
 		android:icon="@drawable/ic_action_flash"
