@@ -8,7 +8,6 @@ import de.markusfisch.android.binaryeye.R
 import android.os.Bundle
 import android.graphics.Bitmap
 import android.support.v4.app.Fragment
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,13 +16,18 @@ import android.widget.Toast
 
 class BarcodeFragment : Fragment() {
 	companion object {
-		val CONTENT = "content"
-		val FORMAT = "format"
+		private val CONTENT = "content"
+		private val FORMAT = "format"
+		private val SIZE = "size"
 
-		fun newInstance(content: String, format: String): Fragment {
+		fun newInstance(
+				content: String,
+				format: BarcodeFormat,
+				size: Int): Fragment {
 			val args = Bundle()
 			args.putString(CONTENT, content)
-			args.putString(FORMAT, format)
+			args.putSerializable(FORMAT, format)
+			args.putInt(SIZE, size)
 			val fragment = BarcodeFragment()
 			fragment.setArguments(args)
 			return fragment
@@ -43,16 +47,12 @@ class BarcodeFragment : Fragment() {
 
 		val args = getArguments()
 		args?.let {
-			val metrics = DisplayMetrics()
-			activity.getWindowManager().getDefaultDisplay()
-					.getMetrics(metrics)
-			val size = Math.min(metrics.widthPixels, metrics.heightPixels)
-
+			val size = args.getInt(SIZE)
 			val bitmap: Bitmap?
 			try {
 				bitmap = Zxing.encodeAsBitmap(
 						args.getString(CONTENT),
-						getBarcodeFormat(args.getString(FORMAT)),
+						args.getSerializable(FORMAT) as BarcodeFormat,
 						size,
 						size)
 			} catch (e: Exception) {
@@ -65,22 +65,5 @@ class BarcodeFragment : Fragment() {
 		}
 
 		return view
-	}
-
-	private fun getBarcodeFormat(text: String): BarcodeFormat {
-		return when (text) {
-			getString(R.string.aztec) -> BarcodeFormat.AZTEC
-			getString(R.string.codabar) -> BarcodeFormat.CODABAR
-			getString(R.string.code_39) -> BarcodeFormat.CODE_39
-			getString(R.string.code_128) -> BarcodeFormat.CODE_128
-			getString(R.string.data_matrix) -> BarcodeFormat.DATA_MATRIX
-			getString(R.string.ean_8) -> BarcodeFormat.EAN_8
-			getString(R.string.ean_13) -> BarcodeFormat.EAN_13
-			getString(R.string.itf) -> BarcodeFormat.ITF
-			getString(R.string.pdf_417) -> BarcodeFormat.PDF_417
-			getString(R.string.qr_code) -> BarcodeFormat.QR_CODE
-			getString(R.string.upc_a) -> BarcodeFormat.UPC_A
-			else -> BarcodeFormat.QR_CODE
-		}
 	}
 }

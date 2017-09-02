@@ -36,7 +36,7 @@ object SystemBarMetrics {
 		}
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
 			val conf = res.getConfiguration()
-			if (conf.orientation === Configuration.ORIENTATION_LANDSCAPE &&
+			if (conf.orientation == Configuration.ORIENTATION_LANDSCAPE &&
 					// according to https://developer.android.com/training/multiscreen/screensizes.html#TaskUseSWQuali
 					// only a screen < 600 dp is considered to be a phone
 					// and can move its navigation bar to the side

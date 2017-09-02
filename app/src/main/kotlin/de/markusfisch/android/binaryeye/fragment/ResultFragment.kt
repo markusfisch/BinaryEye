@@ -1,5 +1,7 @@
 package de.markusfisch.android.binaryeye.fragment
 
+import com.google.zxing.BarcodeFormat
+
 import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.R
 
@@ -21,10 +23,12 @@ import android.widget.Toast
 class ResultFragment : Fragment() {
 	companion object {
 		private val RESULT = "result"
+		private val FORMAT = "format"
 
-		fun newInstance(content: String): Fragment {
+		fun newInstance(content: String, format: BarcodeFormat): Fragment {
 			val args = Bundle()
 			args.putString(RESULT, content)
+			args.putSerializable(FORMAT, format)
 			val fragment = ResultFragment()
 			fragment.arguments = args
 			return fragment
@@ -32,6 +36,7 @@ class ResultFragment : Fragment() {
 	}
 
 	private lateinit var contentView: EditText
+	private lateinit var format: BarcodeFormat
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -50,6 +55,9 @@ class ResultFragment : Fragment() {
 				false)
 
 		val content = arguments?.getString(RESULT) ?: ""
+		format = arguments?.getSerializable(FORMAT) as BarcodeFormat? ?:
+				BarcodeFormat.QR_CODE
+
 		contentView = view.findViewById<EditText>(R.id.content)
 		contentView.setText(content)
 
@@ -76,7 +84,9 @@ class ResultFragment : Fragment() {
 			}
 			R.id.create -> {
 				addFragment(fragmentManager,
-						CreateBarcodeFragment.newInstance(getContent()))
+						ComposeFragment.newInstance(
+								getContent(),
+								format))
 				true
 			}
 			else -> super.onOptionsItemSelected(item)

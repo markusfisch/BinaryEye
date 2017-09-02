@@ -18,8 +18,25 @@
 			android:id="@+id/format"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_marginBottom="16dp"/>
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="8dp"
+			android:text="@string/size"/>
+		<TextView
+			android:id="@+id/size_display"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="8dp"
+			android:gravity="center"/>
+		<SeekBar
+			android:id="@+id/size_bar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
 			android:layout_marginBottom="16dp"
-			android:entries="@array/barcode_formats"/>
+			android:progress="4"
+			android:max="7"/>
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"

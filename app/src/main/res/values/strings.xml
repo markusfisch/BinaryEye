@@ -10,6 +10,7 @@
 	<string name="share">Share</string>
 	<string name="cannot_resolve_action">No application can open that</string>
 	<string name="format">Format</string>
+	<string name="size">Size in pixels</string>
 	<string name="input_content_here">Input content here</string>
 	<string name="create">CREATE</string>
 	<string name="error_no_content">Missing content</string>

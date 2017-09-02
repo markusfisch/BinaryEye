@@ -76,7 +76,8 @@ class CameraFragment : Fragment() {
 
 		cameraView = (activity as MainActivity).cameraView
 		cameraView.setOnCameraListener(object : CameraView.OnCameraListener {
-			override fun onConfigureParameters(parameters: Camera.Parameters) {}
+			override fun onConfigureParameters(
+					parameters: Camera.Parameters) {}
 
 			override fun onCameraStarted(camera: Camera) {
 				frameWidth = cameraView.frameWidth
@@ -98,7 +99,7 @@ class CameraFragment : Fragment() {
 				false)
 
 		view.findViewById<View>(R.id.create).setOnClickListener { _ ->
-			addFragment(fragmentManager, CreateBarcodeFragment())
+			addFragment(fragmentManager, ComposeFragment())
 		}
 
 		return view
@@ -188,6 +189,7 @@ class CameraFragment : Fragment() {
 		bitmap = rotator.convert(bitmap, frameOrientation)
 		odd = odd xor true
 		if (odd) {
+			// invert every other frame to also read inverted barcodes
 			bitmap = inverter.convert(bitmap)
 		}
 		return zxing.decodeBitmap(bitmap)
@@ -198,8 +200,9 @@ class CameraFragment : Fragment() {
 		vibrator.vibrate(100)
 		lockOnView.lock(getRelativeBounds(result.resultPoints), 250)
 		lockOnView.postDelayed({
-			addFragment(fragmentManager,
-					ResultFragment.newInstance(result.text))
+			addFragment(fragmentManager, ResultFragment.newInstance(
+					result.text,
+					result.getBarcodeFormat()))
 		}, 500)
 	}
 

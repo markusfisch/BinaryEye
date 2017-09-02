@@ -5,7 +5,7 @@ import de.markusfisch.android.cameraview.widget.CameraView
 import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.setFragment
 import de.markusfisch.android.binaryeye.fragment.CameraFragment
-import de.markusfisch.android.binaryeye.fragment.CreateBarcodeFragment
+import de.markusfisch.android.binaryeye.fragment.ComposeFragment
 import de.markusfisch.android.binaryeye.view.SystemBarMetrics
 import de.markusfisch.android.binaryeye.widget.LockOnView
 import de.markusfisch.android.binaryeye.R
@@ -98,9 +98,8 @@ class MainActivity : AppCompatActivity() {
 		val type = intent.getType()
 		var text = intent.getStringExtra(Intent.EXTRA_TEXT)
 		if (!Intent.ACTION_SEND.equals(intent.getAction()) ||
-				type == null ||
 				!"text/plain".equals(type) ||
-				text == null) {
+				text.isEmpty()) {
 			return;
 		}
 
@@ -108,7 +107,7 @@ class MainActivity : AppCompatActivity() {
 		intent.setAction(null)
 
 		addFragment(supportFragmentManager,
-				CreateBarcodeFragment.newInstance(text))
+				ComposeFragment.newInstance(text))
 	}
 
 	companion object {
