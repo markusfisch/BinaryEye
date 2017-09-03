@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.1.1
+* Brought back inverting every second frame
+
 ## 1.1.0
 * Create barcodes now too
 * Streamlined video pre-processing

@@ -14,8 +14,8 @@ android {
 		minSdkVersion 9
 		targetSdkVersion sdk_version
 
-		versionCode 3
-		versionName '1.1.0'
+		versionCode 4
+		versionName '1.1.1'
 
 		renderscriptTargetApi 24
 		renderscriptSupportModeEnabled true
