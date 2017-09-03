@@ -15,3 +15,13 @@ uchar4 RS_KERNEL yuv2gray(uint32_t x, uint32_t y) {
 	out.a = 255;
 	return out;
 }
+
+uchar4 RS_KERNEL yuv2inverted(uint32_t x, uint32_t y) {
+	uchar Y = 255 - rsGetElementAt_uchar(inYUV, x, y);
+	uchar4 out;
+	out.r = Y;
+	out.g = Y;
+	out.b = Y;
+	out.a = 255;
+	return out;
+}

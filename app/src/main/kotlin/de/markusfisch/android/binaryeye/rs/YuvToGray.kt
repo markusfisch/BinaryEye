@@ -21,6 +21,7 @@ class YuvToGray(context: Context) {
 	private var rgbaAlloc: Allocation? = null
 	private var destAlloc: Allocation? = null
 	private var dest: Bitmap? = null
+	private var odd = true
 
 	fun destroy() {
 		yuvType?.destroy()
@@ -76,7 +77,14 @@ class YuvToGray(context: Context) {
 		// width/height are uint_32 but Kotlin wants toLong()
 		yuv2grayScript._inWidth = width.toLong()
 		yuv2grayScript._inHeight = height.toLong()
-		yuv2grayScript.forEach_yuv2gray(rgbaAlloc)
+
+		// invert every second frame to also read inverted barcodes
+		if (odd) {
+			yuv2grayScript.forEach_yuv2gray(rgbaAlloc)
+		} else {
+			yuv2grayScript.forEach_yuv2inverted(rgbaAlloc)
+		}
+		odd = odd xor true
 
 		rotatorScript._inImage = rgbaAlloc
 		rotatorScript._inWidth = width
