@@ -13,10 +13,13 @@ import de.markusfisch.android.binaryeye.R
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.drawable.Drawable
 import android.hardware.Camera
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Vibrator
+import android.support.v4.content.ContextCompat
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -147,6 +150,8 @@ class CameraFragment : Fragment() {
 	override fun onResume() {
 		super.onResume()
 		System.gc()
+		setMainLayoutBackground(ContextCompat.getDrawable(activity,
+				R.drawable.background_scanner))
 		cameraView.visibility = View.VISIBLE
 		cameraView.openAsync(CameraView.findCameraId(
 				Camera.CameraInfo.CAMERA_FACING_BACK))
@@ -155,6 +160,7 @@ class CameraFragment : Fragment() {
 
 	override fun onPause() {
 		super.onPause()
+		setMainLayoutBackground(null)
 		cancelDecoding()
 		cameraView.close()
 		cameraView.visibility = View.GONE
@@ -204,6 +210,15 @@ class CameraFragment : Fragment() {
 			} catch (e: RuntimeException) {
 				// ignore; there's nothing we can do
 			}
+		}
+	}
+
+	private fun setMainLayoutBackground(drawable: Drawable?) {
+		val layout = (activity as MainActivity).mainLayout
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+			layout.setBackgroundDrawable(drawable)
+		} else {
+			layout.setBackground(drawable)
 		}
 	}
 

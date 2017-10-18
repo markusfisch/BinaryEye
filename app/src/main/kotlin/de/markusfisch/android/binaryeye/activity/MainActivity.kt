@@ -23,6 +23,7 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 	lateinit var cameraView: CameraView
+	lateinit var mainLayout: View
 
 	override fun onRequestPermissionsResult(
 			requestCode: Int,
@@ -55,6 +56,7 @@ class MainActivity : AppCompatActivity() {
 		initSystemBars(this)
 
 		cameraView = findViewById(R.id.camera_view) as CameraView
+		mainLayout = findViewById(R.id.main_layout)
 
 		setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
 		setUpListener()
