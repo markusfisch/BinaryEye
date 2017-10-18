@@ -27,6 +27,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import android.widget.Toast
 
 class CameraFragment : Fragment() {
@@ -44,6 +45,7 @@ class CameraFragment : Fragment() {
 
 	private lateinit var vibrator: Vibrator
 	private lateinit var cameraView: CameraView
+	private lateinit var zoomBar: SeekBar
 	private lateinit var lockOnView: LockOnView
 	private lateinit var yuvToGray: YuvToGray
 
@@ -69,11 +71,49 @@ class CameraFragment : Fragment() {
 		vibrator = activity.getSystemService(
 				Context.VIBRATOR_SERVICE) as Vibrator
 
+		val view = inflater.inflate(
+				R.layout.fragment_camera,
+				container,
+				false)
+
+		zoomBar = view.findViewById<SeekBar>(R.id.zoom)
+		zoomBar.setOnSeekBarChangeListener(object :
+				SeekBar.OnSeekBarChangeListener {
+			override fun onProgressChanged(seekBar: SeekBar, progress: Int,
+					fromUser: Boolean) {
+				setZoom(progress)
+			}
+
+			override fun onStartTrackingTouch(seekBar: SeekBar) {}
+
+			override fun onStopTrackingTouch(seekBar: SeekBar) {}
+		})
+
+		view.findViewById<View>(R.id.create).setOnClickListener { _ ->
+			addFragment(fragmentManager, EncodeFragment())
+		}
+
 		yuvToGray = YuvToGray(context)
 
 		cameraView = (activity as MainActivity).cameraView
 		cameraView.setOnCameraListener(object : CameraView.OnCameraListener {
 			override fun onConfigureParameters(
+					parameters: Camera.Parameters) {
+				if (parameters.isZoomSupported()) {
+					val max = parameters.getMaxZoom()
+					zoomBar.max = max
+					zoomBar.progress = max / 2
+					parameters.setZoom(zoomBar.progress)
+				} else {
+					zoomBar.visibility = View.GONE
+				}
+				for (mode in parameters.getSupportedSceneModes()) {
+					if (mode.equals(Camera.Parameters.SCENE_MODE_BARCODE)) {
+						parameters.setSceneMode(mode)
+						break
+					}
+				}
+				CameraView.setAutoFocus(parameters)
 			}
 
 			override fun onCameraError(camera: Camera) {
@@ -95,15 +135,6 @@ class CameraFragment : Fragment() {
 		})
 
 		lockOnView = (activity as MainActivity).lockOnView
-
-		val view = inflater.inflate(
-				R.layout.fragment_camera,
-				container,
-				false)
-
-		view.findViewById<View>(R.id.create).setOnClickListener { _ ->
-			addFragment(fragmentManager, EncodeFragment())
-		}
 
 		return view
 	}
@@ -245,5 +276,18 @@ class CameraFragment : Fragment() {
 					Math.max(bounds.bottom, y))
 		}
 		return bounds
+	}
+
+	private fun setZoom(zoom: Int) {
+		val camera: Camera? = cameraView.getCamera()
+		camera?.let {
+			try {
+				val params = camera.getParameters()
+				params.setZoom(zoom)
+				camera.setParameters(params)
+			} catch (e: RuntimeException) {
+				// ignore; there's nothing we can do
+			}
+		}
 	}
 }
