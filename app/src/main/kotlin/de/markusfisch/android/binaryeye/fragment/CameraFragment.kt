@@ -1,21 +1,18 @@
 package de.markusfisch.android.binaryeye.fragment
 
 import com.google.zxing.Result
-import com.google.zxing.ResultPoint
 
 import de.markusfisch.android.cameraview.widget.CameraView
 
 import de.markusfisch.android.binaryeye.activity.MainActivity
 import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.rs.YuvToGray
-import de.markusfisch.android.binaryeye.widget.LockOnView
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.binaryeye.R
 
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Rect
 import android.hardware.Camera
 import android.net.Uri
 import android.os.Bundle
@@ -46,7 +43,6 @@ class CameraFragment : Fragment() {
 	private lateinit var vibrator: Vibrator
 	private lateinit var cameraView: CameraView
 	private lateinit var zoomBar: SeekBar
-	private lateinit var lockOnView: LockOnView
 	private lateinit var yuvToGray: YuvToGray
 
 	private var decoding = false
@@ -134,8 +130,6 @@ class CameraFragment : Fragment() {
 			}
 		})
 
-		lockOnView = (activity as MainActivity).lockOnView
-
 		return view
 	}
 
@@ -147,7 +141,6 @@ class CameraFragment : Fragment() {
 	override fun onResume() {
 		super.onResume()
 		System.gc()
-		lockOnView.visibility = View.VISIBLE
 		cameraView.visibility = View.VISIBLE
 		cameraView.openAsync(CameraView.findCameraId(
 				Camera.CameraInfo.CAMERA_FACING_BACK))
@@ -159,7 +152,6 @@ class CameraFragment : Fragment() {
 		cancelDecoding()
 		cameraView.close()
 		cameraView.visibility = View.GONE
-		lockOnView.visibility = View.GONE
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -200,6 +192,19 @@ class CameraFragment : Fragment() {
 				"https://github.com/markusfisch/BinaryEye/blob/master/README.md")))
 	}
 
+	private fun setZoom(zoom: Int) {
+		val camera: Camera? = cameraView.getCamera()
+		camera?.let {
+			try {
+				val params = camera.getParameters()
+				params.setZoom(zoom)
+				camera.setParameters(params)
+			} catch (e: RuntimeException) {
+				// ignore; there's nothing we can do
+			}
+		}
+	}
+
 	private fun startDecoding() {
 		activity ?: return
 
@@ -233,61 +238,8 @@ class CameraFragment : Fragment() {
 	private fun found(result: Result) {
 		cancelDecoding()
 		vibrator.vibrate(100)
-		lockOnView.lock(getRelativeBounds(result.resultPoints), 250)
-		lockOnView.postDelayed({
-			addFragment(fragmentManager, DecodeFragment.newInstance(
-					result.text,
-					result.getBarcodeFormat()))
-		}, 500)
-	}
-
-	private fun getRelativeBounds(resultPoints: Array<ResultPoint>): Rect {
-		val fw: Float
-		val fh: Float
-		if (frameOrientation == 90 || frameOrientation == 270) {
-			fw = frameHeight.toFloat()
-			fh = frameWidth.toFloat()
-		} else {
-			fw = frameWidth.toFloat()
-			fh = frameHeight.toFloat()
-		}
-		val viewRect = cameraView.previewRect
-		val xf = fw / viewRect.width()
-		val yf = fh / viewRect.height()
-		val bounds = getBounds(resultPoints)
-		bounds.set(
-				Math.round(bounds.left / xf),
-				Math.round(bounds.top / yf),
-				Math.round(bounds.right / xf),
-				Math.round(bounds.bottom / yf))
-		bounds.offset(viewRect.left, viewRect.top)
-		return bounds
-	}
-
-	private fun getBounds(resultPoints: Array<ResultPoint>): Rect {
-		val bounds = Rect(0xffffff, 0xffffff, 0, 0)
-		for (resultPoint in resultPoints) {
-			val x = Math.round(resultPoint.x)
-			val y = Math.round(resultPoint.y)
-			bounds.set(
-					Math.min(bounds.left, x),
-					Math.min(bounds.top, y),
-					Math.max(bounds.right, x),
-					Math.max(bounds.bottom, y))
-		}
-		return bounds
-	}
-
-	private fun setZoom(zoom: Int) {
-		val camera: Camera? = cameraView.getCamera()
-		camera?.let {
-			try {
-				val params = camera.getParameters()
-				params.setZoom(zoom)
-				camera.setParameters(params)
-			} catch (e: RuntimeException) {
-				// ignore; there's nothing we can do
-			}
-		}
+		addFragment(fragmentManager, DecodeFragment.newInstance(
+				result.text,
+				result.getBarcodeFormat()))
 	}
 }

@@ -7,7 +7,6 @@ import de.markusfisch.android.binaryeye.app.setFragment
 import de.markusfisch.android.binaryeye.fragment.CameraFragment
 import de.markusfisch.android.binaryeye.fragment.EncodeFragment
 import de.markusfisch.android.binaryeye.view.SystemBarMetrics
-import de.markusfisch.android.binaryeye.widget.LockOnView
 import de.markusfisch.android.binaryeye.R
 
 import android.content.Intent
@@ -24,7 +23,6 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 	lateinit var cameraView: CameraView
-	lateinit var lockOnView: LockOnView
 
 	override fun onRequestPermissionsResult(
 			requestCode: Int,
@@ -57,7 +55,6 @@ class MainActivity : AppCompatActivity() {
 		initSystemBars(this)
 
 		cameraView = findViewById(R.id.camera_view) as CameraView
-		lockOnView = findViewById(R.id.lock_on) as LockOnView
 
 		setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
 		setUpListener()
