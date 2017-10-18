@@ -20,6 +20,7 @@ import java.util.List;
 public class CameraView extends FrameLayout {
 	public interface OnCameraListener {
 		void onConfigureParameters(Camera.Parameters parameters);
+		void onCameraError(Camera camera);
 		void onCameraStarted(Camera camera);
 		void onCameraStopping(Camera camera);
 	}
@@ -68,6 +69,33 @@ public class CameraView extends FrameLayout {
 		}
 	}
 
+	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+	public static boolean setAutoFocus(Camera.Parameters parameters) {
+		// best for taking pictures, API >= ICE_CREAM_SANDWICH
+		String continuousPicture =
+				Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE;
+		// less aggressive than CONTINUOUS_PICTURE, API >= GINGERBREAD
+		String continuousVideo =
+				Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO;
+		// last resort
+		String autoFocus = Camera.Parameters.FOCUS_MODE_AUTO;
+
+		// prefer feature detection instead of checking BUILD.VERSION
+		List<String> focusModes = parameters.getSupportedFocusModes();
+
+		if (focusModes.contains(continuousPicture)) {
+			parameters.setFocusMode(continuousPicture);
+		} else if (focusModes.contains(continuousVideo)) {
+			parameters.setFocusMode(continuousVideo);
+		} else if (focusModes.contains(autoFocus)) {
+			parameters.setFocusMode(autoFocus);
+		} else {
+			return false;
+		}
+
+		return true;
+	}
+
 	public CameraView(Context context) {
 		super(context);
 	}
@@ -92,7 +120,7 @@ public class CameraView extends FrameLayout {
 				}
 				try {
 					// open() may take a while so it shouldn't be
-					// run on the main thread according to the docs
+					// invoked on the main thread according to the docs
 					return Camera.open(cameraId);
 				} catch (RuntimeException e) {
 					return null;
@@ -175,14 +203,21 @@ public class CameraView extends FrameLayout {
 	private void setCameraParameters(Context context) {
 		boolean transpose = frameOrientation == 90 || frameOrientation == 270;
 
-		Camera.Parameters parameters = camera.getParameters();
-		parameters.setRotation(frameOrientation);
-		setPreviewSize(parameters, transpose);
-		setAutoFocus(parameters);
-		if (onCameraListener != null) {
-			onCameraListener.onConfigureParameters(parameters);
+		try {
+			Camera.Parameters parameters = camera.getParameters();
+			parameters.setRotation(frameOrientation);
+			setPreviewSize(parameters, transpose);
+			if (onCameraListener != null) {
+				onCameraListener.onConfigureParameters(parameters);
+			}
+			camera.setParameters(parameters);
+		} catch (RuntimeException e) {
+			if (onCameraListener != null) {
+				onCameraListener.onCameraError(camera);
+			}
+			return;
 		}
-		camera.setParameters(parameters);
+
 		camera.setDisplayOrientation(frameOrientation);
 
 		int childWidth;
@@ -251,29 +286,6 @@ public class CameraView extends FrameLayout {
 		}
 
 		return bestSizeAspect != null ? bestSizeAspect : bestSize;
-	}
-
-	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-	private static void setAutoFocus(Camera.Parameters parameters) {
-		// best for taking pictures, API >= ICE_CREAM_SANDWICH
-		String continuousPicture =
-				Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE;
-		// less aggressive than CONTINUOUS_PICTURE, API >= GINGERBREAD
-		String continuousVideo =
-				Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO;
-		// last resort
-		String autoFocus = Camera.Parameters.FOCUS_MODE_AUTO;
-
-		// prefer feature detection instead of checking BUILD.VERSION
-		List<String> focusModes = parameters.getSupportedFocusModes();
-
-		if (focusModes.contains(continuousPicture)) {
-			parameters.setFocusMode(continuousPicture);
-		} else if (focusModes.contains(continuousVideo)) {
-			parameters.setFocusMode(continuousVideo);
-		} else if (focusModes.contains(autoFocus)) {
-			parameters.setFocusMode(autoFocus);
-		}
 	}
 
 	private void addSurfaceView(

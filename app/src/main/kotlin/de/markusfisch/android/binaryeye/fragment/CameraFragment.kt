@@ -27,6 +27,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 
 class CameraFragment : Fragment() {
 	private val zxing = Zxing()
@@ -73,7 +74,13 @@ class CameraFragment : Fragment() {
 		cameraView = (activity as MainActivity).cameraView
 		cameraView.setOnCameraListener(object : CameraView.OnCameraListener {
 			override fun onConfigureParameters(
-					parameters: Camera.Parameters) {}
+			}
+
+			override fun onCameraError(camera: Camera) {
+				Toast.makeText(activity, R.string.camera_error,
+						Toast.LENGTH_SHORT).show()
+				activity.finish()
+			}
 
 			override fun onCameraStarted(camera: Camera) {
 				frameWidth = cameraView.frameWidth
