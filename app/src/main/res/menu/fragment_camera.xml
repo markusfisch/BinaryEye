@@ -7,8 +7,8 @@
 		android:icon="@drawable/ic_action_info"
 		material:showAsAction="ifRoom"/>
 	<item
-		android:id="@+id/flash"
-		android:title="@string/flash"
-		android:icon="@drawable/ic_action_flash"
+		android:id="@+id/create"
+		android:title="@string/compose_barcode"
+		android:icon="@drawable/ic_action_create"
 		material:showAsAction="ifRoom"/>
 </menu>

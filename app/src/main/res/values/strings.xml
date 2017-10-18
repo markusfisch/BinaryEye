@@ -2,7 +2,6 @@
 	<string name="no_camera_no_fun">This app does not make any sense without camera access. Good bye.</string>
 	<string name="camera_error">Can\'t access camera, please try again</string>
 	<string name="scan_code">Scan a code</string>
-	<string name="flash">Toggle flash</string>
 	<string name="compose_barcode">Compose barcode</string>
 	<string name="content">Content</string>
 	<string name="copy_to_clipboard">Copy to clipboard</string>

@@ -85,8 +85,14 @@ class CameraFragment : Fragment() {
 			override fun onStopTrackingTouch(seekBar: SeekBar) {}
 		})
 
-		view.findViewById<View>(R.id.create).setOnClickListener { _ ->
-			addFragment(fragmentManager, EncodeFragment())
+		val fab = view.findViewById<View>(R.id.flash)
+		if (!context.packageManager.hasSystemFeature(
+				PackageManager.FEATURE_CAMERA_FLASH)) {
+			fab.visibility = View.GONE
+		} else {
+			fab.setOnClickListener { _ ->
+				toggleTorchMode()
+			}
 		}
 
 		yuvToGray = YuvToGray(context)
@@ -156,16 +162,12 @@ class CameraFragment : Fragment() {
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 		inflater.inflate(R.menu.fragment_camera, menu)
-		if (!context.packageManager.hasSystemFeature(
-				PackageManager.FEATURE_CAMERA_FLASH)) {
-			menu.findItem(R.id.flash).setVisible(false)
-		}
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return when (item.itemId) {
-			R.id.flash -> {
-				toggleTorchMode()
+			R.id.create -> {
+				addFragment(fragmentManager, EncodeFragment())
 				true
 			}
 			R.id.info -> {
