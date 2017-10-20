@@ -30,7 +30,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".activity.MainActivity"
+			android:name=".activity.CameraActivity"
 			android:label="@string/scan_code">
 			<intent-filter>
 				<action android:name="android.intent.action.SEND"/>
@@ -47,5 +47,8 @@
 					android:scheme="http"/>
 			</intent-filter>
 		</activity>
+		<activity
+			android:name=".activity.MainActivity"
+			android:label="@string/app_name"/>
 	</application>
 </manifest>

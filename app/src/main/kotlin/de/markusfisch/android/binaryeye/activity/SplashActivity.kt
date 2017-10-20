@@ -12,7 +12,7 @@ class SplashActivity : AppCompatActivity() {
 		// because that would happen after the app is fully
 		// initialized what is too late
 
-		startActivity(Intent(applicationContext, MainActivity::class.java))
+		startActivity(Intent(applicationContext, CameraActivity::class.java))
 		finish()
 	}
 }
