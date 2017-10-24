@@ -274,7 +274,7 @@ class CameraActivity : AppCompatActivity() {
 					decodingThread?.join()
 					break
 				} catch (e: InterruptedException) {
-					// try again
+					decodingThread?.interrupt()
 				}
 			}
 		}
