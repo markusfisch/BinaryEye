@@ -64,8 +64,7 @@ class CameraActivity : AppCompatActivity() {
 		when (requestCode) {
 			REQUEST_CAMERA -> if (grantResults.size > 0 &&
 					grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-				Toast.makeText(this,
-						R.string.no_camera_no_fun,
+				Toast.makeText(this, R.string.no_camera_no_fun,
 						Toast.LENGTH_SHORT).show()
 				finish()
 			}
@@ -75,6 +74,7 @@ class CameraActivity : AppCompatActivity() {
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
 		setContentView(R.layout.activity_camera)
+
 		initSystemBars(this)
 		setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
 
@@ -102,9 +102,11 @@ class CameraActivity : AppCompatActivity() {
 	override fun onResume() {
 		super.onResume()
 		System.gc()
-		cameraView.openAsync(CameraView.findCameraId(
+		if (hasCameraPermission()) {
+			cameraView.openAsync(CameraView.findCameraId(
 				Camera.CameraInfo.CAMERA_FACING_BACK))
-		startDecoding()
+			startDecoding()
+		}
 	}
 
 	override fun onPause() {
@@ -154,14 +156,17 @@ class CameraActivity : AppCompatActivity() {
 		startActivity(MainActivity.getEncodeIntent(this, text))
 	}
 
-	private fun checkPermissions() {
+	private fun hasCameraPermission(): Boolean {
 		val permission = android.Manifest.permission.CAMERA
 
 		if (ContextCompat.checkSelfPermission(this, permission) !=
 				PackageManager.PERMISSION_GRANTED) {
 			ActivityCompat.requestPermissions(this, arrayOf(permission),
 					REQUEST_CAMERA)
+			return false
 		}
+
+		return true
 	}
 
 	private fun initCameraView() {
@@ -185,7 +190,7 @@ class CameraActivity : AppCompatActivity() {
 				CameraView.setAutoFocus(parameters)
 			}
 
-			override fun onCameraError(camera: Camera) {
+			override fun onCameraError(camera: Camera?) {
 				Toast.makeText(this@CameraActivity, R.string.camera_error,
 						Toast.LENGTH_SHORT).show()
 				finish()
