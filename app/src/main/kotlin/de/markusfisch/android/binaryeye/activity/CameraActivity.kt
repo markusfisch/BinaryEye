@@ -190,7 +190,7 @@ class CameraActivity : AppCompatActivity() {
 				CameraView.setAutoFocus(parameters)
 			}
 
-			override fun onCameraError(camera: Camera?) {
+			override fun onCameraError() {
 				Toast.makeText(this@CameraActivity, R.string.camera_error,
 						Toast.LENGTH_SHORT).show()
 				finish()

@@ -20,7 +20,7 @@ import java.util.List;
 public class CameraView extends FrameLayout {
 	public interface OnCameraListener {
 		void onConfigureParameters(Camera.Parameters parameters);
-		void onCameraError(Camera camera);
+		void onCameraError();
 		void onCameraStarted(Camera camera);
 		void onCameraStopping(Camera camera);
 	}
@@ -115,7 +115,7 @@ public class CameraView extends FrameLayout {
 		new AsyncTask<Void, Void, Camera>() {
 			@Override
 			protected Camera doInBackground(Void... nothings) {
-				if (camera != null) {
+				if (CameraView.this.camera != null) {
 					return null;
 				}
 				try {
@@ -130,6 +130,10 @@ public class CameraView extends FrameLayout {
 			@Override
 			protected void onPostExecute(Camera camera) {
 				if (camera == null) {
+					if (onCameraListener != null &&
+							CameraView.this.camera == null) {
+						onCameraListener.onCameraError();
+					}
 					return;
 				}
 				CameraView.this.camera = camera;
@@ -213,7 +217,7 @@ public class CameraView extends FrameLayout {
 			camera.setParameters(parameters);
 		} catch (RuntimeException e) {
 			if (onCameraListener != null) {
-				onCameraListener.onCameraError(camera);
+				onCameraListener.onCameraError();
 			}
 			return;
 		}
