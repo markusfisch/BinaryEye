@@ -29,6 +29,8 @@ import android.widget.Toast
 class CameraActivity : AppCompatActivity() {
 	companion object {
 		private val REQUEST_CAMERA = 1
+		private val ZOOM_MAX = "zoom_max"
+		private val ZOOM_LEVEL = "zoom_level"
 	}
 
 	private val zxing = Zxing()
@@ -115,6 +117,17 @@ class CameraActivity : AppCompatActivity() {
 		cameraView.close()
 	}
 
+	override fun onRestoreInstanceState(savedState: Bundle) {
+		zoomBar.max = savedState.getInt(ZOOM_MAX)
+		zoomBar.progress = savedState.getInt(ZOOM_LEVEL)
+	}
+
+	override fun onSaveInstanceState(outState: Bundle) {
+		outState.putInt(ZOOM_MAX, zoomBar.max)
+		outState.putInt(ZOOM_LEVEL, zoomBar.progress)
+		super.onSaveInstanceState(outState)
+	}
+
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
 		menuInflater.inflate(R.menu.activity_camera, menu)
 		return true
@@ -175,8 +188,10 @@ class CameraActivity : AppCompatActivity() {
 					parameters: Camera.Parameters) {
 				if (parameters.isZoomSupported()) {
 					val max = parameters.getMaxZoom()
-					zoomBar.max = max
-					zoomBar.progress = max / 3
+					if (zoomBar.max != max) {
+						zoomBar.max = max
+						zoomBar.progress = max / 3
+					}
 					parameters.setZoom(zoomBar.progress)
 				} else {
 					zoomBar.visibility = View.GONE

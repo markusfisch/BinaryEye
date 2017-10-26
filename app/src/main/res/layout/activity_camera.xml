@@ -23,9 +23,7 @@
 			android:layout_marginBottom="8dp"
 			android:layout_marginRight="80dp"
 			android:layout_marginEnd="80dp"
-			android:padding="16dp"
-			android:progress="1"
-			android:max="3"/>
+			android:padding="16dp"/>
 		<android.support.design.widget.FloatingActionButton
 			tools:ignore="UnusedAttribute"
 			android:id="@+id/flash"
