@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 		initSystemBars(this)
 
 		setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
-		setUpListener()
+		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 		if (state == null) {
 			val intent = getIntent()
@@ -70,15 +70,5 @@ class MainActivity : AppCompatActivity() {
 			}
 			setFragment(supportFragmentManager, fragment)
 		}
-	}
-
-	private fun setUpListener() {
-		supportFragmentManager.addOnBackStackChangedListener { canBack() }
-		canBack()
-	}
-
-	private fun canBack() {
-		supportActionBar?.setDisplayHomeAsUpEnabled(
-				supportFragmentManager.backStackEntryCount > 0)
 	}
 }
