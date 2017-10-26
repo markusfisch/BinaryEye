@@ -109,3 +109,7 @@ EOF
 update app/src/main/res/mipmap << EOF
 svg/ic_launcher.svg 48
 EOF
+
+update app/src/main/res/drawable << EOF
+svg/wallpaper.svg 384
+EOF

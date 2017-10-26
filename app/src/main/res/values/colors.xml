@@ -5,5 +5,6 @@
 	<color name="primary_dark_translucent">#8111</color>
 	<color name="accent">#26e1cf</color>
 	<color name="accent_dark">#16d1bf</color>
+	<color name="background_color">#111</color>
 	<color name="button_text">#fff</color>
 </resources>
