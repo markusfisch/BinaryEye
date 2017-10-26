@@ -176,7 +176,7 @@ class CameraActivity : AppCompatActivity() {
 				if (parameters.isZoomSupported()) {
 					val max = parameters.getMaxZoom()
 					zoomBar.max = max
-					zoomBar.progress = max / 2
+					zoomBar.progress = max / 3
 					parameters.setZoom(zoomBar.progress)
 				} else {
 					zoomBar.visibility = View.GONE
