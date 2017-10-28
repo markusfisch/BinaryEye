@@ -255,9 +255,11 @@ public class CameraView extends FrameLayout {
 				parameters.getSupportedPreviewSizes(),
 				frameWidth,
 				frameHeight);
-		frameWidth = size.width;
-		frameHeight = size.height;
-		parameters.setPreviewSize(frameWidth, frameHeight);
+		if (size != null) {
+			frameWidth = size.width;
+			frameHeight = size.height;
+			parameters.setPreviewSize(frameWidth, frameHeight);
+		}
 	}
 
 	private static Camera.Size findBestPreviewSize(
@@ -272,7 +274,7 @@ public class CameraView extends FrameLayout {
 		Camera.Size bestSizeAspect = null;
 
 		for (Camera.Size size : sizes) {
-			double diff = Math.abs(size.height - height) +
+			double diff = (double) Math.abs(size.height - height) +
 					Math.abs(size.width - width);
 
 			if (diff < minDiff) {
