@@ -1,10 +1,16 @@
 # Change Log
 
+## 1.2.0
+* Added a camera zoom slider
+* Added an unobtrusive wallpaper background
+* Replaced lock marks with just a horizontal line
+* Put toggling torch mode into Floating Action Button
+
 ## 1.1.1
 * Brought back inverting every second frame
 
 ## 1.1.0
-* Create barcodes now too
+* Create barcodes
 * Streamlined video pre-processing
 * Decoded content is editable now
 * Fixed position of lock marks on tablets
