@@ -57,15 +57,15 @@ public class CameraView extends FrameLayout {
 				.getSystemService(Context.WINDOW_SERVICE))
 				.getDefaultDisplay()
 				.getRotation()) {
-			default:
-			case Surface.ROTATION_0:
-				return 0;
 			case Surface.ROTATION_90:
 				return 90;
 			case Surface.ROTATION_180:
 				return 180;
 			case Surface.ROTATION_270:
 				return 270;
+			case Surface.ROTATION_0:
+			default:
+				return 0;
 		}
 	}
 
@@ -307,6 +307,7 @@ public class CameraView extends FrameLayout {
 		holder.addCallback(new SurfaceHolder.Callback() {
 			@Override
 			public void surfaceCreated(SurfaceHolder holder) {
+				// wait until the surface has dimensions
 			}
 
 			@Override
