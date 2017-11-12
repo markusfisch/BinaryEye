@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.3.0
+* Support tap to focus
+* Save chose zoom level permanently
+* Update ZXing to latest version (3.3.2)
+
 ## 1.2.0
 * Added a camera zoom slider
 * Added an unobtrusive wallpaper background
