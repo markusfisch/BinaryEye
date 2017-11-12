@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 		private val DECODE = "decode"
 		private val DECODE_FORMAT = "decode_format"
 
-		fun getEncodeIntent(context: Context, text: String = ""): Intent {
+		fun getEncodeIntent(context: Context, text: String? = ""): Intent {
 			val intent = Intent(context, MainActivity::class.java)
 			intent.putExtra(ENCODE, text)
 			return intent

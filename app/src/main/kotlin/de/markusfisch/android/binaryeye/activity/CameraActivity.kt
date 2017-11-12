@@ -162,7 +162,7 @@ class CameraActivity : AppCompatActivity() {
 		}
 
 		var text = intent.getStringExtra(Intent.EXTRA_TEXT)
-		if (text.isEmpty()) {
+		if (text == null || text.isEmpty()) {
 			return
 		}
 
