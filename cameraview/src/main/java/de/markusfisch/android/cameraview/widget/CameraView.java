@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CameraView extends FrameLayout {
@@ -181,6 +182,43 @@ public class CameraView extends FrameLayout {
 
 	public int getFrameOrientation() {
 		return frameOrientation;
+	}
+
+	public Rect calculateFocusRect(float x, float y, int radius) {
+		int cx = Math.round(2000f / viewWidth * x - 1000f);
+		int cy = Math.round(2000f / viewHeight * y - 1000f);
+		return new Rect(
+				Math.max(-1000, cx - radius),
+				Math.max(-1000, cy - radius),
+				Math.min(1000, cx + radius),
+				Math.min(1000, cy + radius));
+	}
+
+	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+	public boolean setFocusArea(Rect area) {
+		if (camera == null || Build.VERSION.SDK_INT <
+				Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+			return false;
+		}
+		try {
+			Camera.Parameters parameters = camera.getParameters();
+			if (parameters.getMaxNumFocusAreas() > 0) {
+				if (area != null) {
+					List<Camera.Area> focusAreas =
+							new ArrayList<Camera.Area>();
+					focusAreas.add(new Camera.Area(area, 1000));
+					parameters.setFocusAreas(focusAreas);
+					parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+				} else {
+					parameters.setFocusAreas(null);
+					CameraView.setAutoFocus(parameters);
+				}
+			}
+			camera.setParameters(parameters);
+			return true;
+		} catch (RuntimeException e) {
+			return false;
+		}
 	}
 
 	@Override
