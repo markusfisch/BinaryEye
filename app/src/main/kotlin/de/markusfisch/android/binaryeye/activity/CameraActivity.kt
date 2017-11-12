@@ -12,6 +12,7 @@ import de.markusfisch.android.binaryeye.R
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Rect
 import android.hardware.Camera
 import android.net.Uri
 import android.os.Bundle
@@ -22,6 +23,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import android.view.MotionEvent
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
@@ -87,6 +89,7 @@ class CameraActivity : AppCompatActivity() {
 		zoomBar = findViewById(R.id.zoom) as SeekBar
 
 		initCameraView()
+		setTapToFocus()
 		initZoomBar()
 		initFlashFab(findViewById(R.id.flash))
 	}
@@ -221,6 +224,24 @@ class CameraActivity : AppCompatActivity() {
 			override fun onCameraStopping(camera: Camera) {
 				camera.setPreviewCallback(null)
 			}
+		})
+	}
+
+	private fun setTapToFocus() {
+		val runnable = Runnable {
+			cameraView.setFocusArea(null)
+		}
+		cameraView.setOnTouchListener({ v: View, event: MotionEvent ->
+			val camera = cameraView.getCamera()
+			camera?.cancelAutoFocus()
+			cameraView.setFocusArea(cameraView.calculateFocusRect(
+					event.getX(), event.getY(), 100))
+			camera?.autoFocus({ _: Boolean, _: Camera ->
+				cameraView.removeCallbacks(runnable)
+				cameraView.postDelayed(runnable, 3000)
+			})
+			v.performClick()
+			true
 		})
 	}
 
