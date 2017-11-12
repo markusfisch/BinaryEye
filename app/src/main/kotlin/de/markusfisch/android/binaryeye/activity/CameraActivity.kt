@@ -12,11 +12,12 @@ import de.markusfisch.android.binaryeye.R
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Rect
+import android.content.SharedPreferences
 import android.hardware.Camera
 import android.net.Uri
 import android.os.Bundle
 import android.os.Vibrator
+import android.preference.PreferenceManager
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
@@ -47,6 +48,7 @@ class CameraActivity : AppCompatActivity() {
 		}
 	}
 
+	private lateinit var preferences: SharedPreferences
 	private lateinit var vibrator: Vibrator
 	private lateinit var cameraView: CameraView
 	private lateinit var zoomBar: SeekBar
@@ -82,8 +84,9 @@ class CameraActivity : AppCompatActivity() {
 		initSystemBars(this)
 		setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
 
-		yuvToGray = YuvToGray(this)
+		preferences = PreferenceManager.getDefaultSharedPreferences(this)
 		vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+		yuvToGray = YuvToGray(this)
 
 		cameraView = findViewById(R.id.camera_view) as CameraView
 		zoomBar = findViewById(R.id.zoom) as SeekBar
@@ -91,12 +94,14 @@ class CameraActivity : AppCompatActivity() {
 		initCameraView()
 		setTapToFocus()
 		initZoomBar()
+		restoreZoom()
 		initFlashFab(findViewById(R.id.flash))
 	}
 
 	override fun onDestroy() {
 		super.onDestroy()
 		yuvToGray.destroy()
+		saveZoom()
 	}
 
 	override fun onNewIntent(intent: Intent) {
@@ -109,7 +114,7 @@ class CameraActivity : AppCompatActivity() {
 		System.gc()
 		if (hasCameraPermission()) {
 			cameraView.openAsync(CameraView.findCameraId(
-				Camera.CameraInfo.CAMERA_FACING_BACK))
+					Camera.CameraInfo.CAMERA_FACING_BACK))
 			startDecoding()
 		}
 	}
@@ -121,6 +126,7 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	override fun onRestoreInstanceState(savedState: Bundle) {
+		super.onRestoreInstanceState(savedState)
 		zoomBar.max = savedState.getInt(ZOOM_MAX)
 		zoomBar.progress = savedState.getInt(ZOOM_LEVEL)
 	}
@@ -194,6 +200,7 @@ class CameraActivity : AppCompatActivity() {
 					if (zoomBar.max != max) {
 						zoomBar.max = max
 						zoomBar.progress = max / 3
+						saveZoom()
 					}
 					parameters.setZoom(zoomBar.progress)
 				} else {
@@ -270,6 +277,18 @@ class CameraActivity : AppCompatActivity() {
 				// ignore; there's nothing we can do
 			}
 		}
+	}
+
+	private fun saveZoom() {
+		val editor = preferences.edit()
+		editor.putInt(ZOOM_MAX, zoomBar.max)
+		editor.putInt(ZOOM_LEVEL, zoomBar.progress)
+		editor.apply()
+	}
+
+	private fun restoreZoom() {
+		zoomBar.max = preferences.getInt(ZOOM_MAX, zoomBar.max)
+		zoomBar.progress = preferences.getInt(ZOOM_LEVEL, zoomBar.progress)
 	}
 
 	private fun initFlashFab(fab: View) {
