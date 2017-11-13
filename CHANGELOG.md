@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.3.1
+* Changed primary color
+
 ## 1.3.0
 * Support tap to focus
 * Save chose zoom level permanently
