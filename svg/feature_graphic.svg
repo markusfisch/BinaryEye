@@ -35,7 +35,7 @@
      units="px"
      inkscape:showpageshadow="false"
      inkscape:window-width="1680"
-     inkscape:window-height="925"
+     inkscape:window-height="1005"
      inkscape:window-x="0"
      inkscape:window-y="1"
      inkscape:window-maximized="1"
@@ -60,14 +60,14 @@
      id="layer1"
      transform="translate(0,-552.36218)">
     <rect
-       style="fill:#26e1cf;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#b6d46f;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect4139"
        width="1024"
        height="500"
        x="0"
        y="552.36218" />
     <path
-       style="fill:#26af9d;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#a6c45f;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 786.41602 28.683594 A 397.04337 397.04337 0 0 0 389.37305 425.72656 A 397.04337 397.04337 0 0 0 396.67383 500 L 1024 500 L 1024 108.21484 A 397.04337 397.04337 0 0 0 786.41602 28.683594 z "
        transform="translate(0,552.36218)"
        id="circle5439" />
