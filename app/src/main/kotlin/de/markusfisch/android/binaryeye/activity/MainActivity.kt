@@ -55,12 +55,11 @@ class MainActivity : AppCompatActivity() {
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 		if (state == null) {
-			val intent = getIntent()
 			var fragment: Fragment
-			if (intent != null && intent.hasExtra(ENCODE)) {
+			if (intent?.hasExtra(ENCODE) == true) {
 				fragment = EncodeFragment.newInstance(
 						intent.getStringExtra(ENCODE))
-			} else if (intent != null && intent.hasExtra(DECODE)) {
+			} else if (intent?.hasExtra(DECODE) == true) {
 				fragment = DecodeFragment.newInstance(
 						intent.getStringExtra(DECODE),
 						intent.getSerializableExtra(
