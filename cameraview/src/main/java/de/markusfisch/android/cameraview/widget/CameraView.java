@@ -28,6 +28,7 @@ public class CameraView extends FrameLayout {
 
 	public final Rect previewRect = new Rect();
 
+	private boolean isOpen = false;
 	private Camera camera;
 	private int viewWidth;
 	private int viewHeight;
@@ -113,6 +114,7 @@ public class CameraView extends FrameLayout {
 	}
 
 	public void openAsync(final int cameraId) {
+		isOpen = true;
 		new AsyncTask<Void, Void, Camera>() {
 			@Override
 			protected Camera doInBackground(Void... nothings) {
@@ -130,8 +132,21 @@ public class CameraView extends FrameLayout {
 
 			@Override
 			protected void onPostExecute(Camera camera) {
+				if (!isOpen) {
+					// close() was called while Camera.open() was
+					// running on another thread
+					if (camera != null) {
+						// close the open camera that noone is
+						// interested in anymore
+						CameraView.this.camera = camera;
+						close();
+					}
+					return;
+				}
 				if (camera == null) {
 					if (onCameraListener != null &&
+							// run onCameraError() only if there
+							// isn't an open camera yet
 							CameraView.this.camera == null) {
 						onCameraListener.onCameraError();
 					}
@@ -152,6 +167,7 @@ public class CameraView extends FrameLayout {
 	}
 
 	public void close() {
+		isOpen = false;
 		if (camera != null) {
 			if (onCameraListener != null) {
 				onCameraListener.onCameraStopping(camera);
@@ -354,6 +370,9 @@ public class CameraView extends FrameLayout {
 					int format,
 					int width,
 					int height) {
+				if (camera == null) {
+					return;
+				}
 				try {
 					camera.setPreviewDisplay(holder);
 				} catch (IOException e) {
