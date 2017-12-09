@@ -1,7 +1,5 @@
 # Binary Eye
 
-<a href="https://travis-ci.org/markusfisch/BinaryEye"><img src="https://api.travis-ci.org/markusfisch/BinaryEye.svg" alt="Travis-ci"/></a>
-
 Yet another barcode scanner for Android. As if there weren't [enough][play].
 
 This one is totally free, open source and does use the [ZXing][zxing] barcode
