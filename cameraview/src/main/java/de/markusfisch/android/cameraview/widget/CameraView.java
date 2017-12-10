@@ -29,7 +29,7 @@ public class CameraView extends FrameLayout {
 	public final Rect previewRect = new Rect();
 
 	private boolean isOpen = false;
-	private Camera camera;
+	private Camera cam;
 	private int viewWidth;
 	private int viewHeight;
 	private int frameWidth;
@@ -118,7 +118,7 @@ public class CameraView extends FrameLayout {
 		new AsyncTask<Void, Void, Camera>() {
 			@Override
 			protected Camera doInBackground(Void... nothings) {
-				if (CameraView.this.camera != null) {
+				if (cam != null) {
 					return null;
 				}
 				try {
@@ -136,10 +136,7 @@ public class CameraView extends FrameLayout {
 					// close() was called while Camera.open() was
 					// running on another thread
 					if (camera != null) {
-						// close the open camera that noone is
-						// interested in anymore
-						CameraView.this.camera = camera;
-						close();
+						camera.release();
 					}
 					return;
 				}
@@ -147,12 +144,12 @@ public class CameraView extends FrameLayout {
 					if (onCameraListener != null &&
 							// run onCameraError() only if there
 							// isn't an open camera yet
-							CameraView.this.camera == null) {
+							cam == null) {
 						onCameraListener.onCameraError();
 					}
 					return;
 				}
-				CameraView.this.camera = camera;
+				cam = camera;
 				Context context = getContext();
 				if (context == null) {
 					close();
@@ -168,14 +165,14 @@ public class CameraView extends FrameLayout {
 
 	public void close() {
 		isOpen = false;
-		if (camera != null) {
+		if (cam != null) {
 			if (onCameraListener != null) {
-				onCameraListener.onCameraStopping(camera);
+				onCameraListener.onCameraStopping(cam);
 			}
-			camera.stopPreview();
-			camera.setPreviewCallback(null);
-			camera.release();
-			camera = null;
+			cam.stopPreview();
+			cam.setPreviewCallback(null);
+			cam.release();
+			cam = null;
 		}
 		removeAllViews();
 	}
@@ -185,7 +182,7 @@ public class CameraView extends FrameLayout {
 	}
 
 	public Camera getCamera() {
-		return camera;
+		return cam;
 	}
 
 	public int getFrameWidth() {
@@ -212,12 +209,12 @@ public class CameraView extends FrameLayout {
 
 	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 	public boolean setFocusArea(Rect area) {
-		if (camera == null || Build.VERSION.SDK_INT <
+		if (cam == null || Build.VERSION.SDK_INT <
 				Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
 			return false;
 		}
 		try {
-			Camera.Parameters parameters = camera.getParameters();
+			Camera.Parameters parameters = cam.getParameters();
 			if (parameters.getMaxNumFocusAreas() > 0) {
 				if (area != null) {
 					List<Camera.Area> focusAreas =
@@ -230,7 +227,7 @@ public class CameraView extends FrameLayout {
 					CameraView.setAutoFocus(parameters);
 				}
 			}
-			camera.setParameters(parameters);
+			cam.setParameters(parameters);
 			return true;
 		} catch (RuntimeException e) {
 			return false;
@@ -249,7 +246,7 @@ public class CameraView extends FrameLayout {
 		}
 		viewWidth = right - left;
 		viewHeight = bottom - top;
-		if (camera != null && getChildCount() == 0) {
+		if (cam != null && getChildCount() == 0) {
 			Context context = getContext();
 			if (context == null) {
 				return;
@@ -262,13 +259,13 @@ public class CameraView extends FrameLayout {
 		boolean transpose = frameOrientation == 90 || frameOrientation == 270;
 
 		try {
-			Camera.Parameters parameters = camera.getParameters();
+			Camera.Parameters parameters = cam.getParameters();
 			parameters.setRotation(frameOrientation);
 			setPreviewSize(parameters, transpose);
 			if (onCameraListener != null) {
 				onCameraListener.onConfigureParameters(parameters);
 			}
-			camera.setParameters(parameters);
+			cam.setParameters(parameters);
 		} catch (RuntimeException e) {
 			if (onCameraListener != null) {
 				onCameraListener.onCameraError();
@@ -276,7 +273,7 @@ public class CameraView extends FrameLayout {
 			return;
 		}
 
-		camera.setDisplayOrientation(frameOrientation);
+		cam.setDisplayOrientation(frameOrientation);
 
 		int childWidth;
 		int childHeight;
@@ -290,7 +287,7 @@ public class CameraView extends FrameLayout {
 		addSurfaceView(context, childWidth, childHeight);
 
 		if (onCameraListener != null) {
-			onCameraListener.onCameraStarted(camera);
+			onCameraListener.onCameraStarted(cam);
 		}
 	}
 
@@ -370,15 +367,15 @@ public class CameraView extends FrameLayout {
 					int format,
 					int width,
 					int height) {
-				if (camera == null) {
+				if (cam == null) {
 					return;
 				}
 				try {
-					camera.setPreviewDisplay(holder);
+					cam.setPreviewDisplay(holder);
 				} catch (IOException e) {
 					return;
 				}
-				camera.startPreview();
+				cam.startPreview();
 			}
 
 			@Override
