@@ -15,7 +15,8 @@ fun addFragment(fm: FragmentManager?, fragment: Fragment) {
 }
 
 private fun getTransaction(
-		fm: FragmentManager,
-		fragment: Fragment): FragmentTransaction {
+	fm: FragmentManager,
+	fragment: Fragment
+): FragmentTransaction {
 	return fm.beginTransaction().replace(R.id.content_frame, fragment)
 }

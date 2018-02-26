@@ -30,12 +30,6 @@ import android.widget.SeekBar
 import android.widget.Toast
 
 class CameraActivity : AppCompatActivity() {
-	companion object {
-		private val REQUEST_CAMERA = 1
-		private val ZOOM_MAX = "zoom_max"
-		private val ZOOM_LEVEL = "zoom_level"
-	}
-
 	private val zxing = Zxing()
 	private val decodingRunnable = Runnable {
 		while (decoding) {
@@ -64,14 +58,18 @@ class CameraActivity : AppCompatActivity() {
 	private var flash = false
 
 	override fun onRequestPermissionsResult(
-			requestCode: Int,
-			permissions: Array<String>,
-			grantResults: IntArray) {
+		requestCode: Int,
+		permissions: Array<String>,
+		grantResults: IntArray
+	) {
 		when (requestCode) {
 			REQUEST_CAMERA -> if (grantResults.size > 0 &&
-					grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-				Toast.makeText(this, R.string.no_camera_no_fun,
-						Toast.LENGTH_SHORT).show()
+				grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+				Toast.makeText(
+					this,
+					R.string.no_camera_no_fun,
+					Toast.LENGTH_SHORT
+				).show()
 				finish()
 			}
 		}
@@ -113,8 +111,11 @@ class CameraActivity : AppCompatActivity() {
 		super.onResume()
 		System.gc()
 		if (hasCameraPermission()) {
-			cameraView.openAsync(CameraView.findCameraId(
-					Camera.CameraInfo.CAMERA_FACING_BACK))
+			cameraView.openAsync(
+				CameraView.findCameraId(
+					Camera.CameraInfo.CAMERA_FACING_BACK
+				)
+			)
 			startDecoding()
 		}
 	}
@@ -157,13 +158,18 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun openReadme() {
-		startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(
-				"https://github.com/markusfisch/BinaryEye/blob/master/README.md")))
+		startActivity(
+			Intent(
+				Intent.ACTION_VIEW, Uri.parse(
+					"https://github.com/markusfisch/BinaryEye/blob/master/README.md"
+				)
+			)
+		)
 	}
 
 	private fun handleSendText(intent: Intent) {
 		if (!Intent.ACTION_SEND.equals(intent.getAction()) ||
-				!"text/plain".equals(intent.getType())) {
+			!"text/plain".equals(intent.getType())) {
 			return
 		}
 
@@ -182,9 +188,11 @@ class CameraActivity : AppCompatActivity() {
 		val permission = android.Manifest.permission.CAMERA
 
 		if (ContextCompat.checkSelfPermission(this, permission) !=
-				PackageManager.PERMISSION_GRANTED) {
-			ActivityCompat.requestPermissions(this, arrayOf(permission),
-					REQUEST_CAMERA)
+			PackageManager.PERMISSION_GRANTED) {
+			ActivityCompat.requestPermissions(
+				this, arrayOf(permission),
+				REQUEST_CAMERA
+			)
 			return false
 		}
 
@@ -194,7 +202,8 @@ class CameraActivity : AppCompatActivity() {
 	private fun initCameraView() {
 		cameraView.setOnCameraListener(object : CameraView.OnCameraListener {
 			override fun onConfigureParameters(
-					parameters: Camera.Parameters) {
+				parameters: Camera.Parameters
+			) {
 				if (parameters.isZoomSupported()) {
 					val max = parameters.getMaxZoom()
 					if (zoomBar.max != max) {
@@ -208,7 +217,7 @@ class CameraActivity : AppCompatActivity() {
 				}
 				for (mode in parameters.getSupportedSceneModes()) {
 					if (mode.equals(Camera.Parameters.SCENE_MODE_BARCODE)) {
-						parameters.setSceneMode(mode)
+						parameters.sceneMode = mode
 						break
 					}
 				}
@@ -216,8 +225,11 @@ class CameraActivity : AppCompatActivity() {
 			}
 
 			override fun onCameraError() {
-				Toast.makeText(this@CameraActivity, R.string.camera_error,
-						Toast.LENGTH_SHORT).show()
+				Toast.makeText(
+					this@CameraActivity,
+					R.string.camera_error,
+					Toast.LENGTH_SHORT
+				).show()
 				finish()
 			}
 
@@ -241,8 +253,11 @@ class CameraActivity : AppCompatActivity() {
 		cameraView.setOnTouchListener({ v: View, event: MotionEvent ->
 			val camera = cameraView.getCamera()
 			camera?.cancelAutoFocus()
-			cameraView.setFocusArea(cameraView.calculateFocusRect(
-					event.getX(), event.getY(), 100))
+			cameraView.setFocusArea(
+				cameraView.calculateFocusRect(
+					event.getX(), event.getY(), 100
+				)
+			)
 			camera?.autoFocus({ _: Boolean, _: Camera ->
 				cameraView.removeCallbacks(runnable)
 				cameraView.postDelayed(runnable, 3000)
@@ -254,9 +269,11 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun initZoomBar() {
 		zoomBar.setOnSeekBarChangeListener(object :
-				SeekBar.OnSeekBarChangeListener {
-			override fun onProgressChanged(seekBar: SeekBar, progress: Int,
-					fromUser: Boolean) {
+			SeekBar.OnSeekBarChangeListener {
+			override fun onProgressChanged(
+				seekBar: SeekBar, progress: Int,
+				fromUser: Boolean
+			) {
 				setZoom(progress)
 			}
 
@@ -293,7 +310,8 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun initFlashFab(fab: View) {
 		if (!packageManager.hasSystemFeature(
-				PackageManager.FEATURE_CAMERA_FLASH)) {
+				PackageManager.FEATURE_CAMERA_FLASH
+			)) {
 			fab.visibility = View.GONE
 		} else {
 			fab.setOnClickListener { _ ->
@@ -305,10 +323,12 @@ class CameraActivity : AppCompatActivity() {
 	private fun toggleTorchMode() {
 		val camera = cameraView.getCamera()
 		val parameters = camera?.getParameters()
-		parameters?.setFlashMode(if (flash)
-			Camera.Parameters.FLASH_MODE_OFF
-		else
-			Camera.Parameters.FLASH_MODE_TORCH)
+		parameters?.setFlashMode(
+			if (flash)
+				Camera.Parameters.FLASH_MODE_OFF
+			else
+				Camera.Parameters.FLASH_MODE_TORCH
+		)
 		flash = flash xor true
 		parameters?.let { camera.setParameters(parameters) }
 	}
@@ -337,15 +357,28 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun decodeFrame(): Result? {
 		frameData ?: return null
-		return zxing.decodeBitmap(yuvToGray.convert(
-				frameData!!, frameWidth, frameHeight, frameOrientation))
+		return zxing.decodeBitmap(
+			yuvToGray.convert(
+				frameData!!, frameWidth, frameHeight, frameOrientation
+			)
+		)
 	}
 
 	private fun found(result: Result) {
 		cancelDecoding()
 		vibrator.vibrate(100)
 
-		startActivity(MainActivity.getDecodeIntent(this, result.text,
-				result.getBarcodeFormat()))
+		startActivity(
+			MainActivity.getDecodeIntent(
+				this, result.text,
+				result.getBarcodeFormat()
+			)
+		)
+	}
+
+	companion object {
+		private const val REQUEST_CAMERA = 1
+		private const val ZOOM_MAX = "zoom_max"
+		private const val ZOOM_LEVEL = "zoom_level"
 	}
 }

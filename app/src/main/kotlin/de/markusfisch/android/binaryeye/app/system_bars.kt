@@ -15,9 +15,13 @@ import android.view.Window
 
 fun initSystemBars(activity: AppCompatActivity?) {
 	val view = activity?.findViewById(R.id.main_layout)
-	if (view != null && setSystemBarColor(activity.window,
-			ContextCompat.getColor(activity,
-					R.color.primary_dark_translucent))) {
+	if (view != null && setSystemBarColor(
+			activity.window,
+			ContextCompat.getColor(
+				activity,
+				R.color.primary_dark_translucent
+			)
+		)) {
 		view.setPadding(0, getStatusBarHeight(activity.resources), 0, 0)
 	}
 }
@@ -50,15 +54,17 @@ fun getToolBarHeight(context: Context): Int {
 	return if (context.theme.resolveAttribute(
 			android.R.attr.actionBarSize,
 			tv,
-			true))
+			true
+		))
 		TypedValue.complexToDimensionPixelSize(
-				tv.data,
-				context.resources.displayMetrics)
+			tv.data,
+			context.resources.displayMetrics
+		)
 	else
 		0
 }
 
-fun getNavigationBarSize(res:Resources): Point {
+fun getNavigationBarSize(res: Resources): Point {
 	val size = Point(0, 0)
 	if (!getIdentifierBoolean(res, "config_showNavigationBar")) {
 		return size
@@ -66,12 +72,14 @@ fun getNavigationBarSize(res:Resources): Point {
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
 		val conf = res.getConfiguration()
 		if (conf.orientation == Configuration.ORIENTATION_LANDSCAPE &&
-				// according to https://developer.android.com/training/multiscreen/screensizes.html#TaskUseSWQuali
-				// only a screen < 600 dp is considered to be a phone
-				// and can move its navigation bar to the side
-				conf.smallestScreenWidthDp < 600) {
-			size.x = getIdentifierDimen(res,
-					"navigation_bar_height_landscape")
+			// according to https://developer.android.com/training/multiscreen/screensizes.html#TaskUseSWQuali
+			// only a screen < 600 dp is considered to be a phone
+			// and can move its navigation bar to the side
+			conf.smallestScreenWidthDp < 600) {
+			size.x = getIdentifierDimen(
+				res,
+				"navigation_bar_height_landscape"
+			)
 			return size
 		}
 	}
@@ -79,7 +87,7 @@ fun getNavigationBarSize(res:Resources): Point {
 	return size
 }
 
-private fun getIdentifierBoolean(res:Resources, name:String): Boolean {
+private fun getIdentifierBoolean(res: Resources, name: String): Boolean {
 	val id = res.getIdentifier(name, "bool", "android")
 	return id > 0 && res.getBoolean(id)
 }

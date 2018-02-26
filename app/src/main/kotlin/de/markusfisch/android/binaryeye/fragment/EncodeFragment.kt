@@ -20,55 +20,43 @@ import android.widget.TextView
 import android.widget.Toast
 
 class EncodeFragment : Fragment() {
-	companion object {
-		private val CONTENT = "content"
-		private val FORMAT = "format"
-
-		fun newInstance(
-				content: String,
-				format: BarcodeFormat = BarcodeFormat.AZTEC): Fragment {
-			val args = Bundle()
-			args.putString(CONTENT, content)
-			args.putSerializable(FORMAT, format)
-			val fragment = EncodeFragment()
-			fragment.setArguments(args)
-			return fragment
-		}
-	}
-
 	private lateinit var formatView: Spinner
 	private lateinit var sizeView: TextView
 	private lateinit var sizeBarView: SeekBar
 	private val writers = arrayListOf(
-			BarcodeFormat.AZTEC,
-			BarcodeFormat.CODABAR,
-			BarcodeFormat.CODE_39,
-			BarcodeFormat.CODE_128,
-			BarcodeFormat.DATA_MATRIX,
-			BarcodeFormat.EAN_8,
-			BarcodeFormat.EAN_13,
-			BarcodeFormat.ITF,
-			BarcodeFormat.PDF_417,
-			BarcodeFormat.QR_CODE,
-			BarcodeFormat.UPC_A
+		BarcodeFormat.AZTEC,
+		BarcodeFormat.CODABAR,
+		BarcodeFormat.CODE_39,
+		BarcodeFormat.CODE_128,
+		BarcodeFormat.DATA_MATRIX,
+		BarcodeFormat.EAN_8,
+		BarcodeFormat.EAN_13,
+		BarcodeFormat.ITF,
+		BarcodeFormat.PDF_417,
+		BarcodeFormat.QR_CODE,
+		BarcodeFormat.UPC_A
 	)
 
 	override fun onCreateView(
-			inflater: LayoutInflater,
-			container: ViewGroup?,
-			state: Bundle?): View {
+		inflater: LayoutInflater,
+		container: ViewGroup?,
+		state: Bundle?
+	): View {
 		activity.setTitle(R.string.compose_barcode)
 
 		val view = inflater.inflate(
-				R.layout.fragment_encode,
-				container,
-				false)
+			R.layout.fragment_encode,
+			container,
+			false
+		)
 
 		formatView = view.findViewById<Spinner>(R.id.format)
-		formatView.setAdapter(ArrayAdapter<String>(
+		formatView.setAdapter(
+			ArrayAdapter<String>(
 				activity,
 				android.R.layout.simple_list_item_1,
-				writers.map { it -> it.name }))
+				writers.map { it -> it.name })
+		)
 
 		sizeView = view.findViewById<TextView>(R.id.size_display)
 		sizeBarView = view.findViewById<SeekBar>(R.id.size_bar)
@@ -79,8 +67,11 @@ class EncodeFragment : Fragment() {
 		val args = getArguments()
 		args?.let {
 			contentView.setText(args.getString(CONTENT))
-			formatView.setSelection(writers.indexOf(
-					args.getSerializable(FORMAT) as BarcodeFormat?))
+			formatView.setSelection(
+				writers.indexOf(
+					args.getSerializable(FORMAT) as BarcodeFormat?
+				)
+			)
 		}
 
 		view.findViewById<View>(R.id.encode).setOnClickListener { v ->
@@ -88,14 +79,19 @@ class EncodeFragment : Fragment() {
 			var size = getSize(sizeBarView.getProgress())
 			val content = contentView.getText().toString()
 			if (content.isEmpty()) {
-				Toast.makeText(v.context, R.string.error_no_content,
-						Toast.LENGTH_SHORT).show()
+				Toast.makeText(
+					v.context, R.string.error_no_content,
+					Toast.LENGTH_SHORT
+				).show()
 			} else {
 				hideSoftKeyboard(contentView)
-				addFragment(fragmentManager, BarcodeFragment.newInstance(
+				addFragment(
+					fragmentManager, BarcodeFragment.newInstance(
 						content,
 						format,
-						size))
+						size
+					)
+				)
 			}
 		}
 
@@ -105,18 +101,19 @@ class EncodeFragment : Fragment() {
 	private fun initSizeBar() {
 		updateSize(sizeBarView.getProgress())
 		sizeBarView.setOnSeekBarChangeListener(
-				object : SeekBar.OnSeekBarChangeListener {
-			override fun onProgressChanged(
+			object : SeekBar.OnSeekBarChangeListener {
+				override fun onProgressChanged(
 					seekBar: SeekBar,
 					progressValue: Int,
-					fromUser: Boolean) {
-				updateSize(progressValue)
-			}
+					fromUser: Boolean
+				) {
+					updateSize(progressValue)
+				}
 
-			override fun onStartTrackingTouch(seekBar: SeekBar) {}
+				override fun onStartTrackingTouch(seekBar: SeekBar) {}
 
-			override fun onStopTrackingTouch(seekBar: SeekBar) {}
-		})
+				override fun onStopTrackingTouch(seekBar: SeekBar) {}
+			})
 	}
 
 	private fun updateSize(power: Int) {
@@ -128,9 +125,27 @@ class EncodeFragment : Fragment() {
 
 	private fun hideSoftKeyboard(view: View) {
 		val im = activity?.getSystemService(
-				Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+			Context.INPUT_METHOD_SERVICE
+		) as InputMethodManager?
 		im?.let {
 			im.hideSoftInputFromWindow(view.getWindowToken(), 0)
+		}
+	}
+
+	companion object {
+		private const val CONTENT = "content"
+		private const val FORMAT = "format"
+
+		fun newInstance(
+			content: String,
+			format: BarcodeFormat = BarcodeFormat.AZTEC
+		): Fragment {
+			val args = Bundle()
+			args.putString(CONTENT, content)
+			args.putSerializable(FORMAT, format)
+			val fragment = EncodeFragment()
+			fragment.setArguments(args)
+			return fragment
 		}
 	}
 }

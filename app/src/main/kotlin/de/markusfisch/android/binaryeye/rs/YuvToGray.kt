@@ -42,17 +42,22 @@ class YuvToGray(context: Context) {
 	}
 
 	fun convert(
-			data: ByteArray,
-			width: Int,
-			height: Int,
-			orientation: Int): Bitmap {
+		data: ByteArray,
+		width: Int,
+		height: Int,
+		orientation: Int
+	): Bitmap {
 		if (dest == null) {
 			yuvType = Type.createXY(rs, Element.U8(rs), width, height * 3 / 2)
-			yuvAlloc = Allocation.createTyped(rs, yuvType,
-					Allocation.USAGE_SCRIPT)
+			yuvAlloc = Allocation.createTyped(
+				rs, yuvType,
+				Allocation.USAGE_SCRIPT
+			)
 			rgbaType = Type.createXY(rs, Element.RGBA_8888(rs), width, height)
-			rgbaAlloc = Allocation.createTyped(rs, rgbaType,
-					Allocation.USAGE_SCRIPT)
+			rgbaAlloc = Allocation.createTyped(
+				rs, rgbaType,
+				Allocation.USAGE_SCRIPT
+			)
 
 			var w = width
 			var h = height
@@ -66,10 +71,11 @@ class YuvToGray(context: Context) {
 
 			dest = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
 			destAlloc = Allocation.createFromBitmap(
-					rs,
-					dest,
-					Allocation.MipmapControl.MIPMAP_NONE,
-					Allocation.USAGE_SCRIPT)
+				rs,
+				dest,
+				Allocation.MipmapControl.MIPMAP_NONE,
+				Allocation.USAGE_SCRIPT
+			)
 		}
 
 		yuvAlloc?.copyFrom(data)

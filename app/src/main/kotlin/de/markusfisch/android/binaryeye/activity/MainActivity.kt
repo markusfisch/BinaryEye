@@ -16,26 +16,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 
 class MainActivity : AppCompatActivity() {
-	companion object {
-		private val ENCODE = "encode"
-		private val DECODE = "decode"
-		private val DECODE_FORMAT = "decode_format"
-
-		fun getEncodeIntent(context: Context, text: String? = ""): Intent {
-			val intent = Intent(context, MainActivity::class.java)
-			intent.putExtra(ENCODE, text)
-			return intent
-		}
-
-		fun getDecodeIntent(context: Context, text: String,
-				format: BarcodeFormat): Intent {
-			val intent = Intent(context, MainActivity::class.java)
-			intent.putExtra(DECODE, text)
-			intent.putExtra(DECODE_FORMAT, format)
-			return intent
-		}
-	}
-
 	override fun onSupportNavigateUp(): Boolean {
 		val fm = supportFragmentManager
 		if (fm != null && fm.backStackEntryCount > 0) {
@@ -58,16 +38,41 @@ class MainActivity : AppCompatActivity() {
 			var fragment: Fragment
 			if (intent?.hasExtra(ENCODE) == true) {
 				fragment = EncodeFragment.newInstance(
-						intent.getStringExtra(ENCODE))
+					intent.getStringExtra(ENCODE)
+				)
 			} else if (intent?.hasExtra(DECODE) == true) {
 				fragment = DecodeFragment.newInstance(
-						intent.getStringExtra(DECODE),
-						intent.getSerializableExtra(
-								DECODE_FORMAT) as BarcodeFormat)
+					intent.getStringExtra(DECODE),
+					intent.getSerializableExtra(
+						DECODE_FORMAT
+					) as BarcodeFormat
+				)
 			} else {
 				fragment = DecodeFragment()
 			}
 			setFragment(supportFragmentManager, fragment)
+		}
+	}
+
+	companion object {
+		private const val ENCODE = "encode"
+		private const val DECODE = "decode"
+		private const val DECODE_FORMAT = "decode_format"
+
+		fun getEncodeIntent(context: Context, text: String? = ""): Intent {
+			val intent = Intent(context, MainActivity::class.java)
+			intent.putExtra(ENCODE, text)
+			return intent
+		}
+
+		fun getDecodeIntent(
+			context: Context, text: String,
+			format: BarcodeFormat
+		): Intent {
+			val intent = Intent(context, MainActivity::class.java)
+			intent.putExtra(DECODE, text)
+			intent.putExtra(DECODE_FORMAT, format)
+			return intent
 		}
 	}
 }

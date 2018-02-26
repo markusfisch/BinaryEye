@@ -21,20 +21,6 @@ import android.widget.EditText
 import android.widget.Toast
 
 class DecodeFragment : Fragment() {
-	companion object {
-		private val CONTENT = "content"
-		private val FORMAT = "format"
-
-		fun newInstance(content: String, format: BarcodeFormat): Fragment {
-			val args = Bundle()
-			args.putString(CONTENT, content)
-			args.putSerializable(FORMAT, format)
-			val fragment = DecodeFragment()
-			fragment.arguments = args
-			return fragment
-		}
-	}
-
 	private lateinit var contentView: EditText
 	private lateinit var format: BarcodeFormat
 
@@ -44,19 +30,20 @@ class DecodeFragment : Fragment() {
 	}
 
 	override fun onCreateView(
-			inflater: LayoutInflater,
-			container: ViewGroup?,
-			state: Bundle?): View {
+		inflater: LayoutInflater,
+		container: ViewGroup?,
+		state: Bundle?
+	): View {
 		activity.setTitle(R.string.content)
 
 		val view = inflater.inflate(
-				R.layout.fragment_decode,
-				container,
-				false)
+			R.layout.fragment_decode,
+			container,
+			false
+		)
 
 		val content = arguments?.getString(CONTENT) ?: ""
-		format = arguments?.getSerializable(FORMAT) as BarcodeFormat? ?:
-				BarcodeFormat.QR_CODE
+		format = arguments?.getSerializable(FORMAT) as BarcodeFormat? ?: BarcodeFormat.QR_CODE
 
 		contentView = view.findViewById<EditText>(R.id.content)
 		contentView.setText(content)
@@ -83,8 +70,10 @@ class DecodeFragment : Fragment() {
 				true
 			}
 			R.id.create -> {
-				addFragment(fragmentManager,
-						EncodeFragment.newInstance(getContent(), format))
+				addFragment(
+					fragmentManager,
+					EncodeFragment.newInstance(getContent(), format)
+				)
 				true
 			}
 			else -> super.onOptionsItemSelected(item)
@@ -99,11 +88,14 @@ class DecodeFragment : Fragment() {
 		activity ?: return
 
 		val cm = activity.getSystemService(
-				Context.CLIPBOARD_SERVICE) as ClipboardManager
+			Context.CLIPBOARD_SERVICE
+		) as ClipboardManager
 		cm.setText(text)
-		Toast.makeText(activity,
-				R.string.put_into_clipboard,
-				Toast.LENGTH_SHORT).show()
+		Toast.makeText(
+			activity,
+			R.string.put_into_clipboard,
+			Toast.LENGTH_SHORT
+		).show()
 	}
 
 	private fun openUrl(url: String) {
@@ -114,9 +106,11 @@ class DecodeFragment : Fragment() {
 		if (intent.resolveActivity(activity.getPackageManager()) != null) {
 			startActivity(intent)
 		} else {
-			Toast.makeText(activity,
-					R.string.cannot_resolve_action,
-					Toast.LENGTH_SHORT).show()
+			Toast.makeText(
+				activity,
+				R.string.cannot_resolve_action,
+				Toast.LENGTH_SHORT
+			).show()
 		}
 	}
 
@@ -125,5 +119,19 @@ class DecodeFragment : Fragment() {
 		intent.putExtra(Intent.EXTRA_TEXT, text)
 		intent.setType("text/plain")
 		startActivity(intent)
+	}
+
+	companion object {
+		private const val CONTENT = "content"
+		private const val FORMAT = "format"
+
+		fun newInstance(content: String, format: BarcodeFormat): Fragment {
+			val args = Bundle()
+			args.putString(CONTENT, content)
+			args.putSerializable(FORMAT, format)
+			val fragment = DecodeFragment()
+			fragment.arguments = args
+			return fragment
+		}
 	}
 }
