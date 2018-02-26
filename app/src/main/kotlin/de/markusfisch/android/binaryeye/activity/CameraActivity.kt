@@ -199,7 +199,7 @@ class CameraActivity : AppCompatActivity() {
 					val max = parameters.getMaxZoom()
 					if (zoomBar.max != max) {
 						zoomBar.max = max
-						zoomBar.progress = max / 3
+						zoomBar.progress = max / 5
 						saveZoom()
 					}
 					parameters.setZoom(zoomBar.progress)
