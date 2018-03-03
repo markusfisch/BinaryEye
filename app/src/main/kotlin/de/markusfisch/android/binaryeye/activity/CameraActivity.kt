@@ -116,7 +116,6 @@ class CameraActivity : AppCompatActivity() {
 					Camera.CameraInfo.CAMERA_FACING_BACK
 				)
 			)
-			startDecoding()
 		}
 	}
 
@@ -241,9 +240,11 @@ class CameraActivity : AppCompatActivity() {
 			}
 
 			override fun onPreviewStarted(camera: Camera) {
+				startDecoding()
 			}
 
 			override fun onCameraStopping(camera: Camera) {
+				cancelDecoding()
 				camera.setPreviewCallback(null)
 			}
 		})
@@ -355,6 +356,7 @@ class CameraActivity : AppCompatActivity() {
 					decodingThread?.interrupt()
 				}
 			}
+			decodingThread = null
 		}
 	}
 
