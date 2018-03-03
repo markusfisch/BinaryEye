@@ -233,7 +233,7 @@ class CameraActivity : AppCompatActivity() {
 				finish()
 			}
 
-			override fun onCameraStarted(camera: Camera) {
+			override fun onCameraReady(camera: Camera) {
 				frameWidth = cameraView.frameWidth
 				frameHeight = cameraView.frameHeight
 				frameOrientation = cameraView.frameOrientation

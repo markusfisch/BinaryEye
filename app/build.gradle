@@ -48,5 +48,5 @@ dependencies {
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 	implementation "com.android.support:appcompat-v7:$support_version"
 	implementation "com.android.support:design:$support_version"
-	implementation 'com.github.markusfisch:CameraView:1.4.0'
+	implementation 'com.github.markusfisch:CameraView:1.5.0'
 }
