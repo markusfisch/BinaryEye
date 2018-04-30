@@ -112,4 +112,5 @@ EOF
 
 update app/src/main/res/drawable << EOF
 svg/wallpaper.svg 384
+svg/logo.svg 80
 EOF
