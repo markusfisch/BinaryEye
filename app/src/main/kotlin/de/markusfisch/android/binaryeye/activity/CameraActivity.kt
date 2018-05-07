@@ -199,6 +199,7 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun initCameraView() {
+		cameraView.setUseOrientationListener(true)
 		cameraView.setOnCameraListener(object : CameraView.OnCameraListener {
 			override fun onConfigureParameters(
 				parameters: Camera.Parameters
