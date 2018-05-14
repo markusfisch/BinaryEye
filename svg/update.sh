@@ -111,6 +111,9 @@ svg/ic_launcher.svg 48
 EOF
 
 update app/src/main/res/drawable << EOF
+svg/debug/ic_launcher_foreground.svg 108
 svg/wallpaper.svg 384
+svg/ic_launcher_background.svg 108
+svg/ic_launcher_foreground.svg 108
 svg/logo.svg 80
 EOF
