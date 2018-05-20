@@ -5,7 +5,7 @@ import com.google.zxing.Result
 import de.markusfisch.android.cameraview.widget.CameraView
 
 import de.markusfisch.android.binaryeye.app.initSystemBars
-import de.markusfisch.android.binaryeye.rs.YuvToGray
+import de.markusfisch.android.binaryeye.rs.Preprocessor
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.binaryeye.R
 
@@ -46,7 +46,7 @@ class CameraActivity : AppCompatActivity() {
 	private lateinit var vibrator: Vibrator
 	private lateinit var cameraView: CameraView
 	private lateinit var zoomBar: SeekBar
-	private lateinit var yuvToGray: YuvToGray
+	private lateinit var preprocessor: Preprocessor
 
 	private var decoding = false
 	private var decodingThread: Thread? = null
@@ -84,7 +84,7 @@ class CameraActivity : AppCompatActivity() {
 
 		preferences = PreferenceManager.getDefaultSharedPreferences(this)
 		vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-		yuvToGray = YuvToGray(this)
+		preprocessor = Preprocessor(this)
 
 		cameraView = findViewById(R.id.camera_view) as CameraView
 		zoomBar = findViewById(R.id.zoom) as SeekBar
@@ -98,7 +98,7 @@ class CameraActivity : AppCompatActivity() {
 
 	override fun onDestroy() {
 		super.onDestroy()
-		yuvToGray.destroy()
+		preprocessor.destroy()
 		saveZoom()
 	}
 
@@ -362,10 +362,14 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun decodeFrame(): Result? {
-		frameData ?: return null
+		val dat = frameData
+		dat ?: return null
 		return zxing.decodeBitmap(
-			yuvToGray.convert(
-				frameData!!, frameWidth, frameHeight, frameOrientation
+			preprocessor.convert(
+				dat,
+				frameWidth,
+				frameHeight,
+				frameOrientation
 			)
 		)
 	}

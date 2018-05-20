@@ -10,7 +10,7 @@ import android.support.v8.renderscript.Element
 import android.support.v8.renderscript.RenderScript
 import android.support.v8.renderscript.Type
 
-class YuvToGray(context: Context) {
+class Preprocessor(context: Context) {
 	private val rs: RenderScript = RenderScript.create(context)
 	private val rotatorScript: ScriptC_rotator = ScriptC_rotator(rs)
 	private val yuv2grayScript: ScriptC_yuv2gray = ScriptC_yuv2gray(rs)
