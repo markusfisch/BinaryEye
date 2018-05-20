@@ -362,15 +362,18 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun decodeFrame(): Result? {
-		val dat = frameData
-		dat ?: return null
-		return zxing.decodeBitmap(
-			preprocessor.convert(
-				dat,
-				frameWidth,
-				frameHeight,
-				frameOrientation
-			)
+		val yuvData = frameData
+		yuvData ?: return null
+		preprocessor.convert(
+			yuvData,
+			frameWidth,
+			frameHeight,
+			frameOrientation
+		)
+		return zxing.decode(
+			yuvData,
+			frameWidth,
+			frameHeight
 		)
 	}
 

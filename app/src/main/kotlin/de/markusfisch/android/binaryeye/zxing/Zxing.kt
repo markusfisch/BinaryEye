@@ -6,9 +6,9 @@ import com.google.zxing.DecodeHintType
 import com.google.zxing.LuminanceSource
 import com.google.zxing.MultiFormatReader
 import com.google.zxing.MultiFormatWriter
+import com.google.zxing.PlanarYUVLuminanceSource
 import com.google.zxing.ReaderException
 import com.google.zxing.Result
-import com.google.zxing.RGBLuminanceSource
 import com.google.zxing.common.HybridBinarizer
 
 import android.graphics.Bitmap
@@ -19,6 +19,8 @@ import java.util.EnumSet
 
 class Zxing {
 	private val multiFormatReader: MultiFormatReader = MultiFormatReader()
+
+	private var odd = false
 
 	init {
 		val decodeFormats = EnumSet.noneOf<BarcodeFormat>(
@@ -54,16 +56,32 @@ class Zxing {
 		multiFormatReader.setHints(hints)
 	}
 
-	fun decodeBitmap(bitmap: Bitmap): Result? {
-		val width = bitmap.width
-		val height = bitmap.height
-		val data = IntArray(width * height)
-		bitmap.getPixels(data, 0, width, 0, 0, width, height)
-		return decodeLuminanceSource(RGBLuminanceSource(width, height, data))
+	fun decode(yuvData: ByteArray, width: Int, height: Int): Result? {
+		return decodeLuminanceSource(
+			PlanarYUVLuminanceSource(
+				yuvData,
+				width,
+				height,
+				0,
+				0,
+				width,
+				height,
+				false
+			)
+		)
 	}
 
 	private fun decodeLuminanceSource(source: LuminanceSource): Result? {
-		val bitmap = BinaryBitmap(HybridBinarizer(source))
+		val bitmap = BinaryBitmap(
+			HybridBinarizer(
+				if (odd) {
+					source
+				} else {
+					source.invert()
+				}
+			)
+		)
+		odd = odd xor true
 		return try {
 			multiFormatReader.decodeWithState(bitmap)
 		} catch (e: ReaderException) {
