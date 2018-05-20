@@ -105,6 +105,8 @@ class Preprocessor(context: Context) {
 
 		destAlloc?.copyTo(dest)
 
+		// since Bitmap.createBitmap() can't return null,
+		// dest cannot be null here either
 		return dest!!
 	}
 }
