@@ -256,11 +256,11 @@ class CameraActivity : AppCompatActivity() {
 			cameraView.setFocusArea(null)
 		}
 		cameraView.setOnTouchListener({ v: View, event: MotionEvent ->
-			val camera = cameraView.getCamera()
+			val camera = cameraView.camera
 			camera?.cancelAutoFocus()
 			cameraView.setFocusArea(
 				cameraView.calculateFocusRect(
-					event.getX(), event.getY(), 100
+					event.x, event.y, 100
 				)
 			)
 			camera?.autoFocus({ _: Boolean, _: Camera ->
@@ -276,7 +276,8 @@ class CameraActivity : AppCompatActivity() {
 		zoomBar.setOnSeekBarChangeListener(object :
 			SeekBar.OnSeekBarChangeListener {
 			override fun onProgressChanged(
-				seekBar: SeekBar, progress: Int,
+				seekBar: SeekBar,
+				progress: Int,
 				fromUser: Boolean
 			) {
 				setZoom(progress)
@@ -329,10 +330,11 @@ class CameraActivity : AppCompatActivity() {
 		val camera = cameraView.getCamera()
 		val parameters = camera?.getParameters()
 		parameters?.setFlashMode(
-			if (flash)
+			if (flash) {
 				Camera.Parameters.FLASH_MODE_OFF
-			else
+			} else {
 				Camera.Parameters.FLASH_MODE_TORCH
+			}
 		)
 		flash = flash xor true
 		parameters?.let { camera.setParameters(parameters) }
