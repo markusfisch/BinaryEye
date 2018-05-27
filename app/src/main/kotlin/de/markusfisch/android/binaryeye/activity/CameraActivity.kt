@@ -366,7 +366,7 @@ class CameraActivity : AppCompatActivity() {
 	private fun decodeFrame(): Result? {
 		val yuvData = frameData
 		yuvData ?: return null
-		preprocessor.convert(
+		preprocessor.process(
 			yuvData,
 			frameWidth,
 			frameHeight,
