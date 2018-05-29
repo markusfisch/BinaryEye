@@ -20,8 +20,6 @@ import java.util.EnumSet
 class Zxing {
 	private val multiFormatReader: MultiFormatReader = MultiFormatReader()
 
-	private var odd = false
-
 	init {
 		val decodeFormats = EnumSet.noneOf<BarcodeFormat>(
 			BarcodeFormat::class.java
@@ -56,32 +54,33 @@ class Zxing {
 		multiFormatReader.setHints(hints)
 	}
 
-	fun decode(yuvData: ByteArray, width: Int, height: Int): Result? {
+	fun decode(
+		yuvData: ByteArray,
+		width: Int,
+		height: Int,
+		invert: Boolean = false
+	): Result? {
+		val source = PlanarYUVLuminanceSource(
+			yuvData,
+			width,
+			height,
+			0,
+			0,
+			width,
+			height,
+			false
+		)
 		return decodeLuminanceSource(
-			PlanarYUVLuminanceSource(
-				yuvData,
-				width,
-				height,
-				0,
-				0,
-				width,
-				height,
-				false
-			)
+			if (invert) {
+				source.invert()
+			} else {
+				source
+			}
 		)
 	}
 
 	private fun decodeLuminanceSource(source: LuminanceSource): Result? {
-		val bitmap = BinaryBitmap(
-			HybridBinarizer(
-				if (odd) {
-					source
-				} else {
-					source.invert()
-				}
-			)
-		)
-		odd = odd xor true
+		val bitmap = BinaryBitmap(HybridBinarizer(source))
 		return try {
 			multiFormatReader.decodeWithState(bitmap)
 		} catch (e: ReaderException) {

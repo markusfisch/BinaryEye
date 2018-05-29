@@ -46,15 +46,15 @@ class CameraActivity : AppCompatActivity() {
 	private lateinit var vibrator: Vibrator
 	private lateinit var cameraView: CameraView
 	private lateinit var zoomBar: SeekBar
-	private lateinit var preprocessor: Preprocessor
 
 	private var decoding = false
 	private var decodingThread: Thread? = null
+	private var preprocessor: Preprocessor? = null
 	private var frameData: ByteArray? = null
 	private var frameWidth: Int = 0
 	private var frameHeight: Int = 0
 	private var frameOrientation: Int = 0
-	private var odd = false
+	private var invert = false
 	private var flash = false
 
 	override fun onRequestPermissionsResult(
@@ -84,7 +84,6 @@ class CameraActivity : AppCompatActivity() {
 
 		preferences = PreferenceManager.getDefaultSharedPreferences(this)
 		vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-		preprocessor = Preprocessor(this)
 
 		cameraView = findViewById(R.id.camera_view) as CameraView
 		zoomBar = findViewById(R.id.zoom) as SeekBar
@@ -98,7 +97,7 @@ class CameraActivity : AppCompatActivity() {
 
 	override fun onDestroy() {
 		super.onDestroy()
-		preprocessor.destroy()
+		preprocessor?.destroy()
 		saveZoom()
 	}
 
@@ -364,18 +363,25 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun decodeFrame(): Result? {
-		val yuvData = frameData
-		yuvData ?: return null
-		preprocessor.process(
-			yuvData,
-			frameWidth,
-			frameHeight,
-			frameOrientation
-		)
+		var fd = frameData
+		fd ?: return null
+		if (preprocessor == null) {
+			preprocessor = Preprocessor(
+				this,
+				frameWidth,
+				frameHeight,
+				frameOrientation
+			)
+		}
+		var pp = preprocessor
+		pp ?: return null
+		pp.process(fd)
+		invert = invert xor true
 		return zxing.decode(
-			yuvData,
-			frameWidth,
-			frameHeight
+			fd,
+			pp.outWidth,
+			pp.outHeight,
+			invert
 		)
 	}
 
@@ -385,8 +391,9 @@ class CameraActivity : AppCompatActivity() {
 
 		startActivity(
 			MainActivity.getDecodeIntent(
-				this, result.text,
-				result.getBarcodeFormat()
+				this,
+				result.text,
+				result.barcodeFormat
 			)
 		)
 	}
