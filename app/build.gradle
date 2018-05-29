@@ -19,6 +19,12 @@ android {
 
 		renderscriptTargetApi 24
 		renderscriptSupportModeEnabled true
+
+		testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+	}
+
+	sourceSets {
+		androidTest.java.srcDirs += 'src/androidTest/kotlin'
 	}
 
 	buildTypes {
@@ -44,6 +50,14 @@ android {
 }
 
 dependencies {
+	androidTestImplementation ('com.android.support.test:runner:1.0.2') {
+		exclude module: 'support-annotations'
+	}
+	androidTestImplementation ('com.android.support.test:rules:1.0.2') {
+		exclude module: 'support-annotations'
+	}
+	testImplementation 'junit:junit:4.12'
+
 	implementation fileTree(dir: 'libs', include: '*')
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 	implementation "com.android.support:appcompat-v7:$support_version"

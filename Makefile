@@ -22,6 +22,9 @@ sonarqube:
 infer: clean
 	infer -- ./gradlew assembleDebug
 
+test:
+	./gradlew cAT
+
 install:
 	adb $(TARGET) install -r $(APK)
 
