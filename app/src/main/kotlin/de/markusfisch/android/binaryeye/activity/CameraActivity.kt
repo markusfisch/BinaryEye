@@ -255,18 +255,22 @@ class CameraActivity : AppCompatActivity() {
 			cameraView.setFocusArea(null)
 		}
 		cameraView.setOnTouchListener({ v: View, event: MotionEvent ->
-			val camera = cameraView.camera
-			camera?.cancelAutoFocus()
-			cameraView.setFocusArea(
-				cameraView.calculateFocusRect(
-					event.x, event.y, 100
+			if (event.getActionMasked() == MotionEvent.ACTION_UP) {
+				val camera = cameraView.camera
+				camera?.cancelAutoFocus()
+				cameraView.setFocusArea(
+					cameraView.calculateFocusRect(
+						event.x,
+						event.y,
+						100
+					)
 				)
-			)
-			camera?.autoFocus({ _: Boolean, _: Camera ->
-				cameraView.removeCallbacks(runnable)
-				cameraView.postDelayed(runnable, 3000)
-			})
-			v.performClick()
+				camera?.autoFocus({ _: Boolean, _: Camera ->
+					cameraView.removeCallbacks(runnable)
+					cameraView.postDelayed(runnable, 3000)
+				})
+				v.performClick()
+			}
 			true
 		})
 	}
