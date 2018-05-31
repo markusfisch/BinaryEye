@@ -42,8 +42,9 @@ class Preprocessor(
 			Allocation.USAGE_SCRIPT
 		)
 
-		var w = width / 2
-		var h = height / 2
+		var f = .75f
+		var w = Math.round(width * f)
+		var h = Math.round(height * f)
 
 		resizedType = Type.createXY(
 			rs,
