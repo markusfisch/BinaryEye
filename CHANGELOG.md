@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.3.3
+* Improved pre-processing
+* Added adaptive icon for Android 8+
+* Decrease default magnification to 10%
+
 ## 1.3.2
 * Fixed crash when going back very fast
 
