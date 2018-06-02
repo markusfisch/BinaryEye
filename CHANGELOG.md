@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.3.4
+* Fix pre-processing for Android 7+
+* Fix adaptive icons for Android 8+
+
 ## 1.3.3
 * Improved pre-processing
 * Added adaptive icon for Android 8+
