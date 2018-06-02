@@ -12,7 +12,8 @@
 		android:gravity="start|top"
 		android:imeOptions="flagNoExtractUi"
 		android:inputType="textMultiLine"
-		android:typeface="monospace"/>
+		android:typeface="monospace"
+		android:hint="@string/content"/>
 	<android.support.design.widget.FloatingActionButton
 		tools:ignore="UnusedAttribute"
 		android:id="@+id/share"
