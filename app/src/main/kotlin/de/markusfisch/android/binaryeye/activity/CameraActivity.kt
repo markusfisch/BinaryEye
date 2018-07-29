@@ -56,6 +56,7 @@ class CameraActivity : AppCompatActivity() {
 	private var frameOrientation: Int = 0
 	private var invert = false
 	private var flash = false
+	private var returnResult = false
 
 	override fun onRequestPermissionsResult(
 		requestCode: Int,
@@ -109,6 +110,9 @@ class CameraActivity : AppCompatActivity() {
 	override fun onResume() {
 		super.onResume()
 		System.gc()
+		returnResult = "com.google.zxing.client.android.SCAN".equals(
+			intent.action
+		)
 		if (hasCameraPermission()) {
 			cameraView.openAsync(
 				CameraView.findCameraId(
@@ -392,6 +396,14 @@ class CameraActivity : AppCompatActivity() {
 	private fun found(result: Result) {
 		cancelDecoding()
 		vibrator.vibrate(100)
+
+		if (returnResult) {
+			val resultIntent = Intent()
+			resultIntent.putExtra("SCAN_RESULT", result.text)
+			setResult(RESULT_OK, resultIntent)
+			finish()
+			return
+		}
 
 		startActivity(
 			MainActivity.getDecodeIntent(
