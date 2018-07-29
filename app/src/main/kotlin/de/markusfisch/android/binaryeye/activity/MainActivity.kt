@@ -59,9 +59,14 @@ class MainActivity : AppCompatActivity() {
 		private const val DECODE = "decode"
 		private const val DECODE_FORMAT = "decode_format"
 
-		fun getEncodeIntent(context: Context, text: String? = ""): Intent {
+		fun getEncodeIntent(context: Context, text: String? = "", external: Boolean = false): Intent {
 			val intent = Intent(context, MainActivity::class.java)
 			intent.putExtra(ENCODE, text)
+			if (external) {
+				intent.addFlags(android.content.Intent.FLAG_ACTIVITY_NO_HISTORY or
+						android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK or
+						android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
+			}
 			return intent
 		}
 

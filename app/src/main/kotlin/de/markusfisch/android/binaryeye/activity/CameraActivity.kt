@@ -113,6 +113,7 @@ class CameraActivity : AppCompatActivity() {
 		returnResult = "com.google.zxing.client.android.SCAN".equals(
 			intent.action
 		)
+		handleSendText(intent)
 		if (hasCameraPermission()) {
 			cameraView.openAsync(
 				CameraView.findCameraId(
@@ -183,7 +184,8 @@ class CameraActivity : AppCompatActivity() {
 		// consume this intent
 		intent.setAction(null)
 
-		startActivity(MainActivity.getEncodeIntent(this, text))
+		startActivity(MainActivity.getEncodeIntent(this, text, true))
+		finish()
 	}
 
 	private fun hasCameraPermission(): Boolean {

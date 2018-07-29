@@ -29,7 +29,7 @@
 		<activity
 			android:name=".activity.CameraActivity"
 			android:label="@string/scan_code">
-			<intent-filter>
+			<intent-filter android:label="@string/compose_barcode">
 				<action android:name="android.intent.action.SEND"/>
 				<category android:name="android.intent.category.DEFAULT"/>
 				<data android:mimeType="text/plain"/>
