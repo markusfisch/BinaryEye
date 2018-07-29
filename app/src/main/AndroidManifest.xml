@@ -35,6 +35,14 @@
 				<data android:mimeType="text/plain"/>
 			</intent-filter>
 			<intent-filter>
+				<action android:name="android.media.action.IMAGE_CAPTURE"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+			</intent-filter>
+			<intent-filter>
+				<action android:name="com.google.zxing.client.android.SCAN"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+			</intent-filter>
+			<intent-filter>
 				<action android:name="android.intent.action.VIEW"/>
 				<category android:name="android.intent.category.DEFAULT"/>
 				<category android:name="android.intent.category.BROWSABLE"/>
