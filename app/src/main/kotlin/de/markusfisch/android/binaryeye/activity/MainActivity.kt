@@ -77,7 +77,8 @@ class MainActivity : AppCompatActivity() {
 		}
 
 		fun getDecodeIntent(
-			context: Context, text: String,
+			context: Context,
+			text: String,
 			format: BarcodeFormat
 		): Intent {
 			val intent = Intent(context, MainActivity::class.java)
