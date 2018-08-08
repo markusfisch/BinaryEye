@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.3.5
+* Add german translation
+* Fix handling of data intents
+* Respond to ZXing' SCAN intents
+
 ## 1.3.4
 * Fix pre-processing for Android 7+
 * Fix adaptive icons for Android 8+
