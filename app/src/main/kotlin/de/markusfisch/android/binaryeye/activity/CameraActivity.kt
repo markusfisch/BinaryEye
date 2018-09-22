@@ -220,12 +220,15 @@ class CameraActivity : AppCompatActivity() {
 				} else {
 					zoomBar.visibility = View.GONE
 				}
-				for (mode in parameters.getSupportedSceneModes()) {
-					if (mode.equals(Camera.Parameters.SCENE_MODE_BARCODE)) {
-						parameters.sceneMode = mode
-						break
-					}
-				}
+                val sceneModes = parameters.getSupportedSceneModes()
+                sceneModes?.let {
+                    for (mode in sceneModes) {
+                        if (mode.equals(Camera.Parameters.SCENE_MODE_BARCODE)) {
+                            parameters.sceneMode = mode
+                            break
+                        }
+                    }
+                }
 				CameraView.setAutoFocus(parameters)
 			}
 
