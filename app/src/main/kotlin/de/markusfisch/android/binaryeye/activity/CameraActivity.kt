@@ -222,12 +222,7 @@ class CameraActivity : AppCompatActivity() {
 				}
 				val sceneModes = parameters.getSupportedSceneModes()
 				sceneModes?.let {
-					for (mode in sceneModes) {
-						if (mode.equals(Camera.Parameters.SCENE_MODE_BARCODE)) {
-							parameters.sceneMode = mode
-							break
-						}
-					}
+					parameters.sceneMode = sceneModes.first { it.equals(Camera.Parameters.SCENE_MODE_BARCODE) }
 				}
 				CameraView.setAutoFocus(parameters)
 			}
