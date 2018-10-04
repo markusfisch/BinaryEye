@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.3.6
+* Fix handling of camera scene modes
+
 ## 1.3.5
 * Add german translation
 * Fix handling of data intents
