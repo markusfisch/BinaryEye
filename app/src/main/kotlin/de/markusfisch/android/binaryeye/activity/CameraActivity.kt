@@ -220,7 +220,7 @@ class CameraActivity : AppCompatActivity() {
 				} else {
 					zoomBar.visibility = View.GONE
 				}
-				val sceneModes = parameters.getSupportedSceneModes()
+				val sceneModes = parameters.supportedSceneModes
 				sceneModes?.let {
 					for (mode in sceneModes) {
 						if (mode.equals(Camera.Parameters.SCENE_MODE_BARCODE)) {
