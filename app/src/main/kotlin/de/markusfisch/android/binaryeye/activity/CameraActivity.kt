@@ -24,7 +24,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
-import android.view.MotionEvent
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
@@ -90,7 +89,6 @@ class CameraActivity : AppCompatActivity() {
 		zoomBar = findViewById(R.id.zoom) as SeekBar
 
 		initCameraView()
-		setTapToFocus()
 		initZoomBar()
 		restoreZoom()
 		initFlashFab(findViewById(R.id.flash))
@@ -205,6 +203,7 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun initCameraView() {
 		cameraView.setUseOrientationListener(true)
+		cameraView.setTapToFocus()
 		cameraView.setOnCameraListener(object : CameraView.OnCameraListener {
 			override fun onConfigureParameters(
 				parameters: Camera.Parameters
@@ -256,31 +255,6 @@ class CameraActivity : AppCompatActivity() {
 				cancelDecoding()
 				camera.setPreviewCallback(null)
 			}
-		})
-	}
-
-	private fun setTapToFocus() {
-		val runnable = Runnable {
-			cameraView.setFocusArea(null)
-		}
-		cameraView.setOnTouchListener({ v: View, event: MotionEvent ->
-			if (event.getActionMasked() == MotionEvent.ACTION_UP) {
-				val camera = cameraView.camera
-				camera?.cancelAutoFocus()
-				cameraView.setFocusArea(
-					cameraView.calculateFocusRect(
-						event.x,
-						event.y,
-						100
-					)
-				)
-				camera?.autoFocus({ _: Boolean, _: Camera ->
-					cameraView.removeCallbacks(runnable)
-					cameraView.postDelayed(runnable, 3000)
-				})
-				v.performClick()
-			}
-			true
 		})
 	}
 
