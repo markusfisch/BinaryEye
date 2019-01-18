@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.3.7
+* Normalize URL schemes
+
 ## 1.3.6
 * Fix handling of camera scene modes
 
