@@ -102,7 +102,10 @@ class DecodeFragment : Fragment() {
 		if (activity == null || url.isEmpty()) {
 			return
 		}
-		val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+		val intent = Intent(
+			Intent.ACTION_VIEW,
+			Uri.parse(url).normalizeScheme()
+		)
 		if (intent.resolveActivity(activity.getPackageManager()) != null) {
 			startActivity(intent)
 		} else {
