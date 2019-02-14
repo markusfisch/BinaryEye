@@ -11,7 +11,7 @@ a barcode.
 
 <a href="https://play.google.com/store/apps/details?id=de.markusfisch.android.binaryeye"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" height="45px"/></a>
 
-And it's written in [Kotlin][kotlin] because I've wanted to explore that a
+And it's written in [Kotlin][kotlin] because I wanted to explore that a
 bit more.
 
 [play]: https://play.google.com/store/search?q=barcode%20scanner&c=apps
