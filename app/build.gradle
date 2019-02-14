@@ -60,8 +60,9 @@ dependencies {
 	}
 	testImplementation 'junit:junit:4.12'
 
-	implementation fileTree(dir: 'libs', include: '*')
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 	implementation "com.android.support:appcompat-v7:$support_version"
 	implementation "com.android.support:design:$support_version"
+	implementation 'com.google.zxing:core:3.3.3'
+	implementation 'com.github.markusfisch:CameraView:1.8.1'
 }
