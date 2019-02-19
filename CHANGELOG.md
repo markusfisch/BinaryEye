@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.3.8
+* Qualify for F-Droid
+
 ## 1.3.7
 * Normalize URL schemes
 
