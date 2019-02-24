@@ -1,0 +1,18 @@
+<resources>
+	<string name="no_camera_no_fun">Deze app kan niet werken zonder cameratoegang. Tot ziens.</string>
+	<string name="camera_error">Kan camera niet openen; probeer het opnieuw.</string>
+	<string name="scan_code">Scan een scode</string>
+	<string name="compose_barcode">Scan een barcode</string>
+	<string name="content">Inhoud</string>
+	<string name="copy_to_clipboard">Kopiëren naar klembord</string>
+	<string name="put_into_clipboard">Kopieer de inhoud naar het klembord</string>
+	<string name="open_url">URL openen</string>
+	<string name="cannot_resolve_action">Er is geen app aangetroffen die dit kan openen</string>
+	<string name="format">Formaat</string>
+	<string name="size">Grootte, in pixels</string>
+	<string name="input_content_here">Voer hier de inhoud in</string>
+	<string name="encode">CODEREN</string>
+	<string name="error_no_content">Inhoud ontbreekt</string>
+	<string name="view_barcode">Barcode bekijken</string>
+	<string name="info">Informatie</string>
+</resources>
