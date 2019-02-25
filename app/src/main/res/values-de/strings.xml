@@ -15,4 +15,5 @@
 	<string name="error_no_content">Fehlender Inhalt</string>
 	<string name="view_barcode">Barcode ansehen</string>
 	<string name="info">Info</string>
+	<string name="switch_camera">Kamera wechseln</string>
 </resources>

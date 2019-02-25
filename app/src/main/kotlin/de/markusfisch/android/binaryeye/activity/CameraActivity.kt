@@ -56,6 +56,7 @@ class CameraActivity : AppCompatActivity() {
 	private var invert = false
 	private var flash = false
 	private var returnResult = false
+	private var frontFacing = false
 
 	override fun onRequestPermissionsResult(
 		requestCode: Int,
@@ -113,16 +114,28 @@ class CameraActivity : AppCompatActivity() {
 		)
 		handleSendText(intent)
 		if (hasCameraPermission()) {
-			cameraView.openAsync(
-				CameraView.findCameraId(
-					Camera.CameraInfo.CAMERA_FACING_BACK
-				)
-			)
+			openCamera()
 		}
+	}
+
+	private fun openCamera() {
+		cameraView.openAsync(
+			CameraView.findCameraId(
+				if (frontFacing) {
+					Camera.CameraInfo.CAMERA_FACING_FRONT
+				} else {
+					Camera.CameraInfo.CAMERA_FACING_BACK
+				}
+			)
+		)
 	}
 
 	override fun onPause() {
 		super.onPause()
+		closeCamera()
+	}
+
+	private fun closeCamera() {
 		cancelDecoding()
 		cameraView.close()
 	}
@@ -150,12 +163,22 @@ class CameraActivity : AppCompatActivity() {
 				startActivity(MainActivity.getEncodeIntent(this))
 				true
 			}
+			R.id.switch_camera -> {
+				switchCamera()
+				true
+			}
 			R.id.info -> {
 				openReadme()
 				true
 			}
 			else -> super.onOptionsItemSelected(item)
 		}
+	}
+
+	private fun switchCamera() {
+		closeCamera()
+		frontFacing = frontFacing xor true
+		openCamera()
 	}
 
 	private fun openReadme() {

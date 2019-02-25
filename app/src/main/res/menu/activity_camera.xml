@@ -7,6 +7,11 @@
 		android:icon="@drawable/ic_action_info"
 		material:showAsAction="ifRoom"/>
 	<item
+		android:id="@+id/switch_camera"
+		android:title="@string/switch_camera"
+		android:icon="@drawable/ic_action_switch_camera"
+		material:showAsAction="ifRoom"/>
+	<item
 		android:id="@+id/create"
 		android:title="@string/compose_barcode"
 		android:icon="@drawable/ic_action_create"
