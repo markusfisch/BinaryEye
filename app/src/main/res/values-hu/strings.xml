@@ -15,4 +15,5 @@
 	<string name="error_no_content">Hiányzó tartalom</string>
 	<string name="view_barcode">Vonalkód megtekintése</string>
 	<string name="info">Információ</string>
+	<string name="switch_camera">Kapcsolja be a kamerát</string>
 </resources>
