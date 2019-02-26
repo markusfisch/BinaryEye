@@ -1,0 +1,18 @@
+<resources>
+	<string name="no_camera_no_fun">Ennek az alkalmazásnak nincs semmi értelme kamera-hozzáférés nélkül. Viszlát!</string>
+	<string name="camera_error">Nem lehet hozzáférni a kamerához, próbálja meg újra</string>
+	<string name="scan_code">Kód beolvasása</string>
+	<string name="compose_barcode">Vonalkód létrehozása</string>
+	<string name="content">Tartalom</string>
+	<string name="copy_to_clipboard">Másolás a vágólapra</string>
+	<string name="put_into_clipboard">Vágólapra helyezés</string>
+	<string name="open_url">URL megnyitása</string>
+	<string name="cannot_resolve_action">Nincs alkalmazás, amely meg tudná nyitni azt</string>
+	<string name="format">Formátum</string>
+	<string name="size">Méret képpontban</string>
+	<string name="input_content_here">Itt adja meg a tartalmat</string>
+	<string name="encode">KÓDOLÁS</string>
+	<string name="error_no_content">Hiányzó tartalom</string>
+	<string name="view_barcode">Vonalkód megtekintése</string>
+	<string name="info">Információ</string>
+</resources>
