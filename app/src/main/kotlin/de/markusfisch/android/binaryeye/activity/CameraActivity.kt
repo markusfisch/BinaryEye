@@ -31,11 +31,10 @@ import android.widget.Toast
 class CameraActivity : AppCompatActivity() {
 	private val zxing = Zxing()
 	private val decodingRunnable = Runnable {
-		while (decoding) {
+		while (!Thread.currentThread().isInterrupted()) {
 			val result = decodeFrame()
 			if (result != null) {
 				cameraView.post { found(result) }
-				decoding = false
 				break
 			}
 		}
@@ -46,7 +45,6 @@ class CameraActivity : AppCompatActivity() {
 	private lateinit var cameraView: CameraView
 	private lateinit var zoomBar: SeekBar
 
-	private var decoding = false
 	private var decodingThread: Thread? = null
 	private var preprocessor: Preprocessor? = null
 	private var frameData: ByteArray? = null
@@ -351,22 +349,17 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun startDecoding() {
 		frameData = null
-		decoding = true
 		decodingThread = Thread(decodingRunnable)
 		decodingThread?.start()
 	}
 
 	private fun cancelDecoding() {
-		decoding = false
 		if (decodingThread != null) {
-			var retry = 100
-			while (retry-- > 0) {
-				try {
-					decodingThread?.join()
-					break
-				} catch (e: InterruptedException) {
-					decodingThread?.interrupt()
-				}
+			decodingThread?.interrupt()
+			try {
+				decodingThread?.join()
+			} catch (e: InterruptedException) {
+				// parent thread was interrupted
 			}
 			decodingThread = null
 		}
