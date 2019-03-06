@@ -55,7 +55,8 @@ class EncodeFragment : Fragment() {
 			ArrayAdapter<String>(
 				activity,
 				android.R.layout.simple_list_item_1,
-				writers.map { it -> it.name })
+				writers.map { it -> it.name }
+			)
 		)
 
 		sizeView = view.findViewById<TextView>(R.id.size_display)
@@ -80,7 +81,8 @@ class EncodeFragment : Fragment() {
 			val content = contentView.getText().toString()
 			if (content.isEmpty()) {
 				Toast.makeText(
-					v.context, R.string.error_no_content,
+					v.context,
+					R.string.error_no_content,
 					Toast.LENGTH_SHORT
 				).show()
 			} else {

@@ -15,13 +15,15 @@ import android.view.Window
 
 fun initSystemBars(activity: AppCompatActivity?) {
 	val view = activity?.findViewById(R.id.main_layout)
-	if (view != null && setSystemBarColor(
+	if (view != null &&
+		setSystemBarColor(
 			activity.window,
 			ContextCompat.getColor(
 				activity,
 				R.color.primary_dark_translucent
 			)
-		)) {
+		)
+	) {
 		view.setPadding(0, getStatusBarHeight(activity.resources), 0, 0)
 	}
 }
@@ -34,9 +36,9 @@ fun setSystemBarColor(window: Window, color: Int): Boolean {
 	window.statusBarColor = color
 	window.navigationBarColor = color
 	window.decorView.systemUiVisibility =
-			View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-			View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-			View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+		View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+		View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+		View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 
 	return true
 }

@@ -41,7 +41,8 @@ class BarcodeFragment : Fragment() {
 				)
 			} catch (e: Exception) {
 				Toast.makeText(
-					activity, e.message,
+					activity,
+					e.message,
 					Toast.LENGTH_SHORT
 				).show()
 				fragmentManager.popBackStack()

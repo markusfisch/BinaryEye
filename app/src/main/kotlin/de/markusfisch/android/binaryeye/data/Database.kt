@@ -36,10 +36,12 @@ class Database {
 
 	fun insertScan(timestamp: Long, name: String, code: String): Long {
 		val cv = ContentValues()
-		cv.put(SCANS_DATETIME, DateFormat.format(
-			"yyyy-MM-dd HH:mm:ss",
-			timestamp
-		).toString())
+		cv.put(
+			SCANS_DATETIME, DateFormat.format(
+				"yyyy-MM-dd HH:mm:ss",
+				timestamp
+			).toString()
+		)
 		cv.put(SCANS_CONTENT, name)
 		cv.put(SCANS_FORMAT, code)
 		return db.insert(SCANS, null, cv)
