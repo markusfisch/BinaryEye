@@ -4,7 +4,9 @@ import com.google.zxing.Result
 
 import de.markusfisch.android.cameraview.widget.CameraView
 
+import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.initSystemBars
+import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.rs.Preprocessor
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.binaryeye.R
@@ -28,6 +30,9 @@ import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
 
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+
 class CameraActivity : AppCompatActivity() {
 	private val zxing = Zxing()
 	private val decodingRunnable = Runnable {
@@ -40,7 +45,6 @@ class CameraActivity : AppCompatActivity() {
 		}
 	}
 
-	private lateinit var preferences: SharedPreferences
 	private lateinit var vibrator: Vibrator
 	private lateinit var cameraView: CameraView
 	private lateinit var zoomBar: SeekBar
@@ -81,7 +85,6 @@ class CameraActivity : AppCompatActivity() {
 		initSystemBars(this)
 		setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
 
-		preferences = PreferenceManager.getDefaultSharedPreferences(this)
 		vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
 		cameraView = findViewById(R.id.camera_view) as CameraView
@@ -159,6 +162,10 @@ class CameraActivity : AppCompatActivity() {
 		return when (item.itemId) {
 			R.id.create -> {
 				startActivity(MainActivity.getEncodeIntent(this))
+				true
+			}
+			R.id.history -> {
+				startActivity(MainActivity.getHistoryIntent(this))
 				true
 			}
 			R.id.switch_camera -> {
@@ -310,15 +317,18 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun saveZoom() {
-		val editor = preferences.edit()
+		val editor = prefs.preferences.edit()
 		editor.putInt(ZOOM_MAX, zoomBar.max)
 		editor.putInt(ZOOM_LEVEL, zoomBar.progress)
 		editor.apply()
 	}
 
 	private fun restoreZoom() {
-		zoomBar.max = preferences.getInt(ZOOM_MAX, zoomBar.max)
-		zoomBar.progress = preferences.getInt(ZOOM_LEVEL, zoomBar.progress)
+		zoomBar.max = prefs.preferences.getInt(ZOOM_MAX, zoomBar.max)
+		zoomBar.progress = prefs.preferences.getInt(
+			ZOOM_LEVEL,
+			zoomBar.progress
+		)
 	}
 
 	private fun initFlashFab(fab: View) {
@@ -391,6 +401,16 @@ class CameraActivity : AppCompatActivity() {
 	private fun found(result: Result) {
 		cancelDecoding()
 		vibrator.vibrate(100)
+
+		if (prefs.useHistory) {
+			GlobalScope.launch {
+				db.insertScan(
+					System.currentTimeMillis(),
+					result.text,
+					result.barcodeFormat.toString()
+				)
+			}
+		}
 
 		if (returnResult) {
 			val resultIntent = Intent()

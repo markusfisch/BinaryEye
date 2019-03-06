@@ -61,6 +61,7 @@ dependencies {
 	testImplementation 'junit:junit:4.12'
 
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+	implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1"
 	implementation "com.android.support:appcompat-v7:$support_version"
 	implementation "com.android.support:design:$support_version"
 	implementation 'com.google.zxing:core:3.3.3'

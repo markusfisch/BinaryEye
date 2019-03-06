@@ -16,4 +16,9 @@
 	<string name="view_barcode">Vonalkód megtekintése</string>
 	<string name="info">Információ</string>
 	<string name="switch_camera">Kamera átkapcsolása</string>
+	<string name="history">History</string>
+	<string name="use_history">Save scan history</string>
+	<string name="remove_scan">Remove scan</string>
+	<string name="really_remove_scan">Really remove scan?</string>
+	<string name="really_remove_all_scans">Really remove all scans?</string>
 </resources>

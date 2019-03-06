@@ -2,9 +2,14 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:material="http://schemas.android.com/apk/res-auto">
 	<item
-		android:id="@+id/info"
-		android:title="@string/info"
-		android:icon="@drawable/ic_action_info"
+		android:id="@+id/history"
+		android:title="@string/history"
+		android:icon="@drawable/ic_action_history"
+		material:showAsAction="ifRoom"/>
+	<item
+		android:id="@+id/create"
+		android:title="@string/compose_barcode"
+		android:icon="@drawable/ic_action_create"
 		material:showAsAction="ifRoom"/>
 	<item
 		android:id="@+id/switch_camera"
@@ -12,8 +17,8 @@
 		android:icon="@drawable/ic_action_switch_camera"
 		material:showAsAction="ifRoom"/>
 	<item
-		android:id="@+id/create"
-		android:title="@string/compose_barcode"
-		android:icon="@drawable/ic_action_create"
+		android:id="@+id/info"
+		android:title="@string/info"
+		android:icon="@drawable/ic_action_info"
 		material:showAsAction="ifRoom"/>
 </menu>

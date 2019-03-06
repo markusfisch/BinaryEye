@@ -16,4 +16,9 @@
 	<string name="view_barcode">View barcode</string>
 	<string name="info">Info</string>
 	<string name="switch_camera">Switch camera</string>
+	<string name="history">History</string>
+	<string name="use_history">Save scan history</string>
+	<string name="remove_scan">Remove scan</string>
+	<string name="really_remove_scan">Really remove scan?</string>
+	<string name="really_remove_all_scans">Really remove all scans?</string>
 </resources>

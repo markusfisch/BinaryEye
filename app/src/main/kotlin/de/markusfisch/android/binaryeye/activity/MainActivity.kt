@@ -6,6 +6,7 @@ import de.markusfisch.android.binaryeye.app.initSystemBars
 import de.markusfisch.android.binaryeye.app.setFragment
 import de.markusfisch.android.binaryeye.fragment.DecodeFragment
 import de.markusfisch.android.binaryeye.fragment.EncodeFragment
+import de.markusfisch.android.binaryeye.fragment.HistoryFragment
 import de.markusfisch.android.binaryeye.R
 
 import android.content.Context
@@ -36,7 +37,9 @@ class MainActivity : AppCompatActivity() {
 
 		if (state == null) {
 			var fragment: Fragment
-			if (intent?.hasExtra(ENCODE) == true) {
+			if (intent?.hasExtra(HISTORY) == true) {
+				fragment = HistoryFragment()
+			} else if (intent?.hasExtra(ENCODE) == true) {
 				fragment = EncodeFragment.newInstance(
 					intent.getStringExtra(ENCODE)
 				)
@@ -55,9 +58,16 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	companion object {
+		private const val HISTORY = "history"
 		private const val ENCODE = "encode"
 		private const val DECODE = "decode"
 		private const val DECODE_FORMAT = "decode_format"
+
+		fun getHistoryIntent(context: Context): Intent {
+			val intent = Intent(context, MainActivity::class.java)
+			intent.putExtra(HISTORY, true)
+			return intent
+		}
 
 		fun getEncodeIntent(
 			context: Context,

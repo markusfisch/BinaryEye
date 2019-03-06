@@ -1,0 +1,34 @@
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<ListView
+		android:id="@+id/scans"
+		android:choiceMode="singleChoice"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:divider="@android:color/transparent"
+		android:dividerHeight="1px"/>
+	<android.support.v7.widget.SwitchCompat
+		android:visibility="gone"
+		android:id="@+id/use_history"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentTop="true"
+		android:padding="16dp"
+		android:text="@string/use_history"/>
+	<android.support.design.widget.FloatingActionButton
+		tools:ignore="UnusedAttribute"
+		android:visibility="gone"
+		android:id="@+id/clear"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentEnd="true"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentBottom="true"
+		android:layout_margin="20dp"
+		android:src="@drawable/ic_action_clear"
+		app:elevation="4dp"/>
+</RelativeLayout>
