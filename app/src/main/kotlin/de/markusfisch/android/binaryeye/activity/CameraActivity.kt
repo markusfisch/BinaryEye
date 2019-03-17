@@ -51,6 +51,7 @@ class CameraActivity : AppCompatActivity() {
 	private lateinit var vibrator: Vibrator
 	private lateinit var cameraView: CameraView
 	private lateinit var zoomBar: SeekBar
+	private lateinit var flashFab: View
 
 	private var decodingThread: Thread? = null
 	private var preprocessor: Preprocessor? = null
@@ -92,11 +93,12 @@ class CameraActivity : AppCompatActivity() {
 
 		cameraView = findViewById(R.id.camera_view) as CameraView
 		zoomBar = findViewById(R.id.zoom) as SeekBar
+		flashFab = findViewById(R.id.flash)
+		flashFab.setOnClickListener { _ -> toggleTorchMode() }
 
 		initCameraView()
 		initZoomBar()
 		restoreZoom()
-		initFlashFab(findViewById(R.id.flash))
 
 		if (intent?.action == Intent.ACTION_SEND) {
 			if ("text/plain" == intent.type) {
@@ -284,6 +286,7 @@ class CameraActivity : AppCompatActivity() {
 					}
 				}
 				CameraView.setAutoFocus(parameters)
+				updateFlashFab(parameters.flashMode == null)
 			}
 
 			override fun onCameraError() {
@@ -358,15 +361,11 @@ class CameraActivity : AppCompatActivity() {
 		)
 	}
 
-	private fun initFlashFab(fab: View) {
-		if (!packageManager.hasSystemFeature(
-				PackageManager.FEATURE_CAMERA_FLASH
-			)) {
-			fab.visibility = View.GONE
+	private fun updateFlashFab(available: Boolean) {
+		flashFab.visibility = if (available) {
+			View.GONE
 		} else {
-			fab.setOnClickListener { _ ->
-				toggleTorchMode()
-			}
+			View.VISIBLE
 		}
 	}
 
