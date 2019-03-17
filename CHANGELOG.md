@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.4.1
+* Toggle availability of torch mode button according to camera features
+
 ## 1.4.0
 * Save scanned codes and show a history listing
 * Share generated barcodes
