@@ -3,6 +3,7 @@
 	<string name="camera_error">Can\'t access camera, please try again</string>
 	<string name="scan_code">Scan code</string>
 	<string name="compose_barcode">Compose barcode</string>
+	<string name="decode_barcode">Decode barcode</string>
 	<string name="content">Content</string>
 	<string name="copy_to_clipboard">Copy to clipboard</string>
 	<string name="put_into_clipboard">Put into clipboard</string>
@@ -21,4 +22,5 @@
 	<string name="remove_scan">Remove scan</string>
 	<string name="really_remove_scan">Really remove scan?</string>
 	<string name="really_remove_all_scans">Really remove all scans?</string>
+	<string name="no_barcode_found">No barcode found</string>
 </resources>

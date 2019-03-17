@@ -3,6 +3,7 @@
 	<string name="camera_error">Kan camera niet openen; probeer het opnieuw.</string>
 	<string name="scan_code">Scan een scode</string>
 	<string name="compose_barcode">Scan een barcode</string>
+	<string name="decode_barcode">Decode barcode</string>
 	<string name="content">Inhoud</string>
 	<string name="copy_to_clipboard">Kopiëren naar klembord</string>
 	<string name="put_into_clipboard">Kopieer de inhoud naar het klembord</string>
@@ -21,4 +22,5 @@
 	<string name="remove_scan">Remove scan</string>
 	<string name="really_remove_scan">Really remove scan?</string>
 	<string name="really_remove_all_scans">Really remove all scans?</string>
+	<string name="no_barcode_found">No barcode found</string>
 </resources>

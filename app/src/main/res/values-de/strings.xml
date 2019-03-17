@@ -3,6 +3,7 @@
 	<string name="camera_error">Auf die Kamera kann nicht zugegriffen werden, bitte versuche es nochmal</string>
 	<string name="scan_code">Code scannen</string>
 	<string name="compose_barcode">Barcode erstellen</string>
+	<string name="decode_barcode">Barcode dekodieren</string>
 	<string name="content">Inhalt</string>
 	<string name="copy_to_clipboard">In die Zwischenablage kopieren</string>
 	<string name="put_into_clipboard">In die Zwischenablage legen</string>
@@ -21,4 +22,5 @@
 	<string name="remove_scan">Code entfernen</string>
 	<string name="really_remove_scan">Code wirklich entfernen?</string>
 	<string name="really_remove_all_scans">Alle Codes entfernen?</string>
+	<string name="no_barcode_found">Kein Barcode gefunden</string>
 </resources>

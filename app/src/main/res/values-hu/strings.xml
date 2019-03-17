@@ -3,6 +3,7 @@
 	<string name="camera_error">Nem lehet hozzáférni a kamerához, próbálja meg újra</string>
 	<string name="scan_code">Kód beolvasása</string>
 	<string name="compose_barcode">Vonalkód létrehozása</string>
+	<string name="decode_barcode">Decode barcode</string>
 	<string name="content">Tartalom</string>
 	<string name="copy_to_clipboard">Másolás a vágólapra</string>
 	<string name="put_into_clipboard">Vágólapra helyezés</string>
@@ -21,4 +22,5 @@
 	<string name="remove_scan">Remove scan</string>
 	<string name="really_remove_scan">Really remove scan?</string>
 	<string name="really_remove_all_scans">Really remove all scans?</string>
+	<string name="no_barcode_found">No barcode found</string>
 </resources>

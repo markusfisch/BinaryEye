@@ -14,10 +14,13 @@ import de.markusfisch.android.binaryeye.R
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.hardware.Camera
 import android.net.Uri
 import android.os.Bundle
+import android.os.Parcelable
 import android.os.Vibrator
+import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
@@ -30,6 +33,8 @@ import android.widget.Toast
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+
+import java.io.IOException
 
 class CameraActivity : AppCompatActivity() {
 	private val zxing = Zxing()
@@ -92,6 +97,14 @@ class CameraActivity : AppCompatActivity() {
 		initZoomBar()
 		restoreZoom()
 		initFlashFab(findViewById(R.id.flash))
+
+		if (intent?.action == Intent.ACTION_SEND) {
+			if ("text/plain" == intent.type) {
+				handleSendText(intent)
+			} else if (intent.type?.startsWith("image/") == true) {
+				handleSendImage(intent)
+			}
+		}
 	}
 
 	override fun onDestroy() {
@@ -100,18 +113,12 @@ class CameraActivity : AppCompatActivity() {
 		saveZoom()
 	}
 
-	override fun onNewIntent(intent: Intent) {
-		super.onNewIntent(intent)
-		handleSendText(intent)
-	}
-
 	override fun onResume() {
 		super.onResume()
 		System.gc()
 		returnResult = "com.google.zxing.client.android.SCAN".equals(
 			intent.action
 		)
-		handleSendText(intent)
 		if (hasCameraPermission()) {
 			openCamera()
 		}
@@ -195,20 +202,42 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun handleSendText(intent: Intent) {
-		if (!Intent.ACTION_SEND.equals(intent.getAction()) ||
-			!"text/plain".equals(intent.getType())) {
-			return
-		}
-
 		var text = intent.getStringExtra(Intent.EXTRA_TEXT)
-		if (text == null || text.isEmpty()) {
+		if (text?.isEmpty() == true) {
+			startActivity(MainActivity.getEncodeIntent(this, text, true))
+			finish()
+		}
+	}
+
+	private fun handleSendImage(intent: Intent) {
+		var uri = intent.getParcelableExtra<Parcelable>(Intent.EXTRA_STREAM) as? Uri
+		if (uri == null) {
 			return
 		}
-
-		// consume this intent
-		intent.setAction(null)
-
-		startActivity(MainActivity.getEncodeIntent(this, text, true))
+		val bitmap = try {
+			MediaStore.Images.Media.getBitmap(contentResolver, uri)
+		} catch (e: IOException) {
+			null
+		}
+		if (bitmap == null) {
+			Toast.makeText(
+				this,
+				R.string.error_no_content,
+				Toast.LENGTH_SHORT
+			).show()
+			return
+		}
+		val result = zxing.decode(downsizeIfBigger(bitmap, 1024))
+		if (result != null) {
+			showResult(result)
+			finish()
+			return
+		}
+		Toast.makeText(
+			this,
+			R.string.no_barcode_found,
+			Toast.LENGTH_SHORT
+		).show()
 		finish()
 	}
 
@@ -399,7 +428,10 @@ class CameraActivity : AppCompatActivity() {
 	private fun found(result: Result) {
 		cancelDecoding()
 		vibrator.vibrate(100)
+		showResult(result)
+	}
 
+	private fun showResult(result: Result) {
 		if (prefs.useHistory) {
 			GlobalScope.launch {
 				db.insertScan(
@@ -431,5 +463,26 @@ class CameraActivity : AppCompatActivity() {
 		private const val REQUEST_CAMERA = 1
 		private const val ZOOM_MAX = "zoom_max"
 		private const val ZOOM_LEVEL = "zoom_level"
+	}
+}
+
+fun downsizeIfBigger(bitmap: Bitmap, max: Int): Bitmap {
+	return if (Math.max(bitmap.width, bitmap.height) > max) {
+		var width: Int = max
+		var height: Int = max
+		if (bitmap.width > bitmap.height) {
+			height = Math.round(
+				width.toFloat() / bitmap.width.toFloat() *
+					bitmap.height.toFloat()
+			)
+		} else {
+			width = Math.round(
+				height.toFloat() / bitmap.height.toFloat() *
+					bitmap.width.toFloat()
+			)
+		}
+		Bitmap.createScaledBitmap(bitmap, width, height, true)
+	} else {
+		bitmap
 	}
 }

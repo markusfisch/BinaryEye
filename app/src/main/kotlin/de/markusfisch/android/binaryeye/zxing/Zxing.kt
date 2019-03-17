@@ -7,6 +7,7 @@ import com.google.zxing.LuminanceSource
 import com.google.zxing.MultiFormatReader
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.PlanarYUVLuminanceSource
+import com.google.zxing.RGBLuminanceSource
 import com.google.zxing.ReaderException
 import com.google.zxing.Result
 import com.google.zxing.common.HybridBinarizer
@@ -77,6 +78,23 @@ class Zxing {
 				source
 			}
 		)
+	}
+
+	fun decode(bitmap: Bitmap): Result? {
+		val width = bitmap.getWidth()
+		val height = bitmap.getHeight()
+		val pixels = IntArray(width * height)
+		if (bitmap.getConfig() != Bitmap.Config.ARGB_8888) {
+			bitmap.copy(Bitmap.Config.ARGB_8888, true)
+		} else {
+			bitmap
+		}.getPixels(pixels, 0, width, 0, 0, width, height)
+		val source = RGBLuminanceSource(width, height, pixels)
+		val result = decodeLuminanceSource(source)
+		if (result != null) {
+			return result
+		}
+		return decodeLuminanceSource(source.invert())
 	}
 
 	private fun decodeLuminanceSource(source: LuminanceSource): Result? {
