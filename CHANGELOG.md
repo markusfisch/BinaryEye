@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.4.0
+* Save scanned codes and show a history listing
+* Share generated barcodes
+* Add scanning from a shared image
+* Add menu item to switch between camera front/back camera
+* Add dutch and hungarian translation
+
 ## 1.3.8
 * Qualify for F-Droid
 
