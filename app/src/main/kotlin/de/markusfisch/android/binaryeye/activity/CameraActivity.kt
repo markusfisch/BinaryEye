@@ -380,8 +380,14 @@ class CameraActivity : AppCompatActivity() {
 				Camera.Parameters.FLASH_MODE_TORCH
 			}
 		)
-		flash = flash xor true
-		parameters?.let { camera.setParameters(parameters) }
+		parameters?.let {
+			try {
+				camera.setParameters(parameters)
+				flash = flash xor true
+			} catch (e: RuntimeException) {
+				// ignore; there's nothing we can do
+			}
+		}
 	}
 
 	private fun startDecoding() {
