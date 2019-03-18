@@ -118,7 +118,7 @@ class EncodeFragment : Fragment() {
 
 	private fun updateSize(power: Int) {
 		val size = getSize(power)
-		sizeView.text = "${size}x$size"
+		sizeView.text = getString(R.string.width_by_height, size, size)
 	}
 
 	private fun getSize(power: Int) = 128 * (power + 1)

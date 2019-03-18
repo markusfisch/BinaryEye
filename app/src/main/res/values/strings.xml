@@ -12,6 +12,7 @@
 	<string name="cannot_resolve_action">No application can open that</string>
 	<string name="format">Format</string>
 	<string name="size">Size in pixels</string>
+	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">Input content here</string>
 	<string name="encode">ENCODE</string>
 	<string name="error_no_content">Missing content</string>

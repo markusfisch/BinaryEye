@@ -12,6 +12,7 @@
 	<string name="cannot_resolve_action">Nincs alkalmazás, amely meg tudná nyitni azt</string>
 	<string name="format">Formátum</string>
 	<string name="size">Méret képpontban</string>
+	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">Itt adja meg a tartalmat</string>
 	<string name="encode">KÓDOLÁS</string>
 	<string name="error_no_content">Hiányzó tartalom</string>

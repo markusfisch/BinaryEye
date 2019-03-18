@@ -12,6 +12,7 @@
 	<string name="cannot_resolve_action">Keine App kann das öffnen</string>
 	<string name="format">Format</string>
 	<string name="size">Größe in Pixeln</string>
+	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">Gib den Inhalt hier ein</string>
 	<string name="encode">KODIEREN</string>
 	<string name="error_no_content">Fehlender Inhalt</string>
