@@ -40,9 +40,7 @@ class HistoryFragment : Fragment() {
 			false
 		)
 
-		val useHistorySwitch = view.findViewById(
-			R.id.use_history
-		) as SwitchCompat
+		val useHistorySwitch = view.findViewById(R.id.use_history) as SwitchCompat
 		initHistorySwitch(useHistorySwitch)
 
 		listView = view.findViewById(R.id.scans)
