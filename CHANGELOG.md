@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.4.2
+* Show barcode type and content length after decoding
+
 ## 1.4.1
 * Toggle availability of torch mode button according to camera features
 
