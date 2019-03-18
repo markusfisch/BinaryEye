@@ -16,7 +16,7 @@ buildscript {
 
 	dependencies {
 		classpath "com.android.tools.build:gradle:$tools_version"
-		classpath 'net.ltgt.gradle:gradle-errorprone-plugin:0.0.10'
+		classpath 'net.ltgt.gradle:gradle-errorprone-plugin:0.0.11'
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 	}
 }
