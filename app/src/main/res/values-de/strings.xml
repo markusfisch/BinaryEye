@@ -5,6 +5,7 @@
 	<string name="compose_barcode">Barcode erstellen</string>
 	<string name="decode_barcode">Barcode dekodieren</string>
 	<string name="content">Inhalt</string>
+	<string name="barcode_info">%1$s\n%2$d Zeichen</string>
 	<string name="copy_to_clipboard">In die Zwischenablage kopieren</string>
 	<string name="put_into_clipboard">In die Zwischenablage legen</string>
 	<string name="open_url">URL öffnen</string>

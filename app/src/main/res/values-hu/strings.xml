@@ -5,6 +5,7 @@
 	<string name="compose_barcode">Vonalkód létrehozása</string>
 	<string name="decode_barcode">Decode barcode</string>
 	<string name="content">Tartalom</string>
+	<string name="barcode_info">%1$s\n%2$d characters</string>
 	<string name="copy_to_clipboard">Másolás a vágólapra</string>
 	<string name="put_into_clipboard">Vágólapra helyezés</string>
 	<string name="open_url">URL megnyitása</string>

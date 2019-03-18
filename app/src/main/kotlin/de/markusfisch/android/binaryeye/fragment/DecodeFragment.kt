@@ -18,10 +18,12 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 
 class DecodeFragment : Fragment() {
 	private lateinit var contentView: EditText
+	private lateinit var formatView: TextView
 	private lateinit var format: BarcodeFormat
 
 	override fun onCreate(state: Bundle?) {
@@ -47,6 +49,14 @@ class DecodeFragment : Fragment() {
 
 		contentView = view.findViewById<EditText>(R.id.content)
 		contentView.setText(content)
+		formatView = view.findViewById<TextView>(R.id.format)
+		formatView.setText(
+			getString(
+				R.string.barcode_info,
+				format.toString(),
+				content.length
+			)
+		)
 
 		view.findViewById<View>(R.id.share).setOnClickListener { _ ->
 			share(getContent())
