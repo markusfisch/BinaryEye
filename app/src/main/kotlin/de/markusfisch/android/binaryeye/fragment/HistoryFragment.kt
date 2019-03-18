@@ -7,7 +7,6 @@ import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.data.Database
-import de.markusfisch.android.binaryeye.fragment.DecodeFragment
 import de.markusfisch.android.binaryeye.R
 
 import android.app.AlertDialog
@@ -87,17 +86,19 @@ class HistoryFragment : Fragment() {
 		GlobalScope.launch {
 			val cursor = db.getScans()
 			GlobalScope.launch(Main) {
-				fab.visibility = if (cursor != null && cursor.getCount() > 0) {
+				fab.visibility = if (cursor != null && cursor.count > 0) {
 					View.VISIBLE
 				} else {
 					View.GONE
 				}
-				if (listView.adapter == null) {
-					listView.adapter = ScansAdapter(context, cursor)
-				} else {
-					val adapter = listView.adapter as ScansAdapter
-					adapter.changeCursor(cursor)
-					adapter.notifyDataSetChanged()
+				cursor?.let {
+					if (listView.adapter == null) {
+						listView.adapter = ScansAdapter(context, cursor)
+					} else {
+						val adapter = listView.adapter as ScansAdapter
+						adapter.changeCursor(cursor)
+						adapter.notifyDataSetChanged()
+					}
 				}
 			}
 		}

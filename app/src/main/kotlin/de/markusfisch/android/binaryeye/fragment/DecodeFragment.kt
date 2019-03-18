@@ -8,6 +8,7 @@ import de.markusfisch.android.binaryeye.R
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.text.ClipboardManager
@@ -47,18 +48,16 @@ class DecodeFragment : Fragment() {
 		val content = arguments?.getString(CONTENT) ?: ""
 		format = arguments?.getSerializable(FORMAT) as BarcodeFormat? ?: BarcodeFormat.QR_CODE
 
-		contentView = view.findViewById<EditText>(R.id.content)
+		contentView = view.findViewById(R.id.content)
 		contentView.setText(content)
-		formatView = view.findViewById<TextView>(R.id.format)
-		formatView.setText(
-			getString(
-				R.string.barcode_info,
-				format.toString(),
-				content.length
-			)
+		formatView = view.findViewById(R.id.format)
+		formatView.text = getString(
+			R.string.barcode_info,
+			format.toString(),
+			content.length
 		)
 
-		view.findViewById<View>(R.id.share).setOnClickListener { _ ->
+		view.findViewById<View>(R.id.share).setOnClickListener {
 			share(getContent())
 		}
 
@@ -91,7 +90,7 @@ class DecodeFragment : Fragment() {
 	}
 
 	private fun getContent(): String {
-		return contentView.getText().toString()
+		return contentView.text.toString()
 	}
 
 	private fun copyToClipboard(text: String) {
@@ -100,7 +99,7 @@ class DecodeFragment : Fragment() {
 		val cm = activity.getSystemService(
 			Context.CLIPBOARD_SERVICE
 		) as ClipboardManager
-		cm.setText(text)
+		cm.text = text
 		Toast.makeText(
 			activity,
 			R.string.put_into_clipboard,
@@ -112,11 +111,12 @@ class DecodeFragment : Fragment() {
 		if (activity == null || url.isEmpty()) {
 			return
 		}
-		val intent = Intent(
-			Intent.ACTION_VIEW,
-			Uri.parse(url).normalizeScheme()
-		)
-		if (intent.resolveActivity(activity.getPackageManager()) != null) {
+		var uri = Uri.parse(url)
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+			uri = uri.normalizeScheme()
+		}
+		val intent = Intent(Intent.ACTION_VIEW, uri)
+		if (intent.resolveActivity(activity.packageManager) != null) {
 			startActivity(intent)
 		} else {
 			Toast.makeText(
@@ -130,7 +130,7 @@ class DecodeFragment : Fragment() {
 	private fun share(text: String) {
 		val intent = Intent(Intent.ACTION_SEND)
 		intent.putExtra(Intent.EXTRA_TEXT, text)
-		intent.setType("text/plain")
+		intent.type = "text/plain"
 		startActivity(intent)
 	}
 

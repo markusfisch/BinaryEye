@@ -50,7 +50,7 @@ class Zxing {
 		)
 
 		val hints = EnumMap<DecodeHintType, Any>(DecodeHintType::class.java)
-		hints.put(DecodeHintType.POSSIBLE_FORMATS, decodeFormats)
+		hints[DecodeHintType.POSSIBLE_FORMATS] = decodeFormats
 
 		multiFormatReader.setHints(hints)
 	}
@@ -81,10 +81,10 @@ class Zxing {
 	}
 
 	fun decode(bitmap: Bitmap): Result? {
-		val width = bitmap.getWidth()
-		val height = bitmap.getHeight()
+		val width = bitmap.width
+		val height = bitmap.height
 		val pixels = IntArray(width * height)
-		if (bitmap.getConfig() != Bitmap.Config.ARGB_8888) {
+		if (bitmap.config != Bitmap.Config.ARGB_8888) {
 			bitmap.copy(Bitmap.Config.ARGB_8888, true)
 		} else {
 			bitmap
@@ -122,12 +122,12 @@ class Zxing {
 				text, format,
 				width, height, null
 			)
-			val w = result.getWidth()
-			val h = result.getHeight()
+			val w = result.width
+			val h = result.height
 			val pixels = IntArray(w * h)
 			var offset = 0
-			for (y in 0..h - 1) {
-				for (x in 0..w - 1) {
+			for (y in 0 until h) {
+				for (x in 0 until w) {
 					pixels[offset + x] = if (result.get(x, y))
 						BLACK
 					else

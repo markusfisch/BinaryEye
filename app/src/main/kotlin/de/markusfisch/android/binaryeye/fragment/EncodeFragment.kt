@@ -50,22 +50,20 @@ class EncodeFragment : Fragment() {
 			false
 		)
 
-		formatView = view.findViewById<Spinner>(R.id.format)
-		formatView.setAdapter(
-			ArrayAdapter<String>(
-				activity,
-				android.R.layout.simple_list_item_1,
-				writers.map { it -> it.name }
-			)
+		formatView = view.findViewById(R.id.format)
+		formatView.adapter = ArrayAdapter<String>(
+			activity,
+			android.R.layout.simple_list_item_1,
+			writers.map { it.name }
 		)
 
-		sizeView = view.findViewById<TextView>(R.id.size_display)
-		sizeBarView = view.findViewById<SeekBar>(R.id.size_bar)
+		sizeView = view.findViewById(R.id.size_display)
+		sizeBarView = view.findViewById(R.id.size_bar)
 		initSizeBar()
 
 		val contentView = view.findViewById<EditText>(R.id.content)
 
-		val args = getArguments()
+		val args = arguments
 		args?.let {
 			contentView.setText(args.getString(CONTENT))
 			formatView.setSelection(
@@ -76,9 +74,9 @@ class EncodeFragment : Fragment() {
 		}
 
 		view.findViewById<View>(R.id.encode).setOnClickListener { v ->
-			val format = writers.get(formatView.getSelectedItemPosition())
-			var size = getSize(sizeBarView.getProgress())
-			val content = contentView.getText().toString()
+			val format = writers[formatView.selectedItemPosition]
+			val size = getSize(sizeBarView.progress)
+			val content = contentView.text.toString()
 			if (content.isEmpty()) {
 				Toast.makeText(
 					v.context,
@@ -101,7 +99,7 @@ class EncodeFragment : Fragment() {
 	}
 
 	private fun initSizeBar() {
-		updateSize(sizeBarView.getProgress())
+		updateSize(sizeBarView.progress)
 		sizeBarView.setOnSeekBarChangeListener(
 			object : SeekBar.OnSeekBarChangeListener {
 				override fun onProgressChanged(
@@ -120,7 +118,7 @@ class EncodeFragment : Fragment() {
 
 	private fun updateSize(power: Int) {
 		val size = getSize(power)
-		sizeView.setText("${size}x$size")
+		sizeView.text = "${size}x$size"
 	}
 
 	private fun getSize(power: Int) = 128 * (power + 1)
@@ -130,7 +128,7 @@ class EncodeFragment : Fragment() {
 			Context.INPUT_METHOD_SERVICE
 		) as InputMethodManager?
 		im?.let {
-			im.hideSoftInputFromWindow(view.getWindowToken(), 0)
+			im.hideSoftInputFromWindow(view.windowToken, 0)
 		}
 	}
 
@@ -146,7 +144,7 @@ class EncodeFragment : Fragment() {
 			args.putString(CONTENT, content)
 			args.putSerializable(FORMAT, format)
 			val fragment = EncodeFragment()
-			fragment.setArguments(args)
+			fragment.arguments = args
 			return fragment
 		}
 	}

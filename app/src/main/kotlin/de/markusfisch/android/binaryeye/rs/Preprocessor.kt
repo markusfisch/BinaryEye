@@ -13,7 +13,7 @@ class Preprocessor(
 	context: Context,
 	width: Int,
 	height: Int,
-	val orientation: Int
+	private val orientation: Int
 ) {
 	var outWidth = 0
 	var outHeight = 0
@@ -42,7 +42,7 @@ class Preprocessor(
 			Allocation.USAGE_SCRIPT
 		)
 
-		var f = .75f
+		val f = .75f
 		var w = Math.round(width * f)
 		var h = Math.round(height * f)
 

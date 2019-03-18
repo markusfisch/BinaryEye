@@ -41,30 +41,34 @@ class BarcodeFragment : Fragment() {
 			false
 		)
 
-		val args = getArguments()
+		val args = arguments
 		args?.let {
-			val size = args.getInt(SIZE)
-			val bitmap: Bitmap?
-			try {
-				bitmap = Zxing.encodeAsBitmap(
-					args.getString(CONTENT),
-					args.getSerializable(FORMAT) as BarcodeFormat,
-					size,
-					size
-				)
-			} catch (e: Exception) {
-				Toast.makeText(
-					activity,
-					e.message,
-					Toast.LENGTH_SHORT
-				).show()
-				fragmentManager.popBackStack()
-				return null
-			}
-			view.findViewById<ImageView>(R.id.barcode).setImageBitmap(bitmap)
-			view.findViewById<View>(R.id.share).setOnClickListener { _ ->
-				bitmap?.let {
-					share(bitmap)
+			val content = args.getString(CONTENT)
+			val format = args.getSerializable(FORMAT) as BarcodeFormat?
+			if (content != null && format != null) {
+				val size = args.getInt(SIZE)
+				val bitmap: Bitmap?
+				try {
+					bitmap = Zxing.encodeAsBitmap(
+						content,
+						format,
+						size,
+						size
+					)
+				} catch (e: Exception) {
+					Toast.makeText(
+						activity,
+						e.message,
+						Toast.LENGTH_SHORT
+					).show()
+					fragmentManager.popBackStack()
+					return null
+				}
+				view.findViewById<ImageView>(R.id.barcode).setImageBitmap(bitmap)
+				view.findViewById<View>(R.id.share).setOnClickListener {
+					bitmap?.let {
+						share(bitmap)
+					}
 				}
 			}
 		}
@@ -80,7 +84,7 @@ class BarcodeFragment : Fragment() {
 					val intent = Intent(Intent.ACTION_SEND)
 					intent.putExtra(Intent.EXTRA_STREAM, getUriForFile(file))
 					intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-					intent.setType("image/png")
+					intent.type = "image/png"
 					startActivity(intent)
 				}
 			}
@@ -88,17 +92,17 @@ class BarcodeFragment : Fragment() {
 	}
 
 	private fun saveBitmap(bitmap: Bitmap): File? {
-		try {
+		return try {
 			val file = File(
-				context.getExternalCacheDir(),
+				context.externalCacheDir,
 				"shared_barcode.png"
 			)
 			val fos = FileOutputStream(file)
 			bitmap.compress(Bitmap.CompressFormat.PNG, 90, fos)
 			fos.close()
-			return file
+			file
 		} catch (e: IOException) {
-			return null
+			null
 		}
 	}
 
@@ -129,7 +133,7 @@ class BarcodeFragment : Fragment() {
 			args.putSerializable(FORMAT, format)
 			args.putInt(SIZE, size)
 			val fragment = BarcodeFragment()
-			fragment.setArguments(args)
+			fragment.arguments = args
 			return fragment
 		}
 	}

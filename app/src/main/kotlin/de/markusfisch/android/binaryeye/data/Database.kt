@@ -2,6 +2,7 @@ package de.markusfisch.android.binaryeye.data
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.text.format.DateFormat
@@ -13,7 +14,7 @@ class Database {
 		db = OpenHelper(context).writableDatabase
 	}
 
-	fun getScans() = db.rawQuery(
+	fun getScans(): Cursor? = db.rawQuery(
 		"""SELECT
 			$SCANS_ID,
 			$SCANS_DATETIME,
@@ -24,7 +25,7 @@ class Database {
 		""", null
 	)
 
-	fun getScan(id: Long) = db.rawQuery(
+	fun getScan(id: Long): Cursor? = db.rawQuery(
 		"""SELECT
 			$SCANS_DATETIME,
 			$SCANS_CONTENT,

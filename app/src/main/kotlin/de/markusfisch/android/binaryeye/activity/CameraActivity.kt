@@ -39,7 +39,7 @@ import java.io.IOException
 class CameraActivity : AppCompatActivity() {
 	private val zxing = Zxing()
 	private val decodingRunnable = Runnable {
-		while (!Thread.currentThread().isInterrupted()) {
+		while (!Thread.currentThread().isInterrupted) {
 			val result = decodeFrame()
 			if (result != null) {
 				cameraView.post { found(result) }
@@ -204,7 +204,7 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun handleSendText(intent: Intent) {
-		var text = intent.getStringExtra(Intent.EXTRA_TEXT)
+		val text = intent.getStringExtra(Intent.EXTRA_TEXT)
 		if (text?.isEmpty() == true) {
 			startActivity(MainActivity.getEncodeIntent(this, text, true))
 			finish()
@@ -212,10 +212,7 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun handleSendImage(intent: Intent) {
-		var uri = intent.getParcelableExtra<Parcelable>(Intent.EXTRA_STREAM) as? Uri
-		if (uri == null) {
-			return
-		}
+		val uri = intent.getParcelableExtra<Parcelable>(Intent.EXTRA_STREAM) as? Uri ?: return
 		val bitmap = try {
 			MediaStore.Images.Media.getBitmap(contentResolver, uri)
 		} catch (e: IOException) {
@@ -265,21 +262,21 @@ class CameraActivity : AppCompatActivity() {
 			override fun onConfigureParameters(
 				parameters: Camera.Parameters
 			) {
-				if (parameters.isZoomSupported()) {
-					val max = parameters.getMaxZoom()
+				if (parameters.isZoomSupported) {
+					val max = parameters.maxZoom
 					if (zoomBar.max != max) {
 						zoomBar.max = max
 						zoomBar.progress = max / 10
 						saveZoom()
 					}
-					parameters.setZoom(zoomBar.progress)
+					parameters.zoom = zoomBar.progress
 				} else {
 					zoomBar.visibility = View.GONE
 				}
 				val sceneModes = parameters.supportedSceneModes
 				sceneModes?.let {
 					for (mode in sceneModes) {
-						if (mode.equals(Camera.Parameters.SCENE_MODE_BARCODE)) {
+						if (mode == Camera.Parameters.SCENE_MODE_BARCODE) {
 							parameters.sceneMode = mode
 							break
 						}
@@ -334,12 +331,12 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun setZoom(zoom: Int) {
-		val camera: Camera? = cameraView.getCamera()
+		val camera: Camera? = cameraView.camera
 		camera?.let {
 			try {
-				val params = camera.getParameters()
-				params.setZoom(zoom)
-				camera.setParameters(params)
+				val params = camera.parameters
+				params.zoom = zoom
+				camera.parameters = params
 			} catch (e: RuntimeException) {
 				// ignore; there's nothing we can do
 			}
@@ -370,18 +367,16 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun toggleTorchMode() {
-		val camera = cameraView.getCamera()
-		val parameters = camera?.getParameters()
-		parameters?.setFlashMode(
-			if (flash) {
-				Camera.Parameters.FLASH_MODE_OFF
-			} else {
-				Camera.Parameters.FLASH_MODE_TORCH
-			}
-		)
+		val camera = cameraView.camera
+		val parameters = camera?.parameters
+		parameters?.flashMode = if (flash) {
+			Camera.Parameters.FLASH_MODE_OFF
+		} else {
+			Camera.Parameters.FLASH_MODE_TORCH
+		}
 		parameters?.let {
 			try {
-				camera.setParameters(parameters)
+				camera.parameters = parameters
 				flash = flash xor true
 			} catch (e: RuntimeException) {
 				// ignore; there's nothing we can do
@@ -408,7 +403,7 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun decodeFrame(): Result? {
-		var fd = frameData
+		val fd = frameData
 		fd ?: return null
 		if (preprocessor == null) {
 			preprocessor = Preprocessor(
@@ -418,7 +413,7 @@ class CameraActivity : AppCompatActivity() {
 				frameOrientation
 			)
 		}
-		var pp = preprocessor
+		val pp = preprocessor
 		pp ?: return null
 		pp.process(fd)
 		invert = invert xor true
@@ -478,12 +473,12 @@ fun downsizeIfBigger(bitmap: Bitmap, max: Int): Bitmap {
 		if (bitmap.width > bitmap.height) {
 			height = Math.round(
 				width.toFloat() / bitmap.width.toFloat() *
-					bitmap.height.toFloat()
+						bitmap.height.toFloat()
 			)
 		} else {
 			width = Math.round(
 				height.toFloat() / bitmap.height.toFloat() *
-					bitmap.width.toFloat()
+						bitmap.width.toFloat()
 			)
 		}
 		Bitmap.createScaledBitmap(bitmap, width, height, true)

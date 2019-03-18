@@ -36,22 +36,19 @@ class MainActivity : AppCompatActivity() {
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 		if (state == null) {
-			var fragment: Fragment
-			if (intent?.hasExtra(HISTORY) == true) {
-				fragment = HistoryFragment()
-			} else if (intent?.hasExtra(ENCODE) == true) {
-				fragment = EncodeFragment.newInstance(
+			val fragment: Fragment
+			when {
+				intent?.hasExtra(HISTORY) == true -> fragment = HistoryFragment()
+				intent?.hasExtra(ENCODE) == true -> fragment = EncodeFragment.newInstance(
 					intent.getStringExtra(ENCODE)
 				)
-			} else if (intent?.hasExtra(DECODE) == true) {
-				fragment = DecodeFragment.newInstance(
+				intent?.hasExtra(DECODE) == true -> fragment = DecodeFragment.newInstance(
 					intent.getStringExtra(DECODE),
 					intent.getSerializableExtra(
 						DECODE_FORMAT
 					) as BarcodeFormat
 				)
-			} else {
-				fragment = DecodeFragment()
+				else -> fragment = DecodeFragment()
 			}
 			setFragment(supportFragmentManager, fragment)
 		}
@@ -79,8 +76,8 @@ class MainActivity : AppCompatActivity() {
 			if (isExternal) {
 				intent.addFlags(
 					android.content.Intent.FLAG_ACTIVITY_NO_HISTORY or
-					android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK or
-					android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+							android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK or
+							android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 				)
 			}
 			return intent

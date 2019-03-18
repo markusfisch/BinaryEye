@@ -43,6 +43,7 @@
 			android:layout_marginBottom="8dp"
 			android:text="@string/content"/>
 		<EditText
+			tools:targetApi="o"
 			android:id="@+id/content"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -51,7 +52,8 @@
 			android:typeface="monospace"
 			android:imeOptions="flagNoExtractUi"
 			android:inputType="textMultiLine"
-			android:hint="@string/input_content_here"/>
+			android:hint="@string/input_content_here"
+			android:importantForAutofill="no"/>
 		<Button
 			style="@style/Button"
 			android:id="@+id/encode"
