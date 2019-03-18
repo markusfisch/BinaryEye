@@ -5,7 +5,10 @@
 	<string name="compose_barcode">Compose barcode</string>
 	<string name="decode_barcode">Decode barcode</string>
 	<string name="content">Content</string>
-	<string name="barcode_info">%1$s\n%2$d characters</string>
+	<plurals name="barcode_info">
+		<item quantity="one">%1$s\n%2$d character</item>
+		<item quantity="other">%1$s\n%2$d characters</item>
+	</plurals>
 	<string name="copy_to_clipboard">Copy to clipboard</string>
 	<string name="put_into_clipboard">Put into clipboard</string>
 	<string name="open_url">Open url</string>

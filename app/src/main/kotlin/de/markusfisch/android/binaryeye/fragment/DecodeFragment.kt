@@ -51,8 +51,9 @@ class DecodeFragment : Fragment() {
 		contentView = view.findViewById(R.id.content)
 		contentView.setText(content)
 		formatView = view.findViewById(R.id.format)
-		formatView.text = getString(
-			R.string.barcode_info,
+		formatView.text = resources.getQuantityString(
+			R.plurals.barcode_info,
+			content.length,
 			format.toString(),
 			content.length
 		)
