@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.4.3
+* Fix broken history listing
+
 ## 1.4.2
 * Show barcode type and content length after decoding
 
