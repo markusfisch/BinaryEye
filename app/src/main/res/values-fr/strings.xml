@@ -1,0 +1,27 @@
+<resources>
+	<string name="no_camera_no_fun">Cette application n\'a aucun sens sans accès possible à la caméra. Au revoir.</string>
+	<string name="camera_error">Impossible d\'accéder à la caméra, veuillez réessayer</string>
+	<string name="scan_code">Scanner le code</string>
+	<string name="compose_barcode">Créer un code-barres</string>
+	<string name="decode_barcode">Décoder le code-barres</string>
+	<string name="content">Contenu</string>
+	<string name="copy_to_clipboard">Copier dans le presse-papier</string>
+	<string name="put_into_clipboard">Mis dans le presse-papiers</string>
+	<string name="open_url">Ouvrir l\'url</string>
+	<string name="cannot_resolve_action">Aucune application ne peut ouvrir ça</string>
+	<string name="format">Format</string>
+	<string name="size">Taille en pixels</string>
+	<string name="width_by_height">%1$d×%2$d</string>
+	<string name="input_content_here">Entrez votre contenu ici</string>
+	<string name="encode">ENCODER</string>
+	<string name="error_no_content">Contenu manquant</string>
+	<string name="view_barcode">Voir le code barre</string>
+	<string name="info">Info</string>
+	<string name="switch_camera">Changer de camera</string>
+	<string name="history">Historique</string>
+	<string name="use_history">Sauvegarder l\'histoire des scans</string>
+	<string name="remove_scan">Supprimer le scan</string>
+	<string name="really_remove_scan">Supprimer le scan ?</string>
+	<string name="really_remove_all_scans">Supprimer tous les scans ?</string>
+	<string name="no_barcode_found">Aucun code-barres trouvé</string>
+</resources>
