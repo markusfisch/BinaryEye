@@ -3,11 +3,11 @@
 	<string name="camera_error">Nem lehet hozzáférni a kamerához, próbálja meg újra</string>
 	<string name="scan_code">Kód beolvasása</string>
 	<string name="compose_barcode">Vonalkód létrehozása</string>
-	<string name="decode_barcode">Decode barcode</string>
+	<string name="decode_barcode">Vonalkód visszafejtése</string>
 	<string name="content">Tartalom</string>
 	<plurals name="barcode_info">
-		<item quantity="one">%1$s\n%2$d character</item>
-		<item quantity="other">%1$s\n%2$d characters</item>
+		<item quantity="one">%1$s\n%2$d karakter</item>
+		<item quantity="other">%1$s\n%2$d karakter</item>
 	</plurals>
 	<string name="copy_to_clipboard">Másolás a vágólapra</string>
 	<string name="put_into_clipboard">Vágólapra helyezés</string>
@@ -22,10 +22,10 @@
 	<string name="view_barcode">Vonalkód megtekintése</string>
 	<string name="info">Információ</string>
 	<string name="switch_camera">Kamera átkapcsolása</string>
-	<string name="history">History</string>
-	<string name="use_history">Save scan history</string>
-	<string name="remove_scan">Remove scan</string>
-	<string name="really_remove_scan">Really remove scan?</string>
-	<string name="really_remove_all_scans">Really remove all scans?</string>
-	<string name="no_barcode_found">No barcode found</string>
+	<string name="history">Előzmények</string>
+	<string name="use_history">Beolvasási előzmények mentése</string>
+	<string name="remove_scan">Beolvasás eltávolítása</string>
+	<string name="really_remove_scan">Valóban eltávolítja a beolvasást?</string>
+	<string name="really_remove_all_scans">Valóban eltávolítja az összes beolvasását?</string>
+	<string name="no_barcode_found">Nem található vonalkód</string>
 </resources>
