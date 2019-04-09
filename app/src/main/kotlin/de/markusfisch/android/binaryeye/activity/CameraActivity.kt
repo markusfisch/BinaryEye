@@ -101,7 +101,7 @@ class CameraActivity : AppCompatActivity() {
 		restoreZoom()
 
 		if (intent?.action == Intent.ACTION_SEND) {
-			if ("text/plain" == intent.type) {
+			if (intent.type == "text/plain") {
 				handleSendText(intent)
 			} else if (intent.type?.startsWith("image/") == true) {
 				handleSendImage(intent)
