@@ -36,21 +36,19 @@ class MainActivity : AppCompatActivity() {
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 		if (state == null) {
-			val fragment: Fragment
-			when {
-				intent?.hasExtra(HISTORY) == true -> fragment = HistoryFragment()
-				intent?.hasExtra(ENCODE) == true -> fragment = EncodeFragment.newInstance(
+			setFragment(supportFragmentManager, when {
+				intent?.hasExtra(HISTORY) == true -> HistoryFragment()
+				intent?.hasExtra(ENCODE) == true -> EncodeFragment.newInstance(
 					intent.getStringExtra(ENCODE)
 				)
-				intent?.hasExtra(DECODE) == true -> fragment = DecodeFragment.newInstance(
+				intent?.hasExtra(DECODE) == true -> DecodeFragment.newInstance(
 					intent.getStringExtra(DECODE),
 					intent.getSerializableExtra(
 						DECODE_FORMAT
 					) as BarcodeFormat
 				)
-				else -> fragment = DecodeFragment()
-			}
-			setFragment(supportFragmentManager, fragment)
+				else -> DecodeFragment()
+			})
 		}
 	}
 
