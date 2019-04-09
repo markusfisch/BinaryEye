@@ -205,7 +205,7 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun handleSendText(intent: Intent) {
 		val text = intent.getStringExtra(Intent.EXTRA_TEXT)
-		if (text?.isEmpty() == true) {
+		if (text?.isEmpty() == false) {
 			startActivity(MainActivity.getEncodeIntent(this, text, true))
 			finish()
 		}
