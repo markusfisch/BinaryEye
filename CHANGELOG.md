@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.5.0
+* Show a hex dump of decoded contents
+* Fix processing text from share menu
+* Add French translation
+
 ## 1.4.3
 * Fix broken history listing
 
