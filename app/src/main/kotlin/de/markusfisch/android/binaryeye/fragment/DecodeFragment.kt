@@ -12,6 +12,8 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.text.ClipboardManager
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -25,6 +27,7 @@ import android.widget.Toast
 class DecodeFragment : Fragment() {
 	private lateinit var contentView: EditText
 	private lateinit var formatView: TextView
+	private lateinit var hexView: TextView
 	private lateinit var format: BarcodeFormat
 
 	override fun onCreate(state: Bundle?) {
@@ -50,19 +53,44 @@ class DecodeFragment : Fragment() {
 
 		contentView = view.findViewById(R.id.content)
 		contentView.setText(content)
+		contentView.addTextChangedListener(object : TextWatcher {
+			override fun afterTextChanged(s: Editable?) {
+				updateFormatAndHex(contentView.text.toString())
+			}
+			override fun beforeTextChanged(
+				s: CharSequence?,
+				start: Int,
+				count: Int,
+				after: Int
+			) {}
+			override fun onTextChanged(
+				s: CharSequence?,
+				start: Int,
+				before: Int,
+				count: Int
+			) {}
+		})
+
 		formatView = view.findViewById(R.id.format)
+		hexView = view.findViewById(R.id.hex)
+
+		view.findViewById<View>(R.id.share).setOnClickListener {
+			share(getContent())
+		}
+
+		updateFormatAndHex(content)
+
+		return view
+	}
+
+	private fun updateFormatAndHex(content: String) {
 		formatView.text = resources.getQuantityString(
 			R.plurals.barcode_info,
 			content.length,
 			format.toString(),
 			content.length
 		)
-
-		view.findViewById<View>(R.id.share).setOnClickListener {
-			share(getContent())
-		}
-
-		return view
+		hexView.text = hexDump(content, 33)
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -133,6 +161,48 @@ class DecodeFragment : Fragment() {
 		intent.putExtra(Intent.EXTRA_TEXT, text)
 		intent.type = "text/plain"
 		startActivity(intent)
+	}
+
+	private fun hexDump(content: String, charsPerLine: Int): String {
+		if (charsPerLine < 4 || content.isEmpty()) {
+			return ""
+		}
+		val dump = StringBuilder()
+		val hex = StringBuilder()
+		val ascii = StringBuilder()
+		val itemsPerLine = (charsPerLine - 1) / 4
+		val len = content.length
+		var i = 0
+		while (true) {
+			val chr = content[i]
+			val ord = chr.toInt()
+			hex.append(String.format("%02X ", ord))
+			ascii.append(if (ord > 31) chr else " ")
+
+			++i
+
+			val posInLine = i % itemsPerLine
+			val atEnd = i >= len
+			var atLineEnd = posInLine == 0
+			if (atEnd && !atLineEnd) {
+				for (j in posInLine until itemsPerLine) {
+					hex.append("   ")
+				}
+				atLineEnd = true
+			}
+			if (atLineEnd) {
+				dump.append(hex.toString())
+				dump.append(" ")
+				dump.append(ascii.toString())
+				dump.append("\n")
+				hex.setLength(0)
+				ascii.setLength(0)
+			}
+			if (atEnd) {
+				break
+			}
+		}
+		return dump.toString()
 	}
 
 	companion object {
