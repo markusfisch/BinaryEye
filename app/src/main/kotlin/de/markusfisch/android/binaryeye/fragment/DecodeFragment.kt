@@ -171,13 +171,13 @@ class DecodeFragment : Fragment() {
 		val hex = StringBuilder()
 		val ascii = StringBuilder()
 		val itemsPerLine = (charsPerLine - 1) / 4
-		val len = content.length
+		val bytes = content.toByteArray()
+		val len = bytes.size
 		var i = 0
 		while (true) {
-			val chr = content[i]
-			val ord = chr.toInt()
+			val ord = bytes[i]
 			hex.append(String.format("%02X ", ord))
-			ascii.append(if (ord > 31) chr else " ")
+			ascii.append(if (ord > 31) ord.toChar() else " ")
 
 			++i
 
