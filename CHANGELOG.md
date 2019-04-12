@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.5.1
+* Fix generating hex dump
+
 ## 1.5.0
 * Show a hex dump of decoded contents
 * Fix processing text from share menu
