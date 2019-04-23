@@ -9,7 +9,7 @@
 		android:choiceMode="singleChoice"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:divider="@android:color/transparent"
+		android:divider="@color/separator"
 		android:dividerHeight="1px"/>
 	<android.support.v7.widget.SwitchCompat
 		android:visibility="gone"
