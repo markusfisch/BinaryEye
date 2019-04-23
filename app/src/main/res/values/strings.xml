@@ -9,6 +9,7 @@
 		<item quantity="one">%1$s\n%2$d character</item>
 		<item quantity="other">%1$s\n%2$d characters</item>
 	</plurals>
+	<string name="toggle_flash">Toggle flash</string>
 	<string name="copy_to_clipboard">Copy to clipboard</string>
 	<string name="put_into_clipboard">Put into clipboard</string>
 	<string name="open_url">Open url</string>

@@ -5,6 +5,7 @@
 	<string name="compose_barcode">Créer un code-barres</string>
 	<string name="decode_barcode">Décoder le code-barres</string>
 	<string name="content">Contenu</string>
+	<string name="toggle_flash">Toggle flash</string>
 	<string name="copy_to_clipboard">Copier dans le presse-papier</string>
 	<string name="put_into_clipboard">Mis dans le presse-papiers</string>
 	<string name="open_url">Ouvrir l\'url</string>

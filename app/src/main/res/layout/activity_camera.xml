@@ -33,6 +33,7 @@
 			android:layout_alignParentRight="true"
 			android:layout_alignParentBottom="true"
 			android:layout_margin="20dp"
+			android:contentDescription="@string/toggle_flash"
 			android:src="@drawable/ic_action_flash"
 			app:elevation="4dp"/>
 	</RelativeLayout>
