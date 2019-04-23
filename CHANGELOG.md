@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.6.0
+* Share history listing as plain text
+* Add separator line between history items
+* Add content description for floating action buttons
+
 ## 1.5.1
 * Fix generating hex dump
 
