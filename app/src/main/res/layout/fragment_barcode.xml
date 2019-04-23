@@ -18,6 +18,7 @@
 		android:layout_alignParentRight="true"
 		android:layout_alignParentBottom="true"
 		android:layout_margin="20dp"
+		android:contentDescription="@string/share"
 		android:src="@drawable/ic_action_share"
 		app:elevation="4dp"/>
 </RelativeLayout>
