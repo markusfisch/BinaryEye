@@ -29,5 +29,6 @@
 	<string name="remove_scan">Beolvasás eltávolítása</string>
 	<string name="really_remove_scan">Valóban eltávolítja a beolvasást?</string>
 	<string name="really_remove_all_scans">Valóban eltávolítja az összes beolvasását?</string>
+	<string name="clear_history">Clear history</string>
 	<string name="no_barcode_found">Nem található vonalkód</string>
 </resources>

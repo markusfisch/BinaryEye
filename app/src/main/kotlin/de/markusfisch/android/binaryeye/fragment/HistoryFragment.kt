@@ -3,9 +3,10 @@ package de.markusfisch.android.binaryeye.fragment
 import com.google.zxing.BarcodeFormat
 
 import de.markusfisch.android.binaryeye.adapter.ScansAdapter
-import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.addFragment
+import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.app.shareText
 import de.markusfisch.android.binaryeye.data.Database
 import de.markusfisch.android.binaryeye.R
 
@@ -15,6 +16,9 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.SwitchCompat
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
@@ -26,6 +30,11 @@ import kotlinx.coroutines.launch
 class HistoryFragment : Fragment() {
 	private lateinit var listView: ListView
 	private lateinit var fab: View
+
+	override fun onCreate(state: Bundle?) {
+		super.onCreate(state)
+		setHasOptionsMenu(true)
+	}
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -40,7 +49,9 @@ class HistoryFragment : Fragment() {
 			false
 		)
 
-		val useHistorySwitch = view.findViewById(R.id.use_history) as SwitchCompat
+		val useHistorySwitch = view.findViewById(
+			R.id.use_history
+		) as SwitchCompat
 		initHistorySwitch(useHistorySwitch)
 
 		listView = view.findViewById(R.id.scans)
@@ -53,9 +64,9 @@ class HistoryFragment : Fragment() {
 			true
 		}
 
-		fab = view.findViewById(R.id.clear)
-		fab.setOnClickListener { v ->
-			askToRemoveAllScans(v.context)
+		fab = view.findViewById(R.id.share)
+		fab.setOnClickListener {
+			shareScans()
 		}
 
 		return view
@@ -69,6 +80,20 @@ class HistoryFragment : Fragment() {
 	override fun onResume() {
 		super.onResume()
 		update(context)
+	}
+
+	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+		inflater.inflate(R.menu.fragment_history, menu)
+	}
+
+	override fun onOptionsItemSelected(item: MenuItem): Boolean {
+		return when (item.itemId) {
+			R.id.clear -> {
+				askToRemoveAllScans(context)
+				true
+			}
+			else -> super.onOptionsItemSelected(item)
+		}
 	}
 
 	private fun initHistorySwitch(switchView: SwitchCompat) {
@@ -144,5 +169,34 @@ class HistoryFragment : Fragment() {
 			.setNegativeButton(android.R.string.cancel) { _, _ ->
 			}
 			.show()
+	}
+
+	private fun shareScans() {
+		GlobalScope.launch {
+			val cursor = db.getScans()
+			cursor?.let {
+				val sb = StringBuilder()
+				if (cursor.moveToFirst()) {
+					val timeIndex = cursor.getColumnIndex(Database.SCANS_DATETIME)
+					val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
+					val formatIndex = cursor.getColumnIndex(Database.SCANS_FORMAT)
+					do {
+						sb.append(cursor.getString(contentIndex))
+						sb.append("\n")
+						sb.append(cursor.getString(timeIndex))
+						sb.append(" ")
+						sb.append(cursor.getString(formatIndex))
+						sb.append("\n---\n")
+					} while (cursor.moveToNext())
+				}
+				cursor.close()
+				val text = sb.toString()
+				if (text.isNotEmpty()) {
+					GlobalScope.launch(Main) {
+						shareText(context, text)
+					}
+				}
+			}
+		}
 	}
 }

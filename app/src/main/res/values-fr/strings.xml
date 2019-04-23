@@ -29,5 +29,6 @@
 	<string name="remove_scan">Supprimer le scan</string>
 	<string name="really_remove_scan">Supprimer le scan ?</string>
 	<string name="really_remove_all_scans">Supprimer tous les scans ?</string>
+	<string name="clear_history">Clear history</string>
 	<string name="no_barcode_found">Aucun code-barres trouvé</string>
 </resources>

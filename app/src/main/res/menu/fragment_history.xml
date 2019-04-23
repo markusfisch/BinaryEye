@@ -2,8 +2,8 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:material="http://schemas.android.com/apk/res-auto">
 	<item
-		android:id="@+id/remove_scan"
-		android:title="@string/remove_scan"
-		android:icon="@drawable/ic_action_remove"
+		android:id="@+id/clear"
+		android:title="@string/clear_history"
+		android:icon="@drawable/ic_action_clear"
 		material:showAsAction="ifRoom"/>
 </menu>

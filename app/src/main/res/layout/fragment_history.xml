@@ -22,13 +22,14 @@
 	<android.support.design.widget.FloatingActionButton
 		tools:ignore="UnusedAttribute"
 		android:visibility="gone"
-		android:id="@+id/clear"
+		android:id="@+id/share"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_alignParentEnd="true"
 		android:layout_alignParentRight="true"
 		android:layout_alignParentBottom="true"
 		android:layout_margin="20dp"
-		android:src="@drawable/ic_action_clear"
+		android:contentDescription="@string/share"
+		android:src="@drawable/ic_action_share"
 		app:elevation="4dp"/>
 </RelativeLayout>

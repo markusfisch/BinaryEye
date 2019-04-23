@@ -2,11 +2,11 @@ package de.markusfisch.android.binaryeye.fragment
 
 import com.google.zxing.BarcodeFormat
 
+import de.markusfisch.android.binaryeye.app.shareUri
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.binaryeye.BuildConfig
 import de.markusfisch.android.binaryeye.R
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -81,11 +81,11 @@ class BarcodeFragment : Fragment() {
 			val file = saveBitmap(bitmap)
 			GlobalScope.launch(Main) {
 				file?.let {
-					val intent = Intent(Intent.ACTION_SEND)
-					intent.putExtra(Intent.EXTRA_STREAM, getUriForFile(file))
-					intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-					intent.type = "image/png"
-					startActivity(intent)
+					shareUri(
+						context,
+						getUriForFile(file),
+						"image/png"
+					)
 				}
 			}
 		}

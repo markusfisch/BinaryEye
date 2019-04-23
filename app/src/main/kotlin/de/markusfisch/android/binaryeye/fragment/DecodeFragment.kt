@@ -3,6 +3,7 @@ package de.markusfisch.android.binaryeye.fragment
 import com.google.zxing.BarcodeFormat
 
 import de.markusfisch.android.binaryeye.app.addFragment
+import de.markusfisch.android.binaryeye.app.shareText
 import de.markusfisch.android.binaryeye.R
 
 import android.content.Context
@@ -74,8 +75,8 @@ class DecodeFragment : Fragment() {
 		formatView = view.findViewById(R.id.format)
 		hexView = view.findViewById(R.id.hex)
 
-		view.findViewById<View>(R.id.share).setOnClickListener {
-			share(getContent())
+		view.findViewById<View>(R.id.share).setOnClickListener { v ->
+			shareText(v.context, getContent())
 		}
 
 		updateFormatAndHex(content)
@@ -154,13 +155,6 @@ class DecodeFragment : Fragment() {
 				Toast.LENGTH_SHORT
 			).show()
 		}
-	}
-
-	private fun share(text: String) {
-		val intent = Intent(Intent.ACTION_SEND)
-		intent.putExtra(Intent.EXTRA_TEXT, text)
-		intent.type = "text/plain"
-		startActivity(intent)
 	}
 
 	private fun hexDump(content: String, charsPerLine: Int): String {
