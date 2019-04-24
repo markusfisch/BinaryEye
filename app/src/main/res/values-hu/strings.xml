@@ -9,8 +9,8 @@
 		<item quantity="one">%1$s\n%2$d karakter</item>
 		<item quantity="other">%1$s\n%2$d karakter</item>
 	</plurals>
-	<string name="toggle_flash">Toggle flash</string>
-	<string name="share">Share</string>
+	<string name="toggle_flash">Vaku be- vagy kikapcsolása</string>
+	<string name="share">Megosztás</string>
 	<string name="copy_to_clipboard">Másolás a vágólapra</string>
 	<string name="put_into_clipboard">Vágólapra helyezés</string>
 	<string name="open_url">URL megnyitása</string>
@@ -29,6 +29,6 @@
 	<string name="remove_scan">Beolvasás eltávolítása</string>
 	<string name="really_remove_scan">Valóban eltávolítja a beolvasást?</string>
 	<string name="really_remove_all_scans">Valóban eltávolítja az összes beolvasását?</string>
-	<string name="clear_history">Clear history</string>
+	<string name="clear_history">Előzmények törlése</string>
 	<string name="no_barcode_found">Nem található vonalkód</string>
 </resources>
