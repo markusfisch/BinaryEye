@@ -26,7 +26,6 @@
 	<string name="switch_camera">Changer de camera</string>
 	<string name="history">Historique</string>
 	<string name="use_history">Sauvegarder l\'histoire des scans</string>
-	<string name="remove_scan">Supprimer le scan</string>
 	<string name="really_remove_scan">Supprimer le scan ?</string>
 	<string name="really_remove_all_scans">Supprimer tous les scans ?</string>
 	<string name="clear_history">Clear history</string>

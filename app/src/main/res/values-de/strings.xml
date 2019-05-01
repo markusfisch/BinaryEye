@@ -26,7 +26,6 @@
 	<string name="switch_camera">Kamera wechseln</string>
 	<string name="history">Gespeicherte Codes</string>
 	<string name="use_history">Codes speichern</string>
-	<string name="remove_scan">Code entfernen</string>
 	<string name="really_remove_scan">Code wirklich entfernen?</string>
 	<string name="really_remove_all_scans">Alle Codes entfernen?</string>
 	<string name="clear_history">Gespeicherte Codes löschen</string>

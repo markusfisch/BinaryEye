@@ -26,7 +26,6 @@
 	<string name="switch_camera">Kamera átkapcsolása</string>
 	<string name="history">Előzmények</string>
 	<string name="use_history">Beolvasási előzmények mentése</string>
-	<string name="remove_scan">Beolvasás eltávolítása</string>
 	<string name="really_remove_scan">Valóban eltávolítja a beolvasást?</string>
 	<string name="really_remove_all_scans">Valóban eltávolítja az összes beolvasását?</string>
 	<string name="clear_history">Előzmények törlése</string>
