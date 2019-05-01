@@ -31,4 +31,7 @@
 	<string name="really_remove_all_scans">Valóban eltávolítja az összes beolvasását?</string>
 	<string name="clear_history">Előzmények törlése</string>
 	<string name="no_barcode_found">Nem található vonalkód</string>
+	<string name="pick_list_separator">How to separate list items?</string>
+	<string name="separator_line_break">Line break</string>
+	<string name="separator_ruler">Ruler</string>
 </resources>

@@ -6,6 +6,7 @@
 	<color name="accent">#b6d46f</color>
 	<color name="accent_dark">#a6c45f</color>
 	<color name="background_color">#111</color>
+	<color name="background_progress">#8000</color>
 	<color name="button_text">#fff</color>
 	<color name="separator">#333</color>
 </resources>

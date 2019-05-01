@@ -31,4 +31,7 @@
 	<string name="really_remove_all_scans">Alle Codes entfernen?</string>
 	<string name="clear_history">Gespeicherte Codes löschen</string>
 	<string name="no_barcode_found">Kein Barcode gefunden</string>
+	<string name="pick_list_separator">Wie sollen die Einträge getrennt werden?</string>
+	<string name="separator_line_break">Zeilenumbruch</string>
+	<string name="separator_ruler">Trennstrich</string>
 </resources>

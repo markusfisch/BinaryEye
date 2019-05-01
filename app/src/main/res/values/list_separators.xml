@@ -1,0 +1,10 @@
+<resources>
+	<string-array name="list_separators_names">
+		<item>@string/separator_line_break</item>
+		<item>@string/separator_ruler</item>
+	</string-array>
+	<string-array name="list_separators_values">
+		<item>\n</item>
+		<item>\n---\n</item>
+	</string-array>
+</resources>

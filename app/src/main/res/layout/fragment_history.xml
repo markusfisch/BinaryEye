@@ -32,4 +32,5 @@
 		android:contentDescription="@string/share"
 		android:src="@drawable/ic_action_share"
 		app:elevation="4dp"/>
+	<include layout="@layout/progress_view"/>
 </RelativeLayout>

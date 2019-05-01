@@ -30,6 +30,7 @@ import kotlinx.coroutines.launch
 class HistoryFragment : Fragment() {
 	private lateinit var listView: ListView
 	private lateinit var fab: View
+	private lateinit var progressView: View
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -65,9 +66,11 @@ class HistoryFragment : Fragment() {
 		}
 
 		fab = view.findViewById(R.id.share)
-		fab.setOnClickListener {
-			shareScans()
+		fab.setOnClickListener { v ->
+			pickListSeparatorAndShare(v.context)
 		}
+
+		progressView = view.findViewById(R.id.progress_view)
 
 		return view
 	}
@@ -171,28 +174,41 @@ class HistoryFragment : Fragment() {
 			.show()
 	}
 
-	private fun shareScans() {
+	private fun pickListSeparatorAndShare(context: Context) {
+		val separators = context.resources.getStringArray(
+			R.array.list_separators_values
+		)
+		AlertDialog.Builder(context)
+			.setTitle(R.string.pick_list_separator)
+			.setItems(R.array.list_separators_names) { _, which ->
+				shareScans(separators[which])
+			}
+			.show()
+	}
+
+	private fun shareScans(separator: String) {
+		if (progressView.visibility == View.VISIBLE) {
+			return
+		}
+		progressView.visibility = View.VISIBLE
 		GlobalScope.launch {
 			val cursor = db.getScans()
 			cursor?.let {
 				val sb = StringBuilder()
 				if (cursor.moveToFirst()) {
-					val timeIndex = cursor.getColumnIndex(Database.SCANS_DATETIME)
-					val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
-					val formatIndex = cursor.getColumnIndex(Database.SCANS_FORMAT)
+					val contentIndex = cursor.getColumnIndex(
+						Database.SCANS_CONTENT
+					)
 					do {
 						sb.append(cursor.getString(contentIndex))
-						sb.append("\n")
-						sb.append(cursor.getString(timeIndex))
-						sb.append(" ")
-						sb.append(cursor.getString(formatIndex))
-						sb.append("\n---\n")
+						sb.append(separator)
 					} while (cursor.moveToNext())
 				}
 				cursor.close()
 				val text = sb.toString()
 				if (text.isNotEmpty()) {
 					GlobalScope.launch(Main) {
+						progressView.visibility = View.GONE
 						shareText(context, text)
 					}
 				}

@@ -31,4 +31,7 @@
 	<string name="really_remove_all_scans">Supprimer tous les scans ?</string>
 	<string name="clear_history">Clear history</string>
 	<string name="no_barcode_found">Aucun code-barres trouvé</string>
+	<string name="pick_list_separator">How to separate list items?</string>
+	<string name="separator_line_break">Line break</string>
+	<string name="separator_ruler">Ruler</string>
 </resources>
