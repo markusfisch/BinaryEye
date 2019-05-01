@@ -38,15 +38,6 @@ import java.io.IOException
 
 class CameraActivity : AppCompatActivity() {
 	private val zxing = Zxing()
-	private val decodingRunnable = Runnable {
-		while (!Thread.currentThread().isInterrupted) {
-			val result = decodeFrame()
-			if (result != null) {
-				cameraView.post { found(result) }
-				break
-			}
-		}
-	}
 
 	private lateinit var vibrator: Vibrator
 	private lateinit var cameraView: CameraView
@@ -55,10 +46,6 @@ class CameraActivity : AppCompatActivity() {
 
 	private var decodingThread: Thread? = null
 	private var preprocessor: Preprocessor? = null
-	private var frameData: ByteArray? = null
-	private var frameWidth: Int = 0
-	private var frameHeight: Int = 0
-	private var frameOrientation: Int = 0
 	private var invert = false
 	private var flash = false
 	private var returnResult = false
@@ -144,7 +131,6 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun closeCamera() {
-		cancelDecoding()
 		cameraView.close()
 	}
 
@@ -296,18 +282,33 @@ class CameraActivity : AppCompatActivity() {
 			}
 
 			override fun onCameraReady(camera: Camera) {
-				frameWidth = cameraView.frameWidth
-				frameHeight = cameraView.frameHeight
-				frameOrientation = cameraView.frameOrientation
-				camera.setPreviewCallback { data, _ -> frameData = data }
+				val frameWidth = cameraView.frameWidth
+				val frameHeight = cameraView.frameHeight
+				val frameOrientation = cameraView.frameOrientation
+				var decoding = true
+				camera.setPreviewCallback { frameData, _ ->
+					if (decoding) {
+						val result = decodeFrame(
+							frameData,
+							frameWidth,
+							frameHeight,
+							frameOrientation
+						)
+						result?.let {
+							cameraView.post {
+								vibrator.vibrate(100)
+								showResult(result)
+							}
+							decoding = false
+						}
+					}
+				}
 			}
 
 			override fun onPreviewStarted(camera: Camera) {
-				startDecoding()
 			}
 
 			override fun onCameraStopping(camera: Camera) {
-				cancelDecoding()
 				camera.setPreviewCallback(null)
 			}
 		})
@@ -384,27 +385,13 @@ class CameraActivity : AppCompatActivity() {
 		}
 	}
 
-	private fun startDecoding() {
-		frameData = null
-		decodingThread = Thread(decodingRunnable)
-		decodingThread?.start()
-	}
-
-	private fun cancelDecoding() {
-		if (decodingThread != null) {
-			decodingThread?.interrupt()
-			try {
-				decodingThread?.join()
-			} catch (e: InterruptedException) {
-				// parent thread was interrupted
-			}
-			decodingThread = null
-		}
-	}
-
-	private fun decodeFrame(): Result? {
-		val fd = frameData
-		fd ?: return null
+	private fun decodeFrame(
+		frameData: ByteArray?,
+		frameWidth: Int,
+		frameHeight: Int,
+		frameOrientation: Int
+	): Result? {
+		frameData ?: return null
 		if (preprocessor == null) {
 			preprocessor = Preprocessor(
 				this,
@@ -415,20 +402,14 @@ class CameraActivity : AppCompatActivity() {
 		}
 		val pp = preprocessor
 		pp ?: return null
-		pp.process(fd)
+		pp.process(frameData)
 		invert = invert xor true
 		return zxing.decode(
-			fd,
+			frameData,
 			pp.outWidth,
 			pp.outHeight,
 			invert
 		)
-	}
-
-	private fun found(result: Result) {
-		cancelDecoding()
-		vibrator.vibrate(100)
-		showResult(result)
 	}
 
 	private fun showResult(result: Result) {
