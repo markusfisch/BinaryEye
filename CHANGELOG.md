@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.7.0
+* Pick list separator on sharing history listing
+* Update Hungarian translation
+
 ## 1.6.0
 * Share history listing as plain text
 * Add separator line between history items
