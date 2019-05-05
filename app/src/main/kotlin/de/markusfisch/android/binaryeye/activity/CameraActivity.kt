@@ -44,7 +44,6 @@ class CameraActivity : AppCompatActivity() {
 	private lateinit var zoomBar: SeekBar
 	private lateinit var flashFab: View
 
-	private var decodingThread: Thread? = null
 	private var preprocessor: Preprocessor? = null
 	private var invert = false
 	private var flash = false
