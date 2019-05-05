@@ -14,7 +14,7 @@ android {
 
 		// it's recommended to set this value to the lowest API level
 		// able to provide all the functionality
-		renderscriptTargetApi 18
+		renderscriptTargetApi 24
 		renderscriptSupportModeEnabled true
 
 		testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
