@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.7.1
+* Fix support for 64 bit architectures
+
 ## 1.7.0
 * Pick list separator on sharing history listing
 * Update Hungarian translation
