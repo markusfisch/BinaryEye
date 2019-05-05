@@ -1,10 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'net.ltgt.errorprone'
-
-configurations.errorprone {
-	resolutionStrategy.force 'com.google.errorprone:error_prone_core:2.0.19'
-}
 
 android {
 	compileSdkVersion sdk_version
