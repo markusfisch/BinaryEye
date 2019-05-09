@@ -20,6 +20,16 @@ android {
 		testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
 	}
 
+	signingConfigs {
+		config {
+			keyAlias System.getenv('ANDROID_KEY_ALIAS')
+			keyPassword System.getenv('ANDROID_KEY_PASSWORD')
+			storePassword System.getenv('ANDROID_STORE_PASSWORD')
+			def filePath = System.getenv('ANDROID_KEYFILE')
+			storeFile filePath ? file(filePath) : null
+		}
+	}
+
 	sourceSets {
 		main.java.srcDirs += 'src/main/kotlin'
 		androidTest.java.srcDirs += 'src/androidTest/kotlin'
