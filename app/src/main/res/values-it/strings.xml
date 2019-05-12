@@ -1,0 +1,36 @@
+<resources>
+	<string name="no_camera_no_fun">Quest\'app non ha alcuna utilità senza accesso alla camera. Addio.</string>
+	<string name="camera_error">Impossibile accedere alla camera. Riprovare</string>
+	<string name="scan_code">Codice</string>
+	<string name="compose_barcode">Crea codice a barre</string>
+	<string name="decode_barcode">Decodifica codice a barre</string>
+	<string name="content">Contenuto</string>
+	<plurals name="barcode_info">
+		<item quantity="one">%1$s\n%2$d character</item>
+		<item quantity="other">%1$s\n%2$d characters</item>
+	</plurals>
+	<string name="toggle_flash">Flash</string>
+	<string name="share">Condividi</string>
+	<string name="copy_to_clipboard">Copia negli appunti</string>
+	<string name="put_into_clipboard">Metti negli appunti</string>
+	<string name="open_url">Apri URL</string>
+	<string name="cannot_resolve_action">Nessuna app può aprirlo</string>
+	<string name="format">Formato</string>
+	<string name="size">Dimensioni in pixel</string>
+	<string name="width_by_height">%1$d×%2$d</string>
+	<string name="input_content_here">Contenuto input qui</string>
+	<string name="encode">CODIFICA</string>
+	<string name="error_no_content">Contenuto mancante</string>
+	<string name="view_barcode">Vedi codice a barre</string>
+	<string name="info">Info</string>
+	<string name="switch_camera">Cambia camera</string>
+	<string name="history">Cronologia</string>
+	<string name="use_history">Salva cronologia delle scansioni</string>
+	<string name="really_remove_scan">Vuoi veramente rimuovere la scansione?</string>
+	<string name="really_remove_all_scans">Vuoi veramente rimuovere tutte le scansioni?</string>
+	<string name="clear_history">Pulisci cronologia</string>
+	<string name="no_barcode_found">Nessun codice a barre trovato</string>
+	<string name="pick_list_separator">Come separare elementi di una lista?</string>
+	<string name="separator_line_break">Interruzione di linea</string>
+	<string name="separator_ruler">Righello</string>
+</resources>
