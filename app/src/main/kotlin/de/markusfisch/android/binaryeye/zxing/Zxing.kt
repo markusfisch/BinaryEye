@@ -71,6 +71,42 @@ class Zxing {
 			height,
 			false
 		)
+		return decodeLuminanceSource(source, invert)
+	}
+
+	fun decodePositiveNegative(bitmap: Bitmap): Result? {
+		val result = decode(bitmap, false)
+		if (result != null) {
+			return result
+		}
+		return decode(bitmap, true)
+	}
+
+	fun decode(bitmap: Bitmap, invert: Boolean = false): Result? {
+		val pixels = IntArray(bitmap.width * bitmap.height)
+		return decode(pixels, bitmap, invert)
+	}
+
+	fun decode(
+		pixels: IntArray,
+		bitmap: Bitmap,
+		invert: Boolean = false
+	): Result? {
+		val width = bitmap.width
+		val height = bitmap.height
+		if (bitmap.config != Bitmap.Config.ARGB_8888) {
+			bitmap.copy(Bitmap.Config.ARGB_8888, true)
+		} else {
+			bitmap
+		}.getPixels(pixels, 0, width, 0, 0, width, height)
+		val source = RGBLuminanceSource(width, height, pixels)
+		return decodeLuminanceSource(source, invert)
+	}
+
+	private fun decodeLuminanceSource(
+		source: LuminanceSource,
+		invert: Boolean
+	): Result? {
 		return decodeLuminanceSource(
 			if (invert) {
 				source.invert()
@@ -78,23 +114,6 @@ class Zxing {
 				source
 			}
 		)
-	}
-
-	fun decode(bitmap: Bitmap): Result? {
-		val width = bitmap.width
-		val height = bitmap.height
-		val pixels = IntArray(width * height)
-		if (bitmap.config != Bitmap.Config.ARGB_8888) {
-			bitmap.copy(Bitmap.Config.ARGB_8888, true)
-		} else {
-			bitmap
-		}.getPixels(pixels, 0, width, 0, 0, width, height)
-		val source = RGBLuminanceSource(width, height, pixels)
-		val result = decodeLuminanceSource(source)
-		if (result != null) {
-			return result
-		}
-		return decodeLuminanceSource(source.invert())
 	}
 
 	private fun decodeLuminanceSource(source: LuminanceSource): Result? {

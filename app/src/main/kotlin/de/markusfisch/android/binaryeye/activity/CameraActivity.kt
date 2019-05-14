@@ -7,6 +7,7 @@ import de.markusfisch.android.cameraview.widget.CameraView
 import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.initSystemBars
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.graphics.lumaToBitmap
 import de.markusfisch.android.binaryeye.rs.Preprocessor
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.binaryeye.R
@@ -25,6 +26,7 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.support.v8.renderscript.RSRuntimeException
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -49,6 +51,8 @@ class CameraActivity : AppCompatActivity() {
 	private var flash = false
 	private var returnResult = false
 	private var frontFacing = false
+	private var useRenderScript = true
+	private var fallbackBuffer: IntArray? = null
 
 	override fun onRequestPermissionsResult(
 		requestCode: Int,
@@ -57,7 +61,8 @@ class CameraActivity : AppCompatActivity() {
 	) {
 		when (requestCode) {
 			REQUEST_CAMERA -> if (grantResults.size > 0 &&
-				grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+				grantResults[0] != PackageManager.PERMISSION_GRANTED
+			) {
 				Toast.makeText(
 					this,
 					R.string.no_camera_no_fun,
@@ -99,6 +104,7 @@ class CameraActivity : AppCompatActivity() {
 		super.onDestroy()
 		preprocessor?.destroy()
 		saveZoom()
+		fallbackBuffer = null
 	}
 
 	override fun onResume() {
@@ -211,7 +217,7 @@ class CameraActivity : AppCompatActivity() {
 			).show()
 			return
 		}
-		val result = zxing.decode(downsizeIfBigger(bitmap, 1024))
+		val result = zxing.decodePositiveNegative(downsizeIfBigger(bitmap, 1024))
 		if (result != null) {
 			showResult(result)
 			finish()
@@ -229,7 +235,8 @@ class CameraActivity : AppCompatActivity() {
 		val permission = android.Manifest.permission.CAMERA
 
 		if (ContextCompat.checkSelfPermission(this, permission) !=
-			PackageManager.PERMISSION_GRANTED) {
+			PackageManager.PERMISSION_GRANTED
+		) {
 			ActivityCompat.requestPermissions(
 				this, arrayOf(permission),
 				REQUEST_CAMERA
@@ -401,14 +408,32 @@ class CameraActivity : AppCompatActivity() {
 		}
 		val pp = preprocessor
 		pp ?: return null
-		pp.process(frameData)
+		try {
+			if (useRenderScript) {
+				pp.process(frameData)
+			}
+		} catch (e: RSRuntimeException) {
+			// because RenderScript fails on some devices/ROMS for
+			// unknown reasons (e.g. Lineage)
+			useRenderScript = false
+		}
 		invert = invert xor true
-		return zxing.decode(
-			frameData,
-			pp.outWidth,
-			pp.outHeight,
-			invert
-		)
+		if (useRenderScript) {
+			return zxing.decode(frameData, pp.outWidth, pp.outHeight, invert)
+		} else {
+			val size = pp.outWidth * pp.outHeight
+			val fb = fallbackBuffer ?: IntArray(size)
+			fallbackBuffer = fb
+			val bmp = lumaToBitmap(
+				frameData,
+				frameWidth,
+				frameHeight,
+				frameOrientation,
+				pp.outWidth,
+				pp.outHeight
+			)
+			return zxing.decode(fb, bmp, invert)
+		}
 	}
 
 	private fun showResult(result: Result) {
