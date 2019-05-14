@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.7.2
+* Add a fallback for RenderScript
+* Add italian translation
+
 ## 1.7.1
 * Fix support for 64 bit architectures
 
