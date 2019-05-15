@@ -9,6 +9,8 @@ import android.support.v8.renderscript.RenderScript
 import android.support.v8.renderscript.ScriptIntrinsicResize
 import android.support.v8.renderscript.Type
 
+const val SCALE = .75f;
+
 class Preprocessor(
 	context: Context,
 	width: Int,
@@ -42,9 +44,8 @@ class Preprocessor(
 			Allocation.USAGE_SCRIPT
 		)
 
-		val f = .75f
-		var w = Math.round(width * f)
-		var h = Math.round(height * f)
+		var w = Math.round(width * SCALE)
+		var h = Math.round(height * SCALE)
 
 		resizedType = Type.createXY(
 			rs,

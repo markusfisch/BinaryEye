@@ -10,6 +10,7 @@ import de.markusfisch.android.binaryeye.app.initSystemBars
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.graphics.lumaToBitmap
 import de.markusfisch.android.binaryeye.rs.Preprocessor
+import de.markusfisch.android.binaryeye.rs.SCALE
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.binaryeye.R
 
@@ -104,8 +105,8 @@ class CameraActivity : AppCompatActivity() {
 	override fun onDestroy() {
 		super.onDestroy()
 		preprocessor?.destroy()
-		saveZoom()
 		fallbackBuffer = null
+		saveZoom()
 	}
 
 	override fun onResume() {
@@ -399,42 +400,44 @@ class CameraActivity : AppCompatActivity() {
 		frameOrientation: Int
 	): Result? {
 		frameData ?: return null
-		if (preprocessor == null) {
-			preprocessor = Preprocessor(
-				this,
-				frameWidth,
-				frameHeight,
-				frameOrientation
-			)
-		}
-		val pp = preprocessor
-		pp ?: return null
-		try {
-			if (useRenderScript) {
-				pp.process(frameData)
-			}
-		} catch (e: RSRuntimeException) {
-			// because RenderScript fails on some devices/ROMS for
-			// unknown reasons (e.g. Lineage)
-			useRenderScript = false
-		}
 		invert = invert xor true
 		if (useRenderScript) {
-			return zxing.decode(frameData, pp.outWidth, pp.outHeight, invert)
-		} else {
-			val size = pp.outWidth * pp.outHeight
-			val fb = fallbackBuffer ?: IntArray(size)
-			fallbackBuffer = fb
-			val bmp = lumaToBitmap(
-				frameData,
-				frameWidth,
-				frameHeight,
-				frameOrientation,
-				pp.outWidth,
-				pp.outHeight
-			)
-			return zxing.decode(fb, bmp, invert)
+			try {
+				val pp = preprocessor ?: Preprocessor(
+					this,
+					frameWidth,
+					frameHeight,
+					frameOrientation
+				)
+				pp.process(frameData)
+				preprocessor = pp
+				return zxing.decode(
+					frameData,
+					pp.outWidth,
+					pp.outHeight,
+					invert
+				)
+			} catch (e: RSRuntimeException) {
+				// because RenderScript fails on some devices/ROMS for
+				// unknown reasons (e.g. Lineage)
+				useRenderScript = false
+			}
 		}
+		// continue without RenderScript
+		val outWidth = Math.round(frameWidth * SCALE)
+		val outHeight = Math.round(frameHeight * SCALE)
+		val size = outWidth * outHeight
+		val fb = fallbackBuffer ?: IntArray(size)
+		fallbackBuffer = fb
+		val bmp = lumaToBitmap(
+			frameData,
+			frameWidth,
+			frameHeight,
+			frameOrientation,
+			outWidth,
+			outHeight
+		)
+		return zxing.decode(fb, bmp, invert)
 	}
 
 	private fun showResult(result: Result) {
@@ -498,7 +501,8 @@ fun getRawBytes(result: Result): ByteArray? {
 	val metadata = result.resultMetadata ?: return null
 	val segments = metadata[ResultMetadataType.BYTE_SEGMENTS] ?: return null
 	var bytes = ByteArray(0)
-	for (seg in segments as Iterable<ByteArray> ) {
+	@Suppress("UNCHECKED_CAST")
+	for (seg in segments as Iterable<ByteArray>) {
 		bytes += seg
 	}
 	return bytes
