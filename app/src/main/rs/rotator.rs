@@ -1,5 +1,6 @@
 #pragma version(1)
 #pragma rs java_package_name(de.markusfisch.android.binaryeye.renderscript)
+#pragma rs_fp_relaxed
 
 rs_allocation inImage;
 int inWidth;
