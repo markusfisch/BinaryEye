@@ -51,12 +51,13 @@ class DecodeFragment : Fragment() {
 
 		val content = arguments?.getString(CONTENT) ?: ""
 		format = arguments?.getSerializable(FORMAT) as BarcodeFormat? ?: BarcodeFormat.QR_CODE
+		val raw = arguments?.getByteArray(RAW)
 
 		contentView = view.findViewById(R.id.content)
 		contentView.setText(content)
 		contentView.addTextChangedListener(object : TextWatcher {
 			override fun afterTextChanged(s: Editable?) {
-				updateFormatAndHex(contentView.text.toString())
+				updateFormatAndHex(contentView.text.toString().toByteArray())
 			}
 			override fun beforeTextChanged(
 				s: CharSequence?,
@@ -79,19 +80,23 @@ class DecodeFragment : Fragment() {
 			shareText(v.context, getContent())
 		}
 
-		updateFormatAndHex(content)
+		updateFormatAndHex(if (raw != null) {
+			raw
+		} else {
+			content.toByteArray()
+		})
 
 		return view
 	}
 
-	private fun updateFormatAndHex(content: String) {
+	private fun updateFormatAndHex(bytes: ByteArray) {
 		formatView.text = resources.getQuantityString(
 			R.plurals.barcode_info,
-			content.length,
+			bytes.size,
 			format.toString(),
-			content.length
+			bytes.size
 		)
-		hexView.text = hexDump(content, 33)
+		hexView.text = hexDump(bytes, 33)
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -157,59 +162,66 @@ class DecodeFragment : Fragment() {
 		}
 	}
 
-	private fun hexDump(content: String, charsPerLine: Int): String {
-		if (charsPerLine < 4 || content.isEmpty()) {
-			return ""
-		}
-		val dump = StringBuilder()
-		val hex = StringBuilder()
-		val ascii = StringBuilder()
-		val itemsPerLine = (charsPerLine - 1) / 4
-		val bytes = content.toByteArray()
-		val len = bytes.size
-		var i = 0
-		while (true) {
-			val ord = bytes[i]
-			hex.append(String.format("%02X ", ord))
-			ascii.append(if (ord > 31) ord.toChar() else " ")
-
-			++i
-
-			val posInLine = i % itemsPerLine
-			val atEnd = i >= len
-			var atLineEnd = posInLine == 0
-			if (atEnd && !atLineEnd) {
-				for (j in posInLine until itemsPerLine) {
-					hex.append("   ")
-				}
-				atLineEnd = true
-			}
-			if (atLineEnd) {
-				dump.append(hex.toString())
-				dump.append(" ")
-				dump.append(ascii.toString())
-				dump.append("\n")
-				hex.setLength(0)
-				ascii.setLength(0)
-			}
-			if (atEnd) {
-				break
-			}
-		}
-		return dump.toString()
-	}
-
 	companion object {
 		private const val CONTENT = "content"
 		private const val FORMAT = "format"
+		private const val RAW = "raw"
 
-		fun newInstance(content: String, format: BarcodeFormat): Fragment {
+		fun newInstance(
+			content: String,
+			format: BarcodeFormat,
+			raw: ByteArray? = null
+		): Fragment {
 			val args = Bundle()
 			args.putString(CONTENT, content)
 			args.putSerializable(FORMAT, format)
+			if (raw != null) {
+				args.putByteArray(RAW, raw)
+			}
 			val fragment = DecodeFragment()
 			fragment.arguments = args
 			return fragment
 		}
 	}
+}
+
+private fun hexDump(bytes: ByteArray, charsPerLine: Int): String {
+	if (charsPerLine < 4 || bytes.size < 1) {
+		return ""
+	}
+	val dump = StringBuilder()
+	val hex = StringBuilder()
+	val ascii = StringBuilder()
+	val itemsPerLine = (charsPerLine - 1) / 4
+	val len = bytes.size
+	var i = 0
+	while (true) {
+		val ord = bytes[i]
+		hex.append(String.format("%02X ", ord))
+		ascii.append(if (ord > 31) ord.toChar() else " ")
+
+		++i
+
+		val posInLine = i % itemsPerLine
+		val atEnd = i >= len
+		var atLineEnd = posInLine == 0
+		if (atEnd && !atLineEnd) {
+			for (j in posInLine until itemsPerLine) {
+				hex.append("   ")
+			}
+			atLineEnd = true
+		}
+		if (atLineEnd) {
+			dump.append(hex.toString())
+			dump.append(" ")
+			dump.append(ascii.toString())
+			dump.append("\n")
+			hex.setLength(0)
+			ascii.setLength(0)
+		}
+		if (atEnd) {
+			break
+		}
+	}
+	return dump.toString()
 }

@@ -1,6 +1,7 @@
 package de.markusfisch.android.binaryeye.activity
 
 import com.google.zxing.Result
+import com.google.zxing.ResultMetadataType
 
 import de.markusfisch.android.cameraview.widget.CameraView
 
@@ -459,7 +460,8 @@ class CameraActivity : AppCompatActivity() {
 			MainActivity.getDecodeIntent(
 				this,
 				result.text,
-				result.barcodeFormat
+				result.barcodeFormat,
+				getRawBytes(result)
 			)
 		)
 	}
@@ -490,4 +492,14 @@ fun downsizeIfBigger(bitmap: Bitmap, max: Int): Bitmap {
 	} else {
 		bitmap
 	}
+}
+
+fun getRawBytes(result: Result): ByteArray? {
+	val metadata = result.resultMetadata ?: return null
+	val segments = metadata[ResultMetadataType.BYTE_SEGMENTS] ?: return null
+	var bytes = ByteArray(0)
+	for (seg in segments as Iterable<ByteArray> ) {
+		bytes += seg
+	}
+	return bytes
 }

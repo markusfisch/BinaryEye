@@ -40,11 +40,12 @@ class MainActivity : AppCompatActivity() {
 				intent?.hasExtra(ENCODE) == true -> EncodeFragment.newInstance(
 					intent.getStringExtra(ENCODE)
 				)
-				intent?.hasExtra(DECODE) == true -> DecodeFragment.newInstance(
-					intent.getStringExtra(DECODE),
+				intent?.hasExtra(DECODED_TEXT) == true -> DecodeFragment.newInstance(
+					intent.getStringExtra(DECODED_TEXT),
 					intent.getSerializableExtra(
-						DECODE_FORMAT
-					) as BarcodeFormat
+						DECODED_FORMAT
+					) as BarcodeFormat,
+					intent.getByteArrayExtra(DECODED_RAW)
 				)
 				else -> DecodeFragment()
 			})
@@ -54,8 +55,9 @@ class MainActivity : AppCompatActivity() {
 	companion object {
 		private const val HISTORY = "history"
 		private const val ENCODE = "encode"
-		private const val DECODE = "decode"
-		private const val DECODE_FORMAT = "decode_format"
+		private const val DECODED_TEXT = "decoded_text"
+		private const val DECODED_FORMAT = "decoded_format"
+		private const val DECODED_RAW = "decoded_raw"
 
 		fun getHistoryIntent(context: Context): Intent {
 			val intent = Intent(context, MainActivity::class.java)
@@ -72,9 +74,9 @@ class MainActivity : AppCompatActivity() {
 			intent.putExtra(ENCODE, text)
 			if (isExternal) {
 				intent.addFlags(
-					android.content.Intent.FLAG_ACTIVITY_NO_HISTORY or
-							android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK or
-							android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+					Intent.FLAG_ACTIVITY_NO_HISTORY or
+							Intent.FLAG_ACTIVITY_CLEAR_TASK or
+							Intent.FLAG_ACTIVITY_NEW_TASK
 				)
 			}
 			return intent
@@ -83,11 +85,15 @@ class MainActivity : AppCompatActivity() {
 		fun getDecodeIntent(
 			context: Context,
 			text: String,
-			format: BarcodeFormat
+			format: BarcodeFormat,
+			raw: ByteArray? = null
 		): Intent {
 			val intent = Intent(context, MainActivity::class.java)
-			intent.putExtra(DECODE, text)
-			intent.putExtra(DECODE_FORMAT, format)
+			intent.putExtra(DECODED_TEXT, text)
+			intent.putExtra(DECODED_FORMAT, format)
+			if (raw != null) {
+				intent.putExtra(DECODED_RAW, raw)
+			}
 			return intent
 		}
 	}
