@@ -138,8 +138,11 @@ class Zxing {
 			height: Int
 		): Bitmap? {
 			val result = MultiFormatWriter().encode(
-				text, format,
-				width, height, null
+				text,
+				format,
+				width,
+				height,
+				null
 			)
 			val w = result.width
 			val h = result.height
@@ -147,10 +150,11 @@ class Zxing {
 			var offset = 0
 			for (y in 0 until h) {
 				for (x in 0 until w) {
-					pixels[offset + x] = if (result.get(x, y))
+					pixels[offset + x] = if (result.get(x, y)) {
 						BLACK
-					else
+					} else {
 						WHITE
+					}
 				}
 				offset += w
 			}

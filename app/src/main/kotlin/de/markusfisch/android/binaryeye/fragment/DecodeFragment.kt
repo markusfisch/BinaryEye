@@ -25,11 +25,15 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 
+import java.util.regex.Pattern
+
 class DecodeFragment : Fragment() {
 	private lateinit var contentView: EditText
 	private lateinit var formatView: TextView
 	private lateinit var hexView: TextView
 	private lateinit var format: BarcodeFormat
+
+	private var isBinary = false
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -50,41 +54,50 @@ class DecodeFragment : Fragment() {
 		)
 
 		val content = arguments?.getString(CONTENT) ?: ""
+		isBinary = hasNonPrintableCharacters(content)
 		format = arguments?.getSerializable(FORMAT) as BarcodeFormat? ?: BarcodeFormat.QR_CODE
-		val raw = arguments?.getByteArray(RAW)
 
-		contentView = view.findViewById(R.id.content)
-		contentView.setText(content)
-		contentView.addTextChangedListener(object : TextWatcher {
-			override fun afterTextChanged(s: Editable?) {
-				updateFormatAndHex(contentView.text.toString().toByteArray())
+		contentView = view.findViewById(R.id.content) as EditText
+		val shareFab = view.findViewById<View>(R.id.share)
+
+		if (!isBinary) {
+			contentView.setText(content)
+			contentView.addTextChangedListener(object : TextWatcher {
+				override fun afterTextChanged(s: Editable?) {
+					updateFormatAndHex(getContent().toByteArray())
+				}
+
+				override fun beforeTextChanged(
+					s: CharSequence?,
+					start: Int,
+					count: Int,
+					after: Int
+				) {
+				}
+
+				override fun onTextChanged(
+					s: CharSequence?,
+					start: Int,
+					before: Int,
+					count: Int
+				) {
+				}
+			})
+			shareFab.setOnClickListener { v ->
+				shareText(v.context, getContent())
 			}
-			override fun beforeTextChanged(
-				s: CharSequence?,
-				start: Int,
-				count: Int,
-				after: Int
-			) {}
-			override fun onTextChanged(
-				s: CharSequence?,
-				start: Int,
-				before: Int,
-				count: Int
-			) {}
-		})
+		} else {
+			contentView.setText(R.string.binary_data)
+			contentView.isEnabled = false
+			shareFab.visibility = View.GONE
+		}
 
 		formatView = view.findViewById(R.id.format)
 		hexView = view.findViewById(R.id.hex)
 
-		view.findViewById<View>(R.id.share).setOnClickListener { v ->
-			shareText(v.context, getContent())
-		}
-
-		updateFormatAndHex(if (raw != null) {
-			raw
-		} else {
-			content.toByteArray()
-		})
+		updateFormatAndHex(
+			arguments?.getByteArray(RAW) ?: content.toByteArray()
+		)
 
 		return view
 	}
@@ -101,6 +114,11 @@ class DecodeFragment : Fragment() {
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 		inflater.inflate(R.menu.fragment_decode, menu)
+		if (isBinary) {
+			menu.findItem(R.id.copy_to_clipboard).isVisible = false
+			menu.findItem(R.id.open_url).isVisible = false
+			menu.findItem(R.id.create).isVisible = false
+		}
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -185,8 +203,11 @@ class DecodeFragment : Fragment() {
 	}
 }
 
+private val nonPrintable = Pattern.compile("[\\x00-\\x08\\x0e-\\x1f]")
+private fun hasNonPrintableCharacters(s: String) = nonPrintable.matcher(s).find()
+
 private fun hexDump(bytes: ByteArray, charsPerLine: Int): String {
-	if (charsPerLine < 4 || bytes.size < 1) {
+	if (charsPerLine < 4 || bytes.isEmpty()) {
 		return ""
 	}
 	val dump = StringBuilder()
