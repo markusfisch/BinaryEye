@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.7.3
+* Fix crashes on Lineage and remove RenderScript fallback
+* Improve handling of binary data
+
 ## 1.7.2
 * Add a fallback for RenderScript
 * Add italian translation
