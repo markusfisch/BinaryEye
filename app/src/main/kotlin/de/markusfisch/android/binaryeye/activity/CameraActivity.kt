@@ -8,9 +8,7 @@ import de.markusfisch.android.cameraview.widget.CameraView
 import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.initSystemBars
 import de.markusfisch.android.binaryeye.app.prefs
-import de.markusfisch.android.binaryeye.graphics.lumaToBitmap
 import de.markusfisch.android.binaryeye.rs.Preprocessor
-import de.markusfisch.android.binaryeye.rs.SCALE
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.binaryeye.R
 
@@ -28,8 +26,6 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.support.v8.renderscript.RSRuntimeException
-import android.support.v8.renderscript.RenderScript
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -54,7 +50,6 @@ class CameraActivity : AppCompatActivity() {
 	private var flash = false
 	private var returnResult = false
 	private var frontFacing = false
-	private var useRenderScript = true
 	private var fallbackBuffer: IntArray? = null
 
 	override fun onRequestPermissionsResult(
@@ -89,12 +84,6 @@ class CameraActivity : AppCompatActivity() {
 		zoomBar = findViewById(R.id.zoom) as SeekBar
 		flashFab = findViewById(R.id.flash)
 		flashFab.setOnClickListener { _ -> toggleTorchMode() }
-
-		if (useRenderScript) {
-			// required to make RenderScript work for Lineage 16.0
-			// possibly because of a system/device bug
-			RenderScript.forceCompat()
-		}
 
 		initCameraView()
 		initZoomBar()
@@ -408,43 +397,20 @@ class CameraActivity : AppCompatActivity() {
 	): Result? {
 		frameData ?: return null
 		invert = invert xor true
-		if (useRenderScript) {
-			try {
-				val pp = preprocessor ?: Preprocessor(
-					this,
-					frameWidth,
-					frameHeight,
-					frameOrientation
-				)
-				pp.process(frameData)
-				preprocessor = pp
-				return zxing.decode(
-					frameData,
-					pp.outWidth,
-					pp.outHeight,
-					invert
-				)
-			} catch (e: RSRuntimeException) {
-				// because RenderScript fails on some devices/ROMS for
-				// unknown reasons (e.g. Lineage)
-				useRenderScript = false
-			}
-		}
-		// continue without RenderScript
-		val outWidth = Math.round(frameWidth * SCALE)
-		val outHeight = Math.round(frameHeight * SCALE)
-		val size = outWidth * outHeight
-		val fb = fallbackBuffer ?: IntArray(size)
-		fallbackBuffer = fb
-		val bmp = lumaToBitmap(
-			frameData,
+		val pp = preprocessor ?: Preprocessor(
+			this,
 			frameWidth,
 			frameHeight,
-			frameOrientation,
-			outWidth,
-			outHeight
+			frameOrientation
 		)
-		return zxing.decode(fb, bmp, invert)
+		pp.process(frameData)
+		preprocessor = pp
+		return zxing.decode(
+			frameData,
+			pp.outWidth,
+			pp.outHeight,
+			invert
+		)
 	}
 
 	private fun showResult(result: Result) {
