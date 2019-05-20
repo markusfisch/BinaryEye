@@ -12,7 +12,7 @@
 		name="Button"
 		parent="@android:style/Widget.Button">
 		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">36dp</item>
+		<item name="android:layout_height">48dp</item>
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="android:background">@drawable/button_raised</item>
 		<item name="android:textColor">@color/button_text</item>
