@@ -29,6 +29,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.support.v8.renderscript.RSRuntimeException
+import android.support.v8.renderscript.RenderScript
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -88,6 +89,12 @@ class CameraActivity : AppCompatActivity() {
 		zoomBar = findViewById(R.id.zoom) as SeekBar
 		flashFab = findViewById(R.id.flash)
 		flashFab.setOnClickListener { _ -> toggleTorchMode() }
+
+		if (useRenderScript) {
+			// required to make RenderScript work for Lineage 16.0
+			// possibly because of a system/device bug
+			RenderScript.forceCompat()
+		}
 
 		initCameraView()
 		initZoomBar()
