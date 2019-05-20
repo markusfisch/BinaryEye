@@ -58,7 +58,7 @@ class CameraActivity : AppCompatActivity() {
 		grantResults: IntArray
 	) {
 		when (requestCode) {
-			REQUEST_CAMERA -> if (grantResults.size > 0 &&
+			REQUEST_CAMERA -> if (grantResults.isNotEmpty() &&
 				grantResults[0] != PackageManager.PERMISSION_GRANTED
 			) {
 				Toast.makeText(
@@ -83,7 +83,7 @@ class CameraActivity : AppCompatActivity() {
 		cameraView = findViewById(R.id.camera_view) as CameraView
 		zoomBar = findViewById(R.id.zoom) as SeekBar
 		flashFab = findViewById(R.id.flash)
-		flashFab.setOnClickListener { _ -> toggleTorchMode() }
+		flashFab.setOnClickListener { toggleTorchMode() }
 
 		initCameraView()
 		initZoomBar()
@@ -108,9 +108,7 @@ class CameraActivity : AppCompatActivity() {
 	override fun onResume() {
 		super.onResume()
 		System.gc()
-		returnResult = "com.google.zxing.client.android.SCAN".equals(
-			intent.action
-		)
+		returnResult = "com.google.zxing.client.android.SCAN" == intent.action
 		if (hasCameraPermission()) {
 			openCamera()
 		}
