@@ -412,11 +412,14 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun showResult(result: Result) {
+		val rawBytes = getRawBytes(result)
+
 		if (prefs.useHistory) {
 			GlobalScope.launch {
 				db.insertScan(
 					System.currentTimeMillis(),
 					result.text,
+					rawBytes,
 					result.barcodeFormat.toString()
 				)
 			}
@@ -435,7 +438,7 @@ class CameraActivity : AppCompatActivity() {
 				this,
 				result.text,
 				result.barcodeFormat,
-				getRawBytes(result)
+				rawBytes
 			)
 		)
 	}

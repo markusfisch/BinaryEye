@@ -3,6 +3,7 @@ package de.markusfisch.android.binaryeye.fragment
 import com.google.zxing.BarcodeFormat
 
 import de.markusfisch.android.binaryeye.app.addFragment
+import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
 import de.markusfisch.android.binaryeye.app.shareText
 import de.markusfisch.android.binaryeye.R
 
@@ -24,8 +25,6 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-
-import java.util.regex.Pattern
 
 class DecodeFragment : Fragment() {
 	private lateinit var contentView: EditText
@@ -202,9 +201,6 @@ class DecodeFragment : Fragment() {
 		}
 	}
 }
-
-private val nonPrintable = Pattern.compile("[\\x00-\\x08\\x0e-\\x1f]")
-private fun hasNonPrintableCharacters(s: String) = nonPrintable.matcher(s).find()
 
 private fun hexDump(bytes: ByteArray, charsPerLine: Int): String {
 	if (charsPerLine < 4 || bytes.isEmpty()) {

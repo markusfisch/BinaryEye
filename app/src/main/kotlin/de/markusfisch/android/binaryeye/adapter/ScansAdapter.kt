@@ -33,8 +33,13 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 		cursor: Cursor
 	) {
 		val holder = getViewHolder(view)
+		val content = cursor.getString(contentIndex)
 		holder.timeView.text = cursor.getString(timeIndex)
-		holder.contentView.text = cursor.getString(contentIndex)
+		holder.contentView.text = if (content.isEmpty()) {
+			context.getString(R.string.binary_data)
+		} else {
+			content
+		}
 		holder.formatView.text = cursor.getString(formatIndex)
 	}
 

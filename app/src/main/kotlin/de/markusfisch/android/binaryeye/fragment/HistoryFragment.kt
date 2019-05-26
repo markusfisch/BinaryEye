@@ -134,13 +134,15 @@ class HistoryFragment : Fragment() {
 		val cursor = db.getScan(id)
 		if (cursor != null && cursor.moveToFirst()) {
 			val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
+			val rawIndex = cursor.getColumnIndex(Database.SCANS_RAW)
 			val formatIndex = cursor.getColumnIndex(Database.SCANS_FORMAT)
 			try {
 				addFragment(
 					fragmentManager,
 					DecodeFragment.newInstance(
 						cursor.getString(contentIndex),
-						BarcodeFormat.valueOf(cursor.getString(formatIndex))
+						BarcodeFormat.valueOf(cursor.getString(formatIndex)),
+						cursor.getBlob(rawIndex)
 					)
 				)
 			} catch (e: IllegalArgumentException) {
