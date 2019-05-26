@@ -60,8 +60,8 @@ class DecodeFragment : Fragment() {
 		)
 
 		val content = arguments?.getString(CONTENT) ?: ""
+		isBinary = hasNonPrintableCharacters(content) or content.isEmpty()
 		val raw = arguments?.getByteArray(RAW) ?: content.toByteArray()
-		isBinary = hasNonPrintableCharacters(content)
 		format = arguments?.getSerializable(FORMAT) as BarcodeFormat? ?: BarcodeFormat.QR_CODE
 
 		contentView = view.findViewById(R.id.content) as EditText
@@ -198,7 +198,6 @@ class DecodeFragment : Fragment() {
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				if (hasWritePermission(ac)) {
 					val messageId = saveByteArray(
-						ac,
 						editText.text.toString(),
 						raw
 					)
@@ -274,7 +273,7 @@ private fun hexDump(bytes: ByteArray, charsPerLine: Int): String {
 	return dump.toString()
 }
 
-fun saveByteArray(context: Context, name: String, raw: ByteArray): Int {
+fun saveByteArray(name: String, raw: ByteArray): Int {
 	return try {
 		val file = File(
 			Environment.getExternalStoragePublicDirectory(
