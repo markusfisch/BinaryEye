@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.8.1
+* Distribute APK instead of App Bundle
+
 ## 1.8.0
 * Save binary data into external file
 * Fix storage of binary data
