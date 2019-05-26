@@ -2,17 +2,13 @@ package de.markusfisch.android.binaryeye.fragment
 
 import com.google.zxing.BarcodeFormat
 
-import de.markusfisch.android.binaryeye.app.shareUri
+import de.markusfisch.android.binaryeye.app.shareFile
 import de.markusfisch.android.binaryeye.zxing.Zxing
-import de.markusfisch.android.binaryeye.BuildConfig
 import de.markusfisch.android.binaryeye.R
 
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.graphics.Bitmap
 import android.support.v4.app.Fragment
-import android.support.v4.content.FileProvider
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -81,11 +77,7 @@ class BarcodeFragment : Fragment() {
 			val file = saveBitmap(bitmap)
 			GlobalScope.launch(Main) {
 				file?.let {
-					shareUri(
-						context,
-						getUriForFile(file),
-						"image/png"
-					)
+					shareFile(context, file, "image/png")
 				}
 			}
 		}
@@ -103,18 +95,6 @@ class BarcodeFragment : Fragment() {
 			file
 		} catch (e: IOException) {
 			null
-		}
-	}
-
-	private fun getUriForFile(file: File): Uri {
-		return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-			Uri.fromFile(file)
-		} else {
-			FileProvider.getUriForFile(
-				context,
-				BuildConfig.APPLICATION_ID + ".provider",
-				file
-			)
 		}
 	}
 

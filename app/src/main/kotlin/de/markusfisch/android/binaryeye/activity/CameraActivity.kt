@@ -6,6 +6,7 @@ import com.google.zxing.ResultMetadataType
 import de.markusfisch.android.cameraview.widget.CameraView
 
 import de.markusfisch.android.binaryeye.app.db
+import de.markusfisch.android.binaryeye.app.hasCameraPermission
 import de.markusfisch.android.binaryeye.app.initSystemBars
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.rs.Preprocessor
@@ -22,8 +23,6 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.os.Vibrator
 import android.provider.MediaStore
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
@@ -109,7 +108,7 @@ class CameraActivity : AppCompatActivity() {
 		super.onResume()
 		System.gc()
 		returnResult = "com.google.zxing.client.android.SCAN" == intent.action
-		if (hasCameraPermission()) {
+		if (hasCameraPermission(this, REQUEST_CAMERA)) {
 			openCamera()
 		}
 	}
@@ -225,22 +224,6 @@ class CameraActivity : AppCompatActivity() {
 			Toast.LENGTH_SHORT
 		).show()
 		finish()
-	}
-
-	private fun hasCameraPermission(): Boolean {
-		val permission = android.Manifest.permission.CAMERA
-
-		if (ContextCompat.checkSelfPermission(this, permission) !=
-			PackageManager.PERMISSION_GRANTED
-		) {
-			ActivityCompat.requestPermissions(
-				this, arrayOf(permission),
-				REQUEST_CAMERA
-			)
-			return false
-		}
-
-		return true
 	}
 
 	private fun initCameraView() {

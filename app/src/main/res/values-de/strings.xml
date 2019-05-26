@@ -34,4 +34,8 @@
 	<string name="pick_list_separator">Wie sollen die Einträge getrennt werden?</string>
 	<string name="separator_line_break">Zeilenumbruch</string>
 	<string name="separator_ruler">Trennstrich</string>
+	<string name="save_as_file_name">Speichern als?</string>
+	<string name="file_name">Dateiname</string>
+	<string name="error_saving_binary_data">Datei konnte nicht gespeichert werden</string>
+	<string name="error_file_exists">Datei existiert bereits</string>
 </resources>

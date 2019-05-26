@@ -4,14 +4,17 @@ import com.google.zxing.BarcodeFormat
 
 import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
+import de.markusfisch.android.binaryeye.app.hasWritePermission
 import de.markusfisch.android.binaryeye.app.shareText
 import de.markusfisch.android.binaryeye.R
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.support.v4.app.Fragment
 import android.text.ClipboardManager
 import android.text.Editable
@@ -23,8 +26,12 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+
+import java.io.File
+import java.io.IOException
 
 class DecodeFragment : Fragment() {
 	private lateinit var contentView: EditText
@@ -53,6 +60,7 @@ class DecodeFragment : Fragment() {
 		)
 
 		val content = arguments?.getString(CONTENT) ?: ""
+		val raw = arguments?.getByteArray(RAW) ?: content.toByteArray()
 		isBinary = hasNonPrintableCharacters(content)
 		format = arguments?.getSerializable(FORMAT) as BarcodeFormat? ?: BarcodeFormat.QR_CODE
 
@@ -88,15 +96,16 @@ class DecodeFragment : Fragment() {
 		} else {
 			contentView.setText(R.string.binary_data)
 			contentView.isEnabled = false
-			shareFab.visibility = View.GONE
+			(shareFab as ImageView).setImageResource(R.drawable.ic_action_save)
+			shareFab.setOnClickListener {
+				askForFileNameAndSave(raw)
+			}
 		}
 
 		formatView = view.findViewById(R.id.format)
 		hexView = view.findViewById(R.id.hex)
 
-		updateFormatAndHex(
-			arguments?.getByteArray(RAW) ?: content.toByteArray()
-		)
+		updateFormatAndHex(raw)
 
 		return view
 	}
@@ -179,6 +188,28 @@ class DecodeFragment : Fragment() {
 		}
 	}
 
+	private fun askForFileNameAndSave(raw: ByteArray) {
+		val ac = activity
+		ac ?: return
+		val view = ac.layoutInflater.inflate(R.layout.dialog_save_file, null)
+		val editText = view.findViewById(R.id.file_name) as EditText
+		AlertDialog.Builder(ac)
+			.setView(view)
+			.setPositiveButton(android.R.string.ok) { _, _ ->
+				if (hasWritePermission(ac)) {
+					val messageId = saveByteArray(
+						ac,
+						editText.text.toString(),
+						raw
+					)
+					if (messageId > 0) {
+						Toast.makeText(ac, messageId, Toast.LENGTH_SHORT).show()
+					}
+				}
+			}
+			.show()
+	}
+
 	companion object {
 		private const val CONTENT = "content"
 		private const val FORMAT = "format"
@@ -241,4 +272,22 @@ private fun hexDump(bytes: ByteArray, charsPerLine: Int): String {
 		}
 	}
 	return dump.toString()
+}
+
+fun saveByteArray(context: Context, name: String, raw: ByteArray): Int {
+	return try {
+		val file = File(
+			Environment.getExternalStoragePublicDirectory(
+				Environment.DIRECTORY_DOWNLOADS
+			),
+			name
+		)
+		if (file.exists()) {
+			return R.string.error_file_exists
+		}
+		file.writeBytes(raw)
+		0
+	} catch (e: IOException) {
+		R.string.error_saving_binary_data
+	}
 }
