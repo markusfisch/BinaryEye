@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.8.0
+* Save binary data into external file
+* Fix storage of binary data
+* Remove horizontal orientation line from scanner
+
 ## 1.7.3
 * Fix crashes on Lineage and remove RenderScript fallback
 * Improve handling of binary data
