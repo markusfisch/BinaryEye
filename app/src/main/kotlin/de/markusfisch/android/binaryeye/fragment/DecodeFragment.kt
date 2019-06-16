@@ -32,6 +32,7 @@ import android.widget.Toast
 
 import java.io.File
 import java.io.IOException
+import java.net.URLEncoder
 
 class DecodeFragment : Fragment() {
 	private lateinit var contentView: EditText
@@ -168,7 +169,7 @@ class DecodeFragment : Fragment() {
 		).show()
 	}
 
-	private fun openUrl(url: String) {
+	private fun openUrl(url: String, googleIfNoUrl: Boolean = true) {
 		if (activity == null || url.isEmpty()) {
 			return
 		}
@@ -179,6 +180,14 @@ class DecodeFragment : Fragment() {
 		val intent = Intent(Intent.ACTION_VIEW, uri)
 		if (intent.resolveActivity(activity.packageManager) != null) {
 			startActivity(intent)
+		} else if (googleIfNoUrl) {
+			openUrl(
+				"https://www.google.com/search?q=" + URLEncoder.encode(
+					url,
+					"utf-8"
+				),
+				false
+			)
 		} else {
 			Toast.makeText(
 				activity,
