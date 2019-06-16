@@ -52,9 +52,13 @@ class BarcodeFragment : Fragment() {
 						size
 					)
 				} catch (e: Exception) {
+					var message = e.message
+					if (message == null || message.isEmpty()) {
+						message = getString(R.string.error_encoding_barcode)
+					}
 					Toast.makeText(
 						activity,
-						e.message,
+						message,
 						Toast.LENGTH_SHORT
 					).show()
 					fragmentManager.popBackStack()

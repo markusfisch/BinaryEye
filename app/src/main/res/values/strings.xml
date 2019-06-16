@@ -22,6 +22,7 @@
 	<string name="input_content_here">Input content here</string>
 	<string name="encode">ENCODE</string>
 	<string name="error_no_content">Missing content</string>
+	<string name="error_encoding_barcode">Barcode cannot be generated</string>
 	<string name="view_barcode">View barcode</string>
 	<string name="info">Info</string>
 	<string name="switch_camera">Switch camera</string>

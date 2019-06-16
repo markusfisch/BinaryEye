@@ -22,6 +22,7 @@
 	<string name="input_content_here">Voer hier de inhoud in</string>
 	<string name="encode">CODEREN</string>
 	<string name="error_no_content">Inhoud ontbreekt</string>
+	<string name="error_encoding_barcode">Barcode cannot be generated</string>
 	<string name="view_barcode">Barcode bekijken</string>
 	<string name="info">Informatie</string>
 	<string name="switch_camera">Camera wisselen</string>

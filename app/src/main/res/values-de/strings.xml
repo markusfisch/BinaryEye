@@ -22,6 +22,7 @@
 	<string name="input_content_here">Gib den Inhalt hier ein</string>
 	<string name="encode">KODIEREN</string>
 	<string name="error_no_content">Fehlender Inhalt</string>
+	<string name="error_encoding_barcode">Barcode kann nicht generiert werden</string>
 	<string name="view_barcode">Barcode ansehen</string>
 	<string name="info">Info</string>
 	<string name="switch_camera">Kamera wechseln</string>

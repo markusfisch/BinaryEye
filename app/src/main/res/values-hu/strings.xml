@@ -22,6 +22,7 @@
 	<string name="input_content_here">Itt adja meg a tartalmat</string>
 	<string name="encode">KÓDOLÁS</string>
 	<string name="error_no_content">Hiányzó tartalom</string>
+	<string name="error_encoding_barcode">Barcode cannot be generated</string>
 	<string name="view_barcode">Vonalkód megtekintése</string>
 	<string name="info">Információ</string>
 	<string name="switch_camera">Kamera átkapcsolása</string>
