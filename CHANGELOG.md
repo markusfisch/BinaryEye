@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.9.0
+* Try Google when opening content as URL fails
+* Show generic error message if barcode generation fails
+
 ## 1.8.1
 * Distribute APK instead of App Bundle
 
