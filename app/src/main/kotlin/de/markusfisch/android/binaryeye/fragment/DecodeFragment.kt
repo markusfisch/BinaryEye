@@ -169,7 +169,7 @@ class DecodeFragment : Fragment() {
 		).show()
 	}
 
-	private fun openUrl(url: String, googleIfNoUrl: Boolean = true) {
+	private fun openUrl(url: String, searchIfNoUrl: Boolean = true) {
 		if (activity == null || url.isEmpty()) {
 			return
 		}
@@ -180,14 +180,8 @@ class DecodeFragment : Fragment() {
 		val intent = Intent(Intent.ACTION_VIEW, uri)
 		if (intent.resolveActivity(activity.packageManager) != null) {
 			startActivity(intent)
-		} else if (googleIfNoUrl) {
-			openUrl(
-				"https://www.google.com/search?q=" + URLEncoder.encode(
-					url,
-					"utf-8"
-				),
-				false
-			)
+		} else if (searchIfNoUrl) {
+			pickSearchEngineAndSearch(activity, url)
 		} else {
 			Toast.makeText(
 				activity,
@@ -195,6 +189,21 @@ class DecodeFragment : Fragment() {
 				Toast.LENGTH_SHORT
 			).show()
 		}
+	}
+
+	private fun pickSearchEngineAndSearch(context: Context, query: String) {
+		val urls = context.resources.getStringArray(
+			R.array.search_engines_values
+		)
+		AlertDialog.Builder(context)
+			.setTitle(R.string.pick_search_engine)
+			.setItems(R.array.search_engines_names) { _, which ->
+				openUrl(
+					urls[which] + URLEncoder.encode(query, "utf-8"),
+					false
+				)
+			}
+			.show()
 	}
 
 	private fun askForFileNameAndSave(raw: ByteArray) {

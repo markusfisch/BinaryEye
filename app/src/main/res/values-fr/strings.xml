@@ -16,6 +16,7 @@
 	<string name="put_into_clipboard">Mis dans le presse-papiers</string>
 	<string name="open_url">Ouvrir l\'url</string>
 	<string name="cannot_resolve_action">Aucune application ne peut ouvrir ça</string>
+	<string name="pick_search_engine">Pick a search engine</string>
 	<string name="format">Format</string>
 	<string name="size">Taille en pixels</string>
 	<string name="width_by_height">%1$d×%2$d</string>

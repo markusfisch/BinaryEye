@@ -16,6 +16,7 @@
 	<string name="put_into_clipboard">Kopieer de inhoud naar het klembord</string>
 	<string name="open_url">URL openen</string>
 	<string name="cannot_resolve_action">Er is geen app aangetroffen die dit kan openen</string>
+	<string name="pick_search_engine">Pick a search engine</string>
 	<string name="format">Formaat</string>
 	<string name="size">Grootte, in pixels</string>
 	<string name="width_by_height">%1$d×%2$d</string>

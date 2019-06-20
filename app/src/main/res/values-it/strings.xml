@@ -16,6 +16,7 @@
 	<string name="put_into_clipboard">Metti negli appunti</string>
 	<string name="open_url">Apri URL</string>
 	<string name="cannot_resolve_action">Nessuna app può aprirlo</string>
+	<string name="pick_search_engine">Pick a search engine</string>
 	<string name="format">Formato</string>
 	<string name="size">Dimensioni in pixel</string>
 	<string name="width_by_height">%1$d×%2$d</string>

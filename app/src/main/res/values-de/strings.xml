@@ -16,6 +16,7 @@
 	<string name="put_into_clipboard">In die Zwischenablage legen</string>
 	<string name="open_url">URL öffnen</string>
 	<string name="cannot_resolve_action">Keine App kann das öffnen</string>
+	<string name="pick_search_engine">Suchmaschine auswählen</string>
 	<string name="format">Format</string>
 	<string name="size">Größe in Pixeln</string>
 	<string name="width_by_height">%1$d×%2$d</string>
