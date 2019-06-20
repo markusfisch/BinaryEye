@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.9.1
+* Pick search engine for content that is not an URL
+
 ## 1.9.0
 * Try Google when opening content as URL fails
 * Show generic error message if barcode generation fails
