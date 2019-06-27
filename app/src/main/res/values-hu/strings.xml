@@ -5,7 +5,7 @@
 	<string name="compose_barcode">Vonalkód létrehozása</string>
 	<string name="decode_barcode">Vonalkód visszafejtése</string>
 	<string name="content">Tartalom</string>
-	<string name="binary_data">(binary data)</string>
+	<string name="binary_data">(bináris adat)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%1$s\n%2$d karakter</item>
 		<item quantity="other">%1$s\n%2$d karakter</item>
@@ -16,14 +16,14 @@
 	<string name="put_into_clipboard">Vágólapra helyezés</string>
 	<string name="open_url">URL megnyitása</string>
 	<string name="cannot_resolve_action">Nincs alkalmazás, amely meg tudná nyitni azt</string>
-	<string name="pick_search_engine">Pick a search engine</string>
+	<string name="pick_search_engine">Válasszon egy keresőmotort</string>
 	<string name="format">Formátum</string>
 	<string name="size">Méret képpontban</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">Itt adja meg a tartalmat</string>
 	<string name="encode">KÓDOLÁS</string>
 	<string name="error_no_content">Hiányzó tartalom</string>
-	<string name="error_encoding_barcode">Barcode cannot be generated</string>
+	<string name="error_encoding_barcode">A vonalkódot nem lehet előállítani</string>
 	<string name="view_barcode">Vonalkód megtekintése</string>
 	<string name="info">Információ</string>
 	<string name="switch_camera">Kamera átkapcsolása</string>
@@ -33,11 +33,11 @@
 	<string name="really_remove_all_scans">Valóban eltávolítja az összes beolvasását?</string>
 	<string name="clear_history">Előzmények törlése</string>
 	<string name="no_barcode_found">Nem található vonalkód</string>
-	<string name="pick_list_separator">How to separate list items?</string>
-	<string name="separator_line_break">Line break</string>
-	<string name="separator_ruler">Ruler</string>
-	<string name="save_as_file_name">Save as file?</string>
-	<string name="file_name">File name</string>
-	<string name="error_saving_binary_data">Cannot save file</string>
-	<string name="error_file_exists">File already exists</string>
+	<string name="pick_list_separator">Hogyan kell elválasztani a listaelemeket?</string>
+	<string name="separator_line_break">Sortörés</string>
+	<string name="separator_ruler">Vonalzó</string>
+	<string name="save_as_file_name">Menti fájlként?</string>
+	<string name="file_name">Fájlnév</string>
+	<string name="error_saving_binary_data">Nem lehet elmenteni a fájlt</string>
+	<string name="error_file_exists">A fájl már létezik</string>
 </resources>
