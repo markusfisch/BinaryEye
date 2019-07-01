@@ -1,0 +1,43 @@
+<resources>
+	<string name="no_camera_no_fun">Aplikasi ini tidak akan bisa bekerja tanpa akses kamera. Selamat tinggal.</string>
+	<string name="camera_error">Tidak bisa mengakses kamera, silakan coba lagi</string>
+	<string name="scan_code">Pindai kode</string>
+	<string name="compose_barcode">Buat barcode</string>
+	<string name="decode_barcode">Dekode barcode</string>
+	<string name="content">Konten</string>
+	<string name="binary_data">(data binari)</string>
+	<plurals name="barcode_info">
+		<item quantity="one">%1$s\n%2$d karakter</item>
+		<item quantity="other">%1$s\n%2$d karakter</item>
+	</plurals>
+	<string name="toggle_flash">Nyala/Matikan blitz</string>
+	<string name="share">Bagikan</string>
+	<string name="copy_to_clipboard">Salin ke papan klip</string>
+	<string name="put_into_clipboard">Simpan ke papan klip</string>
+	<string name="open_url">Buka url</string>
+	<string name="cannot_resolve_action">Tidak ada aplikasi yang bisa membukanya</string>
+	<string name="pick_search_engine">Pilih mesin pencari</string>
+	<string name="format">Format</string>
+	<string name="size">Ukuran dalam piksel</string>
+	<string name="width_by_height">%1$d×%2$d</string>
+	<string name="input_content_here">Masukkan konten di sini</string>
+	<string name="encode">ENKODE</string>
+	<string name="error_no_content">Tidak ada konten</string>
+	<string name="error_encoding_barcode">Barcode tidak bisa dibuat</string>
+	<string name="view_barcode">Lihat barcode</string>
+	<string name="info">Info</string>
+	<string name="switch_camera">Ganti kamera</string>
+	<string name="history">Riwayat</string>
+	<string name="use_history">Simpan riwayat pemindaian</string>
+	<string name="really_remove_scan">Yakin menghapus pemindaian?</string>
+	<string name="really_remove_all_scans">Yakin menghapus semua pemindaian?</string>
+	<string name="clear_history">Hapus riwayat</string>
+	<string name="no_barcode_found">Tidak ada barcode yang ditemukan</string>
+	<string name="pick_list_separator">Pilih pemisah daftar item?</string>
+	<string name="separator_line_break">Baris baru</string>
+	<string name="separator_ruler">Penggaris</string>
+	<string name="save_as_file_name">Simpan sebagai berkas?</string>
+	<string name="file_name">Nama berkas</string>
+	<string name="error_saving_binary_data">Tidak bisa menyimpan berkas</string>
+	<string name="error_file_exists">Berkas sudah ada</string>
+</resources>
