@@ -1,5 +1,7 @@
 package de.markusfisch.android.binaryeye.actions
 
+import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
+
 object ActionRegistry {
     val REGISTRY : Array<IAction> = arrayOf(
             WifiAction
