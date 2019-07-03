@@ -1,19 +1,21 @@
 package de.markusfisch.android.binaryeye.actions.wifi
 
 object WifiNetworkFactory {
-    private val regex = Regex("^WIFI:(T:(WEP|WPA|nopass))?;S:(.*);(P:(.*))?;(H?);$");
+    private val wifiRegex = Regex("^WIFI:(T:(WEP|WPA|nopass))?;S:(.*);(P:(.*))?;(H?);$")
+    private val hexRegex = Regex("^[0-9a-f]*$", RegexOption.IGNORE_CASE)
 
     fun parse(data: String): WifiNetworkInfo? {
-        return regex.matchEntire(data)?.groupValues?.let {
+        return wifiRegex.matchEntire(data)?.groupValues?.let {
             val security = it[2].let {
                 if (it == "" || it == "nopass") return null
                 it
             }
 
-            val ssid = it[3]
+            val ssid = quoteUnlessHex(it[3])
             if (ssid.isEmpty()) return null
 
-            val password = (if (it[5] == "") null else it[5])
+            val password = if (it[5] == "") null else quoteUnlessHex(it[5])
+
             val hidden = it[6] == "H"
             return WifiNetworkInfo(
                     security,
@@ -22,6 +24,12 @@ object WifiNetworkFactory {
                     hidden
             )
         }
+    }
+
+    private fun quoteUnlessHex(str: String): String {
+        if (hexRegex.matches(str)) return str
+
+        return String.format("\"%s\"", str)
     }
 }
 

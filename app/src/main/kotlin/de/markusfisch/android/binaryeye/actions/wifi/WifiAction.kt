@@ -14,12 +14,11 @@ object WifiAction : IAction {
     override fun canExecuteOn(data: ByteArray): Boolean = WifiNetworkFactory.parse(String(data)) != null
 
     override fun execute(context: Context, data: ByteArray) {
-        // TODO: support unsecured networks
         WifiNetworkFactory.parse(String(data))?.let {
             val wifiConfig = WifiConfiguration()
-            wifiConfig.SSID = String.format("\"%s\"", it.ssid)
+            wifiConfig.SSID = it.ssid
             if (it.password != null) {
-                wifiConfig.preSharedKey = String.format("\"%s\"", it.password)
+                wifiConfig.preSharedKey = it.password
             }
             wifiConfig.hiddenSSID = it.hidden
 
