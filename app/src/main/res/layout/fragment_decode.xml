@@ -31,7 +31,7 @@
 				tools:text="Test QR code" />
 
 			<ImageButton
-				android:id="@+id/wifi"
+				android:id="@+id/special_action"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_alignStart="@+id/content"
@@ -43,7 +43,7 @@
 				android:layout_marginRight="16dp"
 				android:background="@drawable/background_button"
 				android:contentDescription="@string/connect_to_wifi"
-				android:padding="4dp"
+				android:padding="8dp"
 				android:src="@drawable/ic_action_wifi"
 				android:visibility="gone"
 				tools:visibility="visible" />
@@ -53,14 +53,14 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_below="@+id/content"
-				android:layout_toRightOf="@+id/wifi"
+				android:layout_toRightOf="@+id/special_action"
 				android:layout_marginEnd="16dp"
 				android:layout_marginRight="16dp"
 				android:layout_marginBottom="16dp"
 				android:gravity="end|top"
 				android:textSize="14sp"
 				tools:text="QR_CODE\n12 characters"
-				android:layout_toEndOf="@+id/wifi" />
+				android:layout_toEndOf="@+id/special_action" />
 			<TextView
 				android:id="@+id/hex"
 				android:layout_width="match_parent"
