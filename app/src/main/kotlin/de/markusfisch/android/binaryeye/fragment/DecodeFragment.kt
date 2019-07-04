@@ -1,5 +1,14 @@
 package de.markusfisch.android.binaryeye.fragment
 
+import com.google.zxing.BarcodeFormat
+
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.actions.ActionRegistry
+import de.markusfisch.android.binaryeye.app.addFragment
+import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
+import de.markusfisch.android.binaryeye.app.hasWritePermission
+import de.markusfisch.android.binaryeye.app.shareText
+
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -11,15 +20,18 @@ import android.support.v4.app.Fragment
 import android.text.ClipboardManager
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.*
-import android.widget.*
-import com.google.zxing.BarcodeFormat
-import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.ActionRegistry
-import de.markusfisch.android.binaryeye.app.addFragment
-import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
-import de.markusfisch.android.binaryeye.app.hasWritePermission
-import de.markusfisch.android.binaryeye.app.shareText
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+
 import java.io.File
 import java.io.IOException
 import java.net.URLEncoder
