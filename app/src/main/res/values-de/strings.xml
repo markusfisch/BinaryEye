@@ -40,4 +40,5 @@
 	<string name="file_name">Dateiname</string>
 	<string name="error_saving_binary_data">Datei konnte nicht gespeichert werden</string>
 	<string name="error_file_exists">Datei existiert bereits</string>
+	<string name="connect_to_wifi">Mit WiFi verbinden</string>
 </resources>
