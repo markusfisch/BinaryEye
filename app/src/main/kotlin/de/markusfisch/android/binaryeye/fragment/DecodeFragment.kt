@@ -1,13 +1,5 @@
 package de.markusfisch.android.binaryeye.fragment
 
-import com.google.zxing.BarcodeFormat
-
-import de.markusfisch.android.binaryeye.app.addFragment
-import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
-import de.markusfisch.android.binaryeye.app.hasWritePermission
-import de.markusfisch.android.binaryeye.app.shareText
-import de.markusfisch.android.binaryeye.R
-
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -19,17 +11,15 @@ import android.support.v4.app.Fragment
 import android.text.ClipboardManager
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
-
+import android.view.*
+import android.widget.*
+import com.google.zxing.BarcodeFormat
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.actions.ActionRegistry
+import de.markusfisch.android.binaryeye.app.addFragment
+import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
+import de.markusfisch.android.binaryeye.app.hasWritePermission
+import de.markusfisch.android.binaryeye.app.shareText
 import java.io.File
 import java.io.IOException
 import java.net.URLEncoder
@@ -39,6 +29,7 @@ class DecodeFragment : Fragment() {
 	private lateinit var formatView: TextView
 	private lateinit var hexView: TextView
 	private lateinit var format: BarcodeFormat
+	private lateinit var specialActionButton: ImageButton
 
 	private var isBinary = false
 
@@ -73,6 +64,7 @@ class DecodeFragment : Fragment() {
 			contentView.addTextChangedListener(object : TextWatcher {
 				override fun afterTextChanged(s: Editable?) {
 					updateFormatAndHex(getContent().toByteArray())
+					maybeShowAction(getContent().toByteArray())
 				}
 
 				override fun beforeTextChanged(
@@ -105,10 +97,24 @@ class DecodeFragment : Fragment() {
 
 		formatView = view.findViewById(R.id.format)
 		hexView = view.findViewById(R.id.hex)
+		specialActionButton = view.findViewById(R.id.special_action)
 
 		updateFormatAndHex(raw)
+		maybeShowAction(raw)
 
 		return view
+	}
+
+	private fun maybeShowAction(bytes: ByteArray) {
+		val action = ActionRegistry.getAction(bytes)
+
+		if (action != null) {
+			specialActionButton.setImageResource(action.resourceId)
+			specialActionButton.setOnClickListener { action.execute(context, bytes) }
+			specialActionButton.visibility = View.VISIBLE
+		} else {
+			specialActionButton.visibility = View.GONE
+		}
 	}
 
 	private fun updateFormatAndHex(bytes: ByteArray) {
