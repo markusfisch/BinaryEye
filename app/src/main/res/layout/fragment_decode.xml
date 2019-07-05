@@ -45,7 +45,8 @@
 				android:layout_marginRight="16dp"
 				android:layout_marginBottom="16dp"
 				android:typeface="monospace"
-				android:textSize="12sp" />
+				android:textSize="12sp"
+				tools:text="54 65 73 74 20 51 52 20  Test QR\n43 6F 64 65              Code"/>
 
 		</RelativeLayout>
 	</ScrollView>
