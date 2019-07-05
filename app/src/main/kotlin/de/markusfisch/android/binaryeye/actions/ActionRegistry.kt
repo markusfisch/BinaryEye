@@ -7,8 +7,10 @@ import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
 
 object ActionRegistry {
 	val REGISTRY: Set<IAction> = setOf(
-			WifiAction, SmsAction, TelAction, MailAction
+		WifiAction, SmsAction, TelAction, MailAction
 	)
 
-	fun getAction(data: ByteArray): IAction? = REGISTRY.find { it.canExecuteOn(data) }
+	fun getAction(data: ByteArray): IAction? = REGISTRY.find {
+		it.canExecuteOn(data)
+	}
 }

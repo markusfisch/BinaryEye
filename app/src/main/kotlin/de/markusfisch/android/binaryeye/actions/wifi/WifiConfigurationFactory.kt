@@ -65,35 +65,35 @@ class WifiConfigurationFactory internal constructor(input: String) {
 		get() = if (inputMap["E"].isNullOrEmpty()) {
 			requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.NONE }
 		} else when (inputMap["E"]) {
-			"AKA" ->        requireSdk(Build.VERSION_CODES.LOLLIPOP)       { WifiEnterpriseConfig.Eap.AKA }
-			"AKA_PRIME" ->  requireSdk(Build.VERSION_CODES.M)              { WifiEnterpriseConfig.Eap.AKA_PRIME }
-			"NONE" ->       requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.NONE }
-			"PEAP" ->       requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.PEAP }
-			"PWD" ->        requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.PWD }
-			"SIM" ->        requireSdk(Build.VERSION_CODES.LOLLIPOP)       { WifiEnterpriseConfig.Eap.SIM }
-			"TLS" ->        requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.TLS }
-			"TTLS" ->       requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.TTLS }
-			"UNAUTH_TLS" -> requireSdk(Build.VERSION_CODES.N)              { WifiEnterpriseConfig.Eap.UNAUTH_TLS }
+			"AKA" -> requireSdk(Build.VERSION_CODES.LOLLIPOP) { WifiEnterpriseConfig.Eap.AKA }
+			"AKA_PRIME" -> requireSdk(Build.VERSION_CODES.M) { WifiEnterpriseConfig.Eap.AKA_PRIME }
+			"NONE" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.NONE }
+			"PEAP" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.PEAP }
+			"PWD" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.PWD }
+			"SIM" -> requireSdk(Build.VERSION_CODES.LOLLIPOP) { WifiEnterpriseConfig.Eap.SIM }
+			"TLS" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.TLS }
+			"TTLS" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.TTLS }
+			"UNAUTH_TLS" -> requireSdk(Build.VERSION_CODES.N) { WifiEnterpriseConfig.Eap.UNAUTH_TLS }
 			else -> null
 		}
 	internal val phase2Method: Int?
 		get() = if (inputMap["PH2"].isNullOrEmpty()) {
 			requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.NONE }
 		} else when (inputMap["PH2"]) {
-			"AKA" ->       requireSdk(Build.VERSION_CODES.O)              { WifiEnterpriseConfig.Phase2.AKA }
-			"AKA_PRIME" -> requireSdk(Build.VERSION_CODES.O)              { WifiEnterpriseConfig.Phase2.AKA_PRIME }
-			"GTC" ->       requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.GTC }
-			"MSCHAP" ->    requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.MSCHAP }
-			"MSCHAPV2" ->  requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.MSCHAPV2 }
-			"NONE" ->      requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.NONE }
-			"PAP" ->       requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.PAP }
-			"SIM" ->       requireSdk(Build.VERSION_CODES.O)              { WifiEnterpriseConfig.Phase2.SIM }
+			"AKA" -> requireSdk(Build.VERSION_CODES.O) { WifiEnterpriseConfig.Phase2.AKA }
+			"AKA_PRIME" -> requireSdk(Build.VERSION_CODES.O) { WifiEnterpriseConfig.Phase2.AKA_PRIME }
+			"GTC" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.GTC }
+			"MSCHAP" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.MSCHAP }
+			"MSCHAPV2" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.MSCHAPV2 }
+			"NONE" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.NONE }
+			"PAP" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.PAP }
+			"SIM" -> requireSdk(Build.VERSION_CODES.O) { WifiEnterpriseConfig.Phase2.SIM }
 			else -> null
 		}
 
 	private lateinit var wifiConfig: WifiConfiguration
 
-	private fun setupCommonProperties() : WifiConfigurationFactory {
+	private fun setupCommonProperties(): WifiConfigurationFactory {
 		wifiConfig = WifiConfiguration().apply {
 			allowedAuthAlgorithms.clear()
 			allowedGroupCiphers.clear()

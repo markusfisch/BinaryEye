@@ -59,7 +59,7 @@ object WifiAction : IAction {
 
 	private suspend fun WifiManager.mayRemoveOldNetwork(wifiConfig: WifiConfiguration) {
 		configuredNetworks?.firstOrNull {
-			it.SSID == wifiConfig.SSID  && it.allowedKeyManagement == wifiConfig.allowedKeyManagement
+			it.SSID == wifiConfig.SSID && it.allowedKeyManagement == wifiConfig.allowedKeyManagement
 		}?.networkId?.also {
 			removeNetwork(it)
 		}

@@ -35,20 +35,22 @@ class MainActivity : AppCompatActivity() {
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 		if (state == null) {
-			setFragment(supportFragmentManager, when {
-				intent?.hasExtra(HISTORY) == true -> HistoryFragment()
-				intent?.hasExtra(ENCODE) == true -> EncodeFragment.newInstance(
-					intent.getStringExtra(ENCODE)
-				)
-				intent?.hasExtra(DECODED_TEXT) == true -> DecodeFragment.newInstance(
-					intent.getStringExtra(DECODED_TEXT),
-					intent.getSerializableExtra(
-						DECODED_FORMAT
-					) as BarcodeFormat,
-					intent.getByteArrayExtra(DECODED_RAW)
-				)
-				else -> DecodeFragment()
-			})
+			setFragment(
+				supportFragmentManager, when {
+					intent?.hasExtra(HISTORY) == true -> HistoryFragment()
+					intent?.hasExtra(ENCODE) == true -> EncodeFragment.newInstance(
+						intent.getStringExtra(ENCODE)
+					)
+					intent?.hasExtra(DECODED_TEXT) == true -> DecodeFragment.newInstance(
+						intent.getStringExtra(DECODED_TEXT),
+						intent.getSerializableExtra(
+							DECODED_FORMAT
+						) as BarcodeFormat,
+						intent.getByteArrayExtra(DECODED_RAW)
+					)
+					else -> DecodeFragment()
+				}
+			)
 		}
 	}
 
