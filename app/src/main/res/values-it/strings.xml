@@ -43,4 +43,10 @@
 	<string name="connect_to_wifi">Connect to WiFi</string>
 	<string name="wifi_config_failed">Could not configure WiFi</string>
 	<string name="wifi_added">WiFi added</string>
+	<string name="sms_send">Send SMS</string>
+	<string name="sms_error">Could not send SMS</string>
+	<string name="tel_dial">Dial number</string>
+	<string name="tel_error">Could not dial number</string>
+	<string name="mail_send">Send mail</string>
+	<string name="mail_error">Could not send mail</string>
 </resources>
