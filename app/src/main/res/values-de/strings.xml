@@ -41,4 +41,6 @@
 	<string name="error_saving_binary_data">Datei konnte nicht gespeichert werden</string>
 	<string name="error_file_exists">Datei existiert bereits</string>
 	<string name="connect_to_wifi">Mit WiFi verbinden</string>
+    <string name="wifi_config_failed">Konnte WiFi nicht konfigurieren</string>
+	<string name="wifi_added">WiFi hinzugefügt</string>
 </resources>

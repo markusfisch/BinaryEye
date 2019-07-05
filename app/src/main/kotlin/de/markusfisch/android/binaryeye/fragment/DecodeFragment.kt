@@ -3,7 +3,6 @@ package de.markusfisch.android.binaryeye.fragment
 import com.google.zxing.BarcodeFormat
 
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.ActionRegistry
 import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
 import de.markusfisch.android.binaryeye.app.hasWritePermission
@@ -27,10 +26,11 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import de.markusfisch.android.binaryeye.actions.IAction
+import de.markusfisch.android.binaryeye.actions.validateOrGetNew
 
 import java.io.File
 import java.io.IOException
@@ -41,8 +41,9 @@ class DecodeFragment : Fragment() {
 	private lateinit var formatView: TextView
 	private lateinit var hexView: TextView
 	private lateinit var format: BarcodeFormat
-	private lateinit var specialActionButton: ImageButton
+	private lateinit var actionMenuItem: MenuItem
 
+	private var action: IAction? = null
 	private var isBinary = false
 
 	override fun onCreate(state: Bundle?) {
@@ -68,15 +69,14 @@ class DecodeFragment : Fragment() {
 		val raw = arguments?.getByteArray(RAW) ?: content.toByteArray()
 		format = arguments?.getSerializable(FORMAT) as BarcodeFormat? ?: BarcodeFormat.QR_CODE
 
-		contentView = view.findViewById(R.id.content) as EditText
-		val shareFab = view.findViewById<View>(R.id.share)
+		contentView = view.findViewById(R.id.content)
+		val shareFab = view.findViewById<ImageView>(R.id.share)
 
 		if (!isBinary) {
 			contentView.setText(content)
 			contentView.addTextChangedListener(object : TextWatcher {
 				override fun afterTextChanged(s: Editable?) {
-					updateFormatAndHex(getContent().toByteArray())
-					maybeShowAction(getContent().toByteArray())
+					updateViewsAndAction(getContent().toByteArray())
 				}
 
 				override fun beforeTextChanged(
@@ -101,7 +101,7 @@ class DecodeFragment : Fragment() {
 		} else {
 			contentView.setText(R.string.binary_data)
 			contentView.isEnabled = false
-			(shareFab as ImageView).setImageResource(R.drawable.ic_action_save)
+			shareFab.setImageResource(R.drawable.ic_action_save)
 			shareFab.setOnClickListener {
 				askForFileNameAndSave(raw)
 			}
@@ -109,27 +109,14 @@ class DecodeFragment : Fragment() {
 
 		formatView = view.findViewById(R.id.format)
 		hexView = view.findViewById(R.id.hex)
-		specialActionButton = view.findViewById(R.id.special_action)
 
-		updateFormatAndHex(raw)
-		maybeShowAction(raw)
+		updateViewsAndAction(raw)
 
 		return view
 	}
 
-	private fun maybeShowAction(bytes: ByteArray) {
-		val action = ActionRegistry.getAction(bytes)
-
-		if (action != null) {
-			specialActionButton.setImageResource(action.resourceId)
-			specialActionButton.setOnClickListener { action.execute(context, bytes) }
-			specialActionButton.visibility = View.VISIBLE
-		} else {
-			specialActionButton.visibility = View.GONE
-		}
-	}
-
-	private fun updateFormatAndHex(bytes: ByteArray) {
+	private fun updateViewsAndAction(bytes: ByteArray) {
+		action = action.validateOrGetNew(bytes)
 		formatView.text = resources.getQuantityString(
 			R.plurals.barcode_info,
 			bytes.size,
@@ -137,10 +124,19 @@ class DecodeFragment : Fragment() {
 			bytes.size
 		)
 		hexView.text = hexDump(bytes, 33)
+		if (::actionMenuItem.isInitialized) {
+			actionMenuItem.setIcon(action?.iconResId ?: R.drawable.ic_action_open)
+			actionMenuItem.setTitle(action?.titleResId ?: R.string.open_url)
+		}
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 		inflater.inflate(R.menu.fragment_decode, menu)
+		actionMenuItem = menu.findItem(R.id.open_url)
+		action?.also { action ->
+			actionMenuItem.setIcon(action.iconResId)
+			actionMenuItem.setTitle(action.titleResId)
+		}
 		if (isBinary) {
 			menu.findItem(R.id.copy_to_clipboard).isVisible = false
 			menu.findItem(R.id.open_url).isVisible = false
@@ -187,24 +183,23 @@ class DecodeFragment : Fragment() {
 		).show()
 	}
 
-	private fun openUrl(url: String, searchIfNoUrl: Boolean = true) {
-		if (activity == null || url.isEmpty()) {
-			return
-		}
+	private fun openUrl(url: String, executeCustomAction: Boolean = true, searchIfNoUrl: Boolean = true) {
+		if (activity == null || url.isEmpty()) return
 		var uri = Uri.parse(url)
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 			uri = uri.normalizeScheme()
 		}
 		val intent = Intent(Intent.ACTION_VIEW, uri)
-		if (intent.resolveActivity(activity.packageManager) != null) {
-			startActivity(intent)
-		} else if (searchIfNoUrl) {
-			pickSearchEngineAndSearch(activity, url)
-		} else {
-			Toast.makeText(
-				activity,
-				R.string.cannot_resolve_action,
-				Toast.LENGTH_SHORT
+		when {
+			executeCustomAction && action != null -> action?.also { action ->
+				action.execute(activity, url.toByteArray())
+			}
+			intent.resolveActivity(activity.packageManager) != null -> startActivity(intent)
+			searchIfNoUrl -> pickSearchEngineAndSearch(activity, url)
+			else -> Toast.makeText(
+					activity,
+					R.string.cannot_resolve_action,
+					Toast.LENGTH_SHORT
 			).show()
 		}
 	}
@@ -218,7 +213,8 @@ class DecodeFragment : Fragment() {
 			.setItems(R.array.search_engines_names) { _, which ->
 				openUrl(
 					urls[which] + URLEncoder.encode(query, "utf-8"),
-					false
+						executeCustomAction = false,
+						searchIfNoUrl = false
 				)
 			}
 			.show()
@@ -228,7 +224,7 @@ class DecodeFragment : Fragment() {
 		val ac = activity
 		ac ?: return
 		val view = ac.layoutInflater.inflate(R.layout.dialog_save_file, null)
-		val editText = view.findViewById(R.id.file_name) as EditText
+		val editText = view.findViewById<EditText>(R.id.file_name)
 		AlertDialog.Builder(ac)
 			.setView(view)
 			.setPositiveButton(android.R.string.ok) { _, _ ->

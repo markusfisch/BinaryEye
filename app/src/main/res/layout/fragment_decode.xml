@@ -22,40 +22,18 @@
 				android:importantForAutofill="no"
 				android:inputType="textMultiLine"
 				android:typeface="monospace"
-				tools:targetApi="o"
-				tools:text="Test QR code" />
-
-			<ImageButton
-				android:id="@+id/special_action"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_alignStart="@+id/content"
-				android:layout_alignLeft="@+id/content"
-				android:layout_alignTop="@+id/format"
-				android:layout_alignBottom="@+id/format"
-				android:layout_marginTop="0dp"
-				android:layout_marginEnd="16dp"
-				android:layout_marginRight="16dp"
-				android:background="@drawable/background_button"
-				android:contentDescription="@string/connect_to_wifi"
-				android:padding="8dp"
-				android:src="@drawable/ic_action_wifi"
-				android:visibility="gone"
-				tools:visibility="visible" />
+				tools:ignore="UnusedAttribute"/>
 
 			<TextView
 				android:id="@+id/format"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_below="@+id/content"
-				android:layout_toRightOf="@+id/special_action"
 				android:layout_marginEnd="16dp"
 				android:layout_marginRight="16dp"
 				android:layout_marginBottom="16dp"
 				android:gravity="end|top"
-				android:textSize="14sp"
-				tools:text="QR_CODE\n12 characters"
-				android:layout_toEndOf="@+id/special_action" />
+				android:textSize="14sp" />
 			<TextView
 				android:id="@+id/hex"
 				android:layout_width="match_parent"
@@ -67,8 +45,7 @@
 				android:layout_marginRight="16dp"
 				android:layout_marginBottom="16dp"
 				android:typeface="monospace"
-				android:textSize="12sp"
-				tools:text="54 65 73 74 20 51 52 20  Test QR\n43 6F 64 65              Code"/>
+				android:textSize="12sp" />
 
 		</RelativeLayout>
 	</ScrollView>
