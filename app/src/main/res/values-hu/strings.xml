@@ -41,6 +41,6 @@
 	<string name="error_saving_binary_data">Nem lehet elmenteni a fájlt</string>
 	<string name="error_file_exists">A fájl már létezik</string>
 	<string name="connect_to_wifi">Connect to WiFi</string>
-    <string name="wifi_config_failed">Could not configure WiFi</string>
+	<string name="wifi_config_failed">Could not configure WiFi</string>
 	<string name="wifi_added">WiFi added</string>
 </resources>

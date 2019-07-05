@@ -3,6 +3,8 @@ package de.markusfisch.android.binaryeye.fragment
 import com.google.zxing.BarcodeFormat
 
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.actions.IAction
+import de.markusfisch.android.binaryeye.actions.validateOrGetNew
 import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
 import de.markusfisch.android.binaryeye.app.hasWritePermission
@@ -29,8 +31,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import de.markusfisch.android.binaryeye.actions.IAction
-import de.markusfisch.android.binaryeye.actions.validateOrGetNew
 
 import java.io.File
 import java.io.IOException
@@ -183,8 +183,14 @@ class DecodeFragment : Fragment() {
 		).show()
 	}
 
-	private fun openUrl(url: String, executeCustomAction: Boolean = true, searchIfNoUrl: Boolean = true) {
-		if (activity == null || url.isEmpty()) return
+	private fun openUrl(
+		url: String,
+		executeCustomAction: Boolean = true,
+		searchIfNoUrl: Boolean = true
+	) {
+		if (activity == null || url.isEmpty()) {
+			return
+		}
 		var uri = Uri.parse(url)
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 			uri = uri.normalizeScheme()
@@ -194,12 +200,14 @@ class DecodeFragment : Fragment() {
 			executeCustomAction && action != null -> action?.also { action ->
 				action.execute(activity, url.toByteArray())
 			}
-			intent.resolveActivity(activity.packageManager) != null -> startActivity(intent)
+			intent.resolveActivity(activity.packageManager) != null -> {
+				startActivity(intent)
+			}
 			searchIfNoUrl -> pickSearchEngineAndSearch(activity, url)
 			else -> Toast.makeText(
-					activity,
-					R.string.cannot_resolve_action,
-					Toast.LENGTH_SHORT
+				activity,
+				R.string.cannot_resolve_action,
+				Toast.LENGTH_SHORT
 			).show()
 		}
 	}
@@ -213,8 +221,8 @@ class DecodeFragment : Fragment() {
 			.setItems(R.array.search_engines_names) { _, which ->
 				openUrl(
 					urls[which] + URLEncoder.encode(query, "utf-8"),
-						executeCustomAction = false,
-						searchIfNoUrl = false
+					executeCustomAction = false,
+					searchIfNoUrl = false
 				)
 			}
 			.show()
@@ -234,7 +242,10 @@ class DecodeFragment : Fragment() {
 						raw
 					)
 					if (messageId > 0) {
-						Toast.makeText(ac, messageId, Toast.LENGTH_SHORT).show()
+						Toast.makeText(
+							ac, messageId,
+							Toast.LENGTH_SHORT
+						).show()
 					}
 				}
 			}

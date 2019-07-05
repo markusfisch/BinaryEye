@@ -13,7 +13,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-
 object WifiAction : IAction {
 	override val iconResId = R.drawable.ic_action_wifi
 	override val titleResId = R.string.connect_to_wifi
