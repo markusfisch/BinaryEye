@@ -1,15 +1,5 @@
 package de.markusfisch.android.binaryeye.fragment
 
-import com.google.zxing.BarcodeFormat
-
-import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.IAction
-import de.markusfisch.android.binaryeye.actions.validateOrGetNew
-import de.markusfisch.android.binaryeye.app.addFragment
-import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
-import de.markusfisch.android.binaryeye.app.hasWritePermission
-import de.markusfisch.android.binaryeye.app.shareText
-
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -31,7 +21,14 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-
+import com.google.zxing.BarcodeFormat
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.actions.IAction
+import de.markusfisch.android.binaryeye.actions.validateOrGetNew
+import de.markusfisch.android.binaryeye.app.addFragment
+import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
+import de.markusfisch.android.binaryeye.app.hasWritePermission
+import de.markusfisch.android.binaryeye.app.shareText
 import java.io.File
 import java.io.IOException
 import java.net.URLEncoder
@@ -45,6 +42,8 @@ class DecodeFragment : Fragment() {
 
 	private var action: IAction? = null
 	private var isBinary = false
+	private val content: String
+		get() = contentView.text.toString()
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -64,19 +63,19 @@ class DecodeFragment : Fragment() {
 			false
 		)
 
-		val content = arguments?.getString(CONTENT) ?: ""
-		isBinary = hasNonPrintableCharacters(content) or content.isEmpty()
-		val raw = arguments?.getByteArray(RAW) ?: content.toByteArray()
+		val inputContent = arguments?.getString(CONTENT) ?: ""
+		isBinary = hasNonPrintableCharacters(inputContent) or inputContent.isEmpty()
+		val raw = arguments?.getByteArray(RAW) ?: inputContent.toByteArray()
 		format = arguments?.getSerializable(FORMAT) as BarcodeFormat? ?: BarcodeFormat.QR_CODE
 
 		contentView = view.findViewById(R.id.content)
 		val shareFab = view.findViewById<ImageView>(R.id.share)
 
 		if (!isBinary) {
-			contentView.setText(content)
+			contentView.setText(inputContent)
 			contentView.addTextChangedListener(object : TextWatcher {
 				override fun afterTextChanged(s: Editable?) {
-					updateViewsAndAction(getContent().toByteArray())
+					updateViewsAndAction(content.toByteArray())
 				}
 
 				override fun beforeTextChanged(
@@ -96,7 +95,7 @@ class DecodeFragment : Fragment() {
 				}
 			})
 			shareFab.setOnClickListener { v ->
-				shareText(v.context, getContent())
+				shareText(v.context, content)
 			}
 		} else {
 			contentView.setText(R.string.binary_data)
@@ -147,26 +146,22 @@ class DecodeFragment : Fragment() {
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return when (item.itemId) {
 			R.id.copy_to_clipboard -> {
-				copyToClipboard(getContent())
+				copyToClipboard(content)
 				true
 			}
 			R.id.open_url -> {
-				openUrl(getContent())
+				openUrl(content)
 				true
 			}
 			R.id.create -> {
 				addFragment(
 					fragmentManager,
-					EncodeFragment.newInstance(getContent(), format)
+					EncodeFragment.newInstance(content, format)
 				)
 				true
 			}
 			else -> super.onOptionsItemSelected(item)
 		}
-	}
-
-	private fun getContent(): String {
-		return contentView.text.toString()
 	}
 
 	private fun copyToClipboard(text: String) {
@@ -229,8 +224,7 @@ class DecodeFragment : Fragment() {
 	}
 
 	private fun askForFileNameAndSave(raw: ByteArray) {
-		val ac = activity
-		ac ?: return
+		val ac = activity ?: return
 		val view = ac.layoutInflater.inflate(R.layout.dialog_save_file, null)
 		val editText = view.findViewById<EditText>(R.id.file_name)
 		AlertDialog.Builder(ac)

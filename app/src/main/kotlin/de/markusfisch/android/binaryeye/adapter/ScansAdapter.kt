@@ -1,8 +1,5 @@
 package de.markusfisch.android.binaryeye.adapter
 
-import de.markusfisch.android.binaryeye.data.Database
-import de.markusfisch.android.binaryeye.R
-
 import android.content.Context
 import android.database.Cursor
 import android.view.LayoutInflater
@@ -10,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CursorAdapter
 import android.widget.TextView
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.data.Database
 
 class ScansAdapter(context: Context, cursor: Cursor) :
 	CursorAdapter(context, cursor, false) {
@@ -44,16 +43,13 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 	}
 
 	private fun getViewHolder(view: View): ViewHolder {
-		var holder = view.tag as ViewHolder?
-		if (holder == null) {
-			holder = ViewHolder(
-				view.findViewById(R.id.time),
-				view.findViewById(R.id.content),
-				view.findViewById(R.id.format)
-			)
-			view.tag = holder
+		return view.tag as ViewHolder? ?: ViewHolder(
+			view.findViewById(R.id.time),
+			view.findViewById(R.id.content),
+			view.findViewById(R.id.format)
+		).also {
+			view.tag = it
 		}
-		return holder
 	}
 
 	private data class ViewHolder(
