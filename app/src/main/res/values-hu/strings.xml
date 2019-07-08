@@ -40,13 +40,13 @@
 	<string name="file_name">Fájlnév</string>
 	<string name="error_saving_binary_data">Nem lehet elmenteni a fájlt</string>
 	<string name="error_file_exists">A fájl már létezik</string>
-	<string name="connect_to_wifi">Connect to WiFi</string>
-	<string name="wifi_config_failed">Could not configure WiFi</string>
-	<string name="wifi_added">WiFi added</string>
-	<string name="sms_send">Send SMS</string>
-	<string name="sms_error">Could not send SMS</string>
-	<string name="tel_dial">Dial number</string>
-	<string name="tel_error">Could not dial number</string>
-	<string name="mail_send">Send mail</string>
-	<string name="mail_error">Could not send mail</string>
+	<string name="connect_to_wifi">Kapcsolódás WiFi-hez</string>
+	<string name="wifi_config_failed">Nem sikerült beállítani a WiFi-t</string>
+	<string name="wifi_added">WiFi hozzáadva</string>
+	<string name="sms_send">SMS küldése</string>
+	<string name="sms_error">Nem sikerült elküldeni az SMS-t</string>
+	<string name="tel_dial">Szám tárcsázása</string>
+	<string name="tel_error">Nem sikerült tárcsázni a számot</string>
+	<string name="mail_send">Levél küldése</string>
+	<string name="mail_error">Nem sikerült elküldeni a levelet</string>
 </resources>
