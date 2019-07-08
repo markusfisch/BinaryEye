@@ -7,7 +7,7 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.SimpleIntentIAction
 
 object SmsAction : SimpleIntentIAction() {
-	private val smsRegex = """^sms(?:to)?:(\+?[0-9]+)(?::((?:.*|\v)+))?$""".toRegex()
+	private val smsRegex = """^sms(?:to)?:(\+?[0-9]+)(?::([\S\s]*))?$""".toRegex()
 
 	override val iconResId: Int = R.drawable.ic_action_sms
 	override val titleResId: Int = R.string.sms_send

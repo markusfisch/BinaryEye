@@ -1,20 +1,24 @@
 package de.markusfisch.android.binaryeye.app
 
-import de.markusfisch.android.binaryeye.BuildConfig
-
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.support.v4.content.FileProvider
-import android.net.Uri
-
+import android.widget.Toast
+import de.markusfisch.android.binaryeye.BuildConfig
+import de.markusfisch.android.binaryeye.R
 import java.io.File
 
 fun shareText(context: Context, text: String, type: String = "text/plain") {
 	val intent = Intent(Intent.ACTION_SEND)
 	intent.putExtra(Intent.EXTRA_TEXT, text)
 	intent.type = type
-	context.startActivity(intent)
+	if (intent.resolveActivity(context.packageManager) != null) {
+		context.startActivity(intent)
+	} else {
+		Toast.makeText(context, R.string.cannot_resolve_action, Toast.LENGTH_SHORT).show()
+	}
 }
 
 fun shareUri(context: Context, uri: Uri, type: String) {
@@ -22,7 +26,11 @@ fun shareUri(context: Context, uri: Uri, type: String) {
 	intent.putExtra(Intent.EXTRA_STREAM, uri)
 	intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
 	intent.type = type
-	context.startActivity(intent)
+	if (intent.resolveActivity(context.packageManager) != null) {
+		context.startActivity(intent)
+	} else {
+		Toast.makeText(context, R.string.cannot_resolve_action, Toast.LENGTH_SHORT).show()
+	}
 }
 
 fun shareFile(context: Context, file: File, type: String) {
