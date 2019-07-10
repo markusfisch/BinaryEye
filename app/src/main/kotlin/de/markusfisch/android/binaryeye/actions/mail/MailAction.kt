@@ -1,10 +1,11 @@
 package de.markusfisch.android.binaryeye.actions.mail
 
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.actions.SimpleIntentIAction
+
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.SimpleIntentIAction
 
 object MailAction : SimpleIntentIAction() {
 	private val mailRegex =
@@ -19,7 +20,12 @@ object MailAction : SimpleIntentIAction() {
 	}
 
 	override fun executeForIntent(context: Context, data: ByteArray): Intent? {
-		val mailWithMessage = mailRegex.matchEntire(String(data))?.groupValues?.get(1) ?: return null
-		return Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:$mailWithMessage"))
+		val mailWithMessage = mailRegex.matchEntire(
+			String(data)
+		)?.groupValues?.get(1) ?: return null
+		return Intent(
+			Intent.ACTION_SENDTO,
+			Uri.parse("mailto:$mailWithMessage")
+		)
 	}
 }

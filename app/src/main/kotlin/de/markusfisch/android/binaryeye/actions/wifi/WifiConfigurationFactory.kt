@@ -36,21 +36,30 @@ object WifiConfigurationFactory {
 	}
 
 	internal fun parseMap(string: String): Map<String, String>? {
-		// normally those codes should have the last semicolon, but many generators don't add it
+		// normally those codes should have the last semicolon, but many
+		// generators don't add it
 		val wifiRegex = """^WIFI:((?:.+?:(?:[^\\;]|\\.)*;)+);?$""".toRegex()
-		// should be: ^(.+):((?:[^\\;,":]|\\.)*);$ but allows unescaped , " and : because many qr creator doesn't escape
+		// should be: ^(.+):((?:[^\\;,":]|\\.)*);$ but allows unescaped , "
+		// and : because many qr creator doesn't escape
 		val pairRegex = """(.+?):((?:[^\\;]|\\.)*);""".toRegex()
 
-		return wifiRegex.matchEntire(string)?.groupValues?.get(1)?.let { pairs ->
+		return wifiRegex.matchEntire(
+			string
+		)?.groupValues?.get(1)?.let { pairs ->
 			pairRegex.findAll(pairs).map { pair ->
 				pair.groupValues[1].toUpperCase() to pair.groupValues[2]
 			}.toMap()
 		}
 	}
 
-	internal class SimpleDataAccessor private constructor(private val inputMap: Map<String, String>) {
-		private val hexRegex = """^[0-9a-f]+$""".toRegex(RegexOption.IGNORE_CASE)
-		// keep possibility of wrongly not escaped \ by explicitly searching for special chars
+	internal class SimpleDataAccessor private constructor(
+		private val inputMap: Map<String, String>
+	) {
+		private val hexRegex = """^[0-9a-f]+$""".toRegex(
+			RegexOption.IGNORE_CASE
+		)
+		// keep possibility of wrongly not escaped \ by explicitly searching
+		// for special chars
 		private val escapedRegex = """\\([\\;,":])""".toRegex()
 
 		// this should be private but because of testing it isn't possible
@@ -68,7 +77,9 @@ object WifiConfigurationFactory {
 			get() = inputMap["I"]?.unescaped ?: ""
 		internal val eapMethod: Int?
 			get() = if (inputMap["E"].isNullOrEmpty()) {
-				requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.NONE }
+				requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) {
+					WifiEnterpriseConfig.Eap.NONE
+				}
 			} else when (inputMap["E"]) {
 				"AKA" -> requireSdk(Build.VERSION_CODES.LOLLIPOP) { WifiEnterpriseConfig.Eap.AKA }
 				"AKA_PRIME" -> requireSdk(Build.VERSION_CODES.M) { WifiEnterpriseConfig.Eap.AKA_PRIME }
@@ -83,7 +94,9 @@ object WifiConfigurationFactory {
 			}
 		internal val phase2Method: Int?
 			get() = if (inputMap["PH2"].isNullOrEmpty()) {
-				requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.NONE }
+				requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) {
+					WifiEnterpriseConfig.Phase2.NONE
+				}
 			} else when (inputMap["PH2"]) {
 				"AKA" -> requireSdk(Build.VERSION_CODES.O) { WifiEnterpriseConfig.Phase2.AKA }
 				"AKA_PRIME" -> requireSdk(Build.VERSION_CODES.O) { WifiEnterpriseConfig.Phase2.AKA_PRIME }
@@ -102,17 +115,24 @@ object WifiConfigurationFactory {
 			}
 
 		private val String.quotedUnlessHex: String
-			get() = if (matches(hexRegex) || (startsWith("\"") && endsWith("\""))) this else "\"$this\""
+			get() = if (matches(hexRegex) || (startsWith("\"") &&
+				endsWith("\""))) this else "\"$this\""
 
 		internal companion object {
 			internal fun of(inputMap: Map<String, String>): SimpleDataAccessor? {
-				return SimpleDataAccessor(inputMap).takeUnless { inputMap["S"].isNullOrEmpty() }
+				return SimpleDataAccessor(inputMap).takeUnless {
+					inputMap["S"].isNullOrEmpty()
+				}
 			}
 		}
 	}
 
-	private fun WifiConfiguration.apply(data: SimpleDataAccessor): WifiConfiguration? {
-		fun WifiConfiguration.applyCommon(data: SimpleDataAccessor): WifiConfiguration? {
+	private fun WifiConfiguration.apply(
+		data: SimpleDataAccessor
+	): WifiConfiguration? {
+		fun WifiConfiguration.applyCommon(
+			data: SimpleDataAccessor
+		): WifiConfiguration? {
 			allowedAuthAlgorithms.clear()
 			allowedGroupCiphers.clear()
 			allowedKeyManagement.clear()
@@ -124,7 +144,9 @@ object WifiConfigurationFactory {
 			return this
 		}
 
-		fun WifiConfiguration.applySecurity(data: SimpleDataAccessor): WifiConfiguration? {
+		fun WifiConfiguration.applySecurity(
+			data: SimpleDataAccessor
+		): WifiConfiguration? {
 			when (data.securityType) {
 				"", "nopass" -> allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE)
 				"WEP" -> @Suppress("DEPRECATION") /* WEP as insecure */ {

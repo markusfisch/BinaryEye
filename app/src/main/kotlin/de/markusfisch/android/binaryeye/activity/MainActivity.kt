@@ -1,18 +1,20 @@
 package de.markusfisch.android.binaryeye.activity
 
-import android.content.Context
-import android.content.Intent
-import android.os.Build
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import com.google.zxing.BarcodeFormat
+
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.initSystemBars
 import de.markusfisch.android.binaryeye.app.setFragment
 import de.markusfisch.android.binaryeye.fragment.DecodeFragment
 import de.markusfisch.android.binaryeye.fragment.EncodeFragment
 import de.markusfisch.android.binaryeye.fragment.HistoryFragment
+
+import android.content.Context
+import android.content.Intent
+import android.os.Build
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 
 class MainActivity : AppCompatActivity() {
 	override fun onSupportNavigateUp(): Boolean {

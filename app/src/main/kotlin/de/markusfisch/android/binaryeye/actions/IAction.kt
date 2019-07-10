@@ -3,7 +3,6 @@ package de.markusfisch.android.binaryeye.actions
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
-import de.markusfisch.android.binaryeye.R
 
 interface IAction {
 	val iconResId: Int
@@ -38,5 +37,7 @@ abstract class SimpleIntentIAction : IAction {
 }
 
 fun IAction?.validateOrGetNew(data: ByteArray): IAction? {
-	return this?.takeIf { canExecuteOn(data) } ?: ActionRegistry.getAction(data)
+	return this?.takeIf {
+		canExecuteOn(data)
+	} ?: ActionRegistry.getAction(data)
 }

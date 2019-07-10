@@ -1,10 +1,11 @@
 package de.markusfisch.android.binaryeye.actions.sms
 
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.actions.SimpleIntentIAction
+
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.SimpleIntentIAction
 
 object SmsAction : SimpleIntentIAction() {
 	private val smsRegex = """^sms(?:to)?:(\+?[0-9]+)(?::([\S\s]*))?$""".toRegex()
@@ -18,10 +19,15 @@ object SmsAction : SimpleIntentIAction() {
 	}
 
 	override fun executeForIntent(context: Context, data: ByteArray): Intent? {
-		val (number: String, message: String) = smsRegex.matchEntire(String(data))?.let {
+		val (number: String, message: String) = smsRegex.matchEntire(
+			String(data)
+		)?.let {
 			it.groupValues[1] to it.groupValues[2]
 		} ?: return null
-		return Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:$number")).apply {
+		return Intent(
+			Intent.ACTION_SENDTO,
+			Uri.parse("smsto:$number")
+		).apply {
 			if (message.isNotEmpty()) putExtra("sms_body", message)
 		}
 	}
