@@ -16,7 +16,7 @@ fun initSystemBars(activity: AppCompatActivity?) {
 			activity.window,
 			ContextCompat.getColor(
 				activity,
-				R.color.primary_dark_translucent
+				android.R.color.transparent
 			)
 		)
 	) {
