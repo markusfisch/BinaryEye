@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.10.0
+* Add support for special barcode contents (WiFi, SMS, phone, E-mail)
+* Add Indonesian translation
+* Update Hungarian translation
+* Make system bars completely transparent
+
 ## 1.9.1
 * Pick search engine for content that is not an URL
 
