@@ -1,5 +1,7 @@
 package de.markusfisch.android.binaryeye.actions
 
+import de.markusfisch.android.binaryeye.app.execShareIntent
+
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
@@ -22,15 +24,7 @@ abstract class SimpleIntentIAction : IAction {
 				errorMsg,
 				Toast.LENGTH_LONG
 			).show()
-		if (intent.resolveActivity(context.packageManager) != null) {
-			context.startActivity(intent)
-		} else {
-			Toast.makeText(
-				context,
-				R.string.cannot_resolve_action,
-				Toast.LENGTH_LONG
-			).show()
-		}
+		execShareIntent(context, intent)
 	}
 
 	abstract fun executeForIntent(context: Context, data: ByteArray): Intent?
