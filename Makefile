@@ -21,7 +21,7 @@ infer: clean
 	infer -- ./gradlew assembleDebug
 
 test:
-	./gradlew cAT
+	./gradlew test cAT
 
 install:
 	adb $(TARGET) install -r app/build/outputs/apk/debug/app-debug.apk
