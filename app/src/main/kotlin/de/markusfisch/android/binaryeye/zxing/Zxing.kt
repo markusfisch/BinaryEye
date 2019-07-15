@@ -159,7 +159,7 @@ class Zxing {
 				offset += w
 			}
 			val bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
-			bitmap.setPixels(pixels, 0, width, 0, 0, w, h)
+			bitmap.setPixels(pixels, 0, w, 0, 0, w, h)
 			return bitmap
 		}
 	}
