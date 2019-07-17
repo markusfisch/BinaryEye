@@ -8,7 +8,7 @@ import android.content.Intent
 import android.net.Uri
 
 object SmsAction : SimpleIntentIAction() {
-	private val smsRegex = """^sms(?:to)?:(\+?[0-9]+)(?::([\S\s]*))?$""".toRegex()
+	private val smsRegex = """^sms(?:to)?:(\+?[0-9]+)(?::([\S\s]*))?$""".toRegex(RegexOption.IGNORE_CASE)
 
 	override val iconResId: Int = R.drawable.ic_action_sms
 	override val titleResId: Int = R.string.sms_send

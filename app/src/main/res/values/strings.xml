@@ -49,4 +49,8 @@
 	<string name="tel_error">Could not dial number</string>
 	<string name="mail_send">Send mail</string>
 	<string name="mail_error">Could not send mail</string>
+	<string name="vcard_add">Add to contacts</string>
+	<string name="vcard_failed">Could not add to contacts</string>
+	<string name="vevent_add">Add to calendar</string>
+	<string name="vevent_failed">Could not add to calendar</string>
 </resources>
