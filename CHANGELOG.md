@@ -1,5 +1,10 @@
 # Change Log
 
+# 1.11.0
+* Add support for VCard and VEvent barcodes contents
+* Generated barcodes are now zoomable
+* Fix creating PDF417 barcodes
+
 ## 1.10.0
 * Add support for special barcode contents (WiFi, SMS, phone, E-mail)
 * Add Indonesian translation
