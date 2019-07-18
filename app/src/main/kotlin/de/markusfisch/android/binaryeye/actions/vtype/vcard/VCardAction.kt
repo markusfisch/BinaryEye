@@ -86,7 +86,10 @@ object VCardAction : SimpleIntentIAction() {
 				val urls = info["URL"]?.mapNotNull {
 					it.value.takeIf { url -> url.isNotBlank() }?.let { url ->
 						ContentValues(2).apply {
-							put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Website.CONTENT_ITEM_TYPE)
+							put(
+								ContactsContract.Data.MIMETYPE,
+								ContactsContract.CommonDataKinds.Website.CONTENT_ITEM_TYPE
+							)
 							put(ContactsContract.CommonDataKinds.Website.URL, url)
 						}
 					}
@@ -94,15 +97,21 @@ object VCardAction : SimpleIntentIAction() {
 				val bDays = info["BDAY"]?.mapNotNull {
 					it.value.takeIf { day -> day.isNotBlank() }?.let { day ->
 						ContentValues(3).apply {
-							put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Event.CONTENT_ITEM_TYPE)
-							put(ContactsContract.CommonDataKinds.Event.TYPE, ContactsContract.CommonDataKinds.Event.TYPE_BIRTHDAY)
+							put(
+								ContactsContract.Data.MIMETYPE,
+								ContactsContract.CommonDataKinds.Event.CONTENT_ITEM_TYPE
+							)
+							put(
+								ContactsContract.CommonDataKinds.Event.TYPE,
+								ContactsContract.CommonDataKinds.Event.TYPE_BIRTHDAY
+							)
 							put(ContactsContract.CommonDataKinds.Event.START_DATE, day)
 						}
 					}
 				}
 				putParcelableArrayListExtra(
-						ContactsContract.Intents.Insert.DATA,
-						ArrayList(listOfNotNull(urls, bDays).flatten())
+					ContactsContract.Intents.Insert.DATA,
+					ArrayList(listOfNotNull(urls, bDays).flatten())
 				)
 			}
 		}
@@ -111,7 +120,7 @@ object VCardAction : SimpleIntentIAction() {
 	private val String.locationFormat: String
 		get() = """^([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?)$""".toRegex().matchEntire(this)?.groupValues?.let {
 			listOf(it[1], it[2], it[3], "${it[4]} ${it[6]}", "${it[5]} ${it[7]}").filter { line -> line.isNotBlank() }
-					.joinToString("\n").takeIf { location -> location.isNotBlank() }
+				.joinToString("\n").takeIf { location -> location.isNotBlank() }
 		} ?: this
 
 	private val String.nameFormat: String

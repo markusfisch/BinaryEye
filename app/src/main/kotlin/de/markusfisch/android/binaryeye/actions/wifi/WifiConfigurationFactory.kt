@@ -116,7 +116,8 @@ object WifiConfigurationFactory {
 
 		private val String.quotedUnlessHex: String
 			get() = if (matches(hexRegex) || (startsWith("\"") &&
-				endsWith("\""))) this else "\"$this\""
+						endsWith("\""))
+			) this else "\"$this\""
 
 		internal companion object {
 			internal fun of(inputMap: Map<String, String>): SimpleDataAccessor? {
