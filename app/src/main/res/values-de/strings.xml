@@ -49,4 +49,8 @@
 	<string name="tel_error">Konnte Telefonnummer nicht wählen</string>
 	<string name="mail_send">E-Mail senden</string>
 	<string name="mail_error">Konnte E-Mail nicht senden</string>
+	<string name="vcard_add">Zu den Kontakten hinzufügen</string>
+	<string name="vcard_failed">Konnte nicht zu den Kontakten hinzufügen</string>
+	<string name="vevent_add">Zum Kalender hinzufügen</string>
+	<string name="vevent_failed">Konnte nicht zum Kalender hinzufügen</string>
 </resources>

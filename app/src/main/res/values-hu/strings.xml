@@ -49,4 +49,8 @@
 	<string name="tel_error">Nem sikerült tárcsázni a számot</string>
 	<string name="mail_send">Levél küldése</string>
 	<string name="mail_error">Nem sikerült elküldeni a levelet</string>
+	<string name="vcard_add">Add to contacts</string>
+	<string name="vcard_failed">Could not add to contacts</string>
+	<string name="vevent_add">Add to calendar</string>
+	<string name="vevent_failed">Could not add to calendar</string>
 </resources>

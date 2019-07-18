@@ -8,7 +8,7 @@ import android.content.Intent
 import android.net.Uri
 
 object TelAction : SimpleIntentIAction() {
-	private val telRegex = """^tel:(\+?[0-9]+)$""".toRegex()
+	private val telRegex = """^tel:(\+?[0-9]+)$""".toRegex(RegexOption.IGNORE_CASE)
 
 	override val iconResId: Int = R.drawable.ic_action_tel
 	override val titleResId: Int = R.string.tel_dial
