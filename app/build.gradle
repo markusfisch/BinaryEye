@@ -71,6 +71,6 @@ dependencies {
 	implementation "com.android.support:appcompat-v7:$support_version"
 	implementation "com.android.support:design:$support_version"
 	implementation 'com.google.zxing:core:3.4.0'
-	implementation 'com.github.markusfisch:CameraView:1.8.3'
+	implementation 'com.github.markusfisch:CameraView:1.8.4'
 	implementation 'com.github.markusfisch:ScalingImageView:1.1.3'
 }
