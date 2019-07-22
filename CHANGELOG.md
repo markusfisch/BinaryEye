@@ -1,5 +1,8 @@
 # Change Log
 
+# 1.11.1
+* Fix tap to focus on some devices
+
 # 1.11.0
 * Add support for VCard and VEvent barcodes contents
 * Generated barcodes are now zoomable
