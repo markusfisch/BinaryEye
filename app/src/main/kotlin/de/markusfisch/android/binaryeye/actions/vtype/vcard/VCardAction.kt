@@ -10,8 +10,6 @@ import android.content.Intent
 import android.os.Build
 import android.provider.ContactsContract
 
-import java.util.Date
-
 object VCardAction : SimpleIntentIAction() {
 	override val iconResId: Int
 		get() = R.drawable.ic_action_vcard
