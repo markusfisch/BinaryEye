@@ -1,5 +1,9 @@
 # Change Log
 
+# 1.11.2
+* Downgrade ZXing version
+* Improve getting system UI metrics
+
 # 1.11.1
 * Fix tap to focus on some devices
 
