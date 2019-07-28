@@ -18,7 +18,7 @@
 	<string name="cannot_resolve_action">Keine App kann das öffnen</string>
 	<string name="pick_search_engine">Suchmaschine auswählen</string>
 	<string name="format">Format</string>
-	<string name="size">Größe in Pixeln</string>
+	<string name="size">Größe in Pixel</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">Gib den Inhalt hier ein</string>
 	<string name="encode">KODIEREN</string>
@@ -28,7 +28,9 @@
 	<string name="info">Info</string>
 	<string name="switch_camera">Kamera wechseln</string>
 	<string name="history">Gespeicherte Codes</string>
+	<string name="preferences">Einstellungen</string>
 	<string name="use_history">Codes speichern</string>
+	<string name="open_with_url">URL zum Öffnen unbekannter Daten</string>
 	<string name="really_remove_scan">Code wirklich entfernen?</string>
 	<string name="really_remove_all_scans">Alle Codes entfernen?</string>
 	<string name="clear_history">Gespeicherte Codes löschen</string>

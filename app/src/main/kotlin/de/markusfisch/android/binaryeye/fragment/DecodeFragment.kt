@@ -8,6 +8,7 @@ import de.markusfisch.android.binaryeye.actions.validateOrGetNew
 import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
 import de.markusfisch.android.binaryeye.app.hasWritePermission
+import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.app.shareText
 
 import android.app.AlertDialog
@@ -211,12 +212,19 @@ class DecodeFragment : Fragment() {
 	}
 
 	private fun pickSearchEngineAndSearch(context: Context, query: String) {
+		val names = context.resources.getStringArray(
+			R.array.search_engines_names
+		).toMutableList()
 		val urls = context.resources.getStringArray(
 			R.array.search_engines_values
-		)
+		).toMutableList()
+		if (prefs.openWithUrl.isNotEmpty()) {
+			names.add(prefs.openWithUrl)
+			urls.add(prefs.openWithUrl)
+		}
 		AlertDialog.Builder(context)
 			.setTitle(R.string.pick_search_engine)
-			.setItems(R.array.search_engines_names) { _, which ->
+			.setItems(names.toTypedArray()) { _, which ->
 				openUrl(
 					urls[which] + URLEncoder.encode(query, "utf-8"),
 					executeCustomAction = false,

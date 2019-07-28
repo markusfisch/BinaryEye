@@ -1,3 +1,4 @@
 <resources>
 	<string name="app_name">Binary Eye</string>
+	<string name="open_with_url_hint">http://example.com?data=</string>
 </resources>

@@ -1,5 +1,6 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:orientation="vertical"
@@ -10,9 +11,11 @@
 		android:layout_marginBottom="8dp"
 		android:text="@string/save_as_file_name"/>
 	<EditText
+		tools:targetApi="o"
 		android:id="@+id/file_name"
 		android:inputType="text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:hint="@string/file_name" />
+		android:hint="@string/file_name"
+		android:importantForAutofill="no"/>
 </LinearLayout>

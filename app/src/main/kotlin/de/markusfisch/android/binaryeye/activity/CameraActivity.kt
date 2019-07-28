@@ -165,6 +165,10 @@ class CameraActivity : AppCompatActivity() {
 				switchCamera()
 				true
 			}
+			R.id.preferences -> {
+				startActivity(MainActivity.getPreferencesIntent(this))
+				true
+			}
 			R.id.info -> {
 				openReadme()
 				true
@@ -462,7 +466,7 @@ fun getRawBytes(result: Result): ByteArray? {
 	for (seg in segments as Iterable<ByteArray>) {
 		bytes += seg
 	}
-	// byte segments can never be shorter than the text;
+	// byte segments can never be shorter than the text.
 	// Zxing cuts off content prefixes like "WIFI:"
 	return if (bytes.size >= result.text.length) bytes else null
 }

@@ -17,6 +17,11 @@
 		android:icon="@drawable/ic_action_switch_camera"
 		material:showAsAction="ifRoom"/>
 	<item
+		android:id="@+id/preferences"
+		android:title="@string/preferences"
+		android:icon="@drawable/ic_action_preferences"
+		material:showAsAction="ifRoom"/>
+	<item
 		android:id="@+id/info"
 		android:title="@string/info"
 		android:icon="@drawable/ic_action_info"

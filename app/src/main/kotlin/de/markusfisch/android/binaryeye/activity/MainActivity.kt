@@ -8,6 +8,7 @@ import de.markusfisch.android.binaryeye.app.setFragment
 import de.markusfisch.android.binaryeye.fragment.DecodeFragment
 import de.markusfisch.android.binaryeye.fragment.EncodeFragment
 import de.markusfisch.android.binaryeye.fragment.HistoryFragment
+import de.markusfisch.android.binaryeye.fragment.PreferencesFragment
 
 import android.content.Context
 import android.content.Intent
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
 		if (state == null) {
 			setFragment(
 				supportFragmentManager, when {
+					intent?.hasExtra(PREFERENCES) == true -> PreferencesFragment()
 					intent?.hasExtra(HISTORY) == true -> HistoryFragment()
 					intent?.hasExtra(ENCODE) == true -> EncodeFragment.newInstance(
 						intent.getStringExtra(ENCODE)
@@ -56,11 +58,18 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	companion object {
+		private const val PREFERENCES = "preferences"
 		private const val HISTORY = "history"
 		private const val ENCODE = "encode"
 		private const val DECODED_TEXT = "decoded_text"
 		private const val DECODED_FORMAT = "decoded_format"
 		private const val DECODED_RAW = "decoded_raw"
+
+		fun getPreferencesIntent(context: Context): Intent {
+			val intent = Intent(context, MainActivity::class.java)
+			intent.putExtra(PREFERENCES, true)
+			return intent
+		}
 
 		fun getHistoryIntent(context: Context): Intent {
 			val intent = Intent(context, MainActivity::class.java)
