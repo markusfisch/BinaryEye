@@ -6,14 +6,15 @@ import de.markusfisch.android.binaryeye.R
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.SwitchCompat
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 
 class PreferencesFragment : Fragment() {
+	private lateinit var useHistorySwitch: SwitchCompat
+	private lateinit var openWithUrlInput: EditText
+
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
@@ -27,37 +28,20 @@ class PreferencesFragment : Fragment() {
 			false
 		)
 
-		initHistorySwitch(view.findViewById(R.id.use_history) as SwitchCompat)
-		initOpenWithUrl(view.findViewById(R.id.open_with_url) as EditText)
+		useHistorySwitch = view.findViewById<SwitchCompat>(R.id.use_history)
+		if (prefs.useHistory) {
+			useHistorySwitch.toggle()
+		}
+
+		openWithUrlInput = view.findViewById<EditText>(R.id.open_with_url)
+		openWithUrlInput.setText(prefs.openWithUrl)
 
 		return view
 	}
-}
 
-fun initHistorySwitch(switchView: SwitchCompat) {
-	switchView.setOnCheckedChangeListener { _, isChecked ->
-		prefs.useHistory = isChecked
+	override fun onPause() {
+		super.onPause()
+		prefs.useHistory = useHistorySwitch.isChecked()
+		prefs.openWithUrl = openWithUrlInput.text.toString()
 	}
-	if (prefs.useHistory) {
-		switchView.toggle()
-	}
-}
-
-fun initOpenWithUrl(editText: EditText) {
-	editText.setText(prefs.openWithUrl)
-	editText.addTextChangedListener(object : TextWatcher {
-		override fun afterTextChanged(s: Editable?) {
-			prefs.openWithUrl = s.toString()
-		}
-
-		override fun beforeTextChanged(s: CharSequence?, start: Int,
-			count: Int, after: Int
-		) {
-		}
-
-		override fun onTextChanged(s: CharSequence?, start: Int, before: Int,
-			count: Int
-		) {
-		}
-	})
 }

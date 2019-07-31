@@ -99,6 +99,15 @@ class HistoryFragment : Fragment() {
 		}
 	}
 
+	private fun initHistorySwitch(switchView: SwitchCompat) {
+		switchView.setOnCheckedChangeListener { _, isChecked ->
+			prefs.useHistory = isChecked
+		}
+		if (prefs.useHistory) {
+			switchView.toggle()
+		}
+	}
+
 	private fun update(context: Context) {
 		GlobalScope.launch {
 			val cursor = db.getScans()
