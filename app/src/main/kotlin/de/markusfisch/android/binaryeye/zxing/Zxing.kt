@@ -3,6 +3,7 @@ package de.markusfisch.android.binaryeye.zxing
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.BinaryBitmap
 import com.google.zxing.DecodeHintType
+import com.google.zxing.EncodeHintType
 import com.google.zxing.LuminanceSource
 import com.google.zxing.MultiFormatReader
 import com.google.zxing.MultiFormatWriter
@@ -137,12 +138,14 @@ class Zxing {
 			width: Int,
 			height: Int
 		): Bitmap? {
+			val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)
+			hints[EncodeHintType.CHARACTER_SET] = "utf-8"
 			val result = MultiFormatWriter().encode(
 				text,
 				format,
 				width,
 				height,
-				null
+				hints
 			)
 			val w = result.width
 			val h = result.height
