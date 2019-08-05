@@ -7,7 +7,7 @@
 	<string name="content">Conteúdo</string>
 	<string name="binary_data">(binários)</string>
 	<plurals name="barcode_info">
-		<item quantity="onte">%1$s\n%2$d cacractere</item>
+		<item quantity="one">%1$s\n%2$d cacractere</item>
 		<item quantity="other">%1$s\n%2$d caracteres</item>
 	</plurals>
 	<string name="toggle_flash">Ativar lanterna</string>
