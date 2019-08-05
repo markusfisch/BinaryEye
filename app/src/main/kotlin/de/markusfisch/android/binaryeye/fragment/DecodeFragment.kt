@@ -1,5 +1,6 @@
 package de.markusfisch.android.binaryeye.fragment
 
+import android.annotation.SuppressLint
 import com.google.zxing.BarcodeFormat
 
 import de.markusfisch.android.binaryeye.R
@@ -234,6 +235,9 @@ class DecodeFragment : Fragment() {
 			.show()
 	}
 
+	// dialogs don't have a parent layout and must therefore be
+	// inflated with a null root layout
+	@SuppressLint("InflateParams")
 	private fun askForFileNameAndSave(raw: ByteArray) {
 		val ac = activity ?: return
 		val view = ac.layoutInflater.inflate(R.layout.dialog_save_file, null)
