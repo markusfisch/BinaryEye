@@ -1,5 +1,11 @@
 # Change Log
 
+# 1.12.0
+* Add preferences dialog and the option to use a custom URL with read contents
+* Add Brazilian Portuguese translation
+* Add Chinese translation
+* Encode text using UTF-8 encoding when creating a barcode
+
 # 1.11.2
 * Downgrade ZXing version
 * Improve getting system UI metrics
