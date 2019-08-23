@@ -413,9 +413,7 @@ class CameraActivity : AppCompatActivity() {
 		}
 
 		if (returnResult) {
-			val resultIntent = Intent()
-			resultIntent.putExtra("SCAN_RESULT", result.text)
-			setResult(RESULT_OK, resultIntent)
+			setResult(RESULT_OK, getReturnIntent(result))
 			finish()
 			return
 		}
@@ -469,4 +467,50 @@ fun getRawBytes(result: Result): ByteArray? {
 	// byte segments can never be shorter than the text.
 	// Zxing cuts off content prefixes like "WIFI:"
 	return if (bytes.size >= result.text.length) bytes else null
+}
+
+fun getReturnIntent(result: Result): Intent {
+	val intent = Intent()
+	intent.putExtra("SCAN_RESULT", result.text)
+	intent.putExtra(
+		"SCAN_RESULT_FORMAT",
+		result.barcodeFormat.toString()
+	)
+	if (result.rawBytes?.isNotEmpty() == true) {
+		intent.putExtra("SCAN_RESULT_BYTES", result.rawBytes)
+	}
+	val metadata = result.resultMetadata
+	metadata?.let {
+		val orientation = metadata[ResultMetadataType.UPC_EAN_EXTENSION]
+		orientation?.let {
+			intent.putExtra(
+				"SCAN_RESULT_ORIENTATION",
+				orientation.toString()
+			)
+		}
+		val ecLevel = metadata[ResultMetadataType.ERROR_CORRECTION_LEVEL]
+		ecLevel?.let {
+			intent.putExtra(
+				"SCAN_RESULT_ERROR_CORRECTION_LEVEL",
+				ecLevel.toString()
+			)
+		}
+		val upcEanExtension = metadata[ResultMetadataType.UPC_EAN_EXTENSION]
+		upcEanExtension?.let {
+			intent.putExtra(
+				"SCAN_RESULT_UPC_EAN_EXTENSION",
+				upcEanExtension.toString()
+			)
+		}
+		val segments = metadata[ResultMetadataType.BYTE_SEGMENTS]
+		segments?.let {
+			var i = 0
+			@Suppress("UNCHECKED_CAST")
+			for (seg in segments as Iterable<ByteArray>) {
+				intent.putExtra("SCAN_RESULT_BYTE_SEGMENTS_$i", seg)
+				++i
+			}
+		}
+	}
+	return intent
 }
