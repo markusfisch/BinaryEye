@@ -1,19 +1,13 @@
 package de.markusfisch.android.binaryeye.actions.wifi
 
-import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.IAction
-
 import android.content.Context
 import android.content.Context.WIFI_SERVICE
 import android.net.wifi.WifiConfiguration
 import android.net.wifi.WifiManager
 import android.widget.Toast
-
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.actions.IAction
+import kotlinx.coroutines.*
 
 object WifiAction : IAction {
 	override val iconResId = R.drawable.ic_action_wifi

@@ -1,10 +1,9 @@
 package de.markusfisch.android.binaryeye.app
 
-import de.markusfisch.android.binaryeye.data.Database
-import de.markusfisch.android.binaryeye.preference.Preferences
-
 import android.app.Application
 import android.support.v8.renderscript.RenderScript
+import de.markusfisch.android.binaryeye.data.Database
+import de.markusfisch.android.binaryeye.preference.Preferences
 
 val db = Database()
 val prefs = Preferences()

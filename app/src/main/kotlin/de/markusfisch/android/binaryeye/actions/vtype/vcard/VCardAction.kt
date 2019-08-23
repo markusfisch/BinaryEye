@@ -1,14 +1,13 @@
 package de.markusfisch.android.binaryeye.actions.vtype.vcard
 
-import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.SimpleIntentIAction
-import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
-
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.provider.ContactsContract
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.actions.SimpleIntentIAction
+import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
 
 object VCardAction : SimpleIntentIAction() {
 	override val iconResId: Int
@@ -116,14 +115,23 @@ object VCardAction : SimpleIntentIAction() {
 	}
 
 	private val String.locationFormat: String
-		get() = """^([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?)$""".toRegex().matchEntire(this)?.groupValues?.let {
-			listOf(it[1], it[2], it[3], "${it[4]} ${it[6]}", "${it[5]} ${it[7]}").filter { line -> line.isNotBlank() }
+		get() = """^([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?)$""".toRegex().matchEntire(
+			this
+		)?.groupValues?.let {
+			listOf(
+				it[1],
+				it[2],
+				it[3],
+				"${it[4]} ${it[6]}",
+				"${it[5]} ${it[7]}"
+			).filter { line -> line.isNotBlank() }
 				.joinToString("\n").takeIf { location -> location.isNotBlank() }
 		} ?: this
 
 	private val String.nameFormat: String
 		get() = """^([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?)$""".toRegex().matchEntire(this)?.groupValues?.let {
-			listOf(it[4], it[2], it[3], it[1], it[5]).joinToString(" ").takeIf { name -> name.isNotBlank() }
+			listOf(it[4], it[2], it[3], it[1], it[5]).joinToString(" ")
+				.takeIf { name -> name.isNotBlank() }
 		} ?: this
 
 	private val String.mailType: Int?

@@ -194,8 +194,10 @@ object WifiConfigurationFactory {
 					enterpriseConfig.identity = data.identity
 					enterpriseConfig.anonymousIdentity = data.anonymousIdentity
 					enterpriseConfig.password = data.password
-					enterpriseConfig.eapMethod = data.eapMethod ?: return null // non valid eapMethod
-					enterpriseConfig.phase2Method = data.phase2Method ?: return null // non valid phase2Method
+					enterpriseConfig.eapMethod =
+						data.eapMethod ?: return null // non valid eapMethod
+					enterpriseConfig.phase2Method =
+						data.phase2Method ?: return null // non valid phase2Method
 				} ?: return null // api isn't high enough
 			}
 			return this

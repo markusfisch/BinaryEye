@@ -1,13 +1,12 @@
 package de.markusfisch.android.binaryeye.data
 
-import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
-
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.text.format.DateFormat
+import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
 
 class Database {
 	private lateinit var db: SQLiteDatabase

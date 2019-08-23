@@ -1,10 +1,9 @@
 package de.markusfisch.android.binaryeye.actions
 
-import de.markusfisch.android.binaryeye.app.execShareIntent
-
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
+import de.markusfisch.android.binaryeye.app.execShareIntent
 
 interface IAction {
 	val iconResId: Int

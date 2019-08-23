@@ -1,28 +1,20 @@
 package de.markusfisch.android.binaryeye.fragment
 
+import android.app.AlertDialog
+import android.content.Context
+import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.support.v7.widget.SwitchCompat
+import android.view.*
+import android.widget.ListView
 import com.google.zxing.BarcodeFormat
-
+import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.ScansAdapter
 import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.app.shareText
 import de.markusfisch.android.binaryeye.data.Database
-import de.markusfisch.android.binaryeye.R
-
-import android.app.AlertDialog
-import android.content.Context
-import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.SwitchCompat
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ListView
-
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

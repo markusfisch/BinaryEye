@@ -1,15 +1,13 @@
 package de.markusfisch.android.binaryeye.app
 
-import de.markusfisch.android.binaryeye.BuildConfig
-import de.markusfisch.android.binaryeye.R
-
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.support.v4.content.FileProvider
 import android.widget.Toast
-
+import de.markusfisch.android.binaryeye.BuildConfig
+import de.markusfisch.android.binaryeye.R
 import java.io.File
 
 fun shareText(context: Context, text: String, type: String = "text/plain") {

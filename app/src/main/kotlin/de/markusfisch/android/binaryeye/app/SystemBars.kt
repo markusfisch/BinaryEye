@@ -1,13 +1,12 @@
 package de.markusfisch.android.binaryeye.app
 
-import de.markusfisch.android.binaryeye.R
-
 import android.os.Build
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.Window
+import de.markusfisch.android.binaryeye.R
 
 fun initSystemBars(activity: AppCompatActivity?) {
 	val view = activity?.findViewById(R.id.main_layout) ?: return
@@ -40,7 +39,7 @@ fun setSystemBarColor(window: Window, color: Int): Boolean {
 	window.navigationBarColor = color
 	window.decorView.systemUiVisibility =
 		View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-		View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-		View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+				View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+				View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 	return true
 }

@@ -5,7 +5,8 @@ object VTypeParser {
 		"""^BEGIN:(VCARD|VEVENT)(?:\R.+?:[\s\S]+?)+?\REND:\1\R?$""".toRegex(RegexOption.IGNORE_CASE)
 	private val propertyRegex = """^(.+?):([\s\S]*?)$""".toRegex(RegexOption.MULTILINE)
 
-	fun parseVType(data: String): String? = vTypeRegex.matchEntire(data)?.groupValues?.get(1)?.toUpperCase()
+	fun parseVType(data: String): String? =
+		vTypeRegex.matchEntire(data)?.groupValues?.get(1)?.toUpperCase()
 
 	fun parseMap(data: String): Map<String, List<VTypeProperty>> = propertyRegex.findAll(data).map {
 		it.groupValues[1].split(';').let { typeAndInfo ->

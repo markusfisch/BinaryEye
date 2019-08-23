@@ -1,23 +1,16 @@
 package de.markusfisch.android.binaryeye.fragment
 
-import com.google.zxing.BarcodeFormat
-
-import de.markusfisch.android.binaryeye.app.addFragment
-import de.markusfisch.android.binaryeye.R
-
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.inputmethod.InputMethodManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.SeekBar
-import android.widget.Spinner
-import android.widget.TextView
-import android.widget.Toast
+import android.view.inputmethod.InputMethodManager
+import android.widget.*
+import com.google.zxing.BarcodeFormat
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.app.addFragment
 
 class EncodeFragment : Fragment() {
 	private lateinit var formatView: Spinner

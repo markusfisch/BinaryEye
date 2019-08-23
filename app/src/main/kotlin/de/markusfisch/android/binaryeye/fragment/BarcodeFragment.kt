@@ -1,27 +1,23 @@
 package de.markusfisch.android.binaryeye.fragment
 
-import com.google.zxing.BarcodeFormat
-
-import de.markusfisch.android.binaryeye.app.shareFile
-import de.markusfisch.android.binaryeye.zxing.Zxing
-import de.markusfisch.android.binaryeye.R
-
-import android.os.Bundle
 import android.graphics.Bitmap
+import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
-
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-
+import com.google.zxing.BarcodeFormat
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.app.shareFile
+import de.markusfisch.android.binaryeye.zxing.Zxing
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 class BarcodeFragment : Fragment() {
 	override fun onCreateView(

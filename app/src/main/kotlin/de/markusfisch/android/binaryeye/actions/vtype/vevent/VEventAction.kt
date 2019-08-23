@@ -1,18 +1,16 @@
 package de.markusfisch.android.binaryeye.actions.vtype.vevent
 
-import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.SimpleIntentIAction
-import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
-
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.provider.CalendarContract
 import android.support.annotation.RequiresApi
-
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.actions.SimpleIntentIAction
+import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
 import java.text.SimpleDateFormat
-import java.util.Date
+import java.util.*
 
 object VEventAction : SimpleIntentIAction() {
 	override val iconResId: Int

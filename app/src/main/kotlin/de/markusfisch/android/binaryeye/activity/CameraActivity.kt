@@ -1,18 +1,5 @@
 package de.markusfisch.android.binaryeye.activity
 
-import com.google.zxing.Result
-import com.google.zxing.ResultMetadataType
-
-import de.markusfisch.android.cameraview.widget.CameraView
-
-import de.markusfisch.android.binaryeye.app.db
-import de.markusfisch.android.binaryeye.app.hasCameraPermission
-import de.markusfisch.android.binaryeye.app.initSystemBars
-import de.markusfisch.android.binaryeye.app.prefs
-import de.markusfisch.android.binaryeye.rs.Preprocessor
-import de.markusfisch.android.binaryeye.zxing.Zxing
-import de.markusfisch.android.binaryeye.R
-
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -30,10 +17,18 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
-
+import com.google.zxing.Result
+import com.google.zxing.ResultMetadataType
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.app.db
+import de.markusfisch.android.binaryeye.app.hasCameraPermission
+import de.markusfisch.android.binaryeye.app.initSystemBars
+import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.rs.Preprocessor
+import de.markusfisch.android.binaryeye.zxing.Zxing
+import de.markusfisch.android.cameraview.widget.CameraView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-
 import java.io.IOException
 
 class CameraActivity : AppCompatActivity() {

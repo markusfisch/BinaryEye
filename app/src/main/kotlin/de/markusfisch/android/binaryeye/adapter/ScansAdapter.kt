@@ -1,8 +1,5 @@
 package de.markusfisch.android.binaryeye.adapter
 
-import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.data.Database
-
 import android.content.Context
 import android.database.Cursor
 import android.view.LayoutInflater
@@ -10,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CursorAdapter
 import android.widget.TextView
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.data.Database
 
 class ScansAdapter(context: Context, cursor: Cursor) :
 	CursorAdapter(context, cursor, false) {

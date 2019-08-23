@@ -1,17 +1,6 @@
 package de.markusfisch.android.binaryeye.fragment
 
 import android.annotation.SuppressLint
-import com.google.zxing.BarcodeFormat
-
-import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.IAction
-import de.markusfisch.android.binaryeye.actions.validateOrGetNew
-import de.markusfisch.android.binaryeye.app.addFragment
-import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
-import de.markusfisch.android.binaryeye.app.hasWritePermission
-import de.markusfisch.android.binaryeye.app.prefs
-import de.markusfisch.android.binaryeye.app.shareText
-
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -23,17 +12,16 @@ import android.support.v4.app.Fragment
 import android.text.ClipboardManager
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-
+import com.google.zxing.BarcodeFormat
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.actions.IAction
+import de.markusfisch.android.binaryeye.actions.validateOrGetNew
+import de.markusfisch.android.binaryeye.app.*
 import java.io.File
 import java.io.IOException
 import java.net.URLEncoder
