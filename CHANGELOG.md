@@ -1,5 +1,8 @@
 # Change Log
 
+# 1.13.0
+* Add missing extras for ZXing result intents
+
 # 1.12.0
 * Add preferences dialog and the option to use a custom URL with read contents
 * Add Brazilian Portuguese translation
