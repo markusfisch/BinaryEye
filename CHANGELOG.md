@@ -1,5 +1,8 @@
 # Change Log
 
+# 1.13.1
+* Fix crash caused by missing support for Regex on Android < 6
+
 # 1.13.0
 * Add missing extras for ZXing result intents
 
