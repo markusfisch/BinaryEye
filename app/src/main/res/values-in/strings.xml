@@ -1,12 +1,12 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-	<string name="no_camera_no_fun">Aplikasi ini tidak akan bisa bekerja tanpa akses kamera. Selamat tinggal.</string>
+<resources>
+	<string name="no_camera_no_fun">Aplikasi tidak akan bisa bekerja tanpa akses kamera. Selamat tinggal.</string>
 	<string name="camera_error">Tidak bisa mengakses kamera, silakan coba lagi</string>
 	<string name="scan_code">Pindai kode</string>
 	<string name="compose_barcode">Buat barcode</string>
 	<string name="decode_barcode">Dekode barcode</string>
 	<string name="content">Konten</string>
 	<string name="binary_data">(data binari)</string>
-	<plurals name="barcode_info" tools:ignore="UnusedQuantity">
+	<plurals name="barcode_info">
 		<item quantity="one">%1$s\n%2$d karakter</item>
 		<item quantity="other">%1$s\n%2$d karakter</item>
 	</plurals>
@@ -28,9 +28,9 @@
 	<string name="info">Info</string>
 	<string name="switch_camera">Ganti kamera</string>
 	<string name="history">Riwayat</string>
-	<string name="preferences">Preferences</string>
+	<string name="preferences">Preferensi</string>
 	<string name="use_history">Simpan riwayat pemindaian</string>
-	<string name="open_with_url">Open unknown data with URL</string>
+	<string name="open_with_url">Buka data tak dikenal dengan URL</string>
 	<string name="really_remove_scan">Yakin menghapus pemindaian?</string>
 	<string name="really_remove_all_scans">Yakin menghapus semua pemindaian?</string>
 	<string name="clear_history">Hapus riwayat</string>
@@ -42,17 +42,17 @@
 	<string name="file_name">Nama berkas</string>
 	<string name="error_saving_binary_data">Tidak bisa menyimpan berkas</string>
 	<string name="error_file_exists">Berkas sudah ada</string>
-	<string name="connect_to_wifi">Connect to WiFi</string>
-	<string name="wifi_config_failed">Could not configure WiFi</string>
-	<string name="wifi_added">WiFi added</string>
-	<string name="sms_send">Send SMS</string>
-	<string name="sms_error">Could not send SMS</string>
-	<string name="tel_dial">Dial number</string>
-	<string name="tel_error">Could not dial number</string>
-	<string name="mail_send">Send mail</string>
-	<string name="mail_error">Could not send mail</string>
-	<string name="vcard_add">Add to contacts</string>
-	<string name="vcard_failed">Could not add to contacts</string>
-	<string name="vevent_add">Add to calendar</string>
-	<string name="vevent_failed">Could not add to calendar</string>
+	<string name="connect_to_wifi">Sambungkan ke WiFi</string>
+	<string name="wifi_config_failed">Tidak bisa mengelola WiFi</string>
+	<string name="wifi_added">WiFi ditambahkan</string>
+	<string name="sms_send">Kirim SMS</string>
+	<string name="sms_error">Tidak bisa mengirim SMS</string>
+	<string name="tel_dial">Panggil nomor</string>
+	<string name="tel_error">Tidak bisa memanggil nomor</string>
+	<string name="mail_send">Kirim surel</string>
+	<string name="mail_error">Tidak bisa mengirim surel</string>
+	<string name="vcard_add">Tambahkan ke kontak</string>
+	<string name="vcard_failed">Tidak bisa menambahkan ke kontak</string>
+	<string name="vevent_add">Tambahkan ke kalender</string>
+	<string name="vevent_failed">Tidak bisa menambahkan ke kalender</string>
 </resources>
