@@ -26,8 +26,9 @@ class OtpauthParser private constructor(private val match: MatchResult) {
 	val counter: Int
 		get() = parameterCounter.toInt()
 	private val isHotp: Boolean = otpType == "hotp"
-	val isValid: Boolean = (labelIssuer.isNotEmpty() == parameterIssuer.isEmpty() || labelIssuer.isEmpty())
-		&& secret.isNotEmpty() && isHotp == parameterCounter.isNotEmpty()
+	val isValid: Boolean =
+		(labelIssuer.isNotEmpty() == parameterIssuer.isEmpty() || labelIssuer.isEmpty())
+				&& secret.isNotEmpty() && isHotp == parameterCounter.isNotEmpty()
 
 	val uri: Uri
 		get() = Uri.Builder().apply {
@@ -53,7 +54,8 @@ class OtpauthParser private constructor(private val match: MatchResult) {
 		}.build()
 
 	companion object {
-		private const val issuerAndAccount = """(?:(?:([^?:]+)(?::|%3A)(?:%20)*([^?]+))|([^?]+))"""//.toRegex()
+		private const val issuerAndAccount =
+			"""(?:(?:([^?:]+)(?::|%3A)(?:%20)*([^?]+))|([^?]+))"""//.toRegex()
 		/** allowing `padding` even though it should not be there, will be removed in output*/
 		private const val secret = """(?:secret=([2-7A-Z]+)=*)"""//.toRegex()
 		/** `\2` references the issuer of [issuerAndAccount] */
@@ -63,7 +65,9 @@ class OtpauthParser private constructor(private val match: MatchResult) {
 		private const val period = """(?:period=([0-9]+))"""//.toRegex()
 		private const val counter = """(?:counter=([0-9]+))"""//.toRegex()
 		private val otpauthRegex =
-			"""^otpauth://([ht]otp)/$issuerAndAccount\?(?:&?(?:$secret|$issuer|$algorithm|$digits|$period|$counter))+$""".toRegex(RegexOption.IGNORE_CASE)
+			"""^otpauth://([ht]otp)/$issuerAndAccount\?(?:&?(?:$secret|$issuer|$algorithm|$digits|$period|$counter))+$""".toRegex(
+				RegexOption.IGNORE_CASE
+			)
 
 		operator fun invoke(input: String): OtpauthParser? {
 			return otpauthRegex.matchEntire(input)?.let(::OtpauthParser)?.takeIf { it.isValid }
