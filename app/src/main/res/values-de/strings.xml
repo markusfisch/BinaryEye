@@ -55,4 +55,6 @@
 	<string name="vcard_failed">Konnte nicht zu den Kontakten hinzufügen</string>
 	<string name="vevent_add">Zum Kalender hinzufügen</string>
 	<string name="vevent_failed">Konnte nicht zum Kalender hinzufügen</string>
+	<string name="otpauth_add">2FA hinzufügen</string>
+	<string name="otpauth_error">Konnte 2FA nicht hinzufügen</string>
 </resources>

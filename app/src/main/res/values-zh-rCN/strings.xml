@@ -55,4 +55,6 @@
 	<string name="vcard_failed">无法添加到通讯录</string>
 	<string name="vevent_add">添加到日历</string>
 	<string name="vevent_failed">无法添加到日历</string>
+	<string name="otpauth_add">Add 2FA</string>
+	<string name="otpauth_error">Could not add 2FA</string>
 </resources>

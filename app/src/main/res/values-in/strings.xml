@@ -55,4 +55,6 @@
 	<string name="vcard_failed">Tidak bisa menambahkan ke kontak</string>
 	<string name="vevent_add">Tambahkan ke kalender</string>
 	<string name="vevent_failed">Tidak bisa menambahkan ke kalender</string>
+	<string name="otpauth_add">Add 2FA</string>
+	<string name="otpauth_error">Could not add 2FA</string>
 </resources>
