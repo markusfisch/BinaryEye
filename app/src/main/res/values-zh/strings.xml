@@ -53,4 +53,8 @@
 	<string name="vcard_failed">不能添加至聯絡人</string>
 	<string name="vevent_add">添加至行事曆</string>
 	<string name="vevent_failed">不能添加至行事曆</string>
+	<string name="preferences">Preferences</string>
+	<string name="open_with_url">Preferences</string>
+	<string name="otpauth_add">Add 2FA</string>
+	<string name="otpauth_error">Could not add 2FA</string>
 </resources>
