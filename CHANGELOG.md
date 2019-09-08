@@ -1,5 +1,9 @@
 # Change Log
 
+# 1.14.0
+* Add OTP support
+* Update Indonesian translation
+
 # 1.13.1
 * Fix crash caused by missing support for Regex on Android < 6
 
