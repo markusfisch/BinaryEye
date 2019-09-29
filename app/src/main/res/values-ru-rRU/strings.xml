@@ -55,4 +55,5 @@
     <string name="otpauth_add">Добавить 2FA</string>
     <string name="otpauth_error">Не удалось добавить 2FA</string>
     <string name="app_name">Binary Eye</string>
+	<string name="search_web">Search the web</string>
 </resources>

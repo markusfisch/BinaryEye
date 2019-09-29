@@ -57,4 +57,5 @@
 	<string name="vevent_failed">Konnte nicht zum Kalender hinzufügen</string>
 	<string name="otpauth_add">2FA hinzufügen</string>
 	<string name="otpauth_error">Konnte 2FA nicht hinzufügen</string>
+	<string name="search_web">Suche im Internet</string>
 </resources>

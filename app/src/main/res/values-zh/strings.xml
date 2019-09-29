@@ -57,4 +57,5 @@
 	<string name="open_with_url">Preferences</string>
 	<string name="otpauth_add">Add 2FA</string>
 	<string name="otpauth_error">Could not add 2FA</string>
+	<string name="search_web">Search the web</string>
 </resources>
