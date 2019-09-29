@@ -2,11 +2,11 @@ package de.markusfisch.android.binaryeye.actions.tel
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.SimpleIntentIAction
+import de.markusfisch.android.binaryeye.actions.IntentAction
+import de.markusfisch.android.binaryeye.app.parseAndNormalizeUri
 
-object TelAction : SimpleIntentIAction() {
+object TelAction : IntentAction() {
 	private val telRegex = """^tel:(\+?[0-9]+)$""".toRegex(RegexOption.IGNORE_CASE)
 
 	override val iconResId: Int = R.drawable.ic_action_tel
@@ -17,7 +17,7 @@ object TelAction : SimpleIntentIAction() {
 		return String(data).matches(telRegex)
 	}
 
-	override fun executeForIntent(context: Context, data: ByteArray): Intent {
-		return Intent(Intent.ACTION_DIAL, Uri.parse(String(data)))
+	override suspend fun createIntent(context: Context, data: ByteArray): Intent {
+		return Intent(Intent.ACTION_DIAL, parseAndNormalizeUri(String(data)))
 	}
 }

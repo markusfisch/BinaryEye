@@ -10,15 +10,15 @@ interface IAction {
 	val titleResId: Int
 
 	fun canExecuteOn(data: ByteArray): Boolean
-	fun execute(context: Context, data: ByteArray)
+	suspend fun execute(context: Context, data: ByteArray)
 }
 
-abstract class SimpleIntentIAction : IAction {
+abstract class IntentAction : IAction {
 	abstract val errorMsg: Int
 
-	final override fun execute(context: Context, data: ByteArray) {
+	final override suspend fun execute(context: Context, data: ByteArray) {
 		val intent =
-			executeForIntent(context, data) ?: return Toast.makeText(
+			createIntent(context, data) ?: return Toast.makeText(
 				context,
 				errorMsg,
 				Toast.LENGTH_LONG
@@ -26,7 +26,7 @@ abstract class SimpleIntentIAction : IAction {
 		execShareIntent(context, intent)
 	}
 
-	abstract fun executeForIntent(context: Context, data: ByteArray): Intent?
+	abstract suspend fun createIntent(context: Context, data: ByteArray): Intent?
 }
 
 fun IAction?.validateOrGetNew(data: ByteArray): IAction? {

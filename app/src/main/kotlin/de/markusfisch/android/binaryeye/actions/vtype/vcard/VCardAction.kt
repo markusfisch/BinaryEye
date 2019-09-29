@@ -6,10 +6,10 @@ import android.content.Intent
 import android.os.Build
 import android.provider.ContactsContract
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.SimpleIntentIAction
+import de.markusfisch.android.binaryeye.actions.IntentAction
 import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
 
-object VCardAction : SimpleIntentIAction() {
+object VCardAction : IntentAction() {
 	override val iconResId: Int
 		get() = R.drawable.ic_action_vcard
 	override val titleResId: Int
@@ -21,7 +21,7 @@ object VCardAction : SimpleIntentIAction() {
 		return VTypeParser.parseVType(String(data)) == "VCARD"
 	}
 
-	override fun executeForIntent(context: Context, data: ByteArray): Intent? {
+	override suspend fun createIntent(context: Context, data: ByteArray): Intent? {
 		val info = VTypeParser.parseMap(String(data))
 
 		return Intent(Intent.ACTION_INSERT_OR_EDIT).apply {
