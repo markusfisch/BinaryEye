@@ -38,9 +38,9 @@ abstract class SchemeAction : IAction {
 	final override fun canExecuteOn(data: ByteArray): Boolean {
 		val content = String(data)
 		return if (buildRegex) {
-			content.matches("""^$scheme://[\w\W]+$""".toRegex())
+			content.matches("""^$scheme://[\w\W]+$""".toRegex(RegexOption.IGNORE_CASE))
 		} else {
-			content.startsWith("$scheme://")
+			content.startsWith("$scheme://", ignoreCase = true)
 		}
 	}
 
