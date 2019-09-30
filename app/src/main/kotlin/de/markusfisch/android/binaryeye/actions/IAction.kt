@@ -4,21 +4,22 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import de.markusfisch.android.binaryeye.app.execShareIntent
+import de.markusfisch.android.binaryeye.app.parseAndNormalizeUri
 
 interface IAction {
 	val iconResId: Int
 	val titleResId: Int
 
 	fun canExecuteOn(data: ByteArray): Boolean
-	fun execute(context: Context, data: ByteArray)
+	suspend fun execute(context: Context, data: ByteArray)
 }
 
-abstract class SimpleIntentIAction : IAction {
+abstract class IntentAction : IAction {
 	abstract val errorMsg: Int
 
-	final override fun execute(context: Context, data: ByteArray) {
+	final override suspend fun execute(context: Context, data: ByteArray) {
 		val intent =
-			executeForIntent(context, data) ?: return Toast.makeText(
+			createIntent(context, data) ?: return Toast.makeText(
 				context,
 				errorMsg,
 				Toast.LENGTH_LONG
@@ -26,11 +27,25 @@ abstract class SimpleIntentIAction : IAction {
 		execShareIntent(context, intent)
 	}
 
-	abstract fun executeForIntent(context: Context, data: ByteArray): Intent?
+	abstract suspend fun createIntent(context: Context, data: ByteArray): Intent?
 }
 
-fun IAction?.validateOrGetNew(data: ByteArray): IAction? {
-	return this?.takeIf {
-		canExecuteOn(data)
-	} ?: ActionRegistry.getAction(data)
+abstract class SchemeAction : IAction {
+	abstract val scheme: String
+	open val intentAction: String = Intent.ACTION_VIEW
+	open val buildRegex: Boolean = false
+
+	final override fun canExecuteOn(data: ByteArray): Boolean {
+		val content = String(data)
+		return if (buildRegex) {
+			content.matches("""^$scheme://[\w\W]+$""".toRegex(RegexOption.IGNORE_CASE))
+		} else {
+			content.startsWith("$scheme://", ignoreCase = true)
+		}
+	}
+
+	final override suspend fun execute(context: Context, data: ByteArray) {
+		val uri = parseAndNormalizeUri(String(data))
+		execShareIntent(context, Intent(intentAction, uri))
+	}
 }

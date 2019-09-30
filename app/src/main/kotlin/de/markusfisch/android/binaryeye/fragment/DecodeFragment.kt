@@ -3,28 +3,35 @@ package de.markusfisch.android.binaryeye.fragment
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.support.v4.app.Fragment
 import android.text.ClipboardManager
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.IAction
-import de.markusfisch.android.binaryeye.actions.validateOrGetNew
-import de.markusfisch.android.binaryeye.app.*
+import de.markusfisch.android.binaryeye.actions.ActionRegistry
+import de.markusfisch.android.binaryeye.app.addFragment
+import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
+import de.markusfisch.android.binaryeye.app.hasWritePermission
+import de.markusfisch.android.binaryeye.app.shareText
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.IOException
-import java.net.URLEncoder
 
 class DecodeFragment : Fragment() {
 	private lateinit var contentView: EditText
@@ -33,10 +40,13 @@ class DecodeFragment : Fragment() {
 	private lateinit var format: BarcodeFormat
 	private lateinit var actionMenuItem: MenuItem
 
-	private var action: IAction? = null
+	private var action = ActionRegistry.DEFAULT_ACTION
 	private var isBinary = false
 	private val content: String
 		get() = contentView.text.toString()
+
+	private val parentJob = Job()
+	private val scope: CoroutineScope = CoroutineScope(Dispatchers.Main + parentJob)
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -108,7 +118,10 @@ class DecodeFragment : Fragment() {
 	}
 
 	private fun updateViewsAndAction(bytes: ByteArray) {
-		action = action.validateOrGetNew(bytes)
+		val prevAction = action
+		if (!prevAction.canExecuteOn(bytes)) {
+			action = ActionRegistry.getAction(bytes)
+		}
 		formatView.text = resources.getQuantityString(
 			R.plurals.barcode_info,
 			bytes.size,
@@ -116,19 +129,17 @@ class DecodeFragment : Fragment() {
 			bytes.size
 		)
 		hexView.text = hexDump(bytes, 33)
-		if (::actionMenuItem.isInitialized) {
-			actionMenuItem.setIcon(action?.iconResId ?: R.drawable.ic_action_open)
-			actionMenuItem.setTitle(action?.titleResId ?: R.string.open_url)
+		if (::actionMenuItem.isInitialized && prevAction !== action) {
+			actionMenuItem.setIcon(action.iconResId)
+			actionMenuItem.setTitle(action.titleResId)
 		}
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 		inflater.inflate(R.menu.fragment_decode, menu)
 		actionMenuItem = menu.findItem(R.id.open_url)
-		action?.also { action ->
-			actionMenuItem.setIcon(action.iconResId)
-			actionMenuItem.setTitle(action.titleResId)
-		}
+		actionMenuItem.setIcon(action.iconResId)
+		actionMenuItem.setTitle(action.titleResId)
 		if (isBinary) {
 			menu.findItem(R.id.copy_to_clipboard).isVisible = false
 			menu.findItem(R.id.open_url).isVisible = false
@@ -143,7 +154,7 @@ class DecodeFragment : Fragment() {
 				true
 			}
 			R.id.open_url -> {
-				openUrl(content)
+				executeAction(content.toByteArray())
 				true
 			}
 			R.id.create -> {
@@ -171,56 +182,10 @@ class DecodeFragment : Fragment() {
 		).show()
 	}
 
-	private fun openUrl(
-		url: String,
-		executeCustomAction: Boolean = true,
-		searchIfNoUrl: Boolean = true
-	) {
-		if (activity == null || url.isEmpty()) {
-			return
+	private fun executeAction(content: ByteArray) {
+		if (activity != null && content.isNotEmpty()) scope.launch {
+			action.execute(activity, content)
 		}
-		var uri = Uri.parse(url)
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-			uri = uri.normalizeScheme()
-		}
-		val intent = Intent(Intent.ACTION_VIEW, uri)
-		when {
-			executeCustomAction && action != null -> action?.also { action ->
-				action.execute(activity, url.toByteArray())
-			}
-			intent.resolveActivity(activity.packageManager) != null -> {
-				startActivity(intent)
-			}
-			searchIfNoUrl -> pickSearchEngineAndSearch(activity, url)
-			else -> Toast.makeText(
-				activity,
-				R.string.cannot_resolve_action,
-				Toast.LENGTH_SHORT
-			).show()
-		}
-	}
-
-	private fun pickSearchEngineAndSearch(context: Context, query: String) {
-		val names = context.resources.getStringArray(
-			R.array.search_engines_names
-		).toMutableList()
-		val urls = context.resources.getStringArray(
-			R.array.search_engines_values
-		).toMutableList()
-		if (prefs.openWithUrl.isNotEmpty()) {
-			names.add(prefs.openWithUrl)
-			urls.add(prefs.openWithUrl)
-		}
-		AlertDialog.Builder(context)
-			.setTitle(R.string.pick_search_engine)
-			.setItems(names.toTypedArray()) { _, which ->
-				openUrl(
-					urls[which] + URLEncoder.encode(query, "utf-8"),
-					executeCustomAction = false,
-					searchIfNoUrl = false
-				)
-			}
-			.show()
 	}
 
 	// dialogs don't have a parent layout and must therefore be
@@ -247,6 +212,11 @@ class DecodeFragment : Fragment() {
 				}
 			}
 			.show()
+	}
+
+	override fun onDestroyView() {
+		parentJob.cancel()
+		super.onDestroyView()
 	}
 
 	companion object {
