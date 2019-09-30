@@ -58,4 +58,8 @@
 	<string name="otpauth_add">2FA hinzufügen</string>
 	<string name="otpauth_error">Konnte 2FA nicht hinzufügen</string>
 	<string name="search_web">Suche im Internet</string>
+	<string name="export_to_file">In Datei exportieren</string>
+	<string name="csv_delimiter">Welches Trennzeichen soll genutzt werden (CSV-Datei)?</string>
+	<string name="delimiter_comma">Komma</string>
+	<string name="delimiter_semicolon">Semikolon</string>
 </resources>

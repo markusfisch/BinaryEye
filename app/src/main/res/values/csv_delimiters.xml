@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="csv_delimiters_names">
+		<item>@string/delimiter_comma</item>
+		<item>@string/delimiter_semicolon</item>
+	</string-array>
+	<string-array name="csv_delimiters_values">
+		<item>,</item>
+		<item>;</item>
+	</string-array>
+</resources>
