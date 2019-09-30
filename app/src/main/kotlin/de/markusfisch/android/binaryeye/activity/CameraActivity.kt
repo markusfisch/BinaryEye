@@ -83,13 +83,19 @@ class CameraActivity : AppCompatActivity() {
 		initZoomBar()
 		restoreZoom()
 
-		if (intent?.action == Intent.ACTION_SEND) {
+		//Add a view action by Noromon :)
+		if ((intent?.action == Intent.ACTION_SEND) ){
 			if (intent.type == "text/plain") {
 				handleSendText(intent)
 			} else if (intent.type?.startsWith("image/") == true) {
 				handleSendImage(intent)
 			}
+		}else if(intent?.action == Intent.ACTION_VIEW){
+			if (intent.type?.startsWith("image/") == true) {
+				handleOpenImage(intent)
+			}
 		}
+
 	}
 
 	override fun onDestroy() {
@@ -221,6 +227,36 @@ class CameraActivity : AppCompatActivity() {
 			this,
 			R.string.no_barcode_found,
 			Toast.LENGTH_SHORT
+		).show()
+		finish()
+	}
+
+	//Added by Noromon :(
+	private fun handleOpenImage(intent: Intent) {
+		val uri = intent.getData() as? Uri ?: return
+		val bitmap = try {
+			MediaStore.Images.Media.getBitmap(contentResolver, uri)
+		} catch (e: IOException) {
+			null
+		}
+		if (bitmap == null) {
+			Toast.makeText(
+					this,
+					R.string.error_no_content,
+					Toast.LENGTH_SHORT
+			).show()
+			return
+		}
+		val result = zxing.decodePositiveNegative(downsizeIfBigger(bitmap, 1024))
+		if (result != null) {
+			showResult(result)
+			finish()
+			return
+		}
+		Toast.makeText(
+				this,
+				R.string.no_barcode_found,
+				Toast.LENGTH_SHORT
 		).show()
 		finish()
 	}
