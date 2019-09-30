@@ -204,36 +204,16 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun handleSendImage(intent: Intent) {
 		val uri = intent.getParcelableExtra<Parcelable>(Intent.EXTRA_STREAM) as? Uri ?: return
-		val bitmap = try {
-			MediaStore.Images.Media.getBitmap(contentResolver, uri)
-		} catch (e: IOException) {
-			null
-		}
-		if (bitmap == null) {
-			Toast.makeText(
-				this,
-				R.string.error_no_content,
-				Toast.LENGTH_SHORT
-			).show()
-			return
-		}
-		val result = zxing.decodePositiveNegative(downsizeIfBigger(bitmap, 1024))
-		if (result != null) {
-			showResult(result)
-			finish()
-			return
-		}
-		Toast.makeText(
-			this,
-			R.string.no_barcode_found,
-			Toast.LENGTH_SHORT
-		).show()
-		finish()
+		handleImageUri(uri)
 	}
 
 	//Added by Noromon :(
 	private fun handleOpenImage(intent: Intent) {
 		val uri = intent.getData() as? Uri ?: return
+		handleImageUri(uri)
+	}
+
+	private fun handleImageUri(uri: Uri) {
 		val bitmap = try {
 			MediaStore.Images.Media.getBitmap(contentResolver, uri)
 		} catch (e: IOException) {
