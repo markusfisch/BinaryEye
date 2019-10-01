@@ -83,13 +83,18 @@ class CameraActivity : AppCompatActivity() {
 		initZoomBar()
 		restoreZoom()
 
-		if (intent?.action == Intent.ACTION_SEND) {
+		if ((intent?.action == Intent.ACTION_SEND)) {
 			if (intent.type == "text/plain") {
 				handleSendText(intent)
 			} else if (intent.type?.startsWith("image/") == true) {
 				handleSendImage(intent)
 			}
+		} else if (intent?.action == Intent.ACTION_VIEW) {
+			if (intent.type?.startsWith("image/") == true) {
+				handleOpenImage(intent)
+			}
 		}
+
 	}
 
 	override fun onDestroy() {
@@ -198,6 +203,15 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun handleSendImage(intent: Intent) {
 		val uri = intent.getParcelableExtra<Parcelable>(Intent.EXTRA_STREAM) as? Uri ?: return
+		handleImageUri(uri)
+	}
+
+	private fun handleOpenImage(intent: Intent) {
+		val uri = intent.data ?: return
+		handleImageUri(uri)
+	}
+
+	private fun handleImageUri(uri: Uri) {
 		val bitmap = try {
 			MediaStore.Images.Media.getBitmap(contentResolver, uri)
 		} catch (e: IOException) {
