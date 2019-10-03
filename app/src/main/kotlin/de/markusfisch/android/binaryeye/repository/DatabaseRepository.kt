@@ -40,7 +40,7 @@ class DatabaseRepository {
 		)
 	}
 
-	fun <T> getScans(map: (Cursor) -> T): List<T> = db.getScans()?.asIterable?.map(map) ?: emptyList()
+	fun <T> getScans(map: (Cursor) -> T): List<T> = db.getScans()?.use { it.asIterable.map(map) } ?: emptyList()
 
 	fun getScansCursor(): Cursor? = db.getScans()
 
