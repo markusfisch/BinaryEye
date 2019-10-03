@@ -70,7 +70,7 @@ class DatabaseRepository {
 		}
 
 		fun toCSV(delimiter: String, allowBinary: Boolean): ByteArray {
-			val csvStart = "${timestamp.escaped(delimiter)}$delimiter${content.escaped(delimiter)}$delimiter${format.escaped(delimiter)}".toByteArray()
+			val csvStart = "${timestamp.escaped(delimiter)}$delimiter${format.escaped(delimiter)}$delimiter${content.escaped(delimiter)}".toByteArray()
 			val csvRaw = if (allowBinary) delimiter.toByteArray() + (raw ?: ByteArray(0)) else ByteArray(0)
 			return csvStart + csvRaw
 		}

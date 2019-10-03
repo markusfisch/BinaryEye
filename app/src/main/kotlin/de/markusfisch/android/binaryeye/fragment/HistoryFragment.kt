@@ -232,7 +232,10 @@ class HistoryFragment : Fragment() {
 		result.addAll(header.asList())
 
 		val content = this.map { it.toCSV(delimiter, allowBinary) }
-		for (line in content) result.addAll(line.asList())
+		for (line in content) result.apply {
+			addAll(line.asList())
+			add('\n'.toByte())
+		}
 
 		return result.toByteArray()
 	}
