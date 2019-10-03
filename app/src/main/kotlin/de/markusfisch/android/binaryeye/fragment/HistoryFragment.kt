@@ -2,7 +2,6 @@ package de.markusfisch.android.binaryeye.fragment
 
 import android.app.AlertDialog
 import android.content.Context
-import android.database.Cursor
 import android.os.Bundle
 import android.support.annotation.WorkerThread
 import android.support.v4.app.Fragment
@@ -19,6 +18,7 @@ import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.ScansAdapter
 import de.markusfisch.android.binaryeye.app.addFragment
+import de.markusfisch.android.binaryeye.app.alertDialog
 import de.markusfisch.android.binaryeye.app.askForFileName
 import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.hasWritePermission
@@ -26,14 +26,12 @@ import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.app.saveByteArray
 import de.markusfisch.android.binaryeye.app.shareText
 import de.markusfisch.android.binaryeye.app.useVisibility
-import de.markusfisch.android.binaryeye.data.Database
+import de.markusfisch.android.binaryeye.repository.DatabaseRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 class HistoryFragment : Fragment() {
 	private lateinit var listView: ListView
@@ -126,7 +124,7 @@ class HistoryFragment : Fragment() {
 
 	private fun update(context: Context) {
 		scope.launch {
-			val cursor = db.getScans()
+			val cursor = db.getScansCursor()
 			withContext(Dispatchers.Main) {
 				fab.visibility = if (cursor != null && cursor.count > 0) {
 					View.VISIBLE
@@ -146,23 +144,18 @@ class HistoryFragment : Fragment() {
 		}
 	}
 
-	private fun showScan(id: Long) = db.getScan(id)?.use { cursor ->
-		if (cursor.moveToFirst()) {
-			val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
-			val rawIndex = cursor.getColumnIndex(Database.SCANS_RAW)
-			val formatIndex = cursor.getColumnIndex(Database.SCANS_FORMAT)
-			try {
-				addFragment(
-					fragmentManager,
-					DecodeFragment.newInstance(
-						cursor.getString(contentIndex),
-						BarcodeFormat.valueOf(cursor.getString(formatIndex)),
-						cursor.getBlob(rawIndex)
-					)
+	private fun showScan(id: Long) = db.getScan(id)?.also { scan ->
+		try {
+			addFragment(
+				fragmentManager,
+				DecodeFragment.newInstance(
+					scan.content,
+					BarcodeFormat.valueOf(scan.format),
+					scan.raw
 				)
-			} catch (e: IllegalArgumentException) {
-				// shouldn't ever happen
-			}
+			)
+		} catch (e: IllegalArgumentException) {
+			// shouldn't ever happen
 		}
 	}
 
@@ -193,65 +186,55 @@ class HistoryFragment : Fragment() {
 	private fun askToExportToFile(context: Context) = scope.launch {
 		progressView.useVisibility {
 			if (!hasWritePermission(activity)) return@useVisibility
-			val scans = getScans {
-				withContext(Dispatchers.Main) {
-					suspendCoroutine<Boolean?> { continuation ->
-						AlertDialog.Builder(context)
-							//TODO add res strings
-							.setTitle("Allow binary data in output?")
-							.setMessage("You probably don't want to allow, that, as it probably breaks the file format.")
-							.setPositiveButton(android.R.string.no) { _, _ ->
-								continuation.resume(false)
-							}
-							.setNegativeButton(android.R.string.yes) { _, _ ->
-								continuation.resume(true)
-							}
-							.setNeutralButton(android.R.string.cancel) { _, _ ->
-								continuation.resume(null)
-							}
-							.setOnCancelListener {
-								continuation.resume(null)
-							}
-							.show()
+			val (getBinaries, scans) = getScans {
+				alertDialog(context) { resume ->
+					setTitle(R.string.csv_allow_binary)
+					setMessage(R.string.csv_allow_binary_message)
+					setPositiveButton(R.string.no) { _, _ ->
+						resume(false)
+					}
+					setNegativeButton(android.R.string.yes) { _, _ ->
+						resume(true)
+					}
+					setNeutralButton(android.R.string.cancel) { _, _ ->
+						resume(null)
 					}
 				}
 			} ?: return@useVisibility
 			val delimiters = context.resources.getStringArray(
 				R.array.csv_delimiters_values
 			)
-			val delimiter = withContext(Dispatchers.Main) {
-				suspendCoroutine<String?> { continuation ->
-					AlertDialog.Builder(context)
-						.setTitle(R.string.csv_delimiter)
-						.setItems(R.array.csv_delimiters_names) { _, which ->
-							continuation.resume(delimiters[which])
-						}
-						.setOnCancelListener {
-							continuation.resume(null)
-						}
-						.show()
+			val delimiter = alertDialog<String>(context) { resume ->
+				setTitle(R.string.csv_delimiter)
+				setItems(R.array.csv_delimiters_names) { _, which ->
+					resume(delimiters[which])
 				}
 			} ?: return@useVisibility
-			// TODO get other properties, otherwise it doesn't make any sense to call it csv
 			val name = withContext(Dispatchers.Main) { activity.askForFileName(suffix = "csv") } ?: return@useVisibility
-			val csv = mutableListOf<Byte>()
-			for ((content, binaryContent) in scans) {
-				if (binaryContent != null) {
-					csv.addAll(binaryContent.toList())
-				} else {
-					csv.addAll(content.toByteArray().toList())
-				}
-				csv.add('\n'.toByte())
-			}
-			val toastMessage = saveByteArray(name, csv.toByteArray())
+			val csv = scans.toCSV(delimiter, getBinaries)
+			val toastMessage = saveByteArray(name, csv)
 			if (toastMessage > 0) {
-				Toast.makeText(
-					context,
-					toastMessage,
-					Toast.LENGTH_SHORT
-				).show()
+				withContext(Dispatchers.Main) {
+					Toast.makeText(
+						context,
+						toastMessage,
+						Toast.LENGTH_SHORT
+					).show()
+				}
 			}
 		}
+	}
+
+	private fun List<DatabaseRepository.Scan>.toCSV(delimiter: String, allowBinary: Boolean): ByteArray {
+		val result = mutableListOf<Byte>()
+
+		val header = "DATE${delimiter}TYPE${delimiter}CONTENT${if (allowBinary) "${delimiter}BINARY_CONTENT" else ""}\n".toByteArray()
+		result.addAll(header.asList())
+
+		val content = this.map { it.toCSV(delimiter, allowBinary) }
+		for (line in content) result.addAll(line.asList())
+
+		return result.toByteArray()
 	}
 
 	private fun pickListSeparatorAndShare(context: Context) {
@@ -270,8 +253,8 @@ class HistoryFragment : Fragment() {
 		scope.launch {
 			progressView.useVisibility {
 				val sb = StringBuilder()
-				getScans { false }?.forEach {
-					sb.append(it.first)
+				getScans { false }?.second?.forEach {
+					sb.append(it.content)
 					sb.append(separator)
 				}
 				val text = sb.toString()
@@ -282,34 +265,15 @@ class HistoryFragment : Fragment() {
 		}
 	}
 
-	// TODO move this stuff into repo ?!
 	@WorkerThread
-	private suspend inline fun getScans(crossinline binaryData: suspend () -> Boolean?): List<Pair<String, ByteArray?>>? {
-		return db.getScans()?.use { cursor ->
-			if (cursor.count <= 0) return@use null
-			val getBinaries: Boolean = db.hasBinaryData() && binaryData() ?: return@use null
-			val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
-			val idIndex = if (getBinaries) cursor.getColumnIndex(Database.SCANS_ID) else 0
-			return cursor.asIterable.mapNotNull {
-				val content = cursor.getString(contentIndex)
-				return@mapNotNull when {
-					content.isNotEmpty() -> content to null
-					getBinaries -> db.getScan(cursor.getLong(idIndex))?.use scanUse@{ scanCursor ->
-						if (!cursor.moveToFirst()) return@mapNotNull null
-						val scanRawIndex = scanCursor.getColumnIndex(Database.SCANS_RAW)
-						content to cursor.getBlob(scanRawIndex)
-					}
-					else -> null
-				}
+	private suspend inline fun getScans(crossinline binaryData: suspend () -> Boolean?): Pair<Boolean, List<DatabaseRepository.Scan>>? {
+		val getBinaries: Boolean = db.hasBinaryData() && binaryData() ?: return null
+		return getBinaries to db.getScans().mapNotNull {
+			when {
+				it.content.isNotEmpty() -> db.getScan(it.id)
+				getBinaries -> db.getScan(it.id)
+				else -> null
 			}
 		}
 	}
 }
-
-private val Cursor.asIterable: Iterable<Cursor>
-	get() = object : Iterable<Cursor> {
-		override fun iterator(): Iterator<Cursor> = object : Iterator<Cursor> {
-			override fun hasNext(): Boolean = position + 1 < count
-			override fun next(): Cursor = if (moveToNext()) this@asIterable else throw IllegalStateException("You can't access more items, then there are")
-		}
-	}

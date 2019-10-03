@@ -37,15 +37,14 @@ class Database {
 		""", arrayOf("$id")
 	)
 
-	// TODO move transformation from Cursor? to Boolean into repo ?!
-	fun hasBinaryData(): Boolean = db.rawQuery(
+	fun hasBinaryData(): Cursor? = db.rawQuery(
 		"""	SELECT 
 			1
 			FROM $SCANS
 			WHERE $SCANS_RAW IS NOT NULL
 			LIMIT 1
 		""", null
-	)?.use { it.count > 0 } ?: false
+	)
 
 	fun insertScan(
 		timestamp: Long,
