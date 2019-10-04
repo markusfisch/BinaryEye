@@ -60,21 +60,6 @@ class DatabaseRepository {
 	data class SimpleScan(val id: Long, val timestamp: String, val content: String, val format: String)
 
 	data class Scan(val id: Long, val timestamp: String, val content: String, val raw: ByteArray?, val format: String) {
-		private fun Any.escaped(delimiter: String): String {
-			val any = this.toString()
-			return when {
-				any.run { contains('"') || contains('\n') || contains(delimiter) } ->
-					"\"${any.replace("\"", "\"\"").replace(delimiter, "\"$delimiter")}\""
-				else -> any
-			}
-		}
-
-		fun toCSV(delimiter: String, allowBinary: Boolean): ByteArray {
-			val csvStart = "${timestamp.escaped(delimiter)}$delimiter${format.escaped(delimiter)}$delimiter${content.escaped(delimiter)}".toByteArray()
-			val csvRaw = if (allowBinary) delimiter.toByteArray() + (raw ?: ByteArray(0)) else ByteArray(0)
-			return csvStart + csvRaw
-		}
-
 		// Needed to be overwritten manually, as ByteArray is an array and this isn't handled well by Kotlin
 		override fun equals(other: Any?): Boolean {
 			if (this === other) return true

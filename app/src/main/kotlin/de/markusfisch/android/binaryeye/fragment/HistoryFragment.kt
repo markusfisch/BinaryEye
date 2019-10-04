@@ -26,6 +26,7 @@ import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.app.saveByteArray
 import de.markusfisch.android.binaryeye.app.shareText
 import de.markusfisch.android.binaryeye.app.useVisibility
+import de.markusfisch.android.binaryeye.data.csv.csvBuilder
 import de.markusfisch.android.binaryeye.repository.DatabaseRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -226,18 +227,25 @@ class HistoryFragment : Fragment() {
 	}
 
 	private fun List<DatabaseRepository.Scan>.toCSV(delimiter: String, allowBinary: Boolean): ByteArray {
-		val result = mutableListOf<Byte>()
-
-		val header = "DATE${delimiter}TYPE${delimiter}CONTENT${if (allowBinary) "${delimiter}BINARY_CONTENT" else ""}\n".toByteArray()
-		result.addAll(header.asList())
-
-		val content = this.map { it.toCSV(delimiter, allowBinary) }
-		for (line in content) result.apply {
-			addAll(line.asList())
-			add('\n'.toByte())
-		}
-
-		return result.toByteArray()
+		return csvBuilder<DatabaseRepository.Scan> {
+			column {
+				name = "DATE"
+				gettingByString { it.timestamp }
+			}
+			column {
+				name = "TYPE"
+				gettingByString { it.format }
+			}
+			column {
+				name = "CONTENT"
+				gettingByString { it.content }
+			}
+			if (allowBinary) column {
+				isBinary = true
+				name = "BINARY_CONTENT"
+				gettingBy { it.raw ?: ByteArray(0) }
+			}
+		}.buildWith(this, delimiter)
 	}
 
 	private fun pickListSeparatorAndShare(context: Context) {
