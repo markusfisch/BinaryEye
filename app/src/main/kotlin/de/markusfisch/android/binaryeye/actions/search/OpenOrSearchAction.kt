@@ -1,17 +1,15 @@
 package de.markusfisch.android.binaryeye.actions.search
 
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.IAction
+import de.markusfisch.android.binaryeye.app.alertDialog
 import de.markusfisch.android.binaryeye.app.execShareIntent
 import de.markusfisch.android.binaryeye.app.parseAndNormalizeUri
 import de.markusfisch.android.binaryeye.app.prefs
 import java.net.URLEncoder
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 object OpenOrSearchAction : IAction {
 	override val iconResId: Int = R.drawable.ic_action_search
@@ -50,16 +48,11 @@ object OpenOrSearchAction : IAction {
 			names.add(prefs.openWithUrl)
 			urls.add(prefs.openWithUrl)
 		}
-		val queryUri = suspendCoroutine<String?> { continuation ->
-			AlertDialog.Builder(context)
-				.setTitle(R.string.pick_search_engine)
-				.setItems(names.toTypedArray()) { _, which ->
-					continuation.resume(urls[which] + URLEncoder.encode(query, "utf-8"))
-				}
-				.setOnCancelListener {
-					continuation.resume(null)
-				}
-				.show()
+		val queryUri = alertDialog<String>(context) { resume ->
+			setTitle(R.string.pick_search_engine)
+			setItems(names.toTypedArray()) { _, which ->
+				resume(urls[which] + URLEncoder.encode(query, "utf-8"))
+			}
 		} ?: return null
 		return openUri(context, queryUri, false)
 	}

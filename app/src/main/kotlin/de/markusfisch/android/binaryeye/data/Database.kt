@@ -37,6 +37,15 @@ class Database {
 		""", arrayOf("$id")
 	)
 
+	fun hasBinaryData(): Cursor? = db.rawQuery(
+		"""	SELECT 
+			1
+			FROM $SCANS
+			WHERE $SCANS_RAW IS NOT NULL
+			LIMIT 1
+		""", null
+	)
+
 	fun insertScan(
 		timestamp: Long,
 		content: String,

@@ -1,10 +1,7 @@
 package de.markusfisch.android.binaryeye.fragment
 
-import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
-import android.os.Environment
 import android.support.v4.app.Fragment
 import android.text.ClipboardManager
 import android.text.Editable
@@ -23,15 +20,15 @@ import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
 import de.markusfisch.android.binaryeye.app.addFragment
+import de.markusfisch.android.binaryeye.app.askForFileName
 import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
 import de.markusfisch.android.binaryeye.app.hasWritePermission
+import de.markusfisch.android.binaryeye.app.saveByteArray
 import de.markusfisch.android.binaryeye.app.shareText
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import java.io.File
-import java.io.IOException
 
 class DecodeFragment : Fragment() {
 	private lateinit var contentView: EditText
@@ -188,30 +185,21 @@ class DecodeFragment : Fragment() {
 		}
 	}
 
-	// dialogs don't have a parent layout and must therefore be
-	// inflated with a null root layout
-	@SuppressLint("InflateParams")
 	private fun askForFileNameAndSave(raw: ByteArray) {
 		val ac = activity ?: return
-		val view = ac.layoutInflater.inflate(R.layout.dialog_save_file, null)
-		val editText = view.findViewById<EditText>(R.id.file_name)
-		AlertDialog.Builder(ac)
-			.setView(view)
-			.setPositiveButton(android.R.string.ok) { _, _ ->
-				if (hasWritePermission(ac)) {
-					val messageId = saveByteArray(
-						editText.text.toString(),
-						raw
-					)
-					if (messageId > 0) {
-						Toast.makeText(
-							ac, messageId,
-							Toast.LENGTH_SHORT
-						).show()
-					}
-				}
+		if (!hasWritePermission(ac)) return
+		scope.launch(Dispatchers.Main) {
+			val name = ac.askForFileName() ?: return@launch
+
+			val messageId = saveByteArray(name, raw)
+			if (messageId > 0) {
+				Toast.makeText(
+					ac,
+					messageId,
+					Toast.LENGTH_SHORT
+				).show()
 			}
-			.show()
+		}
 	}
 
 	override fun onDestroyView() {
@@ -281,22 +269,4 @@ private fun hexDump(bytes: ByteArray, charsPerLine: Int): String {
 		}
 	}
 	return dump.toString()
-}
-
-fun saveByteArray(name: String, raw: ByteArray): Int {
-	return try {
-		val file = File(
-			Environment.getExternalStoragePublicDirectory(
-				Environment.DIRECTORY_DOWNLOADS
-			),
-			name
-		)
-		if (file.exists()) {
-			return R.string.error_file_exists
-		}
-		file.writeBytes(raw)
-		0
-	} catch (e: IOException) {
-		R.string.error_saving_binary_data
-	}
 }
