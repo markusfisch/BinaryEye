@@ -18,7 +18,7 @@ fun initSystemBars(activity: AppCompatActivity?) {
 }
 
 fun setWindowInsetListener(view: View) {
-	ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
+	ViewCompat.setOnApplyWindowInsetsListener(view) { _, insets ->
 		if (insets.hasSystemWindowInsets()) {
 			view.setPadding(
 				insets.getSystemWindowInsetLeft(),
