@@ -29,7 +29,11 @@ private fun getTransaction(
 	return fm.beginTransaction().replace(R.id.content_frame, fragment)
 }
 
-suspend inline fun View.useVisibility(whileExecuting: Int = View.VISIBLE, otherwise: Int = View.GONE, crossinline block: suspend () -> Unit) {
+suspend inline fun View.useVisibility(
+	whileExecuting: Int = View.VISIBLE,
+	otherwise: Int = View.GONE,
+	crossinline block: suspend () -> Unit
+) {
 	if (visibility == whileExecuting) return
 	withContext(Dispatchers.Main) {
 		visibility = whileExecuting
@@ -43,7 +47,10 @@ suspend inline fun View.useVisibility(whileExecuting: Int = View.VISIBLE, otherw
 	}
 }
 
-suspend inline fun <T : Any> alertDialog(context: Context, crossinline build: AlertDialog.Builder.(resume: (T?) -> Unit) -> Unit): T? = withContext(Dispatchers.Main) {
+suspend inline fun <T : Any> alertDialog(
+	context: Context,
+	crossinline build: AlertDialog.Builder.(resume: (T?) -> Unit) -> Unit
+): T? = withContext(Dispatchers.Main) {
 	suspendCoroutine<T?> { continuation ->
 		AlertDialog.Builder(context).apply {
 			setOnCancelListener {

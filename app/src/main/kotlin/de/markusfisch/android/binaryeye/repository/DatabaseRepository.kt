@@ -25,7 +25,8 @@ class DatabaseRepository {
 		)
 	}
 
-	fun <T> getScan(id: Long, map: (id: Long, Cursor) -> T): T? = db.getScan(id)?.use { map(id, it.apply { moveToFirst() }) }
+	fun <T> getScan(id: Long, map: (id: Long, Cursor) -> T): T? =
+		db.getScan(id)?.use { map(id, it.apply { moveToFirst() }) }
 
 	fun getScans(): List<SimpleScan> = getScans { cursor ->
 		val idIndex = cursor.getColumnIndex(Database.SCANS_ID)
@@ -40,7 +41,8 @@ class DatabaseRepository {
 		)
 	}
 
-	fun <T> getScans(map: (Cursor) -> T): List<T> = db.getScans()?.use { it.asIterable.map(map) } ?: emptyList()
+	fun <T> getScans(map: (Cursor) -> T): List<T> =
+		db.getScans()?.use { it.asIterable.map(map) } ?: emptyList()
 
 	fun getScansCursor(): Cursor? = db.getScans()
 
@@ -57,9 +59,20 @@ class DatabaseRepository {
 
 	fun removeScans() = db.removeScans()
 
-	data class SimpleScan(val id: Long, val timestamp: String, val content: String, val format: String)
+	data class SimpleScan(
+		val id: Long,
+		val timestamp: String,
+		val content: String,
+		val format: String
+	)
 
-	data class Scan(val id: Long, val timestamp: String, val content: String, val raw: ByteArray?, val format: String) {
+	data class Scan(
+		val id: Long,
+		val timestamp: String,
+		val content: String,
+		val raw: ByteArray?,
+		val format: String
+	) {
 		// Needed to be overwritten manually, as ByteArray is an array and this isn't handled well by Kotlin
 		override fun equals(other: Any?): Boolean {
 			if (this === other) return true
@@ -95,6 +108,7 @@ private val Cursor.asIterable: Iterable<Cursor>
 	get() = object : Iterable<Cursor> {
 		override fun iterator(): Iterator<Cursor> = object : Iterator<Cursor> {
 			override fun hasNext(): Boolean = position + 1 < count
-			override fun next(): Cursor = if (moveToNext()) this@asIterable else throw IllegalStateException("You can't access more items, then there are")
+			override fun next(): Cursor =
+				if (moveToNext()) this@asIterable else throw IllegalStateException("You can't access more items, then there are")
 		}
 	}

@@ -211,7 +211,8 @@ class HistoryFragment : Fragment() {
 					resume(delimiters[which])
 				}
 			} ?: return@useVisibility
-			val name = withContext(Dispatchers.Main) { activity.askForFileName(suffix = "csv") } ?: return@useVisibility
+			val name = withContext(Dispatchers.Main) { activity.askForFileName(suffix = "csv") }
+				?: return@useVisibility
 			val csv = scans.toCSV(delimiter, getBinaries)
 			val toastMessage = saveByteArray(name, csv)
 			if (toastMessage > 0) {
@@ -226,7 +227,10 @@ class HistoryFragment : Fragment() {
 		}
 	}
 
-	private fun List<DatabaseRepository.Scan>.toCSV(delimiter: String, allowBinary: Boolean): ByteArray {
+	private fun List<DatabaseRepository.Scan>.toCSV(
+		delimiter: String,
+		allowBinary: Boolean
+	): ByteArray {
 		return csvBuilder<DatabaseRepository.Scan> {
 			column {
 				name = "DATE"

@@ -49,7 +49,12 @@ class CSVBuilder<T> {
 	}
 
 	private fun List<ByteArray>.addDelimiter(delimiter: String): List<ByteArray> {
-		return mapIndexed { index, content -> if (index != size - 1) listOf(content, delimiter.toByteArray()) else listOf(content) }.flatten()
+		return mapIndexed { index, content ->
+			if (index != size - 1) listOf(
+				content,
+				delimiter.toByteArray()
+			) else listOf(content)
+		}.flatten()
 	}
 
 	private fun List<ByteArray>.flatten(): ByteArray {

@@ -18,7 +18,7 @@ suspend fun Activity.askForFileName(suffix: String? = null): String? {
 		setView(view)
 		setPositiveButton(android.R.string.ok) { _, _ ->
 			resume(editText.text.toString())
-			}
+		}
 	}?.let { name ->
 		if (suffix != null && !name.endsWith(".$suffix")) {
 			"${name.trim()}.$suffix"

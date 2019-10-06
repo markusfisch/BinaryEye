@@ -14,7 +14,14 @@ object ActionRegistry {
 	val DEFAULT_ACTION: IAction = OpenOrSearchAction
 
 	val REGISTRY: Set<IAction> = setOf(
-		MailAction, OtpauthAction, SmsAction, TelAction, VCardAction, VEventAction, WebAction, WifiAction
+		MailAction,
+		OtpauthAction,
+		SmsAction,
+		TelAction,
+		VCardAction,
+		VEventAction,
+		WebAction,
+		WifiAction
 	)
 
 	fun getAction(data: ByteArray): IAction = REGISTRY.find {

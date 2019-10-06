@@ -73,7 +73,7 @@ object WifiAction : IAction {
 	) {
 		configuredNetworks?.firstOrNull {
 			it.SSID == wifiConfig.SSID &&
-				it.allowedKeyManagement == wifiConfig.allowedKeyManagement
+					it.allowedKeyManagement == wifiConfig.allowedKeyManagement
 		}?.networkId?.also {
 			removeNetwork(it)
 		}
