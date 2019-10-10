@@ -19,12 +19,11 @@ val systemBarScrollListener = object : AbsListView.OnScrollListener {
 		totalItemCount: Int
 	) {
 		view.post({
-			setSystemAndToolBarTransparency(
-				view.context,
-				firstVisibleItem > 0 || (totalItemCount > 0 && (
-						view.getChildAt(view.lastVisiblePosition).bottom >
-								view.height || view.getChildAt(0).top < 0))
-			)
+			val scrolled = firstVisibleItem > 0 ||
+					(totalItemCount > 0 && view.getChildAt(0).top < 0)
+			val scrollable = if (scrolled) true else totalItemCount > 0 &&
+					view.getChildAt(view.lastVisiblePosition).bottom > view.height
+			setSystemAndToolBarTransparency(view.context, scrolled, scrollable)
 		})
 	}
 
@@ -35,25 +34,22 @@ val systemBarScrollListener = object : AbsListView.OnScrollListener {
 	}
 }
 
-fun setSystemAndToolBarTransparency(context: Context, opaque: Boolean = false) {
-	val color = ContextCompat.getColor(
-		context,
-		if (opaque) {
-			R.color.primary
-		} else {
-			android.R.color.transparent
-		}
-	)
+fun setSystemAndToolBarTransparency(
+	context: Context,
+	scrolled: Boolean = false,
+	scrollable: Boolean = false
+) {
+	val opaqueColor = ContextCompat.getColor(context, R.color.primary)
+	val transparentColor = 0x00000000.toInt()
+	val topColor = if (scrolled) opaqueColor else transparentColor
+	val bottomColor = if (scrolled || scrollable) opaqueColor else transparentColor
 	val activity = context as AppCompatActivity
-	setSystemBarColor(activity.window, color)
-	activity.supportActionBar?.setBackgroundDrawable(ColorDrawable(color))
-}
-
-private fun setSystemBarColor(window: Window, color: Int) {
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-		window.statusBarColor = color
-		window.navigationBarColor = color
+		val window = activity.window
+		window.statusBarColor = topColor
+		window.navigationBarColor = bottomColor
 	}
+	activity.supportActionBar?.setBackgroundDrawable(ColorDrawable(topColor))
 }
 
 fun initSystemBars(activity: AppCompatActivity?) {
