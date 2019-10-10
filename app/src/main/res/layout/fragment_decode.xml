@@ -4,7 +4,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
-	<ScrollView
+	<de.markusfisch.android.binaryeye.widget.ConfinedScrollView
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 		<RelativeLayout
@@ -49,7 +49,7 @@
 				tools:text="54 65 73 74 20 51 52 20  Test QR\n43 6F 64 65              Code"/>
 
 		</RelativeLayout>
-	</ScrollView>
+	</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>
 	<android.support.design.widget.FloatingActionButton
 		tools:ignore="UnusedAttribute"
 		android:id="@+id/share"

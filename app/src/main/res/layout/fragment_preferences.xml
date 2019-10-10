@@ -1,30 +1,34 @@
-<LinearLayout
+<de.markusfisch.android.binaryeye.widget.ConfinedScrollView
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:padding="16dp"
-	android:orientation="vertical">
-	<android.support.v7.widget.SwitchCompat
-		android:id="@+id/use_history"
+	android:layout_height="match_parent">
+	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="32dp"
-		android:text="@string/use_history"/>
-	<TextView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:text="@string/open_with_url"/>
-	<EditText
-		tools:targetApi="o"
-		android:id="@+id/open_with_url"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="32dp"
-		android:gravity="start|top"
-		android:typeface="monospace"
-		android:imeOptions="flagNoExtractUi"
-		android:inputType="textUri"
-		android:hint="@string/open_with_url_hint"
-		android:importantForAutofill="no"/>
-</LinearLayout>
+		android:layout_height="match_parent"
+		android:padding="16dp"
+		android:orientation="vertical">
+		<android.support.v7.widget.SwitchCompat
+			android:id="@+id/use_history"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="32dp"
+			android:text="@string/use_history"/>
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/open_with_url"/>
+		<EditText
+			tools:targetApi="o"
+			android:id="@+id/open_with_url"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="32dp"
+			android:gravity="start|top"
+			android:typeface="monospace"
+			android:imeOptions="flagNoExtractUi"
+			android:inputType="textUri"
+			android:hint="@string/open_with_url_hint"
+			android:importantForAutofill="no"/>
+	</LinearLayout>
+</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>

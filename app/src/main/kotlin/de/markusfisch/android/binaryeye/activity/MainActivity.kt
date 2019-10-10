@@ -10,6 +10,7 @@ import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.initSystemBars
 import de.markusfisch.android.binaryeye.app.setFragment
+import de.markusfisch.android.binaryeye.app.setSystemAndToolBarTransparency
 import de.markusfisch.android.binaryeye.fragment.DecodeFragment
 import de.markusfisch.android.binaryeye.fragment.EncodeFragment
 import de.markusfisch.android.binaryeye.fragment.HistoryFragment
@@ -33,6 +34,10 @@ class MainActivity : AppCompatActivity() {
 
 		setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+		supportFragmentManager.addOnBackStackChangedListener({
+			setSystemAndToolBarTransparency(this@MainActivity)
+		})
 
 		if (state == null) {
 			setFragment(

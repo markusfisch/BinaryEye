@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AlertDialog
 import android.view.View
 import de.markusfisch.android.binaryeye.R
@@ -25,9 +24,7 @@ fun addFragment(fm: FragmentManager?, fragment: Fragment) {
 private fun getTransaction(
 	fm: FragmentManager,
 	fragment: Fragment
-): FragmentTransaction {
-	return fm.beginTransaction().replace(R.id.content_frame, fragment)
-}
+) = fm.beginTransaction().replace(R.id.content_frame, fragment)
 
 suspend inline fun View.useVisibility(
 	whileExecuting: Int = View.VISIBLE,

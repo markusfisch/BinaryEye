@@ -24,6 +24,7 @@ import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.hasWritePermission
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.app.saveByteArray
+import de.markusfisch.android.binaryeye.app.systemBarScrollListener
 import de.markusfisch.android.binaryeye.app.shareText
 import de.markusfisch.android.binaryeye.app.useVisibility
 import de.markusfisch.android.binaryeye.data.csv.csvBuilder
@@ -74,6 +75,7 @@ class HistoryFragment : Fragment() {
 			askToRemoveScan(v.context, id)
 			true
 		}
+		listView.setOnScrollListener(systemBarScrollListener)
 
 		fab = view.findViewById(R.id.share)
 		fab.setOnClickListener { v ->

@@ -79,7 +79,8 @@ class EncodeFragment : Fragment() {
 			} else {
 				hideSoftKeyboard(contentView)
 				addFragment(
-					fragmentManager, BarcodeFragment.newInstance(
+					fragmentManager,
+					BarcodeFragment.newInstance(
 						content,
 						format,
 						size
