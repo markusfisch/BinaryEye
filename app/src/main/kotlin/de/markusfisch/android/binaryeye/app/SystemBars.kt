@@ -7,7 +7,6 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.view.Window
 import android.widget.AbsListView
 import de.markusfisch.android.binaryeye.R
 
@@ -18,13 +17,13 @@ val systemBarScrollListener = object : AbsListView.OnScrollListener {
 		visibleItemCount: Int,
 		totalItemCount: Int
 	) {
-		view.post({
+		view.post {
 			val scrolled = firstVisibleItem > 0 ||
 					(totalItemCount > 0 && view.getChildAt(0).top < 0)
 			val scrollable = if (scrolled) true else totalItemCount > 0 &&
 					view.getChildAt(view.lastVisiblePosition).bottom > view.height
 			setSystemAndToolBarTransparency(view.context, scrolled, scrollable)
-		})
+		}
 	}
 
 	override fun onScrollStateChanged(
@@ -40,7 +39,7 @@ fun setSystemAndToolBarTransparency(
 	scrollable: Boolean = false
 ) {
 	val opaqueColor = ContextCompat.getColor(context, R.color.primary)
-	val transparentColor = 0x00000000.toInt()
+	val transparentColor = 0x00000000
 	val topColor = if (scrolled) opaqueColor else transparentColor
 	val bottomColor = if (scrolled || scrollable) opaqueColor else transparentColor
 	val activity = context as AppCompatActivity
@@ -52,9 +51,10 @@ fun setSystemAndToolBarTransparency(
 	activity.supportActionBar?.setBackgroundDrawable(ColorDrawable(topColor))
 }
 
-fun initSystemBars(activity: AppCompatActivity?) {
-	val view = activity?.findViewById(R.id.main_layout) ?: return
-	setWindowInsetListener(view)
+fun initSystemBars(activity: AppCompatActivity) {
+	activity.findViewById(R.id.main_layout)?.also { view ->
+		setWindowInsetListener(view)
+	}
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 		activity.window.decorView.systemUiVisibility =
 			View.SYSTEM_UI_FLAG_LAYOUT_STABLE or

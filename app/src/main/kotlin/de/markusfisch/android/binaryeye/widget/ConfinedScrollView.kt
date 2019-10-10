@@ -6,7 +6,7 @@ import android.widget.ScrollView
 import de.markusfisch.android.binaryeye.app.setSystemAndToolBarTransparency
 
 class ConfinedScrollView : ScrollView {
-	var scrollable = false
+	private var scrollable = false
 
 	constructor(context: Context, attrs: AttributeSet, defStyle: Int) :
 			super(context, attrs, defStyle)
@@ -23,7 +23,7 @@ class ConfinedScrollView : ScrollView {
 	) {
 		super.onLayout(changed, left, top, right, bottom)
 		if (changed) {
-			post({
+			post {
 				getChildAt(0)?.also { child ->
 					scrollable = height < child.height + paddingTop + paddingBottom
 					setSystemAndToolBarTransparency(
@@ -32,7 +32,7 @@ class ConfinedScrollView : ScrollView {
 						scrollable
 					)
 				}
-			})
+			}
 		}
 	}
 
