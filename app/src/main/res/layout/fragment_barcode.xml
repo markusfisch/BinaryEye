@@ -4,7 +4,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
-	<de.markusfisch.android.scalingimageview.widget.ScalingImageView
+	<de.markusfisch.android.binaryeye.widget.ConfinedScalingImageView
 		android:id="@+id/barcode"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
