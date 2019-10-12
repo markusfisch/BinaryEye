@@ -1,5 +1,11 @@
 # Change Log
 
+# 1.15.0
+* Additionally export history as CSV file
+* Color tool and system bars when a view is scrolled
+* Add an intent filter for opening images
+* Add Russian translation
+
 # 1.14.0
 * Add OTP support
 * Update Indonesian translation
