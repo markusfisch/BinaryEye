@@ -6,6 +6,8 @@ import android.os.Environment
 import android.support.annotation.MainThread
 import android.widget.EditText
 import de.markusfisch.android.binaryeye.R
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import java.io.File
 import java.io.IOException
 
@@ -28,7 +30,7 @@ suspend fun Activity.askForFileName(suffix: String? = null): String? {
 	}
 }
 
-fun saveByteArray(name: String, raw: ByteArray): Int {
+suspend fun Flow<ByteArray>.writeToFile(name: String): Int {
 	return try {
 		val file = File(
 			Environment.getExternalStoragePublicDirectory(
@@ -39,7 +41,9 @@ fun saveByteArray(name: String, raw: ByteArray): Int {
 		if (file.exists()) {
 			return R.string.error_file_exists
 		}
-		file.writeBytes(raw)
+		collect { bytes ->
+			file.appendBytes(bytes)
+		}
 		R.string.saved_in_downloads
 	} catch (e: IOException) {
 		R.string.error_saving_binary_data

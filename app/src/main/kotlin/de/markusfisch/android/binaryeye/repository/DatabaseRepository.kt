@@ -3,6 +3,11 @@ package de.markusfisch.android.binaryeye.repository
 import android.content.Context
 import android.database.Cursor
 import de.markusfisch.android.binaryeye.data.Database
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 
 class DatabaseRepository {
 	private val db = Database()
@@ -28,7 +33,7 @@ class DatabaseRepository {
 	fun <T> getScan(id: Long, map: (id: Long, Cursor) -> T): T? =
 		db.getScan(id)?.use { map(id, it.apply { moveToFirst() }) }
 
-	fun getScans(): List<SimpleScan> = getScans { cursor ->
+	fun getScans(): Flow<SimpleScan> = getScans { cursor ->
 		val idIndex = cursor.getColumnIndex(Database.SCANS_ID)
 		val timeIndex = cursor.getColumnIndex(Database.SCANS_DATETIME)
 		val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
@@ -41,8 +46,13 @@ class DatabaseRepository {
 		)
 	}
 
-	fun <T> getScans(map: (Cursor) -> T): List<T> =
-		db.getScans()?.use { it.asIterable.map(map) } ?: emptyList()
+	fun <T> getScans(map: suspend (Cursor) -> T): Flow<T> = flow {
+		db.getScans()?.use { results ->
+			results.asIterable.forEach {
+				emit(it)
+			}
+		}
+	}.map(map).flowOn(Dispatchers.IO)
 
 	fun getScansCursor(): Cursor? = db.getScans()
 
