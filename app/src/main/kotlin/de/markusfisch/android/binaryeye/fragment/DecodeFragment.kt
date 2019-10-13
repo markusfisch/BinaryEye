@@ -23,11 +23,12 @@ import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.askForFileName
 import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
 import de.markusfisch.android.binaryeye.app.hasWritePermission
-import de.markusfisch.android.binaryeye.app.saveByteArray
 import de.markusfisch.android.binaryeye.app.shareText
+import de.markusfisch.android.binaryeye.app.writeToFile
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 
 class DecodeFragment : Fragment() {
@@ -190,15 +191,12 @@ class DecodeFragment : Fragment() {
 		if (!hasWritePermission(ac)) return
 		scope.launch(Dispatchers.Main) {
 			val name = ac.askForFileName() ?: return@launch
-
-			val messageId = saveByteArray(name, raw)
-			if (messageId > 0) {
-				Toast.makeText(
-					ac,
-					messageId,
-					Toast.LENGTH_SHORT
-				).show()
-			}
+			val message = flowOf(raw).writeToFile(name)
+			Toast.makeText(
+				ac,
+				message,
+				Toast.LENGTH_SHORT
+			).show()
 		}
 	}
 

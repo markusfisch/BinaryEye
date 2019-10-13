@@ -1,5 +1,14 @@
 package de.markusfisch.android.binaryeye.data.csv
 
+import de.markusfisch.android.binaryeye.app.addDelimiter
+import de.markusfisch.android.binaryeye.app.asFlowWith
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.flattenConcat
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
+
 fun <T> csvBuilder(config: CSVBuilder<T>.() -> Unit): CSVBuilder<T> {
 	return CSVBuilder<T>().apply(config)
 }
@@ -27,44 +36,39 @@ class CSVBuilder<T> {
 		}
 	}
 
-	fun buildWith(inputs: List<T>, delimiter: String): ByteArray {
-		val header = columns.map {
-			it.name?.escaped(delimiter)?.toByteArray()
-				?: throw IllegalStateException("You need to provide a name for csv column")
-		}.addDelimiter(delimiter).flatten()
+	fun buildWith(inputs: Flow<T>, delimiter: String): Flow<ByteArray> = flow {
+		val columnsFlow = columns.asFlow()
 
-		val contentLines = inputs.map { input ->
-			columns.map {
-				it.gettingBy?.run {
-					var result = invoke(input)
-					if (!it.isBinary) {
-						result = String(result).escaped(delimiter).toByteArray()
-					}
-					return@run result
-				} ?: throw IllegalStateException("You need to provide a getter for the value")
-			}.addDelimiter(delimiter).flatten()
-		}.addDelimiter("\n").flatten()
+		val header = columnsFlow.buildHeader(delimiter)
 
-		return header + '\n'.toByte() + contentLines
+		val contentLines = inputs.buildContent(columnsFlow, delimiter)
+
+		emitAll(header)
+		emit("\n".toByteArray())
+		emitAll(contentLines)
 	}
 
-	private fun List<ByteArray>.addDelimiter(delimiter: String): List<ByteArray> {
-		return mapIndexed { index, content ->
-			if (index != size - 1) listOf(
-				content,
-				delimiter.toByteArray()
-			) else listOf(content)
-		}.flatten()
-	}
+	private fun Flow<ColumnBuilder>.buildHeader(delimiter: String) = map {
+		it.name?.escaped(delimiter)?.toByteArray()
+			?: throw IllegalStateException("You need to provide a name for csv column")
+	}.addDelimiter(delimiter)
 
-	private fun List<ByteArray>.flatten(): ByteArray {
-		val result = ByteArray(this.sumBy { it.size })
-		var index = 0
-		for (byteArray in this) {
-			for (byte in byteArray) result[index++] = byte
-		}
-		return result
-	}
+	private fun Flow<T>.buildContent(columnsFlow: Flow<ColumnBuilder>, delimiter: String): Flow<ByteArray> = map { input ->
+		input.getLine(columnsFlow, delimiter)
+	}.addDelimiter("\n".toByteArray()) { other: Flow<ByteArray> ->
+		// this: ByteArray
+		this asFlowWith other
+	}.flattenConcat()
+
+	private fun T.getLine(columnsFlow: Flow<ColumnBuilder>, delimiter: String): Flow<ByteArray> = columnsFlow.map { column ->
+		column.gettingBy?.run {
+			var result = invoke(this@getLine)
+			if (!column.isBinary) {
+				result = String(result).escaped(delimiter).toByteArray()
+			}
+			return@run result
+		} ?: throw IllegalStateException("You need to provide a getter for the value")
+	}.addDelimiter(delimiter)
 
 	private fun Any.escaped(delimiter: String): String {
 		val any = this.toString()

@@ -23,15 +23,18 @@ import de.markusfisch.android.binaryeye.app.askForFileName
 import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.hasWritePermission
 import de.markusfisch.android.binaryeye.app.prefs
-import de.markusfisch.android.binaryeye.app.saveByteArray
-import de.markusfisch.android.binaryeye.app.systemBarScrollListener
 import de.markusfisch.android.binaryeye.app.shareText
+import de.markusfisch.android.binaryeye.app.systemBarScrollListener
 import de.markusfisch.android.binaryeye.app.useVisibility
+import de.markusfisch.android.binaryeye.app.writeToFile
 import de.markusfisch.android.binaryeye.data.csv.csvBuilder
 import de.markusfisch.android.binaryeye.repository.DatabaseRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -216,23 +219,21 @@ class HistoryFragment : Fragment() {
 			val name = withContext(Dispatchers.Main) { activity.askForFileName(suffix = "csv") }
 				?: return@useVisibility
 			val csv = scans.toCSV(delimiter, getBinaries)
-			val toastMessage = saveByteArray(name, csv)
-			if (toastMessage > 0) {
-				withContext(Dispatchers.Main) {
-					Toast.makeText(
-						context,
-						toastMessage,
-						Toast.LENGTH_SHORT
-					).show()
-				}
+			val toastMessage = csv.writeToFile(name)
+			withContext(Dispatchers.Main) {
+				Toast.makeText(
+					context,
+					toastMessage,
+					Toast.LENGTH_SHORT
+				).show()
 			}
 		}
 	}
 
-	private fun List<DatabaseRepository.Scan>.toCSV(
+	private fun Flow<DatabaseRepository.Scan>.toCSV(
 		delimiter: String,
 		allowBinary: Boolean
-	): ByteArray {
+	): Flow<ByteArray> {
 		return csvBuilder<DatabaseRepository.Scan> {
 			column {
 				name = "DATE"
@@ -270,7 +271,7 @@ class HistoryFragment : Fragment() {
 		scope.launch {
 			progressView.useVisibility {
 				val sb = StringBuilder()
-				getScans { false }?.second?.forEach {
+				getScans { false }?.second?.collect {
 					sb.append(it.content)
 					sb.append(separator)
 				}
@@ -283,7 +284,7 @@ class HistoryFragment : Fragment() {
 	}
 
 	@WorkerThread
-	private suspend inline fun getScans(crossinline binaryData: suspend () -> Boolean?): Pair<Boolean, List<DatabaseRepository.Scan>>? {
+	private suspend inline fun getScans(crossinline binaryData: suspend () -> Boolean?): Pair<Boolean, Flow<DatabaseRepository.Scan>>? {
 		val getBinaries: Boolean = db.hasBinaryData() && binaryData() ?: return null
 		return getBinaries to db.getScans().mapNotNull {
 			when {
