@@ -38,7 +38,7 @@ class Database {
 	)
 
 	fun hasBinaryData(): Cursor? = db.rawQuery(
-		"""	SELECT 
+		"""SELECT
 			1
 			FROM $SCANS
 			WHERE $SCANS_RAW IS NOT NULL

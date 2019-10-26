@@ -56,7 +56,7 @@ class DatabaseRepository {
 
 	fun getScansCursor(): Cursor? = db.getScans()
 
-	fun hasBinaryData(): Boolean = db.hasBinaryData()?.use { it.count > 0 } ?: false
+	fun hasBinaryData() = db.hasBinaryData()?.use { it.count > 0 } ?: false
 
 	fun insertScan(
 		timestamp: Long,
