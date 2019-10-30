@@ -55,15 +55,15 @@
 	<string name="vcard_failed">Tidak bisa menambahkan ke kontak</string>
 	<string name="vevent_add">Tambahkan ke kalender</string>
 	<string name="vevent_failed">Tidak bisa menambahkan ke kalender</string>
-	<string name="otpauth_add">Add 2FA</string>
-	<string name="otpauth_error">Could not add 2FA</string>
-	<string name="search_web">Search the web</string>
-	<string name="export_to_file">Export to file</string>
-	<string name="csv_delimiter">Which delimiter should be used (CSV-File)?</string>
-	<string name="delimiter_comma">Comma</string>
-	<string name="delimiter_semicolon">Semicolon</string>
-	<string name="csv_allow_binary">Allow binary data in output file?</string>
-	<string name="no">No</string>
-	<string name="csv_allow_binary_message">You probably don\'t want to allow that, as it will break the file format and maybe isn\'t readable by text editors anymore.</string>
-	<string name="saved_in_downloads">Saved in downloads</string>
+	<string name="otpauth_add">Tambahkan 2FA</string>
+	<string name="otpauth_error">Tidak bisa menambahkan 2FA</string>
+	<string name="search_web">Cari secara daring</string>
+	<string name="export_to_file">Ekspor ke berkas</string>
+	<string name="csv_delimiter">Karakter pemisah apa yang harus digunakan (Berkas-CSV)?</string>
+	<string name="delimiter_comma">Koma</string>
+	<string name="delimiter_semicolon">Titik koma</string>
+	<string name="csv_allow_binary">Izinkan data binari di dalam berkas keluaran?</string>
+	<string name="no">Tidak</string>
+	<string name="csv_allow_binary_message">Anda sebaiknya tidak mengizinkannya, karena akan merusak format berkas dan kemungkinan tidak bisa lagi dibaca oleh aplikasi penyunting teks.</string>
+	<string name="saved_in_downloads">Simpan di dalam unduhan</string>
 </resources>
