@@ -16,6 +16,7 @@ class ConfinedScalingImageView : ScalingImageView {
 
 	override fun onTouchEvent(event: MotionEvent): Boolean {
 		when (event.actionMasked) {
+			MotionEvent.ACTION_UP,
 			MotionEvent.ACTION_MOVE -> setSystemAndToolBarTransparency(
 				context, !inBounds()
 			)
