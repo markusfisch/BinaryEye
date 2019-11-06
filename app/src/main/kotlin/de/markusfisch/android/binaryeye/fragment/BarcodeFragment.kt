@@ -76,8 +76,17 @@ class BarcodeFragment : Fragment() {
 		GlobalScope.launch {
 			val file = saveBitmap(bitmap)
 			GlobalScope.launch(Main) {
-				file?.let {
+				if (file != null) {
 					shareFile(context, file, "image/png")
+				} else {
+					val ac = activity
+					ac?.let {
+						Toast.makeText(
+							activity,
+							R.string.error_saving_binary_data,
+							Toast.LENGTH_LONG
+						)
+					}
 				}
 			}
 		}
