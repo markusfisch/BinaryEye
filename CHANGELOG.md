@@ -1,5 +1,14 @@
 # Change Log
 
+# 1.16.0
+* Improve displaying scanned barcodes
+* Show a message if a barcode cannot be shared
+* Fix setting system bar transparency when double taping a barcode
+* Update Dutch translation
+* Update Hungarian translation
+* Update Indonesian translation
+* Update Italian translation
+
 # 1.15.0
 * Additionally export history as CSV file
 * Color tool and system bars when a view is scrolled
