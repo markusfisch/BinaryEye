@@ -53,22 +53,26 @@ class CSVBuilder<T> {
 			?: throw IllegalStateException("You need to provide a name for csv column")
 	}.addDelimiter(delimiter)
 
-	private fun Flow<T>.buildContent(columnsFlow: Flow<ColumnBuilder>, delimiter: String): Flow<ByteArray> = map { input ->
+	private fun Flow<T>.buildContent(
+		columnsFlow: Flow<ColumnBuilder>,
+		delimiter: String
+	): Flow<ByteArray> = map { input ->
 		input.getLine(columnsFlow, delimiter)
 	}.addDelimiter("\n".toByteArray()) { other: Flow<ByteArray> ->
 		// this: ByteArray
 		this asFlowWith other
 	}.flattenConcat()
 
-	private fun T.getLine(columnsFlow: Flow<ColumnBuilder>, delimiter: String): Flow<ByteArray> = columnsFlow.map { column ->
-		column.gettingBy?.run {
-			var result = invoke(this@getLine)
-			if (!column.isBinary) {
-				result = String(result).escaped(delimiter).toByteArray()
-			}
-			return@run result
-		} ?: throw IllegalStateException("You need to provide a getter for the value")
-	}.addDelimiter(delimiter)
+	private fun T.getLine(columnsFlow: Flow<ColumnBuilder>, delimiter: String): Flow<ByteArray> =
+		columnsFlow.map { column ->
+			column.gettingBy?.run {
+				var result = invoke(this@getLine)
+				if (!column.isBinary) {
+					result = String(result).escaped(delimiter).toByteArray()
+				}
+				return@run result
+			} ?: throw IllegalStateException("You need to provide a getter for the value")
+		}.addDelimiter(delimiter)
 
 	private fun Any.escaped(delimiter: String): String {
 		val any = this.toString()
