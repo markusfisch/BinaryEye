@@ -66,4 +66,5 @@
 	<string name="no">Nem</string>
 	<string name="csv_allow_binary_message">Valószínűleg ezt nem szeretné engedélyezni, mivel tönkre fogja tenni a fájlformátumot, és a szövegszerkesztők talán nem fogják tudni többé olvasni.</string>
 	<string name="saved_in_downloads">Elmentve a letöltésekbe</string>
+	<string name="rotate_image_cw">Rotate image clockwise</string>
 </resources>

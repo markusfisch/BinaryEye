@@ -66,4 +66,5 @@
 	<string name="no">Nein</string>
 	<string name="csv_allow_binary_message">Dies sollte wahrscheinlich nicht erlabubt weden, da dies das Dateiformat bricht und damit die Datei wahrscheinlich nicht mehr von Textverarbeitungsprogrammen geöffnet werden kann.</string>
 	<string name="saved_in_downloads">In den Downloads gespeichert</string>
+	<string name="rotate_image_cw">Bild im Uhrzeigersinn rotieren</string>
 </resources>

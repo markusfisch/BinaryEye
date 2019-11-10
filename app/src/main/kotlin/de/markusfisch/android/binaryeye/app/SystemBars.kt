@@ -2,6 +2,7 @@ package de.markusfisch.android.binaryeye.app
 
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
+import android.graphics.Rect
 import android.os.Build
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewCompat
@@ -10,6 +11,7 @@ import android.view.View
 import android.widget.AbsListView
 import de.markusfisch.android.binaryeye.R
 
+val windowInsets = Rect()
 val systemBarScrollListener = object : AbsListView.OnScrollListener {
 	override fun onScroll(
 		view: AbsListView,
@@ -69,12 +71,12 @@ fun initSystemBars(activity: AppCompatActivity) {
 private fun setWindowInsetListener(view: View) {
 	ViewCompat.setOnApplyWindowInsetsListener(view) { _, insets ->
 		if (insets.hasSystemWindowInsets()) {
-			view.setPadding(
-				insets.systemWindowInsetLeft,
-				insets.systemWindowInsetTop,
-				insets.systemWindowInsetRight,
-				insets.systemWindowInsetBottom
-			)
+			val left = insets.systemWindowInsetLeft
+			val top = insets.systemWindowInsetTop
+			val right = insets.systemWindowInsetRight
+			val bottom = insets.systemWindowInsetBottom
+			view.setPadding(left, top, right, bottom)
+			windowInsets.set(left, top, right, bottom)
 		}
 		insets.consumeSystemWindowInsets()
 	}

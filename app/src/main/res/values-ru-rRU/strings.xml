@@ -62,4 +62,5 @@
 	<string name="no">No</string>
 	<string name="csv_allow_binary_message">You probably don\'t want to allow that, as it will break the file format and maybe isn\'t readable by text editors anymore.</string>
 	<string name="saved_in_downloads">Saved in downloads</string>
+	<string name="rotate_image_cw">Rotate image clockwise</string>
 </resources>

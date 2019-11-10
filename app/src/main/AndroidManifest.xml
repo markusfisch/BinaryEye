@@ -38,16 +38,6 @@
 				<category android:name="android.intent.category.DEFAULT"/>
 				<data android:mimeType="text/plain"/>
 			</intent-filter>
-			<intent-filter android:label="@string/decode_barcode">
-				<action android:name="android.intent.action.SEND"/>
-				<category android:name="android.intent.category.DEFAULT"/>
-				<data android:mimeType="image/*"/>
-			</intent-filter>
-			<intent-filter android:label="@string/decode_barcode">
-				<action android:name="android.intent.action.VIEW"/>
-				<category android:name="android.intent.category.DEFAULT"/>
-				<data android:mimeType="image/*" android:scheme="file"/>
-			</intent-filter>
 			<intent-filter>
 				<action android:name="com.google.zxing.client.android.SCAN"/>
 				<category android:name="android.intent.category.DEFAULT"/>
@@ -60,6 +50,20 @@
 					android:host="www.markusfisch.de"
 					android:pathPrefix="/BinaryEye"
 					android:scheme="http"/>
+			</intent-filter>
+		</activity>
+		<activity
+			android:name=".activity.PickActivity"
+			android:label="@string/scan_code">
+			<intent-filter android:label="@string/decode_barcode">
+				<action android:name="android.intent.action.SEND"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<data android:mimeType="image/*"/>
+			</intent-filter>
+			<intent-filter android:label="@string/decode_barcode">
+				<action android:name="android.intent.action.VIEW"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<data android:mimeType="image/*" android:scheme="file"/>
 			</intent-filter>
 		</activity>
 		<activity

@@ -1,15 +1,13 @@
 package de.markusfisch.android.binaryeye.activity
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.hardware.Camera
 import android.net.Uri
 import android.os.Bundle
-import android.os.Parcelable
 import android.os.Vibrator
-import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
@@ -29,7 +27,6 @@ import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.cameraview.widget.CameraView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.io.IOException
 
 class CameraActivity : AppCompatActivity() {
 	private val zxing = Zxing()
@@ -83,18 +80,11 @@ class CameraActivity : AppCompatActivity() {
 		initZoomBar()
 		restoreZoom()
 
-		if ((intent?.action == Intent.ACTION_SEND)) {
-			if (intent.type == "text/plain") {
-				handleSendText(intent)
-			} else if (intent.type?.startsWith("image/") == true) {
-				handleSendImage(intent)
-			}
-		} else if (intent?.action == Intent.ACTION_VIEW) {
-			if (intent.type?.startsWith("image/") == true) {
-				handleOpenImage(intent)
-			}
+		if (intent?.action == Intent.ACTION_SEND &&
+			intent.type == "text/plain"
+		) {
+			handleSendText(intent)
 		}
-
 	}
 
 	override fun onDestroy() {
@@ -201,44 +191,6 @@ class CameraActivity : AppCompatActivity() {
 		}
 	}
 
-	private fun handleSendImage(intent: Intent) {
-		val uri = intent.getParcelableExtra<Parcelable>(Intent.EXTRA_STREAM) as? Uri ?: return
-		handleImageUri(uri)
-	}
-
-	private fun handleOpenImage(intent: Intent) {
-		val uri = intent.data ?: return
-		handleImageUri(uri)
-	}
-
-	private fun handleImageUri(uri: Uri) {
-		val bitmap = try {
-			MediaStore.Images.Media.getBitmap(contentResolver, uri)
-		} catch (e: IOException) {
-			null
-		}
-		if (bitmap == null) {
-			Toast.makeText(
-				this,
-				R.string.error_no_content,
-				Toast.LENGTH_SHORT
-			).show()
-			return
-		}
-		val result = zxing.decodePositiveNegative(downsizeIfBigger(bitmap, 1024))
-		if (result != null) {
-			showResult(result)
-			finish()
-			return
-		}
-		Toast.makeText(
-			this,
-			R.string.no_barcode_found,
-			Toast.LENGTH_SHORT
-		).show()
-		finish()
-	}
-
 	private fun initCameraView() {
 		cameraView.setUseOrientationListener(true)
 		cameraView.setTapToFocus()
@@ -295,7 +247,7 @@ class CameraActivity : AppCompatActivity() {
 						result?.let {
 							cameraView.post {
 								vibrator.vibrate(100)
-								showResult(result)
+								showResult(this@CameraActivity, result)
 							}
 							decoding = false
 						}
@@ -407,36 +359,6 @@ class CameraActivity : AppCompatActivity() {
 		)
 	}
 
-	private fun showResult(result: Result) {
-		val rawBytes = getRawBytes(result)
-
-		if (prefs.useHistory) {
-			GlobalScope.launch {
-				db.insertScan(
-					System.currentTimeMillis(),
-					result.text,
-					rawBytes,
-					result.barcodeFormat.toString()
-				)
-			}
-		}
-
-		if (returnResult) {
-			setResult(RESULT_OK, getReturnIntent(result))
-			finish()
-			return
-		}
-
-		startActivity(
-			MainActivity.getDecodeIntent(
-				this,
-				result.text,
-				result.barcodeFormat,
-				rawBytes
-			)
-		)
-	}
-
 	companion object {
 		private const val REQUEST_CAMERA = 1
 		private const val ZOOM_MAX = "zoom_max"
@@ -444,24 +366,34 @@ class CameraActivity : AppCompatActivity() {
 	}
 }
 
-fun downsizeIfBigger(bitmap: Bitmap, max: Int): Bitmap {
-	return if (Math.max(bitmap.width, bitmap.height) > max) {
-		var width: Int = max
-		var height: Int = max
-		if (bitmap.width > bitmap.height) {
-			height = Math.round(
-				width.toFloat() / bitmap.width.toFloat() *
-						bitmap.height.toFloat()
-			)
-		} else {
-			width = Math.round(
-				height.toFloat() / bitmap.height.toFloat() *
-						bitmap.width.toFloat()
+fun showResult(
+	activity: Activity,
+	result: Result,
+	isResult: Boolean = false
+) {
+	val rawBytes = getRawBytes(result)
+	if (prefs.useHistory) {
+		GlobalScope.launch {
+			db.insertScan(
+				System.currentTimeMillis(),
+				result.text,
+				rawBytes,
+				result.barcodeFormat.toString()
 			)
 		}
-		Bitmap.createScaledBitmap(bitmap, width, height, true)
+	}
+	if (isResult) {
+		activity.setResult(Activity.RESULT_OK, getReturnIntent(result))
+		activity.finish()
 	} else {
-		bitmap
+		activity.startActivity(
+			MainActivity.getDecodeIntent(
+				activity,
+				result.text,
+				result.barcodeFormat,
+				rawBytes
+			)
+		)
 	}
 }
 

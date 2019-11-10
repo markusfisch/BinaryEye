@@ -1,0 +1,9 @@
+<menu
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:material="http://schemas.android.com/apk/res-auto">
+	<item
+		android:id="@+id/rotate"
+		android:title="@string/rotate_image_cw"
+		android:icon="@drawable/ic_action_rotate_clockwise"
+		material:showAsAction="ifRoom"/>
+</menu>

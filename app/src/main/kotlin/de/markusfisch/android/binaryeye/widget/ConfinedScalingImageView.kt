@@ -3,11 +3,10 @@ package de.markusfisch.android.binaryeye.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
-import android.widget.ScrollView
 import de.markusfisch.android.binaryeye.app.setSystemAndToolBarTransparency
 import de.markusfisch.android.scalingimageview.widget.ScalingImageView
 
-class ConfinedScalingImageView : ScalingImageView {
+open class ConfinedScalingImageView : ScalingImageView {
 	constructor(context: Context, attrs: AttributeSet, defStyle: Int) :
 			super(context, attrs, defStyle)
 

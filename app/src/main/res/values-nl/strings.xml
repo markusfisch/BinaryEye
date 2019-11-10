@@ -66,4 +66,5 @@
 	<string name="pick_list_separator">Hoe de lijstonderdelen te separeren?</string>
 	<string name="saved_in_downloads">In downloads opgeslagen</string>
 	<string name="vevent_failed">Kon niet aan kalender toevoegen</string>
+	<string name="rotate_image_cw">Rotate image clockwise</string>
 </resources>

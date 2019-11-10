@@ -1,0 +1,26 @@
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:fitsSystemWindows="true">
+	<de.markusfisch.android.binaryeye.widget.CropImageView
+		android:id="@+id/image"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:contentDescription="@string/view_barcode"/>
+	<include layout="@layout/toolbar"/>
+	<android.support.design.widget.FloatingActionButton
+		tools:ignore="UnusedAttribute"
+		android:id="@+id/scan"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentEnd="true"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentBottom="true"
+		android:layout_margin="20dp"
+		android:contentDescription="@string/scan_code"
+		android:src="@drawable/ic_action_scan"
+		app:elevation="4dp"/>
+</RelativeLayout>
