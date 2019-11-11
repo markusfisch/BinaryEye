@@ -191,7 +191,9 @@ class HistoryFragment : Fragment() {
 
 	private fun askToExportToFile(context: Context) = scope.launch {
 		progressView.useVisibility {
-			if (!hasWritePermission(activity)) return@useVisibility
+			if (!hasWritePermission(activity)) {
+				return@useVisibility
+			}
 			val (getBinaries, scans) = getScans {
 				alertDialog(context) { resume ->
 					setTitle(R.string.csv_allow_binary)
@@ -216,8 +218,9 @@ class HistoryFragment : Fragment() {
 					resume(delimiters[which])
 				}
 			} ?: return@useVisibility
-			val name = withContext(Dispatchers.Main) { activity.askForFileName(suffix = "csv") }
-				?: return@useVisibility
+			val name = withContext(Dispatchers.Main) {
+				activity.askForFileName(suffix = "csv")
+			} ?: return@useVisibility
 			val csv = scans.toCSV(delimiter, getBinaries)
 			val toastMessage = csv.writeToFile(name)
 			withContext(Dispatchers.Main) {
@@ -284,7 +287,9 @@ class HistoryFragment : Fragment() {
 	}
 
 	@WorkerThread
-	private suspend inline fun getScans(crossinline binaryData: suspend () -> Boolean?): Pair<Boolean, Flow<DatabaseRepository.Scan>>? {
+	private suspend inline fun getScans(
+		crossinline binaryData: suspend () -> Boolean?
+	): Pair<Boolean, Flow<DatabaseRepository.Scan>>? {
 		val getBinaries: Boolean = db.hasBinaryData() && binaryData() ?: return null
 		return getBinaries to db.getScans().mapNotNull {
 			when {
