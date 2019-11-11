@@ -11,9 +11,19 @@ import kotlinx.coroutines.flow.collect
 import java.io.File
 import java.io.IOException
 
-@Suppress("InflateParams") // Dialogs doesn't have any root layout, need to be inflated with null root
+fun addSuffixIfNotGiven(name: String, suffix: String): String {
+	val trimmed = name.trim()
+	return if (suffix.isNotEmpty() && !trimmed.endsWith(suffix)) {
+		"$trimmed$suffix"
+	} else {
+		trimmed
+	}
+}
+
+// Dialogs doesn't have any root layout, need to be inflated with null root
+@Suppress("InflateParams")
 @MainThread
-suspend fun Activity.askForFileName(suffix: String? = null): String? {
+suspend fun Activity.askForFileName(suffix: String = ""): String? {
 	val view = layoutInflater.inflate(R.layout.dialog_save_file, null)
 	val editText = view.findViewById<EditText>(R.id.file_name)
 	return alertDialog<String>(this as Context) { resume ->
@@ -22,11 +32,7 @@ suspend fun Activity.askForFileName(suffix: String? = null): String? {
 			resume(editText.text.toString())
 		}
 	}?.let { name ->
-		if (suffix != null && !name.endsWith(".$suffix")) {
-			"${name.trim()}.$suffix"
-		} else {
-			name.trim()
-		}
+		addSuffixIfNotGiven(name, suffix)
 	}
 }
 

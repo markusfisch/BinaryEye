@@ -31,7 +31,9 @@ suspend inline fun View.useVisibility(
 	otherwise: Int = View.GONE,
 	crossinline block: suspend () -> Unit
 ) {
-	if (visibility == whileExecuting) return
+	if (visibility == whileExecuting) {
+		return
+	}
 	withContext(Dispatchers.Main) {
 		visibility = whileExecuting
 	}

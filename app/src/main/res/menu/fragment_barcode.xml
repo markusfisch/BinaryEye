@@ -1,0 +1,9 @@
+<menu
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:material="http://schemas.android.com/apk/res-auto">
+	<item
+		android:id="@+id/save"
+		android:title="@string/export_to_file"
+		android:icon="@drawable/ic_action_save"
+		material:showAsAction="ifRoom"/>
+</menu>
