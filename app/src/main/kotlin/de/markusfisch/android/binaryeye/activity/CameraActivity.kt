@@ -62,6 +62,23 @@ class CameraActivity : AppCompatActivity() {
 		}
 	}
 
+	override fun onActivityResult(
+		requestCode: Int,
+		resultCode: Int,
+		resultData: Intent
+	) {
+		when (requestCode) {
+			PICK_FILE_RESULT_CODE -> {
+				if (resultCode == Activity.RESULT_OK) {
+					val pick = Intent(this, PickActivity::class.java)
+					pick.action = Intent.ACTION_VIEW
+					pick.setDataAndType(resultData.data, "image/*")
+					startActivity(pick)
+				}
+			}
+		}
+	}
+
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
 		setContentView(R.layout.activity_camera)
@@ -149,6 +166,18 @@ class CameraActivity : AppCompatActivity() {
 			}
 			R.id.history -> {
 				startActivity(MainActivity.getHistoryIntent(this))
+				true
+			}
+			R.id.pick_file -> {
+				val chooseFile = Intent(Intent.ACTION_GET_CONTENT)
+				chooseFile.type = "image/*"
+				startActivityForResult(
+					Intent.createChooser(
+						chooseFile,
+						getString(R.string.pick_file)
+					),
+					PICK_FILE_RESULT_CODE
+				)
 				true
 			}
 			R.id.switch_camera -> {
@@ -361,6 +390,7 @@ class CameraActivity : AppCompatActivity() {
 
 	companion object {
 		private const val REQUEST_CAMERA = 1
+		private const val PICK_FILE_RESULT_CODE = 1
 		private const val ZOOM_MAX = "zoom_max"
 		private const val ZOOM_LEVEL = "zoom_level"
 	}

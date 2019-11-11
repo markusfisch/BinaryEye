@@ -67,4 +67,5 @@
 	<string name="csv_allow_binary_message">Anda sebaiknya tidak mengizinkannya, karena akan merusak format berkas dan kemungkinan tidak bisa lagi dibaca oleh aplikasi penyunting teks.</string>
 	<string name="saved_in_downloads">Simpan di dalam unduhan</string>
 	<string name="rotate_image_cw">Rotate image clockwise</string>
+	<string name="pick_file">Pick image file</string>
 </resources>

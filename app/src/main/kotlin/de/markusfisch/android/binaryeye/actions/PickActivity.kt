@@ -130,4 +130,3 @@ class PickActivity : AppCompatActivity() {
 		).show()
 	}
 }
-
