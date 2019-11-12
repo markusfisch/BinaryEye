@@ -1,5 +1,12 @@
 # Change Log
 
+# 1.17.0
+* Pinch/Zoom shared/loaded images to scan just a section
+* Add a load file menu item to load an image file
+* Add a save file menu item to the barcode view
+* Use discrete style for size seek bar
+* Fix bar transparency when zooming/pinching
+
 # 1.16.0
 * Improve displaying scanned barcodes
 * Show a message if a barcode cannot be shared
