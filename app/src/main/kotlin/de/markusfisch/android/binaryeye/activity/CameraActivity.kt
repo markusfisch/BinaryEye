@@ -65,11 +65,11 @@ class CameraActivity : AppCompatActivity() {
 	override fun onActivityResult(
 		requestCode: Int,
 		resultCode: Int,
-		resultData: Intent
+		resultData: Intent?
 	) {
 		when (requestCode) {
 			PICK_FILE_RESULT_CODE -> {
-				if (resultCode == Activity.RESULT_OK) {
+				if (resultCode == Activity.RESULT_OK && resultData != null) {
 					val pick = Intent(this, PickActivity::class.java)
 					pick.action = Intent.ACTION_VIEW
 					pick.setDataAndType(resultData.data, "image/*")
