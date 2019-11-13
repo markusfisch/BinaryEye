@@ -1,5 +1,8 @@
 # Change Log
 
+# 1.17.1
+* Fix navigating back without choosing an image
+
 # 1.17.0
 * Pinch/Zoom shared/loaded images to scan just a section
 * Add a load file menu item to load an image file
