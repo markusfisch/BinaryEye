@@ -3,6 +3,7 @@ package de.markusfisch.android.binaryeye.actions.wifi
 import android.net.wifi.WifiConfiguration
 import android.net.wifi.WifiEnterpriseConfig
 import android.os.Build
+import java.util.*
 
 /**
  * Normal:
@@ -47,7 +48,7 @@ object WifiConfigurationFactory {
 			string
 		)?.groupValues?.get(1)?.let { pairs ->
 			pairRegex.findAll(pairs).map { pair ->
-				pair.groupValues[1].toUpperCase() to pair.groupValues[2]
+				pair.groupValues[1].toUpperCase(Locale.US) to pair.groupValues[2]
 			}.toMap()
 		}
 	}

@@ -10,7 +10,7 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.IntentAction
 import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
 import java.text.SimpleDateFormat
-import java.util.Date
+import java.util.*
 
 object VEventAction : IntentAction() {
 	override val iconResId: Int

@@ -8,6 +8,8 @@ import android.provider.ContactsContract
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.IntentAction
 import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
+import java.util.*
+import kotlin.collections.ArrayList
 
 object VCardAction : IntentAction() {
 	override val iconResId: Int
@@ -46,7 +48,10 @@ object VCardAction : IntentAction() {
 						putExtra(extraPhoneType, phoneType)
 					} ?: putExtra(extraPhoneType, it)
 				}
-				putExtra(extraPhone, phoneProperty.value.toLowerCase().removePrefix("tel:"))
+				putExtra(
+					extraPhone,
+					phoneProperty.value.toLowerCase(Locale.US).removePrefix("tel:")
+				)
 			}
 			info["EMAIL"]?.forEachIndexed { index, mailProperty ->
 				val (extraMailType, extraMail) = when (index) {
@@ -135,7 +140,7 @@ object VCardAction : IntentAction() {
 		} ?: this
 
 	private val String.mailType: Int?
-		get() = when (this.toUpperCase()) {
+		get() = when (this.toUpperCase(Locale.US)) {
 			"HOME" -> ContactsContract.CommonDataKinds.Email.TYPE_HOME
 			"WORK" -> ContactsContract.CommonDataKinds.Email.TYPE_WORK
 			"OTHER" -> ContactsContract.CommonDataKinds.Email.TYPE_OTHER
@@ -144,7 +149,7 @@ object VCardAction : IntentAction() {
 		}
 
 	private val String.phoneType: Int?
-		get() = when (this.toUpperCase()) {
+		get() = when (this.toUpperCase(Locale.US)) {
 			"HOME" -> ContactsContract.CommonDataKinds.Phone.TYPE_HOME
 			"MOBILE", "CELL" -> ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE
 			"WORK" -> ContactsContract.CommonDataKinds.Phone.TYPE_WORK
@@ -169,7 +174,7 @@ object VCardAction : IntentAction() {
 		}
 
 	private val String.addressType: Int?
-		get() = when (this.toUpperCase()) {
+		get() = when (this.toUpperCase(Locale.US)) {
 			"HOME" -> ContactsContract.CommonDataKinds.StructuredPostal.TYPE_HOME
 			"WORK" -> ContactsContract.CommonDataKinds.StructuredPostal.TYPE_WORK
 			"OTHER" -> ContactsContract.CommonDataKinds.StructuredPostal.TYPE_OTHER
