@@ -33,9 +33,9 @@ class PickActivity : AppCompatActivity() {
 		setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-		supportFragmentManager.addOnBackStackChangedListener({
+		supportFragmentManager.addOnBackStackChangedListener {
 			setSystemAndToolBarTransparency(this@PickActivity)
-		})
+		}
 
 		val bitmap = if (
 			intent?.action == Intent.ACTION_SEND &&

@@ -14,7 +14,7 @@ class Zxing {
 		)
 		decodeFormats.addAll(
 			EnumSet.copyOf(
-				Arrays.asList(
+				listOf(
 					BarcodeFormat.AZTEC,
 					BarcodeFormat.CODABAR,
 					BarcodeFormat.CODE_39,

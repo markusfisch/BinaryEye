@@ -1,16 +1,12 @@
 package de.markusfisch.android.binaryeye.fragment
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Environment
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
@@ -40,7 +36,7 @@ class BarcodeFragment : Fragment() {
 		container: ViewGroup?,
 		state: Bundle?
 	): View? {
-		activity.setTitle(R.string.view_barcode)
+		activity?.setTitle(R.string.view_barcode)
 
 		val view = inflater.inflate(
 			R.layout.fragment_barcode,
@@ -88,6 +84,8 @@ class BarcodeFragment : Fragment() {
 		}
 	}
 
+	// dialogs do not have a parent view
+	@SuppressLint("InflateParams")
 	private fun askForFileNameAndSave() {
 		val ac = activity ?: return
 		val view = ac.layoutInflater.inflate(R.layout.dialog_save_file, null)
@@ -112,7 +110,8 @@ class BarcodeFragment : Fragment() {
 	}
 
 	private fun saveAsFile(bitmap: Bitmap, path: String) {
-		if (!hasWritePermission(activity)) {
+		val ac = activity ?: return
+		if (!hasWritePermission(ac)) {
 			return
 		}
 		GlobalScope.launch {
@@ -126,18 +125,15 @@ class BarcodeFragment : Fragment() {
 				)
 			)
 			GlobalScope.launch(Main) {
-				val ac = activity
-				ac?.let {
-					Toast.makeText(
-						ac,
-						if (success) {
-							R.string.saved_in_downloads
-						} else {
-							R.string.error_saving_binary_data
-						},
-						Toast.LENGTH_LONG
-					).show()
-				}
+				Toast.makeText(
+					ac,
+					if (success) {
+						R.string.saved_in_downloads
+					} else {
+						R.string.error_saving_binary_data
+					},
+					Toast.LENGTH_LONG
+				).show()
 			}
 		}
 	}

@@ -25,7 +25,7 @@ class Preferences {
 
 	fun update() {
 		useHistory = preferences.getBoolean(USE_HISTORY, useHistory)
-		openWithUrl = preferences.getString(OPEN_WITH_URL, openWithUrl)
+		preferences.getString(OPEN_WITH_URL, openWithUrl)?.also { openWithUrl = it }
 	}
 
 	private fun setBoolean(label: String, value: Boolean) {

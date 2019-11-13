@@ -6,12 +6,7 @@ import android.support.v4.app.Fragment
 import android.text.ClipboardManager
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -19,12 +14,7 @@ import android.widget.Toast
 import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
-import de.markusfisch.android.binaryeye.app.addFragment
-import de.markusfisch.android.binaryeye.app.askForFileName
-import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
-import de.markusfisch.android.binaryeye.app.hasWritePermission
-import de.markusfisch.android.binaryeye.app.shareText
-import de.markusfisch.android.binaryeye.app.writeToFile
+import de.markusfisch.android.binaryeye.app.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -56,7 +46,7 @@ class DecodeFragment : Fragment() {
 		container: ViewGroup?,
 		state: Bundle?
 	): View {
-		activity.setTitle(R.string.content)
+		activity?.setTitle(R.string.content)
 
 		val view = inflater.inflate(
 			R.layout.fragment_decode,

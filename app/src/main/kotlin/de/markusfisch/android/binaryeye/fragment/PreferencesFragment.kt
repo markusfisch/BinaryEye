@@ -19,7 +19,7 @@ class PreferencesFragment : Fragment() {
 		container: ViewGroup?,
 		state: Bundle?
 	): View? {
-		activity.setTitle(R.string.preferences)
+		activity?.setTitle(R.string.preferences)
 
 		val view = inflater.inflate(
 			R.layout.fragment_preferences,
@@ -40,7 +40,7 @@ class PreferencesFragment : Fragment() {
 
 	override fun onPause() {
 		super.onPause()
-		prefs.useHistory = useHistorySwitch.isChecked()
+		prefs.useHistory = useHistorySwitch.isChecked
 		prefs.openWithUrl = openWithUrlInput.text.toString()
 	}
 }

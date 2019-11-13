@@ -1,8 +1,8 @@
 package de.markusfisch.android.binaryeye.app
 
 import android.content.Context
-import android.graphics.drawable.ColorDrawable
 import android.graphics.Rect
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewCompat

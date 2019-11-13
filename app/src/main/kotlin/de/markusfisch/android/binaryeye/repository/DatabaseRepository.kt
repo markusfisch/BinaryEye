@@ -102,7 +102,8 @@ class DatabaseRepository {
 			return true
 		}
 
-		// Needed to be overwritten manually, as ByteArray is an array and this isn't handled well by Kotlin
+		// Needs to be overwritten manually, as ByteArray is an array and this
+		// isn't handled well by Kotlin
 		override fun hashCode(): Int {
 			var result = id.hashCode()
 			result = 31 * result + timestamp.hashCode()
@@ -118,7 +119,10 @@ private val Cursor.asIterable: Iterable<Cursor>
 	get() = object : Iterable<Cursor> {
 		override fun iterator(): Iterator<Cursor> = object : Iterator<Cursor> {
 			override fun hasNext(): Boolean = position + 1 < count
-			override fun next(): Cursor =
-				if (moveToNext()) this@asIterable else throw IllegalStateException("You can't access more items, then there are")
+			override fun next(): Cursor = if (moveToNext()) {
+				this@asIterable
+			} else {
+				throw IllegalStateException("You can't access more items, then there are")
+			}
 		}
 	}

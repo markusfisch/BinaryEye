@@ -6,37 +6,19 @@ import android.os.Bundle
 import android.support.annotation.WorkerThread
 import android.support.v4.app.Fragment
 import android.support.v7.widget.SwitchCompat
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ListView
 import android.widget.Toast
 import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.ScansAdapter
-import de.markusfisch.android.binaryeye.app.addFragment
-import de.markusfisch.android.binaryeye.app.alertDialog
-import de.markusfisch.android.binaryeye.app.askForFileName
-import de.markusfisch.android.binaryeye.app.db
-import de.markusfisch.android.binaryeye.app.hasWritePermission
-import de.markusfisch.android.binaryeye.app.prefs
-import de.markusfisch.android.binaryeye.app.shareText
-import de.markusfisch.android.binaryeye.app.systemBarScrollListener
-import de.markusfisch.android.binaryeye.app.useVisibility
-import de.markusfisch.android.binaryeye.app.writeToFile
+import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.data.csv.csvBuilder
 import de.markusfisch.android.binaryeye.repository.DatabaseRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.mapNotNull
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class HistoryFragment : Fragment() {
 	private lateinit var listView: ListView
@@ -56,7 +38,7 @@ class HistoryFragment : Fragment() {
 		container: ViewGroup?,
 		state: Bundle?
 	): View {
-		activity.setTitle(R.string.history)
+		activity?.setTitle(R.string.history)
 
 		val view = inflater.inflate(
 			R.layout.fragment_history,

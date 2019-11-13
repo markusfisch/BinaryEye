@@ -34,8 +34,9 @@ class EncodeFragment : Fragment() {
 		inflater: LayoutInflater,
 		container: ViewGroup?,
 		state: Bundle?
-	): View {
-		activity.setTitle(R.string.compose_barcode)
+	): View? {
+		val ac = activity ?: return null
+		ac.setTitle(R.string.compose_barcode)
 
 		val view = inflater.inflate(
 			R.layout.fragment_encode,
@@ -45,7 +46,7 @@ class EncodeFragment : Fragment() {
 
 		formatView = view.findViewById(R.id.format)
 		formatView.adapter = ArrayAdapter<String>(
-			activity,
+			ac,
 			android.R.layout.simple_list_item_1,
 			writers.map { it.name }
 		)

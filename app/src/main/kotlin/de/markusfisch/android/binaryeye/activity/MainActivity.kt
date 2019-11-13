@@ -35,9 +35,9 @@ class MainActivity : AppCompatActivity() {
 		setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-		supportFragmentManager.addOnBackStackChangedListener({
+		supportFragmentManager.addOnBackStackChangedListener {
 			setSystemAndToolBarTransparency(this@MainActivity)
-		})
+		}
 
 		if (state == null) {
 			setFragment(
@@ -48,11 +48,11 @@ class MainActivity : AppCompatActivity() {
 						HistoryFragment()
 					intent?.hasExtra(ENCODE) == true ->
 						EncodeFragment.newInstance(
-							intent.getStringExtra(ENCODE)
+							intent.getStringExtra(ENCODE) ?: ""
 						)
 					intent?.hasExtra(DECODED_TEXT) == true ->
 						DecodeFragment.newInstance(
-							intent.getStringExtra(DECODED_TEXT),
+							intent.getStringExtra(DECODED_TEXT) ?: "",
 							intent.getSerializableExtra(
 								DECODED_FORMAT
 							) as BarcodeFormat,
