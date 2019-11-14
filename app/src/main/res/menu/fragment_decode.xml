@@ -7,9 +7,9 @@
 		android:icon="@drawable/ic_action_copy"
 		material:showAsAction="ifRoom"/>
 	<item
-		android:id="@+id/open_url"
-		android:title="@string/open_url"
-		android:icon="@drawable/ic_action_open"
+		android:id="@+id/share"
+		android:title="@string/share"
+		android:icon="@drawable/ic_action_share"
 		material:showAsAction="ifRoom"/>
 	<item
 		android:id="@+id/create"

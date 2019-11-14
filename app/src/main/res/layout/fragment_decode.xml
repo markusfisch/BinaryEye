@@ -52,14 +52,14 @@
 	</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>
 	<android.support.design.widget.FloatingActionButton
 		tools:ignore="UnusedAttribute"
-		android:id="@+id/share"
+		android:id="@+id/open"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_alignParentEnd="true"
 		android:layout_alignParentRight="true"
 		android:layout_alignParentBottom="true"
 		android:layout_margin="20dp"
-		android:contentDescription="@string/share"
-		android:src="@drawable/ic_action_share"
+		android:contentDescription="@string/open_url"
+		android:src="@drawable/ic_action_open"
 		app:elevation="4dp"/>
 </RelativeLayout>

@@ -1,14 +1,15 @@
 package de.markusfisch.android.binaryeye.fragment
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.text.ClipboardManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.google.zxing.BarcodeFormat
@@ -26,7 +27,7 @@ class DecodeFragment : Fragment() {
 	private lateinit var formatView: TextView
 	private lateinit var hexView: TextView
 	private lateinit var format: BarcodeFormat
-	private lateinit var actionMenuItem: MenuItem
+	private lateinit var fab: FloatingActionButton
 
 	private var action = ActionRegistry.DEFAULT_ACTION
 	private var isBinary = false
@@ -60,7 +61,7 @@ class DecodeFragment : Fragment() {
 		format = arguments?.getSerializable(FORMAT) as BarcodeFormat? ?: BarcodeFormat.QR_CODE
 
 		contentView = view.findViewById(R.id.content)
-		val shareFab = view.findViewById<ImageView>(R.id.share)
+		fab = view.findViewById(R.id.open)
 
 		if (!isBinary) {
 			contentView.setText(inputContent)
@@ -85,14 +86,14 @@ class DecodeFragment : Fragment() {
 				) {
 				}
 			})
-			shareFab.setOnClickListener { v ->
-				shareText(v.context, content)
+			fab.setOnClickListener {
+				executeAction(content.toByteArray())
 			}
 		} else {
 			contentView.setText(R.string.binary_data)
 			contentView.isEnabled = false
-			shareFab.setImageResource(R.drawable.ic_action_save)
-			shareFab.setOnClickListener {
+			fab.setImageResource(R.drawable.ic_action_save)
+			fab.setOnClickListener {
 				askForFileNameAndSave(raw)
 			}
 		}
@@ -117,20 +118,27 @@ class DecodeFragment : Fragment() {
 			bytes.size
 		)
 		hexView.text = hexDump(bytes, 33)
-		if (::actionMenuItem.isInitialized && prevAction !== action) {
-			actionMenuItem.setIcon(action.iconResId)
-			actionMenuItem.setTitle(action.titleResId)
+		if (prevAction !== action) {
+			fab.setImageResource(action.iconResId)
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+				fab.setOnLongClickListener { v ->
+					Toast.makeText(
+						v.context,
+						action.titleResId,
+						Toast.LENGTH_SHORT
+					).show()
+					true
+				}
+			} else {
+				fab.tooltipText = getString(action.titleResId)
+			}
 		}
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 		inflater.inflate(R.menu.fragment_decode, menu)
-		actionMenuItem = menu.findItem(R.id.open_url)
-		actionMenuItem.setIcon(action.iconResId)
-		actionMenuItem.setTitle(action.titleResId)
 		if (isBinary) {
 			menu.findItem(R.id.copy_to_clipboard).isVisible = false
-			menu.findItem(R.id.open_url).isVisible = false
 			menu.findItem(R.id.create).isVisible = false
 		}
 	}
@@ -141,8 +149,8 @@ class DecodeFragment : Fragment() {
 				copyToClipboard(content)
 				true
 			}
-			R.id.open_url -> {
-				executeAction(content.toByteArray())
+			R.id.share -> {
+				context?.also { shareText(it, content) }
 				true
 			}
 			R.id.create -> {
