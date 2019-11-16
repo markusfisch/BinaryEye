@@ -29,6 +29,7 @@
 	<string name="switch_camera">Kamera átkapcsolása</string>
 	<string name="history">Előzmények</string>
 	<string name="preferences">Beállítások</string>
+	<string name="open_immediately">Skip inspection and open contents immediately</string>
 	<string name="use_history">Beolvasási előzmények mentése</string>
 	<string name="open_with_url">Ismeretlen adat megnyitása URL-lel</string>
 	<string name="really_remove_scan">Valóban eltávolítja a beolvasást?</string>

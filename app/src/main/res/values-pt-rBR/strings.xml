@@ -29,6 +29,7 @@
 	<string name="switch_camera">Trocar câmera</string>
 	<string name="history">Histórico</string>
 	<string name="preferences">Preferências</string>
+	<string name="open_immediately">Skip inspection and open contents immediately</string>
 	<string name="use_history">Salvar histórico de escaneamento</string>
 	<string name="open_with_url">Abrir dados desconhecidos com URL</string>
 	<string name="really_remove_scan">Realmente deseja remover o escaneamento?</string>

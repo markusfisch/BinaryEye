@@ -29,6 +29,7 @@
 	<string name="switch_camera">Ganti kamera</string>
 	<string name="history">Riwayat</string>
 	<string name="preferences">Preferensi</string>
+	<string name="open_immediately">Skip inspection and open contents immediately</string>
 	<string name="use_history">Simpan riwayat pemindaian</string>
 	<string name="open_with_url">Buka data tak dikenal dengan URL</string>
 	<string name="really_remove_scan">Yakin menghapus pemindaian?</string>

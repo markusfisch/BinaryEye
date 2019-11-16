@@ -7,6 +7,11 @@ import android.preference.PreferenceManager
 class Preferences {
 	lateinit var preferences: SharedPreferences
 
+	var openImmediately = false
+		set(value) {
+			setBoolean(OPEN_IMMEDIATELY, value)
+			field = value
+		}
 	var useHistory = false
 		set(value) {
 			setBoolean(USE_HISTORY, value)
@@ -24,6 +29,7 @@ class Preferences {
 	}
 
 	fun update() {
+		openImmediately = preferences.getBoolean(OPEN_IMMEDIATELY, openImmediately)
 		useHistory = preferences.getBoolean(USE_HISTORY, useHistory)
 		preferences.getString(OPEN_WITH_URL, openWithUrl)?.also { openWithUrl = it }
 	}
@@ -41,6 +47,7 @@ class Preferences {
 	}
 
 	companion object {
+		const val OPEN_IMMEDIATELY = "open_immediately"
 		const val USE_HISTORY = "use_history"
 		const val OPEN_WITH_URL = "open_with_url"
 	}

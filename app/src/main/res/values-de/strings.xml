@@ -29,6 +29,7 @@
 	<string name="switch_camera">Kamera wechseln</string>
 	<string name="history">Gespeicherte Codes</string>
 	<string name="preferences">Einstellungen</string>
+	<string name="open_immediately">Inspektion überspringen und Inhalte sofort öffnen</string>
 	<string name="use_history">Codes speichern</string>
 	<string name="open_with_url">URL zum Öffnen unbekannter Daten</string>
 	<string name="really_remove_scan">Code wirklich entfernen?</string>

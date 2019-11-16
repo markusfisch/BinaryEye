@@ -11,6 +11,7 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.prefs
 
 class PreferencesFragment : Fragment() {
+	private lateinit var openImmediatelySwitch: SwitchCompat
 	private lateinit var useHistorySwitch: SwitchCompat
 	private lateinit var openWithUrlInput: EditText
 
@@ -27,6 +28,11 @@ class PreferencesFragment : Fragment() {
 			false
 		)
 
+		openImmediatelySwitch = view.findViewById<SwitchCompat>(R.id.open_immediately)
+		if (prefs.openImmediately) {
+			openImmediatelySwitch.toggle()
+		}
+
 		useHistorySwitch = view.findViewById<SwitchCompat>(R.id.use_history)
 		if (prefs.useHistory) {
 			useHistorySwitch.toggle()
@@ -40,6 +46,7 @@ class PreferencesFragment : Fragment() {
 
 	override fun onPause() {
 		super.onPause()
+		prefs.openImmediately = openImmediatelySwitch.isChecked
 		prefs.useHistory = useHistorySwitch.isChecked
 		prefs.openWithUrl = openWithUrlInput.text.toString()
 	}

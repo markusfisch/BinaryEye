@@ -89,6 +89,9 @@ class DecodeFragment : Fragment() {
 			fab.setOnClickListener {
 				executeAction(content.toByteArray())
 			}
+			if (prefs.openImmediately) {
+				executeAction(content.toByteArray())
+			}
 		} else {
 			contentView.setText(R.string.binary_data)
 			contentView.isEnabled = false
