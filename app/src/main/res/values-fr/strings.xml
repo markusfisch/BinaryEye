@@ -38,7 +38,7 @@
 	<string name="pick_list_separator">How to separate list items?</string>
 	<string name="separator_line_break">Line break</string>
 	<string name="separator_ruler">Ruler</string>
-	<string name="save_as_file_name">Save as file?</string>
+	<string name="save_as_file_name">Save in Downloads as file?</string>
 	<string name="file_name">File name</string>
 	<string name="error_saving_binary_data">Cannot save file</string>
 	<string name="error_file_exists">File already exists</string>
