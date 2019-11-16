@@ -7,5 +7,5 @@
 	<color name="background_progress">#8000</color>
 	<color name="button_text">#fff</color>
 	<color name="separator">#333</color>
-	<color name="crop_bound">#8fff</color>
+	<color name="crop_bound">#fff</color>
 </resources>

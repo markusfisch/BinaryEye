@@ -2,6 +2,7 @@ package de.markusfisch.android.binaryeye.widget
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.DashPathEffect
 import android.graphics.Paint
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
@@ -12,11 +13,14 @@ import kotlin.math.roundToInt
 class CropImageView(context: Context, attr: AttributeSet) :
 	ConfinedScalingImageView(context, attr) {
 	private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
-	private val padding: Int = (context.resources.displayMetrics.density * 24f).roundToInt()
+	private val dp = context.resources.displayMetrics.density
+	private val padding: Int = (dp * 24f).roundToInt()
 
 	init {
 		paint.color = ContextCompat.getColor(context, R.color.crop_bound)
 		paint.style = Paint.Style.STROKE
+		paint.strokeWidth = dp * 2f
+		paint.pathEffect = DashPathEffect(floatArrayOf(dp * 10f, dp * 10f), 0f)
 		scaleType = ScaleType.CENTER_CROP
 	}
 
