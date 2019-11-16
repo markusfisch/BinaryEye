@@ -33,7 +33,6 @@ class PickActivity : AppCompatActivity() {
 		initSystemBars(this)
 
 		setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
-		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 		supportFragmentManager.addOnBackStackChangedListener {
 			setSystemAndToolBarTransparency(this@PickActivity)
