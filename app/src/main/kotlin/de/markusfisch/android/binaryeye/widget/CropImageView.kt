@@ -1,9 +1,7 @@
 package de.markusfisch.android.binaryeye.widget
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.DashPathEffect
-import android.graphics.Paint
+import android.graphics.*
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import de.markusfisch.android.binaryeye.R
@@ -12,15 +10,30 @@ import kotlin.math.roundToInt
 
 class CropImageView(context: Context, attr: AttributeSet) :
 	ConfinedScalingImageView(context, attr) {
-	private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
+	var onScan: (() -> Rect)? = null
+
+	private val boundsPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+	private val candidatePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+	private val lastMappedRect = RectF()
 	private val dp = context.resources.displayMetrics.density
 	private val padding: Int = (dp * 24f).roundToInt()
+	private val onScanRunnable = Runnable {
+		onScan?.invoke()?.also {
+			candidateRect = it
+			invalidate()
+		}
+	}
+
+	private var candidateRect: Rect? = null
 
 	init {
-		paint.color = ContextCompat.getColor(context, R.color.crop_bound)
-		paint.style = Paint.Style.STROKE
-		paint.strokeWidth = dp * 2f
-		paint.pathEffect = DashPathEffect(floatArrayOf(dp * 10f, dp * 10f), 0f)
+		boundsPaint.color = ContextCompat.getColor(context, R.color.crop_bound)
+		boundsPaint.style = Paint.Style.STROKE
+		boundsPaint.strokeWidth = dp * 2f
+		boundsPaint.pathEffect = DashPathEffect(floatArrayOf(dp * 10f, dp * 10f), 0f)
+		candidatePaint.color = ContextCompat.getColor(context, R.color.candidate)
+		candidatePaint.style = Paint.Style.FILL_AND_STROKE
+		candidatePaint.strokeWidth = dp * 3f
 		scaleType = ScaleType.CENTER_CROP
 	}
 
@@ -38,6 +51,10 @@ class CropImageView(context: Context, attr: AttributeSet) :
 			right - windowInsets.right,
 			bottom - windowInsets.bottom
 		)
+	}
+
+	fun getBoundsRect(): RectF {
+		return bounds
 	}
 
 	private fun setBoundsWithPadding(
@@ -65,6 +82,17 @@ class CropImageView(context: Context, attr: AttributeSet) :
 
 	override fun onDraw(canvas: Canvas) {
 		super.onDraw(canvas)
-		canvas.drawRect(bounds, paint)
+		canvas.drawRect(bounds, boundsPaint)
+		val rc = candidateRect
+		if (rc != null && rc.width() > 0) {
+			canvas.drawRect(rc, candidatePaint)
+			candidateRect = null
+		}
+		val mr = mappedRect ?: return
+		if (mr != lastMappedRect) {
+			removeCallbacks(onScanRunnable)
+			postDelayed(onScanRunnable, 500)
+			lastMappedRect.set(mr)
+		}
 	}
 }

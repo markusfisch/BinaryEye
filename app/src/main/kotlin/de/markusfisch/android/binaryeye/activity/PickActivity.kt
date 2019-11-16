@@ -2,6 +2,7 @@ package de.markusfisch.android.binaryeye.activity
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
@@ -11,6 +12,7 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import com.google.zxing.Result
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.initSystemBars
 import de.markusfisch.android.binaryeye.app.setSystemAndToolBarTransparency
@@ -19,6 +21,8 @@ import de.markusfisch.android.binaryeye.graphics.downsizeIfBigger
 import de.markusfisch.android.binaryeye.widget.CropImageView
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import java.io.IOException
+import kotlin.math.min
+import kotlin.math.max
 
 class PickActivity : AppCompatActivity() {
 	private val zxing = Zxing()
@@ -64,18 +68,52 @@ class PickActivity : AppCompatActivity() {
 			return
 		}
 
-		cropImageView = findViewById(R.id.image) as CropImageView
-		cropImageView.setImageBitmap(bitmap)
-
-		findViewById(R.id.scan).setOnClickListener {
-			val detail = crop(
+		val scannedRect = Rect()
+		val scanBounds: () -> Result? = {
+			var result: Result? = null
+			crop(
 				bitmap,
 				cropImageView.normalizedRectInBounds,
 				cropImageView.imageRotation
-			)
-			detail?.let {
-				scanImage(detail)
+			)?.also {
+				scannedRect.set(0, 0, it.width, it.height)
+				result = zxing.decodePositiveNegative(it)
 			}
+			result
+		}
+
+		cropImageView = findViewById(R.id.image) as CropImageView
+		cropImageView.setImageBitmap(bitmap)
+		cropImageView.onScan = {
+			val rect = Rect()
+			scanBounds()?.also {
+				rect.left = Int.MAX_VALUE
+				rect.top = Int.MAX_VALUE
+				for (rp in it.resultPoints) {
+					val x = rp.x.toInt()
+					val y = rp.y.toInt()
+					rect.left = min(rect.left, x)
+					rect.right = max(rect.right, x)
+					rect.top = min(rect.top, y)
+					rect.bottom = max(rect.bottom, y)
+				}
+				// map result points onto view
+				val bounds = cropImageView.getBoundsRect()
+				val fx = bounds.width() / scannedRect.width().toFloat()
+				val fy = bounds.height() / scannedRect.height().toFloat()
+				rect.set(
+					(rect.left * fx).toInt(),
+					(rect.top * fy).toInt(),
+					(rect.right * fx).toInt(),
+					(rect.bottom * fx).toInt()
+				)
+				rect.offset(bounds.left.toInt(), bounds.top.toInt())
+			}
+			rect
+		}
+
+		findViewById(R.id.scan).setOnClickListener {
+			scanImage(scanBounds())
 		}
 	}
 
@@ -119,8 +157,7 @@ class PickActivity : AppCompatActivity() {
 		null
 	}
 
-	private fun scanImage(bitmap: Bitmap) {
-		val result = zxing.decodePositiveNegative(bitmap)
+	private fun scanImage(result: Result?) {
 		if (result != null) {
 			showResult(this, result, returnResult)
 			finish()

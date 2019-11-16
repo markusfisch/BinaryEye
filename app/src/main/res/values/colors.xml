@@ -8,4 +8,5 @@
 	<color name="button_text">#fff</color>
 	<color name="separator">#333</color>
 	<color name="crop_bound">#fff</color>
+	<color name="candidate">#80b6d46f</color>
 </resources>
