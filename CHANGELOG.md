@@ -1,5 +1,12 @@
 # Change Log
 
+# 1.18.0
+* Make open URL default action after decoding a barcode
+* Add a setting to open contents without inspection
+* Highlight codes for picking in shared/loaded images
+* Improve visability of crop border
+* Fix returning result for ZXing's SCAN intent
+
 # 1.17.1
 * Fix navigating back without choosing an image
 
