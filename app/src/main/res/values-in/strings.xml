@@ -68,4 +68,5 @@
 	<string name="saved_in_downloads">Simpan di dalam unduhan</string>
 	<string name="rotate_image_cw">Rotate image clockwise</string>
 	<string name="pick_file">Pick image file</string>
+	<string name="pick_code_to_scan">Pick code to scan</string>
 </resources>

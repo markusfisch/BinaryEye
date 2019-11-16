@@ -54,7 +54,7 @@
 		</activity>
 		<activity
 			android:name=".activity.PickActivity"
-			android:label="@string/scan_code">
+			android:label="@string/pick_code_to_scan">
 			<intent-filter android:label="@string/decode_barcode">
 				<action android:name="android.intent.action.SEND"/>
 				<category android:name="android.intent.category.DEFAULT"/>
