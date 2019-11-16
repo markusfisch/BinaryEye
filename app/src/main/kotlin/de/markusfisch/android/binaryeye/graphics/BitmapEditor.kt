@@ -26,10 +26,11 @@ fun downsizeIfBigger(bitmap: Bitmap, maxSize: Int): Bitmap = if (
 }
 
 fun crop(bitmap: Bitmap, rect: RectF, rotation: Float) = try {
-	val w = bitmap.width
-	val h = bitmap.height
+	val erected = erect(bitmap, rotation)
+	val w = erected.width
+	val h = erected.height
 	Bitmap.createBitmap(
-		erect(bitmap, rotation),
+		erected,
 		(rect.left * w).roundToInt(),
 		(rect.top * h).roundToInt(),
 		(rect.width() * w).roundToInt(),
