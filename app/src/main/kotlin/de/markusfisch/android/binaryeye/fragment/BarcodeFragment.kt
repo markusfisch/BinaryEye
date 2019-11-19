@@ -16,6 +16,7 @@ import de.markusfisch.android.binaryeye.app.addSuffixIfNotGiven
 import de.markusfisch.android.binaryeye.app.hasWritePermission
 import de.markusfisch.android.binaryeye.app.shareFile
 import de.markusfisch.android.binaryeye.zxing.Zxing
+import de.markusfisch.android.scalingimageview.widget.ScalingImageView
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -59,7 +60,14 @@ class BarcodeFragment : Fragment() {
 			fragmentManager.popBackStack()
 			return null
 		}
-		view.findViewById<ImageView>(R.id.barcode).setImageBitmap(barcode)
+
+		val imageView = view.findViewById<ScalingImageView>(R.id.barcode)
+		imageView.setImageBitmap(barcode)
+		imageView.post {
+			// make sure to invoke this after ScalingImageView.onLayout()
+			imageView.setMinWidth(imageView.getMinWidth() / 2f)
+		}
+
 		view.findViewById<View>(R.id.share).setOnClickListener {
 			val bitmap = barcode
 			bitmap?.let {
