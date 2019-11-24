@@ -11,11 +11,13 @@ import android.widget.*
 import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.addFragment
+import de.markusfisch.android.binaryeye.app.prefs
 
 class EncodeFragment : Fragment() {
 	private lateinit var formatView: Spinner
 	private lateinit var sizeView: TextView
 	private lateinit var sizeBarView: SeekBar
+
 	private val writers = arrayListOf(
 		BarcodeFormat.AZTEC,
 		BarcodeFormat.CODABAR,
@@ -50,6 +52,11 @@ class EncodeFragment : Fragment() {
 			android.R.layout.simple_list_item_1,
 			writers.map { it.name }
 		)
+		if (state == null) {
+			formatView.post {
+				formatView.setSelection(prefs.indexOfLastSelectedFormat)
+			}
+		}
 
 		sizeView = view.findViewById(R.id.size_display)
 		sizeBarView = view.findViewById(R.id.size_bar)
@@ -87,6 +94,11 @@ class EncodeFragment : Fragment() {
 		}
 
 		return view
+	}
+
+	override fun onPause() {
+		super.onPause()
+		prefs.indexOfLastSelectedFormat = formatView.selectedItemPosition
 	}
 
 	private fun initSizeBar() {
