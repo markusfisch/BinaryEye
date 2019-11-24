@@ -28,17 +28,17 @@ class PreferencesFragment : Fragment() {
 			false
 		)
 
-		openImmediatelySwitch = view.findViewById<SwitchCompat>(R.id.open_immediately)
+		openImmediatelySwitch = view.findViewById(R.id.open_immediately)
 		if (prefs.openImmediately) {
 			openImmediatelySwitch.toggle()
 		}
 
-		useHistorySwitch = view.findViewById<SwitchCompat>(R.id.use_history)
+		useHistorySwitch = view.findViewById(R.id.use_history)
 		if (prefs.useHistory) {
 			useHistorySwitch.toggle()
 		}
 
-		openWithUrlInput = view.findViewById<EditText>(R.id.open_with_url)
+		openWithUrlInput = view.findViewById(R.id.open_with_url)
 		openWithUrlInput.setText(prefs.openWithUrl)
 
 		return view
