@@ -1,5 +1,9 @@
 # Change Log
 
+# 1.19.0
+* Allow scaling a new barcode to half its size
+* Remember last selected barcode format
+
 # 1.18.0
 * Make open URL default action after decoding a barcode
 * Add a setting to open contents without inspection
