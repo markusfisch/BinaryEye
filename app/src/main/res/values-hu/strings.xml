@@ -29,7 +29,7 @@
 	<string name="switch_camera">Kamera átkapcsolása</string>
 	<string name="history">Előzmények</string>
 	<string name="preferences">Beállítások</string>
-	<string name="open_immediately">Skip inspection and open contents immediately</string>
+	<string name="open_immediately">Vizsgálat kihagyása és a tartalom azonnali megnyitása</string>
 	<string name="use_history">Beolvasási előzmények mentése</string>
 	<string name="open_with_url">Ismeretlen adat megnyitása URL-lel</string>
 	<string name="really_remove_scan">Valóban eltávolítja a beolvasást?</string>
@@ -67,7 +67,7 @@
 	<string name="no">Nem</string>
 	<string name="csv_allow_binary_message">Valószínűleg ezt nem szeretné engedélyezni, mivel tönkre fogja tenni a fájlformátumot, és a szövegszerkesztők talán nem fogják tudni többé olvasni.</string>
 	<string name="saved_in_downloads">Elmentve a letöltésekbe</string>
-	<string name="rotate_image_cw">Rotate image clockwise</string>
-	<string name="pick_file">Pick image file</string>
-	<string name="pick_code_to_scan">Pick code to scan</string>
+	<string name="rotate_image_cw">Kép forgatása jobbra</string>
+	<string name="pick_file">Képfájl kiválasztása</string>
+	<string name="pick_code_to_scan">Kód kiválasztása a beolvasáshoz</string>
 </resources>
