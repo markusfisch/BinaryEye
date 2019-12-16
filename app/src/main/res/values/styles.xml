@@ -21,4 +21,15 @@
 		<item name="android:paddingRight">@dimen/button_padding</item>
 		<item name="android:maxLines">1</item>
 	</style>
+	<style
+		name="FAB"
+		parent="Widget.Design.FloatingActionButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_margin">20dp</item>
+		<item name="android:layout_alignParentEnd">true</item>
+		<item name="android:layout_alignParentRight">true</item>
+		<item name="android:layout_alignParentBottom">true</item>
+		<item name="elevation">4dp</item>
+	</style>
 </resources>

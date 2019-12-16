@@ -1,6 +1,4 @@
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools">
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
 	<de.markusfisch.android.cameraview.widget.CameraView
 		android:id="@+id/camera_view"
 		android:layout_width="match_parent"
@@ -23,16 +21,9 @@
 			android:layout_marginEnd="80dp"
 			android:padding="16dp"/>
 		<android.support.design.widget.FloatingActionButton
-			tools:ignore="UnusedAttribute"
+			style="@style/FAB"
 			android:id="@+id/flash"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_alignParentEnd="true"
-			android:layout_alignParentRight="true"
-			android:layout_alignParentBottom="true"
-			android:layout_margin="20dp"
 			android:contentDescription="@string/toggle_flash"
-			android:src="@drawable/ic_action_flash"
-			app:elevation="4dp"/>
+			android:src="@drawable/ic_action_flash"/>
 	</RelativeLayout>
 </merge>

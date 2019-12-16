@@ -1,6 +1,5 @@
 <RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
@@ -51,15 +50,8 @@
 		</RelativeLayout>
 	</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>
 	<android.support.design.widget.FloatingActionButton
-		tools:ignore="UnusedAttribute"
+		style="@style/FAB"
 		android:id="@+id/open"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_alignParentEnd="true"
-		android:layout_alignParentRight="true"
-		android:layout_alignParentBottom="true"
-		android:layout_margin="20dp"
 		android:contentDescription="@string/open_url"
-		android:src="@drawable/ic_action_open"
-		app:elevation="4dp"/>
+		android:src="@drawable/ic_action_open"/>
 </RelativeLayout>
