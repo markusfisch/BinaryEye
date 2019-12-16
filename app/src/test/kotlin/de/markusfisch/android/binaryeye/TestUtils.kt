@@ -7,7 +7,10 @@ fun simpleFail(message: String = "Unknown reason, but failed"): Nothing {
 	throw IllegalStateException("You should never have reached this point in the code, but anyways: $message")
 }
 
-inline fun <reified E : Throwable> assertThrows(message: String = "Unknown reason, but didn't failed even though should fail", block: () -> Unit) {
+inline fun <reified E : Throwable> assertThrows(
+	message: String = "Unknown reason, but didn't failed even though should fail",
+	block: () -> Unit
+) {
 	try {
 		block()
 		fail(message)

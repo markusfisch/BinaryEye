@@ -3,10 +3,10 @@
 	<!-- Lint can't understand Kotlin sources and reports all resources
 		as unused -->
 	<issue id="UnusedResources">
-		<ignore path="src/main/res/"/>
+		<ignore path="src/main/res/" />
 	</issue>
 	<!-- Ignore RenderScript output  -->
 	<issue id="UnusedResources">
-		<ignore path="*/res/rs/debug/raw/bc*"/>
+		<ignore path="*/res/rs/debug/raw/bc*" />
 	</issue>
 </lint>

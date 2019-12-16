@@ -86,8 +86,8 @@ class WifiConfigurationFactoryTest {
 
 	private fun simpleDataAccessor(wifiString: String): WifiConfigurationFactory.SimpleDataAccessor {
 		val map = WifiConfigurationFactory.parseMap(wifiString)
-				?: simpleFail("parsing map of valid string fails ($wifiString)")
+			?: simpleFail("parsing map of valid string fails ($wifiString)")
 		return WifiConfigurationFactory.SimpleDataAccessor.of(map)
-				?: simpleFail("could not create SimpleDataAccessor of (potentially) valid map ($map of $wifiString)")
+			?: simpleFail("could not create SimpleDataAccessor of (potentially) valid map ($map of $wifiString)")
 	}
 }
