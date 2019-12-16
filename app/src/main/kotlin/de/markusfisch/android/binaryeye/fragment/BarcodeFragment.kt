@@ -25,6 +25,8 @@ import java.io.IOException
 
 class BarcodeFragment : Fragment() {
 	private var barcode: Bitmap? = null
+	private var content: String = ""
+	private var format: BarcodeFormat? = null
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -59,6 +61,8 @@ class BarcodeFragment : Fragment() {
 			fragmentManager.popBackStack()
 			return null
 		}
+		this.content = content
+		this.format = format
 
 		val imageView = view.findViewById<ScalingImageView>(R.id.barcode)
 		imageView.setImageBitmap(barcode)
@@ -97,6 +101,7 @@ class BarcodeFragment : Fragment() {
 		val ac = activity ?: return
 		val view = ac.layoutInflater.inflate(R.layout.dialog_save_file, null)
 		val editText = view.findViewById<EditText>(R.id.file_name)
+		editText.setText(encodeFileName("${format.toString()}_$content"))
 		AlertDialog.Builder(ac)
 			.setView(view)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
@@ -200,3 +205,7 @@ private fun saveBitmap(bitmap: Bitmap, file: File): Boolean {
 		false
 	}
 }
+
+private val fileNameCharacters = "[^A-Za-z0-9]".toRegex()
+private fun encodeFileName(name: String): String =
+	fileNameCharacters.replace(name, "_").take(16).trim('_').toLowerCase()
