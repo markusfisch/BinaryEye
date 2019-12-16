@@ -44,9 +44,8 @@ fun setSystemAndToolBarTransparency(
 	scrollable: Boolean = false
 ) {
 	val opaqueColor = ContextCompat.getColor(context, R.color.primary)
-	val transparentColor = 0x00000000
-	val topColor = if (scrolled) opaqueColor else transparentColor
-	val bottomColor = if (scrolled || scrollable) opaqueColor else transparentColor
+	val topColor = if (scrolled) opaqueColor else 0
+	val bottomColor = if (scrolled || scrollable) opaqueColor else 0
 	val activity = getAppCompatActivity(context) ?: return
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 		val window = activity.window
