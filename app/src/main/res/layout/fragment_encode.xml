@@ -1,63 +1,67 @@
-<de.markusfisch.android.binaryeye.widget.ConfinedScrollView
+<RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
-	<LinearLayout
+	<de.markusfisch.android.binaryeye.widget.ConfinedScrollView
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		android:padding="16dp">
-		<TextView
+		android:layout_height="match_parent">
+		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginBottom="8dp"
-			android:text="@string/format"/>
-		<Spinner
-			android:id="@+id/format"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="16dp"/>
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="8dp"
-			android:text="@string/size"/>
-		<TextView
-			android:id="@+id/size_display"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="8dp"
-			android:gravity="center"/>
-		<SeekBar
-			style="@style/Widget.AppCompat.SeekBar.Discrete"
-			android:id="@+id/size_bar"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="16dp"
-			android:progress="4"
-			android:max="7"/>
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="8dp"
-			android:text="@string/content"/>
-		<EditText
-			tools:targetApi="o"
-			android:id="@+id/content"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="16dp"
-			android:gravity="start|top"
-			android:typeface="monospace"
-			android:imeOptions="flagNoExtractUi"
-			android:inputType="textMultiLine"
-			android:hint="@string/input_content_here"
-			android:importantForAutofill="no"/>
-		<Button
-			style="@style/Button"
-			android:id="@+id/encode"
-			android:layout_width="match_parent"
-			android:text="@string/encode"/>
-	</LinearLayout>
-</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>
+			android:orientation="vertical"
+			android:padding="16dp">
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="8dp"
+				android:text="@string/format"/>
+			<Spinner
+				android:id="@+id/format"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="16dp"/>
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="8dp"
+				android:text="@string/size"/>
+			<TextView
+				android:id="@+id/size_display"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="8dp"
+				android:gravity="center"/>
+			<SeekBar
+				style="@style/Widget.AppCompat.SeekBar.Discrete"
+				android:id="@+id/size_bar"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="16dp"
+				android:progress="4"
+				android:max="7"/>
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="8dp"
+				android:text="@string/content"/>
+			<EditText
+				tools:targetApi="o"
+				android:id="@+id/content"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="16dp"
+				android:gravity="start|top"
+				android:typeface="monospace"
+				android:imeOptions="flagNoExtractUi"
+				android:inputType="textMultiLine"
+				android:hint="@string/input_content_here"
+				android:importantForAutofill="no"/>
+		</LinearLayout>
+	</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>
+	<android.support.design.widget.FloatingActionButton
+		style="@style/FAB"
+		android:id="@+id/encode"
+		android:contentDescription="@string/encode"
+		android:src="@drawable/ic_action_next"/>
+</RelativeLayout>
