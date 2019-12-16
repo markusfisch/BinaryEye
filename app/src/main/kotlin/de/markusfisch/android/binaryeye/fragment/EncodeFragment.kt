@@ -52,11 +52,6 @@ class EncodeFragment : Fragment() {
 			android.R.layout.simple_list_item_1,
 			writers.map { it.name }
 		)
-		if (state == null) {
-			formatView.post {
-				formatView.setSelection(prefs.indexOfLastSelectedFormat)
-			}
-		}
 
 		sizeView = view.findViewById(R.id.size_display)
 		sizeBarView = view.findViewById(R.id.size_bar)
@@ -65,13 +60,17 @@ class EncodeFragment : Fragment() {
 		val contentView = view.findViewById<EditText>(R.id.content)
 
 		val args = arguments
-		args?.let {
-			contentView.setText(args.getString(CONTENT))
-			formatView.setSelection(
-				writers.indexOf(
-					args.getSerializable(FORMAT) as BarcodeFormat?
-				)
-			)
+		args?.also {
+			contentView.setText(it.getString(CONTENT))
+		}
+
+		val format = args?.getSerializable(FORMAT) as BarcodeFormat?
+		if (format != null) {
+			formatView.setSelection(writers.indexOf(format))
+		} else if (state == null) {
+			formatView.post {
+				formatView.setSelection(prefs.indexOfLastSelectedFormat)
+			}
 		}
 
 		view.findViewById<View>(R.id.encode).setOnClickListener { v ->
@@ -141,11 +140,13 @@ class EncodeFragment : Fragment() {
 
 		fun newInstance(
 			content: String,
-			format: BarcodeFormat = BarcodeFormat.AZTEC
+			format: BarcodeFormat? = null
 		): Fragment {
 			val args = Bundle()
 			args.putString(CONTENT, content)
-			args.putSerializable(FORMAT, format)
+			format?.let {
+				args.putSerializable(FORMAT, format)
+			}
 			val fragment = EncodeFragment()
 			fragment.arguments = args
 			return fragment
