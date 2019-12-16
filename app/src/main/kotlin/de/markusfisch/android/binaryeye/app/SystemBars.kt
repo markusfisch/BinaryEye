@@ -1,6 +1,7 @@
 package de.markusfisch.android.binaryeye.app
 
 import android.content.Context
+import android.content.ContextWrapper
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
@@ -46,13 +47,24 @@ fun setSystemAndToolBarTransparency(
 	val transparentColor = 0x00000000
 	val topColor = if (scrolled) opaqueColor else transparentColor
 	val bottomColor = if (scrolled || scrollable) opaqueColor else transparentColor
-	val activity = context as AppCompatActivity
+	val activity = getAppCompatActivity(context) ?: return
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 		val window = activity.window
 		window.statusBarColor = topColor
 		window.navigationBarColor = bottomColor
 	}
 	activity.supportActionBar?.setBackgroundDrawable(ColorDrawable(topColor))
+}
+
+private fun getAppCompatActivity(context: Context): AppCompatActivity? {
+	var ctx = context
+	while (ctx is ContextWrapper) {
+		if (ctx is AppCompatActivity) {
+			return ctx
+		}
+		ctx = ctx.baseContext ?: break
+	}
+	return null
 }
 
 fun initSystemBars(activity: AppCompatActivity) {
