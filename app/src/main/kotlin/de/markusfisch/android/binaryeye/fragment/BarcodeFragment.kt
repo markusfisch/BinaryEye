@@ -22,6 +22,7 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.util.Locale
 
 class BarcodeFragment : Fragment() {
 	private var barcode: Bitmap? = null
@@ -208,4 +209,4 @@ private fun saveBitmap(bitmap: Bitmap, file: File): Boolean {
 
 private val fileNameCharacters = "[^A-Za-z0-9]".toRegex()
 private fun encodeFileName(name: String): String =
-	fileNameCharacters.replace(name, "_").take(16).trim('_').toLowerCase()
+	fileNameCharacters.replace(name, "_").take(16).trim('_').toLowerCase(Locale.getDefault())
