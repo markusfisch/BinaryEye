@@ -18,6 +18,7 @@
 		android:allowBackup="true"
 		android:fullBackupContent="true"
 		android:supportsRtl="true"
+		android:resizeableActivity="true"
 		android:label="@string/app_name"
 		android:icon="@mipmap/ic_launcher"
 		android:theme="@style/AppTheme">
