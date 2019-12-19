@@ -64,9 +64,9 @@ class EncodeFragment : Fragment() {
 			contentView.setText(it.getString(CONTENT))
 		}
 
-		val format = args?.getSerializable(FORMAT) as BarcodeFormat?
-		if (format != null) {
-			formatView.setSelection(writers.indexOf(format))
+		val barcodeFormat = args?.getSerializable(FORMAT) as BarcodeFormat?
+		if (barcodeFormat != null) {
+			formatView.setSelection(writers.indexOf(barcodeFormat))
 		} else if (state == null) {
 			formatView.post {
 				formatView.setSelection(prefs.indexOfLastSelectedFormat)
