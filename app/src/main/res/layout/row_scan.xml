@@ -4,6 +4,7 @@
 	android:layout_height="match_parent"
 	android:padding="16dp">
 	<TextView
+		style="@style/SecondaryText"
 		android:id="@+id/time"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -11,6 +12,7 @@
 		android:layout_alignParentStart="true"
 		android:layout_alignParentTop="true"/>
 	<TextView
+		style="@style/SecondaryText"
 		android:id="@+id/format"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -26,6 +28,7 @@
 		android:layout_height="wrap_content"
 		android:layout_below="@+id/time"
 		android:layout_marginTop="4dp"
-		android:textSize="18sp"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:textColor="?android:attr/textColorPrimary"
 		android:typeface="monospace"/>
 </RelativeLayout>

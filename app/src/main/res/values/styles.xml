@@ -9,6 +9,12 @@
 		<item name="android:windowBackground">@drawable/background_splash</item>
 	</style>
 	<style
+		name="SecondaryText"
+		parent="@android:style/Widget.TextView">
+		<item name="android:textSize">12sp</item>
+		<item name="android:textColor">?android:attr/textColorSecondary</item>
+	</style>
+	<style
 		name="Button"
 		parent="@android:style/Widget.Button">
 		<item name="android:layout_width">wrap_content</item>
