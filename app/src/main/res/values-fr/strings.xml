@@ -7,8 +7,8 @@
 	<string name="content">Contenu</string>
 	<string name="binary_data">(binary data)</string>
 	<plurals name="barcode_info">
-		<item quantity="one">%1$s\n%2$d character</item>
-		<item quantity="other">%1$s\n%2$d characters</item>
+		<item quantity="one">%2$d characters, %1$s</item>
+		<item quantity="other">%2$d characters, %1$s</item>
 	</plurals>
 	<string name="toggle_flash">Toggle flash</string>
 	<string name="share">Share</string>

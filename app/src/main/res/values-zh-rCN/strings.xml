@@ -7,8 +7,8 @@
 	<string name="content">内容</string>
 	<string name="binary_data">(二进制数据)</string>
 	<plurals name="barcode_info">
-		<item quantity="one">%1$s\n%2$d 字符</item>
-		<item quantity="other">%1$s\n%2$d 字符</item>
+		<item quantity="one">%2$d 字符, %1$s</item>
+		<item quantity="other">%2$d 字符, %1$s</item>
 	</plurals>
 	<string name="toggle_flash">切换闪光灯</string>
 	<string name="share">分享</string>

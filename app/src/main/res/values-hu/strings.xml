@@ -7,8 +7,8 @@
 	<string name="content">Tartalom</string>
 	<string name="binary_data">(bináris adat)</string>
 	<plurals name="barcode_info">
-		<item quantity="one">%1$s\n%2$d karakter</item>
-		<item quantity="other">%1$s\n%2$d karakter</item>
+		<item quantity="one">%2$d karakter, %1$s</item>
+		<item quantity="other">%2$d karakter, %1$s</item>
 	</plurals>
 	<string name="toggle_flash">Vaku be- vagy kikapcsolása</string>
 	<string name="share">Megosztás</string>
