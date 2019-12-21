@@ -16,6 +16,7 @@ import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
 import de.markusfisch.android.binaryeye.app.*
+import de.markusfisch.android.binaryeye.view.setPadding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -105,6 +106,11 @@ class DecodeFragment : Fragment() {
 		hexView = view.findViewById(R.id.hex)
 
 		updateViewsAndAction(raw)
+
+		setWindowInsetListener { insets ->
+			(view.findViewById(R.id.inset_layout) as View).setPadding(insets)
+			(view.findViewById(R.id.scroll_view) as View).setPadding(insets)
+		}
 
 		return view
 	}

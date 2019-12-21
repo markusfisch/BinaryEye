@@ -12,6 +12,8 @@ import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.app.setWindowInsetListener
+import de.markusfisch.android.binaryeye.view.setPadding
 
 class EncodeFragment : Fragment() {
 	private lateinit var formatView: Spinner
@@ -90,6 +92,11 @@ class EncodeFragment : Fragment() {
 					BarcodeFragment.newInstance(content, format, size)
 				)
 			}
+		}
+
+		setWindowInsetListener { insets ->
+			(view.findViewById(R.id.inset_layout) as View).setPadding(insets)
+			(view.findViewById(R.id.scroll_view) as View).setPadding(insets)
 		}
 
 		return view

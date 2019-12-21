@@ -14,15 +14,17 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.google.zxing.Result
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.app.colorSystemAndToolBars
 import de.markusfisch.android.binaryeye.app.initSystemBars
-import de.markusfisch.android.binaryeye.app.setSystemAndToolBarTransparency
+import de.markusfisch.android.binaryeye.app.setWindowInsetListener
+import de.markusfisch.android.binaryeye.app.setupInsets
 import de.markusfisch.android.binaryeye.graphics.crop
 import de.markusfisch.android.binaryeye.graphics.downsizeIfBigger
 import de.markusfisch.android.binaryeye.widget.CropImageView
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import java.io.IOException
-import kotlin.math.min
 import kotlin.math.max
+import kotlin.math.min
 
 class PickActivity : AppCompatActivity() {
 	private val zxing = Zxing()
@@ -34,12 +36,14 @@ class PickActivity : AppCompatActivity() {
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
 		setContentView(R.layout.activity_pick)
-		initSystemBars(this)
 
-		setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
+		initSystemBars(this)
+		val toolbar = findViewById(R.id.toolbar) as Toolbar
+		setupInsets(findViewById(android.R.id.content), toolbar)
+		setSupportActionBar(toolbar)
 
 		supportFragmentManager.addOnBackStackChangedListener {
-			setSystemAndToolBarTransparency(this@PickActivity)
+			colorSystemAndToolBars(this@PickActivity)
 		}
 
 		returnResult = intent?.action == "com.google.zxing.client.android.SCAN"
@@ -110,6 +114,9 @@ class PickActivity : AppCompatActivity() {
 				rect.offset(bounds.left.toInt(), bounds.top.toInt())
 			}
 			rect
+		}
+		setWindowInsetListener { insets ->
+			cropImageView.windowInsets.set(insets)
 		}
 
 		findViewById(R.id.scan).setOnClickListener {

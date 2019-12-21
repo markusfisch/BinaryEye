@@ -1,9 +1,11 @@
-<RelativeLayout
+<FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 	<de.markusfisch.android.binaryeye.widget.ConfinedScrollView
+		android:id="@+id/scroll_view"
+		android:clipToPadding="false"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 		<LinearLayout
@@ -59,9 +61,14 @@
 				android:importantForAutofill="no"/>
 		</LinearLayout>
 	</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>
-	<android.support.design.widget.FloatingActionButton
-		style="@style/FAB"
-		android:id="@+id/encode"
-		android:contentDescription="@string/encode"
-		android:src="@drawable/ic_action_next"/>
-</RelativeLayout>
+	<RelativeLayout
+		android:id="@+id/inset_layout"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		<android.support.design.widget.FloatingActionButton
+			style="@style/FAB"
+			android:id="@+id/encode"
+			android:contentDescription="@string/encode"
+			android:src="@drawable/ic_action_next"/>
+	</RelativeLayout>
+</FrameLayout>

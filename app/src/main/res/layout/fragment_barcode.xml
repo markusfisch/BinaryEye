@@ -1,4 +1,4 @@
-<RelativeLayout
+<FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
@@ -7,9 +7,14 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:contentDescription="@string/view_barcode"/>
-	<android.support.design.widget.FloatingActionButton
-		style="@style/FAB"
-		android:id="@+id/share"
-		android:contentDescription="@string/share"
-		android:src="@drawable/ic_action_share"/>
-</RelativeLayout>
+	<RelativeLayout
+		android:id="@+id/inset_layout"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		<android.support.design.widget.FloatingActionButton
+			style="@style/FAB"
+			android:id="@+id/share"
+			android:contentDescription="@string/share"
+			android:src="@drawable/ic_action_share"/>
+	</RelativeLayout>
+</FrameLayout>

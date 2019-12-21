@@ -1,6 +1,5 @@
 <resources>
 	<color name="primary">#222</color>
-	<color name="primary_dark">#111</color>
 	<color name="accent">#b6d46f</color>
 	<color name="accent_dark">#a6c45f</color>
 	<color name="background_color">#111</color>

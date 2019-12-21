@@ -7,6 +7,7 @@ import android.support.annotation.WorkerThread
 import android.support.v4.app.Fragment
 import android.support.v7.widget.SwitchCompat
 import android.view.*
+import android.widget.AbsListView
 import android.widget.ListView
 import android.widget.Toast
 import com.google.zxing.BarcodeFormat
@@ -15,6 +16,7 @@ import de.markusfisch.android.binaryeye.adapter.ScansAdapter
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.data.csv.csvBuilder
 import de.markusfisch.android.binaryeye.repository.DatabaseRepository
+import de.markusfisch.android.binaryeye.view.setPadding
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -25,6 +27,7 @@ class HistoryFragment : Fragment() {
 	private lateinit var fab: View
 	private lateinit var progressView: View
 
+	private var scansAdapter: ScansAdapter? = null
 	private val parentJob = Job()
 	private val scope = CoroutineScope(Dispatchers.IO + parentJob)
 
@@ -51,7 +54,17 @@ class HistoryFragment : Fragment() {
 		) as SwitchCompat
 		initHistorySwitch(useHistorySwitch)
 
+		val headView = View(context)
+		val footView = View(context)
+		setWindowInsetListener { insets ->
+			(view.findViewById(R.id.inset_layout) as View).setPadding(insets)
+			headView.layoutParams = AbsListView.LayoutParams(0, insets.top)
+			footView.layoutParams = AbsListView.LayoutParams(0, insets.bottom)
+		}
+
 		listView = view.findViewById(R.id.scans)
+		listView.addHeaderView(headView, null, false)
+		listView.addFooterView(footView, null, false)
 		listView.emptyView = useHistorySwitch
 		listView.setOnItemClickListener { _, _, _, id ->
 			showScan(id)
@@ -74,7 +87,7 @@ class HistoryFragment : Fragment() {
 
 	override fun onDestroy() {
 		super.onDestroy()
-		(listView.adapter as ScansAdapter?)?.changeCursor(null)
+		scansAdapter?.changeCursor(null)
 		parentJob.cancel()
 	}
 
@@ -120,13 +133,10 @@ class HistoryFragment : Fragment() {
 					View.GONE
 				}
 				cursor?.let {
-					if (listView.adapter == null) {
-						listView.adapter = ScansAdapter(context, cursor)
-					} else {
-						val adapter = listView.adapter as ScansAdapter
-						adapter.changeCursor(cursor)
-						adapter.notifyDataSetChanged()
-					}
+					// close previous cursor
+					scansAdapter?.also { it.changeCursor(null) }
+					scansAdapter = ScansAdapter(context, it)
+					listView.adapter = scansAdapter
 				}
 			}
 		}

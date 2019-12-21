@@ -1,4 +1,4 @@
-<RelativeLayout
+<FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
@@ -9,19 +9,24 @@
 		android:layout_height="match_parent"
 		android:divider="@color/separator"
 		android:dividerHeight="1px"/>
-	<android.support.v7.widget.SwitchCompat
-		android:visibility="gone"
-		android:id="@+id/use_history"
+	<RelativeLayout
+		android:id="@+id/inset_layout"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_alignParentTop="true"
-		android:padding="16dp"
-		android:text="@string/use_history"/>
-	<android.support.design.widget.FloatingActionButton
-		style="@style/FAB"
-		android:visibility="gone"
-		android:id="@+id/share"
-		android:contentDescription="@string/share"
-		android:src="@drawable/ic_action_share"/>
+		android:layout_height="match_parent">
+		<android.support.v7.widget.SwitchCompat
+			android:visibility="gone"
+			android:id="@+id/use_history"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentTop="true"
+			android:padding="16dp"
+			android:text="@string/use_history"/>
+		<android.support.design.widget.FloatingActionButton
+			style="@style/FAB"
+			android:visibility="gone"
+			android:id="@+id/share"
+			android:contentDescription="@string/share"
+			android:src="@drawable/ic_action_share"/>
+	</RelativeLayout>
 	<include layout="@layout/progress_view"/>
-</RelativeLayout>
+</FrameLayout>

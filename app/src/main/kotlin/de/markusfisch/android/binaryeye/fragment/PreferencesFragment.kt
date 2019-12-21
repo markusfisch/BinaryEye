@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.app.setWindowInsetListener
+import de.markusfisch.android.binaryeye.view.setPadding
 
 class PreferencesFragment : Fragment() {
 	private lateinit var openImmediatelySwitch: SwitchCompat
@@ -40,6 +42,10 @@ class PreferencesFragment : Fragment() {
 
 		openWithUrlInput = view.findViewById(R.id.open_with_url)
 		openWithUrlInput.setText(prefs.openWithUrl)
+
+		setWindowInsetListener { insets ->
+			(view.findViewById(R.id.scroll_view) as View).setPadding(insets)
+		}
 
 		return view
 	}

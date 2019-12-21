@@ -8,9 +8,10 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.app.colorSystemAndToolBars
 import de.markusfisch.android.binaryeye.app.initSystemBars
 import de.markusfisch.android.binaryeye.app.setFragment
-import de.markusfisch.android.binaryeye.app.setSystemAndToolBarTransparency
+import de.markusfisch.android.binaryeye.app.setupInsets
 import de.markusfisch.android.binaryeye.fragment.DecodeFragment
 import de.markusfisch.android.binaryeye.fragment.EncodeFragment
 import de.markusfisch.android.binaryeye.fragment.HistoryFragment
@@ -30,13 +31,15 @@ class MainActivity : AppCompatActivity() {
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
 		setContentView(R.layout.activity_main)
-		initSystemBars(this)
 
-		setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
+		initSystemBars(this)
+		val toolbar = findViewById(R.id.toolbar) as Toolbar
+		setupInsets(findViewById(android.R.id.content), toolbar)
+		setSupportActionBar(toolbar)
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 		supportFragmentManager.addOnBackStackChangedListener {
-			setSystemAndToolBarTransparency(this@MainActivity)
+			colorSystemAndToolBars(this@MainActivity)
 		}
 
 		if (state == null) {

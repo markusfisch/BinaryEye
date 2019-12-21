@@ -1,13 +1,12 @@
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/main_layout"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical"
-	android:fitsSystemWindows="true">
-	<include layout="@layout/toolbar"/>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
 	<android.support.design.widget.CoordinatorLayout
 		android:id="@+id/content_frame"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"/>
-</LinearLayout>
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:fitsSystemWindows="true">
+		<include layout="@layout/toolbar"/>
+	</FrameLayout>
+</merge>

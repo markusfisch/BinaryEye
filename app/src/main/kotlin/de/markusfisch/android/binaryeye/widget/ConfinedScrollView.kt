@@ -3,7 +3,7 @@ package de.markusfisch.android.binaryeye.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.ScrollView
-import de.markusfisch.android.binaryeye.app.setSystemAndToolBarTransparency
+import de.markusfisch.android.binaryeye.app.colorSystemAndToolBars
 
 class ConfinedScrollView : ScrollView {
 	private var scrollable = false
@@ -28,9 +28,9 @@ class ConfinedScrollView : ScrollView {
 			post {
 				getChildAt(0)?.also { child ->
 					scrollable = height < child.height + paddingTop + paddingBottom
-					setSystemAndToolBarTransparency(
+					colorSystemAndToolBars(
 						context,
-						false,
+						scrollY > 0,
 						scrollable
 					)
 				}
@@ -40,6 +40,6 @@ class ConfinedScrollView : ScrollView {
 
 	override fun onScrollChanged(x: Int, y: Int, oldx: Int, oldy: Int) {
 		super.onScrollChanged(x, y, oldx, oldy)
-		setSystemAndToolBarTransparency(context, y > 0, scrollable)
+		colorSystemAndToolBars(context, y > 0, scrollable)
 	}
 }

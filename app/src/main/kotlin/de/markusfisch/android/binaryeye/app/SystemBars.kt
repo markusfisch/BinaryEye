@@ -8,11 +8,11 @@ import android.os.Build
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.view.View
 import android.widget.AbsListView
 import de.markusfisch.android.binaryeye.R
 
-val windowInsets = Rect()
 val systemBarScrollListener = object : AbsListView.OnScrollListener {
 	override fun onScroll(
 		view: AbsListView,
@@ -27,7 +27,7 @@ val systemBarScrollListener = object : AbsListView.OnScrollListener {
 					(totalItemCount > 0 && view.getChildAt(0).top < 0)
 			val scrollable = if (scrolled) true else totalItemCount > 0 &&
 					view.getChildAt(view.lastVisiblePosition).bottom > view.height
-			setSystemAndToolBarTransparency(view.context, scrolled, scrollable)
+			colorSystemAndToolBars(view.context, scrolled, scrollable)
 		}
 	}
 
@@ -38,14 +38,24 @@ val systemBarScrollListener = object : AbsListView.OnScrollListener {
 	}
 }
 
-fun setSystemAndToolBarTransparency(
+fun initSystemBars(activity: AppCompatActivity) {
+	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+		activity.window.decorView.systemUiVisibility =
+			View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+					View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+					View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+	}
+	colorSystemAndToolBars(activity)
+}
+
+fun colorSystemAndToolBars(
 	context: Context,
 	scrolled: Boolean = false,
 	scrollable: Boolean = false
 ) {
-	val opaqueColor = ContextCompat.getColor(context, R.color.primary)
-	val topColor = if (scrolled) opaqueColor else 0
-	val bottomColor = if (scrolled || scrollable) opaqueColor else 0
+	val translucentColor = getTranslucentPrimaryColor(context)
+	val topColor = if (scrolled) translucentColor else 0
+	val bottomColor = if (scrolled || scrollable) translucentColor else 0
 	val activity = getAppCompatActivity(context) ?: return
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 		val window = activity.window
@@ -54,6 +64,11 @@ fun setSystemAndToolBarTransparency(
 	}
 	activity.supportActionBar?.setBackgroundDrawable(ColorDrawable(topColor))
 }
+
+private fun getTranslucentPrimaryColor(context: Context) = ContextCompat.getColor(
+	context,
+	R.color.primary
+) and 0xffffff or 0xcc000000.toInt()
 
 private fun getAppCompatActivity(context: Context): AppCompatActivity? {
 	var ctx = context
@@ -66,29 +81,28 @@ private fun getAppCompatActivity(context: Context): AppCompatActivity? {
 	return null
 }
 
-fun initSystemBars(activity: AppCompatActivity) {
-	activity.findViewById(R.id.main_layout)?.also { view ->
-		setWindowInsetListener(view)
+private var windowInsetsListener: ((insets: Rect) -> Unit)? = null
+fun setWindowInsetListener(listener: (insets: Rect) -> Unit) {
+	if (windowInsets.top > 0) {
+		listener(windowInsets)
+	} else {
+		windowInsetsListener = listener
 	}
-	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-		activity.window.decorView.systemUiVisibility =
-			View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-					View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-					View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-	}
-	setSystemAndToolBarTransparency(activity)
 }
 
-private fun setWindowInsetListener(view: View) {
+private val windowInsets = Rect()
+fun setupInsets(view: View, toolbar: Toolbar) {
+	val toolBarHeight = toolbar.layoutParams.height
 	ViewCompat.setOnApplyWindowInsetsListener(view) { _, insets ->
 		if (insets.hasSystemWindowInsets()) {
-			val left = insets.systemWindowInsetLeft
-			val top = insets.systemWindowInsetTop
-			val right = insets.systemWindowInsetRight
-			val bottom = insets.systemWindowInsetBottom
-			view.setPadding(left, top, right, bottom)
-			windowInsets.set(left, top, right, bottom)
+			windowInsets.set(
+				insets.systemWindowInsetLeft,
+				insets.systemWindowInsetTop + toolBarHeight,
+				insets.systemWindowInsetRight,
+				insets.systemWindowInsetBottom
+			)
+			windowInsetsListener?.also { it(windowInsets) }
 		}
-		insets.consumeSystemWindowInsets()
+		insets
 	}
 }
