@@ -26,7 +26,7 @@ val systemBarScrollListener = object : AbsListView.OnScrollListener {
 			val scrolled = firstVisibleItem > 0 ||
 					(totalItemCount > 0 && view.getChildAt(0).top < 0)
 			val scrollable = if (scrolled) true else totalItemCount > 0 &&
-					view.getChildAt(view.lastVisiblePosition).bottom > view.height
+					view.getChildAt(view.lastVisiblePosition).bottom >= view.height
 			colorSystemAndToolBars(view.context, scrolled, scrollable)
 		}
 	}
