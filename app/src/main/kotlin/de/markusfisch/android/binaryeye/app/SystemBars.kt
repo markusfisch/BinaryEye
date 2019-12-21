@@ -68,7 +68,7 @@ fun colorSystemAndToolBars(
 private fun getTranslucentPrimaryColor(context: Context) = ContextCompat.getColor(
 	context,
 	R.color.primary
-) and 0xffffff or 0xcc000000.toInt()
+) and 0xffffff or 0xd8000000.toInt()
 
 private fun getAppCompatActivity(context: Context): AppCompatActivity? {
 	var ctx = context
