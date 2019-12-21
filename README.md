@@ -2,12 +2,20 @@
 
 Yet another barcode scanner for Android. As if there weren't [enough][play].
 
-This one is totally free, open source and does use the [ZXing][zxing] barcode
-scanning library.
+This one is free, without any ads and completely open source.
 
-Unlike many others, it works in portrait and landscape orientation, can read
-inverted codes, comes in Material Design and doesn't do much else but decoding
-a barcode.
+Works in portrait and landscape orientation, can read inverted codes,
+comes in Material Design and can also generate barcodes.
+
+Uses the [ZXing][zxing] ("Zebra Crossing") barcode scanning library that
+supports the following barcode formats for reading:
+AZTEC, CODABAR, CODE 39, CODE 93, CODE 128, DATA MATRIX, EAN 8, EAN 13, ITF,
+MAXICODE, PDF417, QR CODE, RSS 14, RSS EXPANDED, UPC A, UPC E and
+UPC EAN EXTENSION.
+
+And those barcodes formats can be generated with ZXing:
+AZTEC, CODABAR, CODE 39, CODE 128, DATA MATRIX, EAN 8, EAN 13, ITF, PDF 417,
+QR CODE and UPC A.
 
 And it's written in [Kotlin][kotlin] because I wanted to explore that a
 bit more.
