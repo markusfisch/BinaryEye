@@ -4,7 +4,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:contentDescription="@string/view_barcode"/>
-	<RelativeLayout
+	<android.support.design.widget.CoordinatorLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:fitsSystemWindows="true">
@@ -14,5 +14,5 @@
 			android:id="@+id/scan"
 			android:contentDescription="@string/scan_code"
 			android:src="@drawable/ic_action_scan"/>
-	</RelativeLayout>
+	</android.support.design.widget.CoordinatorLayout>
 </merge>

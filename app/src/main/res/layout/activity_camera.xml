@@ -3,7 +3,7 @@
 		android:id="@+id/camera_view"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"/>
-	<RelativeLayout
+	<android.support.design.widget.CoordinatorLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:fitsSystemWindows="true">
@@ -12,9 +12,7 @@
 			android:id="@+id/zoom"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_alignParentEnd="true"
-			android:layout_alignParentRight="true"
-			android:layout_alignParentBottom="true"
+			android:layout_gravity="bottom|start"
 			android:layout_marginBottom="8dp"
 			android:layout_marginRight="80dp"
 			android:layout_marginEnd="80dp"
@@ -24,5 +22,5 @@
 			android:id="@+id/flash"
 			android:contentDescription="@string/toggle_flash"
 			android:src="@drawable/ic_action_flash"/>
-	</RelativeLayout>
+	</android.support.design.widget.CoordinatorLayout>
 </merge>

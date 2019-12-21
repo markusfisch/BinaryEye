@@ -52,7 +52,7 @@
 				tools:text="54 65 73 74 20 51 52 20  Test QR\n43 6F 64 65              Code"/>
 		</RelativeLayout>
 	</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>
-	<RelativeLayout
+	<android.support.design.widget.CoordinatorLayout
 		android:id="@+id/inset_layout"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
@@ -61,5 +61,5 @@
 			android:id="@+id/open"
 			android:contentDescription="@string/open_url"
 			android:src="@drawable/ic_action_open"/>
-	</RelativeLayout>
+	</android.support.design.widget.CoordinatorLayout>
 </FrameLayout>

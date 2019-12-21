@@ -7,7 +7,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:contentDescription="@string/view_barcode"/>
-	<RelativeLayout
+	<android.support.design.widget.CoordinatorLayout
 		android:id="@+id/inset_layout"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
@@ -16,5 +16,5 @@
 			android:id="@+id/share"
 			android:contentDescription="@string/share"
 			android:src="@drawable/ic_action_share"/>
-	</RelativeLayout>
+	</android.support.design.widget.CoordinatorLayout>
 </FrameLayout>
