@@ -31,8 +31,6 @@ class PickActivity : AppCompatActivity() {
 
 	private lateinit var cropImageView: CropImageView
 
-	private var returnResult = false
-
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
 		setContentView(R.layout.activity_pick)
@@ -45,8 +43,6 @@ class PickActivity : AppCompatActivity() {
 		supportFragmentManager.addOnBackStackChangedListener {
 			colorSystemAndToolBars(this@PickActivity)
 		}
-
-		returnResult = intent?.action == "com.google.zxing.client.android.SCAN"
 
 		val bitmap = if (
 			intent?.action == Intent.ACTION_SEND &&
@@ -166,7 +162,7 @@ class PickActivity : AppCompatActivity() {
 
 	private fun scanImage(result: Result?) {
 		if (result != null) {
-			showResult(this, result, returnResult)
+			showResult(this, result)
 			finish()
 			return
 		}
