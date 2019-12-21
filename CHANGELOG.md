@@ -1,5 +1,16 @@
 # Change Log
 
+# 1.20.0
+* Scroll content below tool and system bars
+* Preset file name to save with format and content
+* Add encode menu item to make encoding easier when keyboard is visible
+* Increase font size of barcode contents in history
+* Update Hungarian translation
+* Update Indonesian translation
+* Fix encoding for old Androids
+* Fix returning result for ZXing's SCAN intent again
+* Fix transfering barcode format from history
+
 # 1.19.0
 * Allow scaling a new barcode to half its size
 * Remember last selected barcode format
