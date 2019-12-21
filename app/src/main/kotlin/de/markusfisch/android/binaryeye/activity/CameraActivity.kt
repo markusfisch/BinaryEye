@@ -276,7 +276,11 @@ class CameraActivity : AppCompatActivity() {
 						result?.let {
 							cameraView.post {
 								vibrator.vibrate(100)
-								showResult(this@CameraActivity, result)
+								showResult(
+									this@CameraActivity,
+									result,
+									returnResult
+								)
 							}
 							decoding = false
 						}
