@@ -93,6 +93,11 @@ fun setWindowInsetListener(listener: (insets: Rect) -> Unit) {
 private val windowInsets = Rect()
 fun setupInsets(view: View, toolbar: Toolbar) {
 	val toolBarHeight = toolbar.layoutParams.height
+	if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+		windowInsets.set(0, toolBarHeight, 0, 0)
+		windowInsetsListener?.also { it(windowInsets) }
+		return
+	}
 	ViewCompat.setOnApplyWindowInsetsListener(view) { _, insets ->
 		if (insets.hasSystemWindowInsets()) {
 			windowInsets.set(
