@@ -1,5 +1,8 @@
 # Change Log
 
+# 1.20.1
+* Fix window insets below Android Lollipop
+
 # 1.20.0
 * Scroll content below tool and system bars
 * Preset file name to save with format and content
