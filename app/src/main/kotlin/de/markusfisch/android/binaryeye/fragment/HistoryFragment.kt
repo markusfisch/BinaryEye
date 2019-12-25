@@ -3,6 +3,7 @@ package de.markusfisch.android.binaryeye.fragment
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.annotation.WorkerThread
 import android.support.v4.app.Fragment
 import android.support.v7.widget.SwitchCompat
@@ -27,9 +28,11 @@ class HistoryFragment : Fragment() {
 	private lateinit var fab: View
 	private lateinit var progressView: View
 
-	private var scansAdapter: ScansAdapter? = null
 	private val parentJob = Job()
 	private val scope = CoroutineScope(Dispatchers.IO + parentJob)
+
+	private var scansAdapter: ScansAdapter? = null
+	private var listViewState: Parcelable? = null
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -96,6 +99,11 @@ class HistoryFragment : Fragment() {
 		update(context)
 	}
 
+	override fun onPause() {
+		super.onPause()
+		listViewState = listView.onSaveInstanceState()
+	}
+
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 		inflater.inflate(R.menu.fragment_history, menu)
 	}
@@ -137,6 +145,9 @@ class HistoryFragment : Fragment() {
 					scansAdapter?.also { it.changeCursor(null) }
 					scansAdapter = ScansAdapter(context, it)
 					listView.adapter = scansAdapter
+					listViewState?.also {
+						listView.onRestoreInstanceState(it)
+					}
 				}
 			}
 		}
