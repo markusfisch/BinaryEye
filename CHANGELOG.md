@@ -1,5 +1,10 @@
 # Change Log
 
+# 1.21.0
+* Save and restore history list state
+* Improve scanning from large images
+* Fix opening image files by "Open with"
+
 # 1.20.1
 * Fix window insets below Android Lollipop
 
