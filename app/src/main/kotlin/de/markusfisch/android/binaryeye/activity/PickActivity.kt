@@ -6,7 +6,6 @@ import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
-import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
@@ -19,10 +18,9 @@ import de.markusfisch.android.binaryeye.app.initSystemBars
 import de.markusfisch.android.binaryeye.app.setWindowInsetListener
 import de.markusfisch.android.binaryeye.app.setupInsets
 import de.markusfisch.android.binaryeye.graphics.crop
-import de.markusfisch.android.binaryeye.graphics.downsizeIfBigger
+import de.markusfisch.android.binaryeye.graphics.loadImageUri
 import de.markusfisch.android.binaryeye.widget.CropImageView
 import de.markusfisch.android.binaryeye.zxing.Zxing
-import java.io.IOException
 import kotlin.math.max
 import kotlin.math.min
 
@@ -143,21 +141,12 @@ class PickActivity : AppCompatActivity() {
 		val uri = intent.getParcelableExtra<Parcelable>(
 			Intent.EXTRA_STREAM
 		) as? Uri ?: return null
-		return loadImageUri(uri)
+		return loadImageUri(contentResolver, uri)
 	}
 
 	private fun loadImageToOpen(intent: Intent): Bitmap? {
 		val uri = intent.data ?: return null
-		return loadImageUri(uri)
-	}
-
-	private fun loadImageUri(uri: Uri): Bitmap? = try {
-		downsizeIfBigger(
-			MediaStore.Images.Media.getBitmap(contentResolver, uri),
-			1024
-		)
-	} catch (e: IOException) {
-		null
+		return loadImageUri(contentResolver, uri)
 	}
 
 	private fun scanImage(result: Result?) {

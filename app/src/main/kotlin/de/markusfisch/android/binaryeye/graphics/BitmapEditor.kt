@@ -1,28 +1,52 @@
 package de.markusfisch.android.binaryeye.graphics
 
+import android.content.ContentResolver
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.graphics.RectF
-import kotlin.math.max
+import android.net.Uri
+import java.io.IOException
 import kotlin.math.roundToInt
 
-fun downsizeIfBigger(bitmap: Bitmap, maxSize: Int): Bitmap = if (
-	max(bitmap.width, bitmap.height) > maxSize
-) {
-	val srcWidth = bitmap.width
-	val srcHeight = bitmap.height
-	var newWidth = maxSize
-	var newHeight = maxSize
-	if (srcWidth > srcHeight) {
-		newHeight = (newWidth.toFloat() / srcWidth.toFloat() *
-				srcHeight.toFloat()).roundToInt()
-	} else {
-		newWidth = (newHeight.toFloat() / srcHeight.toFloat() *
-				srcWidth.toFloat()).roundToInt()
+fun loadImageUri(cr: ContentResolver, uri: Uri): Bitmap? = try {
+	val options = BitmapFactory.Options()
+	cr.openInputStream(uri)?.use {
+		options.inJustDecodeBounds = true
+		BitmapFactory.decodeStream(it, null, options)
+		options.inSampleSize = calculateInSampleSize(
+			options.outWidth,
+			options.outHeight,
+			1024,
+			1024
+		)
+		options.inJustDecodeBounds = false
 	}
-	Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true)
-} else {
-	bitmap
+	cr.openInputStream(uri)?.use {
+		BitmapFactory.decodeStream(it, null, options)
+	}
+} catch (e: IOException) {
+	null
+}
+
+private fun calculateInSampleSize(
+	width: Int,
+	height: Int,
+	reqWidth: Int,
+	reqHeight: Int
+): Int {
+	var inSampleSize = 1
+	if (height > reqHeight || width > reqWidth) {
+		val halfHeight = height / 2
+		val halfWidth = width / 2
+		while (
+			halfHeight / inSampleSize >= reqHeight ||
+			halfWidth / inSampleSize >= reqWidth
+		) {
+			inSampleSize *= 2
+		}
+	}
+	return inSampleSize
 }
 
 fun crop(bitmap: Bitmap, rect: RectF, rotation: Float) = try {
