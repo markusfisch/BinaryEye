@@ -64,7 +64,7 @@
 			<intent-filter android:label="@string/decode_barcode">
 				<action android:name="android.intent.action.VIEW"/>
 				<category android:name="android.intent.category.DEFAULT"/>
-				<data android:mimeType="image/*" android:scheme="file"/>
+				<data android:mimeType="image/*"/>
 			</intent-filter>
 		</activity>
 		<activity
