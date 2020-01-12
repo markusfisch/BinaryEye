@@ -7,8 +7,8 @@
 	<string name="content">Konten</string>
 	<string name="binary_data">(data binari)</string>
 	<plurals name="barcode_info">
-		<item quantity="one">%2$d karakter, %1$s</item>
-		<item quantity="other">%2$d karakter, %1$s</item>
+		<item quantity="one">%1$s, %2$d karakter</item>
+		<item quantity="other">%1$s, %2$d karakter</item>
 	</plurals>
 	<string name="toggle_flash">Nyala/Matikan blitz</string>
 	<string name="share">Bagikan</string>
