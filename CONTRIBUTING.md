@@ -13,7 +13,7 @@ to squash when merging into master:
 
 	$ git merge cool_feature --squash
 
-Then write a [good commit messages][commit_messages] to keep the history
+Then write a [good commit message][commit_messages] to keep the history
 meaningful and useful. One feature, one commit.
 
 [android_best_practices]: https://developer.android.com/distribute/best-practices/develop/
