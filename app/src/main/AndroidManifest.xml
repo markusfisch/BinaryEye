@@ -16,7 +16,7 @@
 		tools:ignore="UnusedAttribute"
 		android:name=".app.BinaryEyeApp"
 		android:allowBackup="true"
-		android:fullBackupContent="true"
+		android:fullBackupContent="@xml/backup_rules"
 		android:supportsRtl="true"
 		android:resizeableActivity="true"
 		android:label="@string/app_name"
