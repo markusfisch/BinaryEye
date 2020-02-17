@@ -5,7 +5,7 @@
 	<string name="compose_barcode">Buat barcode</string>
 	<string name="decode_barcode">Dekode barcode</string>
 	<string name="content">Konten</string>
-	<string name="binary_data">(data binari)</string>
+	<string name="binary_data">(data biner)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%1$s, %2$d karakter</item>
 		<item quantity="other">%1$s, %2$d karakter</item>
@@ -63,11 +63,11 @@
 	<string name="csv_delimiter">Karakter pemisah apa yang harus digunakan (Berkas-CSV)?</string>
 	<string name="delimiter_comma">Koma</string>
 	<string name="delimiter_semicolon">Titik koma</string>
-	<string name="csv_allow_binary">Izinkan data binari di dalam berkas keluaran?</string>
+	<string name="csv_allow_binary">Izinkan data biner di dalam berkas keluaran?</string>
 	<string name="no">Tidak</string>
 	<string name="csv_allow_binary_message">Anda sebaiknya tidak mengizinkannya, karena akan merusak format berkas dan kemungkinan tidak bisa lagi dibaca oleh aplikasi penyunting teks.</string>
 	<string name="saved_in_downloads">Simpan di dalam unduhan</string>
-	<string name="rotate_image_cw">Rotate image clockwise</string>
-	<string name="pick_file">Pick image file</string>
-	<string name="pick_code_to_scan">Pick code to scan</string>
+	<string name="rotate_image_cw">Putar gambar searah jarum jam</string>
+	<string name="pick_file">Pilih berkas gambar</string>
+	<string name="pick_code_to_scan">Pilih kode untuk dipindai</string>
 </resources>
