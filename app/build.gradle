@@ -18,6 +18,8 @@ android {
 		renderscriptSupportModeEnabled true
 
 		testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+
+		buildConfigField 'boolean', 'IS_CATALINA', is_catalina.toString()
 	}
 
 	signingConfigs {
