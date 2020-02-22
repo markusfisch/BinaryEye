@@ -1,5 +1,76 @@
 # Change Log
 
+# 1.21.0
+* Save and restore history list state
+* Improve scanning from large images
+* Fix opening image files by "Open with"
+
+# 1.20.1
+* Fix window insets below Android Lollipop
+
+# 1.20.0
+* Scroll content below tool and system bars
+* Preset file name to save with format and content
+* Add encode menu item to make encoding easier when keyboard is visible
+* Increase font size of barcode contents in history
+* Update Hungarian translation
+* Update Indonesian translation
+* Fix encoding for old Androids
+* Fix returning result for ZXing's SCAN intent again
+* Fix transfering barcode format from history
+
+# 1.19.0
+* Allow scaling a new barcode to half its size
+* Remember last selected barcode format
+
+# 1.18.0
+* Make open URL default action after decoding a barcode
+* Add a setting to open contents without inspection
+* Highlight codes for picking in shared/loaded images
+* Improve visability of crop border
+* Fix returning result for ZXing's SCAN intent
+
+# 1.17.1
+* Fix navigating back without choosing an image
+
+# 1.17.0
+* Pinch/Zoom shared/loaded images to scan just a section
+* Add a load file menu item to load an image file
+* Add a save file menu item to the barcode view
+* Use discrete style for size seek bar
+* Fix bar transparency when zooming/pinching
+
+# 1.16.0
+* Improve displaying scanned barcodes
+* Show a message if a barcode cannot be shared
+* Fix setting system bar transparency when double taping a barcode
+* Update Dutch translation
+* Update Hungarian translation
+* Update Indonesian translation
+* Update Italian translation
+
+# 1.15.0
+* Additionally export history as CSV file
+* Color tool and system bars when a view is scrolled
+* Add an intent filter for opening images
+* Add Russian translation
+
+# 1.14.0
+* Add OTP support
+* Update Indonesian translation
+
+# 1.13.1
+* Fix crash caused by missing support for Regex on Android < 6
+
+# 1.13.0
+* Add missing extras for ZXing result intents
+
+# 1.12.0
+* Add preferences dialog and the option to use a custom URL with read contents
+* Add Brazilian Portuguese translation
+* Add Chinese translation
+* Encode text using UTF-8 encoding when creating a barcode
+
 # 1.11.2
 * Downgrade ZXing version
 * Improve getting system UI metrics

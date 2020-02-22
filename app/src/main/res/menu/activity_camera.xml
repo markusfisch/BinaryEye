@@ -12,6 +12,11 @@
 		android:icon="@drawable/ic_action_create"
 		material:showAsAction="ifRoom"/>
 	<item
+		android:id="@+id/pick_file"
+		android:title="@string/pick_file"
+		android:icon="@drawable/ic_action_pick_file"
+		material:showAsAction="ifRoom"/>
+	<item
 		android:id="@+id/switch_camera"
 		android:title="@string/switch_camera"
 		android:icon="@drawable/ic_action_switch_camera"

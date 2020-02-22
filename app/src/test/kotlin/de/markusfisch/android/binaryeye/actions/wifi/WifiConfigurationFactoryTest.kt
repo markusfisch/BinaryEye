@@ -1,10 +1,10 @@
 package de.markusfisch.android.binaryeye.actions.wifi
 
+import de.markusfisch.android.binaryeye.simpleFail
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertNull
 import junit.framework.TestCase.assertTrue
-import junit.framework.TestCase.fail
 import org.junit.Test
 
 class WifiConfigurationFactoryTest {
@@ -84,15 +84,10 @@ class WifiConfigurationFactoryTest {
 		assertFalse(info.hidden)
 	}
 
-	private fun simpleFail(message: String = "Unknown reason, but failed"): Nothing {
-		fail(message)
-		throw IllegalStateException("You should never have reached this point in the code, but anyways: $message")
-	}
-
 	private fun simpleDataAccessor(wifiString: String): WifiConfigurationFactory.SimpleDataAccessor {
 		val map = WifiConfigurationFactory.parseMap(wifiString)
-				?: simpleFail("parsing map of valid string fails ($wifiString)")
+			?: simpleFail("parsing map of valid string fails ($wifiString)")
 		return WifiConfigurationFactory.SimpleDataAccessor.of(map)
-				?: simpleFail("could not create SimpleDataAccessor of (potentially) valid map ($map of $wifiString)")
+			?: simpleFail("could not create SimpleDataAccessor of (potentially) valid map ($map of $wifiString)")
 	}
 }

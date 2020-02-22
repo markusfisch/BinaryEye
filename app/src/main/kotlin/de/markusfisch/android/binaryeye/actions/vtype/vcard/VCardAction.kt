@@ -1,16 +1,17 @@
 package de.markusfisch.android.binaryeye.actions.vtype.vcard
 
-import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.SimpleIntentIAction
-import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
-
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.provider.ContactsContract
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.actions.IntentAction
+import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
+import java.util.*
+import kotlin.collections.ArrayList
 
-object VCardAction : SimpleIntentIAction() {
+object VCardAction : IntentAction() {
 	override val iconResId: Int
 		get() = R.drawable.ic_action_vcard
 	override val titleResId: Int
@@ -22,7 +23,7 @@ object VCardAction : SimpleIntentIAction() {
 		return VTypeParser.parseVType(String(data)) == "VCARD"
 	}
 
-	override fun executeForIntent(context: Context, data: ByteArray): Intent? {
+	override suspend fun createIntent(context: Context, data: ByteArray): Intent? {
 		val info = VTypeParser.parseMap(String(data))
 
 		return Intent(Intent.ACTION_INSERT_OR_EDIT).apply {
@@ -47,7 +48,10 @@ object VCardAction : SimpleIntentIAction() {
 						putExtra(extraPhoneType, phoneType)
 					} ?: putExtra(extraPhoneType, it)
 				}
-				putExtra(extraPhone, phoneProperty.value.toLowerCase().removePrefix("tel:"))
+				putExtra(
+					extraPhone,
+					phoneProperty.value.toLowerCase(Locale.US).removePrefix("tel:")
+				)
 			}
 			info["EMAIL"]?.forEachIndexed { index, mailProperty ->
 				val (extraMailType, extraMail) = when (index) {
@@ -116,18 +120,27 @@ object VCardAction : SimpleIntentIAction() {
 	}
 
 	private val String.locationFormat: String
-		get() = """^([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?)$""".toRegex().matchEntire(this)?.groupValues?.let {
-			listOf(it[1], it[2], it[3], "${it[4]} ${it[6]}", "${it[5]} ${it[7]}").filter { line -> line.isNotBlank() }
+		get() = """^([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?)$""".toRegex().matchEntire(
+			this
+		)?.groupValues?.let {
+			listOf(
+				it[1],
+				it[2],
+				it[3],
+				"${it[4]} ${it[6]}",
+				"${it[5]} ${it[7]}"
+			).filter { line -> line.isNotBlank() }
 				.joinToString("\n").takeIf { location -> location.isNotBlank() }
 		} ?: this
 
 	private val String.nameFormat: String
 		get() = """^([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?)$""".toRegex().matchEntire(this)?.groupValues?.let {
-			listOf(it[4], it[2], it[3], it[1], it[5]).joinToString(" ").takeIf { name -> name.isNotBlank() }
+			listOf(it[4], it[2], it[3], it[1], it[5]).joinToString(" ")
+				.takeIf { name -> name.isNotBlank() }
 		} ?: this
 
 	private val String.mailType: Int?
-		get() = when (this.toUpperCase()) {
+		get() = when (this.toUpperCase(Locale.US)) {
 			"HOME" -> ContactsContract.CommonDataKinds.Email.TYPE_HOME
 			"WORK" -> ContactsContract.CommonDataKinds.Email.TYPE_WORK
 			"OTHER" -> ContactsContract.CommonDataKinds.Email.TYPE_OTHER
@@ -136,7 +149,7 @@ object VCardAction : SimpleIntentIAction() {
 		}
 
 	private val String.phoneType: Int?
-		get() = when (this.toUpperCase()) {
+		get() = when (this.toUpperCase(Locale.US)) {
 			"HOME" -> ContactsContract.CommonDataKinds.Phone.TYPE_HOME
 			"MOBILE", "CELL" -> ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE
 			"WORK" -> ContactsContract.CommonDataKinds.Phone.TYPE_WORK
@@ -161,7 +174,7 @@ object VCardAction : SimpleIntentIAction() {
 		}
 
 	private val String.addressType: Int?
-		get() = when (this.toUpperCase()) {
+		get() = when (this.toUpperCase(Locale.US)) {
 			"HOME" -> ContactsContract.CommonDataKinds.StructuredPostal.TYPE_HOME
 			"WORK" -> ContactsContract.CommonDataKinds.StructuredPostal.TYPE_WORK
 			"OTHER" -> ContactsContract.CommonDataKinds.StructuredPostal.TYPE_OTHER

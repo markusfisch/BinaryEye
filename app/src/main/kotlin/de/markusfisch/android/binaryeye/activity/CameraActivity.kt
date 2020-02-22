@@ -1,28 +1,13 @@
 package de.markusfisch.android.binaryeye.activity
 
-import com.google.zxing.Result
-import com.google.zxing.ResultMetadataType
-
-import de.markusfisch.android.cameraview.widget.CameraView
-
-import de.markusfisch.android.binaryeye.app.db
-import de.markusfisch.android.binaryeye.app.hasCameraPermission
-import de.markusfisch.android.binaryeye.app.initSystemBars
-import de.markusfisch.android.binaryeye.app.prefs
-import de.markusfisch.android.binaryeye.rs.Preprocessor
-import de.markusfisch.android.binaryeye.zxing.Zxing
-import de.markusfisch.android.binaryeye.R
-
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.hardware.Camera
 import android.net.Uri
 import android.os.Bundle
-import android.os.Parcelable
 import android.os.Vibrator
-import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
@@ -30,11 +15,18 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
-
+import com.google.zxing.Result
+import com.google.zxing.ResultMetadataType
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.app.db
+import de.markusfisch.android.binaryeye.app.hasCameraPermission
+import de.markusfisch.android.binaryeye.app.initSystemBars
+import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.rs.Preprocessor
+import de.markusfisch.android.binaryeye.zxing.Zxing
+import de.markusfisch.android.cameraview.widget.CameraView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-
-import java.io.IOException
 
 class CameraActivity : AppCompatActivity() {
 	private val zxing = Zxing()
@@ -70,6 +62,23 @@ class CameraActivity : AppCompatActivity() {
 		}
 	}
 
+	override fun onActivityResult(
+		requestCode: Int,
+		resultCode: Int,
+		resultData: Intent?
+	) {
+		when (requestCode) {
+			PICK_FILE_RESULT_CODE -> {
+				if (resultCode == Activity.RESULT_OK && resultData != null) {
+					val pick = Intent(this, PickActivity::class.java)
+					pick.action = Intent.ACTION_VIEW
+					pick.setDataAndType(resultData.data, "image/*")
+					startActivity(pick)
+				}
+			}
+		}
+	}
+
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
 		setContentView(R.layout.activity_camera)
@@ -88,12 +97,10 @@ class CameraActivity : AppCompatActivity() {
 		initZoomBar()
 		restoreZoom()
 
-		if (intent?.action == Intent.ACTION_SEND) {
-			if (intent.type == "text/plain") {
-				handleSendText(intent)
-			} else if (intent.type?.startsWith("image/") == true) {
-				handleSendImage(intent)
-			}
+		if (intent?.action == Intent.ACTION_SEND &&
+			intent.type == "text/plain"
+		) {
+			handleSendText(intent)
 		}
 	}
 
@@ -161,6 +168,18 @@ class CameraActivity : AppCompatActivity() {
 				startActivity(MainActivity.getHistoryIntent(this))
 				true
 			}
+			R.id.pick_file -> {
+				val chooseFile = Intent(Intent.ACTION_GET_CONTENT)
+				chooseFile.type = "image/*"
+				startActivityForResult(
+					Intent.createChooser(
+						chooseFile,
+						getString(R.string.pick_file)
+					),
+					PICK_FILE_RESULT_CODE
+				)
+				true
+			}
 			R.id.switch_camera -> {
 				switchCamera()
 				true
@@ -199,35 +218,6 @@ class CameraActivity : AppCompatActivity() {
 			startActivity(MainActivity.getEncodeIntent(this, text, true))
 			finish()
 		}
-	}
-
-	private fun handleSendImage(intent: Intent) {
-		val uri = intent.getParcelableExtra<Parcelable>(Intent.EXTRA_STREAM) as? Uri ?: return
-		val bitmap = try {
-			MediaStore.Images.Media.getBitmap(contentResolver, uri)
-		} catch (e: IOException) {
-			null
-		}
-		if (bitmap == null) {
-			Toast.makeText(
-				this,
-				R.string.error_no_content,
-				Toast.LENGTH_SHORT
-			).show()
-			return
-		}
-		val result = zxing.decodePositiveNegative(downsizeIfBigger(bitmap, 1024))
-		if (result != null) {
-			showResult(result)
-			finish()
-			return
-		}
-		Toast.makeText(
-			this,
-			R.string.no_barcode_found,
-			Toast.LENGTH_SHORT
-		).show()
-		finish()
 	}
 
 	private fun initCameraView() {
@@ -286,7 +276,11 @@ class CameraActivity : AppCompatActivity() {
 						result?.let {
 							cameraView.post {
 								vibrator.vibrate(100)
-								showResult(result)
+								showResult(
+									this@CameraActivity,
+									result,
+									returnResult
+								)
 							}
 							decoding = false
 						}
@@ -398,63 +392,42 @@ class CameraActivity : AppCompatActivity() {
 		)
 	}
 
-	private fun showResult(result: Result) {
-		val rawBytes = getRawBytes(result)
-
-		if (prefs.useHistory) {
-			GlobalScope.launch {
-				db.insertScan(
-					System.currentTimeMillis(),
-					result.text,
-					rawBytes,
-					result.barcodeFormat.toString()
-				)
-			}
-		}
-
-		if (returnResult) {
-			val resultIntent = Intent()
-			resultIntent.putExtra("SCAN_RESULT", result.text)
-			setResult(RESULT_OK, resultIntent)
-			finish()
-			return
-		}
-
-		startActivity(
-			MainActivity.getDecodeIntent(
-				this,
-				result.text,
-				result.barcodeFormat,
-				rawBytes
-			)
-		)
-	}
-
 	companion object {
 		private const val REQUEST_CAMERA = 1
+		private const val PICK_FILE_RESULT_CODE = 1
 		private const val ZOOM_MAX = "zoom_max"
 		private const val ZOOM_LEVEL = "zoom_level"
 	}
 }
 
-fun downsizeIfBigger(bitmap: Bitmap, max: Int): Bitmap {
-	return if (Math.max(bitmap.width, bitmap.height) > max) {
-		var width: Int = max
-		var height: Int = max
-		if (bitmap.width > bitmap.height) {
-			height = Math.round(
-				width.toFloat() / bitmap.width.toFloat() *
-						bitmap.height.toFloat()
-			)
-		} else {
-			width = Math.round(
-				height.toFloat() / bitmap.height.toFloat() *
-						bitmap.width.toFloat()
+fun showResult(
+	activity: Activity,
+	result: Result,
+	isResult: Boolean = false
+) {
+	val rawBytes = getRawBytes(result)
+	if (prefs.useHistory) {
+		GlobalScope.launch {
+			db.insertScan(
+				System.currentTimeMillis(),
+				result.text,
+				rawBytes,
+				result.barcodeFormat.toString()
 			)
 		}
-		Bitmap.createScaledBitmap(bitmap, width, height, true)
+	}
+	if (isResult) {
+		activity.setResult(Activity.RESULT_OK, getReturnIntent(result))
+		activity.finish()
 	} else {
-		bitmap
+		activity.startActivity(
+			MainActivity.getDecodeIntent(
+				activity,
+				result.text,
+				result.barcodeFormat,
+				rawBytes
+			)
+		)
 	}
 }
 
@@ -469,4 +442,50 @@ fun getRawBytes(result: Result): ByteArray? {
 	// byte segments can never be shorter than the text.
 	// Zxing cuts off content prefixes like "WIFI:"
 	return if (bytes.size >= result.text.length) bytes else null
+}
+
+fun getReturnIntent(result: Result): Intent {
+	val intent = Intent()
+	intent.putExtra("SCAN_RESULT", result.text)
+	intent.putExtra(
+		"SCAN_RESULT_FORMAT",
+		result.barcodeFormat.toString()
+	)
+	if (result.rawBytes?.isNotEmpty() == true) {
+		intent.putExtra("SCAN_RESULT_BYTES", result.rawBytes)
+	}
+	val metadata = result.resultMetadata
+	metadata?.let {
+		val orientation = metadata[ResultMetadataType.UPC_EAN_EXTENSION]
+		orientation?.let {
+			intent.putExtra(
+				"SCAN_RESULT_ORIENTATION",
+				orientation.toString()
+			)
+		}
+		val ecLevel = metadata[ResultMetadataType.ERROR_CORRECTION_LEVEL]
+		ecLevel?.let {
+			intent.putExtra(
+				"SCAN_RESULT_ERROR_CORRECTION_LEVEL",
+				ecLevel.toString()
+			)
+		}
+		val upcEanExtension = metadata[ResultMetadataType.UPC_EAN_EXTENSION]
+		upcEanExtension?.let {
+			intent.putExtra(
+				"SCAN_RESULT_UPC_EAN_EXTENSION",
+				upcEanExtension.toString()
+			)
+		}
+		val segments = metadata[ResultMetadataType.BYTE_SEGMENTS]
+		segments?.let {
+			var i = 0
+			@Suppress("UNCHECKED_CAST")
+			for (seg in segments as Iterable<ByteArray>) {
+				intent.putExtra("SCAN_RESULT_BYTE_SEGMENTS_$i", seg)
+				++i
+			}
+		}
+	}
+	return intent
 }

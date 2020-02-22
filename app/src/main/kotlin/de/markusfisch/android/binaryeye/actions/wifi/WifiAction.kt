@@ -1,19 +1,16 @@
 package de.markusfisch.android.binaryeye.actions.wifi
 
-import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.IAction
-
 import android.content.Context
 import android.content.Context.WIFI_SERVICE
 import android.net.wifi.WifiConfiguration
 import android.net.wifi.WifiManager
 import android.widget.Toast
-
-import kotlinx.coroutines.CoroutineScope
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.actions.IAction
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeoutOrNull
 
 object WifiAction : IAction {
 	override val iconResId = R.drawable.ic_action_wifi
@@ -22,31 +19,29 @@ object WifiAction : IAction {
 	override fun canExecuteOn(data: ByteArray): Boolean =
 		WifiConfigurationFactory.parse(String(data)) != null
 
-	override fun execute(context: Context, data: ByteArray) {
-		CoroutineScope(Dispatchers.IO).launch {
-			val wifiConfig = WifiConfigurationFactory.parse(
-				String(data)
-			) ?: return@launch
-			val wifiManager = context.applicationContext.getSystemService(
-				WIFI_SERVICE
-			) as WifiManager
+	override suspend fun execute(context: Context, data: ByteArray) = withContext(Dispatchers.IO) {
+		val wifiConfig = WifiConfigurationFactory.parse(
+			String(data)
+		) ?: return@withContext
+		val wifiManager = context.applicationContext.getSystemService(
+			WIFI_SERVICE
+		) as WifiManager
 
-			wifiManager.enableWifi(context)
-			wifiManager.mayRemoveOldNetwork(wifiConfig)
-			wifiManager.enableNewNetwork(wifiConfig)
-			withContext(Dispatchers.Main) {
-				Toast.makeText(
-					context,
-					R.string.wifi_added,
-					Toast.LENGTH_LONG
-				).show()
-			}
+		wifiManager.enableWifi(context)
+		wifiManager.mayRemoveOldNetwork(wifiConfig)
+		wifiManager.enableNewNetwork(wifiConfig)
+		withContext(Dispatchers.Main) {
+			Toast.makeText(
+				context,
+				R.string.wifi_added,
+				Toast.LENGTH_LONG
+			).show()
 		}
 	}
 
 	private suspend fun WifiManager.enableWifi(context: Context): Boolean {
-		if (!this.isWifiEnabled) {
-			if (!this.setWifiEnabled(true)) {
+		if (!isWifiEnabled) {
+			if (!setWifiEnabled(true)) {
 				withContext(Dispatchers.Main) {
 					Toast.makeText(
 						context,
@@ -56,20 +51,18 @@ object WifiAction : IAction {
 				}
 				return false
 			}
-			var i = 0
-			while (!this.isWifiEnabled) {
-				if (i >= 10) {
-					withContext(Dispatchers.Main) {
-						Toast.makeText(
-							context,
-							R.string.wifi_config_failed,
-							Toast.LENGTH_LONG
-						).show()
-					}
-					return false
+			// wait for wifi to really be enabled, takes some time
+			withTimeoutOrNull(10000) {
+				while (!isWifiEnabled) delay(500)
+			} ?: if (!isWifiEnabled) {
+				withContext(Dispatchers.Main) {
+					Toast.makeText(
+						context,
+						R.string.wifi_config_failed,
+						Toast.LENGTH_LONG
+					).show()
 				}
-				delay(1000)
-				i++
+				return false
 			}
 		}
 		return true

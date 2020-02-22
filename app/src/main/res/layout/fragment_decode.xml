@@ -1,21 +1,25 @@
-<RelativeLayout
+<FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
-	<ScrollView
+	<de.markusfisch.android.binaryeye.widget.ConfinedScrollView
+		android:id="@+id/scroll_view"
+		android:clipToPadding="false"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 		<RelativeLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content">
-
 			<EditText
 				android:id="@+id/content"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_margin="16dp"
+				android:layout_marginTop="16dp"
+				android:layout_marginStart="16dp"
+				android:layout_marginLeft="16dp"
+				android:layout_marginEnd="16dp"
+				android:layout_marginRight="16dp"
 				android:gravity="start|top"
 				android:hint="@string/content"
 				android:imeOptions="flagNoExtractUi"
@@ -23,8 +27,8 @@
 				android:inputType="textMultiLine"
 				android:typeface="monospace"
 				tools:ignore="UnusedAttribute"/>
-
 			<TextView
+				style="@style/SecondaryText"
 				android:id="@+id/format"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -32,8 +36,7 @@
 				android:layout_marginEnd="16dp"
 				android:layout_marginRight="16dp"
 				android:layout_marginBottom="16dp"
-				android:gravity="end|top"
-				android:textSize="14sp" />
+				android:gravity="end|top" />
 			<TextView
 				android:id="@+id/hex"
 				android:layout_width="match_parent"
@@ -47,19 +50,16 @@
 				android:typeface="monospace"
 				android:textSize="12sp"
 				tools:text="54 65 73 74 20 51 52 20  Test QR\n43 6F 64 65              Code"/>
-
 		</RelativeLayout>
-	</ScrollView>
-	<android.support.design.widget.FloatingActionButton
-		tools:ignore="UnusedAttribute"
-		android:id="@+id/share"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_alignParentEnd="true"
-		android:layout_alignParentRight="true"
-		android:layout_alignParentBottom="true"
-		android:layout_margin="20dp"
-		android:contentDescription="@string/share"
-		android:src="@drawable/ic_action_share"
-		app:elevation="4dp"/>
-</RelativeLayout>
+	</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>
+	<android.support.design.widget.CoordinatorLayout
+		android:id="@+id/inset_layout"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		<android.support.design.widget.FloatingActionButton
+			style="@style/FAB"
+			android:id="@+id/open"
+			android:contentDescription="@string/open_url"
+			android:src="@drawable/ic_action_open"/>
+	</android.support.design.widget.CoordinatorLayout>
+</FrameLayout>

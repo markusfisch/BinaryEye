@@ -1,13 +1,9 @@
 package de.markusfisch.android.binaryeye.rs
 
-import de.markusfisch.android.binaryeye.renderscript.ScriptC_rotator
-
 import android.content.Context
-import android.support.v8.renderscript.Allocation
-import android.support.v8.renderscript.Element
-import android.support.v8.renderscript.RenderScript
-import android.support.v8.renderscript.ScriptIntrinsicResize
-import android.support.v8.renderscript.Type
+import android.support.v8.renderscript.*
+import de.markusfisch.android.binaryeye.renderscript.ScriptC_rotator
+import kotlin.math.roundToInt
 
 class Preprocessor(
 	context: Context,
@@ -43,8 +39,8 @@ class Preprocessor(
 		)
 
 		val f = .75f
-		var w = Math.round(width * f)
-		var h = Math.round(height * f)
+		var w = (width * f).roundToInt()
+		var h = (height * f).roundToInt()
 
 		resizedType = Type.createXY(
 			rs,

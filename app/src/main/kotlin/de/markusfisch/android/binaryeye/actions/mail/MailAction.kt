@@ -1,13 +1,12 @@
 package de.markusfisch.android.binaryeye.actions.mail
 
-import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.SimpleIntentIAction
-
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.actions.IntentAction
 
-object MailAction : SimpleIntentIAction() {
+object MailAction : IntentAction() {
 	private val mailRegex =
 		"""^mail(?:to)?:([\w.%+-]+@[A-Za-z\d.-]+\.[A-Za-z]{2,6}(?:[?&](?:subject|body)=[\S\s]*?){0,2})$""".toRegex()
 
@@ -19,7 +18,7 @@ object MailAction : SimpleIntentIAction() {
 		return String(data).matches(mailRegex)
 	}
 
-	override fun executeForIntent(context: Context, data: ByteArray): Intent? {
+	override suspend fun createIntent(context: Context, data: ByteArray): Intent? {
 		val mailWithMessage = mailRegex.matchEntire(
 			String(data)
 		)?.groupValues?.get(1) ?: return null

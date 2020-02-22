@@ -1,20 +1,18 @@
 package de.markusfisch.android.binaryeye.actions.vtype.vevent
 
-import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.SimpleIntentIAction
-import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
-
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.provider.CalendarContract
 import android.support.annotation.RequiresApi
-
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.actions.IntentAction
+import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
 import java.text.SimpleDateFormat
-import java.util.Date
+import java.util.*
 
-object VEventAction : SimpleIntentIAction() {
+object VEventAction : IntentAction() {
 	override val iconResId: Int
 		get() = R.drawable.ic_action_vevent
 	override val titleResId: Int
@@ -28,7 +26,7 @@ object VEventAction : SimpleIntentIAction() {
 	}
 
 	@RequiresApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-	override fun executeForIntent(context: Context, data: ByteArray): Intent? {
+	override suspend fun createIntent(context: Context, data: ByteArray): Intent? {
 		val info = VTypeParser.parseMap(String(data))
 
 		return Intent(Intent.ACTION_EDIT).apply {

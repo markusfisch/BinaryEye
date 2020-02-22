@@ -1,7 +1,5 @@
-<RelativeLayout
+<FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 	<ListView
@@ -11,26 +9,24 @@
 		android:layout_height="match_parent"
 		android:divider="@color/separator"
 		android:dividerHeight="1px"/>
-	<android.support.v7.widget.SwitchCompat
-		android:visibility="gone"
-		android:id="@+id/use_history"
+	<android.support.design.widget.CoordinatorLayout
+		android:id="@+id/inset_layout"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_alignParentTop="true"
-		android:padding="16dp"
-		android:text="@string/use_history"/>
-	<android.support.design.widget.FloatingActionButton
-		tools:ignore="UnusedAttribute"
-		android:visibility="gone"
-		android:id="@+id/share"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_alignParentEnd="true"
-		android:layout_alignParentRight="true"
-		android:layout_alignParentBottom="true"
-		android:layout_margin="20dp"
-		android:contentDescription="@string/share"
-		android:src="@drawable/ic_action_share"
-		app:elevation="4dp"/>
+		android:layout_height="match_parent">
+		<android.support.v7.widget.SwitchCompat
+			android:visibility="gone"
+			android:id="@+id/use_history"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentTop="true"
+			android:padding="16dp"
+			android:text="@string/use_history"/>
+		<android.support.design.widget.FloatingActionButton
+			style="@style/FAB"
+			android:visibility="gone"
+			android:id="@+id/share"
+			android:contentDescription="@string/share"
+			android:src="@drawable/ic_action_share"/>
+	</android.support.design.widget.CoordinatorLayout>
 	<include layout="@layout/progress_view"/>
-</RelativeLayout>
+</FrameLayout>

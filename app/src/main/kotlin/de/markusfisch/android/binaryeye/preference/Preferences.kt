@@ -7,6 +7,11 @@ import android.preference.PreferenceManager
 class Preferences {
 	lateinit var preferences: SharedPreferences
 
+	var openImmediately = false
+		set(value) {
+			setBoolean(OPEN_IMMEDIATELY, value)
+			field = value
+		}
 	var useHistory = false
 		set(value) {
 			setBoolean(USE_HISTORY, value)
@@ -17,6 +22,11 @@ class Preferences {
 			setString(OPEN_WITH_URL, value)
 			field = value
 		}
+	var indexOfLastSelectedFormat: Int = 0
+		set(value) {
+			setInt(INDEX_OF_LAST_SELECTED_FORMAT, value)
+			field = value
+		}
 
 	fun init(context: Context) {
 		preferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -24,8 +34,18 @@ class Preferences {
 	}
 
 	fun update() {
+		openImmediately = preferences.getBoolean(
+			OPEN_IMMEDIATELY,
+			openImmediately
+		)
 		useHistory = preferences.getBoolean(USE_HISTORY, useHistory)
-		openWithUrl = preferences.getString(OPEN_WITH_URL, openWithUrl)
+		indexOfLastSelectedFormat = preferences.getInt(
+			INDEX_OF_LAST_SELECTED_FORMAT,
+			indexOfLastSelectedFormat
+		)
+		preferences.getString(OPEN_WITH_URL, openWithUrl)?.also {
+			openWithUrl = it
+		}
 	}
 
 	private fun setBoolean(label: String, value: Boolean) {
@@ -40,8 +60,16 @@ class Preferences {
 		editor.apply()
 	}
 
+	private fun setInt(label: String, value: Int) {
+		val editor = preferences.edit()
+		editor.putInt(label, value)
+		editor.apply()
+	}
+
 	companion object {
+		const val OPEN_IMMEDIATELY = "open_immediately"
 		const val USE_HISTORY = "use_history"
 		const val OPEN_WITH_URL = "open_with_url"
+		const val INDEX_OF_LAST_SELECTED_FORMAT = "index_of_last_selected_format"
 	}
 }

@@ -1,22 +1,9 @@
 package de.markusfisch.android.binaryeye.zxing
 
-import com.google.zxing.BarcodeFormat
-import com.google.zxing.BinaryBitmap
-import com.google.zxing.DecodeHintType
-import com.google.zxing.LuminanceSource
-import com.google.zxing.MultiFormatReader
-import com.google.zxing.MultiFormatWriter
-import com.google.zxing.PlanarYUVLuminanceSource
-import com.google.zxing.RGBLuminanceSource
-import com.google.zxing.ReaderException
-import com.google.zxing.Result
-import com.google.zxing.common.HybridBinarizer
-
 import android.graphics.Bitmap
-
-import java.util.Arrays
-import java.util.EnumMap
-import java.util.EnumSet
+import com.google.zxing.*
+import com.google.zxing.common.HybridBinarizer
+import java.util.*
 
 class Zxing {
 	private val multiFormatReader: MultiFormatReader = MultiFormatReader()
@@ -27,7 +14,7 @@ class Zxing {
 		)
 		decodeFormats.addAll(
 			EnumSet.copyOf(
-				Arrays.asList(
+				listOf(
 					BarcodeFormat.AZTEC,
 					BarcodeFormat.CODABAR,
 					BarcodeFormat.CODE_39,
@@ -137,12 +124,14 @@ class Zxing {
 			width: Int,
 			height: Int
 		): Bitmap? {
+			val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)
+			hints[EncodeHintType.CHARACTER_SET] = "utf-8"
 			val result = MultiFormatWriter().encode(
 				text,
 				format,
 				width,
 				height,
-				null
+				hints
 			)
 			val w = result.width
 			val h = result.height

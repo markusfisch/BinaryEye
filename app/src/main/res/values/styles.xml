@@ -1,12 +1,18 @@
 <resources>
 	<style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
 		<item name="colorPrimary">@color/primary</item>
-		<item name="colorPrimaryDark">@color/primary_dark</item>
+		<item name="colorPrimaryDark">@android:color/transparent</item>
 		<item name="colorAccent">@color/accent</item>
 		<item name="android:windowBackground">@drawable/background_window</item>
 	</style>
 	<style name="SplashTheme" parent="@style/AppTheme">
 		<item name="android:windowBackground">@drawable/background_splash</item>
+	</style>
+	<style
+		name="SecondaryText"
+		parent="@android:style/Widget.TextView">
+		<item name="android:textSize">12sp</item>
+		<item name="android:textColor">?android:attr/textColorSecondary</item>
 	</style>
 	<style
 		name="Button"
@@ -20,5 +26,14 @@
 		<item name="android:paddingLeft">@dimen/button_padding</item>
 		<item name="android:paddingRight">@dimen/button_padding</item>
 		<item name="android:maxLines">1</item>
+	</style>
+	<style
+		name="FAB"
+		parent="Widget.Design.FloatingActionButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_margin">20dp</item>
+		<item name="android:layout_gravity">bottom|end</item>
+		<item name="elevation">4dp</item>
 	</style>
 </resources>

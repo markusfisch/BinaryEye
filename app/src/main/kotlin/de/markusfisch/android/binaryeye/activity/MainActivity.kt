@@ -1,21 +1,21 @@
 package de.markusfisch.android.binaryeye.activity
 
-import com.google.zxing.BarcodeFormat
-
-import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.app.initSystemBars
-import de.markusfisch.android.binaryeye.app.setFragment
-import de.markusfisch.android.binaryeye.fragment.DecodeFragment
-import de.markusfisch.android.binaryeye.fragment.EncodeFragment
-import de.markusfisch.android.binaryeye.fragment.HistoryFragment
-import de.markusfisch.android.binaryeye.fragment.PreferencesFragment
-
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import com.google.zxing.BarcodeFormat
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.app.colorSystemAndToolBars
+import de.markusfisch.android.binaryeye.app.initSystemBars
+import de.markusfisch.android.binaryeye.app.setFragment
+import de.markusfisch.android.binaryeye.app.setupInsets
+import de.markusfisch.android.binaryeye.fragment.DecodeFragment
+import de.markusfisch.android.binaryeye.fragment.EncodeFragment
+import de.markusfisch.android.binaryeye.fragment.HistoryFragment
+import de.markusfisch.android.binaryeye.fragment.PreferencesFragment
 
 class MainActivity : AppCompatActivity() {
 	override fun onSupportNavigateUp(): Boolean {
@@ -31,10 +31,16 @@ class MainActivity : AppCompatActivity() {
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
 		setContentView(R.layout.activity_main)
-		initSystemBars(this)
 
-		setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
+		initSystemBars(this)
+		val toolbar = findViewById(R.id.toolbar) as Toolbar
+		setupInsets(findViewById(android.R.id.content), toolbar)
+		setSupportActionBar(toolbar)
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+		supportFragmentManager.addOnBackStackChangedListener {
+			colorSystemAndToolBars(this@MainActivity)
+		}
 
 		if (state == null) {
 			setFragment(
@@ -45,11 +51,11 @@ class MainActivity : AppCompatActivity() {
 						HistoryFragment()
 					intent?.hasExtra(ENCODE) == true ->
 						EncodeFragment.newInstance(
-							intent.getStringExtra(ENCODE)
+							intent.getStringExtra(ENCODE) ?: ""
 						)
 					intent?.hasExtra(DECODED_TEXT) == true ->
 						DecodeFragment.newInstance(
-							intent.getStringExtra(DECODED_TEXT),
+							intent.getStringExtra(DECODED_TEXT) ?: "",
 							intent.getSerializableExtra(
 								DECODED_FORMAT
 							) as BarcodeFormat,
@@ -89,9 +95,10 @@ class MainActivity : AppCompatActivity() {
 			val intent = Intent(context, MainActivity::class.java)
 			intent.putExtra(ENCODE, text)
 			if (isExternal) {
-				val flagActivityClearTask = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-					Intent.FLAG_ACTIVITY_CLEAR_TASK
-				} else 0
+				val flagActivityClearTask =
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+						Intent.FLAG_ACTIVITY_CLEAR_TASK
+					} else 0
 				intent.addFlags(
 					Intent.FLAG_ACTIVITY_NO_HISTORY or
 							flagActivityClearTask or

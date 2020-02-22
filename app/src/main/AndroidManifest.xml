@@ -16,8 +16,9 @@
 		tools:ignore="UnusedAttribute"
 		android:name=".app.BinaryEyeApp"
 		android:allowBackup="true"
-		android:fullBackupContent="true"
+		android:fullBackupContent="@xml/backup_rules"
 		android:supportsRtl="true"
+		android:resizeableActivity="true"
 		android:label="@string/app_name"
 		android:icon="@mipmap/ic_launcher"
 		android:theme="@style/AppTheme">
@@ -38,11 +39,6 @@
 				<category android:name="android.intent.category.DEFAULT"/>
 				<data android:mimeType="text/plain"/>
 			</intent-filter>
-			<intent-filter android:label="@string/decode_barcode">
-				<action android:name="android.intent.action.SEND"/>
-				<category android:name="android.intent.category.DEFAULT"/>
-				<data android:mimeType="image/*"/>
-			</intent-filter>
 			<intent-filter>
 				<action android:name="com.google.zxing.client.android.SCAN"/>
 				<category android:name="android.intent.category.DEFAULT"/>
@@ -55,6 +51,21 @@
 					android:host="www.markusfisch.de"
 					android:pathPrefix="/BinaryEye"
 					android:scheme="http"/>
+			</intent-filter>
+		</activity>
+		<activity
+			android:name=".activity.PickActivity"
+			android:label="@string/pick_code_to_scan"
+			tools:ignore="AppLinkUrlError">
+			<intent-filter android:label="@string/decode_barcode">
+				<action android:name="android.intent.action.SEND"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<data android:mimeType="image/*"/>
+			</intent-filter>
+			<intent-filter android:label="@string/decode_barcode">
+				<action android:name="android.intent.action.VIEW"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<data android:mimeType="image/*"/>
 			</intent-filter>
 		</activity>
 		<activity

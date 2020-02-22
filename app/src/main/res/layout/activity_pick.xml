@@ -1,0 +1,18 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+	<de.markusfisch.android.binaryeye.widget.CropImageView
+		android:id="@+id/image"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:contentDescription="@string/view_barcode"/>
+	<android.support.design.widget.CoordinatorLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:fitsSystemWindows="true">
+		<include layout="@layout/toolbar"/>
+		<android.support.design.widget.FloatingActionButton
+			style="@style/FAB"
+			android:id="@+id/scan"
+			android:contentDescription="@string/scan_code"
+			android:src="@drawable/ic_action_scan"/>
+	</android.support.design.widget.CoordinatorLayout>
+</merge>

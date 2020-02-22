@@ -1,54 +1,42 @@
 package de.markusfisch.android.binaryeye.fragment
 
-import android.annotation.SuppressLint
-import com.google.zxing.BarcodeFormat
-
-import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.IAction
-import de.markusfisch.android.binaryeye.actions.validateOrGetNew
-import de.markusfisch.android.binaryeye.app.addFragment
-import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
-import de.markusfisch.android.binaryeye.app.hasWritePermission
-import de.markusfisch.android.binaryeye.app.prefs
-import de.markusfisch.android.binaryeye.app.shareText
-
-import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.text.ClipboardManager
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-
-import java.io.File
-import java.io.IOException
-import java.net.URLEncoder
+import com.google.zxing.BarcodeFormat
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.actions.ActionRegistry
+import de.markusfisch.android.binaryeye.app.*
+import de.markusfisch.android.binaryeye.view.setPadding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.launch
 
 class DecodeFragment : Fragment() {
 	private lateinit var contentView: EditText
 	private lateinit var formatView: TextView
 	private lateinit var hexView: TextView
 	private lateinit var format: BarcodeFormat
-	private lateinit var actionMenuItem: MenuItem
+	private lateinit var fab: FloatingActionButton
 
-	private var action: IAction? = null
+	private var action = ActionRegistry.DEFAULT_ACTION
 	private var isBinary = false
 	private val content: String
 		get() = contentView.text.toString()
+
+	private val parentJob = Job()
+	private val scope: CoroutineScope = CoroutineScope(Dispatchers.Main + parentJob)
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -60,7 +48,7 @@ class DecodeFragment : Fragment() {
 		container: ViewGroup?,
 		state: Bundle?
 	): View {
-		activity.setTitle(R.string.content)
+		activity?.setTitle(R.string.content)
 
 		val view = inflater.inflate(
 			R.layout.fragment_decode,
@@ -74,7 +62,7 @@ class DecodeFragment : Fragment() {
 		format = arguments?.getSerializable(FORMAT) as BarcodeFormat? ?: BarcodeFormat.QR_CODE
 
 		contentView = view.findViewById(R.id.content)
-		val shareFab = view.findViewById<ImageView>(R.id.share)
+		fab = view.findViewById(R.id.open)
 
 		if (!isBinary) {
 			contentView.setText(inputContent)
@@ -99,14 +87,17 @@ class DecodeFragment : Fragment() {
 				) {
 				}
 			})
-			shareFab.setOnClickListener { v ->
-				shareText(v.context, content)
+			fab.setOnClickListener {
+				executeAction(content.toByteArray())
+			}
+			if (prefs.openImmediately) {
+				executeAction(content.toByteArray())
 			}
 		} else {
 			contentView.setText(R.string.binary_data)
 			contentView.isEnabled = false
-			shareFab.setImageResource(R.drawable.ic_action_save)
-			shareFab.setOnClickListener {
+			fab.setImageResource(R.drawable.ic_action_save)
+			fab.setOnClickListener {
 				askForFileNameAndSave(raw)
 			}
 		}
@@ -116,11 +107,19 @@ class DecodeFragment : Fragment() {
 
 		updateViewsAndAction(raw)
 
+		setWindowInsetListener { insets ->
+			(view.findViewById(R.id.inset_layout) as View).setPadding(insets)
+			(view.findViewById(R.id.scroll_view) as View).setPadding(insets)
+		}
+
 		return view
 	}
 
 	private fun updateViewsAndAction(bytes: ByteArray) {
-		action = action.validateOrGetNew(bytes)
+		val prevAction = action
+		if (!prevAction.canExecuteOn(bytes)) {
+			action = ActionRegistry.getAction(bytes)
+		}
 		formatView.text = resources.getQuantityString(
 			R.plurals.barcode_info,
 			bytes.size,
@@ -128,22 +127,27 @@ class DecodeFragment : Fragment() {
 			bytes.size
 		)
 		hexView.text = hexDump(bytes, 33)
-		if (::actionMenuItem.isInitialized) {
-			actionMenuItem.setIcon(action?.iconResId ?: R.drawable.ic_action_open)
-			actionMenuItem.setTitle(action?.titleResId ?: R.string.open_url)
+		if (prevAction !== action) {
+			fab.setImageResource(action.iconResId)
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+				fab.setOnLongClickListener { v ->
+					Toast.makeText(
+						v.context,
+						action.titleResId,
+						Toast.LENGTH_SHORT
+					).show()
+					true
+				}
+			} else {
+				fab.tooltipText = getString(action.titleResId)
+			}
 		}
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 		inflater.inflate(R.menu.fragment_decode, menu)
-		actionMenuItem = menu.findItem(R.id.open_url)
-		action?.also { action ->
-			actionMenuItem.setIcon(action.iconResId)
-			actionMenuItem.setTitle(action.titleResId)
-		}
 		if (isBinary) {
 			menu.findItem(R.id.copy_to_clipboard).isVisible = false
-			menu.findItem(R.id.open_url).isVisible = false
 			menu.findItem(R.id.create).isVisible = false
 		}
 	}
@@ -154,8 +158,8 @@ class DecodeFragment : Fragment() {
 				copyToClipboard(content)
 				true
 			}
-			R.id.open_url -> {
-				openUrl(content)
+			R.id.share -> {
+				context?.also { shareText(it, content) }
 				true
 			}
 			R.id.create -> {
@@ -183,82 +187,29 @@ class DecodeFragment : Fragment() {
 		).show()
 	}
 
-	private fun openUrl(
-		url: String,
-		executeCustomAction: Boolean = true,
-		searchIfNoUrl: Boolean = true
-	) {
-		if (activity == null || url.isEmpty()) {
-			return
+	private fun executeAction(content: ByteArray) {
+		if (activity != null && content.isNotEmpty()) scope.launch {
+			action.execute(activity, content)
 		}
-		var uri = Uri.parse(url)
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-			uri = uri.normalizeScheme()
-		}
-		val intent = Intent(Intent.ACTION_VIEW, uri)
-		when {
-			executeCustomAction && action != null -> action?.also { action ->
-				action.execute(activity, url.toByteArray())
-			}
-			intent.resolveActivity(activity.packageManager) != null -> {
-				startActivity(intent)
-			}
-			searchIfNoUrl -> pickSearchEngineAndSearch(activity, url)
-			else -> Toast.makeText(
-				activity,
-				R.string.cannot_resolve_action,
+	}
+
+	private fun askForFileNameAndSave(raw: ByteArray) {
+		val ac = activity ?: return
+		if (!hasWritePermission(ac)) return
+		scope.launch(Dispatchers.Main) {
+			val name = ac.askForFileName() ?: return@launch
+			val message = flowOf(raw).writeToFile(name)
+			Toast.makeText(
+				ac,
+				message,
 				Toast.LENGTH_SHORT
 			).show()
 		}
 	}
 
-	private fun pickSearchEngineAndSearch(context: Context, query: String) {
-		val names = context.resources.getStringArray(
-			R.array.search_engines_names
-		).toMutableList()
-		val urls = context.resources.getStringArray(
-			R.array.search_engines_values
-		).toMutableList()
-		if (prefs.openWithUrl.isNotEmpty()) {
-			names.add(prefs.openWithUrl)
-			urls.add(prefs.openWithUrl)
-		}
-		AlertDialog.Builder(context)
-			.setTitle(R.string.pick_search_engine)
-			.setItems(names.toTypedArray()) { _, which ->
-				openUrl(
-					urls[which] + URLEncoder.encode(query, "utf-8"),
-					executeCustomAction = false,
-					searchIfNoUrl = false
-				)
-			}
-			.show()
-	}
-
-	// dialogs don't have a parent layout and must therefore be
-	// inflated with a null root layout
-	@SuppressLint("InflateParams")
-	private fun askForFileNameAndSave(raw: ByteArray) {
-		val ac = activity ?: return
-		val view = ac.layoutInflater.inflate(R.layout.dialog_save_file, null)
-		val editText = view.findViewById<EditText>(R.id.file_name)
-		AlertDialog.Builder(ac)
-			.setView(view)
-			.setPositiveButton(android.R.string.ok) { _, _ ->
-				if (hasWritePermission(ac)) {
-					val messageId = saveByteArray(
-						editText.text.toString(),
-						raw
-					)
-					if (messageId > 0) {
-						Toast.makeText(
-							ac, messageId,
-							Toast.LENGTH_SHORT
-						).show()
-					}
-				}
-			}
-			.show()
+	override fun onDestroyView() {
+		parentJob.cancel()
+		super.onDestroyView()
 	}
 
 	companion object {
@@ -323,22 +274,4 @@ private fun hexDump(bytes: ByteArray, charsPerLine: Int): String {
 		}
 	}
 	return dump.toString()
-}
-
-fun saveByteArray(name: String, raw: ByteArray): Int {
-	return try {
-		val file = File(
-			Environment.getExternalStoragePublicDirectory(
-				Environment.DIRECTORY_DOWNLOADS
-			),
-			name
-		)
-		if (file.exists()) {
-			return R.string.error_file_exists
-		}
-		file.writeBytes(raw)
-		0
-	} catch (e: IOException) {
-		R.string.error_saving_binary_data
-	}
 }

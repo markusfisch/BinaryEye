@@ -7,8 +7,8 @@
 	<string name="content">Tartalom</string>
 	<string name="binary_data">(bináris adat)</string>
 	<plurals name="barcode_info">
-		<item quantity="one">%1$s\n%2$d karakter</item>
-		<item quantity="other">%1$s\n%2$d karakter</item>
+		<item quantity="one">%2$d karakter, %1$s</item>
+		<item quantity="other">%2$d karakter, %1$s</item>
 	</plurals>
 	<string name="toggle_flash">Vaku be- vagy kikapcsolása</string>
 	<string name="share">Megosztás</string>
@@ -16,7 +16,7 @@
 	<string name="put_into_clipboard">Vágólapra helyezés</string>
 	<string name="open_url">URL megnyitása</string>
 	<string name="cannot_resolve_action">Nincs alkalmazás, amely meg tudná nyitni azt</string>
-	<string name="pick_search_engine">Válasszon egy keresőmotort</string>
+	<string name="pick_search_engine">Válasszon keresőmotort</string>
 	<string name="format">Formátum</string>
 	<string name="size">Méret képpontban</string>
 	<string name="width_by_height">%1$d×%2$d</string>
@@ -28,9 +28,10 @@
 	<string name="info">Információ</string>
 	<string name="switch_camera">Kamera átkapcsolása</string>
 	<string name="history">Előzmények</string>
-	<string name="preferences">Preferences</string>
+	<string name="preferences">Beállítások</string>
+	<string name="open_immediately">Vizsgálat kihagyása és a tartalom azonnali megnyitása</string>
 	<string name="use_history">Beolvasási előzmények mentése</string>
-	<string name="open_with_url">Open unknown data with URL</string>
+	<string name="open_with_url">Ismeretlen adat megnyitása URL-lel</string>
 	<string name="really_remove_scan">Valóban eltávolítja a beolvasást?</string>
 	<string name="really_remove_all_scans">Valóban eltávolítja az összes beolvasását?</string>
 	<string name="clear_history">Előzmények törlése</string>
@@ -51,8 +52,22 @@
 	<string name="tel_error">Nem sikerült tárcsázni a számot</string>
 	<string name="mail_send">Levél küldése</string>
 	<string name="mail_error">Nem sikerült elküldeni a levelet</string>
-	<string name="vcard_add">Add to contacts</string>
-	<string name="vcard_failed">Could not add to contacts</string>
-	<string name="vevent_add">Add to calendar</string>
-	<string name="vevent_failed">Could not add to calendar</string>
+	<string name="vcard_add">Hozzáadás a címjegyzékhez</string>
+	<string name="vcard_failed">Nem sikerült hozzáadni a címjegyzékhez</string>
+	<string name="vevent_add">Hozzáadás a naptárhoz</string>
+	<string name="vevent_failed">Nem sikerült hozzáadni a naptárhoz</string>
+	<string name="otpauth_add">Kétlépcsős hitelesítés hozzáadása</string>
+	<string name="otpauth_error">Nem sikerült hozzáadni a kétlépcsős hitelesítést</string>
+	<string name="search_web">Keresés a weben</string>
+	<string name="export_to_file">Exportálás fájlba</string>
+	<string name="csv_delimiter">Milyen mezőelválasztót kell használni (CSV-fájl)?</string>
+	<string name="delimiter_comma">Vessző</string>
+	<string name="delimiter_semicolon">Pontosvessző</string>
+	<string name="csv_allow_binary">Engedélyezi a bináris adatot a kimeneti fájlban?</string>
+	<string name="no">Nem</string>
+	<string name="csv_allow_binary_message">Valószínűleg ezt nem szeretné engedélyezni, mivel tönkre fogja tenni a fájlformátumot, és a szövegszerkesztők talán nem fogják tudni többé olvasni.</string>
+	<string name="saved_in_downloads">Elmentve a letöltésekbe</string>
+	<string name="rotate_image_cw">Kép forgatása jobbra</string>
+	<string name="pick_file">Képfájl kiválasztása</string>
+	<string name="pick_code_to_scan">Kód kiválasztása a beolvasáshoz</string>
 </resources>

@@ -1,10 +1,10 @@
 package de.markusfisch.android.binaryeye.app
 
+import android.Manifest
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
-import android.Manifest
 
 fun hasCameraPermission(activity: Activity, requestCode: Int): Boolean {
 	return hasPermission(activity, Manifest.permission.CAMERA, requestCode)

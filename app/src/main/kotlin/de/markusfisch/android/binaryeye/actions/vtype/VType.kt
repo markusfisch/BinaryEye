@@ -1,17 +1,24 @@
 package de.markusfisch.android.binaryeye.actions.vtype
 
+import java.util.*
+
 object VTypeParser {
+	private const val BACKSLASH_R_LEGACY =
+		"(?:\u000D\u000A|[\u000A\u000B\u000C\u000D\u0085\u2028\u2029])"
 	private val vTypeRegex =
-		"""^BEGIN:(VCARD|VEVENT)(?:\R.+?:[\s\S]+?)+?\REND:\1\R?$""".toRegex(RegexOption.IGNORE_CASE)
+		"""^BEGIN:(VCARD|VEVENT)(?:$BACKSLASH_R_LEGACY.+?:[\s\S]+?)+?${BACKSLASH_R_LEGACY}END:\1$BACKSLASH_R_LEGACY?$""".toRegex(
+			RegexOption.IGNORE_CASE
+		)
 	private val propertyRegex = """^(.+?):([\s\S]*?)$""".toRegex(RegexOption.MULTILINE)
 
-	fun parseVType(data: String): String? = vTypeRegex.matchEntire(data)?.groupValues?.get(1)?.toUpperCase()
+	fun parseVType(data: String): String? =
+		vTypeRegex.matchEntire(data)?.groupValues?.get(1)?.toUpperCase(Locale.US)
 
 	fun parseMap(data: String): Map<String, List<VTypeProperty>> = propertyRegex.findAll(data).map {
 		it.groupValues[1].split(';').let { typeAndInfo ->
 			typeAndInfo[0] to VTypeProperty(typeAndInfo.drop(1), it.groupValues[2])
 		}
-	}.groupBy({ it.first.toUpperCase() }) { it.second }
+	}.groupBy({ it.first.toUpperCase(Locale.US) }) { it.second }
 }
 
 data class VTypeProperty(

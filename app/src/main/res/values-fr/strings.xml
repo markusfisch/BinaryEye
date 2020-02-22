@@ -7,8 +7,8 @@
 	<string name="content">Contenu</string>
 	<string name="binary_data">(binary data)</string>
 	<plurals name="barcode_info">
-		<item quantity="one">%1$s\n%2$d character</item>
-		<item quantity="other">%1$s\n%2$d characters</item>
+		<item quantity="one">%2$d characters, %1$s</item>
+		<item quantity="other">%2$d characters, %1$s</item>
 	</plurals>
 	<string name="toggle_flash">Toggle flash</string>
 	<string name="share">Share</string>
@@ -29,6 +29,7 @@
 	<string name="switch_camera">Changer de camera</string>
 	<string name="history">Historique</string>
 	<string name="preferences">Preferences</string>
+	<string name="open_immediately">Skip inspection and open contents immediately</string>
 	<string name="use_history">Sauvegarder l\'histoire des scans</string>
 	<string name="open_with_url">Open unknown data with URL</string>
 	<string name="really_remove_scan">Supprimer le scan ?</string>
@@ -38,7 +39,7 @@
 	<string name="pick_list_separator">How to separate list items?</string>
 	<string name="separator_line_break">Line break</string>
 	<string name="separator_ruler">Ruler</string>
-	<string name="save_as_file_name">Save as file?</string>
+	<string name="save_as_file_name">Save in Downloads as file?</string>
 	<string name="file_name">File name</string>
 	<string name="error_saving_binary_data">Cannot save file</string>
 	<string name="error_file_exists">File already exists</string>
@@ -55,4 +56,18 @@
 	<string name="vcard_failed">Could not add to contacts</string>
 	<string name="vevent_add">Add to calendar</string>
 	<string name="vevent_failed">Could not add to calendar</string>
+	<string name="otpauth_add">Add 2FA</string>
+	<string name="otpauth_error">Could not add 2FA</string>
+	<string name="search_web">Search the web</string>
+	<string name="export_to_file">Export to file</string>
+	<string name="csv_delimiter">Which delimiter should be used (CSV-File)?</string>
+	<string name="delimiter_comma">Comma</string>
+	<string name="delimiter_semicolon">Semicolon</string>
+	<string name="csv_allow_binary">Allow binary data in output file?</string>
+	<string name="no">No</string>
+	<string name="csv_allow_binary_message">You probably don\'t want to allow that, as it will break the file format and maybe isn\'t readable by text editors anymore.</string>
+	<string name="saved_in_downloads">Saved in downloads</string>
+	<string name="rotate_image_cw">Rotate image clockwise</string>
+	<string name="pick_file">Pick image file</string>
+	<string name="pick_code_to_scan">Pick code to scan</string>
 </resources>

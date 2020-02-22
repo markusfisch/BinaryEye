@@ -1,13 +1,12 @@
 package de.markusfisch.android.binaryeye.data
 
-import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
-
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.text.format.DateFormat
+import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
 
 class Database {
 	private lateinit var db: SQLiteDatabase
@@ -36,6 +35,15 @@ class Database {
 			FROM $SCANS
 			WHERE $SCANS_ID = ?
 		""", arrayOf("$id")
+	)
+
+	fun hasBinaryData(): Cursor? = db.rawQuery(
+		"""SELECT
+			1
+			FROM $SCANS
+			WHERE $SCANS_RAW IS NOT NULL
+			LIMIT 1
+		""", null
 	)
 
 	fun insertScan(

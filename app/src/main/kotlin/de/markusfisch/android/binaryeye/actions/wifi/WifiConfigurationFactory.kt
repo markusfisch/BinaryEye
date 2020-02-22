@@ -3,6 +3,7 @@ package de.markusfisch.android.binaryeye.actions.wifi
 import android.net.wifi.WifiConfiguration
 import android.net.wifi.WifiEnterpriseConfig
 import android.os.Build
+import java.util.*
 
 /**
  * Normal:
@@ -47,7 +48,7 @@ object WifiConfigurationFactory {
 			string
 		)?.groupValues?.get(1)?.let { pairs ->
 			pairRegex.findAll(pairs).map { pair ->
-				pair.groupValues[1].toUpperCase() to pair.groupValues[2]
+				pair.groupValues[1].toUpperCase(Locale.US) to pair.groupValues[2]
 			}.toMap()
 		}
 	}
@@ -194,8 +195,10 @@ object WifiConfigurationFactory {
 					enterpriseConfig.identity = data.identity
 					enterpriseConfig.anonymousIdentity = data.anonymousIdentity
 					enterpriseConfig.password = data.password
-					enterpriseConfig.eapMethod = data.eapMethod ?: return null // non valid eapMethod
-					enterpriseConfig.phase2Method = data.phase2Method ?: return null // non valid phase2Method
+					enterpriseConfig.eapMethod =
+						data.eapMethod ?: return null // non valid eapMethod
+					enterpriseConfig.phase2Method =
+						data.phase2Method ?: return null // non valid phase2Method
 				} ?: return null // api isn't high enough
 			}
 			return this

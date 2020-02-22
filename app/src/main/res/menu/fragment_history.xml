@@ -2,8 +2,13 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:material="http://schemas.android.com/apk/res-auto">
 	<item
-		android:id="@+id/clear"
-		android:title="@string/clear_history"
-		android:icon="@drawable/ic_action_clear"
-		material:showAsAction="ifRoom"/>
+			android:id="@+id/export_history"
+			android:title="@string/export_to_file"
+			android:icon="@drawable/ic_action_save"
+			material:showAsAction="ifRoom"/>
+	<item
+			android:id="@+id/clear"
+			android:title="@string/clear_history"
+			android:icon="@drawable/ic_action_clear"
+			material:showAsAction="ifRoom"/>
 </menu>
