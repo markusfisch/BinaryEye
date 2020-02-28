@@ -1,7 +1,9 @@
 package de.markusfisch.android.binaryeye.widget
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Point
+import android.graphics.PorterDuff
 import android.util.AttributeSet
 import android.view.View
 import de.markusfisch.android.binaryeye.graphics.Candidates

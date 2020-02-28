@@ -25,8 +25,6 @@ import de.markusfisch.android.binaryeye.graphics.loadImageUri
 import de.markusfisch.android.binaryeye.graphics.mapResult
 import de.markusfisch.android.binaryeye.widget.CropImageView
 import de.markusfisch.android.binaryeye.zxing.Zxing
-import kotlin.math.max
-import kotlin.math.min
 
 class PickActivity : AppCompatActivity() {
 	private val zxing = Zxing()
