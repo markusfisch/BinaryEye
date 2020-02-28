@@ -5,36 +5,34 @@ import android.graphics.*
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.graphics.Candidates
 import kotlin.math.roundToInt
 
 class CropImageView(context: Context, attr: AttributeSet) :
 	ConfinedScalingImageView(context, attr) {
 	val windowInsets = Rect()
 
-	var onScan: (() -> Rect)? = null
+	var onScan: (() -> List<Point>?)? = null
 
+	private val candidates = Candidates(context)
 	private val boundsPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-	private val candidatePaint = Paint(Paint.ANTI_ALIAS_FLAG)
 	private val lastMappedRect = RectF()
 	private val dp = context.resources.displayMetrics.density
 	private val padding: Int = (dp * 24f).roundToInt()
 	private val onScanRunnable = Runnable {
 		onScan?.invoke()?.also {
-			candidateRect = it
+			candidatePoints = it
 			invalidate()
 		}
 	}
 
-	private var candidateRect: Rect? = null
+	private var candidatePoints: List<Point>? = null
 
 	init {
 		boundsPaint.color = ContextCompat.getColor(context, R.color.crop_bound)
 		boundsPaint.style = Paint.Style.STROKE
 		boundsPaint.strokeWidth = dp * 2f
 		boundsPaint.pathEffect = DashPathEffect(floatArrayOf(dp * 10f, dp * 10f), 0f)
-		candidatePaint.color = ContextCompat.getColor(context, R.color.candidate)
-		candidatePaint.style = Paint.Style.FILL_AND_STROKE
-		candidatePaint.strokeWidth = dp * 3f
 		scaleType = ScaleType.CENTER_CROP
 	}
 
@@ -54,9 +52,12 @@ class CropImageView(context: Context, attr: AttributeSet) :
 		)
 	}
 
-	fun getBoundsRect(): RectF {
-		return bounds
-	}
+	fun getBoundsRect() = Rect(
+		bounds.left.roundToInt(),
+		bounds.top.roundToInt(),
+		bounds.right.roundToInt(),
+		bounds.bottom.roundToInt()
+	)
 
 	private fun setBoundsWithPadding(
 		left: Int,
@@ -84,11 +85,10 @@ class CropImageView(context: Context, attr: AttributeSet) :
 	override fun onDraw(canvas: Canvas) {
 		super.onDraw(canvas)
 		canvas.drawRect(bounds, boundsPaint)
-		val rc = candidateRect
-		if (rc != null && rc.width() > 0) {
-			canvas.drawRect(rc, candidatePaint)
-			candidateRect = null
+		candidatePoints?.let {
+			candidates.draw(canvas, it)
 		}
+		candidatePoints = null
 		val mr = mappedRect ?: return
 		if (mr != lastMappedRect) {
 			removeCallbacks(onScanRunnable)

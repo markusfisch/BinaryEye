@@ -3,6 +3,10 @@
 		android:id="@+id/camera_view"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"/>
+	<de.markusfisch.android.binaryeye.widget.DetectorView
+		android:id="@+id/detector_view"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"/>
 	<android.support.design.widget.CoordinatorLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"

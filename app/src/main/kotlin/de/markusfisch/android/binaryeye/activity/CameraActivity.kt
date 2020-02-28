@@ -22,7 +22,10 @@ import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.hasCameraPermission
 import de.markusfisch.android.binaryeye.app.initSystemBars
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.graphics.Mapping
+import de.markusfisch.android.binaryeye.graphics.frameToView
 import de.markusfisch.android.binaryeye.rs.Preprocessor
+import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.cameraview.widget.CameraView
 import kotlinx.coroutines.GlobalScope
@@ -33,6 +36,7 @@ class CameraActivity : AppCompatActivity() {
 
 	private lateinit var vibrator: Vibrator
 	private lateinit var cameraView: CameraView
+	private lateinit var detectorView: DetectorView
 	private lateinit var zoomBar: SeekBar
 	private lateinit var flashFab: View
 
@@ -83,12 +87,13 @@ class CameraActivity : AppCompatActivity() {
 		super.onCreate(state)
 		setContentView(R.layout.activity_camera)
 
+		vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+
 		initSystemBars(this)
 		setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
 
-		vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-
 		cameraView = findViewById(R.id.camera_view) as CameraView
+		detectorView = findViewById(R.id.detector_view) as DetectorView
 		zoomBar = findViewById(R.id.zoom) as SeekBar
 		flashFab = findViewById(R.id.flash)
 		flashFab.setOnClickListener { toggleTorchMode() }
@@ -264,6 +269,7 @@ class CameraActivity : AppCompatActivity() {
 				val frameWidth = cameraView.frameWidth
 				val frameHeight = cameraView.frameHeight
 				val frameOrientation = cameraView.frameOrientation
+				var mapping: Mapping? = null
 				var decoding = true
 				camera.setPreviewCallback { frameData, _ ->
 					if (decoding) {
@@ -274,7 +280,19 @@ class CameraActivity : AppCompatActivity() {
 							frameOrientation
 						)
 						result?.let {
+							preprocessor?.let {
+								mapping = mapping ?: frameToView(
+									it.outWidth,
+									it.outHeight,
+									cameraView.previewRect
+								)
+							}
 							cameraView.post {
+								mapping?.let {
+									detectorView.mark(
+										it.map(result.resultPoints)
+									)
+								}
 								vibrator.vibrate(100)
 								showResult(
 									this@CameraActivity,

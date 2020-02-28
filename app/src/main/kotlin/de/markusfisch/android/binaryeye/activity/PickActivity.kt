@@ -1,11 +1,14 @@
 package de.markusfisch.android.binaryeye.activity
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Point
 import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
+import android.os.Vibrator
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
@@ -19,6 +22,7 @@ import de.markusfisch.android.binaryeye.app.setWindowInsetListener
 import de.markusfisch.android.binaryeye.app.setupInsets
 import de.markusfisch.android.binaryeye.graphics.crop
 import de.markusfisch.android.binaryeye.graphics.loadImageUri
+import de.markusfisch.android.binaryeye.graphics.mapResult
 import de.markusfisch.android.binaryeye.widget.CropImageView
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import kotlin.math.max
@@ -27,11 +31,14 @@ import kotlin.math.min
 class PickActivity : AppCompatActivity() {
 	private val zxing = Zxing()
 
+	private lateinit var vibrator: Vibrator
 	private lateinit var cropImageView: CropImageView
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
 		setContentView(R.layout.activity_pick)
+
+		vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
 		initSystemBars(this)
 		val toolbar = findViewById(R.id.toolbar) as Toolbar
@@ -67,7 +74,7 @@ class PickActivity : AppCompatActivity() {
 		}
 
 		val scannedRect = Rect()
-		val scanBounds: () -> Result? = {
+		val scanWithinBounds: () -> Result? = {
 			var result: Result? = null
 			crop(
 				bitmap,
@@ -83,38 +90,24 @@ class PickActivity : AppCompatActivity() {
 		cropImageView = findViewById(R.id.image) as CropImageView
 		cropImageView.setImageBitmap(bitmap)
 		cropImageView.onScan = {
-			val rect = Rect()
-			scanBounds()?.also {
-				rect.left = Int.MAX_VALUE
-				rect.top = Int.MAX_VALUE
-				for (rp in it.resultPoints) {
-					val x = rp.x.toInt()
-					val y = rp.y.toInt()
-					rect.left = min(rect.left, x)
-					rect.right = max(rect.right, x)
-					rect.top = min(rect.top, y)
-					rect.bottom = max(rect.bottom, y)
-				}
-				// map result points onto view
-				val bounds = cropImageView.getBoundsRect()
-				val fx = bounds.width() / scannedRect.width().toFloat()
-				val fy = bounds.height() / scannedRect.height().toFloat()
-				rect.set(
-					(rect.left * fx).toInt(),
-					(rect.top * fy).toInt(),
-					(rect.right * fx).toInt(),
-					(rect.bottom * fx).toInt()
+			var points: List<Point>? = null
+			scanWithinBounds()?.let {
+				points = mapResult(
+					scannedRect.width(),
+					scannedRect.height(),
+					cropImageView.getBoundsRect(),
+					it
 				)
-				rect.offset(bounds.left.toInt(), bounds.top.toInt())
+				vibrator.vibrate(100)
 			}
-			rect
+			points
 		}
 		setWindowInsetListener { insets ->
 			cropImageView.windowInsets.set(insets)
 		}
 
 		findViewById(R.id.scan).setOnClickListener {
-			scanImage(scanBounds())
+			scanImage(scanWithinBounds())
 		}
 	}
 
