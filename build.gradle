@@ -16,7 +16,7 @@ buildscript {
 
 	ext {
 		kotlin_version = '1.3.61'
-		tools_version = ext.is_catalina ? '3.6.0' : '3.5.3'
+		tools_version = '3.6.1'
 		build_tools_version = ext.is_catalina ? '29.0.3' : '28.0.3'
 		sdk_version = 29
 		support_version = '25.3.1'
