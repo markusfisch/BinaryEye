@@ -1,5 +1,12 @@
 # Change Log
 
+# 1.22.0
+* Highlight detected barcodes in camera view
+* Add bing and yandex search engines
+* Update Chinese Translation
+* Update Italian translation
+* Update Indonesian translation
+
 # 1.21.0
 * Save and restore history list state
 * Improve scanning from large images
