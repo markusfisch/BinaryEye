@@ -6,7 +6,7 @@ import com.google.zxing.common.HybridBinarizer
 import java.util.*
 
 class Zxing {
-	private val multiFormatReader: MultiFormatReader = MultiFormatReader()
+	private val multiFormatReader = MultiFormatReader()
 
 	init {
 		val decodeFormats = EnumSet.noneOf<BarcodeFormat>(
@@ -63,10 +63,11 @@ class Zxing {
 
 	fun decodePositiveNegative(bitmap: Bitmap): Result? {
 		val result = decode(bitmap, false)
-		if (result != null) {
-			return result
+		return if (result != null) {
+			result
+		} else {
+			decode(bitmap, true)
 		}
-		return decode(bitmap, true)
 	}
 
 	fun decode(bitmap: Bitmap, invert: Boolean = false): Result? {
@@ -86,8 +87,10 @@ class Zxing {
 		} else {
 			bitmap
 		}.getPixels(pixels, 0, width, 0, 0, width, height)
-		val source = RGBLuminanceSource(width, height, pixels)
-		return decodeLuminanceSource(source, invert)
+		return decodeLuminanceSource(
+			RGBLuminanceSource(width, height, pixels),
+			invert
+		)
 	}
 
 	private fun decodeLuminanceSource(
