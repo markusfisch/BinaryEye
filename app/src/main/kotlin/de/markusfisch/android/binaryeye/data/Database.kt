@@ -59,9 +59,9 @@ class Database {
 				timestamp
 			).toString()
 		)
-		if (hasNonPrintableCharacters(content) && raw != null) {
+		if (hasNonPrintableCharacters(content)) {
 			cv.put(SCANS_CONTENT, "")
-			cv.put(SCANS_RAW, raw)
+			cv.put(SCANS_RAW, if (raw != null) raw else content.toByteArray())
 		} else {
 			cv.put(SCANS_CONTENT, content)
 		}
