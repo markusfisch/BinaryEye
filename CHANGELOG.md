@@ -1,5 +1,8 @@
 # Change Log
 
+# 1.22.1
+* Ensure non-printable content is saved as raw data
+
 # 1.22.0
 * Highlight detected barcodes in camera view
 * Add bing and yandex search engines
