@@ -82,8 +82,9 @@ private fun getAppCompatActivity(context: Context): AppCompatActivity? {
 }
 
 private var windowInsetsListener: ((insets: Rect) -> Unit)? = null
+// invoke this from Fragment.onCreateView() *or* Activity.onCreate()
 fun setWindowInsetListener(listener: (insets: Rect) -> Unit) {
-	if (windowInsets.top > 0) {
+	if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
 		listener(windowInsets)
 	} else {
 		windowInsetsListener = listener
@@ -91,14 +92,18 @@ fun setWindowInsetListener(listener: (insets: Rect) -> Unit) {
 }
 
 private val windowInsets = Rect()
+// invoke this from Activity.onCreate() to setup listening for insets
 fun setupInsets(view: View, toolbar: Toolbar) {
 	val toolBarHeight = toolbar.layoutParams.height
 	if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+		// save insets so setWindowInsetListener() can return them
+		// when it's called from Fragment.onCreateView() later on
 		windowInsets.set(0, toolBarHeight, 0, 0)
 		windowInsetsListener?.also { it(windowInsets) }
 		return
 	}
 	ViewCompat.setOnApplyWindowInsetsListener(view) { _, insets ->
+		// runs *after* layout and thus *after* Fragment.onCreateView()
 		if (insets.hasSystemWindowInsets()) {
 			windowInsets.set(
 				insets.systemWindowInsetLeft,
