@@ -1,5 +1,8 @@
 # Change Log
 
+# 1.22.2
+* Fix getting window insets for Android Lollipop and above
+
 # 1.22.1
 * Ensure non-printable content is saved as raw data
 
