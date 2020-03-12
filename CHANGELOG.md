@@ -1,5 +1,8 @@
 # Change Log
 
+# 1.22.3
+* Fix broken RenderScript built
+
 # 1.22.2
 * Fix getting window insets for Android Lollipop and above
 
