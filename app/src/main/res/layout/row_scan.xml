@@ -28,6 +28,8 @@
 		android:layout_height="wrap_content"
 		android:layout_below="@+id/time"
 		android:layout_marginTop="4dp"
+		android:maxLines="1"
+		android:ellipsize="end"
 		android:textAppearance="?android:attr/textAppearanceMedium"
 		android:textColor="?android:attr/textColorPrimary"
 		android:typeface="monospace"/>
