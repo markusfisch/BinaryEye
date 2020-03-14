@@ -15,6 +15,7 @@ import de.markusfisch.android.binaryeye.view.setPadding
 class PreferencesFragment : Fragment() {
 	private lateinit var openImmediatelySwitch: SwitchCompat
 	private lateinit var useHistorySwitch: SwitchCompat
+	private lateinit var ignoreConsecutiveDuplicatesSwitch: SwitchCompat
 	private lateinit var openWithUrlInput: EditText
 
 	override fun onCreateView(
@@ -40,6 +41,13 @@ class PreferencesFragment : Fragment() {
 			useHistorySwitch.toggle()
 		}
 
+		ignoreConsecutiveDuplicatesSwitch = view.findViewById(
+			R.id.ignore_consecutive_duplicates
+		)
+		if (prefs.ignoreConsecutiveDuplicates) {
+			ignoreConsecutiveDuplicatesSwitch.toggle()
+		}
+
 		openWithUrlInput = view.findViewById(R.id.open_with_url)
 		openWithUrlInput.setText(prefs.openWithUrl)
 
@@ -54,6 +62,7 @@ class PreferencesFragment : Fragment() {
 		super.onPause()
 		prefs.openImmediately = openImmediatelySwitch.isChecked
 		prefs.useHistory = useHistorySwitch.isChecked
+		prefs.ignoreConsecutiveDuplicates = ignoreConsecutiveDuplicatesSwitch.isChecked
 		prefs.openWithUrl = openWithUrlInput.text.toString()
 	}
 }

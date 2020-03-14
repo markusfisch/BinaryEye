@@ -31,6 +31,7 @@
 	<string name="preferences">Preferenze</string>
 	<string name="open_immediately">Salta l\'analisi e apri i contenuti direttamente</string>
 	<string name="use_history">Salva cronologia delle scansioni</string>
+	<string name="ignore_consecutive_duplicates">Do not save consecutive duplicates</string>
 	<string name="open_with_url">Apri dati sconosciuti con URL</string>
 	<string name="really_remove_scan">Vuoi veramente rimuovere la scansione?</string>
 	<string name="really_remove_all_scans">Vuoi veramente rimuovere tutte le scansioni?</string>

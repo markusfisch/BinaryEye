@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.text.format.DateFormat
 import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
+import de.markusfisch.android.binaryeye.app.prefs
 
 class Database {
 	private lateinit var db: SQLiteDatabase
@@ -59,14 +60,55 @@ class Database {
 				timestamp
 			).toString()
 		)
-		if (hasNonPrintableCharacters(content)) {
+		val isRaw = hasNonPrintableCharacters(content)
+		if (isRaw) {
 			cv.put(SCANS_CONTENT, "")
-			cv.put(SCANS_RAW, if (raw != null) raw else content.toByteArray())
+			cv.put(SCANS_RAW, raw ?: content.toByteArray())
 		} else {
 			cv.put(SCANS_CONTENT, content)
 		}
 		cv.put(SCANS_FORMAT, format)
+		if (prefs.ignoreConsecutiveDuplicates) {
+			val id = getLastScan(
+				cv.get(SCANS_CONTENT) as String,
+				if (isRaw) cv.get(SCANS_RAW) as ByteArray else null,
+				format
+			)
+			if (id > 0L) {
+				return id
+			}
+		}
 		return db.insert(SCANS, null, cv)
+	}
+
+	private fun getLastScan(
+		content: String,
+		raw: ByteArray?,
+		format: String
+	): Long {
+		return db.rawQuery(
+			"""SELECT
+				$SCANS_ID,
+				$SCANS_CONTENT,
+				$SCANS_RAW,
+				$SCANS_FORMAT
+				FROM $SCANS
+				ORDER BY $SCANS_ID DESC
+				LIMIT 1
+			""", null
+		)?.use {
+			if (it.count > 0 &&
+				it.moveToFirst() &&
+				it.getString(it.getColumnIndex(SCANS_CONTENT)) == content &&
+				(raw == null || it.getBlob(it.getColumnIndex(SCANS_RAW))
+					?.contentEquals(raw) == true) &&
+				it.getString(it.getColumnIndex(SCANS_FORMAT)) == format
+			) {
+				it.getLong(it.getColumnIndex(SCANS_ID))
+			} else {
+				0L
+			}
+		} ?: 0L
 	}
 
 	fun removeScan(id: Long) {
