@@ -10,11 +10,27 @@ comes in Material Design and can also generate barcodes.
 Binary Eye uses the [ZXing][zxing] ("Zebra Crossing") barcode scanning
 library.
 
+## Screenshots
+
+<img
+	src="https://raw.githubusercontent.com/markusfisch/BinaryEye/gh-pages/screencap-scanning.png"
+	alt="Screenshot Scanning" width="160"/>
+<img
+	src="https://raw.githubusercontent.com/markusfisch/BinaryEye/gh-pages/screencap-decoded.png"
+	alt="Screenshot Result" width="160"/>
+<img
+	src="https://raw.githubusercontent.com/markusfisch/BinaryEye/gh-pages/screencap-compose-barcode.png"
+	alt="Screenshot Compose Barcode" width="160"/>
+
+## Download
+
+<a href="https://f-droid.org/en/packages/de.markusfisch.android.binaryeye/"><img alt="Get it on F-Droid" src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" height="80"/></a> <a href="https://play.google.com/store/apps/details?id=de.markusfisch.android.binaryeye"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="80"/></a>
+
 ## Supported Barcode Formats
 
 ### Read
 
-ZXing can _read_ the following barcode formats:
+ZXing can read the following barcode formats:
 * [AZTEC][aztec]
 * [CODABAR][codabar]
 * [CODE 39][code_39]
@@ -35,7 +51,7 @@ ZXing can _read_ the following barcode formats:
 
 ### Generate
 
-ZXing can _generate_ the following barcode formats:
+ZXing can generate the following barcode formats:
 * [AZTEC][aztec]
 * [CODABAR][codabar]
 * [CODE 39][code_39]
@@ -47,22 +63,6 @@ ZXing can _generate_ the following barcode formats:
 * [PDF 417][pdf417]
 * [QR CODE][qr_code]
 * [UPC A][upc_a]
-
-## Screenshots
-
-<img
-	src="https://raw.githubusercontent.com/markusfisch/BinaryEye/gh-pages/screencap-scanning.png"
-	alt="Screenshot Scanning" width="160"/>
-<img
-	src="https://raw.githubusercontent.com/markusfisch/BinaryEye/gh-pages/screencap-decoded.png"
-	alt="Screenshot Result" width="160"/>
-<img
-	src="https://raw.githubusercontent.com/markusfisch/BinaryEye/gh-pages/screencap-compose-barcode.png"
-	alt="Screenshot Compose Barcode" width="160"/>
-
-## Download
-
-<a href="https://f-droid.org/en/packages/de.markusfisch.android.binaryeye/"><img alt="Get it on F-Droid" src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" height="80"/></a> <a href="https://play.google.com/store/apps/details?id=de.markusfisch.android.binaryeye"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="80"/></a>
 
 [play]: https://play.google.com/store/search?q=barcode%20scanner&c=apps
 [zxing]: https://github.com/zxing/zxing
