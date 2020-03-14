@@ -1,9 +1,12 @@
 buildscript {
 	// Since RenderScript can no longer be compiled on macOS Catalina
-	// because Catalina cannot run 32bit binaries and Google failed
-	// to provide a 64bit compiler in time. Now, as if that wasn't
-	// bad enough, the new build tools that provide a 64bit compiler
-	// don't work on any other system than macOS unfortunately.
+	// with build tools 28.0.3 because Catalina cannot run 32bit binaries
+	// and Google failed to provide a 64bit compiler in 28.0.3.
+	// Now, as if that wasn't bad enough, the new build tools 29.0.3 that
+	// provide a 64bit compiler produce broken builds on Catalina that
+	// cannot invoke `RenderScript.forceCompat()` without crashing.
+	// So we need this symbol to build on Catalina but remember to use
+	// some Linux to produce release builds.
 	ext.is_catalina = {
 		if (System.properties['os.name'] == 'Mac OS X') {
 			def numbers = System.properties['os.version'].split('\\.')

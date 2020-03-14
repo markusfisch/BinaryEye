@@ -13,14 +13,11 @@ class BinaryEyeApp : Application() {
 	override fun onCreate() {
 		super.onCreate()
 
-		// Since RenderScript can no longer be compiled on macOS Catalina
-		// because Catalina cannot run 32bit binaries and Google failed
-		// to provide a 64bit compiler in time. Now, as if that wasn't
-		// bad enough, `RenderScript.forceCompat()` makes any build compiled
-		// with the new build tools that provide a 64bit compiler crash
-		// so we need to exclude this if we're building on Catalina.
-		// Maybe `RenderScript.forceCompat()` isn't required anymore for
-		// those new builds but I don't have a device to test this.
+		// `RenderScript.forceCompat()` will crash the app when compiled
+		// on macOS Catalina with build tools 29.0.3 :( To make things
+		// even more complicated, `forceCompat()` will continue to work
+		// if the app is compiled on Linux with the exact same version
+		// 29.0.3 of the build tools
 		if (!BuildConfig.IS_CATALINA) {
 			// required to make RenderScript work for Lineage 16.0
 			// possibly because of a system/device bug
