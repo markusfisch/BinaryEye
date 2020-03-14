@@ -1,5 +1,11 @@
 # Change Log
 
+# 1.23.0
+* Add a setting to not save consecutive double scans
+* Add a setting to show/hide hex dump
+* Limit history items to just one line
+* Fix window insets for consecutive screens
+
 # 1.22.3
 * Fix broken RenderScript built
 
