@@ -31,6 +31,7 @@
 	<string name="open_immediately">Skip inspection and open contents immediately</string>
 	<string name="use_history">儲存掃描歷史</string>
 	<string name="ignore_consecutive_duplicates">Do not save consecutive duplicates</string>
+	<string name="show_hex_dump">Show hex dump</string>
 	<string name="really_remove_scan">真的要移除掃描記錄?</string>
 	<string name="really_remove_all_scans">真的要移除所有掃描記錄?</string>
 	<string name="clear_history">清除記錄</string>

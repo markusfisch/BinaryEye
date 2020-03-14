@@ -32,6 +32,7 @@
 	<string name="open_immediately">Lewati inspeksi dan segera buka konten</string>
 	<string name="use_history">Simpan riwayat pemindaian</string>
 	<string name="ignore_consecutive_duplicates">Do not save consecutive duplicates</string>
+	<string name="show_hex_dump">Show hex dump</string>
 	<string name="open_with_url">Buka data tak dikenal dengan URL</string>
 	<string name="really_remove_scan">Yakin menghapus pemindaian?</string>
 	<string name="really_remove_all_scans">Yakin menghapus semua pemindaian?</string>

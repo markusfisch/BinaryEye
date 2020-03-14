@@ -126,7 +126,7 @@ class DecodeFragment : Fragment() {
 			format.toString(),
 			bytes.size
 		)
-		hexView.text = hexDump(bytes, 33)
+		hexView.text = if (prefs.showHexDump) hexDump(bytes, 33) else ""
 		if (prevAction !== action) {
 			fab.setImageResource(action.iconResId)
 			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
