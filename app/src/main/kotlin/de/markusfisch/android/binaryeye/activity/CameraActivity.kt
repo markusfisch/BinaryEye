@@ -144,6 +144,8 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun closeCamera() {
 		cameraView.close()
+		// closing the camera will also shut off the flash
+		flash = false
 	}
 
 	override fun onRestoreInstanceState(savedState: Bundle) {
