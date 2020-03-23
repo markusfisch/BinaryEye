@@ -6,6 +6,14 @@
 	<string name="decode_barcode">Декодировать штрих-код</string>
 	<string name="content">Текст</string>
 	<string name="binary_data">(двоичные данные)</string>
+	<string name="error_correction_level">Error correction level</string>
+	<string name="issue_number">Issue number</string>
+	<string name="orientation">Orientation</string>
+	<string name="other_meta_data">Metadata</string>
+	<string name="pdf417_extra_metadata">PDF417 metadata</string>
+	<string name="possible_country">Possible country of manufacture</string>
+	<string name="suggested_price">Suggested price</string>
+	<string name="upc_ean_extension">UPC EAN extension</string>
 	<string name="toggle_flash">Включить вспышку</string>
 	<string name="share">Отправить</string>
 	<string name="copy_to_clipboard">Скопировать в буфер обмена</string>

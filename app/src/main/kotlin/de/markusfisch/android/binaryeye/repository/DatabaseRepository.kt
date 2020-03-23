@@ -4,6 +4,7 @@ import android.content.Context
 import android.database.Cursor
 import de.markusfisch.android.binaryeye.data.Database
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -17,36 +18,46 @@ class DatabaseRepository {
 	}
 
 	fun getScan(id: Long): Scan? = getScan(id) { _, cursor ->
-		val timeIndex = cursor.getColumnIndex(Database.SCANS_DATETIME)
-		val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
-		val rawIndex = cursor.getColumnIndex(Database.SCANS_RAW)
-		val formatIndex = cursor.getColumnIndex(Database.SCANS_FORMAT)
 		Scan(
-			id = id,
-			timestamp = cursor.getString(timeIndex),
-			content = cursor.getString(contentIndex),
-			raw = cursor.getBlob(rawIndex),
-			format = cursor.getString(formatIndex)
+			cursor.getString(Database.SCANS_CONTENT),
+			cursor.getBlob(Database.SCANS_RAW),
+			cursor.getString(Database.SCANS_FORMAT),
+			cursor.getString(
+				Database.SCANS_ERROR_CORRECTION_LEVEL
+			),
+			cursor.getString(Database.SCANS_ISSUE_NUMBER),
+			cursor.getString(Database.SCANS_ORIENTATION),
+			cursor.getString(Database.SCANS_OTHER_META_DATA),
+			cursor.getString(
+				Database.SCANS_PDF417_EXTRA_METADATA
+			),
+			cursor.getString(
+				Database.SCANS_POSSIBLE_COUNTRY
+			),
+			cursor.getString(Database.SCANS_SUGGESTED_PRICE),
+			cursor.getString(
+				Database.SCANS_UPC_EAN_EXTENSION
+			),
+			cursor.getString(Database.SCANS_DATETIME),
+			id
 		)
 	}
 
-	fun <T> getScan(id: Long, map: (id: Long, Cursor) -> T): T? =
+	private fun <T> getScan(id: Long, map: (id: Long, Cursor) -> T): T? =
 		db.getScan(id)?.use { map(id, it.apply { moveToFirst() }) }
 
+	@ExperimentalCoroutinesApi
 	fun getScans(): Flow<SimpleScan> = getScans { cursor ->
-		val idIndex = cursor.getColumnIndex(Database.SCANS_ID)
-		val timeIndex = cursor.getColumnIndex(Database.SCANS_DATETIME)
-		val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
-		val formatIndex = cursor.getColumnIndex(Database.SCANS_FORMAT)
 		SimpleScan(
-			id = cursor.getLong(idIndex),
-			timestamp = cursor.getString(timeIndex),
-			content = cursor.getString(contentIndex),
-			format = cursor.getString(formatIndex)
+			cursor.getLong(Database.SCANS_ID),
+			cursor.getString(Database.SCANS_DATETIME),
+			cursor.getString(Database.SCANS_CONTENT),
+			cursor.getString(Database.SCANS_FORMAT)
 		)
 	}
 
-	fun <T> getScans(map: suspend (Cursor) -> T): Flow<T> = flow {
+	@ExperimentalCoroutinesApi
+	private fun <T> getScans(map: suspend (Cursor) -> T): Flow<T> = flow {
 		db.getScans()?.use { results ->
 			results.asIterable.forEach {
 				emit(it)
@@ -58,12 +69,7 @@ class DatabaseRepository {
 
 	fun hasBinaryData() = db.hasBinaryData()?.use { it.count > 0 } ?: false
 
-	fun insertScan(
-		timestamp: Long,
-		content: String,
-		raw: ByteArray?,
-		format: String
-	): Long = db.insertScan(timestamp, content, raw, format)
+	fun insertScan(scan: Scan): Long = db.insertScan(scan)
 
 	fun removeScan(id: Long) = db.removeScan(id)
 
@@ -75,45 +81,23 @@ class DatabaseRepository {
 		val content: String,
 		val format: String
 	)
-
-	data class Scan(
-		val id: Long,
-		val timestamp: String,
-		val content: String,
-		val raw: ByteArray?,
-		val format: String
-	) {
-		// Needed to be overwritten manually, as ByteArray is an array and this isn't handled well by Kotlin
-		override fun equals(other: Any?): Boolean {
-			if (this === other) return true
-			if (javaClass != other?.javaClass) return false
-
-			other as Scan
-
-			if (id != other.id) return false
-			if (timestamp != other.timestamp) return false
-			if (content != other.content) return false
-			if (raw != null) {
-				if (other.raw == null) return false
-				if (!raw.contentEquals(other.raw)) return false
-			} else if (other.raw != null) return false
-			if (format != other.format) return false
-
-			return true
-		}
-
-		// Needs to be overwritten manually, as ByteArray is an array and this
-		// isn't handled well by Kotlin
-		override fun hashCode(): Int {
-			var result = id.hashCode()
-			result = 31 * result + timestamp.hashCode()
-			result = 31 * result + content.hashCode()
-			result = 31 * result + (raw?.contentHashCode() ?: 0)
-			result = 31 * result + format.hashCode()
-			return result
-		}
-	}
 }
+
+private fun Cursor.getString(name: String) = this.getString(
+	this.getColumnIndex(name)
+)
+
+private fun Cursor.getBlob(name: String) = this.getBlob(
+	this.getColumnIndex(name)
+)
+
+private fun Cursor.getLong(name: String) = this.getLong(
+	this.getColumnIndex(name)
+)
+
+private fun Cursor.getInt(name: String) = this.getInt(
+	this.getColumnIndex(name)
+)
 
 private val Cursor.asIterable: Iterable<Cursor>
 	get() = object : Iterable<Cursor> {

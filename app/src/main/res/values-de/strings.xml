@@ -10,6 +10,14 @@
 		<item quantity="one">%2$d Zeichen, %1$s</item>
 		<item quantity="other">%2$d Zeichen, %1$s</item>
 	</plurals>
+	<string name="error_correction_level">Fehlerkorrektur-Level</string>
+	<string name="issue_number">Ausgabe Nummer</string>
+	<string name="orientation">Orientierung</string>
+	<string name="other_meta_data">Metadaten</string>
+	<string name="pdf417_extra_metadata">PDF417 Metadaten</string>
+	<string name="possible_country">Mögliches Ursprungsland</string>
+	<string name="suggested_price">Preisvorschlag</string>
+	<string name="upc_ean_extension">UPC EAN Erweiterung</string>
 	<string name="toggle_flash">Licht an/ausschalten</string>
 	<string name="share">Teilen</string>
 	<string name="copy_to_clipboard">In die Zwischenablage kopieren</string>

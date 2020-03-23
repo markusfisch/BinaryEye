@@ -16,6 +16,7 @@ import de.markusfisch.android.binaryeye.fragment.DecodeFragment
 import de.markusfisch.android.binaryeye.fragment.EncodeFragment
 import de.markusfisch.android.binaryeye.fragment.HistoryFragment
 import de.markusfisch.android.binaryeye.fragment.PreferencesFragment
+import de.markusfisch.android.binaryeye.repository.Scan
 
 class MainActivity : AppCompatActivity() {
 	override fun onSupportNavigateUp(): Boolean {
@@ -53,15 +54,11 @@ class MainActivity : AppCompatActivity() {
 						EncodeFragment.newInstance(
 							intent.getStringExtra(ENCODE) ?: ""
 						)
-					intent?.hasExtra(DECODED_TEXT) == true ->
+					intent?.hasExtra(DECODED) == true ->
 						DecodeFragment.newInstance(
-							intent.getStringExtra(DECODED_TEXT) ?: "",
-							intent.getSerializableExtra(
-								DECODED_FORMAT
-							) as BarcodeFormat,
-							intent.getByteArrayExtra(DECODED_RAW)
+							intent.getParcelableExtra(DECODED)
 						)
-					else -> DecodeFragment()
+					else -> PreferencesFragment()
 				}
 			)
 		}
@@ -71,9 +68,7 @@ class MainActivity : AppCompatActivity() {
 		private const val PREFERENCES = "preferences"
 		private const val HISTORY = "history"
 		private const val ENCODE = "encode"
-		private const val DECODED_TEXT = "decoded_text"
-		private const val DECODED_FORMAT = "decoded_format"
-		private const val DECODED_RAW = "decoded_raw"
+		private const val DECODED = "decoded"
 
 		fun getPreferencesIntent(context: Context): Intent {
 			val intent = Intent(context, MainActivity::class.java)
@@ -108,18 +103,9 @@ class MainActivity : AppCompatActivity() {
 			return intent
 		}
 
-		fun getDecodeIntent(
-			context: Context,
-			text: String,
-			format: BarcodeFormat,
-			raw: ByteArray? = null
-		): Intent {
+		fun getDecodeIntent(context: Context, scan: Scan): Intent {
 			val intent = Intent(context, MainActivity::class.java)
-			intent.putExtra(DECODED_TEXT, text)
-			intent.putExtra(DECODED_FORMAT, format)
-			if (raw != null) {
-				intent.putExtra(DECODED_RAW, raw)
-			}
+			intent.putExtra(DECODED, scan)
 			return intent
 		}
 	}

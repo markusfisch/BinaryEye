@@ -9,13 +9,11 @@ import android.text.ClipboardManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
-import com.google.zxing.BarcodeFormat
+import android.widget.*
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
 import de.markusfisch.android.binaryeye.app.*
+import de.markusfisch.android.binaryeye.repository.Scan
 import de.markusfisch.android.binaryeye.view.setPadding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,8 +24,9 @@ import kotlinx.coroutines.launch
 class DecodeFragment : Fragment() {
 	private lateinit var contentView: EditText
 	private lateinit var formatView: TextView
+	private lateinit var metaView: TableLayout
 	private lateinit var hexView: TextView
-	private lateinit var format: BarcodeFormat
+	private lateinit var format: String
 	private lateinit var fab: FloatingActionButton
 
 	private var action = ActionRegistry.DEFAULT_ACTION
@@ -56,10 +55,17 @@ class DecodeFragment : Fragment() {
 			false
 		)
 
-		val inputContent = arguments?.getString(CONTENT) ?: ""
-		isBinary = hasNonPrintableCharacters(inputContent) or inputContent.isEmpty()
-		val raw = arguments?.getByteArray(RAW) ?: inputContent.toByteArray()
-		format = arguments?.getSerializable(FORMAT) as BarcodeFormat? ?: BarcodeFormat.QR_CODE
+		val scan = arguments?.getParcelable(SCAN) as Scan?
+		if (scan == null) {
+			throw IllegalArgumentException("DecodeFragment needs a Scan")
+		}
+
+		val inputContent = scan.content
+		isBinary = hasNonPrintableCharacters(
+			inputContent
+		) or inputContent.isEmpty()
+		val raw = scan.raw ?: inputContent.toByteArray()
+		format = scan.format
 
 		contentView = view.findViewById(R.id.content)
 		fab = view.findViewById(R.id.open)
@@ -103,9 +109,11 @@ class DecodeFragment : Fragment() {
 		}
 
 		formatView = view.findViewById(R.id.format)
+		metaView = view.findViewById(R.id.meta)
 		hexView = view.findViewById(R.id.hex)
 
 		updateViewsAndAction(raw)
+		fillMetaView(metaView, scan)
 
 		setWindowInsetListener { insets ->
 			(view.findViewById(R.id.inset_layout) as View).setPadding(insets)
@@ -123,10 +131,10 @@ class DecodeFragment : Fragment() {
 		formatView.text = resources.getQuantityString(
 			R.plurals.barcode_info,
 			bytes.size,
-			format.toString(),
+			format,
 			bytes.size
 		)
-		hexView.text = if (prefs.showHexDump) hexDump(bytes, 33) else ""
+		hexView.text = if (prefs.showHexDump) hexDump(bytes) else ""
 		if (prevAction !== action) {
 			fab.setImageResource(action.iconResId)
 			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
@@ -141,6 +149,38 @@ class DecodeFragment : Fragment() {
 			} else {
 				fab.tooltipText = getString(action.titleResId)
 			}
+		}
+	}
+
+	private fun fillMetaView(tableLayout: TableLayout, scan: Scan) {
+		val ctx = tableLayout.context
+		val spaceBetween = (ctx.resources.displayMetrics.density * 16f).toInt()
+		var hasMeta = false
+		hashMapOf(
+			R.string.error_correction_level to scan.errorCorrectionLevel,
+			R.string.issue_number to scan.issueNumber,
+			R.string.orientation to scan.orientation,
+			R.string.other_meta_data to scan.otherMetaData,
+			R.string.pdf417_extra_metadata to scan.pdf417ExtraMetaData,
+			R.string.possible_country to scan.possibleCountry,
+			R.string.suggested_price to scan.suggestedPrice,
+			R.string.upc_ean_extension to scan.upcEanExtension
+		).forEach { item ->
+			item.value?.let {
+				val tr = TableRow(ctx)
+				val keyView = TextView(ctx)
+				keyView.setText(item.key)
+				val valueView = TextView(ctx)
+				valueView.setPadding(spaceBetween, 0, 0, 0)
+				valueView.text = it.toString()
+				tr.addView(keyView)
+				tr.addView(valueView)
+				tableLayout.addView(tr)
+				hasMeta = true
+			}
+		}
+		if (hasMeta) {
+			tableLayout.setPadding(0, 0, 0, spaceBetween)
 		}
 	}
 
@@ -213,21 +253,11 @@ class DecodeFragment : Fragment() {
 	}
 
 	companion object {
-		private const val CONTENT = "content"
-		private const val FORMAT = "format"
-		private const val RAW = "raw"
+		private const val SCAN = "scan"
 
-		fun newInstance(
-			content: String,
-			format: BarcodeFormat,
-			raw: ByteArray? = null
-		): Fragment {
+		fun newInstance(scan: Scan): Fragment {
 			val args = Bundle()
-			args.putString(CONTENT, content)
-			args.putSerializable(FORMAT, format)
-			if (raw != null) {
-				args.putByteArray(RAW, raw)
-			}
+			args.putParcelable(SCAN, scan)
 			val fragment = DecodeFragment()
 			fragment.arguments = args
 			return fragment
@@ -235,7 +265,7 @@ class DecodeFragment : Fragment() {
 	}
 }
 
-private fun hexDump(bytes: ByteArray, charsPerLine: Int): String {
+private fun hexDump(bytes: ByteArray, charsPerLine: Int = 33): String {
 	if (charsPerLine < 4 || bytes.isEmpty()) {
 		return ""
 	}

@@ -16,7 +16,7 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.ScansAdapter
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.data.csv.csvBuilder
-import de.markusfisch.android.binaryeye.repository.DatabaseRepository
+import de.markusfisch.android.binaryeye.repository.Scan
 import de.markusfisch.android.binaryeye.view.setPadding
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
@@ -157,14 +157,10 @@ class HistoryFragment : Fragment() {
 		try {
 			addFragment(
 				fragmentManager,
-				DecodeFragment.newInstance(
-					scan.content,
-					BarcodeFormat.valueOf(scan.format),
-					scan.raw
-				)
+				DecodeFragment.newInstance(scan)
 			)
 		} catch (e: IllegalArgumentException) {
-			// shouldn't ever happen
+			// ignore, can never happen
 		}
 	}
 
@@ -236,11 +232,11 @@ class HistoryFragment : Fragment() {
 		}
 	}
 
-	private fun Flow<DatabaseRepository.Scan>.toCSV(
+	private fun Flow<Scan>.toCSV(
 		delimiter: String,
 		allowBinary: Boolean
 	): Flow<ByteArray> {
-		return csvBuilder<DatabaseRepository.Scan> {
+		return csvBuilder<Scan> {
 			column {
 				name = "DATE"
 				gettingByString { it.timestamp }
@@ -292,7 +288,7 @@ class HistoryFragment : Fragment() {
 	@WorkerThread
 	private suspend inline fun getScans(
 		crossinline binaryData: suspend () -> Boolean?
-	): Pair<Boolean, Flow<DatabaseRepository.Scan>>? {
+	): Pair<Boolean, Flow<Scan>>? {
 		val getBinaries: Boolean = db.hasBinaryData() && binaryData() ?: return null
 		return getBinaries to db.getScans().mapNotNull {
 			when {

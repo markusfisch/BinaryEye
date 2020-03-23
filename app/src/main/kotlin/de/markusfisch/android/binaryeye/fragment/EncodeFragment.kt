@@ -70,9 +70,11 @@ class EncodeFragment : Fragment() {
 			contentView.setText(it.getString(CONTENT))
 		}
 
-		val barcodeFormat = args?.getSerializable(FORMAT) as BarcodeFormat?
+		val barcodeFormat = args?.getString(FORMAT)
 		if (barcodeFormat != null) {
-			formatView.setSelection(writers.indexOf(barcodeFormat))
+			formatView.setSelection(
+				writers.indexOf(resolveFormat(barcodeFormat))
+			)
 		} else if (state == null) {
 			formatView.post {
 				formatView.setSelection(prefs.indexOfLastSelectedFormat)
@@ -169,16 +171,20 @@ class EncodeFragment : Fragment() {
 
 		fun newInstance(
 			content: String,
-			format: BarcodeFormat? = null
+			format: String? = null
 		): Fragment {
 			val args = Bundle()
 			args.putString(CONTENT, content)
-			format?.let {
-				args.putSerializable(FORMAT, format)
-			}
+			format?.let { args.putString(FORMAT, it) }
 			val fragment = EncodeFragment()
 			fragment.arguments = args
 			return fragment
 		}
 	}
+}
+
+private fun resolveFormat(name: String): BarcodeFormat = try {
+	BarcodeFormat.valueOf(name)
+} catch (_: IllegalArgumentException) {
+	BarcodeFormat.QR_CODE
 }

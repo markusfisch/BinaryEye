@@ -10,6 +10,14 @@
 		<item quantity="one">%2$d 個字符, %1$s</item>
 		<item quantity="other">%2$d 個字符, %1$s</item>
 	</plurals>
+	<string name="error_correction_level">Error correction level</string>
+	<string name="issue_number">Issue number</string>
+	<string name="orientation">Orientation</string>
+	<string name="other_meta_data">Metadata</string>
+	<string name="pdf417_extra_metadata">PDF417 metadata</string>
+	<string name="possible_country">Possible country of manufacture</string>
+	<string name="suggested_price">Suggested price</string>
+	<string name="upc_ean_extension">UPC EAN extension</string>
 	<string name="toggle_flash">閃光燈</string>
 	<string name="share">分享</string>
 	<string name="copy_to_clipboard">複製</string>
