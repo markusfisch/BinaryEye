@@ -1,5 +1,13 @@
 # Change Log
 
+# 1.24.0
+* Show barcode metadata
+* Add a setting to show/hide metadata
+* Include metadata in CSV export
+* Update italian translation
+* Fix resetting flash button
+* Fix CSV export for Android Q
+
 # 1.23.0
 * Add a setting to not save consecutive double scans
 * Add a setting to show/hide hex dump
