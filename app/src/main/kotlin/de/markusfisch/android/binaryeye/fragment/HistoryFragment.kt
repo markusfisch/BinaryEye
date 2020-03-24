@@ -254,6 +254,38 @@ class HistoryFragment : Fragment() {
 				name = "BINARY_CONTENT"
 				gettingBy { it.raw ?: ByteArray(0) }
 			}
+			column {
+				name = "ERROR_CORRECTION_LEVEL"
+				gettingByString { it.errorCorrectionLevel }
+			}
+			column {
+				name = "ISSUE_NUMBER"
+				gettingByString { it.issueNumber }
+			}
+			column {
+				name = "ORIENTATION"
+				gettingByString { it.orientation }
+			}
+			column {
+				name = "OTHER"
+				gettingByString { it.otherMetaData }
+			}
+			column {
+				name = "PDF417_EXTRA_METADATA"
+				gettingByString { it.pdf417ExtraMetaData }
+			}
+			column {
+				name = "POSSIBLE_COUNTRY"
+				gettingByString { it.possibleCountry }
+			}
+			column {
+				name = "SUGGESTED_PRICE"
+				gettingByString { it.suggestedPrice }
+			}
+			column {
+				name = "UPC_EAN_EXTENSION"
+				gettingByString { it.upcEanExtension }
+			}
 		}.buildWith(this, delimiter)
 	}
 

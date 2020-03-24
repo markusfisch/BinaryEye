@@ -26,8 +26,8 @@ class CSVBuilder<T> {
 			gettingBy = getter
 		}
 
-		fun gettingByString(getter: (T) -> String): Unit = gettingBy {
-			getter(it).toByteArray()
+		fun gettingByString(getter: (T) -> String?): Unit = gettingBy {
+			getter(it)?.toByteArray() ?: ByteArray(0)
 		}
 	}
 
