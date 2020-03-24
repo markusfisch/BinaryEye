@@ -40,6 +40,7 @@
 	<string name="open_immediately">Inspektion überspringen und Inhalte sofort öffnen</string>
 	<string name="use_history">Codes speichern</string>
 	<string name="ignore_consecutive_duplicates">Keine aufeinanderfolgenden Duplikate speichern</string>
+	<string name="show_meta_data">Meta Daten anzeigen</string>
 	<string name="show_hex_dump">Hex Dump anzeigen</string>
 	<string name="open_with_url">URL zum Öffnen unbekannter Daten</string>
 	<string name="really_remove_scan">Code wirklich entfernen?</string>

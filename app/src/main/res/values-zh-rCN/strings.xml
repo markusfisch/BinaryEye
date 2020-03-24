@@ -40,6 +40,7 @@
 	<string name="open_immediately">跳过内容展示并立即打开</string>
 	<string name="use_history">保存扫描历史</string>
 	<string name="ignore_consecutive_duplicates">Do not save consecutive duplicates</string>
+	<string name="show_meta_data">Show metadata</string>
 	<string name="show_hex_dump">Show hex dump</string>
 	<string name="open_with_url">使用URL打开未知数据</string>
 	<string name="really_remove_scan">确定删除记录?</string>

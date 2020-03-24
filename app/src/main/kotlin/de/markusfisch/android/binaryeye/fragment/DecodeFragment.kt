@@ -113,7 +113,10 @@ class DecodeFragment : Fragment() {
 		hexView = view.findViewById(R.id.hex)
 
 		updateViewsAndAction(raw)
-		fillMetaView(metaView, scan)
+
+		if (prefs.showMetaData) {
+			fillMetaView(metaView, scan)
+		}
 
 		setWindowInsetListener { insets ->
 			(view.findViewById(R.id.inset_layout) as View).setPadding(insets)

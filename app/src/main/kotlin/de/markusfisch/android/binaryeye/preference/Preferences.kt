@@ -22,6 +22,11 @@ class Preferences {
 			setBoolean(IGNORE_CONSECUTIVE_DUPLICATES, value)
 			field = value
 		}
+	var showMetaData = true
+		set(value) {
+			setBoolean(SHOW_META_DATA, value)
+			field = value
+		}
 	var showHexDump = true
 		set(value) {
 			setBoolean(SHOW_HEX_DUMP, value)
@@ -53,6 +58,7 @@ class Preferences {
 			IGNORE_CONSECUTIVE_DUPLICATES,
 			ignoreConsecutiveDuplicates
 		)
+		showMetaData = preferences.getBoolean(SHOW_META_DATA, showMetaData)
 		showHexDump = preferences.getBoolean(SHOW_HEX_DUMP, showHexDump)
 		indexOfLastSelectedFormat = preferences.getInt(
 			INDEX_OF_LAST_SELECTED_FORMAT,
@@ -86,6 +92,7 @@ class Preferences {
 		const val USE_HISTORY = "use_history"
 		const val IGNORE_CONSECUTIVE_DUPLICATES = "ignore_consecutive_duplicates"
 		const val SHOW_HEX_DUMP = "show_hex_dump"
+		const val SHOW_META_DATA = "show_meta_data"
 		const val OPEN_WITH_URL = "open_with_url"
 		const val INDEX_OF_LAST_SELECTED_FORMAT = "index_of_last_selected_format"
 	}
