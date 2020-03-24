@@ -291,10 +291,10 @@ class CameraActivity : AppCompatActivity() {
 								)
 							}
 							cameraView.post {
-								mapping?.let {
-									detectorView.mark(
-										it.map(result.resultPoints)
-									)
+								val rp = result.resultPoints
+								val m = mapping
+								if (m != null && rp != null) {
+									detectorView.mark(m.map(rp))
 								}
 								vibrator.vibrate(100)
 								showResult(
