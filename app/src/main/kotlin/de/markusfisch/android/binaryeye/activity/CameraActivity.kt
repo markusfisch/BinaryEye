@@ -211,13 +211,19 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun openReadme() {
-		startActivity(
-			Intent(
-				Intent.ACTION_VIEW, Uri.parse(
-					"https://github.com/markusfisch/BinaryEye/blob/master/README.md"
-				)
-			)
+		val intent = Intent(
+			Intent.ACTION_VIEW,
+			Uri.parse(getString(R.string.project_url))
 		)
+		if (intent.resolveActivity(packageManager) != null) {
+			startActivity(intent)
+		} else {
+			Toast.makeText(
+				this,
+				R.string.project_url,
+				Toast.LENGTH_LONG
+			).show()
+		}
 	}
 
 	private fun handleSendText(intent: Intent) {

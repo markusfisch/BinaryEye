@@ -1,4 +1,5 @@
 <resources>
 	<string name="app_name">Binary Eye</string>
 	<string name="open_with_url_hint">http://example.com?data=</string>
+	<string name="project_url">https://github.com/markusfisch/BinaryEye</string>
 </resources>
