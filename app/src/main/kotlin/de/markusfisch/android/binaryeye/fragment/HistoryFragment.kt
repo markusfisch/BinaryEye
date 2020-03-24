@@ -218,7 +218,7 @@ class HistoryFragment : Fragment() {
 				}
 			} ?: return@useVisibility
 			val name = withContext(Dispatchers.Main) {
-				activity.askForFileName(suffix = "csv")
+				activity.askForFileName(suffix = ".csv")
 			} ?: return@useVisibility
 			val csv = scans.toCSV(delimiter, getBinaries)
 			val toastMessage = csv.writeToFile(name)
