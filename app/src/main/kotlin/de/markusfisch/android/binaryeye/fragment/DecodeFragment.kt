@@ -159,7 +159,7 @@ class DecodeFragment : Fragment() {
 		val ctx = tableLayout.context
 		val spaceBetween = (ctx.resources.displayMetrics.density * 16f).toInt()
 		var hasMeta = false
-		hashMapOf(
+		sortedMapOf(
 			R.string.error_correction_level to scan.errorCorrectionLevel,
 			R.string.issue_number to scan.issueNumber,
 			R.string.orientation to scan.orientation,
