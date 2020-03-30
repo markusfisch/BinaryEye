@@ -10,6 +10,10 @@ import de.markusfisch.android.binaryeye.graphics.Candidates
 
 class DetectorView : View {
 	private val candidates = Candidates(context)
+	private val invalidateRunnable: Runnable = Runnable {
+		marks = null
+		invalidate()
+	}
 	private var marks: List<Point>? = null
 
 	constructor(context: Context, attrs: AttributeSet) :
@@ -21,10 +25,8 @@ class DetectorView : View {
 	fun mark(points: List<Point>) {
 		marks = points
 		invalidate()
-		postDelayed({
-			marks = null
-			invalidate()
-		}, 500)
+		removeCallbacks(invalidateRunnable)
+		postDelayed(invalidateRunnable, 500)
 	}
 
 	override fun onDraw(canvas: Canvas) {

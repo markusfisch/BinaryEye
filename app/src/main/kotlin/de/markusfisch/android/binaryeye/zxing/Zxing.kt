@@ -5,7 +5,7 @@ import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
 import java.util.*
 
-class Zxing {
+class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 	private val multiFormatReader = MultiFormatReader()
 
 	init {
@@ -38,6 +38,9 @@ class Zxing {
 
 		val hints = EnumMap<DecodeHintType, Any>(DecodeHintType::class.java)
 		hints[DecodeHintType.POSSIBLE_FORMATS] = decodeFormats
+		possibleResultPoint?.let {
+			hints[DecodeHintType.NEED_RESULT_POINT_CALLBACK] = it
+		}
 
 		multiFormatReader.setHints(hints)
 	}

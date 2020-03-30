@@ -55,12 +55,10 @@ data class Mapping(
 	val offsetX: Int,
 	val offsetY: Int
 ) {
-	fun map(points: Array<ResultPoint>): List<Point> {
-		return points.map {
-			Point(
-				(it.x * ratioX).roundToInt() + offsetX,
-				(it.y * ratioY).roundToInt() + offsetY
-			)
-		}
-	}
+	fun map(point: ResultPoint) = Point(
+		(point.x * ratioX).roundToInt() + offsetX,
+		(point.y * ratioY).roundToInt() + offsetY
+	)
+
+	fun map(points: Array<ResultPoint>): List<Point> = points.map { map(it) }
 }

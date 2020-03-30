@@ -17,6 +17,7 @@ import android.widget.SeekBar
 import android.widget.Toast
 import com.google.zxing.Result
 import com.google.zxing.ResultMetadataType
+import com.google.zxing.ResultPointCallback
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.hasCameraPermission
@@ -33,7 +34,11 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class CameraActivity : AppCompatActivity() {
-	private val zxing = Zxing()
+	private val zxing = Zxing(ResultPointCallback { point ->
+		detectorView.post {
+			mapping?.map(point)?.let { detectorView.mark(listOf(it)) }
+		}
+	})
 
 	private lateinit var vibrator: Vibrator
 	private lateinit var cameraView: CameraView
@@ -42,6 +47,7 @@ class CameraActivity : AppCompatActivity() {
 	private lateinit var flashFab: View
 
 	private var preprocessor: Preprocessor? = null
+	private var mapping: Mapping? = null
 	private var invert = false
 	private var flash = false
 	private var returnResult = false
@@ -278,7 +284,6 @@ class CameraActivity : AppCompatActivity() {
 				val frameWidth = cameraView.frameWidth
 				val frameHeight = cameraView.frameHeight
 				val frameOrientation = cameraView.frameOrientation
-				var mapping: Mapping? = null
 				var decoding = true
 				camera.setPreviewCallback { frameData, _ ->
 					if (decoding) {
@@ -289,13 +294,6 @@ class CameraActivity : AppCompatActivity() {
 							frameOrientation
 						)
 						result?.let {
-							preprocessor?.let {
-								mapping = mapping ?: frameToView(
-									it.outWidth,
-									it.outHeight,
-									cameraView.previewRect
-								)
-							}
 							cameraView.post {
 								val rp = result.resultPoints
 								val m = mapping
@@ -403,8 +401,7 @@ class CameraActivity : AppCompatActivity() {
 	): Result? {
 		frameData ?: return null
 		invert = invert xor true
-		val pp = preprocessor ?: Preprocessor(
-			this,
+		val pp = preprocessor ?: createPreprocessorAndMapping(
 			frameWidth,
 			frameHeight,
 			frameOrientation
@@ -417,6 +414,25 @@ class CameraActivity : AppCompatActivity() {
 			pp.outHeight,
 			invert
 		)
+	}
+
+	private fun createPreprocessorAndMapping(
+		frameWidth: Int,
+		frameHeight: Int,
+		frameOrientation: Int
+	): Preprocessor {
+		val pp = Preprocessor(
+			this,
+			frameWidth,
+			frameHeight,
+			frameOrientation
+		)
+		mapping = frameToView(
+			pp.outWidth,
+			pp.outHeight,
+			cameraView.previewRect
+		)
+		return pp
 	}
 
 	companion object {
