@@ -16,10 +16,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.google.zxing.Result
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.app.colorSystemAndToolBars
-import de.markusfisch.android.binaryeye.app.initSystemBars
-import de.markusfisch.android.binaryeye.app.setWindowInsetListener
-import de.markusfisch.android.binaryeye.app.setupInsets
+import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.graphics.crop
 import de.markusfisch.android.binaryeye.graphics.loadImageUri
 import de.markusfisch.android.binaryeye.graphics.mapResult
@@ -96,7 +93,7 @@ class PickActivity : AppCompatActivity() {
 					cropImageView.getBoundsRect(),
 					it
 				)
-				vibrator.vibrate(100)
+				vibrator.vibrate()
 			}
 			points
 		}

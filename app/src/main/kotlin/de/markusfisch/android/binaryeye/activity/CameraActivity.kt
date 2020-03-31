@@ -19,10 +19,7 @@ import com.google.zxing.Result
 import com.google.zxing.ResultMetadataType
 import com.google.zxing.ResultPointCallback
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.app.db
-import de.markusfisch.android.binaryeye.app.hasCameraPermission
-import de.markusfisch.android.binaryeye.app.initSystemBars
-import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.graphics.Mapping
 import de.markusfisch.android.binaryeye.graphics.frameToView
 import de.markusfisch.android.binaryeye.repository.Scan
@@ -300,7 +297,7 @@ class CameraActivity : AppCompatActivity() {
 								if (m != null && rp != null) {
 									detectorView.mark(m.map(rp))
 								}
-								vibrator.vibrate(100)
+								vibrator.vibrate()
 								showResult(
 									this@CameraActivity,
 									result,
