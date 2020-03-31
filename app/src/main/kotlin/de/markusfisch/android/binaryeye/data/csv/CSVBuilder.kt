@@ -38,9 +38,7 @@ class CSVBuilder<T> {
 	@FlowPreview
 	fun buildWith(inputs: Flow<T>, delimiter: String): Flow<ByteArray> = flow {
 		val columnsFlow = columns.asFlow()
-
 		val header = columnsFlow.buildHeader(delimiter)
-
 		val contentLines = inputs.buildContent(columnsFlow, delimiter)
 
 		emitAll(header)

@@ -56,9 +56,7 @@ class DecodeFragment : Fragment() {
 		)
 
 		val scan = arguments?.getParcelable(SCAN) as Scan?
-		if (scan == null) {
-			throw IllegalArgumentException("DecodeFragment needs a Scan")
-		}
+			?: throw IllegalArgumentException("DecodeFragment needs a Scan")
 
 		val inputContent = scan.content
 		isBinary = hasNonPrintableCharacters(
@@ -175,7 +173,7 @@ class DecodeFragment : Fragment() {
 				keyView.setText(item.key)
 				val valueView = TextView(ctx)
 				valueView.setPadding(spaceBetween, 0, 0, 0)
-				valueView.text = it.toString()
+				valueView.text = it
 				tr.addView(keyView)
 				tr.addView(valueView)
 				tableLayout.addView(tr)

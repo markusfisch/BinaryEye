@@ -53,7 +53,7 @@ class EncodeFragment : Fragment() {
 		)
 
 		formatView = view.findViewById(R.id.format)
-		formatView.adapter = ArrayAdapter<String>(
+		formatView.adapter = ArrayAdapter(
 			ac,
 			android.R.layout.simple_list_item_1,
 			writers.map { it.name }
@@ -63,7 +63,7 @@ class EncodeFragment : Fragment() {
 		sizeBarView = view.findViewById(R.id.size_bar)
 		initSizeBar()
 
-		contentView = view.findViewById<EditText>(R.id.content)
+		contentView = view.findViewById(R.id.content)
 
 		val args = arguments
 		args?.also {
@@ -81,7 +81,7 @@ class EncodeFragment : Fragment() {
 			}
 		}
 
-		view.findViewById<View>(R.id.encode).setOnClickListener { v ->
+		view.findViewById<View>(R.id.encode).setOnClickListener {
 			encode()
 		}
 

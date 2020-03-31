@@ -95,10 +95,6 @@ private fun Cursor.getLong(name: String) = this.getLong(
 	this.getColumnIndex(name)
 )
 
-private fun Cursor.getInt(name: String) = this.getInt(
-	this.getColumnIndex(name)
-)
-
 private val Cursor.asIterable: Iterable<Cursor>
 	get() = object : Iterable<Cursor> {
 		override fun iterator(): Iterator<Cursor> = object : Iterator<Cursor> {

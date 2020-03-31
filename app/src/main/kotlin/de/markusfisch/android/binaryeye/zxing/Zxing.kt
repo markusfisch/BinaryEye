@@ -64,21 +64,15 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 		return decodeLuminanceSource(source, invert)
 	}
 
-	fun decodePositiveNegative(bitmap: Bitmap): Result? {
-		val result = decode(bitmap, false)
-		return if (result != null) {
-			result
-		} else {
-			decode(bitmap, true)
-		}
-	}
+	fun decodePositiveNegative(bitmap: Bitmap): Result? =
+		decode(bitmap, false) ?: decode(bitmap, true)
 
-	fun decode(bitmap: Bitmap, invert: Boolean = false): Result? {
+	private fun decode(bitmap: Bitmap, invert: Boolean = false): Result? {
 		val pixels = IntArray(bitmap.width * bitmap.height)
 		return decode(pixels, bitmap, invert)
 	}
 
-	fun decode(
+	private fun decode(
 		pixels: IntArray,
 		bitmap: Bitmap,
 		invert: Boolean = false

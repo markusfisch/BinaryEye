@@ -13,7 +13,7 @@ import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
 object ActionRegistry {
 	val DEFAULT_ACTION: IAction = OpenOrSearchAction
 
-	val REGISTRY: Set<IAction> = setOf(
+	private val REGISTRY: Set<IAction> = setOf(
 		MailAction,
 		OtpauthAction,
 		SmsAction,

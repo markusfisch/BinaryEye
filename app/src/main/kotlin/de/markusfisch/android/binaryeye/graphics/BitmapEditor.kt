@@ -16,9 +16,7 @@ fun loadImageUri(cr: ContentResolver, uri: Uri): Bitmap? = try {
 		BitmapFactory.decodeStream(it, null, options)
 		options.inSampleSize = calculateInSampleSize(
 			options.outWidth,
-			options.outHeight,
-			1024,
-			1024
+			options.outHeight
 		)
 		options.inJustDecodeBounds = false
 	}
@@ -32,8 +30,8 @@ fun loadImageUri(cr: ContentResolver, uri: Uri): Bitmap? = try {
 private fun calculateInSampleSize(
 	width: Int,
 	height: Int,
-	reqWidth: Int,
-	reqHeight: Int
+	reqWidth: Int = 1024,
+	reqHeight: Int = 1024
 ): Int {
 	var inSampleSize = 1
 	if (height > reqHeight || width > reqWidth) {

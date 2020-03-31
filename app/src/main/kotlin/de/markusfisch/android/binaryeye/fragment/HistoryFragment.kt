@@ -142,10 +142,10 @@ class HistoryFragment : Fragment() {
 				} else {
 					View.GONE
 				}
-				cursor?.let {
+				cursor?.let { cursor ->
 					// close previous cursor
 					scansAdapter?.also { it.changeCursor(null) }
-					scansAdapter = ScansAdapter(context, it)
+					scansAdapter = ScansAdapter(context, cursor)
 					listView.adapter = scansAdapter
 					listViewState?.also {
 						listView.onRestoreInstanceState(it)
