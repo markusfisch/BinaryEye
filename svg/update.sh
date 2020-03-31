@@ -5,7 +5,7 @@ find_converter() {
 	if [ -z "$INKSCAPE" ]
 	then
 		INKSCAPE=$(which inkscape) ||
-			INKSCAPE='/Applications/Inkscape.app/Contents/Resources/bin/inkscape'
+			INKSCAPE='/Applications/Inkscape.app/Contents/MacOS/Inkscape'
 	fi
 
 	if [ -x "$INKSCAPE" ]
@@ -13,7 +13,7 @@ find_converter() {
 		converter() {
 			"$INKSCAPE" \
 				"$PWD/$1" \
-				-e "$PWD/$2" \
+				-o "$PWD/$2" \
 				-w "$3" \
 				-h "$4"
 		}
