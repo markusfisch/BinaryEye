@@ -23,6 +23,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.mapNotNull
 
+@FlowPreview
+@ExperimentalCoroutinesApi
 class HistoryFragment : Fragment() {
 	private lateinit var listView: ListView
 	private lateinit var fab: View

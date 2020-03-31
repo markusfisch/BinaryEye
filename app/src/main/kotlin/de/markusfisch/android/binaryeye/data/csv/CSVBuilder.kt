@@ -2,12 +2,16 @@ package de.markusfisch.android.binaryeye.data.csv
 
 import de.markusfisch.android.binaryeye.app.addDelimiter
 import de.markusfisch.android.binaryeye.app.asFlowWith
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 
+@ExperimentalCoroutinesApi
 fun <T> csvBuilder(config: CSVBuilder<T>.() -> Unit): CSVBuilder<T> {
 	return CSVBuilder<T>().apply(config)
 }
 
+@ExperimentalCoroutinesApi
 class CSVBuilder<T> {
 	private val columns = mutableListOf<ColumnBuilder>()
 
@@ -31,6 +35,7 @@ class CSVBuilder<T> {
 		}
 	}
 
+	@FlowPreview
 	fun buildWith(inputs: Flow<T>, delimiter: String): Flow<ByteArray> = flow {
 		val columnsFlow = columns.asFlow()
 
@@ -48,6 +53,7 @@ class CSVBuilder<T> {
 			?: throw IllegalStateException("You need to provide a name for csv column")
 	}.addDelimiter(delimiter)
 
+	@FlowPreview
 	private fun Flow<T>.buildContent(
 		columnsFlow: Flow<ColumnBuilder>,
 		delimiter: String
