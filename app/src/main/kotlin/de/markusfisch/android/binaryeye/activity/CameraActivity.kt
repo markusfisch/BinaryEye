@@ -136,6 +136,7 @@ class CameraActivity : AppCompatActivity() {
 	private fun openCamera() {
 		cameraView.openAsync(
 			CameraView.findCameraId(
+				@Suppress("DEPRECATION")
 				if (frontFacing) {
 					Camera.CameraInfo.CAMERA_FACING_FRONT
 				} else {
@@ -244,6 +245,7 @@ class CameraActivity : AppCompatActivity() {
 	private fun initCameraView() {
 		cameraView.setUseOrientationListener(true)
 		cameraView.setTapToFocus()
+		@Suppress("DEPRECATION")
 		cameraView.setOnCameraListener(object : CameraView.OnCameraListener {
 			override fun onConfigureParameters(
 				parameters: Camera.Parameters
@@ -340,6 +342,7 @@ class CameraActivity : AppCompatActivity() {
 		})
 	}
 
+	@Suppress("DEPRECATION")
 	private fun setZoom(zoom: Int) {
 		val camera: Camera? = cameraView.camera
 		camera?.let {
@@ -376,6 +379,7 @@ class CameraActivity : AppCompatActivity() {
 		}
 	}
 
+	@Suppress("DEPRECATION")
 	private fun toggleTorchMode() {
 		val camera = cameraView.camera
 		val parameters = camera?.parameters
