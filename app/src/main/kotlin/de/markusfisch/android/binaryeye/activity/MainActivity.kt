@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.colorSystemAndToolBars
 import de.markusfisch.android.binaryeye.app.initSystemBars
@@ -44,23 +44,7 @@ class MainActivity : AppCompatActivity() {
 		}
 
 		if (state == null) {
-			setFragment(
-				supportFragmentManager, when {
-					intent?.hasExtra(PREFERENCES) == true ->
-						PreferencesFragment()
-					intent?.hasExtra(HISTORY) == true ->
-						HistoryFragment()
-					intent?.hasExtra(ENCODE) == true ->
-						EncodeFragment.newInstance(
-							intent.getStringExtra(ENCODE) ?: ""
-						)
-					intent?.hasExtra(DECODED) == true ->
-						DecodeFragment.newInstance(
-							intent.getParcelableExtra(DECODED)
-						)
-					else -> PreferencesFragment()
-				}
-			)
+			setFragment(supportFragmentManager, getFragmentForIntent(intent))
 		}
 	}
 
@@ -69,6 +53,21 @@ class MainActivity : AppCompatActivity() {
 		private const val HISTORY = "history"
 		private const val ENCODE = "encode"
 		private const val DECODED = "decoded"
+
+		private fun getFragmentForIntent(intent: Intent?): Fragment {
+			intent ?: return PreferencesFragment()
+			return when {
+				intent.hasExtra(PREFERENCES) -> PreferencesFragment()
+				intent.hasExtra(HISTORY) -> HistoryFragment()
+				intent.hasExtra(ENCODE) -> EncodeFragment.newInstance(
+					intent.getStringExtra(ENCODE)!!
+				)
+				intent.hasExtra(DECODED) -> DecodeFragment.newInstance(
+					intent.getParcelableExtra(DECODED)!!
+				)
+				else -> PreferencesFragment()
+			}
+		}
 
 		fun getPreferencesIntent(context: Context): Intent {
 			val intent = Intent(context, MainActivity::class.java)
