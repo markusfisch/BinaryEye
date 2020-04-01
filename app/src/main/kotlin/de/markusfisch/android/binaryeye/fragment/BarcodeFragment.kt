@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.io.OutputStream
 import java.util.*
 
 class BarcodeFragment : Fragment() {
@@ -134,7 +135,7 @@ class BarcodeFragment : Fragment() {
 		}
 		GlobalScope.launch {
 			val message = writeExternalFile(ac, fileName, "image/png") {
-				bitmap.compress(Bitmap.CompressFormat.PNG, 90, it)
+				bitmap.saveAsPng(it)
 			}
 			GlobalScope.launch(Main) {
 				Toast.makeText(
@@ -152,7 +153,14 @@ class BarcodeFragment : Fragment() {
 				context.externalCacheDir,
 				"shared_barcode.png"
 			)
-			val success = saveBitmap(bitmap, file)
+			val success = try {
+				FileOutputStream(file).use {
+					bitmap.saveAsPng(it)
+				}
+				true
+			} catch (e: IOException) {
+				false
+			}
 			GlobalScope.launch(Main) {
 				if (success) {
 					shareFile(context, file, "image/png")
@@ -191,15 +199,8 @@ class BarcodeFragment : Fragment() {
 	}
 }
 
-private fun saveBitmap(bitmap: Bitmap, file: File): Boolean {
-	return try {
-		val fos = FileOutputStream(file)
-		bitmap.compress(Bitmap.CompressFormat.PNG, 90, fos)
-		fos.close()
-		true
-	} catch (e: IOException) {
-		false
-	}
+private fun Bitmap.saveAsPng(outputStream: OutputStream, quality: Int = 90) {
+	this.compress(Bitmap.CompressFormat.PNG, quality, outputStream)
 }
 
 private val fileNameCharacters = "[^A-Za-z0-9]".toRegex()
