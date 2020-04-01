@@ -4,17 +4,13 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.os.Environment
 import android.support.v4.app.Fragment
 import android.view.*
 import android.widget.EditText
 import android.widget.Toast
 import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.app.addSuffixIfNotGiven
-import de.markusfisch.android.binaryeye.app.hasWritePermission
-import de.markusfisch.android.binaryeye.app.setWindowInsetListener
-import de.markusfisch.android.binaryeye.app.shareFile
+import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.view.setPadding
 import de.markusfisch.android.binaryeye.widget.ConfinedScalingImageView
 import de.markusfisch.android.binaryeye.zxing.Zxing
@@ -131,29 +127,19 @@ class BarcodeFragment : Fragment() {
 			.show()
 	}
 
-	private fun saveAsFile(bitmap: Bitmap, path: String) {
+	private fun saveAsFile(bitmap: Bitmap, fileName: String) {
 		val ac = activity ?: return
 		if (!hasWritePermission(ac)) {
 			return
 		}
 		GlobalScope.launch {
-			val success = saveBitmap(
-				bitmap,
-				File(
-					Environment.getExternalStoragePublicDirectory(
-						Environment.DIRECTORY_DOWNLOADS
-					),
-					path
-				)
-			)
+			val message = writeExternalFile(ac, fileName, "image/png") {
+				bitmap.compress(Bitmap.CompressFormat.PNG, 90, it)
+			}
 			GlobalScope.launch(Main) {
 				Toast.makeText(
 					ac,
-					if (success) {
-						R.string.saved_in_downloads
-					} else {
-						R.string.error_saving_binary_data
-					},
+					message,
 					Toast.LENGTH_LONG
 				).show()
 			}

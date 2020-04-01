@@ -11,7 +11,6 @@ import android.view.*
 import android.widget.AbsListView
 import android.widget.ListView
 import android.widget.Toast
-import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.ScansAdapter
 import de.markusfisch.android.binaryeye.app.*
@@ -22,6 +21,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.mapNotNull
+import java.io.IOException
 
 @FlowPreview
 @ExperimentalCoroutinesApi
@@ -222,12 +222,29 @@ class HistoryFragment : Fragment() {
 			val name = withContext(Dispatchers.Main) {
 				activity.askForFileName(suffix = ".csv")
 			} ?: return@useVisibility
-			val csv = scans.toCSV(delimiter, getBinaries)
-			val toastMessage = csv.writeToFile(name)
+			val message = try {
+				val out = getExternalOutputStream(
+					context,
+					name,
+					"text/csv"
+				)
+				out ?: throw IOException()
+				val csv = scans.toCSV(delimiter, getBinaries)
+				csv.collect {
+					withContext(Dispatchers.IO) {
+						out.write(it)
+					}
+				}
+				R.string.saved_in_downloads
+			} catch (e: FileAlreadyExistsException) {
+				R.string.error_file_exists
+			} catch (e: IOException) {
+				R.string.error_saving_binary_data
+			}
 			withContext(Dispatchers.Main) {
 				Toast.makeText(
 					context,
-					toastMessage,
+					message,
 					Toast.LENGTH_SHORT
 				).show()
 			}

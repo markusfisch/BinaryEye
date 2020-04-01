@@ -18,7 +18,6 @@ import de.markusfisch.android.binaryeye.view.setPadding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 
 class DecodeFragment : Fragment() {
@@ -240,10 +239,18 @@ class DecodeFragment : Fragment() {
 
 	private fun askForFileNameAndSave(raw: ByteArray) {
 		val ac = activity ?: return
-		if (!hasWritePermission(ac)) return
+		if (!hasWritePermission(ac)) {
+			return
+		}
 		scope.launch(Dispatchers.Main) {
 			val name = ac.askForFileName() ?: return@launch
-			val message = flowOf(raw).writeToFile(name)
+			val message = writeExternalFile(
+				ac,
+				name,
+				"application/octet-stream"
+			) {
+				it.write(raw)
+			}
 			Toast.makeText(
 				ac,
 				message,
