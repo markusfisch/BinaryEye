@@ -18,6 +18,9 @@ infer: clean
 	infer -- ./gradlew assembleDebug
 
 test:
+	./gradlew test
+
+cat:
 	./gradlew test cAT
 
 install:
