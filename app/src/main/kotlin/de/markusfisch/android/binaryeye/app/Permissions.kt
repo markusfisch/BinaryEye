@@ -6,14 +6,22 @@ import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 
-fun hasCameraPermission(activity: Activity, requestCode: Int): Boolean {
+fun hasCameraPermission(activity: Activity, requestCode: Int = 1): Boolean {
 	return hasPermission(activity, Manifest.permission.CAMERA, requestCode)
 }
 
-fun hasWritePermission(activity: Activity, requestCode: Int = 1): Boolean {
+fun hasWritePermission(activity: Activity, requestCode: Int = 2): Boolean {
 	return hasPermission(
 		activity,
 		Manifest.permission.WRITE_EXTERNAL_STORAGE,
+		requestCode
+	)
+}
+
+fun hasLocationPermission(activity: Activity, requestCode: Int = 3): Boolean {
+	return hasPermission(
+		activity,
+		Manifest.permission.ACCESS_FINE_LOCATION,
 		requestCode
 	)
 }

@@ -8,6 +8,7 @@ import android.net.wifi.WifiNetworkSuggestion
 import android.os.Build
 import android.support.annotation.RequiresApi
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.app.hasLocationPermission
 import de.markusfisch.android.binaryeye.widget.toast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -338,11 +339,16 @@ private suspend fun WifiManager.enableWifi(context: Context): Boolean {
 private fun WifiManager.removeOldNetwork(
 	wifiConfig: WifiConfiguration
 ) {
-	configuredNetworks?.firstOrNull {
-		it.SSID == wifiConfig.SSID &&
-				it.allowedKeyManagement == wifiConfig.allowedKeyManagement
-	}?.networkId?.also {
-		removeNetwork(it)
+	try {
+		configuredNetworks?.firstOrNull {
+			it.SSID == wifiConfig.SSID &&
+					it.allowedKeyManagement == wifiConfig.allowedKeyManagement
+		}?.networkId?.also {
+			removeNetwork(it)
+		}
+	} catch (e: SecurityException) {
+		// the user didn't allow ACCESS_FINE_LOCATION which is
+		// required to access configuredNetworks and that's fine
 	}
 }
 

@@ -15,6 +15,7 @@ import android.widget.TableRow
 import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
+import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.repository.Scan
 import de.markusfisch.android.binaryeye.view.setPadding
@@ -228,8 +229,15 @@ class DecodeFragment : Fragment() {
 	}
 
 	private fun executeAction(content: ByteArray) {
-		if (activity != null && content.isNotEmpty()) scope.launch {
-			action.execute(activity, content)
+		if (activity != null && content.isNotEmpty()) {
+			if (action is WifiAction &&
+				!hasLocationPermission(activity)
+			) {
+				return
+			}
+			scope.launch {
+				action.execute(activity, content)
+			}
 		}
 	}
 
