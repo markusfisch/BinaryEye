@@ -42,7 +42,7 @@
 	<string name="ignore_consecutive_duplicates">Keine aufeinanderfolgenden Duplikate speichern</string>
 	<string name="show_meta_data">Meta Daten anzeigen</string>
 	<string name="show_hex_dump">Hex Dump anzeigen</string>
-	<string name="try_harder">Suche länger nach Barcodes</string>
+	<string name="try_harder">Suche länger und gründlicher nach Barcodes</string>
 	<string name="open_with_url">URL zum Öffnen unbekannter Daten</string>
 	<string name="really_remove_scan">Code wirklich entfernen?</string>
 	<string name="really_remove_all_scans">Alle Codes entfernen?</string>
