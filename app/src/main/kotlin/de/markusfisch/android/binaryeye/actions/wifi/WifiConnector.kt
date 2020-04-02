@@ -97,17 +97,17 @@ object WifiConnector {
 	) {
 		// this should be private but because of testing it isn't possible
 		internal val ssid: String
-			get() = inputMap.getValue("S").unescaped
+			get() = inputMap.getValue("S").unescape
 		internal val securityType: String
-			get() = inputMap["T"]?.unescaped ?: ""
+			get() = inputMap["T"]?.unescape ?: ""
 		internal val password: String?
-			get() = inputMap["P"]?.unescaped
+			get() = inputMap["P"]?.unescape
 		internal val hidden: Boolean
-			get() = inputMap["H"]?.unescaped == "true"
+			get() = inputMap["H"]?.unescape == "true"
 		internal val anonymousIdentity: String
-			get() = inputMap["AI"]?.unescaped ?: ""
+			get() = inputMap["AI"]?.unescape ?: ""
 		internal val identity: String
-			get() = inputMap["I"]?.unescaped ?: ""
+			get() = inputMap["I"]?.unescape ?: ""
 		internal val eapMethod: Int?
 			get() = if (inputMap["E"].isNullOrEmpty()) {
 				requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -210,8 +210,8 @@ object WifiConnector {
 	private fun WifiConfiguration.apply(
 		data: SimpleDataAccessor
 	): WifiConfiguration? {
-		val ssidWithQuotes = data.ssid.quotedUnlessHex
-		val passwordWithQuotes = data.password?.quotedUnlessHex
+		val ssidWithQuotes = data.ssid.quote
+		val passwordWithQuotes = data.password?.quoteUnlessHex
 
 		fun WifiConfiguration.applyCommon(
 			data: SimpleDataAccessor
@@ -296,18 +296,27 @@ object WifiConnector {
 // keep possibility of wrongly unescaped \ by explicitly searching
 // for special chars
 private val escapedRegex = """\\([\\;,":])""".toRegex()
-private val String.unescaped: String
+private val String.unescape: String
 	get() = this.replace(escapedRegex) { escaped ->
 		escaped.groupValues[1]
 	}
 
+private val String.quote: String
+	get() = if (startsWith("\"") && endsWith("\"")) this else "\"$this\""
+
+private val String.quoteUnlessHex: String
+	get() = if (isHex()) this else this.quote
+
+// Unfortunately, we can never know whether a string consisting only
+// of 0-f is a hex string. So we just make this one assumption that
+// a string of 0-f that is exactly 64 characters long, is _probably_
+// a hex string for raw PSK. Of course, this may fail for any string
+// that just happens to be 64 characters long and contains just 0-f.
 private val hexRegex = """^[0-9a-f]+$""".toRegex(
 	RegexOption.IGNORE_CASE
 )
-private val String.quotedUnlessHex: String
-	get() = if (matches(hexRegex) || (startsWith("\"") &&
-				endsWith("\""))
-	) this else "\"$this\""
+
+private fun String.isHex() = length == 64 && matches(hexRegex)
 
 private suspend fun WifiManager.enableWifi(context: Context): Boolean {
 	if (!isWifiEnabled) {
