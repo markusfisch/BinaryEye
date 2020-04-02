@@ -18,7 +18,11 @@ class BinaryEyeApp : Application() {
 		// even more complicated, `forceCompat()` will continue to work
 		// if the app is compiled on Linux with the exact same version
 		// 29.0.3 of the build tools
-		if (!BuildConfig.IS_CATALINA) {
+		if (!BuildConfig.IS_CATALINA &&
+			System.getProperty("os.version")?.contains(
+				"lineageos", true
+			) == true
+		) {
 			// required to make RenderScript work for Lineage 16.0
 			// possibly because of a system/device bug
 			RenderScript.forceCompat()
