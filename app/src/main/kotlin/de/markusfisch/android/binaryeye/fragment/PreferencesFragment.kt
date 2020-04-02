@@ -17,6 +17,7 @@ class PreferencesFragment : Fragment() {
 	private lateinit var useHistorySwitch: SwitchCompat
 	private lateinit var showMetaDataSwitch: SwitchCompat
 	private lateinit var showHexDumpSwitch: SwitchCompat
+	private lateinit var tryHarderSwitch: SwitchCompat
 	private lateinit var ignoreConsecutiveDuplicatesSwitch: SwitchCompat
 	private lateinit var openWithUrlInput: EditText
 
@@ -60,6 +61,11 @@ class PreferencesFragment : Fragment() {
 			showHexDumpSwitch.toggle()
 		}
 
+		tryHarderSwitch = view.findViewById(R.id.try_harder)
+		if (prefs.tryHarder) {
+			tryHarderSwitch.toggle()
+		}
+
 		openWithUrlInput = view.findViewById(R.id.open_with_url)
 		openWithUrlInput.setText(prefs.openWithUrl)
 
@@ -77,6 +83,7 @@ class PreferencesFragment : Fragment() {
 		prefs.ignoreConsecutiveDuplicates = ignoreConsecutiveDuplicatesSwitch.isChecked
 		prefs.showMetaData = showMetaDataSwitch.isChecked
 		prefs.showHexDump = showHexDumpSwitch.isChecked
+		prefs.tryHarder = tryHarderSwitch.isChecked
 		prefs.openWithUrl = openWithUrlInput.text.toString()
 	}
 }

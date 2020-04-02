@@ -42,6 +42,7 @@
 	<string name="ignore_consecutive_duplicates">Non salvare doppi consecutivi</string>
 	<string name="show_meta_data">Show metadata</string>
 	<string name="show_hex_dump">Mostra dump esadecimale</string>
+	<string name="try_harder">Optimize reader for accuracy, not speed</string>
 	<string name="open_with_url">Apri dati sconosciuti con URL</string>
 	<string name="really_remove_scan">Vuoi veramente rimuovere la scansione?</string>
 	<string name="really_remove_all_scans">Vuoi veramente rimuovere tutte le scansioni?</string>

@@ -32,6 +32,11 @@ class Preferences {
 			setBoolean(SHOW_HEX_DUMP, value)
 			field = value
 		}
+	var tryHarder = false
+		set(value) {
+			setBoolean(TRY_HARDER, value)
+			field = value
+		}
 	var openWithUrl: String = ""
 		set(value) {
 			setString(OPEN_WITH_URL, value)
@@ -60,13 +65,14 @@ class Preferences {
 		)
 		showMetaData = preferences.getBoolean(SHOW_META_DATA, showMetaData)
 		showHexDump = preferences.getBoolean(SHOW_HEX_DUMP, showHexDump)
+		tryHarder = preferences.getBoolean(TRY_HARDER, tryHarder)
+		preferences.getString(OPEN_WITH_URL, openWithUrl)?.also {
+			openWithUrl = it
+		}
 		indexOfLastSelectedFormat = preferences.getInt(
 			INDEX_OF_LAST_SELECTED_FORMAT,
 			indexOfLastSelectedFormat
 		)
-		preferences.getString(OPEN_WITH_URL, openWithUrl)?.also {
-			openWithUrl = it
-		}
 	}
 
 	private fun setBoolean(label: String, value: Boolean) {
@@ -93,6 +99,7 @@ class Preferences {
 		const val IGNORE_CONSECUTIVE_DUPLICATES = "ignore_consecutive_duplicates"
 		const val SHOW_HEX_DUMP = "show_hex_dump"
 		const val SHOW_META_DATA = "show_meta_data"
+		const val TRY_HARDER = "try_harder"
 		const val OPEN_WITH_URL = "open_with_url"
 		const val INDEX_OF_LAST_SELECTED_FORMAT = "index_of_last_selected_format"
 	}

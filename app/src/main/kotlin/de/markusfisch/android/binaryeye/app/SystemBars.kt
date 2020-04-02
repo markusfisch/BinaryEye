@@ -20,7 +20,7 @@ val systemBarScrollListener = object : AbsListView.OnScrollListener {
 		visibleItemCount: Int,
 		totalItemCount: Int
 	) {
-		// give Android some time to settle down before running this;
+		// give Android some time to settle down before running this,
 		// not putting it on the queue makes it only work sometimes
 		view.post {
 			val scrolled = firstVisibleItem > 0 ||

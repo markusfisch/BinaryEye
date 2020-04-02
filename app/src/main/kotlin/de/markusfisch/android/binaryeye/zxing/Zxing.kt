@@ -6,6 +6,7 @@ import com.google.zxing.common.HybridBinarizer
 import java.util.*
 
 class Zxing(possibleResultPoint: ResultPointCallback? = null) {
+	private val hints = EnumMap<DecodeHintType, Any>(DecodeHintType::class.java)
 	private val multiFormatReader = MultiFormatReader()
 
 	init {
@@ -35,14 +36,18 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 				)
 			)
 		)
-
-		val hints = EnumMap<DecodeHintType, Any>(DecodeHintType::class.java)
 		hints[DecodeHintType.POSSIBLE_FORMATS] = decodeFormats
 		possibleResultPoint?.let {
 			hints[DecodeHintType.NEED_RESULT_POINT_CALLBACK] = it
 		}
+	}
 
-		multiFormatReader.setHints(hints)
+	fun updateHints(tryHarder: Boolean) {
+		if (tryHarder) {
+			hints[DecodeHintType.TRY_HARDER] = java.lang.Boolean.TRUE
+		} else {
+			hints.remove(DecodeHintType.TRY_HARDER)
+		}
 	}
 
 	fun decode(
@@ -106,7 +111,7 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 	private fun decodeLuminanceSource(source: LuminanceSource): Result? {
 		val bitmap = BinaryBitmap(HybridBinarizer(source))
 		return try {
-			multiFormatReader.decodeWithState(bitmap)
+			multiFormatReader.decode(bitmap, hints)
 		} catch (e: ReaderException) {
 			null
 		} finally {

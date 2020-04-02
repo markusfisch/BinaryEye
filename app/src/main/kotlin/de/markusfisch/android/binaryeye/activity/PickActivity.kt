@@ -33,6 +33,7 @@ class PickActivity : AppCompatActivity() {
 		super.onCreate(state)
 		setContentView(R.layout.activity_pick)
 
+		zxing.updateHints(true)
 		vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
 		initSystemBars(this)

@@ -123,6 +123,7 @@ class CameraActivity : AppCompatActivity() {
 	override fun onResume() {
 		super.onResume()
 		System.gc()
+		zxing.updateHints(prefs.tryHarder)
 		returnResult = "com.google.zxing.client.android.SCAN" == intent.action
 		if (hasCameraPermission(this, REQUEST_CAMERA)) {
 			openCamera()
