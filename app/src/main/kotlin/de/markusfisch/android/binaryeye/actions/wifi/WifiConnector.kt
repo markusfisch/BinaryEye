@@ -7,8 +7,8 @@ import android.net.wifi.WifiManager
 import android.net.wifi.WifiNetworkSuggestion
 import android.os.Build
 import android.support.annotation.RequiresApi
-import android.widget.Toast
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.widget.toast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*
@@ -50,24 +50,28 @@ object WifiConnector {
 		}
 	}
 
-	suspend fun connect(context: Context, config: Any) {
+	suspend fun connect(context: Context, config: Any): Int {
 		val wifiManager = context.applicationContext.getSystemService(
 			Context.WIFI_SERVICE
 		) as WifiManager
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+		return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
 			// WifiConfiguration is deprecated in Android Q
 			@Suppress("DEPRECATION")
 			val wifiConfig = config as WifiConfiguration
 			wifiManager.enableWifi(context)
 			wifiManager.removeOldNetwork(wifiConfig)
 			wifiManager.enableNewNetwork(wifiConfig)
-			toastSuccess(context)
+			R.string.wifi_added
 		} else {
 			val suggestion = (config as WifiNetworkSuggestion.Builder).build()
-			if (wifiManager.addNetworkSuggestions(listOf(suggestion)) ==
-				WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS
-			) {
-				toastSuccess(context)
+			val suggestions = listOf(suggestion)
+			// remove previous conflicting network suggestion
+			wifiManager.removeNetworkSuggestions(suggestions)
+			val result = wifiManager.addNetworkSuggestions(suggestions)
+			if (result == WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS) {
+				R.string.wifi_added
+			} else {
+				R.string.wifi_config_failed
 			}
 		}
 	}
@@ -162,13 +166,15 @@ object WifiConnector {
 			data: SimpleDataAccessor
 		): WifiNetworkSuggestion.Builder? {
 			when (data.securityType) {
-				"WPA" -> {
+				"WPA", "WPA2" -> {
 					data.password?.let {
 						setWpa2Passphrase(it)
 					}
 				}
 				"WPA2-EAP" -> {
-					data.password?.let { setWpa2Passphrase(it) }
+					data.password?.let {
+						setWpa2Passphrase(it)
+					}
 					setWpa2EnterpriseConfig(WifiEnterpriseConfig().apply {
 						identity = data.identity
 						anonymousIdentity = data.anonymousIdentity
@@ -287,16 +293,6 @@ object WifiConnector {
 	}
 }
 
-private suspend fun toastSuccess(context: Context) {
-	withContext(Dispatchers.Main) {
-		Toast.makeText(
-			context,
-			R.string.wifi_added,
-			Toast.LENGTH_LONG
-		).show()
-	}
-}
-
 // keep possibility of wrongly unescaped \ by explicitly searching
 // for special chars
 private val escapedRegex = """\\([\\;,":])""".toRegex()
@@ -313,17 +309,15 @@ private val String.quotedUnlessHex: String
 				endsWith("\""))
 	) this else "\"$this\""
 
-private fun WifiManager.enableWifi(context: Context): Boolean {
+private suspend fun WifiManager.enableWifi(context: Context): Boolean {
 	if (!isWifiEnabled) {
 		// setWifiEnabled() will always return false for Android Q
 		// because Q doesn't allow apps to enable/disable Wi-Fi anymore
 		@Suppress("DEPRECATION")
 		if (!setWifiEnabled(true)) {
-			Toast.makeText(
-				context,
-				R.string.wifi_config_failed,
-				Toast.LENGTH_LONG
-			).show()
+			withContext(Dispatchers.Main) {
+				context.toast(R.string.wifi_config_failed)
+			}
 			return false
 		}
 	}

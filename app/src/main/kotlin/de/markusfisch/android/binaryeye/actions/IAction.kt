@@ -2,9 +2,9 @@ package de.markusfisch.android.binaryeye.actions
 
 import android.content.Context
 import android.content.Intent
-import android.widget.Toast
 import de.markusfisch.android.binaryeye.app.execShareIntent
 import de.markusfisch.android.binaryeye.app.parseAndNormalizeUri
+import de.markusfisch.android.binaryeye.widget.toast
 
 interface IAction {
 	val iconResId: Int
@@ -18,12 +18,9 @@ abstract class IntentAction : IAction {
 	abstract val errorMsg: Int
 
 	final override suspend fun execute(context: Context, data: ByteArray) {
-		val intent =
-			createIntent(context, data) ?: return Toast.makeText(
-				context,
-				errorMsg,
-				Toast.LENGTH_LONG
-			).show()
+		val intent = createIntent(context, data) ?: return context.toast(
+			errorMsg
+		)
 		execShareIntent(context, intent)
 	}
 

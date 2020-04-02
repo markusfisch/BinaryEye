@@ -2,13 +2,13 @@ package de.markusfisch.android.binaryeye.actions.search
 
 import android.content.Context
 import android.content.Intent
-import android.widget.Toast
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.IAction
 import de.markusfisch.android.binaryeye.app.alertDialog
 import de.markusfisch.android.binaryeye.app.execShareIntent
 import de.markusfisch.android.binaryeye.app.parseAndNormalizeUri
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.widget.toast
 import java.net.URLEncoder
 
 object OpenOrSearchAction : IAction {
@@ -28,11 +28,7 @@ object OpenOrSearchAction : IAction {
 		when {
 			intent.resolveActivity(context.packageManager) != null -> return intent
 			search -> return getSearchIntent(context, data)
-			else -> Toast.makeText(
-				context,
-				R.string.cannot_resolve_action,
-				Toast.LENGTH_SHORT
-			).show()
+			else -> context.toast(R.string.cannot_resolve_action)
 		}
 		return null
 	}

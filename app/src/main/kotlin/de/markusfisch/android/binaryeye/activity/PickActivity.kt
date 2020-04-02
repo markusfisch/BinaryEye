@@ -13,7 +13,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import com.google.zxing.Result
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.*
@@ -21,6 +20,7 @@ import de.markusfisch.android.binaryeye.graphics.crop
 import de.markusfisch.android.binaryeye.graphics.loadImageUri
 import de.markusfisch.android.binaryeye.graphics.mapResult
 import de.markusfisch.android.binaryeye.widget.CropImageView
+import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
 
 class PickActivity : AppCompatActivity() {
@@ -59,11 +59,7 @@ class PickActivity : AppCompatActivity() {
 		}
 
 		if (bitmap == null) {
-			Toast.makeText(
-				applicationContext,
-				R.string.error_no_content,
-				Toast.LENGTH_SHORT
-			).show()
+			applicationContext.toast(R.string.error_no_content)
 			finish()
 			return
 		}
@@ -143,10 +139,6 @@ class PickActivity : AppCompatActivity() {
 			finish()
 			return
 		}
-		Toast.makeText(
-			applicationContext,
-			R.string.no_barcode_found,
-			Toast.LENGTH_SHORT
-		).show()
+		applicationContext.toast(R.string.no_barcode_found)
 	}
 }

@@ -7,12 +7,12 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.*
 import android.widget.EditText
-import android.widget.Toast
 import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.view.setPadding
 import de.markusfisch.android.binaryeye.widget.ConfinedScalingImageView
+import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
@@ -57,7 +57,9 @@ class BarcodeFragment : Fragment() {
 			if (message == null || message.isEmpty()) {
 				message = getString(R.string.error_encoding_barcode)
 			}
-			Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+			message?.let {
+				activity.toast(message)
+			}
 			fragmentManager.popBackStack()
 			return null
 		}
@@ -138,11 +140,7 @@ class BarcodeFragment : Fragment() {
 				bitmap.saveAsPng(it)
 			}
 			GlobalScope.launch(Main) {
-				Toast.makeText(
-					ac,
-					message,
-					Toast.LENGTH_LONG
-				).show()
+				ac.toast(message)
 			}
 		}
 	}
@@ -165,14 +163,7 @@ class BarcodeFragment : Fragment() {
 				if (success) {
 					shareFile(context, file, "image/png")
 				} else {
-					val ac = activity
-					ac?.let {
-						Toast.makeText(
-							ac,
-							R.string.error_saving_binary_data,
-							Toast.LENGTH_LONG
-						).show()
-					}
+					activity?.toast(R.string.error_saving_binary_data)
 				}
 			}
 		}

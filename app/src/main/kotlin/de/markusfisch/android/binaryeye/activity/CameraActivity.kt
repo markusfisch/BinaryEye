@@ -14,7 +14,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.SeekBar
-import android.widget.Toast
 import com.google.zxing.Result
 import com.google.zxing.ResultMetadataType
 import com.google.zxing.ResultPointCallback
@@ -25,6 +24,7 @@ import de.markusfisch.android.binaryeye.graphics.frameToView
 import de.markusfisch.android.binaryeye.repository.Scan
 import de.markusfisch.android.binaryeye.rs.Preprocessor
 import de.markusfisch.android.binaryeye.widget.DetectorView
+import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.cameraview.widget.CameraView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -64,11 +64,7 @@ class CameraActivity : AppCompatActivity() {
 			REQUEST_CAMERA -> if (grantResults.isNotEmpty() &&
 				grantResults[0] != PackageManager.PERMISSION_GRANTED
 			) {
-				Toast.makeText(
-					this,
-					R.string.no_camera_no_fun,
-					Toast.LENGTH_SHORT
-				).show()
+				toast(R.string.no_camera_no_fun)
 				finish()
 			}
 		}
@@ -226,11 +222,7 @@ class CameraActivity : AppCompatActivity() {
 		if (intent.resolveActivity(packageManager) != null) {
 			startActivity(intent)
 		} else {
-			Toast.makeText(
-				this,
-				R.string.project_url,
-				Toast.LENGTH_LONG
-			).show()
+			toast(R.string.project_url)
 		}
 	}
 
@@ -275,11 +267,7 @@ class CameraActivity : AppCompatActivity() {
 			}
 
 			override fun onCameraError() {
-				Toast.makeText(
-					this@CameraActivity,
-					R.string.camera_error,
-					Toast.LENGTH_SHORT
-				).show()
+				this@CameraActivity.toast(R.string.camera_error)
 				finish()
 			}
 

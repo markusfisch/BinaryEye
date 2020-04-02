@@ -10,13 +10,13 @@ import android.support.v7.widget.SwitchCompat
 import android.view.*
 import android.widget.AbsListView
 import android.widget.ListView
-import android.widget.Toast
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.ScansAdapter
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.data.csv.csvBuilder
 import de.markusfisch.android.binaryeye.repository.Scan
 import de.markusfisch.android.binaryeye.view.setPadding
+import de.markusfisch.android.binaryeye.widget.toast
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -242,11 +242,7 @@ class HistoryFragment : Fragment() {
 				R.string.error_saving_binary_data
 			}
 			withContext(Dispatchers.Main) {
-				Toast.makeText(
-					context,
-					message,
-					Toast.LENGTH_SHORT
-				).show()
+				context.toast(message)
 			}
 		}
 	}

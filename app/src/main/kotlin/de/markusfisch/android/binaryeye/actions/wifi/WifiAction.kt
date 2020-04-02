@@ -3,6 +3,7 @@ package de.markusfisch.android.binaryeye.actions.wifi
 import android.content.Context
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.IAction
+import de.markusfisch.android.binaryeye.widget.toast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -20,6 +21,9 @@ object WifiAction : IAction {
 		val wifiConfig = WifiConnector.parse(
 			String(data)
 		) ?: return@withContext
-		WifiConnector.connect(context, wifiConfig)
+		val message = WifiConnector.connect(context, wifiConfig)
+		withContext(Dispatchers.Main) {
+			context.toast(message)
+		}
 	}
 }

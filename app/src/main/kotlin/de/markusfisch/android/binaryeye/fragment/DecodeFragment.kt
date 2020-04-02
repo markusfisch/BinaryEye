@@ -9,12 +9,16 @@ import android.support.v4.app.Fragment
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
-import android.widget.*
+import android.widget.EditText
+import android.widget.TableLayout
+import android.widget.TableRow
+import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.repository.Scan
 import de.markusfisch.android.binaryeye.view.setPadding
+import de.markusfisch.android.binaryeye.widget.toast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -139,11 +143,7 @@ class DecodeFragment : Fragment() {
 			fab.setImageResource(action.iconResId)
 			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
 				fab.setOnLongClickListener { v ->
-					Toast.makeText(
-						v.context,
-						action.titleResId,
-						Toast.LENGTH_SHORT
-					).show()
+					v.context.toast(action.titleResId)
 					true
 				}
 			} else {
@@ -224,11 +224,7 @@ class DecodeFragment : Fragment() {
 				ClipData.newPlainText("simple text", text)
 			)
 		}
-		Toast.makeText(
-			activity,
-			R.string.put_into_clipboard,
-			Toast.LENGTH_SHORT
-		).show()
+		activity.toast(R.string.put_into_clipboard)
 	}
 
 	private fun executeAction(content: ByteArray) {
@@ -251,11 +247,7 @@ class DecodeFragment : Fragment() {
 			) {
 				it.write(raw)
 			}
-			Toast.makeText(
-				ac,
-				message,
-				Toast.LENGTH_SHORT
-			).show()
+			ac.toast(message)
 		}
 	}
 
