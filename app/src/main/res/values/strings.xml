@@ -38,6 +38,7 @@
 	<string name="history">History</string>
 	<string name="preferences">Preferences</string>
 	<string name="open_immediately">Skip inspection and open contents immediately</string>
+	<string name="vibrate">Vibrate on detection</string>
 	<string name="use_history">Save scan history</string>
 	<string name="ignore_consecutive_duplicates">Do not save consecutive duplicates</string>
 	<string name="show_meta_data">Show metadata</string>

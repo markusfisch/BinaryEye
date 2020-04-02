@@ -38,6 +38,7 @@
 	<string name="history">Cronologia</string>
 	<string name="preferences">Preferenze</string>
 	<string name="open_immediately">Salta l\'analisi e apri i contenuti direttamente</string>
+	<string name="vibrate">Vibrate on detection</string>
 	<string name="use_history">Salva cronologia delle scansioni</string>
 	<string name="ignore_consecutive_duplicates">Non salvare doppi consecutivi</string>
 	<string name="show_meta_data">Show metadata</string>

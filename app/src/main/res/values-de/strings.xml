@@ -38,6 +38,7 @@
 	<string name="history">Gespeicherte Codes</string>
 	<string name="preferences">Einstellungen</string>
 	<string name="open_immediately">Inspektion überspringen und Inhalte sofort öffnen</string>
+	<string name="vibrate">Bei Erkennung vibrieren</string>
 	<string name="use_history">Codes speichern</string>
 	<string name="ignore_consecutive_duplicates">Keine aufeinanderfolgenden Duplikate speichern</string>
 	<string name="show_meta_data">Meta Daten anzeigen</string>

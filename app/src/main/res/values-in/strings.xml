@@ -38,6 +38,7 @@
 	<string name="history">Riwayat</string>
 	<string name="preferences">Preferensi</string>
 	<string name="open_immediately">Lewati inspeksi dan segera buka konten</string>
+	<string name="vibrate">Vibrate on detection</string>
 	<string name="use_history">Simpan riwayat pemindaian</string>
 	<string name="ignore_consecutive_duplicates">Do not save consecutive duplicates</string>
 	<string name="show_meta_data">Show metadata</string>

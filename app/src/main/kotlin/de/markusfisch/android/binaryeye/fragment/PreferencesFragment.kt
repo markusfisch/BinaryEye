@@ -14,6 +14,7 @@ import de.markusfisch.android.binaryeye.view.setPadding
 
 class PreferencesFragment : Fragment() {
 	private lateinit var openImmediatelySwitch: SwitchCompat
+	private lateinit var vibrateSwitch: SwitchCompat
 	private lateinit var useHistorySwitch: SwitchCompat
 	private lateinit var showMetaDataSwitch: SwitchCompat
 	private lateinit var showHexDumpSwitch: SwitchCompat
@@ -37,6 +38,11 @@ class PreferencesFragment : Fragment() {
 		openImmediatelySwitch = view.findViewById(R.id.open_immediately)
 		if (prefs.openImmediately) {
 			openImmediatelySwitch.toggle()
+		}
+
+		vibrateSwitch = view.findViewById(R.id.vibrate)
+		if (prefs.vibrate) {
+			vibrateSwitch.toggle()
 		}
 
 		useHistorySwitch = view.findViewById(R.id.use_history)
@@ -79,6 +85,7 @@ class PreferencesFragment : Fragment() {
 	override fun onPause() {
 		super.onPause()
 		prefs.openImmediately = openImmediatelySwitch.isChecked
+		prefs.vibrate = vibrateSwitch.isChecked
 		prefs.useHistory = useHistorySwitch.isChecked
 		prefs.ignoreConsecutiveDuplicates = ignoreConsecutiveDuplicatesSwitch.isChecked
 		prefs.showMetaData = showMetaDataSwitch.isChecked

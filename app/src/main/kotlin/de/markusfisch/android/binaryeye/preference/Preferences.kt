@@ -12,6 +12,11 @@ class Preferences {
 			setBoolean(OPEN_IMMEDIATELY, value)
 			field = value
 		}
+	var vibrate = true
+		set(value) {
+			setBoolean(VIBRATE, value)
+			field = value
+		}
 	var useHistory = false
 		set(value) {
 			setBoolean(USE_HISTORY, value)
@@ -58,6 +63,7 @@ class Preferences {
 			OPEN_IMMEDIATELY,
 			openImmediately
 		)
+		vibrate = preferences.getBoolean(VIBRATE, vibrate)
 		useHistory = preferences.getBoolean(USE_HISTORY, useHistory)
 		ignoreConsecutiveDuplicates = preferences.getBoolean(
 			IGNORE_CONSECUTIVE_DUPLICATES,
@@ -95,6 +101,7 @@ class Preferences {
 
 	companion object {
 		const val OPEN_IMMEDIATELY = "open_immediately"
+		const val VIBRATE = "vibrate"
 		const val USE_HISTORY = "use_history"
 		const val IGNORE_CONSECUTIVE_DUPLICATES = "ignore_consecutive_duplicates"
 		const val SHOW_HEX_DUMP = "show_hex_dump"

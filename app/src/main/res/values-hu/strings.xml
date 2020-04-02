@@ -38,6 +38,7 @@
 	<string name="history">Előzmények</string>
 	<string name="preferences">Beállítások</string>
 	<string name="open_immediately">Vizsgálat kihagyása és a tartalom azonnali megnyitása</string>
+	<string name="vibrate">Vibrate on detection</string>
 	<string name="use_history">Beolvasási előzmények mentése</string>
 	<string name="ignore_consecutive_duplicates">Do not save consecutive duplicates</string>
 	<string name="show_meta_data">Show metadata</string>
