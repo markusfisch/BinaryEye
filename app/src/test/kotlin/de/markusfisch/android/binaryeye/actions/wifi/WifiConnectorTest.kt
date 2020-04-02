@@ -51,16 +51,6 @@ class WifiConnectorTest {
 	}
 
 	@Test
-	fun hex() {
-		val info = simpleDataAccessor("WIFI:T:WEP;S:d34dbeef;P:d34dbeef;;")
-
-		assertEquals("WEP", info.securityType)
-		assertEquals("d34dbeef", info.ssid)
-		assertEquals("d34dbeef", info.password)
-		assertFalse(info.hidden)
-	}
-
-	@Test
 	fun escaping() {
 		val info = simpleDataAccessor("""WIFI:S:\"ssid\\\;stillSSID\:\;x;;""")
 
