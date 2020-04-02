@@ -120,9 +120,10 @@ object VCardAction : IntentAction() {
 	}
 
 	private val String.locationFormat: String
-		get() = """^([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?)$""".toRegex().matchEntire(
-			this
-		)?.groupValues?.let {
+		get() = """^([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?)$""".toRegex()
+			.matchEntire(
+				this
+			)?.groupValues?.let {
 			listOf(
 				it[1],
 				it[2],
@@ -134,7 +135,8 @@ object VCardAction : IntentAction() {
 		} ?: this
 
 	private val String.nameFormat: String
-		get() = """^([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?)$""".toRegex().matchEntire(this)?.groupValues?.let {
+		get() = """^([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?)$""".toRegex()
+			.matchEntire(this)?.groupValues?.let {
 			listOf(it[4], it[2], it[3], it[1], it[5]).joinToString(" ")
 				.takeIf { name -> name.isNotBlank() }
 		} ?: this

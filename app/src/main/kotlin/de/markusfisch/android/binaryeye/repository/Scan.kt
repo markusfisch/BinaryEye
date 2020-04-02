@@ -1,7 +1,7 @@
 package de.markusfisch.android.binaryeye.repository
 
-import android.os.Parcelable
 import android.os.Parcel
+import android.os.Parcelable
 import android.text.format.DateFormat
 import com.google.zxing.Result
 import com.google.zxing.ResultMetadataType
@@ -48,21 +48,21 @@ data class Scan(
 		other as Scan
 
 		return id == other.id &&
-			timestamp == other.timestamp &&
-			content == other.content &&
-			(
-				(raw == null && other.raw == null) ||
-				(raw != null && other.raw != null && raw.contentEquals(other.raw))
-			) &&
-			format == other.format &&
-			errorCorrectionLevel == other.errorCorrectionLevel &&
-			issueNumber == other.issueNumber &&
-			orientation == other.orientation &&
-			otherMetaData == other.otherMetaData &&
-			pdf417ExtraMetaData == other.pdf417ExtraMetaData &&
-			possibleCountry == other.possibleCountry &&
-			suggestedPrice == other.suggestedPrice &&
-			upcEanExtension == other.upcEanExtension
+				timestamp == other.timestamp &&
+				content == other.content &&
+				(
+						(raw == null && other.raw == null) ||
+								(raw != null && other.raw != null && raw.contentEquals(other.raw))
+						) &&
+				format == other.format &&
+				errorCorrectionLevel == other.errorCorrectionLevel &&
+				issueNumber == other.issueNumber &&
+				orientation == other.orientation &&
+				otherMetaData == other.otherMetaData &&
+				pdf417ExtraMetaData == other.pdf417ExtraMetaData &&
+				possibleCountry == other.possibleCountry &&
+				suggestedPrice == other.suggestedPrice &&
+				upcEanExtension == other.upcEanExtension
 	}
 
 	// Needs to be overwritten manually, as ByteArray is an array and

@@ -11,9 +11,11 @@ fun Vibrator.vibrate() {
 		@Suppress("DEPRECATION")
 		this.vibrate(MILLISECONDS)
 	} else {
-		this.vibrate(VibrationEffect.createOneShot(
-			MILLISECONDS,
-			VibrationEffect.DEFAULT_AMPLITUDE)
+		this.vibrate(
+			VibrationEffect.createOneShot(
+				MILLISECONDS,
+				VibrationEffect.DEFAULT_AMPLITUDE
+			)
 		)
 	}
 }
