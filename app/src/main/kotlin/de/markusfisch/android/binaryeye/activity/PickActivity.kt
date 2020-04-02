@@ -22,6 +22,8 @@ import de.markusfisch.android.binaryeye.graphics.mapResult
 import de.markusfisch.android.binaryeye.widget.CropImageView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 
 class PickActivity : AppCompatActivity() {
 	private val zxing = Zxing()
@@ -29,6 +31,8 @@ class PickActivity : AppCompatActivity() {
 	private lateinit var vibrator: Vibrator
 	private lateinit var cropImageView: CropImageView
 
+	@FlowPreview
+	@ExperimentalCoroutinesApi
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
 		setContentView(R.layout.activity_pick)
@@ -134,6 +138,8 @@ class PickActivity : AppCompatActivity() {
 		return loadImageUri(contentResolver, uri)
 	}
 
+	@ExperimentalCoroutinesApi
+	@FlowPreview
 	private fun scanImage(result: Result?) {
 		if (result != null) {
 			showResult(this, result)

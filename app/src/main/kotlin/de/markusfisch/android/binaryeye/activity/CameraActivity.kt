@@ -437,6 +437,8 @@ class CameraActivity : AppCompatActivity() {
 	}
 }
 
+@ExperimentalCoroutinesApi
+@FlowPreview
 fun showResult(
 	activity: Activity,
 	result: Result,
