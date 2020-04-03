@@ -36,8 +36,12 @@ import kotlinx.coroutines.launch
 @FlowPreview
 class CameraActivity : AppCompatActivity() {
 	private val zxing = Zxing(ResultPointCallback { point ->
-		detectorView.post {
-			mapping?.map(point)?.let { detectorView.mark(listOf(it)) }
+		point?.let {
+			mapping?.map(it)?.let {
+				detectorView.post {
+					detectorView.mark(listOf(it))
+				}
+			}
 		}
 	})
 
@@ -289,7 +293,9 @@ class CameraActivity : AppCompatActivity() {
 							cameraView.post {
 								val rp = result.resultPoints
 								val m = mapping
-								if (m != null && rp != null) {
+								if (m != null && rp != null &&
+									rp.isNotEmpty()
+								) {
 									detectorView.mark(m.map(rp))
 								}
 								vibrator.vibrate()
