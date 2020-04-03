@@ -22,7 +22,7 @@ class Preferences {
 			setBoolean(USE_HISTORY, value)
 			field = value
 		}
-	var ignoreConsecutiveDuplicates = false
+	var ignoreConsecutiveDuplicates = true
 		set(value) {
 			setBoolean(IGNORE_CONSECUTIVE_DUPLICATES, value)
 			field = value
