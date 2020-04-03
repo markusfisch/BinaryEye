@@ -21,7 +21,7 @@
 	<string name="toggle_flash">Toggle flash</string>
 	<string name="share">Share</string>
 	<string name="copy_to_clipboard">Copier dans le presse-papier</string>
-	<string name="put_into_clipboard">Mis dans le presse-papiers</string>
+	<string name="copied_to_clipboard">Mis dans le presse-papiers</string>
 	<string name="open_url">Ouvrir l\'url</string>
 	<string name="cannot_resolve_action">Aucune application ne peut ouvrir ça</string>
 	<string name="pick_search_engine">Pick a search engine</string>

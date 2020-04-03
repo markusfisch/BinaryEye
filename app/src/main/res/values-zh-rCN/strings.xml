@@ -21,7 +21,7 @@
 	<string name="toggle_flash">开关闪光灯</string>
 	<string name="share">分享</string>
 	<string name="copy_to_clipboard">复制到剪切板</string>
-	<string name="put_into_clipboard">复制到剪切板</string>
+	<string name="copied_to_clipboard">复制到剪切板</string>
 	<string name="open_url">打开链接</string>
 	<string name="cannot_resolve_action">没有相关APP可以打开它</string>
 	<string name="pick_search_engine">选择一个搜索引擎</string>

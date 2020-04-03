@@ -21,7 +21,7 @@
 	<string name="toggle_flash">Ativar lanterna</string>
 	<string name="share">Compartilhar</string>
 	<string name="copy_to_clipboard">Copiar para área de transferência</string>
-	<string name="put_into_clipboard">Colocar na área de transferência</string>
+	<string name="copied_to_clipboard">Colocar na área de transferência</string>
 	<string name="open_url">Abrir url</string>
 	<string name="cannot_resolve_action">Nenhuma aplicativo pode abrir isso</string>
 	<string name="pick_search_engine">Escolha um mecanismo de busca</string>

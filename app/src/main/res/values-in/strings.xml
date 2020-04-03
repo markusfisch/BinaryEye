@@ -21,7 +21,7 @@
 	<string name="toggle_flash">Nyala/Matikan blitz</string>
 	<string name="share">Bagikan</string>
 	<string name="copy_to_clipboard">Salin ke papan klip</string>
-	<string name="put_into_clipboard">Simpan ke papan klip</string>
+	<string name="copied_to_clipboard">Simpan ke papan klip</string>
 	<string name="open_url">Buka url</string>
 	<string name="cannot_resolve_action">Tidak ada aplikasi yang bisa membukanya</string>
 	<string name="pick_search_engine">Pilih mesin pencari</string>

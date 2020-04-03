@@ -17,7 +17,7 @@
 	<string name="toggle_flash">Включить вспышку</string>
 	<string name="share">Отправить</string>
 	<string name="copy_to_clipboard">Скопировать в буфер обмена</string>
-	<string name="put_into_clipboard">Положить в буфер обмена</string>
+	<string name="copied_to_clipboard">Положить в буфер обмена</string>
 	<string name="open_url">Открыть URL</string>
 	<string name="cannot_resolve_action">Ни одно приложение не может открыть это</string>
 	<string name="pick_search_engine">Выберите поисковую систему</string>

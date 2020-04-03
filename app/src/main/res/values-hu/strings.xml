@@ -21,7 +21,7 @@
 	<string name="toggle_flash">Vaku be- vagy kikapcsolása</string>
 	<string name="share">Megosztás</string>
 	<string name="copy_to_clipboard">Másolás a vágólapra</string>
-	<string name="put_into_clipboard">Vágólapra helyezés</string>
+	<string name="copied_to_clipboard">Vágólapra helyezés</string>
 	<string name="open_url">URL megnyitása</string>
 	<string name="cannot_resolve_action">Nincs alkalmazás, amely meg tudná nyitni azt</string>
 	<string name="pick_search_engine">Válasszon keresőmotort</string>
