@@ -1,7 +1,5 @@
 package de.markusfisch.android.binaryeye.fragment
 
-import android.content.ClipData
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -215,17 +213,10 @@ class DecodeFragment : Fragment() {
 	}
 
 	private fun copyToClipboard(text: String) {
-		activity ?: return
-		val o = activity.getSystemService(Context.CLIPBOARD_SERVICE)
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-			@Suppress("DEPRECATION")
-			(o as android.text.ClipboardManager).text = text
-		} else {
-			(o as android.content.ClipboardManager).setPrimaryClip(
-				ClipData.newPlainText("simple text", text)
-			)
+		activity?.apply {
+			copyToClipboard(text)
+			toast(R.string.put_into_clipboard)
 		}
-		activity.toast(R.string.put_into_clipboard)
 	}
 
 	private fun executeAction(content: ByteArray) {
