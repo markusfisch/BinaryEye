@@ -21,7 +21,7 @@ object WifiAction : IAction {
 		val wifiConfig = WifiConnector.parse(
 			String(data)
 		) ?: return@withContext
-		val message = WifiConnector.connect(context, wifiConfig)
+		val message = WifiConnector.addNetwork(context, wifiConfig)
 		withContext(Dispatchers.Main) {
 			context.toast(message)
 		}

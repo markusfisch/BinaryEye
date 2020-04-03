@@ -8,10 +8,6 @@ import android.net.wifi.WifiNetworkSuggestion
 import android.os.Build
 import android.support.annotation.RequiresApi
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.app.hasLocationPermission
-import de.markusfisch.android.binaryeye.widget.toast
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import java.util.*
 
 /**
@@ -51,7 +47,7 @@ object WifiConnector {
 		}
 	}
 
-	suspend fun connect(context: Context, config: Any): Int {
+	fun addNetwork(context: Context, config: Any): Int {
 		val wifiManager = context.applicationContext.getSystemService(
 			Context.WIFI_SERVICE
 		) as WifiManager
@@ -59,10 +55,14 @@ object WifiConnector {
 			// WifiConfiguration is deprecated in Android Q
 			@Suppress("DEPRECATION")
 			val wifiConfig = config as WifiConfiguration
-			wifiManager.enableWifi(context)
-			wifiManager.removeOldNetwork(wifiConfig)
-			wifiManager.enableNewNetwork(wifiConfig)
-			R.string.wifi_added
+			if (wifiManager.enableWifi() &&
+				wifiManager.removeOldNetwork(wifiConfig) &&
+				wifiManager.enableNewNetwork(wifiConfig)
+			) {
+				R.string.wifi_added
+			} else {
+				R.string.wifi_config_failed
+			}
 		} else {
 			val suggestion = (config as WifiNetworkSuggestion.Builder).build()
 			val suggestions = listOf(suggestion)
@@ -319,26 +319,18 @@ private val hexRegex = """^[0-9a-f]+$""".toRegex(
 
 private fun String.isHex() = length == 64 && matches(hexRegex)
 
-private suspend fun WifiManager.enableWifi(context: Context): Boolean {
-	if (!isWifiEnabled) {
-		// setWifiEnabled() will always return false for Android Q
-		// because Q doesn't allow apps to enable/disable Wi-Fi anymore
-		@Suppress("DEPRECATION")
-		if (!setWifiEnabled(true)) {
-			withContext(Dispatchers.Main) {
-				context.toast(R.string.wifi_config_failed)
-			}
-			return false
-		}
-	}
-	return true
+private fun WifiManager.enableWifi(): Boolean {
+	// setWifiEnabled() will always return false for Android Q
+	// because Q doesn't allow apps to enable/disable Wi-Fi anymore
+	@Suppress("DEPRECATION")
+	return isWifiEnabled || setWifiEnabled(true)
 }
 
 // WifiConfiguration is deprecated in Android Q
 @Suppress("DEPRECATION")
 private fun WifiManager.removeOldNetwork(
 	wifiConfig: WifiConfiguration
-) {
+): Boolean {
 	try {
 		configuredNetworks?.firstOrNull {
 			it.SSID == wifiConfig.SSID &&
@@ -350,15 +342,23 @@ private fun WifiManager.removeOldNetwork(
 		// the user didn't allow ACCESS_FINE_LOCATION which is
 		// required to access configuredNetworks and that's fine
 	}
+	return true
 }
 
 // WifiConfiguration is deprecated in Android Q
 @Suppress("DEPRECATION")
 private fun WifiManager.enableNewNetwork(
 	wifiConfig: WifiConfiguration
-) {
+): Boolean {
 	val id = addNetwork(wifiConfig)
+	if (id == -1) {
+		return false
+	}
 	disconnect()
-	enableNetwork(id, true)
-	reconnect()
+	return if (enableNetwork(id, true)) {
+		reconnect()
+		true
+	} else {
+		false
+	}
 }
