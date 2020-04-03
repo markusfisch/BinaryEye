@@ -22,6 +22,7 @@
 	<string name="share">Teilen</string>
 	<string name="copy_to_clipboard">In die Zwischenablage kopieren</string>
 	<string name="copied_to_clipboard">Inhalt wurde in die Zwischenablage kopiert</string>
+	<string name="copied_password_to_clipboard">Passwort wurde in die Zwischenablage kopiert</string>
 	<string name="open_url">URL öffnen</string>
 	<string name="cannot_resolve_action">Keine App kann das öffnen</string>
 	<string name="pick_search_engine">Suchmaschine auswählen</string>

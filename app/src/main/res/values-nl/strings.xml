@@ -22,6 +22,7 @@
 	<string name="share">Delen</string>
 	<string name="copy_to_clipboard">Kopiëren naar klembord</string>
 	<string name="copied_to_clipboard">Kopieer de inhoud naar het klembord</string>
+	<string name="copied_password_to_clipboard">Password copied to clipboard</string>
 	<string name="open_url">URL openen</string>
 	<string name="cannot_resolve_action">Er is geen app aangetroffen die dit kan openen</string>
 	<string name="pick_search_engine">Een zoekmachine kiezen</string>

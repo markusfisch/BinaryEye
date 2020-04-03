@@ -22,6 +22,7 @@
 	<string name="share">分享</string>
 	<string name="copy_to_clipboard">複製</string>
 	<string name="copied_to_clipboard">複製</string>
+	<string name="copied_password_to_clipboard">Password copied to clipboard</string>
 	<string name="open_url">開啓</string>
 	<string name="cannot_resolve_action">無應用程式可以開啓</string>
 	<string name="pick_search_engine">選擇搜尋引擎</string>

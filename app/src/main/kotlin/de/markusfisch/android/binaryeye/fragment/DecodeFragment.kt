@@ -118,7 +118,7 @@ class DecodeFragment : Fragment() {
 			if (password != null) {
 				activity?.apply {
 					copyToClipboard(password)
-					toast(R.string.copied_to_clipboard)
+					toast(R.string.copied_password_to_clipboard)
 				}
 			}
 		}
