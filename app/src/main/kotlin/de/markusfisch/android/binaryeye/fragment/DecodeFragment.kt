@@ -113,6 +113,15 @@ class DecodeFragment : Fragment() {
 		hexView = view.findViewById(R.id.hex)
 
 		updateViewsAndAction(raw)
+		if (action is WifiAction) {
+			val password = (action as WifiAction).password
+			if (password != null) {
+				activity?.apply {
+					copyToClipboard(password)
+					toast(R.string.put_into_clipboard)
+				}
+			}
+		}
 
 		if (prefs.showMetaData) {
 			fillMetaView(metaView, scan)

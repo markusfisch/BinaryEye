@@ -35,9 +35,15 @@ import java.util.*
  * The fields can appear in any order. Only "S:" is required.
  */
 object WifiConnector {
-	fun parse(input: String): Any? {
+	fun parse(
+		input: String,
+		passwordBlock: ((password: String?) -> Unit)? = null
+	): Any? {
 		val inputMap = parseMap(input) ?: return null
 		val parsedData = SimpleDataAccessor.of(inputMap) ?: return null
+		passwordBlock?.apply {
+			invoke(parsedData.password)
+		}
 		return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
 			// WifiConfiguration is deprecated in Android Q
 			@Suppress("DEPRECATION")
