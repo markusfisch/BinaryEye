@@ -231,6 +231,7 @@ class DecodeFragment : Fragment() {
 	private fun executeAction(content: ByteArray) {
 		if (activity != null && content.isNotEmpty()) {
 			if (action is WifiAction &&
+				Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
 				!hasLocationPermission(activity)
 			) {
 				return
