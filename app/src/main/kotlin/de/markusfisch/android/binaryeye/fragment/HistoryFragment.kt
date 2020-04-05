@@ -59,17 +59,7 @@ class HistoryFragment : Fragment() {
 		) as SwitchCompat
 		initHistorySwitch(useHistorySwitch)
 
-		val headView = View(context)
-		val footView = View(context)
-		setWindowInsetListener { insets ->
-			(view.findViewById(R.id.inset_layout) as View).setPadding(insets)
-			headView.layoutParams = AbsListView.LayoutParams(0, insets.top)
-			footView.layoutParams = AbsListView.LayoutParams(0, insets.bottom)
-		}
-
 		listView = view.findViewById(R.id.scans)
-		listView.addHeaderView(headView, null, false)
-		listView.addFooterView(footView, null, false)
 		listView.emptyView = useHistorySwitch
 		listView.setOnItemClickListener { _, _, _, id ->
 			showScan(id)
@@ -86,6 +76,11 @@ class HistoryFragment : Fragment() {
 		}
 
 		progressView = view.findViewById(R.id.progress_view)
+
+		setWindowInsetListener { insets ->
+			(view.findViewById(R.id.inset_layout) as View).setPadding(insets)
+			listView.setPadding(insets)
+		}
 
 		return view
 	}

@@ -4,9 +4,10 @@
 	android:layout_height="match_parent">
 	<ListView
 		android:id="@+id/scans"
-		android:choiceMode="singleChoice"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:choiceMode="singleChoice"
+		android:clipToPadding="false"
 		android:divider="@color/separator"
 		android:dividerHeight="1px"/>
 	<android.support.design.widget.CoordinatorLayout

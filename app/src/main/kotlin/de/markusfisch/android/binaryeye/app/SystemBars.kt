@@ -24,7 +24,7 @@ val systemBarScrollListener = object : AbsListView.OnScrollListener {
 		// not putting it on the queue makes it only work sometimes
 		view.post {
 			val scrolled = firstVisibleItem > 0 ||
-					(totalItemCount > 0 && view.getChildAt(0).top < 0)
+					(totalItemCount > 0 && view.getChildAt(0).top < view.paddingTop)
 			val scrollable = if (scrolled) true else totalItemCount > 0 &&
 					view.getChildAt(view.lastVisiblePosition).bottom >= view.height
 			colorSystemAndToolBars(view.context, scrolled, scrollable)
