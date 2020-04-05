@@ -4,7 +4,7 @@
 	<item
 			android:id="@+id/export_history"
 			android:title="@string/export_to_file"
-			android:icon="@drawable/ic_action_save"
+			android:icon="@drawable/ic_action_export"
 			material:showAsAction="ifRoom"/>
 	<item
 			android:id="@+id/clear"
