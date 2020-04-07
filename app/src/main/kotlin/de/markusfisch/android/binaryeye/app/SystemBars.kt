@@ -45,23 +45,28 @@ fun initSystemBars(activity: AppCompatActivity) {
 	colorSystemAndToolBars(activity)
 }
 
+private val actionBarBackground = ColorDrawable()
 fun colorSystemAndToolBars(
 	context: Context,
 	scrolled: Boolean = false,
 	scrollable: Boolean = false
 ) {
-	val translucentColor = getTranslucentPrimaryColor(context)
-	val topColor = if (scrolled) translucentColor else 0
-	val bottomColor = if (scrolled || scrollable) translucentColor else 0
+	if (translucentPrimaryColor == 0) {
+		translucentPrimaryColor = getTranslucentPrimaryColor(context)
+	}
+	val topColor = if (scrolled) translucentPrimaryColor else 0
+	val bottomColor = if (scrolled || scrollable) translucentPrimaryColor else 0
 	val activity = getAppCompatActivity(context) ?: return
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 		val window = activity.window
 		window.statusBarColor = topColor
 		window.navigationBarColor = bottomColor
 	}
-	activity.supportActionBar?.setBackgroundDrawable(ColorDrawable(topColor))
+	actionBarBackground.color = topColor
+	activity.supportActionBar?.setBackgroundDrawable(actionBarBackground)
 }
 
+private var translucentPrimaryColor = 0
 private fun getTranslucentPrimaryColor(context: Context) = ContextCompat.getColor(
 	context,
 	R.color.primary
