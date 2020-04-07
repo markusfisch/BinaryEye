@@ -8,7 +8,6 @@ import android.support.annotation.WorkerThread
 import android.support.v4.app.Fragment
 import android.support.v7.widget.SwitchCompat
 import android.view.*
-import android.widget.AbsListView
 import android.widget.ListView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.ScansAdapter
