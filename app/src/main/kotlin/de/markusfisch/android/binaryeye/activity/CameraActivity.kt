@@ -451,15 +451,15 @@ fun showResult(
 	isResult: Boolean = false
 ) {
 	val scan = Scan(result)
-	if (prefs.useHistory) {
-		GlobalScope.launch {
-			db.insertScan(scan)
-		}
-	}
 	if (isResult) {
 		activity.setResult(Activity.RESULT_OK, getReturnIntent(result))
 		activity.finish()
 	} else {
+		if (prefs.useHistory) {
+			GlobalScope.launch {
+				db.insertScan(scan)
+			}
+		}
 		activity.startActivity(
 			MainActivity.getDecodeIntent(activity, scan)
 		)
