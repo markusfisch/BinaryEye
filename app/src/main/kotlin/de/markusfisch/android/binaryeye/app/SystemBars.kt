@@ -59,12 +59,15 @@ fun colorSystemAndToolBars(
 		)
 	}
 	val topColor = if (scrolled) translucentPrimaryColor else 0
-	val bottomColor = if (scrolled || scrollable) translucentPrimaryColor else 0
 	val activity = getAppCompatActivity(context) ?: return
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 		val window = activity.window
 		window.statusBarColor = topColor
-		window.navigationBarColor = bottomColor
+		window.navigationBarColor = if (scrolled || scrollable) {
+			translucentPrimaryColor
+		} else {
+			0
+		}
 	}
 	actionBarBackground.color = topColor
 	activity.supportActionBar?.setBackgroundDrawable(actionBarBackground)
