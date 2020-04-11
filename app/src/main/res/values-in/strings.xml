@@ -7,7 +7,6 @@
 	<string name="content">Konten</string>
 	<string name="binary_data">(data biner)</string>
 	<plurals name="barcode_info">
-		<item quantity="one">%1$s, %2$d karakter</item>
 		<item quantity="other">%1$s, %2$d karakter</item>
 	</plurals>
 	<string name="error_correction_level">Error correction level</string>
