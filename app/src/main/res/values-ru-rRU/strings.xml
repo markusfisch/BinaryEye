@@ -45,6 +45,10 @@
 	<string name="really_remove_scan">Действительно удалить сканирование?</string>
 	<string name="really_remove_all_scans">Действительно удалить всю историю сканирования?</string>
 	<string name="clear_history">Очистить историю</string>
+	<string name="edit_scan">Edit label</string>
+	<string name="remove_scan">Remove scan</string>
+	<string name="enter_name">Enter a name to describe the scan</string>
+	<string name="enter_name_hint">Name of the scan</string>
 	<string name="no_barcode_found">Штрих-код не найден</string>
 	<string name="pick_list_separator">Как разделить элементы списка?</string>
 	<string name="separator_line_break">Разрыв строки</string>

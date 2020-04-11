@@ -1,17 +1,23 @@
 package de.markusfisch.android.binaryeye.fragment
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.database.Cursor
 import android.os.Bundle
 import android.os.Parcelable
 import android.support.annotation.WorkerThread
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.view.ActionMode
 import android.support.v7.widget.SwitchCompat
 import android.view.*
+import android.widget.EditText
 import android.widget.ListView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.ScansAdapter
 import de.markusfisch.android.binaryeye.app.*
+import de.markusfisch.android.binaryeye.data.Database
 import de.markusfisch.android.binaryeye.data.csv.csvBuilder
 import de.markusfisch.android.binaryeye.repository.Scan
 import de.markusfisch.android.binaryeye.view.setPadding
@@ -31,9 +37,58 @@ class HistoryFragment : Fragment() {
 
 	private val parentJob = Job()
 	private val scope = CoroutineScope(Dispatchers.IO + parentJob)
+	private val actionModeCallback = object : ActionMode.Callback {
+		override fun onCreateActionMode(
+			mode: ActionMode,
+			menu: Menu
+		): Boolean {
+			mode.menuInflater.inflate(
+				R.menu.fragment_history_edit,
+				menu
+			)
+			return true
+		}
+
+		override fun onPrepareActionMode(
+			mode: ActionMode,
+			menu: Menu
+		): Boolean {
+			return false
+		}
+
+		override fun onActionItemClicked(
+			mode: ActionMode,
+			item: MenuItem
+		): Boolean {
+			return when (item.itemId) {
+				R.id.edit_scan -> {
+					askForName(
+						activity,
+						selectedScanId,
+						getScanName(selectedScanPosition)
+					)
+					closeActionMode()
+					true
+				}
+				R.id.remove_scan -> {
+					askToRemoveScan(activity, selectedScanId)
+					closeActionMode()
+					true
+				}
+				else -> false
+			}
+		}
+
+		override fun onDestroyActionMode(mode: ActionMode) {
+			closeActionMode()
+		}
+	}
 
 	private var scansAdapter: ScansAdapter? = null
 	private var listViewState: Parcelable? = null
+	private var actionMode: ActionMode? = null
+	private var selectedScanId = 0L
+	private var selectedScanPosition = -1
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -63,8 +118,16 @@ class HistoryFragment : Fragment() {
 		listView.setOnItemClickListener { _, _, _, id ->
 			showScan(id)
 		}
-		listView.setOnItemLongClickListener { _, v, _, id ->
-			askToRemoveScan(v.context, id)
+		listView.setOnItemLongClickListener { _, v, position, id ->
+			v.isSelected = true
+			selectedScanId = id
+			selectedScanPosition = position
+			val ac = activity
+			if (actionMode == null && ac is AppCompatActivity) {
+				actionMode = ac.delegate.startSupportActionMode(
+					actionModeCallback
+				)
+			}
 			true
 		}
 		listView.setOnScrollListener(systemBarScrollListener)
@@ -149,7 +212,16 @@ class HistoryFragment : Fragment() {
 		}
 	}
 
+	private fun closeActionMode() {
+		selectedScanId = 0L
+		selectedScanPosition = -1
+		actionMode?.finish()
+		actionMode = null
+		scansAdapter?.notifyDataSetChanged()
+	}
+
 	private fun showScan(id: Long) = db.getScan(id)?.also { scan ->
+		closeActionMode()
 		try {
 			addFragment(
 				fragmentManager,
@@ -158,6 +230,30 @@ class HistoryFragment : Fragment() {
 		} catch (e: IllegalArgumentException) {
 			// ignore, can never happen
 		}
+	}
+
+	private fun getScanName(position: Int): String? {
+		val cursor = scansAdapter?.getItem(position) as Cursor?
+		return cursor?.getString(cursor.getColumnIndex(Database.SCANS_NAME))
+	}
+
+	// dialogs don't have a parent layout
+	@SuppressLint("InflateParams")
+	private fun askForName(context: Context, id: Long, text: String?) {
+		val view = LayoutInflater.from(context).inflate(
+			R.layout.dialog_enter_name, null
+		)
+		val nameView = view.findViewById<EditText>(R.id.name)
+		nameView.setText(text)
+		AlertDialog.Builder(context)
+			.setView(view)
+			.setPositiveButton(android.R.string.ok) { _, _ ->
+				val name = nameView.text.toString()
+				db.renameScan(id, name)
+				update(context)
+			}
+			.setNegativeButton(android.R.string.cancel) { _, _ -> }
+			.show()
 	}
 
 	private fun askToRemoveScan(context: Context, id: Long) {

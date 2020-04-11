@@ -20,6 +20,7 @@ class Database {
 		"""SELECT
 			$SCANS_ID,
 			$SCANS_DATETIME,
+			$SCANS_NAME,
 			$SCANS_CONTENT,
 			$SCANS_FORMAT
 			FROM $SCANS
@@ -30,6 +31,7 @@ class Database {
 	fun getScan(id: Long): Cursor? = db.rawQuery(
 		"""SELECT
 			$SCANS_DATETIME,
+			$SCANS_NAME,
 			$SCANS_CONTENT,
 			$SCANS_RAW,
 			$SCANS_FORMAT,
@@ -127,8 +129,14 @@ class Database {
 		db.delete(SCANS, null, null)
 	}
 
+	fun renameScan(id: Long, name: String) {
+		val cv = ContentValues()
+		cv.put(SCANS_NAME, name)
+		db.update(SCANS, cv, "$SCANS_ID = ?", arrayOf("$id"))
+	}
+
 	private class OpenHelper(context: Context) :
-		SQLiteOpenHelper(context, "history.db", null, 3) {
+		SQLiteOpenHelper(context, "history.db", null, 4) {
 		override fun onCreate(db: SQLiteDatabase) {
 			createScans(db)
 		}
@@ -144,6 +152,9 @@ class Database {
 			if (oldVersion < 3) {
 				addMetaDataColumns(db)
 			}
+			if (oldVersion < 4) {
+				addNameColumn(db)
+			}
 		}
 	}
 
@@ -151,6 +162,7 @@ class Database {
 		const val SCANS = "scans"
 		const val SCANS_ID = "_id"
 		const val SCANS_DATETIME = "_datetime"
+		const val SCANS_NAME = "name"
 		const val SCANS_CONTENT = "content"
 		const val SCANS_RAW = "raw"
 		const val SCANS_FORMAT = "format"
@@ -169,6 +181,7 @@ class Database {
 				"""CREATE TABLE $SCANS (
 					$SCANS_ID INTEGER PRIMARY KEY AUTOINCREMENT,
 					$SCANS_DATETIME DATETIME NOT NULL,
+					$SCANS_NAME TEXT,
 					$SCANS_CONTENT TEXT NOT NULL,
 					$SCANS_RAW BLOB,
 					$SCANS_FORMAT TEXT NOT NULL,
@@ -197,6 +210,10 @@ class Database {
 			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_POSSIBLE_COUNTRY TEXT")
 			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_SUGGESTED_PRICE TEXT")
 			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_UPC_EAN_EXTENSION TEXT")
+		}
+
+		private fun addNameColumn(db: SQLiteDatabase) {
+			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_NAME TEXT")
 		}
 	}
 }

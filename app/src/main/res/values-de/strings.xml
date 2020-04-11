@@ -49,6 +49,10 @@
 	<string name="really_remove_scan">Code wirklich entfernen?</string>
 	<string name="really_remove_all_scans">Alle Codes entfernen?</string>
 	<string name="clear_history">Gespeicherte Codes löschen</string>
+	<string name="edit_scan">Bezeichnung ändern</string>
+	<string name="remove_scan">Code löschen</string>
+	<string name="enter_name">Geben Sie eine Bezeichnung für den Code ein</string>
+	<string name="enter_name_hint">Bezeichung des Codes</string>
 	<string name="no_barcode_found">Kein Barcode gefunden</string>
 	<string name="pick_list_separator">Wie sollen die Einträge getrennt werden?</string>
 	<string name="separator_line_break">Zeilenumbruch</string>

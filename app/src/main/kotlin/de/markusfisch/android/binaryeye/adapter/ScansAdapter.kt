@@ -13,6 +13,7 @@ import de.markusfisch.android.binaryeye.data.Database
 class ScansAdapter(context: Context, cursor: Cursor) :
 	CursorAdapter(context, cursor, false) {
 	private val timeIndex = cursor.getColumnIndex(Database.SCANS_DATETIME)
+	private val nameIndex = cursor.getColumnIndex(Database.SCANS_NAME)
 	private val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
 	private val formatIndex = cursor.getColumnIndex(Database.SCANS_FORMAT)
 
@@ -30,12 +31,13 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 		cursor: Cursor
 	) {
 		val holder = getViewHolder(view)
-		val content = cursor.getString(contentIndex)
 		holder.timeView.text = cursor.getString(timeIndex)
-		holder.contentView.text = if (content.isEmpty()) {
-			context.getString(R.string.binary_data)
-		} else {
-			content
+		val name = cursor.getString(nameIndex)
+		val content = cursor.getString(contentIndex)
+		holder.contentView.text = when {
+			name?.isNotEmpty() == true -> name
+			content?.isEmpty() == true -> context.getString(R.string.binary_data)
+			else -> content
 		}
 		holder.formatView.text = cursor.getString(formatIndex)
 	}

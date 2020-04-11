@@ -47,6 +47,10 @@
 	<string name="really_remove_scan">真的要移除掃描記錄?</string>
 	<string name="really_remove_all_scans">真的要移除所有掃描記錄?</string>
 	<string name="clear_history">清除記錄</string>
+	<string name="edit_scan">Edit label</string>
+	<string name="remove_scan">Remove scan</string>
+	<string name="enter_name">Enter a name to describe the scan</string>
+	<string name="enter_name_hint">Name of the scan</string>
 	<string name="no_barcode_found">找不到條碼</string>
 	<string name="pick_list_separator">如何分開列表項目?</string>
 	<string name="separator_line_break">Line break</string>

@@ -49,6 +49,10 @@
 	<string name="really_remove_scan">Vuoi veramente rimuovere la scansione?</string>
 	<string name="really_remove_all_scans">Vuoi veramente rimuovere tutte le scansioni?</string>
 	<string name="clear_history">Pulisci cronologia</string>
+	<string name="edit_scan">Edit label</string>
+	<string name="remove_scan">Remove scan</string>
+	<string name="enter_name">Enter a name to describe the scan</string>
+	<string name="enter_name_hint">Name of the scan</string>
 	<string name="no_barcode_found">Nessun codice a barre trovato</string>
 	<string name="pick_list_separator">Come separare elementi della lista?</string>
 	<string name="separator_line_break">Interruzione di linea</string>

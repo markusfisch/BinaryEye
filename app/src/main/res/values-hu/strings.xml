@@ -49,6 +49,10 @@
 	<string name="really_remove_scan">Valóban eltávolítja a beolvasást?</string>
 	<string name="really_remove_all_scans">Valóban eltávolítja az összes beolvasását?</string>
 	<string name="clear_history">Előzmények törlése</string>
+	<string name="edit_scan">Edit label</string>
+	<string name="remove_scan">Remove scan</string>
+	<string name="enter_name">Enter a name to describe the scan</string>
+	<string name="enter_name_hint">Name of the scan</string>
 	<string name="no_barcode_found">Nem található vonalkód</string>
 	<string name="pick_list_separator">Hogyan kell elválasztani a listaelemeket?</string>
 	<string name="separator_line_break">Sortörés</string>

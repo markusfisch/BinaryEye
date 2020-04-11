@@ -75,6 +75,8 @@ class DatabaseRepository {
 
 	fun removeScans() = db.removeScans()
 
+	fun renameScan(id: Long, name: String) = db.renameScan(id, name)
+
 	data class SimpleScan(
 		val id: Long,
 		val timestamp: String,

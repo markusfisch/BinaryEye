@@ -46,9 +46,13 @@
 	<string name="show_hex_dump">Show hex dump</string>
 	<string name="try_harder">Optimize reader for accuracy, not speed</string>
 	<string name="open_with_url">Open unknown data with URL</string>
-	<string name="really_remove_scan">Supprimer le scan ?</string>
-	<string name="really_remove_all_scans">Supprimer tous les scans ?</string>
+	<string name="really_remove_scan">Supprimer le scan?</string>
+	<string name="really_remove_all_scans">Supprimer tous les scans?</string>
 	<string name="clear_history">Clear history</string>
+	<string name="edit_scan">Edit label</string>
+	<string name="remove_scan">Remove scan</string>
+	<string name="enter_name">Enter a name to describe the scan</string>
+	<string name="enter_name_hint">Name of the scan</string>
 	<string name="no_barcode_found">Aucun code-barres trouvé</string>
 	<string name="pick_list_separator">How to separate list items?</string>
 	<string name="separator_line_break">Line break</string>
