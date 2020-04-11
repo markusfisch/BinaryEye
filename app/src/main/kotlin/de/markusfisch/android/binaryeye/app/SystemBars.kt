@@ -45,6 +45,15 @@ fun initSystemBars(activity: AppCompatActivity) {
 	colorSystemAndToolBars(activity)
 }
 
+private var statusBarColorLocked = false
+fun lockStatusBarColor() {
+	statusBarColorLocked = true
+}
+
+fun unlockStatusBarColor() {
+	statusBarColorLocked = false
+}
+
 private var translucentPrimaryColor = 0
 private val actionBarBackground = ColorDrawable()
 fun colorSystemAndToolBars(
@@ -62,7 +71,9 @@ fun colorSystemAndToolBars(
 	val activity = getAppCompatActivity(context) ?: return
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 		val window = activity.window
-		window.statusBarColor = topColor
+		if (!statusBarColorLocked) {
+			window.statusBarColor = topColor
+		}
 		window.navigationBarColor = if (scrolled || scrollable) {
 			translucentPrimaryColor
 		} else {

@@ -4,10 +4,12 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.database.Cursor
+import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import android.support.annotation.WorkerThread
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.view.ActionMode
 import android.support.v7.widget.SwitchCompat
@@ -46,6 +48,14 @@ class HistoryFragment : Fragment() {
 				R.menu.fragment_history_edit,
 				menu
 			)
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+				lockStatusBarColor()
+				val ac = activity
+				ac.window.statusBarColor = ContextCompat.getColor(
+					ac,
+					R.color.accent_dark
+				)
+			}
 			return true
 		}
 
@@ -213,6 +223,7 @@ class HistoryFragment : Fragment() {
 	}
 
 	private fun closeActionMode() {
+		unlockStatusBarColor()
 		selectedScanId = 0L
 		selectedScanPosition = -1
 		actionMode?.finish()
