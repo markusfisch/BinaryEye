@@ -69,8 +69,16 @@ fun colorSystemAndToolBars(
 			0
 		}
 	}
-	actionBarBackground.color = topColor
-	activity.supportActionBar?.setBackgroundDrawable(actionBarBackground)
+	activity.supportActionBar?.setBackgroundDrawable(
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			// avoid allocation on Honeycomb and better
+			actionBarBackground.color = topColor
+			actionBarBackground
+		} else {
+			// ColorDrawable.setColor() doesn't exist pre Honeycomb
+			ColorDrawable(topColor)
+		}
+	)
 }
 
 private fun getAppCompatActivity(context: Context): AppCompatActivity? {
