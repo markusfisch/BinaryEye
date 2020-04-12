@@ -10,8 +10,8 @@ import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.prefs
-import de.markusfisch.android.binaryeye.app.setWindowInsetListener
 import de.markusfisch.android.binaryeye.view.setPadding
+import de.markusfisch.android.binaryeye.view.setWindowInsetListener
 
 class EncodeFragment : Fragment() {
 	private lateinit var formatView: Spinner

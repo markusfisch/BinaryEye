@@ -11,17 +11,13 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.colorSystemAndToolBars
 import de.markusfisch.android.binaryeye.app.initSystemBars
 import de.markusfisch.android.binaryeye.app.setFragment
-import de.markusfisch.android.binaryeye.app.setupInsets
+import de.markusfisch.android.binaryeye.data.Scan
 import de.markusfisch.android.binaryeye.fragment.DecodeFragment
 import de.markusfisch.android.binaryeye.fragment.EncodeFragment
 import de.markusfisch.android.binaryeye.fragment.HistoryFragment
 import de.markusfisch.android.binaryeye.fragment.PreferencesFragment
-import de.markusfisch.android.binaryeye.repository.Scan
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
+import de.markusfisch.android.binaryeye.view.setupInsets
 
-@FlowPreview
-@ExperimentalCoroutinesApi
 class MainActivity : AppCompatActivity() {
 	override fun onSupportNavigateUp(): Boolean {
 		val fm = supportFragmentManager
@@ -39,7 +35,10 @@ class MainActivity : AppCompatActivity() {
 
 		initSystemBars(this)
 		val toolbar = findViewById(R.id.toolbar) as Toolbar
-		setupInsets(findViewById(android.R.id.content), toolbar)
+		setupInsets(
+			findViewById(android.R.id.content),
+			toolbar
+		)
 		setSupportActionBar(toolbar)
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

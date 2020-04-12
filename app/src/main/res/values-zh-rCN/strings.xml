@@ -80,9 +80,6 @@
 	<string name="csv_delimiter">使用哪个分隔符 (CSV-文件)?</string>
 	<string name="delimiter_comma">逗号</string>
 	<string name="delimiter_semicolon">分号</string>
-	<string name="csv_allow_binary">允许输出文件中的二进制数据？</string>
-	<string name="no">否</string>
-	<string name="csv_allow_binary_message">您可能不想这样做，因为它会破坏文件格式，并且可能无法再由文本编辑器读取。</string>
 	<string name="saved_in_downloads">已保存到下载目录</string>
 	<string name="rotate_image_cw">旋转图片</string>
 	<string name="pick_file">选择图片文件</string>

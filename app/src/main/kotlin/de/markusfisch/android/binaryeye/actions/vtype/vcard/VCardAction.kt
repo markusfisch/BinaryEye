@@ -124,22 +124,22 @@ object VCardAction : IntentAction() {
 			.matchEntire(
 				this
 			)?.groupValues?.let {
-			listOf(
-				it[1],
-				it[2],
-				it[3],
-				"${it[4]} ${it[6]}",
-				"${it[5]} ${it[7]}"
-			).filter { line -> line.isNotBlank() }
-				.joinToString("\n").takeIf { location -> location.isNotBlank() }
-		} ?: this
+				listOf(
+					it[1],
+					it[2],
+					it[3],
+					"${it[4]} ${it[6]}",
+					"${it[5]} ${it[7]}"
+				).filter { line -> line.isNotBlank() }
+					.joinToString("\n").takeIf { location -> location.isNotBlank() }
+			} ?: this
 
 	private val String.nameFormat: String
 		get() = """^([^;]*?);([^;]*?);([^;]*?);([^;]*?);([^;]*?)$""".toRegex()
 			.matchEntire(this)?.groupValues?.let {
-			listOf(it[4], it[2], it[3], it[1], it[5]).joinToString(" ")
-				.takeIf { name -> name.isNotBlank() }
-		} ?: this
+				listOf(it[4], it[2], it[3], it[1], it[5]).joinToString(" ")
+					.takeIf { name -> name.isNotBlank() }
+			} ?: this
 
 	private val String.mailType: Int?
 		get() = when (this.toUpperCase(Locale.US)) {

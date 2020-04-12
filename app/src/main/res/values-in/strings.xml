@@ -80,9 +80,6 @@
 	<string name="csv_delimiter">Karakter pemisah apa yang harus digunakan (Berkas-CSV)?</string>
 	<string name="delimiter_comma">Koma</string>
 	<string name="delimiter_semicolon">Titik koma</string>
-	<string name="csv_allow_binary">Izinkan data biner di dalam berkas keluaran?</string>
-	<string name="no">Tidak</string>
-	<string name="csv_allow_binary_message">Anda sebaiknya tidak mengizinkannya, karena akan merusak format berkas dan kemungkinan tidak bisa lagi dibaca oleh aplikasi penyunting teks.</string>
 	<string name="saved_in_downloads">Simpan di dalam unduhan</string>
 	<string name="rotate_image_cw">Putar gambar searah jarum jam</string>
 	<string name="pick_file">Pilih berkas gambar</string>

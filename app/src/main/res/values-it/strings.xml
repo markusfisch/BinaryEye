@@ -81,9 +81,6 @@
 	<string name="csv_delimiter">Quale delimitatore usare (File-CSV)?</string>
 	<string name="delimiter_comma">Virgola</string>
 	<string name="delimiter_semicolon">Punto e virgola</string>
-	<string name="csv_allow_binary">Permetti dati binari nel file di output?</string>
-	<string name="no">No</string>
-	<string name="csv_allow_binary_message">È consigliato non permetterlo, perché rovina il formato del file e probabilmente lo renderà non più leggibile dagli editor di testo.</string>
 	<string name="saved_in_downloads">Salvato nei download</string>
 	<string name="rotate_image_cw">Ruota immagine in senso orario</string>
 	<string name="pick_file">Scegli file immagine</string>

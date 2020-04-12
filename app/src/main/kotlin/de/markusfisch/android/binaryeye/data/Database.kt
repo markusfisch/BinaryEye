@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
 import de.markusfisch.android.binaryeye.app.prefs
-import de.markusfisch.android.binaryeye.repository.Scan
 
 class Database {
 	private lateinit var db: SQLiteDatabase
@@ -28,8 +27,30 @@ class Database {
 		""", null
 	)
 
-	fun getScan(id: Long): Cursor? = db.rawQuery(
+	fun getScansDetailed(): Cursor? = db.rawQuery(
 		"""SELECT
+			$SCANS_ID,
+			$SCANS_DATETIME,
+			$SCANS_NAME,
+			$SCANS_CONTENT,
+			$SCANS_RAW,
+			$SCANS_FORMAT,
+			$SCANS_ERROR_CORRECTION_LEVEL,
+			$SCANS_ISSUE_NUMBER,
+			$SCANS_ORIENTATION,
+			$SCANS_OTHER_META_DATA,
+			$SCANS_PDF417_EXTRA_METADATA,
+			$SCANS_POSSIBLE_COUNTRY,
+			$SCANS_SUGGESTED_PRICE,
+			$SCANS_UPC_EAN_EXTENSION
+			FROM $SCANS
+			ORDER BY $SCANS_DATETIME DESC
+		""", null
+	)
+
+	fun getScan(id: Long): Scan? = db.rawQuery(
+		"""SELECT
+			$SCANS_ID,
 			$SCANS_DATETIME,
 			$SCANS_NAME,
 			$SCANS_CONTENT,
@@ -46,16 +67,27 @@ class Database {
 			FROM $SCANS
 			WHERE $SCANS_ID = ?
 		""", arrayOf("$id")
-	)
-
-	fun hasBinaryData(): Cursor? = db.rawQuery(
-		"""SELECT
-			1
-			FROM $SCANS
-			WHERE $SCANS_RAW IS NOT NULL
-			LIMIT 1
-		""", null
-	)
+	)?.use {
+		if (it.moveToFirst()) {
+			Scan(
+				it.getString(SCANS_CONTENT),
+				it.getBlob(SCANS_RAW),
+				it.getString(SCANS_FORMAT),
+				it.getString(SCANS_ERROR_CORRECTION_LEVEL),
+				it.getString(SCANS_ISSUE_NUMBER),
+				it.getString(SCANS_ORIENTATION),
+				it.getString(SCANS_OTHER_META_DATA),
+				it.getString(SCANS_PDF417_EXTRA_METADATA),
+				it.getString(SCANS_POSSIBLE_COUNTRY),
+				it.getString(SCANS_SUGGESTED_PRICE),
+				it.getString(SCANS_UPC_EAN_EXTENSION),
+				it.getString(SCANS_DATETIME),
+				it.getLong(SCANS_ID)
+			)
+		} else {
+			null
+		}
+	}
 
 	fun insertScan(scan: Scan): Long {
 		val cv = ContentValues()
@@ -79,7 +111,7 @@ class Database {
 		scan.suggestedPrice?.let { cv.put(SCANS_SUGGESTED_PRICE, it) }
 		scan.upcEanExtension?.let { cv.put(SCANS_UPC_EAN_EXTENSION, it) }
 		if (prefs.ignoreConsecutiveDuplicates) {
-			val id = getLastScan(
+			val id = getIdOfLastScan(
 				cv.get(SCANS_CONTENT) as String,
 				if (isRaw) cv.get(SCANS_RAW) as ByteArray else null,
 				scan.format
@@ -91,7 +123,7 @@ class Database {
 		return db.insert(SCANS, null, cv)
 	}
 
-	private fun getLastScan(
+	private fun getIdOfLastScan(
 		content: String,
 		raw: ByteArray?,
 		format: String
@@ -217,3 +249,15 @@ class Database {
 		}
 	}
 }
+
+private fun Cursor.getString(name: String) = this.getString(
+	this.getColumnIndex(name)
+)
+
+private fun Cursor.getBlob(name: String) = this.getBlob(
+	this.getColumnIndex(name)
+)
+
+private fun Cursor.getLong(name: String) = this.getLong(
+	this.getColumnIndex(name)
+)

@@ -15,8 +15,9 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
 import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
 import de.markusfisch.android.binaryeye.app.*
-import de.markusfisch.android.binaryeye.repository.Scan
+import de.markusfisch.android.binaryeye.data.Scan
 import de.markusfisch.android.binaryeye.view.setPadding
+import de.markusfisch.android.binaryeye.view.setWindowInsetListener
 import de.markusfisch.android.binaryeye.widget.toast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -278,7 +279,7 @@ class DecodeFragment : Fragment() {
 	}
 }
 
-private fun hexDump(bytes: ByteArray, charsPerLine: Int = 33): String {
+fun hexDump(bytes: ByteArray, charsPerLine: Int = 33): String {
 	if (charsPerLine < 4 || bytes.isEmpty()) {
 		return ""
 	}
@@ -292,9 +293,7 @@ private fun hexDump(bytes: ByteArray, charsPerLine: Int = 33): String {
 		val ord = bytes[i]
 		hex.append(String.format("%02X ", ord))
 		ascii.append(if (ord > 31) ord.toChar() else " ")
-
 		++i
-
 		val posInLine = i % itemsPerLine
 		val atEnd = i >= len
 		var atLineEnd = posInLine == 0

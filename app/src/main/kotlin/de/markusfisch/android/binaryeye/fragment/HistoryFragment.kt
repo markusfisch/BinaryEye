@@ -7,7 +7,6 @@ import android.database.Cursor
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
-import android.support.annotation.WorkerThread
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
@@ -20,18 +19,12 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.ScansAdapter
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.data.Database
-import de.markusfisch.android.binaryeye.data.csv.csvBuilder
-import de.markusfisch.android.binaryeye.repository.Scan
+import de.markusfisch.android.binaryeye.data.exportCsv
 import de.markusfisch.android.binaryeye.view.setPadding
-import de.markusfisch.android.binaryeye.widget.toast
+import de.markusfisch.android.binaryeye.view.setWindowInsetListener
+import de.markusfisch.android.binaryeye.view.useVisibility
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.mapNotNull
-import java.io.IOException
 
-@FlowPreview
-@ExperimentalCoroutinesApi
 class HistoryFragment : Fragment() {
 	private lateinit var listView: ListView
 	private lateinit var fab: View
@@ -202,7 +195,7 @@ class HistoryFragment : Fragment() {
 
 	private fun update(context: Context) {
 		scope.launch {
-			val cursor = db.getScansCursor()
+			val cursor = db.getScans()
 			withContext(Dispatchers.Main) {
 				fab.visibility = if (cursor != null && cursor.count > 0) {
 					View.VISIBLE
@@ -296,21 +289,6 @@ class HistoryFragment : Fragment() {
 			if (!hasWritePermission(activity)) {
 				return@useVisibility
 			}
-			val (getBinaries, scans) = getScans {
-				alertDialog(context) { resume ->
-					setTitle(R.string.csv_allow_binary)
-					setMessage(R.string.csv_allow_binary_message)
-					setPositiveButton(R.string.no) { _, _ ->
-						resume(false)
-					}
-					setNegativeButton(android.R.string.yes) { _, _ ->
-						resume(true)
-					}
-					setNeutralButton(android.R.string.cancel) { _, _ ->
-						resume(null)
-					}
-				}
-			} ?: return@useVisibility
 			val delimiters = context.resources.getStringArray(
 				R.array.csv_delimiters_values
 			)
@@ -323,86 +301,10 @@ class HistoryFragment : Fragment() {
 			val name = withContext(Dispatchers.Main) {
 				activity.askForFileName(suffix = ".csv")
 			} ?: return@useVisibility
-			val message = try {
-				val out = getExternalOutputStream(
-					context,
-					name,
-					"text/csv"
-				)
-				out ?: throw IOException()
-				val csv = scans.toCSV(delimiter, getBinaries)
-				csv.collect {
-					withContext(Dispatchers.IO) {
-						out.write(it)
-					}
-				}
-				R.string.saved_in_downloads
-			} catch (e: FileAlreadyExistsException) {
-				R.string.error_file_exists
-			} catch (e: IOException) {
-				R.string.error_saving_binary_data
-			}
-			withContext(Dispatchers.Main) {
-				context.toast(message)
+			db.getScansDetailed()?.use { cursor ->
+				exportCsv(context, name, cursor, delimiter)
 			}
 		}
-	}
-
-	private fun Flow<Scan>.toCSV(
-		delimiter: String,
-		allowBinary: Boolean
-	): Flow<ByteArray> {
-		return csvBuilder<Scan> {
-			column {
-				name = "DATE"
-				gettingByString { it.timestamp }
-			}
-			column {
-				name = "TYPE"
-				gettingByString { it.format }
-			}
-			column {
-				name = "CONTENT"
-				gettingByString { it.content }
-			}
-			if (allowBinary) column {
-				isBinary = true
-				name = "BINARY_CONTENT"
-				gettingBy { it.raw ?: ByteArray(0) }
-			}
-			column {
-				name = "ERROR_CORRECTION_LEVEL"
-				gettingByString { it.errorCorrectionLevel }
-			}
-			column {
-				name = "ISSUE_NUMBER"
-				gettingByString { it.issueNumber }
-			}
-			column {
-				name = "ORIENTATION"
-				gettingByString { it.orientation }
-			}
-			column {
-				name = "OTHER"
-				gettingByString { it.otherMetaData }
-			}
-			column {
-				name = "PDF417_EXTRA_METADATA"
-				gettingByString { it.pdf417ExtraMetaData }
-			}
-			column {
-				name = "POSSIBLE_COUNTRY"
-				gettingByString { it.possibleCountry }
-			}
-			column {
-				name = "SUGGESTED_PRICE"
-				gettingByString { it.suggestedPrice }
-			}
-			column {
-				name = "UPC_EAN_EXTENSION"
-				gettingByString { it.upcEanExtension }
-			}
-		}.buildWith(this, delimiter)
 	}
 
 	private fun pickListSeparatorAndShare(context: Context) {
@@ -421,28 +323,22 @@ class HistoryFragment : Fragment() {
 		scope.launch {
 			progressView.useVisibility {
 				val sb = StringBuilder()
-				getScans { false }?.second?.collect {
-					sb.append(it.content)
-					sb.append(separator)
+				db.getScans()?.use { cursor ->
+					val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
+					if (cursor.moveToFirst()) {
+						do {
+							val content = cursor.getString(contentIndex)
+							if (content?.isNotEmpty() == true) {
+								sb.append(content)
+								sb.append(separator)
+							}
+						} while (cursor.moveToNext())
+					}
 				}
 				val text = sb.toString()
 				if (text.isNotEmpty()) withContext(Dispatchers.Main) {
 					shareText(context, text)
 				}
-			}
-		}
-	}
-
-	@WorkerThread
-	private suspend inline fun getScans(
-		crossinline binaryData: suspend () -> Boolean?
-	): Pair<Boolean, Flow<Scan>>? {
-		val getBinaries: Boolean = db.hasBinaryData() && binaryData() ?: return null
-		return getBinaries to db.getScans().mapNotNull {
-			when {
-				it.content.isNotEmpty() -> db.getScan(it.id)
-				getBinaries -> db.getScan(it.id)
-				else -> null
 			}
 		}
 	}

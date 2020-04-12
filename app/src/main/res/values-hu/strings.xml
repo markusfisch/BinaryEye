@@ -81,9 +81,6 @@
 	<string name="csv_delimiter">Milyen mezőelválasztót kell használni (CSV-fájl)?</string>
 	<string name="delimiter_comma">Vessző</string>
 	<string name="delimiter_semicolon">Pontosvessző</string>
-	<string name="csv_allow_binary">Engedélyezi a bináris adatot a kimeneti fájlban?</string>
-	<string name="no">Nem</string>
-	<string name="csv_allow_binary_message">Valószínűleg ezt nem szeretné engedélyezni, mivel tönkre fogja tenni a fájlformátumot, és a szövegszerkesztők talán nem fogják tudni többé olvasni.</string>
 	<string name="saved_in_downloads">Elmentve a letöltésekbe</string>
 	<string name="rotate_image_cw">Kép forgatása jobbra</string>
 	<string name="pick_file">Képfájl kiválasztása</string>

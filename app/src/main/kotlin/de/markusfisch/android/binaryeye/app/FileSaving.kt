@@ -43,11 +43,14 @@ fun writeExternalFile(
 	context: Context,
 	fileName: String,
 	mimeType: String,
-	write: (out: OutputStream) -> Any
+	write: (outputStream: OutputStream) -> Any
 ): Int = try {
-	val out = getExternalOutputStream(context, fileName, mimeType)
-	out ?: throw IOException()
-	out.use { write(it) }
+	val outputStream = getExternalOutputStream(
+		context,
+		fileName,
+		mimeType
+	) ?: throw IOException()
+	outputStream.use { write(it) }
 	R.string.saved_in_downloads
 } catch (e: FileAlreadyExistsException) {
 	R.string.error_file_exists
@@ -55,7 +58,7 @@ fun writeExternalFile(
 	R.string.error_saving_binary_data
 }
 
-fun getExternalOutputStream(
+private fun getExternalOutputStream(
 	context: Context,
 	fileName: String,
 	mimeType: String

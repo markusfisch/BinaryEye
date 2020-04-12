@@ -19,21 +19,17 @@ import com.google.zxing.ResultMetadataType
 import com.google.zxing.ResultPointCallback
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.*
+import de.markusfisch.android.binaryeye.data.Scan
 import de.markusfisch.android.binaryeye.graphics.Mapping
 import de.markusfisch.android.binaryeye.graphics.frameToView
-import de.markusfisch.android.binaryeye.repository.Scan
 import de.markusfisch.android.binaryeye.rs.Preprocessor
 import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.cameraview.widget.CameraView
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-@ExperimentalCoroutinesApi
-@FlowPreview
 class CameraActivity : AppCompatActivity() {
 	private val zxing = Zxing(ResultPointCallback { point ->
 		point?.let {
@@ -443,8 +439,6 @@ class CameraActivity : AppCompatActivity() {
 	}
 }
 
-@ExperimentalCoroutinesApi
-@FlowPreview
 fun showResult(
 	activity: Activity,
 	result: Result,

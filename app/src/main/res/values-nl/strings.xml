@@ -77,9 +77,6 @@
 	<string name="csv_delimiter">Wat voor separator wil je gebruiken (CSV-bestand)?</string>
 	<string name="delimiter_comma">Komma</string>
 	<string name="delimiter_semicolon">Kommapunt</string>
-	<string name="csv_allow_binary">Binaire data in outputbestand toestaan?</string>
-	<string name="no">Nee</string>
-	<string name="csv_allow_binary_message">Waarschijnlijk wil je dit niet toestaan omdat daardoor het bestandsformaat breekt en misschien niet meer toor teksteditoren leesbaar is.</string>
 	<string name="error_saving_binary_data">Kon bestand niet opslaan</string>
 	<string name="open_with_url">Niet herkende data met URL openen</string>
 	<string name="pick_list_separator">Hoe de lijstonderdelen te separeren?</string>

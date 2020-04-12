@@ -9,8 +9,12 @@ import android.view.*
 import android.widget.EditText
 import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.app.*
+import de.markusfisch.android.binaryeye.app.addSuffixIfNotGiven
+import de.markusfisch.android.binaryeye.app.hasWritePermission
+import de.markusfisch.android.binaryeye.app.shareFile
+import de.markusfisch.android.binaryeye.app.writeExternalFile
 import de.markusfisch.android.binaryeye.view.setPadding
+import de.markusfisch.android.binaryeye.view.setWindowInsetListener
 import de.markusfisch.android.binaryeye.widget.ConfinedScalingImageView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing

@@ -15,15 +15,17 @@ import android.view.Menu
 import android.view.MenuItem
 import com.google.zxing.Result
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.app.*
+import de.markusfisch.android.binaryeye.app.colorSystemAndToolBars
+import de.markusfisch.android.binaryeye.app.initSystemBars
+import de.markusfisch.android.binaryeye.app.vibrate
 import de.markusfisch.android.binaryeye.graphics.crop
 import de.markusfisch.android.binaryeye.graphics.loadImageUri
 import de.markusfisch.android.binaryeye.graphics.mapResult
+import de.markusfisch.android.binaryeye.view.setWindowInsetListener
+import de.markusfisch.android.binaryeye.view.setupInsets
 import de.markusfisch.android.binaryeye.widget.CropImageView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
 
 class PickActivity : AppCompatActivity() {
 	private val zxing = Zxing()
@@ -31,8 +33,6 @@ class PickActivity : AppCompatActivity() {
 	private lateinit var vibrator: Vibrator
 	private lateinit var cropImageView: CropImageView
 
-	@FlowPreview
-	@ExperimentalCoroutinesApi
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
 		setContentView(R.layout.activity_pick)
@@ -138,8 +138,6 @@ class PickActivity : AppCompatActivity() {
 		return loadImageUri(contentResolver, uri)
 	}
 
-	@ExperimentalCoroutinesApi
-	@FlowPreview
 	private fun scanImage(result: Result?) {
 		if (result != null) {
 			showResult(this, result)

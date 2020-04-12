@@ -1,4 +1,4 @@
-package de.markusfisch.android.binaryeye.repository
+package de.markusfisch.android.binaryeye.data
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -50,10 +50,8 @@ data class Scan(
 		return id == other.id &&
 				timestamp == other.timestamp &&
 				content == other.content &&
-				(
-						(raw == null && other.raw == null) ||
-								(raw != null && other.raw != null && raw.contentEquals(other.raw))
-						) &&
+				((raw == null && other.raw == null) ||
+						(raw != null && other.raw != null && raw.contentEquals(other.raw))) &&
 				format == other.format &&
 				errorCorrectionLevel == other.errorCorrectionLevel &&
 				issueNumber == other.issueNumber &&
