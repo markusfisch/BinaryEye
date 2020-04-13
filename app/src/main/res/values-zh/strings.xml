@@ -85,4 +85,7 @@
 	<string name="rotate_image_cw">Rotate image clockwise</string>
 	<string name="pick_file">Pick image file</string>
 	<string name="pick_code_to_scan">Pick code to scan</string>
+	<string name="shortcut_decode">Scan a barcode</string>
+	<string name="shortcut_encode">Create a barcode</string>
+	<string name="shortcut_preferences">Settings</string>
 </resources>

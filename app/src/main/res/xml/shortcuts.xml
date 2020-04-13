@@ -1,0 +1,42 @@
+<shortcuts
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:ignore="UnusedAttribute">
+	<shortcut
+		android:shortcutId="decode"
+		android:enabled="true"
+		android:icon="@drawable/ic_shortcut_decode"
+		android:shortcutShortLabel="@string/shortcut_decode"
+		android:shortcutDisabledMessage="@string/shortcut_decode">
+		<intent
+			android:action="android.intent.action.VIEW"
+			android:targetPackage="de.markusfisch.android.binaryeye"
+			android:targetClass="de.markusfisch.android.binaryeye.activity.CameraActivity"/>
+	</shortcut>
+	<shortcut
+		android:shortcutId="encode"
+		android:enabled="true"
+		android:icon="@drawable/ic_shortcut_encode"
+		android:shortcutShortLabel="@string/shortcut_encode"
+		android:shortcutDisabledMessage="@string/shortcut_encode">
+		<intent
+			android:action="android.intent.action.VIEW"
+			android:targetPackage="de.markusfisch.android.binaryeye"
+			android:targetClass="de.markusfisch.android.binaryeye.activity.MainActivity">
+			<extra android:name="encode" android:value="encode"/>
+		</intent>
+	</shortcut>
+	<shortcut
+		android:shortcutId="preferences"
+		android:enabled="true"
+		android:icon="@drawable/ic_shortcut_preferences"
+		android:shortcutShortLabel="@string/shortcut_preferences"
+		android:shortcutDisabledMessage="@string/shortcut_preferences">
+		<intent
+			android:action="android.intent.action.VIEW"
+			android:targetPackage="de.markusfisch.android.binaryeye"
+			android:targetClass="de.markusfisch.android.binaryeye.activity.MainActivity">
+			<extra android:name="preferences" android:value="preferences"/>
+		</intent>
+	</shortcut>
+</shortcuts>

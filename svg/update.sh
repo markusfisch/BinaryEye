@@ -111,6 +111,9 @@ svg/ic_launcher.svg 48
 EOF
 
 update app/src/main/res/drawable << EOF
-svg/wallpaper.svg 384
+svg/ic_shortcut_decode.svg 48
+svg/ic_shortcut_encode.svg 48
+svg/ic_shortcut_preferences.svg 48
 svg/logo.svg 80
+svg/wallpaper.svg 384
 EOF
