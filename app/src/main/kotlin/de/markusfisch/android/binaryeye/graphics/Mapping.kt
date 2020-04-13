@@ -31,5 +31,7 @@ data class Mapping(
 		(point.y * ratioY).roundToInt() + offsetY
 	)
 
-	fun map(points: Array<ResultPoint>): List<Point> = points.map { map(it) }
+	fun map(points: Array<ResultPoint?>): List<Point> =
+		// because ZXing apparently returns null in this array sometimes
+		points.filterNotNull().map { map(it) }
 }
