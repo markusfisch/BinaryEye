@@ -73,6 +73,7 @@
 	<string name="otpauth_add">2FA toevoegen</string>
 	<string name="otpauth_error">2FA kon niet toegevoegd worden</string>
 	<string name="search_web">Het net doorzoeken</string>
+	<string name="search_scan">Search scan</string>
 	<string name="export_to_file">Naar bestand exporteren</string>
 	<string name="csv_delimiter">Wat voor separator wil je gebruiken (CSV-bestand)?</string>
 	<string name="delimiter_comma">Komma</string>

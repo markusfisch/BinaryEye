@@ -76,6 +76,7 @@
 	<string name="otpauth_add">添加两步验证</string>
 	<string name="otpauth_error">无法添加两步验证</string>
 	<string name="search_web">在互联网中搜索</string>
+	<string name="search_scan">Search scan</string>
 	<string name="export_to_file">导出为CSV文件</string>
 	<string name="csv_delimiter">使用哪个分隔符 (CSV-文件)?</string>
 	<string name="delimiter_comma">逗号</string>

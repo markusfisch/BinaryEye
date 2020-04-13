@@ -15,7 +15,7 @@ class Database {
 		db = OpenHelper(context).writableDatabase
 	}
 
-	fun getScans(): Cursor? = db.rawQuery(
+	fun getScans(query: String? = null): Cursor? = db.rawQuery(
 		"""SELECT
 			$SCANS_ID,
 			$SCANS_DATETIME,
@@ -23,11 +23,12 @@ class Database {
 			$SCANS_CONTENT,
 			$SCANS_FORMAT
 			FROM $SCANS
+			${getWhereClause(query)}
 			ORDER BY $SCANS_DATETIME DESC
-		""", null
+		""", getWhereArguments(query)
 	)
 
-	fun getScansDetailed(): Cursor? = db.rawQuery(
+	fun getScansDetailed(query: String? = null): Cursor? = db.rawQuery(
 		"""SELECT
 			$SCANS_ID,
 			$SCANS_DATETIME,
@@ -44,9 +45,24 @@ class Database {
 			$SCANS_SUGGESTED_PRICE,
 			$SCANS_UPC_EAN_EXTENSION
 			FROM $SCANS
+			${getWhereClause(query)}
 			ORDER BY $SCANS_DATETIME DESC
-		""", null
+		""", getWhereArguments(query)
 	)
+
+	private fun getWhereClause(query: String?) = if (query?.isNotEmpty() == true) {
+		"""WHERE $SCANS_CONTENT LIKE ?
+			OR $SCANS_NAME LIKE ?"""
+	} else {
+		""
+	}
+
+	private fun getWhereArguments(query: String?) = if (query?.isNotEmpty() == true) {
+		val instr = "%$query%"
+		arrayOf(instr, instr)
+	} else {
+		null
+	}
 
 	fun getScan(id: Long): Scan? = db.rawQuery(
 		"""SELECT

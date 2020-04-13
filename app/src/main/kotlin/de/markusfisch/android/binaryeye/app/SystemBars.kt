@@ -21,9 +21,12 @@ val systemBarScrollListener = object : AbsListView.OnScrollListener {
 		// not putting it on the queue makes it only work sometimes
 		view.post {
 			val scrolled = firstVisibleItem > 0 ||
-					(totalItemCount > 0 && view.getChildAt(0).top < view.paddingTop)
-			val scrollable = if (scrolled) true else totalItemCount > 0 &&
-					view.getChildAt(view.lastVisiblePosition).bottom >= view.height
+					(totalItemCount > 0 && firstChildScrolled(view))
+			val scrollable = if (scrolled) {
+				true
+			} else {
+				totalItemCount > 0 && lastChildOutOfView(view)
+			}
 			colorSystemAndToolBars(view.context, scrolled, scrollable)
 		}
 	}
@@ -33,6 +36,16 @@ val systemBarScrollListener = object : AbsListView.OnScrollListener {
 		scrollState: Int
 	) {
 	}
+}
+
+private fun firstChildScrolled(listView: AbsListView): Boolean {
+	val child = listView.getChildAt(0)
+	return child != null && child.top < listView.paddingTop
+}
+
+private fun lastChildOutOfView(listView: AbsListView): Boolean {
+	val child = listView.getChildAt(listView.lastVisiblePosition)
+	return child.bottom >= listView.height
 }
 
 fun initSystemBars(activity: AppCompatActivity) {

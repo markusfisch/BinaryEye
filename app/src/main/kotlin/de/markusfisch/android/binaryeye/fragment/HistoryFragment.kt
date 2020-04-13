@@ -2,15 +2,18 @@ package de.markusfisch.android.binaryeye.fragment
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.app.SearchManager
 import android.content.Context
 import android.database.Cursor
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
+import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.view.ActionMode
+import android.support.v7.widget.SearchView
 import android.support.v7.widget.SwitchCompat
 import android.view.*
 import android.widget.EditText
@@ -26,6 +29,7 @@ import de.markusfisch.android.binaryeye.view.useVisibility
 import kotlinx.coroutines.*
 
 class HistoryFragment : Fragment() {
+	private lateinit var useHistorySwitch: SwitchCompat
 	private lateinit var listView: ListView
 	private lateinit var fab: View
 	private lateinit var progressView: View
@@ -92,6 +96,7 @@ class HistoryFragment : Fragment() {
 	private var actionMode: ActionMode? = null
 	private var selectedScanId = 0L
 	private var selectedScanPosition = -1
+	private var filter: String? = null
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -111,13 +116,12 @@ class HistoryFragment : Fragment() {
 			false
 		)
 
-		val useHistorySwitch = view.findViewById(
+		useHistorySwitch = view.findViewById(
 			R.id.use_history
 		) as SwitchCompat
 		initHistorySwitch(useHistorySwitch)
 
 		listView = view.findViewById(R.id.scans)
-		listView.emptyView = useHistorySwitch
 		listView.setOnItemClickListener { _, _, _, id ->
 			showScan(id)
 		}
@@ -147,6 +151,8 @@ class HistoryFragment : Fragment() {
 			listView.setPadding(insets)
 		}
 
+		update(context)
+
 		return view
 	}
 
@@ -156,11 +162,6 @@ class HistoryFragment : Fragment() {
 		parentJob.cancel()
 	}
 
-	override fun onResume() {
-		super.onResume()
-		update(context)
-	}
-
 	override fun onPause() {
 		super.onPause()
 		listViewState = listView.onSaveInstanceState()
@@ -168,6 +169,35 @@ class HistoryFragment : Fragment() {
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 		inflater.inflate(R.menu.fragment_history, menu)
+		initSearchView(menu.findItem(R.id.search))
+		menu.setGroupVisible(R.id.scans_available, scansAdapter?.count != 0)
+	}
+
+	private fun initSearchView(item: MenuItem?) {
+		item ?: return
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+			item.isVisible = false
+		} else {
+			val ac = activity
+			val searchView = item.actionView as SearchView
+			val searchManager = ac.getSystemService(
+				Context.SEARCH_SERVICE
+			) as SearchManager
+			searchView.setSearchableInfo(
+				searchManager.getSearchableInfo(ac.componentName)
+			)
+			searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+				override fun onQueryTextSubmit(query: String): Boolean {
+					update(ac, query)
+					return false
+				}
+
+				override fun onQueryTextChange(query: String): Boolean {
+					update(ac, query)
+					return false
+				}
+			})
+		}
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -193,11 +223,24 @@ class HistoryFragment : Fragment() {
 		}
 	}
 
-	private fun update(context: Context) {
+	private fun updateAndClearFilter(context: Context) {
+		filter = null
+		update(context)
+	}
+
+	private fun update(context: Context, query: String? = null) {
+		query?.let { filter = it }
 		scope.launch {
-			val cursor = db.getScans()
+			val cursor = db.getScans(filter)
 			withContext(Dispatchers.Main) {
-				fab.visibility = if (cursor != null && cursor.count > 0) {
+				val hasScans = cursor != null && cursor.count > 0
+				if (filter == null) {
+					if (!hasScans) {
+						listView.emptyView = useHistorySwitch
+					}
+					ActivityCompat.invalidateOptionsMenu(activity)
+				}
+				fab.visibility = if (hasScans) {
 					View.VISIBLE
 				} else {
 					View.GONE
@@ -265,7 +308,11 @@ class HistoryFragment : Fragment() {
 			.setMessage(R.string.really_remove_scan)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				db.removeScan(id)
-				update(context)
+				if (scansAdapter?.count == 1) {
+					updateAndClearFilter(context)
+				} else {
+					update(context)
+				}
 			}
 			.setNegativeButton(android.R.string.cancel) { _, _ ->
 			}
@@ -277,7 +324,7 @@ class HistoryFragment : Fragment() {
 			.setMessage(R.string.really_remove_all_scans)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				db.removeScans()
-				update(context)
+				updateAndClearFilter(context)
 			}
 			.setNegativeButton(android.R.string.cancel) { _, _ ->
 			}
@@ -301,7 +348,7 @@ class HistoryFragment : Fragment() {
 			val name = withContext(Dispatchers.Main) {
 				activity.askForFileName(suffix = ".csv")
 			} ?: return@useVisibility
-			db.getScansDetailed()?.use { cursor ->
+			db.getScansDetailed(filter)?.use { cursor ->
 				exportCsv(context, name, cursor, delimiter)
 			}
 		}
@@ -323,7 +370,7 @@ class HistoryFragment : Fragment() {
 		scope.launch {
 			progressView.useVisibility {
 				val sb = StringBuilder()
-				db.getScans()?.use { cursor ->
+				db.getScans(filter)?.use { cursor ->
 					val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
 					if (cursor.moveToFirst()) {
 						do {

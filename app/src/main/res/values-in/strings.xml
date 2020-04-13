@@ -76,6 +76,7 @@
 	<string name="otpauth_add">Tambahkan 2FA</string>
 	<string name="otpauth_error">Tidak bisa menambahkan 2FA</string>
 	<string name="search_web">Cari secara daring</string>
+	<string name="search_scan">Search scan</string>
 	<string name="export_to_file">Ekspor ke berkas</string>
 	<string name="csv_delimiter">Karakter pemisah apa yang harus digunakan (Berkas-CSV)?</string>
 	<string name="delimiter_comma">Koma</string>

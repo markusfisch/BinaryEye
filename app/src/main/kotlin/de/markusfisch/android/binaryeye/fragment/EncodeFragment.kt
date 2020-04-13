@@ -1,14 +1,13 @@
 package de.markusfisch.android.binaryeye.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.*
-import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.addFragment
+import de.markusfisch.android.binaryeye.app.hideSoftKeyboard
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.view.setPadding
 import de.markusfisch.android.binaryeye.view.setWindowInsetListener
@@ -123,7 +122,7 @@ class EncodeFragment : Fragment() {
 				Toast.LENGTH_SHORT
 			).show()
 		} else {
-			hideSoftKeyboard(contentView)
+			activity?.hideSoftKeyboard(contentView)
 			addFragment(
 				fragmentManager,
 				BarcodeFragment.newInstance(content, format, size)
@@ -155,15 +154,6 @@ class EncodeFragment : Fragment() {
 	}
 
 	private fun getSize(power: Int) = 128 * (power + 1)
-
-	private fun hideSoftKeyboard(view: View) {
-		val im = activity?.getSystemService(
-			Context.INPUT_METHOD_SERVICE
-		) as InputMethodManager?
-		im?.let {
-			im.hideSoftInputFromWindow(view.windowToken, 0)
-		}
-	}
 
 	companion object {
 		private const val CONTENT = "content"
