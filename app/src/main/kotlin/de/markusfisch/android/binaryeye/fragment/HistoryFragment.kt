@@ -151,7 +151,7 @@ class HistoryFragment : Fragment() {
 			listView.setPadding(insets)
 		}
 
-		update(context)
+		update()
 
 		return view
 	}
@@ -188,12 +188,12 @@ class HistoryFragment : Fragment() {
 			)
 			searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 				override fun onQueryTextSubmit(query: String): Boolean {
-					update(ac, query)
+					update(query)
 					return false
 				}
 
 				override fun onQueryTextChange(query: String): Boolean {
-					update(ac, query)
+					update(query)
 					return false
 				}
 			})
@@ -223,22 +223,23 @@ class HistoryFragment : Fragment() {
 		}
 	}
 
-	private fun updateAndClearFilter(context: Context) {
+	private fun updateAndClearFilter() {
 		filter = null
-		update(context)
+		update()
 	}
 
-	private fun update(context: Context, query: String? = null) {
+	private fun update(query: String? = null) {
 		query?.let { filter = it }
 		scope.launch {
 			val cursor = db.getScans(filter)
 			withContext(Dispatchers.Main) {
+				val ac = activity ?: return@withContext
 				val hasScans = cursor != null && cursor.count > 0
 				if (filter == null) {
 					if (!hasScans) {
 						listView.emptyView = useHistorySwitch
 					}
-					ActivityCompat.invalidateOptionsMenu(activity)
+					ActivityCompat.invalidateOptionsMenu(ac)
 				}
 				fab.visibility = if (hasScans) {
 					View.VISIBLE
@@ -248,7 +249,7 @@ class HistoryFragment : Fragment() {
 				cursor?.let { cursor ->
 					// close previous cursor
 					scansAdapter?.also { it.changeCursor(null) }
-					scansAdapter = ScansAdapter(context, cursor)
+					scansAdapter = ScansAdapter(ac, cursor)
 					listView.adapter = scansAdapter
 					listViewState?.also {
 						listView.onRestoreInstanceState(it)
@@ -297,7 +298,7 @@ class HistoryFragment : Fragment() {
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				val name = nameView.text.toString()
 				db.renameScan(id, name)
-				update(context)
+				update()
 			}
 			.setNegativeButton(android.R.string.cancel) { _, _ -> }
 			.show()
@@ -309,9 +310,9 @@ class HistoryFragment : Fragment() {
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				db.removeScan(id)
 				if (scansAdapter?.count == 1) {
-					updateAndClearFilter(context)
+					updateAndClearFilter()
 				} else {
-					update(context)
+					update()
 				}
 			}
 			.setNegativeButton(android.R.string.cancel) { _, _ ->
@@ -324,7 +325,7 @@ class HistoryFragment : Fragment() {
 			.setMessage(R.string.really_remove_all_scans)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				db.removeScans()
-				updateAndClearFilter(context)
+				updateAndClearFilter()
 			}
 			.setNegativeButton(android.R.string.cancel) { _, _ ->
 			}
