@@ -31,6 +31,7 @@
 		android:layout_marginTop="4dp"
 		android:maxLines="1"
 		android:ellipsize="end"
+		android:drawablePadding="16dp"
 		android:textAppearance="?android:attr/textAppearanceMedium"
 		android:textColor="?android:attr/textColorPrimary"
 		android:typeface="monospace"/>

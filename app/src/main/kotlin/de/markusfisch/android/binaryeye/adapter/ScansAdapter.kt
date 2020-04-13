@@ -34,11 +34,18 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 		holder.timeView.text = cursor.getString(timeIndex)
 		val name = cursor.getString(nameIndex)
 		val content = cursor.getString(contentIndex)
+		var icon = 0
 		holder.contentView.text = when {
-			name?.isNotEmpty() == true -> name
+			name?.isNotEmpty() == true -> {
+				icon = R.drawable.ic_label
+				name
+			}
 			content?.isEmpty() == true -> context.getString(R.string.binary_data)
 			else -> content
 		}
+		holder.contentView.setCompoundDrawablesWithIntrinsicBounds(
+			icon, 0, 0, 0
+		)
 		holder.formatView.text = cursor.getString(formatIndex)
 	}
 
