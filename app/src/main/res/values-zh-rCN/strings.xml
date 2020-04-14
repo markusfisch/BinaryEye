@@ -74,7 +74,6 @@
 	<string name="vevent_add">添加到日历</string>
 	<string name="vevent_failed">无法添加到日历</string>
 	<string name="otpauth_add">添加两步验证</string>
-	<string name="otpauth_error">无法添加两步验证</string>
 	<string name="search_web">在互联网中搜索</string>
 	<string name="search_scan">Search scan</string>
 	<string name="export_to_file">导出为CSV文件</string>

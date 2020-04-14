@@ -71,7 +71,6 @@
 	<string name="vevent_add">Добавить в календарь</string>
 	<string name="vevent_failed">Не удалось добавить в календарь</string>
 	<string name="otpauth_add">Добавить 2FA</string>
-	<string name="otpauth_error">Не удалось добавить 2FA</string>
 	<string name="search_web">Search the web</string>
 	<string name="search_scan">Search scan</string>
 	<string name="export_to_file">Export to file</string>

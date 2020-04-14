@@ -71,7 +71,6 @@
 	<string name="vcard_failed">Kon niet aan contacten toevoegen</string>
 	<string name="vevent_add">Aan kalender toevoegen</string>
 	<string name="otpauth_add">2FA toevoegen</string>
-	<string name="otpauth_error">2FA kon niet toegevoegd worden</string>
 	<string name="search_web">Het net doorzoeken</string>
 	<string name="search_scan">Search scan</string>
 	<string name="export_to_file">Naar bestand exporteren</string>

@@ -75,7 +75,6 @@
 	<string name="vevent_add">Hozzáadás a naptárhoz</string>
 	<string name="vevent_failed">Nem sikerült hozzáadni a naptárhoz</string>
 	<string name="otpauth_add">Kétlépcsős hitelesítés hozzáadása</string>
-	<string name="otpauth_error">Nem sikerült hozzáadni a kétlépcsős hitelesítést</string>
 	<string name="search_web">Keresés a weben</string>
 	<string name="search_scan">Search scan</string>
 	<string name="export_to_file">Exportálás fájlba</string>

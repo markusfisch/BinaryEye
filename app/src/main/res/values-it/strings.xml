@@ -75,7 +75,6 @@
 	<string name="vevent_add">Aggiungi al calendario</string>
 	<string name="vevent_failed">Impossibile aggiungere al calendario</string>
 	<string name="otpauth_add">Aggiungi 2FA</string>
-	<string name="otpauth_error">Impossibile aggiungre la 2FA</string>
 	<string name="search_web">Cerca nel web</string>
 	<string name="search_scan">Search scan</string>
 	<string name="export_to_file">Esporta su file</string>
