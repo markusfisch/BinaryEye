@@ -69,16 +69,20 @@ class HistoryFragment : Fragment() {
 		): Boolean {
 			return when (item.itemId) {
 				R.id.edit_scan -> {
-					askForName(
-						activity,
-						selectedScanId,
-						getScanName(selectedScanPosition)
-					)
+					scansAdapter?.let {
+						askForName(
+							activity,
+							it.selectedScanId,
+							getScanName(it.selectedScanPosition)
+						)
+					}
 					closeActionMode()
 					true
 				}
 				R.id.remove_scan -> {
-					askToRemoveScan(activity, selectedScanId)
+					scansAdapter?.let {
+						askToRemoveScan(activity, it.selectedScanId)
+					}
 					closeActionMode()
 					true
 				}
@@ -94,8 +98,6 @@ class HistoryFragment : Fragment() {
 	private var scansAdapter: ScansAdapter? = null
 	private var listViewState: Parcelable? = null
 	private var actionMode: ActionMode? = null
-	private var selectedScanId = 0L
-	private var selectedScanPosition = -1
 	private var filter: String? = null
 
 	override fun onCreate(state: Bundle?) {
@@ -127,8 +129,7 @@ class HistoryFragment : Fragment() {
 		}
 		listView.setOnItemLongClickListener { _, v, position, id ->
 			v.isSelected = true
-			selectedScanId = id
-			selectedScanPosition = position
+			scansAdapter?.select(id, position)
 			val ac = activity
 			if (actionMode == null && ac is AppCompatActivity) {
 				actionMode = ac.delegate.startSupportActionMode(
@@ -261,8 +262,7 @@ class HistoryFragment : Fragment() {
 
 	private fun closeActionMode() {
 		unlockStatusBarColor()
-		selectedScanId = 0L
-		selectedScanPosition = -1
+		scansAdapter?.clearSelection()
 		actionMode?.finish()
 		actionMode = null
 		scansAdapter?.notifyDataSetChanged()
