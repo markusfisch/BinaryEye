@@ -1,5 +1,8 @@
 # Change Log
 
+# 1.25.1
+* Fix Proguard configuration
+
 # 1.25.0
 * Add giving scans individual names in history listing
 * Add searching the history
