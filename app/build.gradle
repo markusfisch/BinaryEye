@@ -75,6 +75,6 @@ dependencies {
 	// Do NOT upgrade ZXing because newer versions won't work on API < 24
 	// https://github.com/zxing/zxing/issues/1170
 	implementation 'com.google.zxing:core:3.3.3'
-	implementation 'com.github.markusfisch:CameraView:1.8.4'
+	implementation 'com.github.markusfisch:CameraView:1.9.0'
 	implementation 'com.github.markusfisch:ScalingImageView:1.2.0'
 }

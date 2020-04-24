@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import android.view.MotionEvent
 import android.view.View
 import android.widget.SeekBar
 import com.google.zxing.Result
@@ -29,6 +30,9 @@ import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.cameraview.widget.CameraView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.roundToInt
 
 class CameraActivity : AppCompatActivity() {
 	private val zxing = Zxing(ResultPointCallback { point ->
@@ -237,7 +241,37 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun initCameraView() {
 		cameraView.setUseOrientationListener(true)
-		cameraView.setTapToFocus()
+		@Suppress("ClickableViewAccessibility")
+		cameraView.setOnTouchListener(object : View.OnTouchListener {
+			var offset: Float = -1f
+			var progress: Int = 0
+
+			override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+				event ?: return false
+				val pos = event.y
+				when (event.actionMasked) {
+					MotionEvent.ACTION_DOWN -> {
+						offset = pos
+						progress = zoomBar.progress
+						return true
+					}
+					MotionEvent.ACTION_MOVE -> {
+						v ?: return false
+						val dist = offset - pos
+						val maxValue = zoomBar.max
+						val change = maxValue / v.height.toFloat() * 2f * dist
+						zoomBar.progress = min(
+							maxValue,
+							max(progress + change.roundToInt(), 0)
+						)
+					}
+					MotionEvent.ACTION_UP -> {
+						cameraView.focusTo(v, event.x, event.y)
+					}
+				}
+				return false
+			}
+		})
 		@Suppress("DEPRECATION")
 		cameraView.setOnCameraListener(object : CameraView.OnCameraListener {
 			override fun onConfigureParameters(
