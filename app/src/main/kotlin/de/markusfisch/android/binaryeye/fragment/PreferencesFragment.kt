@@ -13,6 +13,7 @@ import de.markusfisch.android.binaryeye.view.setPadding
 import de.markusfisch.android.binaryeye.view.setWindowInsetListener
 
 class PreferencesFragment : Fragment() {
+	private lateinit var zoomBySwipingSwitch: SwitchCompat
 	private lateinit var openImmediatelySwitch: SwitchCompat
 	private lateinit var vibrateSwitch: SwitchCompat
 	private lateinit var useHistorySwitch: SwitchCompat
@@ -34,6 +35,11 @@ class PreferencesFragment : Fragment() {
 			container,
 			false
 		)
+
+		zoomBySwipingSwitch = view.findViewById(R.id.zoom_by_swiping)
+		if (prefs.zoomBySwiping) {
+			zoomBySwipingSwitch.toggle()
+		}
 
 		openImmediatelySwitch = view.findViewById(R.id.open_immediately)
 		if (prefs.openImmediately) {
@@ -84,6 +90,7 @@ class PreferencesFragment : Fragment() {
 
 	override fun onPause() {
 		super.onPause()
+		prefs.zoomBySwiping = zoomBySwipingSwitch.isChecked
 		prefs.openImmediately = openImmediatelySwitch.isChecked
 		prefs.vibrate = vibrateSwitch.isChecked
 		prefs.useHistory = useHistorySwitch.isChecked

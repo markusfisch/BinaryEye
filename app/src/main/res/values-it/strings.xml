@@ -38,6 +38,7 @@
 	<string name="switch_camera">Cambia fotocamera</string>
 	<string name="history">Cronologia</string>
 	<string name="preferences">Preferenze</string>
+	<string name="zoom_by_swiping">Zoom camera by swiping up/down</string>
 	<string name="open_immediately">Salta l\'analisi e apri i contenuti direttamente</string>
 	<string name="vibrate">Vibrate on detection</string>
 	<string name="use_history">Salva cronologia delle scansioni</string>

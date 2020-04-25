@@ -7,6 +7,11 @@ import android.preference.PreferenceManager
 class Preferences {
 	lateinit var preferences: SharedPreferences
 
+	var zoomBySwiping = true
+		set(value) {
+			setBoolean(ZOOM_BY_SWIPING, value)
+			field = value
+		}
 	var openImmediately = false
 		set(value) {
 			setBoolean(OPEN_IMMEDIATELY, value)
@@ -59,6 +64,7 @@ class Preferences {
 	}
 
 	fun update() {
+		zoomBySwiping = preferences.getBoolean(ZOOM_BY_SWIPING, zoomBySwiping)
 		openImmediately = preferences.getBoolean(
 			OPEN_IMMEDIATELY,
 			openImmediately
@@ -100,6 +106,7 @@ class Preferences {
 	}
 
 	companion object {
+		const val ZOOM_BY_SWIPING = "zoom_by_swiping"
 		const val OPEN_IMMEDIATELY = "open_immediately"
 		const val VIBRATE = "vibrate"
 		const val USE_HISTORY = "use_history"

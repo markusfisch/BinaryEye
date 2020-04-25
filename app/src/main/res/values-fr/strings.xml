@@ -38,6 +38,7 @@
 	<string name="switch_camera">Changer de camera</string>
 	<string name="history">Historique</string>
 	<string name="preferences">Preferences</string>
+	<string name="zoom_by_swiping">Zoom camera by swiping up/down</string>
 	<string name="open_immediately">Skip inspection and open contents immediately</string>
 	<string name="vibrate">Vibrate on detection</string>
 	<string name="use_history">Sauvegarder l\'histoire des scans</string>

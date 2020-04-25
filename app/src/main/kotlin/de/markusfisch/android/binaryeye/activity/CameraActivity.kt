@@ -257,15 +257,17 @@ class CameraActivity : AppCompatActivity() {
 						return true
 					}
 					MotionEvent.ACTION_MOVE -> {
-						v ?: return false
-						val dist = offset - pos
-						val maxValue = zoomBar.max
-						val change = maxValue / v.height.toFloat() * 2f * dist
-						zoomBar.progress = min(
-							maxValue,
-							max(progress + change.roundToInt(), 0)
-						)
-						return true
+						if (prefs.zoomBySwiping) {
+							v ?: return false
+							val dist = offset - pos
+							val maxValue = zoomBar.max
+							val change = maxValue / v.height.toFloat() * 2f * dist
+							zoomBar.progress = min(
+								maxValue,
+								max(progress + change.roundToInt(), 0)
+							)
+							return true
+						}
 					}
 					MotionEvent.ACTION_UP -> {
 						// stop calling focusTo() as soon as it returns false
