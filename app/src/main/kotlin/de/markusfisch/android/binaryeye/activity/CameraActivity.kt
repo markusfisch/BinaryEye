@@ -243,8 +243,9 @@ class CameraActivity : AppCompatActivity() {
 		cameraView.setUseOrientationListener(true)
 		@Suppress("ClickableViewAccessibility")
 		cameraView.setOnTouchListener(object : View.OnTouchListener {
-			var offset: Float = -1f
-			var progress: Int = 0
+			var focus = true
+			var offset = -1f
+			var progress = 0
 
 			override fun onTouch(v: View?, event: MotionEvent?): Boolean {
 				event ?: return false
@@ -264,9 +265,18 @@ class CameraActivity : AppCompatActivity() {
 							maxValue,
 							max(progress + change.roundToInt(), 0)
 						)
+						return true
 					}
 					MotionEvent.ACTION_UP -> {
-						cameraView.focusTo(v, event.x, event.y)
+						// stop calling focusTo() as soon as it returns false
+						// to avoid throwing and catching future exceptions
+						if (focus) {
+							focus = cameraView.focusTo(v, event.x, event.y)
+							if (focus) {
+								v?.performClick()
+								return true
+							}
+						}
 					}
 				}
 				return false
