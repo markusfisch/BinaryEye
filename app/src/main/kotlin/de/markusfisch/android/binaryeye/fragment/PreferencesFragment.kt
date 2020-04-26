@@ -14,13 +14,13 @@ import de.markusfisch.android.binaryeye.view.setWindowInsetListener
 
 class PreferencesFragment : Fragment() {
 	private lateinit var zoomBySwipingSwitch: SwitchCompat
-	private lateinit var openImmediatelySwitch: SwitchCompat
+	private lateinit var tryHarderSwitch: SwitchCompat
 	private lateinit var vibrateSwitch: SwitchCompat
 	private lateinit var useHistorySwitch: SwitchCompat
+	private lateinit var ignoreConsecutiveDuplicatesSwitch: SwitchCompat
+	private lateinit var openImmediatelySwitch: SwitchCompat
 	private lateinit var showMetaDataSwitch: SwitchCompat
 	private lateinit var showHexDumpSwitch: SwitchCompat
-	private lateinit var tryHarderSwitch: SwitchCompat
-	private lateinit var ignoreConsecutiveDuplicatesSwitch: SwitchCompat
 	private lateinit var openWithUrlInput: EditText
 
 	override fun onCreateView(
@@ -41,9 +41,9 @@ class PreferencesFragment : Fragment() {
 			zoomBySwipingSwitch.toggle()
 		}
 
-		openImmediatelySwitch = view.findViewById(R.id.open_immediately)
-		if (prefs.openImmediately) {
-			openImmediatelySwitch.toggle()
+		tryHarderSwitch = view.findViewById(R.id.try_harder)
+		if (prefs.tryHarder) {
+			tryHarderSwitch.toggle()
 		}
 
 		vibrateSwitch = view.findViewById(R.id.vibrate)
@@ -63,6 +63,11 @@ class PreferencesFragment : Fragment() {
 			ignoreConsecutiveDuplicatesSwitch.toggle()
 		}
 
+		openImmediatelySwitch = view.findViewById(R.id.open_immediately)
+		if (prefs.openImmediately) {
+			openImmediatelySwitch.toggle()
+		}
+
 		showMetaDataSwitch = view.findViewById(R.id.show_meta_data)
 		if (prefs.showMetaData) {
 			showMetaDataSwitch.toggle()
@@ -71,11 +76,6 @@ class PreferencesFragment : Fragment() {
 		showHexDumpSwitch = view.findViewById(R.id.show_hex_dump)
 		if (prefs.showHexDump) {
 			showHexDumpSwitch.toggle()
-		}
-
-		tryHarderSwitch = view.findViewById(R.id.try_harder)
-		if (prefs.tryHarder) {
-			tryHarderSwitch.toggle()
 		}
 
 		openWithUrlInput = view.findViewById(R.id.open_with_url)
@@ -91,13 +91,13 @@ class PreferencesFragment : Fragment() {
 	override fun onPause() {
 		super.onPause()
 		prefs.zoomBySwiping = zoomBySwipingSwitch.isChecked
-		prefs.openImmediately = openImmediatelySwitch.isChecked
+		prefs.tryHarder = tryHarderSwitch.isChecked
 		prefs.vibrate = vibrateSwitch.isChecked
 		prefs.useHistory = useHistorySwitch.isChecked
 		prefs.ignoreConsecutiveDuplicates = ignoreConsecutiveDuplicatesSwitch.isChecked
+		prefs.openImmediately = openImmediatelySwitch.isChecked
 		prefs.showMetaData = showMetaDataSwitch.isChecked
 		prefs.showHexDump = showHexDumpSwitch.isChecked
-		prefs.tryHarder = tryHarderSwitch.isChecked
 		prefs.openWithUrl = openWithUrlInput.text.toString()
 	}
 }

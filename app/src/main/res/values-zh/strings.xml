@@ -37,13 +37,13 @@
 	<string name="switch_camera">切換相機</string>
 	<string name="history">歷史</string>
 	<string name="zoom_by_swiping">Zoom camera by swiping up/down</string>
-	<string name="open_immediately">Skip inspection and open contents immediately</string>
+	<string name="try_harder">Optimize reader for accuracy, not speed</string>
 	<string name="vibrate">Vibrate on detection</string>
 	<string name="use_history">儲存掃描歷史</string>
 	<string name="ignore_consecutive_duplicates">Do not save consecutive duplicates</string>
+	<string name="open_immediately">Skip inspection and open contents immediately</string>
 	<string name="show_meta_data">Show metadata</string>
 	<string name="show_hex_dump">Show hex dump</string>
-	<string name="try_harder">Optimize reader for accuracy, not speed</string>
 	<string name="really_remove_scan">真的要移除掃描記錄?</string>
 	<string name="really_remove_all_scans">真的要移除所有掃描記錄?</string>
 	<string name="clear_history">清除記錄</string>

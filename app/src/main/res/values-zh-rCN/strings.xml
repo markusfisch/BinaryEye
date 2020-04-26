@@ -38,13 +38,13 @@
 	<string name="history">历史</string>
 	<string name="preferences">首选项</string>
 	<string name="zoom_by_swiping">Zoom camera by swiping up/down</string>
-	<string name="open_immediately">跳过内容展示并立即打开</string>
+	<string name="try_harder">Optimize reader for accuracy, not speed</string>
 	<string name="vibrate">Vibrate on detection</string>
 	<string name="use_history">保存扫描历史</string>
 	<string name="ignore_consecutive_duplicates">Do not save consecutive duplicates</string>
+	<string name="open_immediately">跳过内容展示并立即打开</string>
 	<string name="show_meta_data">Show metadata</string>
 	<string name="show_hex_dump">Show hex dump</string>
-	<string name="try_harder">Optimize reader for accuracy, not speed</string>
 	<string name="open_with_url">使用URL打开未知数据</string>
 	<string name="really_remove_scan">确定删除记录?</string>
 	<string name="really_remove_all_scans">确定删除全部记录?</string>

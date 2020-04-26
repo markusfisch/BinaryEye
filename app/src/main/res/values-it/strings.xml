@@ -39,13 +39,13 @@
 	<string name="history">Cronologia</string>
 	<string name="preferences">Preferenze</string>
 	<string name="zoom_by_swiping">Zoom camera by swiping up/down</string>
-	<string name="open_immediately">Salta l\'analisi e apri i contenuti direttamente</string>
+	<string name="try_harder">Optimize reader for accuracy, not speed</string>
 	<string name="vibrate">Vibrate on detection</string>
 	<string name="use_history">Salva cronologia delle scansioni</string>
 	<string name="ignore_consecutive_duplicates">Non salvare doppi consecutivi</string>
+	<string name="open_immediately">Salta l\'analisi e apri i contenuti direttamente</string>
 	<string name="show_meta_data">Show metadata</string>
 	<string name="show_hex_dump">Mostra dump esadecimale</string>
-	<string name="try_harder">Optimize reader for accuracy, not speed</string>
 	<string name="open_with_url">Apri dati sconosciuti con URL</string>
 	<string name="really_remove_scan">Vuoi veramente rimuovere la scansione?</string>
 	<string name="really_remove_all_scans">Vuoi veramente rimuovere tutte le scansioni?</string>

@@ -38,13 +38,13 @@
 	<string name="history">Riwayat</string>
 	<string name="preferences">Preferensi</string>
 	<string name="zoom_by_swiping">Zoom camera by swiping up/down</string>
-	<string name="open_immediately">Lewati inspeksi dan segera buka konten</string>
+	<string name="try_harder">Optimalkan pembaca untuk akurasi, bukan kecepatan</string>
 	<string name="vibrate">Bergetar saat mendeteksi</string>
 	<string name="use_history">Simpan riwayat pemindaian</string>
 	<string name="ignore_consecutive_duplicates">Jangan simpan duplikat berturutan</string>
+	<string name="open_immediately">Lewati inspeksi dan segera buka konten</string>
 	<string name="show_meta_data">Tampilkan metadata</string>
 	<string name="show_hex_dump">Tampilkan hex dump</string>
-	<string name="try_harder">Optimalkan pembaca untuk akurasi, bukan kecepatan</string>
 	<string name="open_with_url">Buka data tak dikenal dengan URL</string>
 	<string name="really_remove_scan">Yakin menghapus pemindaian?</string>
 	<string name="really_remove_all_scans">Yakin menghapus semua pemindaian?</string>
