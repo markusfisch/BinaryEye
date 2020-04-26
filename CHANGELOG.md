@@ -1,5 +1,11 @@
 # Change Log
 
+# 1.26.0
+* Zoom in & out by swiping vertically in camera view
+* Add a setting for swipe to zoom feature
+* Optimize vector drawables
+* Update Indonesian translation
+
 # 1.25.1
 * Fix Proguard configuration
 
