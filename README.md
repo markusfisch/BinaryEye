@@ -12,15 +12,9 @@ library.
 
 ## Screenshots
 
-<img
-	src="https://raw.githubusercontent.com/markusfisch/BinaryEye/gh-pages/screencap-scanning.png"
-	alt="Screenshot Scanning" width="160"/>
-<img
-	src="https://raw.githubusercontent.com/markusfisch/BinaryEye/gh-pages/screencap-decoded.png"
-	alt="Screenshot Result" width="160"/>
-<img
-	src="https://raw.githubusercontent.com/markusfisch/BinaryEye/gh-pages/screencap-compose-barcode.png"
-	alt="Screenshot Compose Barcode" width="160"/>
+![Screenshot Scanning](metadata/en-US/images/phoneScreenshots/screencap-scanning.png)
+![Screenshot Result](metadata/en-US/images/phoneScreenshots/screencap-decoded.png)
+![Screenshot Compose Barcode](metadata/en-US/images/phoneScreenshots/screencap-compose-barcode.png)
 
 ## Download
 

@@ -1,0 +1,2 @@
+* Fix broken RenderScript built
+

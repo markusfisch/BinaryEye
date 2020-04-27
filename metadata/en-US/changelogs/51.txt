@@ -1,0 +1,4 @@
+* Save and restore history list state
+* Improve scanning from large images
+* Fix opening image files by "Open with"
+

@@ -1,0 +1,4 @@
+* Add support for VCard and VEvent barcodes contents
+* Generated barcodes are now zoomable
+* Fix creating PDF417 barcodes
+

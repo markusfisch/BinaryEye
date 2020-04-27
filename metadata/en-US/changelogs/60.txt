@@ -1,0 +1,5 @@
+* Zoom in & out by swiping vertically in camera view
+* Add a setting for swipe to zoom feature
+* Optimize vector drawables
+* Update Indonesian translation
+

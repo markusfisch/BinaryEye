@@ -1,0 +1,7 @@
+* Show barcode metadata
+* Add a setting to show/hide metadata
+* Include metadata in CSV export
+* Update italian translation
+* Fix resetting flash button
+* Fix CSV export for Android Q
+

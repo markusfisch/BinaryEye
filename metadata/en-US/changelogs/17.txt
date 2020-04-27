@@ -1,0 +1,2 @@
+* Show barcode type and content length after decoding
+

@@ -1,0 +1,3 @@
+* Fix pre-processing for Android 7+
+* Fix adaptive icons for Android 8+
+

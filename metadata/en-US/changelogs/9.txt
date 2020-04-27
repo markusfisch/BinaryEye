@@ -1,0 +1,4 @@
+* Improved pre-processing
+* Added adaptive icon for Android 8+
+* Decrease default magnification to 10%
+

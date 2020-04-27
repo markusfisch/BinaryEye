@@ -1,0 +1,5 @@
+* Add preferences dialog and the option to use a custom URL with read contents
+* Add Brazilian Portuguese translation
+* Add Chinese translation
+* Encode text using UTF-8 encoding when creating a barcode
+

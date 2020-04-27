@@ -1,0 +1,2 @@
+* Distribute APK instead of App Bundle
+

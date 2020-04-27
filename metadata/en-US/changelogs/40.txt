@@ -1,0 +1,5 @@
+* Additionally export history as CSV file
+* Color tool and system bars when a view is scrolled
+* Add an intent filter for opening images
+* Add Russian translation
+

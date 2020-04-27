@@ -1,0 +1,8 @@
+* Improve displaying scanned barcodes
+* Show a message if a barcode cannot be shared
+* Fix setting system bar transparency when double taping a barcode
+* Update Dutch translation
+* Update Hungarian translation
+* Update Indonesian translation
+* Update Italian translation
+

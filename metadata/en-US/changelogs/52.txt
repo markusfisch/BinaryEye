@@ -1,0 +1,6 @@
+* Highlight detected barcodes in camera view
+* Add bing and yandex search engines
+* Update Chinese Translation
+* Update Italian translation
+* Update Indonesian translation
+

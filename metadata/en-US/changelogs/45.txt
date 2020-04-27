@@ -1,0 +1,2 @@
+* Fix navigating back without choosing an image
+

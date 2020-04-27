@@ -1,0 +1,14 @@
+* Add giving scans individual names in history listing
+* Add searching the history
+* Add a setting to search harder for barcodes
+* Add a setting to control vibration on detection
+* Add app shortcuts for launchers that support them
+* Remove saving barcodes for intents from other apps
+* Show latest possible result point in camera view
+* Suggest a WiFi network on Android Q+
+* Always put parsed WiFi password into clipboard
+* Use native image processing where available
+* Ignore consecutive duplicates by default
+* Fix saving external files on Android Q+
+* Fix order of metadata items
+

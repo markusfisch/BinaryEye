@@ -1,0 +1,3 @@
+* Try Google when opening content as URL fails
+* Show generic error message if barcode generation fails
+

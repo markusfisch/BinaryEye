@@ -1,0 +1,3 @@
+* Fix crashes on Lineage and remove RenderScript fallback
+* Improve handling of binary data
+

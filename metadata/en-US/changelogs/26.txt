@@ -1,0 +1,4 @@
+* Save binary data into external file
+* Fix storage of binary data
+* Remove horizontal orientation line from scanner
+

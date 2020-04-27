@@ -1,0 +1,2 @@
+* Add missing extras for ZXing result intents
+

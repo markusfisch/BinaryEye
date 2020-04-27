@@ -1,0 +1,5 @@
+* Added a camera zoom slider
+* Added an unobtrusive wallpaper background
+* Replaced lock marks with just a horizontal line
+* Put toggling torch mode into Floating Action Button
+

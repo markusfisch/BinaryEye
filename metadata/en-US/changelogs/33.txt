@@ -1,0 +1,3 @@
+* Downgrade ZXing version
+* Improve getting system UI metrics
+

@@ -1,0 +1,2 @@
+* Toggle availability of torch mode button according to camera features
+

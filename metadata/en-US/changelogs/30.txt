@@ -1,0 +1,5 @@
+* Add support for special barcode contents (WiFi, SMS, phone, E-mail)
+* Add Indonesian translation
+* Update Hungarian translation
+* Make system bars completely transparent
+

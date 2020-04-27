@@ -1,0 +1,6 @@
+* Create barcodes now too
+* Streamlined video pre-processing
+* Decoded content is editable now
+* Fixed position of lock marks on tablets
+* Open README from menu
+
