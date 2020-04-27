@@ -75,9 +75,10 @@
 	<string name="search_web">Het net doorzoeken</string>
 	<string name="search_scan">Search scan</string>
 	<string name="export_to_file">Naar bestand exporteren</string>
-	<string name="csv_delimiter">Wat voor separator wil je gebruiken (CSV-bestand)?</string>
-	<string name="delimiter_comma">Komma</string>
-	<string name="delimiter_semicolon">Kommapunt</string>
+	<string name="export_as">Export as?</string>
+	<string name="export_csv_comma">CSV with commas</string>
+	<string name="export_csv_semicolon">CSV with semicolons</string>
+	<string name="export_database">Export SQLite database</string>
 	<string name="error_saving_binary_data">Kon bestand niet opslaan</string>
 	<string name="open_with_url">Niet herkende data met URL openen</string>
 	<string name="pick_list_separator">Hoe de lijstonderdelen te separeren?</string>

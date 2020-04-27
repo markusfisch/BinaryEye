@@ -184,7 +184,7 @@ class Database {
 	}
 
 	private class OpenHelper(context: Context) :
-		SQLiteOpenHelper(context, "history.db", null, 4) {
+		SQLiteOpenHelper(context, FILE_NAME, null, 4) {
 		override fun onCreate(db: SQLiteDatabase) {
 			createScans(db)
 		}
@@ -207,6 +207,7 @@ class Database {
 	}
 
 	companion object {
+		const val FILE_NAME = "history.db"
 		const val SCANS = "scans"
 		const val SCANS_ID = "_id"
 		const val SCANS_DATETIME = "_datetime"

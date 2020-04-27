@@ -23,6 +23,7 @@ import de.markusfisch.android.binaryeye.adapter.ScansAdapter
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.data.Database
 import de.markusfisch.android.binaryeye.data.exportCsv
+import de.markusfisch.android.binaryeye.data.exportDatabase
 import de.markusfisch.android.binaryeye.view.setPadding
 import de.markusfisch.android.binaryeye.view.setWindowInsetListener
 import de.markusfisch.android.binaryeye.view.useVisibility
@@ -333,24 +334,30 @@ class HistoryFragment : Fragment() {
 	}
 
 	private fun askToExportToFile(context: Context) = scope.launch {
+		val ac = activity ?: return@launch
 		progressView.useVisibility {
-			if (!hasWritePermission(activity)) {
+			if (!hasWritePermission(ac)) {
 				return@useVisibility
 			}
-			val delimiters = context.resources.getStringArray(
-				R.array.csv_delimiters_values
+			val options = context.resources.getStringArray(
+				R.array.export_options_values
 			)
 			val delimiter = alertDialog<String>(context) { resume ->
-				setTitle(R.string.csv_delimiter)
-				setItems(R.array.csv_delimiters_names) { _, which ->
-					resume(delimiters[which])
+				setTitle(R.string.export_as)
+				setItems(R.array.export_options_names) { _, which ->
+					resume(options[which])
 				}
 			} ?: return@useVisibility
+			val isCsv = delimiter != "sql"
 			val name = withContext(Dispatchers.Main) {
-				activity.askForFileName(suffix = ".csv")
+				ac.askForFileName(if (isCsv) ".csv" else ".db")
 			} ?: return@useVisibility
-			db.getScansDetailed(filter)?.use { cursor ->
-				exportCsv(context, name, cursor, delimiter)
+			if (isCsv) {
+				db.getScansDetailed(filter)?.use { cursor ->
+					exportCsv(context, name, cursor, delimiter)
+				}
+			} else {
+				exportDatabase(ac, name)
 			}
 		}
 	}

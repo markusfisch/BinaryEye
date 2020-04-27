@@ -79,9 +79,10 @@
 	<string name="search_web">Suche im Internet</string>
 	<string name="search_scan">Code suchen</string>
 	<string name="export_to_file">In Datei exportieren</string>
-	<string name="csv_delimiter">Welches Trennzeichen soll genutzt werden (CSV-Datei)?</string>
-	<string name="delimiter_comma">Komma</string>
-	<string name="delimiter_semicolon">Semikolon</string>
+	<string name="export_as">Exportieren als?</string>
+	<string name="export_csv_comma">CSV mit Kommas</string>
+	<string name="export_csv_semicolon">CSV mit Semikolons</string>
+	<string name="export_database">SQLite Datenbank exportieren</string>
 	<string name="saved_in_downloads">In den Downloads gespeichert</string>
 	<string name="rotate_image_cw">Bild im Uhrzeigersinn rotieren</string>
 	<string name="pick_file">Bilddatei auswählen</string>

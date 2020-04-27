@@ -79,9 +79,10 @@
 	<string name="search_web">Cerca nel web</string>
 	<string name="search_scan">Search scan</string>
 	<string name="export_to_file">Esporta su file</string>
-	<string name="csv_delimiter">Quale delimitatore usare (File-CSV)?</string>
-	<string name="delimiter_comma">Virgola</string>
-	<string name="delimiter_semicolon">Punto e virgola</string>
+	<string name="export_as">Export as?</string>
+	<string name="export_csv_comma">CSV with commas</string>
+	<string name="export_csv_semicolon">CSV with semicolons</string>
+	<string name="export_database">Export SQLite database</string>
 	<string name="saved_in_downloads">Salvato nei download</string>
 	<string name="rotate_image_cw">Ruota immagine in senso orario</string>
 	<string name="pick_file">Scegli file immagine</string>

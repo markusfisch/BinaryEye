@@ -1,85 +1,39 @@
 package de.markusfisch.android.binaryeye.data
 
-import android.content.Context
-import android.database.Cursor
+import android.app.Activity
+import android.os.Environment
+import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.app.hasWritePermission
 import de.markusfisch.android.binaryeye.app.writeExternalFile
+import de.markusfisch.android.binaryeye.widget.toast
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.io.File
+import java.io.FileInputStream
 
-fun exportCsv(
-	context: Context,
-	name: String,
-	cursor: Cursor,
-	delimiter: String
-) {
-	if (!cursor.moveToFirst()) {
+fun exportDatabase(activity: Activity, fileName: String) {
+	if (!hasWritePermission(activity)) {
 		return
 	}
-	val columns = arrayOf(
-		Database.SCANS_DATETIME,
-		Database.SCANS_FORMAT,
-		Database.SCANS_CONTENT,
-		Database.SCANS_ERROR_CORRECTION_LEVEL,
-		Database.SCANS_ISSUE_NUMBER,
-		Database.SCANS_ORIENTATION,
-		Database.SCANS_OTHER_META_DATA,
-		Database.SCANS_PDF417_EXTRA_METADATA,
-		Database.SCANS_POSSIBLE_COUNTRY,
-		Database.SCANS_SUGGESTED_PRICE,
-		Database.SCANS_UPC_EAN_EXTENSION
+	val dbFile = File(
+		Environment.getDataDirectory(),
+		"//data//${activity.packageName}//databases//${Database.FILE_NAME}"
 	)
-	val indices = columns.map {
-		cursor.getColumnIndex(it)
+	if (!dbFile.exists()) {
+		activity.toast(R.string.error_no_content)
+		return
 	}
-	val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
-	val rawIndex = cursor.getColumnIndex(Database.SCANS_RAW)
-	writeExternalFile(context, name, "text/csv") { outputStream ->
-		outputStream.write(
-			columns.joinToString(
-				delimiter,
-				postfix = "\n"
-			).toByteArray()
-		)
-		do {
-			var deviation: Pair<Int, String>? = null
-			if (cursor.getString(contentIndex)?.isEmpty() == true) {
-				deviation = Pair(
-					contentIndex,
-					cursor.getBlob(rawIndex).toHexString()
-				)
-			}
-			outputStream.write(
-				cursor.toCsvRecord(indices, delimiter, deviation)
-			)
-		} while (cursor.moveToNext())
-	}
-}
-
-private fun ByteArray.toHexString(): String {
-	val hex = StringBuilder()
-	for (i in this.indices) {
-		hex.append(String.format("%02X", this[i]))
-	}
-	return hex.toString()
-}
-
-private fun Cursor.toCsvRecord(
-	indices: List<Int>,
-	delimiter: String,
-	deviation: Pair<Int, String>?
-): ByteArray {
-	val sb = StringBuilder()
-	indices.forEach {
-		val value = if (deviation?.first == it) {
-			deviation.second
-		} else {
-			this.getString(it)
+	GlobalScope.launch {
+		val message = writeExternalFile(
+			activity,
+			fileName,
+			"application/vnd.sqlite3"
+		) {
+			FileInputStream(dbFile).copyTo(it)
 		}
-		sb.append(value?.quoteAndEscape() ?: "")
-		sb.append(delimiter)
+		GlobalScope.launch(Main) {
+			activity.toast(message)
+		}
 	}
-	sb.append("\n")
-	return sb.toString().toByteArray()
 }
-
-private fun String.quoteAndEscape() = "\"${this
-	.replace("\n", " ")
-	.replace("\"", "\"\"")}\""

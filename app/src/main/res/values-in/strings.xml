@@ -78,9 +78,10 @@
 	<string name="search_web">Cari secara daring</string>
 	<string name="search_scan">Cari pindaian</string>
 	<string name="export_to_file">Ekspor ke berkas</string>
-	<string name="csv_delimiter">Karakter pemisah apa yang harus digunakan (Berkas-CSV)?</string>
-	<string name="delimiter_comma">Koma</string>
-	<string name="delimiter_semicolon">Titik koma</string>
+	<string name="export_as">Export as?</string>
+	<string name="export_csv_comma">CSV with commas</string>
+	<string name="export_csv_semicolon">CSV with semicolons</string>
+	<string name="export_database">Export SQLite database</string>
 	<string name="saved_in_downloads">Simpan di dalam unduhan</string>
 	<string name="rotate_image_cw">Putar gambar searah jarum jam</string>
 	<string name="pick_file">Pilih berkas gambar</string>
