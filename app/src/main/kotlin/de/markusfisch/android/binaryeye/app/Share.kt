@@ -34,10 +34,12 @@ fun execShareIntent(context: Context, intent: Intent) {
 }
 
 fun shareFile(context: Context, file: File, type: String) {
-	shareUri(context, getUriForFile(context, file), type)
+	getUriForFile(context, file)?.let {
+		shareUri(context, it, type)
+	}
 }
 
-fun getUriForFile(context: Context, file: File): Uri {
+fun getUriForFile(context: Context, file: File): Uri? {
 	return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
 		Uri.fromFile(file)
 	} else {

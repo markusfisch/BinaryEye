@@ -230,15 +230,16 @@ class DecodeFragment : Fragment() {
 	}
 
 	private fun executeAction(content: ByteArray) {
-		if (activity != null && content.isNotEmpty()) {
+		val ac = activity ?: return
+		if (content.isNotEmpty()) {
 			if (action is WifiAction &&
 				Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
-				!hasLocationPermission(activity)
+				!hasLocationPermission(ac)
 			) {
 				return
 			}
 			scope.launch {
-				action.execute(activity, content)
+				action.execute(ac, content)
 			}
 		}
 	}

@@ -42,7 +42,8 @@ class BarcodeFragment : Fragment() {
 		container: ViewGroup?,
 		state: Bundle?
 	): View? {
-		activity?.setTitle(R.string.view_barcode)
+		val ac = activity ?: return null
+		ac.setTitle(R.string.view_barcode)
 
 		val view = inflater.inflate(
 			R.layout.fragment_barcode,
@@ -62,7 +63,7 @@ class BarcodeFragment : Fragment() {
 				message = getString(R.string.error_encoding_barcode)
 			}
 			message?.let {
-				activity.toast(message)
+				ac.toast(message)
 			}
 			fragmentManager.popBackStack()
 			return null

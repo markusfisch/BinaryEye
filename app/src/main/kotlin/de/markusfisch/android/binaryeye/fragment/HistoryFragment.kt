@@ -48,7 +48,7 @@ class HistoryFragment : Fragment() {
 			)
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 				lockStatusBarColor()
-				val ac = activity
+				val ac = activity ?: return false
 				ac.window.statusBarColor = ContextCompat.getColor(
 					ac,
 					R.color.accent_dark
@@ -68,11 +68,12 @@ class HistoryFragment : Fragment() {
 			mode: ActionMode,
 			item: MenuItem
 		): Boolean {
+			val ac = activity ?: return false
 			return when (item.itemId) {
 				R.id.edit_scan -> {
 					scansAdapter?.let {
 						askForName(
-							activity,
+							ac,
 							it.selectedScanId,
 							getScanName(it.selectedScanPosition)
 						)
@@ -82,7 +83,7 @@ class HistoryFragment : Fragment() {
 				}
 				R.id.remove_scan -> {
 					scansAdapter?.let {
-						askToRemoveScan(activity, it.selectedScanId)
+						askToRemoveScan(ac, it.selectedScanId)
 					}
 					closeActionMode()
 					true
@@ -110,8 +111,9 @@ class HistoryFragment : Fragment() {
 		inflater: LayoutInflater,
 		container: ViewGroup?,
 		state: Bundle?
-	): View {
-		activity?.setTitle(R.string.history)
+	): View? {
+		val ac = activity ?: return null
+		ac.setTitle(R.string.history)
 
 		val view = inflater.inflate(
 			R.layout.fragment_history,
@@ -131,7 +133,6 @@ class HistoryFragment : Fragment() {
 		listView.setOnItemLongClickListener { _, v, position, id ->
 			v.isSelected = true
 			scansAdapter?.select(id, position)
-			val ac = activity
 			if (actionMode == null && ac is AppCompatActivity) {
 				actionMode = ac.delegate.startSupportActionMode(
 					actionModeCallback
@@ -180,7 +181,7 @@ class HistoryFragment : Fragment() {
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
 			item.isVisible = false
 		} else {
-			val ac = activity
+			val ac = activity ?: return
 			val searchView = item.actionView as SearchView
 			val searchManager = ac.getSystemService(
 				Context.SEARCH_SERVICE

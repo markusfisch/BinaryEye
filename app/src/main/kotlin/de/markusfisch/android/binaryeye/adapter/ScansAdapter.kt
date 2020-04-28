@@ -35,7 +35,7 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 		context: Context,
 		cursor: Cursor,
 		parent: ViewGroup
-	) = LayoutInflater.from(parent.context).inflate(
+	): View? = LayoutInflater.from(parent.context).inflate(
 		R.layout.row_scan, parent, false
 	)
 
