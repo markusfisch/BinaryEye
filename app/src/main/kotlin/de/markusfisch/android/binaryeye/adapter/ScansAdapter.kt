@@ -2,7 +2,6 @@ package de.markusfisch.android.binaryeye.adapter
 
 import android.content.Context
 import android.database.Cursor
-import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,6 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 	private val nameIndex = cursor.getColumnIndex(Database.SCANS_NAME)
 	private val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
 	private val formatIndex = cursor.getColumnIndex(Database.SCANS_FORMAT)
-	private val selectedColor = ContextCompat.getColor(context, R.color.selected_row)
 
 	fun select(id: Long, position: Int) {
 		selectedScanId = id
