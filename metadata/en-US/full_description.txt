@@ -3,8 +3,8 @@ is Material Design and can also generate barcodes.
 
 Uses the ZXing ("Zebra Crossing") barcode scanning library.
 Supported barcode formats are: AZTEC, CODABAR, CODE 39, CODE 93, CODE 128,
-DATA MATRIX, EAN 8, EAN 13, ITF, MAXICODE, PDF417, QR CODE, RSS 14,
-RSS EXPANDED, UPC A, UPC E and UPC EAN EXTENSION.
+DATA MATRIX, EAN 8, EAN 13, ITF, PDF417, QR CODE, RSS 14, RSS EXPANDED,
+UPC A, UPC E and UPC EAN EXTENSION.
 
 This is open source:
 https://github.com/markusfisch/BinaryEye

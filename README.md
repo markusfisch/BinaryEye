@@ -34,7 +34,8 @@ ZXing can read the following barcode formats:
 * [EAN 8][ean_8]
 * [EAN 13][ean_13]
 * [ITF][itf]
-* [MAXICODE][maxicode]
+* [MAXICODE][maxicode] (only when unrotated and unskewed, see [77][77],
+	because of which Binary Eye *cannot* read this barcode)
 * [PDF417][pdf417]
 * [QR CODE][qr_code]
 * [RSS 14][rss]
@@ -77,3 +78,4 @@ ZXing can generate the following barcode formats:
 [upc_a]: https://en.wikipedia.org/wiki/Universal_Product_Code
 [upc_e]: https://en.wikipedia.org/wiki/Universal_Product_Code#UPC-E
 [upc_ean]: https://en.wikipedia.org/wiki/Universal_Product_Code#EAN-13
+[77]: https://github.com/markusfisch/BinaryEye/issues/77
