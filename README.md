@@ -12,9 +12,9 @@ library.
 
 ## Screenshots
 
-![Screenshot Scanning](metadata/en-US/images/phoneScreenshots/screencap-scanning.png)
-![Screenshot Result](metadata/en-US/images/phoneScreenshots/screencap-decoded.png)
-![Screenshot Compose Barcode](metadata/en-US/images/phoneScreenshots/screencap-compose-barcode.png)
+![Screenshot Scanning](fastlane/metadata/android/en-US/images/phoneScreenshots/screencap-scanning.png)
+![Screenshot Result](fastlane/metadata/android/en-US/images/phoneScreenshots/screencap-decoded.png)
+![Screenshot Compose Barcode](fastlane/metadata/android/en-US/images/phoneScreenshots/screencap-compose-barcode.png)
 
 ## Download
 
