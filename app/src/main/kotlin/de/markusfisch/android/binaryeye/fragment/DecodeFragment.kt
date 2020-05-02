@@ -16,8 +16,7 @@ import de.markusfisch.android.binaryeye.actions.ActionRegistry
 import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.data.Scan
-import de.markusfisch.android.binaryeye.view.setPadding
-import de.markusfisch.android.binaryeye.view.setWindowInsetListener
+import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.toast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -128,10 +127,8 @@ class DecodeFragment : Fragment() {
 			fillMetaView(metaView, scan)
 		}
 
-		setWindowInsetListener { insets ->
-			(view.findViewById(R.id.inset_layout) as View).setPadding(insets)
-			(view.findViewById(R.id.scroll_view) as View).setPadding(insets)
-		}
+		(view.findViewById(R.id.inset_layout) as View).setPaddingFromWindowInsets()
+		(view.findViewById(R.id.scroll_view) as View).setPaddingFromWindowInsets()
 
 		return view
 	}

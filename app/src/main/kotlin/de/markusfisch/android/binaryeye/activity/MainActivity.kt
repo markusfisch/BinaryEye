@@ -16,7 +16,7 @@ import de.markusfisch.android.binaryeye.fragment.DecodeFragment
 import de.markusfisch.android.binaryeye.fragment.EncodeFragment
 import de.markusfisch.android.binaryeye.fragment.HistoryFragment
 import de.markusfisch.android.binaryeye.fragment.PreferencesFragment
-import de.markusfisch.android.binaryeye.view.setupInsets
+import de.markusfisch.android.binaryeye.view.recordToolbarHeight
 
 class MainActivity : AppCompatActivity() {
 	override fun onSupportNavigateUp(): Boolean {
@@ -35,10 +35,7 @@ class MainActivity : AppCompatActivity() {
 
 		initSystemBars(this)
 		val toolbar = findViewById(R.id.toolbar) as Toolbar
-		setupInsets(
-			findViewById(android.R.id.content),
-			toolbar
-		)
+		recordToolbarHeight(toolbar)
 		setSupportActionBar(toolbar)
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

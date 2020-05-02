@@ -13,8 +13,8 @@ import de.markusfisch.android.binaryeye.app.addSuffixIfNotGiven
 import de.markusfisch.android.binaryeye.app.hasWritePermission
 import de.markusfisch.android.binaryeye.app.shareFile
 import de.markusfisch.android.binaryeye.app.writeExternalFile
-import de.markusfisch.android.binaryeye.view.setPadding
-import de.markusfisch.android.binaryeye.view.setWindowInsetListener
+import de.markusfisch.android.binaryeye.view.doOnApplyWindowInsets
+import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.ConfinedScalingImageView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
@@ -87,9 +87,9 @@ class BarcodeFragment : Fragment() {
 			}
 		}
 
-		setWindowInsetListener { insets ->
-			(view.findViewById(R.id.inset_layout) as View).setPadding(insets)
-			imageView.insets.set(insets)
+		(view.findViewById(R.id.inset_layout) as View).setPaddingFromWindowInsets()
+		imageView.doOnApplyWindowInsets { v, insets ->
+			(v as ConfinedScalingImageView).insets.set(insets)
 		}
 
 		return view

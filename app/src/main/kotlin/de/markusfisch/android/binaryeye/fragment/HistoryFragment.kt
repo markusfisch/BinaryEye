@@ -24,8 +24,7 @@ import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.data.Database
 import de.markusfisch.android.binaryeye.data.exportCsv
 import de.markusfisch.android.binaryeye.data.exportDatabase
-import de.markusfisch.android.binaryeye.view.setPadding
-import de.markusfisch.android.binaryeye.view.setWindowInsetListener
+import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.useVisibility
 import kotlinx.coroutines.*
 
@@ -149,10 +148,8 @@ class HistoryFragment : Fragment() {
 
 		progressView = view.findViewById(R.id.progress_view)
 
-		setWindowInsetListener { insets ->
-			(view.findViewById(R.id.inset_layout) as View).setPadding(insets)
-			listView.setPadding(insets)
-		}
+		(view.findViewById(R.id.inset_layout) as View).setPaddingFromWindowInsets()
+		listView.setPaddingFromWindowInsets()
 
 		update()
 

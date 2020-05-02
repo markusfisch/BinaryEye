@@ -21,8 +21,8 @@ import de.markusfisch.android.binaryeye.app.vibrate
 import de.markusfisch.android.binaryeye.graphics.crop
 import de.markusfisch.android.binaryeye.graphics.loadImageUri
 import de.markusfisch.android.binaryeye.graphics.mapResult
-import de.markusfisch.android.binaryeye.view.setWindowInsetListener
-import de.markusfisch.android.binaryeye.view.setupInsets
+import de.markusfisch.android.binaryeye.view.doOnApplyWindowInsets
+import de.markusfisch.android.binaryeye.view.recordToolbarHeight
 import de.markusfisch.android.binaryeye.widget.CropImageView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
@@ -42,7 +42,7 @@ class PickActivity : AppCompatActivity() {
 
 		initSystemBars(this)
 		val toolbar = findViewById(R.id.toolbar) as Toolbar
-		setupInsets(findViewById(android.R.id.content), toolbar)
+		recordToolbarHeight(toolbar)
 		setSupportActionBar(toolbar)
 
 		supportFragmentManager.addOnBackStackChangedListener {
@@ -98,8 +98,8 @@ class PickActivity : AppCompatActivity() {
 			}
 			points
 		}
-		setWindowInsetListener { insets ->
-			cropImageView.windowInsets.set(insets)
+		cropImageView.doOnApplyWindowInsets { v, insets ->
+			(v as CropImageView).windowInsets.set(insets)
 		}
 
 		findViewById(R.id.scan).setOnClickListener {

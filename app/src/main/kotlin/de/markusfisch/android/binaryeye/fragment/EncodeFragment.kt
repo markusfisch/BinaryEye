@@ -9,8 +9,7 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.hideSoftKeyboard
 import de.markusfisch.android.binaryeye.app.prefs
-import de.markusfisch.android.binaryeye.view.setPadding
-import de.markusfisch.android.binaryeye.view.setWindowInsetListener
+import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 
 class EncodeFragment : Fragment() {
 	private lateinit var formatView: Spinner
@@ -84,10 +83,8 @@ class EncodeFragment : Fragment() {
 			encode()
 		}
 
-		setWindowInsetListener { insets ->
-			(view.findViewById(R.id.inset_layout) as View).setPadding(insets)
-			(view.findViewById(R.id.scroll_view) as View).setPadding(insets)
-		}
+		(view.findViewById(R.id.inset_layout) as View).setPaddingFromWindowInsets()
+		(view.findViewById(R.id.scroll_view) as View).setPaddingFromWindowInsets()
 
 		return view
 	}
