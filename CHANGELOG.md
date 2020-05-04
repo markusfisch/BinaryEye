@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.27.0
+* Export SQLite database
+* Improve order of preferences
+* Update Italian translation
+
 ## 1.26.0
 * Zoom in & out by swiping vertically in camera view
 * Add a setting for swipe to zoom feature
