@@ -11,8 +11,10 @@ val prefs = Preferences()
 class BinaryEyeApp : Application() {
 	override fun onCreate() {
 		super.onCreate()
+		prefs.init(this)
 
-		if (System.getProperty("os.version")?.contains(
+		if (prefs.forceCompat ||
+			System.getProperty("os.version")?.contains(
 				"lineageos", true
 			) == true
 		) {
@@ -21,6 +23,5 @@ class BinaryEyeApp : Application() {
 		}
 
 		db.open(this)
-		prefs.init(this)
 	}
 }

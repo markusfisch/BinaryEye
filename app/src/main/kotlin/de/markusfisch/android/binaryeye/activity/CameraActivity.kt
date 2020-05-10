@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.Vibrator
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.support.v8.renderscript.RSRuntimeException
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
@@ -441,19 +442,27 @@ class CameraActivity : AppCompatActivity() {
 	): Result? {
 		frameData ?: return null
 		invert = invert xor true
-		val pp = preprocessor ?: createPreprocessorAndMapping(
-			frameWidth,
-			frameHeight,
-			frameOrientation
-		)
-		pp.process(frameData)
-		preprocessor = pp
-		return zxing.decode(
-			frameData,
-			pp.outWidth,
-			pp.outHeight,
-			invert
-		)
+		try {
+			val pp = preprocessor ?: createPreprocessorAndMapping(
+				frameWidth,
+				frameHeight,
+				frameOrientation
+			)
+			pp.process(frameData)
+			preprocessor = pp
+			return zxing.decode(
+				frameData,
+				pp.outWidth,
+				pp.outHeight,
+				invert
+			)
+		} catch (e: RSRuntimeException) {
+			prefs.forceCompat = true
+			// now the only option is to let the app crash because
+			// RenderScript.forceCompat() needs to be called before
+			// RenderScript is initialized
+			throw e
+		}
 	}
 
 	private fun createPreprocessorAndMapping(

@@ -1,5 +1,6 @@
 package de.markusfisch.android.binaryeye.preference
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
@@ -57,6 +58,14 @@ class Preferences {
 			setInt(INDEX_OF_LAST_SELECTED_FORMAT, value)
 			field = value
 		}
+	var forceCompat: Boolean = false
+		@SuppressLint("ApplySharedPref")
+		set(value) {
+			// since the app may be about to crash when forceCompat is set,
+			// it's necessary to `commit()` this synchronously
+			preferences.edit().putBoolean(FORCE_COMPAT, value).commit()
+			field = value
+		}
 
 	fun init(context: Context) {
 		preferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -85,6 +94,7 @@ class Preferences {
 			INDEX_OF_LAST_SELECTED_FORMAT,
 			indexOfLastSelectedFormat
 		)
+		forceCompat = preferences.getBoolean(FORCE_COMPAT, forceCompat)
 	}
 
 	private fun setBoolean(label: String, value: Boolean) {
@@ -116,5 +126,6 @@ class Preferences {
 		const val SHOW_META_DATA = "show_meta_data"
 		const val OPEN_WITH_URL = "open_with_url"
 		const val INDEX_OF_LAST_SELECTED_FORMAT = "index_of_last_selected_format"
+		const val FORCE_COMPAT = "force_compat"
 	}
 }
