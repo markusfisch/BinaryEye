@@ -10,52 +10,52 @@ class Preferences {
 
 	var zoomBySwiping = true
 		set(value) {
-			setBoolean(ZOOM_BY_SWIPING, value)
+			apply(ZOOM_BY_SWIPING, value)
 			field = value
 		}
 	var tryHarder = false
 		set(value) {
-			setBoolean(TRY_HARDER, value)
+			apply(TRY_HARDER, value)
 			field = value
 		}
 	var vibrate = true
 		set(value) {
-			setBoolean(VIBRATE, value)
+			apply(VIBRATE, value)
 			field = value
 		}
 	var useHistory = false
 		set(value) {
-			setBoolean(USE_HISTORY, value)
+			apply(USE_HISTORY, value)
 			field = value
 		}
 	var ignoreConsecutiveDuplicates = true
 		set(value) {
-			setBoolean(IGNORE_CONSECUTIVE_DUPLICATES, value)
+			apply(IGNORE_CONSECUTIVE_DUPLICATES, value)
 			field = value
 		}
 	var openImmediately = false
 		set(value) {
-			setBoolean(OPEN_IMMEDIATELY, value)
+			apply(OPEN_IMMEDIATELY, value)
 			field = value
 		}
 	var showMetaData = true
 		set(value) {
-			setBoolean(SHOW_META_DATA, value)
+			apply(SHOW_META_DATA, value)
 			field = value
 		}
 	var showHexDump = true
 		set(value) {
-			setBoolean(SHOW_HEX_DUMP, value)
+			apply(SHOW_HEX_DUMP, value)
 			field = value
 		}
 	var openWithUrl: String = ""
 		set(value) {
-			setString(OPEN_WITH_URL, value)
+			apply(OPEN_WITH_URL, value)
 			field = value
 		}
 	var indexOfLastSelectedFormat: Int = 0
 		set(value) {
-			setInt(INDEX_OF_LAST_SELECTED_FORMAT, value)
+			apply(INDEX_OF_LAST_SELECTED_FORMAT, value)
 			field = value
 		}
 	var forceCompat: Boolean = false
@@ -97,22 +97,16 @@ class Preferences {
 		forceCompat = preferences.getBoolean(FORCE_COMPAT, forceCompat)
 	}
 
-	private fun setBoolean(label: String, value: Boolean) {
-		val editor = preferences.edit()
-		editor.putBoolean(label, value)
-		editor.apply()
+	private fun apply(label: String, value: Boolean) {
+		preferences.edit().putBoolean(label, value).apply()
 	}
 
-	private fun setString(label: String, value: String) {
-		val editor = preferences.edit()
-		editor.putString(label, value)
-		editor.apply()
+	private fun apply(label: String, value: String) {
+		preferences.edit().putString(label, value).apply()
 	}
 
-	private fun setInt(label: String, value: Int) {
-		val editor = preferences.edit()
-		editor.putInt(label, value)
-		editor.apply()
+	private fun apply(label: String, value: Int) {
+		preferences.edit().putInt(label, value).apply()
 	}
 
 	companion object {
