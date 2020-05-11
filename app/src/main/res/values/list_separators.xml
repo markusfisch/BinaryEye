@@ -2,9 +2,15 @@
 	<string-array name="list_separators_names">
 		<item>@string/separator_line_break</item>
 		<item>@string/separator_ruler</item>
+		<item>@string/export_csv_comma</item>
+		<item>@string/export_csv_semicolon</item>
+		<item>@string/export_json</item>
 	</string-array>
 	<string-array name="list_separators_values">
-		<item>\n</item>
-		<item>\n---\n</item>
+		<item>text:\n</item>
+		<item>text:\n---\n</item>
+		<item>csv:,</item>
+		<item>csv:;</item>
+		<item>json</item>
 	</string-array>
 </resources>

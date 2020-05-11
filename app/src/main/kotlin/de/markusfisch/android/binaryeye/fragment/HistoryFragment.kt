@@ -384,27 +384,37 @@ class HistoryFragment : Fragment() {
 			.show()
 	}
 
-	private fun shareScans(separator: String) {
-		scope.launch {
-			progressView.useVisibility {
-				val sb = StringBuilder()
-				db.getScans(filter)?.use { cursor ->
-					val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
-					if (cursor.moveToFirst()) {
-						do {
-							val content = cursor.getString(contentIndex)
-							if (content?.isNotEmpty() == true) {
-								sb.append(content)
-								sb.append(separator)
-							}
-						} while (cursor.moveToNext())
-					}
+	private fun shareScans(format: String) = scope.launch {
+		progressView.useVisibility {
+			var text: String? = null
+			db.getScansDetailed(filter)?.use { cursor ->
+				val details = format.split(":")
+				text = when (details[0]) {
+					"text" -> exportText(cursor, details[1])
+					"csv" -> exportCsv(cursor, details[1])
+					else -> exportJson(cursor)
 				}
-				val text = sb.toString()
-				if (text.isNotEmpty()) withContext(Dispatchers.Main) {
-					shareText(context, text)
+			}
+			text?.let {
+				withContext(Dispatchers.Main) {
+					shareText(context, it)
 				}
 			}
 		}
 	}
+}
+
+private fun exportText(cursor: Cursor, separator: String): String {
+	val sb = StringBuilder()
+	val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
+	if (cursor.moveToFirst()) {
+		do {
+			val content = cursor.getString(contentIndex)
+			if (content?.isNotEmpty() == true) {
+				sb.append(content)
+				sb.append(separator)
+			}
+		} while (cursor.moveToNext())
+	}
+	return sb.toString()
 }
