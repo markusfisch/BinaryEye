@@ -45,12 +45,7 @@ fun writeExternalFile(
 	mimeType: String,
 	write: (outputStream: OutputStream) -> Any
 ): Int = try {
-	val outputStream = getExternalOutputStream(
-		context,
-		fileName,
-		mimeType
-	) ?: throw IOException()
-	outputStream.use { write(it) }
+	openExternalOutputStream(context, fileName, mimeType).use { write(it) }
 	R.string.saved_in_downloads
 } catch (e: FileAlreadyExistsException) {
 	R.string.error_file_exists
@@ -58,11 +53,11 @@ fun writeExternalFile(
 	R.string.error_saving_binary_data
 }
 
-private fun getExternalOutputStream(
+private fun openExternalOutputStream(
 	context: Context,
 	fileName: String,
 	mimeType: String
-): OutputStream? = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+): OutputStream = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
 	@Suppress("DEPRECATION")
 	val file = File(
 		Environment.getExternalStoragePublicDirectory(
@@ -82,10 +77,6 @@ private fun getExternalOutputStream(
 			put(MediaStore.Downloads.DISPLAY_NAME, fileName)
 			put(MediaStore.Downloads.MIME_TYPE, mimeType)
 		}
-	)
-	if (uri != null) {
-		resolver.openOutputStream(uri)
-	} else {
-		null
-	}
+	) ?: throw IOException()
+	resolver.openOutputStream(uri) ?: throw IOException()
 }
