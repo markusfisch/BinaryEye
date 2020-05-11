@@ -82,6 +82,7 @@
 	<string name="export_as">Esportare come?</string>
 	<string name="export_csv_comma">CSV con virgole</string>
 	<string name="export_csv_semicolon">CSV con punti e virgola</string>
+	<string name="export_json">Export as JSON</string>
 	<string name="export_database">Esporta database SQLite</string>
 	<string name="saved_in_downloads">Salvato nei download</string>
 	<string name="rotate_image_cw">Ruota immagine in senso orario</string>

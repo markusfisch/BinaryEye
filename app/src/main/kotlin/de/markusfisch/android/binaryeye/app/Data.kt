@@ -10,3 +10,11 @@ fun hasNonPrintableCharacters(s: String) = nonPrintable.containsMatchIn(s)
 fun parseAndNormalizeUri(input: String): Uri = Uri.parse(input).let {
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) it.normalizeScheme() else it
 }
+
+fun ByteArray.toHexString(): String {
+	val hex = StringBuilder()
+	for (i in this.indices) {
+		hex.append(String.format("%02X", this[i]))
+	}
+	return hex.toString()
+}

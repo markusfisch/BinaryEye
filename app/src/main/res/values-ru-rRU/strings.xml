@@ -86,6 +86,7 @@
 	<string name="export_as">Формат экспортируемого файла</string>
 	<string name="export_csv_comma">CSV (разделитель - запятая)</string>
 	<string name="export_csv_semicolon">CSV (разделитель - точка с запятой)</string>
+	<string name="export_json">Export as JSON</string>
 	<string name="export_database">SQLite база данных</string>
 	<string name="saved_in_downloads">Сохранено в загрузках</string>
 	<string name="rotate_image_cw">Повернуть изображение по часовой стрелке</string>

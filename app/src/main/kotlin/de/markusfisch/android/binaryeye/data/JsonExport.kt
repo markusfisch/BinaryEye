@@ -4,13 +4,11 @@ import android.content.Context
 import android.database.Cursor
 import de.markusfisch.android.binaryeye.app.toHexString
 import de.markusfisch.android.binaryeye.app.writeExternalFile
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-fun exportCsv(
-	context: Context,
-	name: String,
-	cursor: Cursor,
-	delimiter: String
-) {
+fun exportJson(context: Context, name: String, cursor: Cursor) {
 	if (!cursor.moveToFirst()) {
 		return
 	}
@@ -28,17 +26,12 @@ fun exportCsv(
 		Database.SCANS_UPC_EAN_EXTENSION
 	)
 	val indices = columns.map {
-		cursor.getColumnIndex(it)
+		Pair(cursor.getColumnIndex(it), it)
 	}
 	val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
 	val rawIndex = cursor.getColumnIndex(Database.SCANS_RAW)
-	writeExternalFile(context, name, "text/csv") { outputStream ->
-		outputStream.write(
-			columns.joinToString(
-				delimiter,
-				postfix = "\n"
-			).toByteArray()
-		)
+	val root = JSONArray()
+	writeExternalFile(context, name, "application/json") { outputStream ->
 		do {
 			var deviation: Pair<Int, String>? = null
 			if (cursor.getString(contentIndex)?.isEmpty() == true) {
@@ -47,32 +40,28 @@ fun exportCsv(
 					cursor.getBlob(rawIndex).toHexString()
 				)
 			}
-			outputStream.write(
-				cursor.toCsvRecord(indices, delimiter, deviation)
-			)
+			root.put(cursor.toJsonObject(indices, deviation))
 		} while (cursor.moveToNext())
+		outputStream.write(root.toString().toByteArray())
 	}
 }
 
-private fun Cursor.toCsvRecord(
-	indices: List<Int>,
-	delimiter: String,
+private fun Cursor.toJsonObject(
+	indices: List<Pair<Int, String>>,
 	deviation: Pair<Int, String>?
-): ByteArray {
-	val sb = StringBuilder()
-	indices.forEach {
-		val value = if (deviation?.first == it) {
-			deviation.second
-		} else {
-			this.getString(it)
+): JSONObject {
+	val obj = JSONObject()
+	return try {
+		indices.forEach {
+			val value = if (deviation?.first == it.first) {
+				deviation.second
+			} else {
+				this.getString(it.first)
+			}
+			obj.put(it.second, value ?: "")
 		}
-		sb.append(value?.quoteAndEscape() ?: "")
-		sb.append(delimiter)
+		obj
+	} catch (e: JSONException) {
+		obj
 	}
-	sb.append("\n")
-	return sb.toString().toByteArray()
 }
-
-private fun String.quoteAndEscape() = "\"${this
-	.replace("\n", " ")
-	.replace("\"", "\"\"")}\""

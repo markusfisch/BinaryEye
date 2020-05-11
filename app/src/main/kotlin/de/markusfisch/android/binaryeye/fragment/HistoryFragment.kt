@@ -24,6 +24,7 @@ import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.data.Database
 import de.markusfisch.android.binaryeye.data.exportCsv
 import de.markusfisch.android.binaryeye.data.exportDatabase
+import de.markusfisch.android.binaryeye.data.exportJson
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.useVisibility
 import kotlinx.coroutines.*
@@ -346,16 +347,23 @@ class HistoryFragment : Fragment() {
 					resume(options[which])
 				}
 			} ?: return@useVisibility
-			val isCsv = delimiter != "sql"
 			val name = withContext(Dispatchers.Main) {
-				ac.askForFileName(if (isCsv) ".csv" else ".db")
+				ac.askForFileName(
+					when (delimiter) {
+						"db" -> ".db"
+						"json" -> ".json"
+						else -> ".csv"
+					}
+				)
 			} ?: return@useVisibility
-			if (isCsv) {
-				db.getScansDetailed(filter)?.use { cursor ->
-					exportCsv(context, name, cursor, delimiter)
+			when (delimiter) {
+				"db" -> exportDatabase(ac, name)
+				else -> db.getScansDetailed(filter)?.use {
+					when (delimiter) {
+						"json" -> exportJson(context, name, it)
+						else -> exportCsv(context, name, it, delimiter)
+					}
 				}
-			} else {
-				exportDatabase(ac, name)
 			}
 		}
 	}
