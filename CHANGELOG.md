@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.27.1
+* Update Russian translation
+* Force compat mode if native RenderScript crashed
+
 ## 1.27.0
 * Export SQLite database
 * Improve order of preferences
