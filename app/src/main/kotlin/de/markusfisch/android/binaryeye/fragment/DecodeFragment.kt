@@ -254,7 +254,7 @@ class DecodeFragment : Fragment() {
 				"application/octet-stream"
 			) {
 				it.write(raw)
-			}
+			}.toSaveResult()
 			ac.toast(message)
 		}
 	}

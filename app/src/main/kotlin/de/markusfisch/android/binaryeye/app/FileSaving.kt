@@ -39,18 +39,22 @@ suspend fun Activity.askForFileName(suffix: String = ""): String? {
 	}
 }
 
+fun Boolean.toSaveResult() = if (this) {
+	R.string.saved_in_downloads
+} else {
+	R.string.error_saving_binary_data
+}
+
 fun writeExternalFile(
 	context: Context,
 	fileName: String,
 	mimeType: String,
-	write: (outputStream: OutputStream) -> Any
-): Int = try {
+	write: (outputStream: OutputStream) -> Unit
+): Boolean = try {
 	openExternalOutputStream(context, fileName, mimeType).use { write(it) }
-	R.string.saved_in_downloads
-} catch (e: FileAlreadyExistsException) {
-	R.string.error_file_exists
+	true
 } catch (e: IOException) {
-	R.string.error_saving_binary_data
+	false
 }
 
 private fun openExternalOutputStream(
@@ -66,7 +70,7 @@ private fun openExternalOutputStream(
 		fileName
 	)
 	if (file.exists()) {
-		throw FileAlreadyExistsException(file)
+		throw IOException()
 	}
 	FileOutputStream(file)
 } else {

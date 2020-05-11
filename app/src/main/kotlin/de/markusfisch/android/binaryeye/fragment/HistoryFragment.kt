@@ -27,6 +27,7 @@ import de.markusfisch.android.binaryeye.data.exportDatabase
 import de.markusfisch.android.binaryeye.data.exportJson
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.useVisibility
+import de.markusfisch.android.binaryeye.widget.toast
 import kotlinx.coroutines.*
 
 class HistoryFragment : Fragment() {
@@ -356,14 +357,17 @@ class HistoryFragment : Fragment() {
 					}
 				)
 			} ?: return@useVisibility
-			when (delimiter) {
+			val message = when (delimiter) {
 				"db" -> exportDatabase(ac, name)
 				else -> db.getScansDetailed(filter)?.use {
 					when (delimiter) {
 						"json" -> exportJson(context, name, it)
 						else -> exportCsv(context, name, it, delimiter)
 					}
-				}
+				} ?: false
+			}.toSaveResult()
+			withContext(Dispatchers.Main) {
+				ac.toast(message)
 			}
 		}
 	}

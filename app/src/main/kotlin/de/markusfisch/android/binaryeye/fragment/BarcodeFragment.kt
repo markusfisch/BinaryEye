@@ -9,10 +9,7 @@ import android.view.*
 import android.widget.EditText
 import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.app.addSuffixIfNotGiven
-import de.markusfisch.android.binaryeye.app.hasWritePermission
-import de.markusfisch.android.binaryeye.app.shareFile
-import de.markusfisch.android.binaryeye.app.writeExternalFile
+import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.view.doOnApplyWindowInsets
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.ConfinedScalingImageView
@@ -143,7 +140,7 @@ class BarcodeFragment : Fragment() {
 		GlobalScope.launch {
 			val message = writeExternalFile(ac, fileName, "image/png") {
 				bitmap.saveAsPng(it)
-			}
+			}.toSaveResult()
 			GlobalScope.launch(Main) {
 				ac.toast(message)
 			}

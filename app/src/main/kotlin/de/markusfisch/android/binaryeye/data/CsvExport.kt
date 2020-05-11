@@ -4,10 +4,26 @@ import android.content.Context
 import android.database.Cursor
 import de.markusfisch.android.binaryeye.app.toHexString
 import de.markusfisch.android.binaryeye.app.writeExternalFile
+import java.io.ByteArrayOutputStream
+import java.io.OutputStream
 
 fun exportCsv(
 	context: Context,
 	name: String,
+	cursor: Cursor,
+	delimiter: String
+) = writeExternalFile(context, name, "text/csv") { outputStream ->
+	exportCsv(outputStream, cursor, delimiter)
+}
+
+fun exportCsv(cursor: Cursor, delimiter: String): String? {
+	val outputStream = ByteArrayOutputStream()
+	exportCsv(outputStream, cursor, delimiter)
+	return outputStream.toString()
+}
+
+private fun exportCsv(
+	outputStream: OutputStream,
 	cursor: Cursor,
 	delimiter: String
 ) {
@@ -32,26 +48,24 @@ fun exportCsv(
 	}
 	val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
 	val rawIndex = cursor.getColumnIndex(Database.SCANS_RAW)
-	writeExternalFile(context, name, "text/csv") { outputStream ->
-		outputStream.write(
-			columns.joinToString(
-				delimiter,
-				postfix = "\n"
-			).toByteArray()
-		)
-		do {
-			var deviation: Pair<Int, String>? = null
-			if (cursor.getString(contentIndex)?.isEmpty() == true) {
-				deviation = Pair(
-					contentIndex,
-					cursor.getBlob(rawIndex).toHexString()
-				)
-			}
-			outputStream.write(
-				cursor.toCsvRecord(indices, delimiter, deviation)
+	outputStream.write(
+		columns.joinToString(
+			delimiter,
+			postfix = "\n"
+		).toByteArray()
+	)
+	do {
+		var deviation: Pair<Int, String>? = null
+		if (cursor.getString(contentIndex)?.isEmpty() == true) {
+			deviation = Pair(
+				contentIndex,
+				cursor.getBlob(rawIndex).toHexString()
 			)
-		} while (cursor.moveToNext())
-	}
+		}
+		outputStream.write(
+			cursor.toCsvRecord(indices, delimiter, deviation)
+		)
+	} while (cursor.moveToNext())
 }
 
 private fun Cursor.toCsvRecord(

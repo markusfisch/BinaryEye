@@ -4,13 +4,23 @@ import android.content.Context
 import android.database.Cursor
 import de.markusfisch.android.binaryeye.app.toHexString
 import de.markusfisch.android.binaryeye.app.writeExternalFile
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 
-fun exportJson(context: Context, name: String, cursor: Cursor) {
+fun exportJson(
+	context: Context,
+	name: String,
+	cursor: Cursor
+) = writeExternalFile(context, name, "application/json") { outputStream ->
+	exportJson(cursor)?.let {
+		outputStream.write(it.toByteArray())
+	}
+}
+
+fun exportJson(cursor: Cursor): String? {
 	if (!cursor.moveToFirst()) {
-		return
+		return null
 	}
 	val columns = arrayOf(
 		Database.SCANS_DATETIME,
@@ -31,19 +41,17 @@ fun exportJson(context: Context, name: String, cursor: Cursor) {
 	val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
 	val rawIndex = cursor.getColumnIndex(Database.SCANS_RAW)
 	val root = JSONArray()
-	writeExternalFile(context, name, "application/json") { outputStream ->
-		do {
-			var deviation: Pair<Int, String>? = null
-			if (cursor.getString(contentIndex)?.isEmpty() == true) {
-				deviation = Pair(
-					contentIndex,
-					cursor.getBlob(rawIndex).toHexString()
-				)
-			}
-			root.put(cursor.toJsonObject(indices, deviation))
-		} while (cursor.moveToNext())
-		outputStream.write(root.toString().toByteArray())
-	}
+	do {
+		var deviation: Pair<Int, String>? = null
+		if (cursor.getString(contentIndex)?.isEmpty() == true) {
+			deviation = Pair(
+				contentIndex,
+				cursor.getBlob(rawIndex).toHexString()
+			)
+		}
+		root.put(cursor.toJsonObject(indices, deviation))
+	} while (cursor.moveToNext())
+	return root.toString()
 }
 
 private fun Cursor.toJsonObject(
