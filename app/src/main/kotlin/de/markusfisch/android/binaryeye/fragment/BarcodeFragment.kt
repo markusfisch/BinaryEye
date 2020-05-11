@@ -165,7 +165,7 @@ class BarcodeFragment : Fragment() {
 				if (success) {
 					shareFile(context, file, "image/png")
 				} else {
-					activity?.toast(R.string.error_saving_binary_data)
+					activity?.toast(R.string.error_saving_file)
 				}
 			}
 		}

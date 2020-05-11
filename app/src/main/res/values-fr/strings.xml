@@ -60,7 +60,7 @@
 	<string name="separator_ruler">Ruler</string>
 	<string name="save_as_file_name">Save in Downloads as file?</string>
 	<string name="file_name">File name</string>
-	<string name="error_saving_binary_data">Cannot save file</string>
+	<string name="error_saving_file">Cannot save file</string>
 	<string name="error_file_exists">File already exists</string>
 	<string name="connect_to_wifi">Connect to WiFi</string>
 	<string name="wifi_config_failed">Could not configure WiFi</string>

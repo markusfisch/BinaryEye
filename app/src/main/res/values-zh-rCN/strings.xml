@@ -59,7 +59,7 @@
 	<string name="separator_ruler">分割线</string>
 	<string name="save_as_file_name">保存为文件?</string>
 	<string name="file_name">文件名</string>
-	<string name="error_saving_binary_data">无法保存文件</string>
+	<string name="error_saving_file">无法保存文件</string>
 	<string name="error_file_exists">文件已存在</string>
 	<string name="connect_to_wifi">连接到WiFi</string>
 	<string name="wifi_config_failed">无法配置WiFi</string>

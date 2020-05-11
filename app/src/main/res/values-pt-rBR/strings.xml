@@ -60,7 +60,7 @@
 	<string name="separator_ruler">Régua</string>
 	<string name="save_as_file_name">Salvar como arquivo de imagem?</string>
 	<string name="file_name">Nome do arquivo</string>
-	<string name="error_saving_binary_data">Arquivo não pode ser salvo</string>
+	<string name="error_saving_file">Arquivo não pode ser salvo</string>
 	<string name="error_file_exists">Arquivo já existe</string>
 	<string name="connect_to_wifi">Conectar para o WiFi</string>
 	<string name="wifi_config_failed">Não foi possível configurar o WiFi</string>

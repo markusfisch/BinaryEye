@@ -60,7 +60,7 @@
 	<string name="separator_ruler">Righello</string>
 	<string name="save_as_file_name">Salvare come file?</string>
 	<string name="file_name">Nome del file</string>
-	<string name="error_saving_binary_data">Impossibile salvare il file</string>
+	<string name="error_saving_file">Impossibile salvare il file</string>
 	<string name="error_file_exists">Il file esiste già</string>
 	<string name="connect_to_wifi">Connetti al WiFi</string>
 	<string name="wifi_config_failed">Impossibile configurare il WiFi</string>

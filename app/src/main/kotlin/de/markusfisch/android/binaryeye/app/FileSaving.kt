@@ -42,7 +42,7 @@ suspend fun Activity.askForFileName(suffix: String = ""): String? {
 fun Boolean.toSaveResult() = if (this) {
 	R.string.saved_in_downloads
 } else {
-	R.string.error_saving_binary_data
+	R.string.error_saving_file
 }
 
 fun writeExternalFile(

@@ -57,7 +57,7 @@
 	<string name="separator_ruler">直尺</string>
 	<string name="save_as_file_name">儲存成檔案?</string>
 	<string name="file_name">檔案名稱</string>
-	<string name="error_saving_binary_data">不能儲存檔案</string>
+	<string name="error_saving_file">不能儲存檔案</string>
 	<string name="error_file_exists">檔案已存在</string>
 	<string name="connect_to_wifi">連接至 WiFi</string>
 	<string name="wifi_config_failed">WiFi連接設定失敗</string>

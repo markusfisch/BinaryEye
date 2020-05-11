@@ -60,7 +60,7 @@
 	<string name="separator_ruler">Vonalzó</string>
 	<string name="save_as_file_name">Menti fájlként?</string>
 	<string name="file_name">Fájlnév</string>
-	<string name="error_saving_binary_data">Nem lehet elmenteni a fájlt</string>
+	<string name="error_saving_file">Nem lehet elmenteni a fájlt</string>
 	<string name="error_file_exists">A fájl már létezik</string>
 	<string name="connect_to_wifi">Kapcsolódás WiFi-hez</string>
 	<string name="wifi_config_failed">Nem sikerült beállítani a WiFi-t</string>

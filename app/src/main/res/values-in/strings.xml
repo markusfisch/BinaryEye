@@ -59,7 +59,7 @@
 	<string name="separator_ruler">Penggaris</string>
 	<string name="save_as_file_name">Simpan sebagai berkas?</string>
 	<string name="file_name">Nama berkas</string>
-	<string name="error_saving_binary_data">Tidak bisa menyimpan berkas</string>
+	<string name="error_saving_file">Tidak bisa menyimpan berkas</string>
 	<string name="error_file_exists">Berkas sudah ada</string>
 	<string name="connect_to_wifi">Sambungkan ke WiFi</string>
 	<string name="wifi_config_failed">Tidak bisa mengelola WiFi</string>
