@@ -85,8 +85,8 @@ class PreferencesFragment : Fragment() {
 		return view
 	}
 
-	override fun onPause() {
-		super.onPause()
+	override fun onStop() {
+		super.onStop()
 		prefs.zoomBySwiping = zoomBySwipingSwitch.isChecked
 		prefs.tryHarder = tryHarderSwitch.isChecked
 		prefs.vibrate = vibrateSwitch.isChecked
