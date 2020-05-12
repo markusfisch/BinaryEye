@@ -442,7 +442,7 @@ class CameraActivity : AppCompatActivity() {
 	): Result? {
 		frameData ?: return null
 		invert = invert xor true
-		try {
+		return try {
 			val pp = preprocessor ?: createPreprocessorAndMapping(
 				frameWidth,
 				frameHeight,
@@ -450,18 +450,19 @@ class CameraActivity : AppCompatActivity() {
 			)
 			pp.process(frameData)
 			preprocessor = pp
-			return zxing.decode(
+			zxing.decode(
 				frameData,
 				pp.outWidth,
 				pp.outHeight,
 				invert
 			)
 		} catch (e: RSRuntimeException) {
-			prefs.forceCompat = true
-			// now the only option is to let the app crash because
+			prefs.forceCompat = prefs.forceCompat xor true
+			// now the only option is to restart the app because
 			// RenderScript.forceCompat() needs to be called before
 			// RenderScript is initialized
-			throw e
+			restartApp(this)
+			null
 		}
 	}
 
