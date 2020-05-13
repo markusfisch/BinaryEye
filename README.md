@@ -59,6 +59,42 @@ ZXing can generate the following barcode formats:
 * [QR CODE][qr_code]
 * [UPC A][upc_a]
 
+## RenderScript
+
+This app uses [RenderScript][rs] to resize and rotate the camera image.
+Unfortunately, RenderScript has some nasty gotchas.
+
+### RenderScript.forceCompat()
+
+It's necessary to call `RenderScript.forceCompat()` on some devices/roms.
+
+`RenderScript.forceCompat()` needs to be run before any other RenderScript
+function and unfortunately there is no way to know if invoking `forceCompat()`
+is necessary or not.
+
+If `RenderScript.forceCompat()` is necessary, a `RSRuntimeException` will
+be thrown and the only option is to restart the app, this time with calling
+`forceCompat()` first.
+
+Calling `RenderScript.forceCompat()` means the processing is done in
+software so you probably don't want to enable it by default.
+
+### macOS Catalina
+
+At the time of writing, calling `RenderScript.forceCompat()` in a build made
+on macOS Catalina with build tools 29.0.3 will crash the app. This is a bug
+in the build tools for Catalina.
+
+So *do not* build release builts on macOS Catalina with build tools 29.0.3.
+
+Building on Linux with 29.0.3 works fine.
+
+### App Bundle
+
+At the time of writing, `./gradlew bundleRelease` will produce a broken
+App Bundle without the necessary RenderScript libraries. This is another
+bug in the build tools.
+
 [play]: https://play.google.com/store/search?q=barcode%20scanner&c=apps
 [zxing]: https://github.com/zxing/zxing
 [kotlin]: http://kotlinlang.org/
@@ -79,3 +115,4 @@ ZXing can generate the following barcode formats:
 [upc_e]: https://en.wikipedia.org/wiki/Universal_Product_Code#UPC-E
 [upc_ean]: https://en.wikipedia.org/wiki/Universal_Product_Code#EAN-13
 [77]: https://github.com/markusfisch/BinaryEye/issues/77
+[rs]: https://developer.android.com/guide/topics/renderscript/compute
