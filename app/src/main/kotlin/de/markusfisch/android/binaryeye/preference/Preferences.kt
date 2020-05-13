@@ -1,6 +1,5 @@
 package de.markusfisch.android.binaryeye.preference
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
@@ -59,11 +58,10 @@ class Preferences {
 			field = value
 		}
 	var forceCompat: Boolean = false
-		@SuppressLint("ApplySharedPref")
 		set(value) {
 			// since the app may be about to crash when forceCompat is set,
 			// it's necessary to `commit()` this synchronously
-			preferences.edit().putBoolean(FORCE_COMPAT, value).commit()
+			commit(FORCE_COMPAT, value)
 			field = value
 		}
 
@@ -97,8 +95,15 @@ class Preferences {
 		forceCompat = preferences.getBoolean(FORCE_COMPAT, forceCompat)
 	}
 
+	private fun put(label: String, value: Boolean) =
+		preferences.edit().putBoolean(label, value)
+
+	private fun commit(label: String, value: Boolean) {
+		put(label, value).commit()
+	}
+
 	private fun apply(label: String, value: Boolean) {
-		preferences.edit().putBoolean(label, value).apply()
+		put(label, value).apply()
 	}
 
 	private fun apply(label: String, value: String) {
