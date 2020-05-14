@@ -9,7 +9,7 @@
 	<plurals name="barcode_info">
 		<item quantity="other">%1$s, %2$d karakter</item>
 	</plurals>
-	<string name="error_correction_level">Kesalahan level koreksi</string>
+	<string name="error_correction_level">Level koreksi kesalahan</string>
 	<string name="issue_number">Nomor pemindaian</string>
 	<string name="orientation">Orientasi</string>
 	<string name="other_meta_data">Metadata</string>
@@ -37,8 +37,8 @@
 	<string name="switch_camera">Ganti kamera</string>
 	<string name="history">Riwayat</string>
 	<string name="preferences">Preferensi</string>
-	<string name="zoom_by_swiping">Zoom camera by swiping up/down</string>
-	<string name="try_harder">Optimalkan pembaca untuk akurasi, bukan kecepatan</string>
+	<string name="zoom_by_swiping">Perbesar kamera dengan menggeser ke atas/bawah</string>
+	<string name="try_harder">Optimalkan akurasi, bukan kecepatan</string>
 	<string name="vibrate">Bergetar saat mendeteksi</string>
 	<string name="use_history">Simpan riwayat pemindaian</string>
 	<string name="ignore_consecutive_duplicates">Jangan simpan duplikat berturutan</string>
@@ -78,11 +78,11 @@
 	<string name="search_web">Cari secara daring</string>
 	<string name="search_scan">Cari pindaian</string>
 	<string name="export_to_file">Ekspor ke berkas</string>
-	<string name="export_as">Export as?</string>
-	<string name="export_csv_comma">CSV with commas</string>
-	<string name="export_csv_semicolon">CSV with semicolons</string>
-	<string name="export_json">Export as JSON</string>
-	<string name="export_database">Export SQLite database</string>
+	<string name="export_as">Ekspor sebagai?</string>
+	<string name="export_csv_comma">CSV dengan koma</string>
+	<string name="export_csv_semicolon">CSV dengan titik koma</string>
+	<string name="export_json">Ekspor sebagai JSON</string>
+	<string name="export_database">Ekspor basis data SQLite</string>
 	<string name="saved_in_downloads">Simpan di dalam unduhan</string>
 	<string name="rotate_image_cw">Putar gambar searah jarum jam</string>
 	<string name="pick_file">Pilih berkas gambar</string>
