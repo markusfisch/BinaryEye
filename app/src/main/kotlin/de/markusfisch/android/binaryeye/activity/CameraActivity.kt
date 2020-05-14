@@ -120,7 +120,7 @@ class CameraActivity : AppCompatActivity() {
 
 	override fun onDestroy() {
 		super.onDestroy()
-		preprocessor?.destroy()
+		resetPreProcessor()
 		fallbackBuffer = null
 		saveZoom()
 	}
@@ -133,6 +133,11 @@ class CameraActivity : AppCompatActivity() {
 		if (hasCameraPermission(this, REQUEST_CAMERA)) {
 			openCamera()
 		}
+	}
+
+	private fun resetPreProcessor() {
+		preprocessor?.destroy()
+		preprocessor = null
 	}
 
 	private fun openCamera() {
@@ -324,6 +329,10 @@ class CameraActivity : AppCompatActivity() {
 				val frameHeight = cameraView.frameHeight
 				val frameOrientation = cameraView.frameOrientation
 				var decoding = true
+				// reset preprocessor to make sure it fits the current
+				// frame orientation; important for landscape to landscape
+				// orientation changes
+				resetPreProcessor()
 				camera.setPreviewCallback { frameData, _ ->
 					if (decoding) {
 						val result = decodeFrame(
