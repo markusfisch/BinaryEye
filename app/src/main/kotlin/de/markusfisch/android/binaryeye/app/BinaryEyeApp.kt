@@ -13,12 +13,7 @@ class BinaryEyeApp : Application() {
 		super.onCreate()
 		prefs.init(this)
 
-		if (prefs.forceCompat ||
-			System.getProperty("os.version")?.contains(
-				"lineageos", true
-			) == true
-		) {
-			// required to make RenderScript work on Lineage 16.0
+		if (prefs.forceCompat) {
 			RenderScript.forceCompat()
 		}
 
