@@ -33,6 +33,9 @@ start:
 uninstall:
 	adb $(TARGET) uninstall $(PACKAGE).debug
 
+meminfo:
+	adb shell dumpsys meminfo $(PACKAGE).debug
+
 images:
 	svg/update.sh
 
