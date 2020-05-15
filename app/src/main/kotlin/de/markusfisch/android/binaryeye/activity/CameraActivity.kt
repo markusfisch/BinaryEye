@@ -335,26 +335,13 @@ class CameraActivity : AppCompatActivity() {
 				resetPreProcessor()
 				camera.setPreviewCallback { frameData, _ ->
 					if (decoding) {
-						val result = decodeFrame(
+						decodeFrame(
 							frameData,
 							frameWidth,
 							frameHeight,
 							frameOrientation
-						)
-						result?.let {
-							cameraView.post {
-								val rp = result.resultPoints
-								val m = mapping
-								if (m != null && rp != null && rp.isNotEmpty()) {
-									detectorView.mark(m.map(rp))
-								}
-								vibrator.vibrate()
-								showResult(
-									this@CameraActivity,
-									result,
-									returnResult
-								)
-							}
+						)?.let { result ->
+							postResult(result)
 							decoding = false
 						}
 					}
@@ -492,6 +479,22 @@ class CameraActivity : AppCompatActivity() {
 			cameraView.previewRect
 		)
 		return pp
+	}
+
+	private fun postResult(result: Result) {
+		cameraView.post {
+			val rp = result.resultPoints
+			val m = mapping
+			if (m != null && rp != null && rp.isNotEmpty()) {
+				detectorView.mark(m.map(rp))
+			}
+			vibrator.vibrate()
+			showResult(
+				this@CameraActivity,
+				result,
+				returnResult
+			)
+		}
 	}
 
 	companion object {
