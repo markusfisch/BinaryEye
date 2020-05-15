@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.28.0
+* Share history as CSV and JSON too
+* Export history in JSON format
+* Update Indonesian translation
+* Fix initializing of RenderScript automatically
+* Fix highlighting after landscape to landscape rotations
+
 ## 1.27.1
 * Update Russian translation
 * Force compat mode if native RenderScript crashed
