@@ -95,6 +95,15 @@ At the time of writing, `./gradlew bundleRelease` will produce a broken
 App Bundle without the necessary RenderScript libraries. This is another
 bug in the build tools.
 
+### 2D barcodes
+
+If you want to fork this and are only interested in reading 2D barcodes
+(like QR or Aztec), you may want to remove the custom rotation kernel
+altogether as ZXing can read 2D barcodes in any orientation.
+
+This will make your app a bit simpler and saves you from compiling a
+custom RenderScript kernel for each architecture you want to support.
+
 [play]: https://play.google.com/store/search?q=barcode%20scanner&c=apps
 [zxing]: https://github.com/zxing/zxing
 [kotlin]: http://kotlinlang.org/
