@@ -12,6 +12,11 @@ class Preferences {
 			apply(ZOOM_BY_SWIPING, value)
 			field = value
 		}
+	var autoRotate = false
+		set(value) {
+			apply(AUTO_ROTATE, value)
+			field = value
+		}
 	var tryHarder = false
 		set(value) {
 			apply(TRY_HARDER, value)
@@ -72,6 +77,7 @@ class Preferences {
 
 	fun update() {
 		zoomBySwiping = preferences.getBoolean(ZOOM_BY_SWIPING, zoomBySwiping)
+		autoRotate = preferences.getBoolean(AUTO_ROTATE, autoRotate)
 		tryHarder = preferences.getBoolean(TRY_HARDER, tryHarder)
 		vibrate = preferences.getBoolean(VIBRATE, vibrate)
 		useHistory = preferences.getBoolean(USE_HISTORY, useHistory)
@@ -116,6 +122,7 @@ class Preferences {
 
 	companion object {
 		const val ZOOM_BY_SWIPING = "zoom_by_swiping"
+		const val AUTO_ROTATE = "auto_rotate"
 		const val TRY_HARDER = "try_harder"
 		const val VIBRATE = "vibrate"
 		const val USE_HISTORY = "use_history"

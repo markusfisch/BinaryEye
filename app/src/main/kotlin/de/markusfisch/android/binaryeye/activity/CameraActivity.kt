@@ -24,6 +24,7 @@ import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.data.Scan
 import de.markusfisch.android.binaryeye.graphics.Mapping
 import de.markusfisch.android.binaryeye.graphics.frameToView
+import de.markusfisch.android.binaryeye.graphics.isPortrait
 import de.markusfisch.android.binaryeye.rs.Preprocessor
 import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
@@ -38,7 +39,7 @@ import kotlin.math.roundToInt
 class CameraActivity : AppCompatActivity() {
 	private val zxing = Zxing(ResultPointCallback { point ->
 		point?.let {
-			mapping?.map(it)?.let {
+			getMapping()?.map(it)?.let {
 				detectorView.post {
 					detectorView.mark(listOf(it))
 				}
@@ -53,7 +54,9 @@ class CameraActivity : AppCompatActivity() {
 	private lateinit var flashFab: View
 
 	private var preprocessor: Preprocessor? = null
-	private var mapping: Mapping? = null
+	private var nativeMapping: Mapping? = null
+	private var rotatedMapping: Mapping? = null
+	private var rotate = false
 	private var invert = false
 	private var flash = false
 	private var returnResult = false
@@ -437,21 +440,32 @@ class CameraActivity : AppCompatActivity() {
 		frameOrientation: Int
 	): Result? {
 		frameData ?: return null
-		invert = invert xor true
+		rotate = if (prefs.autoRotate) {
+			rotate xor true
+		} else {
+			invert = invert xor true
+			isPortrait(frameOrientation)
+		}
 		return try {
 			val pp = preprocessor ?: createPreprocessorAndMapping(
 				frameWidth,
 				frameHeight,
 				frameOrientation
 			)
-			pp.process(frameData)
+			val w: Int
+			val h: Int
+			if (rotate) {
+				pp.resizeAndRotate(frameData)
+				w = pp.outHeight
+				h = pp.outWidth
+			} else {
+				invert = invert xor true
+				pp.resizeOnly(frameData)
+				w = pp.outWidth
+				h = pp.outHeight
+			}
 			preprocessor = pp
-			zxing.decode(
-				frameData,
-				pp.outWidth,
-				pp.outHeight,
-				invert
-			)
+			zxing.decode(frameData, w, h, invert)
 		} catch (e: RSRuntimeException) {
 			prefs.forceCompat = prefs.forceCompat xor true
 			// now the only option is to restart the app because
@@ -470,23 +484,30 @@ class CameraActivity : AppCompatActivity() {
 		val pp = Preprocessor(
 			this,
 			frameWidth,
-			frameHeight,
-			frameOrientation
+			frameHeight
 		)
-		mapping = frameToView(
+		nativeMapping = frameToView(
 			pp.outWidth,
 			pp.outHeight,
+			frameOrientation,
+			cameraView.previewRect
+		)
+		rotatedMapping = frameToView(
+			pp.outHeight,
+			pp.outWidth,
+			(frameOrientation - 90 + 360) % 360,
 			cameraView.previewRect
 		)
 		return pp
 	}
 
 	private fun postResult(result: Result) {
+		// get mapping for the current rotate value
+		val mapping = getMapping()
 		cameraView.post {
 			val rp = result.resultPoints
-			val m = mapping
-			if (m != null && rp != null && rp.isNotEmpty()) {
-				detectorView.mark(m.map(rp))
+			if (mapping != null && rp != null && rp.isNotEmpty()) {
+				detectorView.mark(mapping.map(rp))
 			}
 			vibrator.vibrate()
 			showResult(
@@ -496,6 +517,8 @@ class CameraActivity : AppCompatActivity() {
 			)
 		}
 	}
+
+	private fun getMapping() = if (rotate) rotatedMapping else nativeMapping
 
 	companion object {
 		private const val REQUEST_CAMERA = 1

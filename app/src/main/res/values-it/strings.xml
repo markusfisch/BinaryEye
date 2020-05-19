@@ -39,6 +39,7 @@
 	<string name="history">Cronologia</string>
 	<string name="preferences">Preferenze</string>
 	<string name="zoom_by_swiping">Zoom fotocamera scorrendo su/giù</string>
+	<string name="auto_rotate">Recognize 1D barcodes vertically</string>
 	<string name="try_harder">Ottimizza il lettore per accuratezza, non velocità</string>
 	<string name="vibrate">Vibra quando rilevato</string>
 	<string name="use_history">Salva cronologia delle scansioni</string>

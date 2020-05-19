@@ -91,6 +91,7 @@ class PickActivity : AppCompatActivity() {
 				points = mapResult(
 					scannedRect.width(),
 					scannedRect.height(),
+					0,
 					cropImageView.getBoundsRect(),
 					it
 				)

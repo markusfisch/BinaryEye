@@ -34,15 +34,21 @@ class PreprocessorTest {
 			val preprocessor = Preprocessor(
 				InstrumentationRegistry.getTargetContext(),
 				frameWidth.toInt(),
-				frameHeight.toInt(),
-				frameOrientation.toInt()
+				frameHeight.toInt()
 			)
-			preprocessor.process(frameData)
-			val result = zxing.decode(
-				frameData,
-				preprocessor.outWidth,
-				preprocessor.outHeight
-			)
+			val outWidth: Int
+			val outHeight: Int
+			val orientation = frameOrientation.toInt()
+			if (orientation == 90 || orientation == 270) {
+				preprocessor.resizeAndRotate(frameData)
+				outWidth = preprocessor.outHeight
+				outHeight = preprocessor.outWidth
+			} else {
+				preprocessor.resizeOnly(frameData)
+				outWidth = preprocessor.outWidth
+				outHeight = preprocessor.outHeight
+			}
+			val result = zxing.decode(frameData, outWidth, outHeight)
 			preprocessor.destroy()
 
 			checkNotNull(result) { "no barcode found in $file" }

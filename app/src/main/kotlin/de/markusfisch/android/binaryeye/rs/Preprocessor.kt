@@ -5,11 +5,12 @@ import android.support.v8.renderscript.*
 import de.markusfisch.android.binaryeye.renderscript.ScriptC_rotator
 import kotlin.math.roundToInt
 
+private const val SCALE_FACTOR = .75f
+
 class Preprocessor(
 	context: Context,
 	width: Int,
-	height: Int,
-	private val orientation: Int
+	height: Int
 ) {
 	var outWidth = 0
 	var outHeight = 0
@@ -38,15 +39,14 @@ class Preprocessor(
 			Allocation.USAGE_SCRIPT
 		)
 
-		val f = .75f
-		var w = (width * f).roundToInt()
-		var h = (height * f).roundToInt()
+		outWidth = (width * SCALE_FACTOR).roundToInt()
+		outHeight = (height * SCALE_FACTOR).roundToInt()
 
 		resizedType = Type.createXY(
 			rs,
 			Element.U8(rs),
-			w,
-			h
+			outWidth,
+			outHeight
 		)
 		resizedAlloc = Allocation.createTyped(
 			rs,
@@ -54,28 +54,17 @@ class Preprocessor(
 			Allocation.USAGE_SCRIPT
 		)
 
-		if (orientation == 90 || orientation == 270) {
-			val tmp = w
-			w = h
-			h = tmp
-		}
-
-		outWidth = w
-		outHeight = h
-
-		if (orientation != 0) {
-			rotatedType = Type.createXY(
-				rs,
-				Element.U8(rs),
-				w,
-				h
-			)
-			rotatedAlloc = Allocation.createTyped(
-				rs,
-				rotatedType,
-				Allocation.USAGE_SCRIPT
-			)
-		}
+		rotatedType = Type.createXY(
+			rs,
+			Element.U8(rs),
+			outHeight,
+			outWidth
+		)
+		rotatedAlloc = Allocation.createTyped(
+			rs,
+			rotatedType,
+			Allocation.USAGE_SCRIPT
+		)
 	}
 
 	fun destroy() {
@@ -96,34 +85,27 @@ class Preprocessor(
 		rs.destroy()
 	}
 
-	fun process(frame: ByteArray) {
-		yuvAlloc?.copyFrom(frame)
+	fun resizeOnly(frame: ByteArray) {
+		resize(frame)
+		resizedAlloc?.copyTo(frame)
+	}
 
+	fun resizeAndRotate(frame: ByteArray) {
+		resize(frame)
+		val t = resizedType ?: return
+		rotatorScript._inImage = resizedAlloc
+		rotatorScript._inWidth = t.x
+		rotatorScript._inHeight = t.y
+		rotatorScript.forEach_rotate90(
+			rotatedAlloc, // ignored in kernel, just to satisfy forEach
+			rotatedAlloc
+		)
+		rotatedAlloc?.copyTo(frame)
+	}
+
+	private fun resize(frame: ByteArray) {
+		yuvAlloc?.copyFrom(frame)
 		resizeScript.setInput(yuvAlloc)
 		resizeScript.forEach_bicubic(resizedAlloc)
-
-		val t = resizedType
-		if (t == null || orientation == 0) {
-			resizedAlloc?.copyTo(frame)
-		} else {
-			rotatorScript._inImage = resizedAlloc
-			rotatorScript._inWidth = t.x
-			rotatorScript._inHeight = t.y
-			when (orientation) {
-				90 -> rotatorScript.forEach_rotate90(
-					rotatedAlloc,
-					rotatedAlloc
-				)
-				180 -> rotatorScript.forEach_rotate180(
-					rotatedAlloc,
-					rotatedAlloc
-				)
-				270 -> rotatorScript.forEach_rotate270(
-					rotatedAlloc,
-					rotatedAlloc
-				)
-			}
-			rotatedAlloc?.copyTo(frame)
-		}
 	}
 }

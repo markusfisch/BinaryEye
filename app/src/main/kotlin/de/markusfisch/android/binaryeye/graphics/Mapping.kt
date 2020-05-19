@@ -7,31 +7,79 @@ import com.google.zxing.ResultPoint
 import kotlin.math.roundToInt
 
 fun mapResult(
-	width: Int,
-	height: Int,
+	frameWidth: Int,
+	frameHeight: Int,
+	frameOrientation: Int,
 	viewRect: Rect,
 	result: Result
-): List<Point> = frameToView(width, height, viewRect).map(result.resultPoints)
+): List<Point> = frameToView(
+	frameWidth,
+	frameHeight,
+	frameOrientation,
+	viewRect
+).map(
+	result.resultPoints
+)
 
-fun frameToView(width: Int, height: Int, viewRect: Rect) = Mapping(
-	viewRect.width().toFloat() / width.toFloat(),
-	viewRect.height().toFloat() / height.toFloat(),
+fun frameToView(
+	frameWidth: Int,
+	frameHeight: Int,
+	frameOrientation: Int,
+	viewRect: Rect
+) = Mapping(
+	frameWidth,
+	frameHeight,
+	frameOrientation,
+	viewRect.width().toFloat(),
+	viewRect.height().toFloat(),
 	viewRect.left,
 	viewRect.top
 )
 
+inline fun isPortrait(orientation: Int) = orientation == 90 || orientation == 270
+
 data class Mapping(
-	val ratioX: Float,
-	val ratioY: Float,
+	val frameWidth: Int,
+	val frameHeight: Int,
+	val frameOrientation: Int,
+	val viewWidth: Float,
+	val viewHeight: Float,
 	val offsetX: Int,
 	val offsetY: Int
 ) {
-	fun map(point: ResultPoint) = Point(
-		(point.x * ratioX).roundToInt() + offsetX,
-		(point.y * ratioY).roundToInt() + offsetY
-	)
+	fun map(resultPoint: ResultPoint): Point {
+		val point = Point(
+			resultPoint.x.roundToInt(),
+			resultPoint.y.roundToInt()
+		)
+		rotate(point)
+		val w: Int
+		val h: Int
+		if (isPortrait(frameOrientation)) {
+			w = frameHeight
+			h = frameWidth
+		} else {
+			w = frameWidth
+			h = frameHeight
+		}
+		val ratioX = viewWidth / w.toFloat()
+		val ratioY = viewHeight / h.toFloat()
+		point.set(
+			(point.x * ratioX).roundToInt() + offsetX,
+			(point.y * ratioY).roundToInt() + offsetY
+		)
+		return point
+	}
 
 	fun map(points: Array<ResultPoint?>): List<Point> =
 		// because ZXing apparently returns null in this array sometimes
 		points.filterNotNull().map { map(it) }
+
+	private fun rotate(point: Point) = when (frameOrientation) {
+		90 -> point.set(frameHeight - point.y, point.x)
+		180 -> point.set(frameWidth - point.x, frameHeight - point.y)
+		270 -> point.set(point.y, frameWidth - point.x)
+		else -> {
+		}
+	}
 }
