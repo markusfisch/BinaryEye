@@ -89,6 +89,13 @@ So *do not* build release builts on macOS Catalina with build tools 29.0.3.
 
 Building on Linux with 29.0.3 works fine.
 
+### Side by Side NDK
+
+At the time of writing, it's important to _not_ have the NDK available when
+compiling the custom rotation kernel. This will produce a broken build for
+some ARMv7 devices running Android 6 (e.g. One Plus X, Yotaphone 2, Moto E)
+while it works for newer Android versions.
+
 ### App Bundle
 
 At the time of writing, `./gradlew bundleRelease` will produce a broken
