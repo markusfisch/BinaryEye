@@ -45,7 +45,7 @@ private fun firstChildScrolled(listView: AbsListView): Boolean {
 
 private fun lastChildOutOfView(listView: AbsListView): Boolean {
 	val child = listView.getChildAt(listView.lastVisiblePosition)
-	return child.bottom >= listView.height
+	return child != null && child.bottom >= listView.height
 }
 
 fun initSystemBars(activity: AppCompatActivity) {
