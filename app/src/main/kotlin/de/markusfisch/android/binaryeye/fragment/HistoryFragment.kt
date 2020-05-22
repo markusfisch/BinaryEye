@@ -102,6 +102,8 @@ class HistoryFragment : Fragment() {
 	private var listViewState: Parcelable? = null
 	private var actionMode: ActionMode? = null
 	private var filter: String? = null
+	private var clearListMenuItem: MenuItem? = null
+	private var exportHistoryMenuItem: MenuItem? = null
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -173,6 +175,8 @@ class HistoryFragment : Fragment() {
 		inflater.inflate(R.menu.fragment_history, menu)
 		initSearchView(menu.findItem(R.id.search))
 		menu.setGroupVisible(R.id.scans_available, scansAdapter?.count != 0)
+		clearListMenuItem = menu.findItem(R.id.clear)
+		exportHistoryMenuItem = menu.findItem(R.id.export_history)
 	}
 
 	private fun initSearchView(item: MenuItem?) {
@@ -205,7 +209,7 @@ class HistoryFragment : Fragment() {
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return when (item.itemId) {
 			R.id.clear -> {
-				askToRemoveManyScans(context)
+				askToRemoveScans(context)
 				true
 			}
 			R.id.export_history -> {
@@ -243,6 +247,7 @@ class HistoryFragment : Fragment() {
 					}
 					ActivityCompat.invalidateOptionsMenu(ac)
 				}
+				enableMenuItems(hasScans)
 				fab.visibility = if (hasScans) {
 					View.VISIBLE
 				} else {
@@ -259,6 +264,11 @@ class HistoryFragment : Fragment() {
 				}
 			}
 		}
+	}
+
+	private fun enableMenuItems(enabled: Boolean) {
+		clearListMenuItem?.isEnabled = enabled
+		exportHistoryMenuItem?.isEnabled = enabled
 	}
 
 	private fun closeActionMode() {
@@ -321,7 +331,7 @@ class HistoryFragment : Fragment() {
 			.show()
 	}
 
-	private fun askToRemoveManyScans(context: Context) {
+	private fun askToRemoveScans(context: Context) {
 		AlertDialog.Builder(context)
 			.setMessage(
 				if (filter == null) {
