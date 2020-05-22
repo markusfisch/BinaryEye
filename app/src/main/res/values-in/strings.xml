@@ -51,6 +51,7 @@
 	<string name="really_remove_all_scans">Yakin menghapus semua pemindaian?</string>
 	<string name="really_remove_selected_scans">Really remove selected scans?</string>
 	<string name="clear_history">Hapus riwayat</string>
+	<string name="copy_scan">Copy scan</string>
 	<string name="edit_scan">Sunting label</string>
 	<string name="remove_scan">Buang pindaian</string>
 	<string name="enter_name">Masukkan keterangan pemindaian</string>

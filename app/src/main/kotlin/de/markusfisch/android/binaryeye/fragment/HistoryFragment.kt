@@ -71,6 +71,14 @@ class HistoryFragment : Fragment() {
 		): Boolean {
 			val ac = activity ?: return false
 			return when (item.itemId) {
+				R.id.copy_scan -> {
+					scansAdapter?.getSelectedContent()?.let {
+						ac.copyToClipboard(it)
+						ac.toast(R.string.copied_to_clipboard)
+					}
+					closeActionMode()
+					true
+				}
 				R.id.edit_scan -> {
 					scansAdapter?.let {
 						askForName(

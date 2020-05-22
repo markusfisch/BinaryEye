@@ -52,6 +52,7 @@
 	<string name="really_remove_all_scans">Alle Codes entfernen?</string>
 	<string name="really_remove_selected_scans">Alle ausgewählten Codes entfernen?</string>
 	<string name="clear_history">Gespeicherte Codes löschen</string>
+	<string name="copy_scan">Code kopieren</string>
 	<string name="edit_scan">Bezeichnung ändern</string>
 	<string name="remove_scan">Code löschen</string>
 	<string name="enter_name">Geben Sie eine Bezeichnung für den Code ein</string>

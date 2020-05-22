@@ -31,6 +31,17 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 		selectedScanPosition = -1
 	}
 
+	fun getSelectedContent() = if (selectedScanPosition < 0) {
+		null
+	} else {
+		val cursor = getItem(selectedScanPosition)
+		if (cursor is Cursor) {
+			cursor.getString(contentIndex)
+		} else {
+			null
+		}
+	}
+
 	override fun newView(
 		context: Context,
 		cursor: Cursor,

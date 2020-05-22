@@ -2,6 +2,11 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:material="http://schemas.android.com/apk/res-auto">
 	<item
+		android:id="@+id/copy_scan"
+		android:title="@string/copy_scan"
+		android:icon="@drawable/ic_action_copy"
+		material:showAsAction="ifRoom"/>
+	<item
 		android:id="@+id/edit_scan"
 		android:title="@string/edit_scan"
 		android:icon="@drawable/ic_action_edit"

@@ -52,6 +52,7 @@
 	<string name="really_remove_all_scans">Really remove all scans?</string>
 	<string name="really_remove_selected_scans">Really remove selected scans?</string>
 	<string name="clear_history">Clear history</string>
+	<string name="copy_scan">Copy scan</string>
 	<string name="edit_scan">Edit label</string>
 	<string name="remove_scan">Remove scan</string>
 	<string name="enter_name">Enter a name to describe the scan</string>
