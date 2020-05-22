@@ -49,6 +49,7 @@
 	<string name="show_hex_dump">Show hex dump</string>
 	<string name="really_remove_scan">Scan echt verwijderen?</string>
 	<string name="really_remove_all_scans">Echt alle scans verwijderen?</string>
+	<string name="really_remove_selected_scans">Really remove selected scans?</string>
 	<string name="clear_history">Geschiedenis wissen</string>
 	<string name="edit_scan">Edit label</string>
 	<string name="remove_scan">Remove scan</string>

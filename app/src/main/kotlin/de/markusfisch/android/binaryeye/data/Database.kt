@@ -50,14 +50,19 @@ class Database {
 		""", getWhereArguments(query)
 	)
 
-	private fun getWhereClause(query: String?) = if (query?.isNotEmpty() == true) {
-		"""WHERE $SCANS_CONTENT LIKE ?
+	private fun getWhereClause(
+		query: String?,
+		prefix: String = "WHERE"
+	) = if (query?.isNotEmpty() == true) {
+		"""$prefix $SCANS_CONTENT LIKE ?
 			OR $SCANS_NAME LIKE ?"""
 	} else {
 		""
 	}
 
-	private fun getWhereArguments(query: String?) = if (query?.isNotEmpty() == true) {
+	private fun getWhereArguments(
+		query: String?
+	) = if (query?.isNotEmpty() == true) {
 		val instr = "%$query%"
 		arrayOf(instr, instr)
 	} else {
@@ -173,8 +178,8 @@ class Database {
 		db.delete(SCANS, "$SCANS_ID = ?", arrayOf("$id"))
 	}
 
-	fun removeScans() {
-		db.delete(SCANS, null, null)
+	fun removeScans(query: String? = null) {
+		db.delete(SCANS, getWhereClause(query, ""), getWhereArguments(query))
 	}
 
 	fun renameScan(id: Long, name: String) {

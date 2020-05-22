@@ -50,6 +50,7 @@
 	<string name="open_with_url">Ismeretlen adat megnyitása URL-lel</string>
 	<string name="really_remove_scan">Valóban eltávolítja a beolvasást?</string>
 	<string name="really_remove_all_scans">Valóban eltávolítja az összes beolvasását?</string>
+	<string name="really_remove_selected_scans">Really remove selected scans?</string>
 	<string name="clear_history">Előzmények törlése</string>
 	<string name="edit_scan">Edit label</string>
 	<string name="remove_scan">Remove scan</string>

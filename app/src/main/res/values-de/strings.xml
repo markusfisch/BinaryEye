@@ -50,6 +50,7 @@
 	<string name="open_with_url">URL zum Öffnen unbekannter Daten</string>
 	<string name="really_remove_scan">Code wirklich entfernen?</string>
 	<string name="really_remove_all_scans">Alle Codes entfernen?</string>
+	<string name="really_remove_selected_scans">Alle ausgewählten Codes entfernen?</string>
 	<string name="clear_history">Gespeicherte Codes löschen</string>
 	<string name="edit_scan">Bezeichnung ändern</string>
 	<string name="remove_scan">Code löschen</string>

@@ -205,7 +205,7 @@ class HistoryFragment : Fragment() {
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return when (item.itemId) {
 			R.id.clear -> {
-				askToRemoveAllScans(context)
+				askToRemoveManyScans(context)
 				true
 			}
 			R.id.export_history -> {
@@ -321,11 +321,17 @@ class HistoryFragment : Fragment() {
 			.show()
 	}
 
-	private fun askToRemoveAllScans(context: Context) {
+	private fun askToRemoveManyScans(context: Context) {
 		AlertDialog.Builder(context)
-			.setMessage(R.string.really_remove_all_scans)
+			.setMessage(
+				if (filter == null) {
+					R.string.really_remove_all_scans
+				} else {
+					R.string.really_remove_selected_scans
+				}
+			)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
-				db.removeScans()
+				db.removeScans(filter)
 				updateAndClearFilter()
 			}
 			.setNegativeButton(android.R.string.cancel) { _, _ ->

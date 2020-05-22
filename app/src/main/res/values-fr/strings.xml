@@ -50,6 +50,7 @@
 	<string name="open_with_url">Open unknown data with URL</string>
 	<string name="really_remove_scan">Supprimer le scan?</string>
 	<string name="really_remove_all_scans">Supprimer tous les scans?</string>
+	<string name="really_remove_selected_scans">Really remove selected scans?</string>
 	<string name="clear_history">Clear history</string>
 	<string name="edit_scan">Edit label</string>
 	<string name="remove_scan">Remove scan</string>

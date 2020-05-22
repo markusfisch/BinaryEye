@@ -54,6 +54,7 @@
 	<string name="open_with_url">Открыть неизвестные данные с помощью URL</string>
 	<string name="really_remove_scan">Действительно удалить сканирование?</string>
 	<string name="really_remove_all_scans">Действительно удалить все сканирования?</string>
+	<string name="really_remove_selected_scans">Really remove selected scans?</string>
 	<string name="clear_history">Очистить историю</string>
 	<string name="edit_scan">Редактировать</string>
 	<string name="remove_scan">Удалить сканирование</string>
