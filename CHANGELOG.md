@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.29.0
+* Add a setting to enable reading of vertical 1D barcodes
+
 ## 1.28.0
 * Share history as CSV and JSON too
 * Export history in JSON format
