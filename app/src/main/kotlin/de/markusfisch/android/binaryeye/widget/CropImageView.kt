@@ -20,7 +20,7 @@ class CropImageView(context: Context, attr: AttributeSet) :
 	private val dp = context.resources.displayMetrics.density
 	private val padding: Int = (dp * 24f).roundToInt()
 	private val onScanRunnable = Runnable {
-		onScan?.invoke()?.also {
+		onScan?.invoke()?.let {
 			candidatePoints = it
 			invalidate()
 		}

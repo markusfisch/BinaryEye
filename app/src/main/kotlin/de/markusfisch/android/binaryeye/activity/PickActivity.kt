@@ -3,7 +3,6 @@ package de.markusfisch.android.binaryeye.activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Point
 import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
@@ -70,34 +69,30 @@ class PickActivity : AppCompatActivity() {
 		}
 
 		val scannedRect = Rect()
-		val scanWithinBounds: () -> Result? = {
-			var result: Result? = null
-			crop(
-				bitmap,
-				cropImageView.normalizedRectInBounds,
-				cropImageView.imageRotation
-			)?.also {
-				scannedRect.set(0, 0, it.width, it.height)
-				result = zxing.decodePositiveNegative(it)
-			}
-			result
+		fun scanWithinBounds() = crop(
+			bitmap,
+			cropImageView.normalizedRectInBounds,
+			cropImageView.imageRotation
+		)?.let {
+			scannedRect.set(0, 0, it.width, it.height)
+			zxing.decodePositiveNegative(it)
 		}
 
 		cropImageView = findViewById(R.id.image) as CropImageView
 		cropImageView.setImageBitmap(bitmap)
 		cropImageView.onScan = {
-			var points: List<Point>? = null
 			scanWithinBounds()?.let {
-				points = mapResult(
+				if (!isFinishing) {
+					vibrator.vibrate()
+				}
+				mapResult(
 					scannedRect.width(),
 					scannedRect.height(),
 					0,
 					cropImageView.getBoundsRect(),
 					it
 				)
-				vibrator.vibrate()
 			}
-			points
 		}
 		cropImageView.doOnApplyWindowInsets { v, insets ->
 			(v as CropImageView).windowInsets.set(insets)
