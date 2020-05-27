@@ -21,8 +21,11 @@ object VEventAction : IntentAction() {
 		get() = R.string.vevent_failed
 
 	override fun canExecuteOn(data: ByteArray): Boolean {
-		return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH
-				&& VTypeParser.parseVType(String(data)) == "VEVENT"
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+			return false
+		}
+		val type = VTypeParser.parseVType(String(data))
+		return type == "VEVENT" || type == "VCALENDAR"
 	}
 
 	@RequiresApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)

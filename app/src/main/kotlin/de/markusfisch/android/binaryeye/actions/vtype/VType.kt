@@ -6,17 +6,25 @@ object VTypeParser {
 	private const val BACKSLASH_R_LEGACY =
 		"(?:\u000D\u000A|[\u000A\u000B\u000C\u000D\u0085\u2028\u2029])"
 	private val vTypeRegex =
-		"""^BEGIN:(VCARD|VEVENT)(?:$BACKSLASH_R_LEGACY.+?:[\s\S]+?)+?${BACKSLASH_R_LEGACY}END:\1$BACKSLASH_R_LEGACY?$""".toRegex(
+		"""^BEGIN:(V.+)(?:$BACKSLASH_R_LEGACY.+?:[\s\S]+?)+?${BACKSLASH_R_LEGACY}END:\1$BACKSLASH_R_LEGACY?$""".toRegex(
 			RegexOption.IGNORE_CASE
 		)
-	private val propertyRegex = """^(.+?):([\s\S]*?)$""".toRegex(RegexOption.MULTILINE)
+	private val propertyRegex = """^(.+?):([\s\S]*?)$""".toRegex(
+		RegexOption.MULTILINE
+	)
 
-	fun parseVType(data: String): String? =
-		vTypeRegex.matchEntire(data)?.groupValues?.get(1)?.toUpperCase(Locale.US)
+	fun parseVType(data: String): String? = vTypeRegex.matchEntire(
+		data
+	)?.groupValues?.get(1)?.toUpperCase(Locale.US)
 
-	fun parseMap(data: String): Map<String, List<VTypeProperty>> = propertyRegex.findAll(data).map {
+	fun parseMap(
+		data: String
+	): Map<String, List<VTypeProperty>> = propertyRegex.findAll(data).map {
 		it.groupValues[1].split(';').let { typeAndInfo ->
-			typeAndInfo[0] to VTypeProperty(typeAndInfo.drop(1), it.groupValues[2])
+			typeAndInfo[0] to VTypeProperty(
+				typeAndInfo.drop(1),
+				it.groupValues[2]
+			)
 		}
 	}.groupBy({ it.first.toUpperCase(Locale.US) }) { it.second }
 }
