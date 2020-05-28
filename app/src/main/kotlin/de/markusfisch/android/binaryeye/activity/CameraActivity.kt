@@ -171,11 +171,13 @@ class CameraActivity : AppCompatActivity() {
 		super.onRestoreInstanceState(savedState)
 		zoomBar.max = savedState.getInt(ZOOM_MAX)
 		zoomBar.progress = savedState.getInt(ZOOM_LEVEL)
+		frontFacing = savedState.getBoolean(FRONT_FACING)
 	}
 
 	override fun onSaveInstanceState(outState: Bundle) {
 		outState.putInt(ZOOM_MAX, zoomBar.max)
 		outState.putInt(ZOOM_LEVEL, zoomBar.progress)
+		outState.putBoolean(FRONT_FACING, frontFacing)
 		super.onSaveInstanceState(outState)
 	}
 
@@ -525,6 +527,7 @@ class CameraActivity : AppCompatActivity() {
 		private const val PICK_FILE_RESULT_CODE = 1
 		private const val ZOOM_MAX = "zoom_max"
 		private const val ZOOM_LEVEL = "zoom_level"
+		private const val FRONT_FACING = "front_facing"
 	}
 }
 
