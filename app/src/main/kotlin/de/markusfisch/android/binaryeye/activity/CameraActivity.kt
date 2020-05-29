@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Rect
+import android.graphics.RectF
 import android.hardware.Camera
 import android.net.Uri
 import android.os.Bundle
@@ -56,6 +58,7 @@ class CameraActivity : AppCompatActivity() {
 	private var preprocessor: Preprocessor? = null
 	private var nativeMapping: Mapping? = null
 	private var rotatedMapping: Mapping? = null
+	private var recreatePreprocessor = false
 	private var rotate = false
 	private var invert = false
 	private var flash = false
@@ -113,6 +116,7 @@ class CameraActivity : AppCompatActivity() {
 		initCameraView()
 		initZoomBar()
 		restoreZoom()
+		detectorView.updateRoi = { recreatePreprocessor = true }
 
 		if (intent?.action == Intent.ACTION_SEND &&
 			intent.type == "text/plain"
@@ -330,14 +334,14 @@ class CameraActivity : AppCompatActivity() {
 			}
 
 			override fun onCameraReady(camera: Camera) {
+				// reset preprocessor to make sure it always fits the current
+				// frame orientation; important for landscape to landscape
+				// orientation changes
+				resetPreProcessor()
 				val frameWidth = cameraView.frameWidth
 				val frameHeight = cameraView.frameHeight
 				val frameOrientation = cameraView.frameOrientation
 				var decoding = true
-				// reset preprocessor to make sure it fits the current
-				// frame orientation; important for landscape to landscape
-				// orientation changes
-				resetPreProcessor()
 				camera.setPreviewCallback { frameData, _ ->
 					if (decoding) {
 						decodeFrame(
@@ -449,6 +453,10 @@ class CameraActivity : AppCompatActivity() {
 			isPortrait(frameOrientation)
 		}
 		return try {
+			if (recreatePreprocessor) {
+				resetPreProcessor()
+				recreatePreprocessor = false
+			}
 			val pp = preprocessor ?: createPreprocessorAndMapping(
 				frameWidth,
 				frameHeight,
@@ -483,24 +491,84 @@ class CameraActivity : AppCompatActivity() {
 		frameHeight: Int,
 		frameOrientation: Int
 	): Preprocessor {
+		val frameRoi = calculateFrameRect(
+			frameWidth,
+			frameHeight,
+			frameOrientation
+		)
 		val pp = Preprocessor(
 			this,
 			frameWidth,
-			frameHeight
+			frameHeight,
+			frameRoi
 		)
+		val viewRect = if (frameRoi != null) {
+			detectorView.roi
+		} else {
+			cameraView.previewRect
+		}
 		nativeMapping = frameToView(
 			pp.outWidth,
 			pp.outHeight,
 			frameOrientation,
-			cameraView.previewRect
+			viewRect
 		)
 		rotatedMapping = frameToView(
 			pp.outHeight,
 			pp.outWidth,
 			(frameOrientation - 90 + 360) % 360,
-			cameraView.previewRect
+			viewRect
 		)
 		return pp
+	}
+
+	private fun calculateFrameRect(
+		frameWidth: Int,
+		frameHeight: Int,
+		frameOrientation: Int
+	): Rect? {
+		val viewRoi = detectorView.roi
+		return if (
+			viewRoi.width() == 0 ||
+			viewRoi.height() == 0
+		) {
+			null
+		} else {
+			// map ROI in detectorView to cameraView because cameraView may
+			// be larger than the detectorView
+			val previewRect = cameraView.previewRect
+			val previewRoi = Rect(
+				previewRect.left + viewRoi.left,
+				previewRect.top + viewRoi.top,
+				previewRect.left + viewRoi.right,
+				previewRect.top + viewRoi.bottom
+			)
+			val previewRectWidth = previewRect.width().toFloat()
+			val previewRectHeight = previewRect.height().toFloat()
+			val normalizedRoi = RectF(
+				previewRoi.left.toFloat() / previewRectWidth,
+				previewRoi.top.toFloat() / previewRectHeight,
+				previewRoi.right.toFloat() / previewRectWidth,
+				previewRoi.bottom.toFloat() / previewRectHeight
+			)
+			// since the ROI is always centered and symmetric, we don't
+			// need to distinguish between 0 and 180 or 90 and 270 degree
+			if (isPortrait(frameOrientation)) {
+				Rect(
+					(normalizedRoi.top * frameWidth.toFloat()).roundToInt(),
+					(normalizedRoi.left * frameHeight.toFloat()).roundToInt(),
+					(normalizedRoi.bottom * frameWidth.toFloat()).roundToInt(),
+					(normalizedRoi.right * frameHeight.toFloat()).roundToInt()
+				)
+			} else {
+				Rect(
+					(normalizedRoi.left * frameWidth.toFloat()).roundToInt(),
+					(normalizedRoi.top * frameHeight.toFloat()).roundToInt(),
+					(normalizedRoi.right * frameWidth.toFloat()).roundToInt(),
+					(normalizedRoi.bottom * frameHeight.toFloat()).roundToInt()
+				)
+			}
+		}
 	}
 
 	private fun postResult(result: Result) {

@@ -1,6 +1,7 @@
 package de.markusfisch.android.binaryeye.rs
 
 import android.content.Context
+import android.graphics.Rect
 import android.support.v8.renderscript.*
 import de.markusfisch.android.binaryeye.renderscript.ScriptC_rotator
 import kotlin.math.roundToInt
@@ -10,7 +11,8 @@ private const val SCALE_FACTOR = .75f
 class Preprocessor(
 	context: Context,
 	width: Int,
-	height: Int
+	height: Int,
+	private val roi: Rect?
 ) {
 	var outWidth = 0
 	var outHeight = 0
@@ -21,6 +23,8 @@ class Preprocessor(
 
 	private var yuvType: Type? = null
 	private var yuvAlloc: Allocation? = null
+	private var roiType: Type? = null
+	private var roiAlloc: Allocation? = null
 	private var resizedType: Type? = null
 	private var resizedAlloc: Allocation? = null
 	private var rotatedType: Type? = null
@@ -39,8 +43,32 @@ class Preprocessor(
 			Allocation.USAGE_SCRIPT
 		)
 
-		outWidth = (width * SCALE_FACTOR).roundToInt()
-		outHeight = (height * SCALE_FACTOR).roundToInt()
+		if (roi != null) {
+			val roiWidth = roi.width()
+			val roiHeight = roi.height()
+
+			roiType = Type.createXY(
+				rs,
+				Element.U8(rs),
+				roiWidth,
+				roiHeight
+			)
+			roiAlloc = Allocation.createTyped(
+				rs,
+				roiType,
+				Allocation.USAGE_SCRIPT
+			)
+
+			outWidth = (roiWidth * SCALE_FACTOR).roundToInt()
+			outHeight = (roiHeight * SCALE_FACTOR).roundToInt()
+
+			// make sure the dimensions are always a multiple of 4
+			outWidth -= outWidth % 4
+			outHeight -= outHeight % 4
+		} else {
+			outWidth = (width * SCALE_FACTOR).roundToInt()
+			outHeight = (height * SCALE_FACTOR).roundToInt()
+		}
 
 		resizedType = Type.createXY(
 			rs,
@@ -72,6 +100,10 @@ class Preprocessor(
 		yuvType = null
 		yuvAlloc?.destroy()
 		yuvAlloc = null
+		roiType?.destroy()
+		roiType = null
+		roiAlloc?.destroy()
+		roiAlloc = null
 		resizedType?.destroy()
 		resizedType = null
 		resizedAlloc?.destroy()
@@ -105,7 +137,19 @@ class Preprocessor(
 
 	private fun resize(frame: ByteArray) {
 		yuvAlloc?.copyFrom(frame)
-		resizeScript.setInput(yuvAlloc)
+		resizeScript.setInput(
+			if (roi != null) {
+				roiAlloc?.copy2DRangeFrom(
+					0, 0,
+					roi.width(), roi.height(),
+					yuvAlloc,
+					roi.left, roi.top
+				)
+				roiAlloc
+			} else {
+				yuvAlloc
+			}
+		)
 		resizeScript.forEach_bicubic(resizedAlloc)
 	}
 }
