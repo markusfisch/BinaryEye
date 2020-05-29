@@ -36,7 +36,7 @@ fun frameToView(
 	viewRect.top
 )
 
-inline fun isPortrait(orientation: Int) = orientation == 90 || orientation == 270
+fun isPortrait(orientation: Int) = orientation == 90 || orientation == 270
 
 data class Mapping(
 	val frameWidth: Int,
