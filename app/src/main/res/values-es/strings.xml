@@ -1,5 +1,5 @@
 <resources>
-	<string name="no_camera_no_fun">Esta aplicación no tendría sentido usar sin acceso a la cámara. Adiós.
+	<string name="no_camera_no_fun">Esta aplicación no tendría sentido usar sin acceso a la cámara. Adiós.</string>
 	<string name="camera_error">Sin acceso a la cámara, por favor, inténtelo de nuevo</string>
 	<string name="scan_code">Escanear código de barras</string>
 	<string name="compose_barcode">Componer código de barras</string>
@@ -26,7 +26,7 @@
 	<string name="open_url">Abrir URL</string>
 	<string name="cannot_resolve_action">Ninguna aplicación puede abrir esto</string>
 	<string name="pick_search_engine">Elija un motor de búsqueda</string>
-	<string name="format">Formato</correa>
+	<string name="format">Formato</string>
 	<string name="size">Tamaño en píxeles</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">Introduzca el contenido aquí</string>
@@ -41,7 +41,7 @@
 	<string name="zoom_by_swiping">Aumento de cámara al deslizar hacia arriba/abajo</string>
 	<string name="auto_rotate">Reconocer los códigos de barras 1D verticalmente</string>
 	<string name="try_harder">Optimizar el lector para la precisión, no la velocidad</string>
-	<string name="vibración">Vibración en la detección</string>
+	<string name="vibrate">Vibración en la detección</string>
 	<string name="use_history">Guardar historial de escaneados</string>
 	<string name="ignore_consecutive_duplicates">No guardar duplicados consecutivos</string>
 	<string name="open_immediately">Saltar la inspección y abrir el contenido inmediatamente</string>
