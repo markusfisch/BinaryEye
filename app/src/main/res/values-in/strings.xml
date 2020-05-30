@@ -37,6 +37,7 @@
 	<string name="switch_camera">Ganti kamera</string>
 	<string name="history">Riwayat</string>
 	<string name="preferences">Preferensi</string>
+	<string name="show_crop_handle">Show cropping limiter</string>
 	<string name="zoom_by_swiping">Perbesar kamera dengan menggeser ke atas/bawah</string>
 	<string name="auto_rotate">Recognize 1D barcodes vertically</string>
 	<string name="try_harder">Optimalkan akurasi, bukan kecepatan</string>

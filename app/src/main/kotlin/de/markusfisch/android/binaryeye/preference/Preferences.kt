@@ -7,6 +7,11 @@ import android.preference.PreferenceManager
 class Preferences {
 	lateinit var preferences: SharedPreferences
 
+	var showCropHandle = true
+		set(value) {
+			apply(SHOW_CROP_HANDLE, value)
+			field = value
+		}
 	var zoomBySwiping = true
 		set(value) {
 			apply(ZOOM_BY_SWIPING, value)
@@ -76,6 +81,7 @@ class Preferences {
 	}
 
 	fun update() {
+		showCropHandle = preferences.getBoolean(SHOW_CROP_HANDLE, showCropHandle)
 		zoomBySwiping = preferences.getBoolean(ZOOM_BY_SWIPING, zoomBySwiping)
 		autoRotate = preferences.getBoolean(AUTO_ROTATE, autoRotate)
 		tryHarder = preferences.getBoolean(TRY_HARDER, tryHarder)
@@ -121,6 +127,7 @@ class Preferences {
 	}
 
 	companion object {
+		const val SHOW_CROP_HANDLE = "show_crop_handle"
 		const val ZOOM_BY_SWIPING = "zoom_by_swiping"
 		const val AUTO_ROTATE = "auto_rotate"
 		const val TRY_HARDER = "try_harder"

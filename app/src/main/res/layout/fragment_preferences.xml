@@ -11,6 +11,12 @@
 		android:padding="16dp"
 		android:orientation="vertical">
 		<android.support.v7.widget.SwitchCompat
+			android:id="@+id/show_crop_handle"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="32dp"
+			android:text="@string/show_crop_handle"/>
+		<android.support.v7.widget.SwitchCompat
 			android:id="@+id/zoom_by_swiping"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"

@@ -38,6 +38,7 @@
 	<string name="switch_camera">Cambiar cámara</string>
 	<string name="history">Historial</string>
 	<string name="preferences">Configuración</string>
+	<string name="show_crop_handle">Show cropping limiter</string>
 	<string name="zoom_by_swiping">Aumento de cámara al deslizar hacia arriba/abajo</string>
 	<string name="auto_rotate">Reconocer los códigos de barras 1D verticalmente</string>
 	<string name="try_harder">Optimizar el lector para la precisión, no la velocidad</string>

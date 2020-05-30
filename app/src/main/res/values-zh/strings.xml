@@ -36,6 +36,7 @@
 	<string name="info">資訊</string>
 	<string name="switch_camera">切換相機</string>
 	<string name="history">歷史</string>
+	<string name="show_crop_handle">Show cropping limiter</string>
 	<string name="zoom_by_swiping">Zoom camera by swiping up/down</string>
 	<string name="auto_rotate">Recognize 1D barcodes vertically</string>
 	<string name="try_harder">Optimize reader for accuracy, not speed</string>

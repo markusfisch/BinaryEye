@@ -12,6 +12,7 @@ import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 
 class PreferencesFragment : Fragment() {
+	private lateinit var showCropHandleSwitch: SwitchCompat
 	private lateinit var zoomBySwipingSwitch: SwitchCompat
 	private lateinit var autoResizeSwitch: SwitchCompat
 	private lateinit var tryHarderSwitch: SwitchCompat
@@ -35,6 +36,11 @@ class PreferencesFragment : Fragment() {
 			container,
 			false
 		)
+
+		showCropHandleSwitch = view.findViewById(R.id.show_crop_handle)
+		if (prefs.showCropHandle) {
+			showCropHandleSwitch.toggle()
+		}
 
 		zoomBySwipingSwitch = view.findViewById(R.id.zoom_by_swiping)
 		if (prefs.zoomBySwiping) {
@@ -93,6 +99,7 @@ class PreferencesFragment : Fragment() {
 
 	override fun onStop() {
 		super.onStop()
+		prefs.showCropHandle = showCropHandleSwitch.isChecked
 		prefs.zoomBySwiping = zoomBySwipingSwitch.isChecked
 		prefs.autoRotate = autoResizeSwitch.isChecked
 		prefs.tryHarder = tryHarderSwitch.isChecked

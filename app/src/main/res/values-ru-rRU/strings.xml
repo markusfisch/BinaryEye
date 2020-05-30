@@ -42,6 +42,7 @@
 	<string name="switch_camera">Переключить камеру</string>
 	<string name="history">История</string>
 	<string name="preferences">Настройки</string>
+	<string name="show_crop_handle">Show cropping limiter</string>
 	<string name="zoom_by_swiping">Масштабировать движением пальцем вверх/вниз</string>
 	<string name="auto_rotate">Recognize 1D barcodes vertically</string>
 	<string name="try_harder">Оптимизировать считывание на точность, а не скорость</string>

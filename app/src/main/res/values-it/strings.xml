@@ -38,6 +38,7 @@
 	<string name="switch_camera">Cambia fotocamera</string>
 	<string name="history">Cronologia</string>
 	<string name="preferences">Preferenze</string>
+	<string name="show_crop_handle">Show cropping limiter</string>
 	<string name="zoom_by_swiping">Zoom fotocamera scorrendo su/giù</string>
 	<string name="auto_rotate">Recognize 1D barcodes vertically</string>
 	<string name="try_harder">Ottimizza il lettore per accuratezza, non velocità</string>

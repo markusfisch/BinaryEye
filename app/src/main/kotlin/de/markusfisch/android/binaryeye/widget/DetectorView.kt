@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.graphics.Candidates
 import de.markusfisch.android.binaryeye.graphics.getBitmapFromDrawable
 import kotlin.math.abs
@@ -56,9 +57,13 @@ class DetectorView : View {
 		event ?: return super.onTouchEvent(event)
 		return when (event.actionMasked) {
 			MotionEvent.ACTION_DOWN -> {
-				handleGrabbed = abs(event.x - handlePos.x) < handleXRadius &&
-						abs(event.y - handlePos.y) < handleYRadius
-				handleGrabbed
+				if (prefs.showCropHandle) {
+					handleGrabbed = abs(event.x - handlePos.x) < handleXRadius &&
+							abs(event.y - handlePos.y) < handleYRadius
+					handleGrabbed
+				} else {
+					false
+				}
 			}
 			MotionEvent.ACTION_MOVE -> {
 				if (handleGrabbed) {
@@ -126,12 +131,14 @@ class DetectorView : View {
 		marks?.let {
 			candidates.draw(canvas, it)
 		}
-		canvas.drawBitmap(
-			handleBitmap,
-			handlePos.x - handleXRadius,
-			handlePos.y - handleYRadius,
-			null
-		)
+		if (prefs.showCropHandle) {
+			canvas.drawBitmap(
+				handleBitmap,
+				handlePos.x - handleXRadius,
+				handlePos.y - handleYRadius,
+				null
+			)
+		}
 	}
 
 	private fun updateClipRect() {
