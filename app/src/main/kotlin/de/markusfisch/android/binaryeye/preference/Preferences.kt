@@ -19,12 +19,16 @@ class Preferences {
 		}
 	var autoRotate = false
 		set(value) {
-			apply(AUTO_ROTATE, value)
+			// immediately save this setting before it shouldn't change
+			// on the fly while scanning
+			commit(AUTO_ROTATE, value)
 			field = value
 		}
 	var tryHarder = false
 		set(value) {
-			apply(TRY_HARDER, value)
+			// immediately save this setting because it's only ever read
+			// before the camera is opened
+			commit(TRY_HARDER, value)
 			field = value
 		}
 	var vibrate = true
