@@ -101,14 +101,17 @@ class DetectorView : View {
 
 	override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
 		super.onLayout(changed, left, top, right, bottom)
+		val width = right - left
+		val height = bottom - top
 		axis.set(
-			(left + ((right - left) / 2)).toFloat(),
-			(top + ((bottom - top) / 2)).toFloat()
+			(left + (width / 2)).toFloat(),
+			(top + (height / 2)).toFloat()
 		)
-		handlePos.set(
-			round(right * .75f),
-			axis.y
-		)
+		if (width > height) {
+			handlePos.set(round(right * .75f), axis.y)
+		} else {
+			handlePos.set(axis.x, round(bottom * .75f))
+		}
 	}
 
 	override fun onDraw(canvas: Canvas) {
