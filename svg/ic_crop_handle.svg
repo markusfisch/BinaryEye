@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg height="56px" viewBox="0 0 56 56" width="56px" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient gradientUnits="userSpaceOnUse" cx="28" cy="30" r="24" id="gradient-0" gradientTransform="matrix(1, 0, 0, 1, 0, 2)">
+      <stop offset="0" style="stop-color: rgb(0, 0, 0);"/>
+      <stop offset="1" style="stop-color: rgb(0, 0, 0); stop-opacity: 0;"/>
+    </radialGradient>
+  </defs>
+  <circle style="filter: none; fill: url(#gradient-0);" cx="28" cy="32" r="24"/>
+  <circle style="fill: rgb(182, 212, 111); filter: none;" cx="28" cy="28" r="24"/>
+  <path d="M 33 31 L 35 31 L 35 23 C 35 21.9 34.1 21 33 21 L 25 21 L 25 23 L 33 23 L 33 31 Z M 23 33 L 23 17 L 21 17 L 21 21 L 17 21 L 17 23 L 21 23 L 21 33 C 21 34.1 21.9 35 23 35 L 33 35 L 33 39 L 35 39 L 35 35 L 39 35 L 39 33 L 23 33 Z" style="fill: rgb(255, 255, 255);"/>
+</svg>
