@@ -25,18 +25,18 @@ class DetectorView : View {
 		marks = null
 		invalidate()
 	}
-	private val cropHandle = resources.getBitmapFromDrawable(
+	private val handleBitmap = resources.getBitmapFromDrawable(
 		R.drawable.ic_crop_handle
 	)
-	private val cropHandleXRadius = cropHandle.width / 2
-	private val cropHandleYRadius = cropHandle.height / 2
+	private val handleXRadius = handleBitmap.width / 2
+	private val handleYRadius = handleBitmap.height / 2
 	private val distToFull = 24f * context.resources.displayMetrics.density
 
 	private var marks: List<Point>? = null
-	private var axis = PointF()
+	private var center = PointF()
 	private var handlePos = PointF()
-	private var shadeColor = 0
 	private var handleGrabbed = false
+	private var shadeColor = 0
 
 	constructor(context: Context, attrs: AttributeSet) :
 			super(context, attrs)
@@ -56,8 +56,8 @@ class DetectorView : View {
 		event ?: return super.onTouchEvent(event)
 		return when (event.actionMasked) {
 			MotionEvent.ACTION_DOWN -> {
-				handleGrabbed = abs(event.x - handlePos.x) < cropHandleXRadius &&
-						abs(event.y - handlePos.y) < cropHandleYRadius
+				handleGrabbed = abs(event.x - handlePos.x) < handleXRadius &&
+						abs(event.y - handlePos.y) < handleYRadius
 				handleGrabbed
 			}
 			MotionEvent.ACTION_MOVE -> {
@@ -89,12 +89,12 @@ class DetectorView : View {
 	}
 
 	private fun snap(x: Float, y: Float) {
-		if (abs(x - axis.x) < distToFull) {
-			handlePos.x = axis.x
+		if (abs(x - center.x) < distToFull) {
+			handlePos.x = center.x
 			invalidate()
 		}
-		if (abs(y - axis.y) < distToFull) {
-			handlePos.y = axis.y
+		if (abs(y - center.y) < distToFull) {
+			handlePos.y = center.y
 			invalidate()
 		}
 	}
@@ -103,14 +103,14 @@ class DetectorView : View {
 		super.onLayout(changed, left, top, right, bottom)
 		val width = right - left
 		val height = bottom - top
-		axis.set(
+		center.set(
 			(left + (width / 2)).toFloat(),
 			(top + (height / 2)).toFloat()
 		)
 		if (width > height) {
-			handlePos.set(round(right * .75f), axis.y)
+			handlePos.set(round(right * .75f), center.y)
 		} else {
-			handlePos.set(axis.x, round(bottom * .75f))
+			handlePos.set(center.x, round(bottom * .75f))
 		}
 	}
 
@@ -127,23 +127,23 @@ class DetectorView : View {
 			candidates.draw(canvas, it)
 		}
 		canvas.drawBitmap(
-			cropHandle,
-			handlePos.x - cropHandleXRadius,
-			handlePos.y - cropHandleYRadius,
+			handleBitmap,
+			handlePos.x - handleXRadius,
+			handlePos.y - handleYRadius,
 			null
 		)
 	}
 
 	private fun updateClipRect() {
-		val dx = abs(handlePos.x - axis.x)
-		val dy = abs(handlePos.y - axis.y)
+		val dx = abs(handlePos.x - center.x)
+		val dy = abs(handlePos.y - center.y)
 		val d = min(dx, dy)
 		shadeColor = (min(1f, d / distToFull) * 128f).toInt() shl 24
 		roi.set(
-			(axis.x - dx).roundToInt(),
-			(axis.y - dy).roundToInt(),
-			(axis.x + dx).roundToInt(),
-			(axis.y + dy).roundToInt()
+			(center.x - dx).roundToInt(),
+			(center.y - dy).roundToInt(),
+			(center.x + dx).roundToInt(),
+			(center.y + dy).roundToInt()
 		)
 	}
 }
