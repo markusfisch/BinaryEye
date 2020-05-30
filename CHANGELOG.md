@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.30.0
+* Add a handle to define a region of interest
+* Add a setting to show/hide cropping limiter
+* Add support for VCALENDAR types
+* Add spanish translation
+* Add copy to clipboard button to context menu in history listing
+* Make history actions work on current listing only
+* Keep camera selection over orientation changes
+
 ## 1.29.0
 * Add a setting to enable reading of vertical 1D barcodes
 
