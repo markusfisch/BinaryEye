@@ -19,7 +19,6 @@ class DetectorView : View {
 	val roi = Rect()
 
 	var updateRoi: (() -> Unit)? = null
-	var handlePos = PointF()
 
 	private val candidates = Candidates(context)
 	private val invalidateRunnable: Runnable = Runnable {
@@ -35,6 +34,7 @@ class DetectorView : View {
 
 	private var marks: List<Point>? = null
 	private var axis = PointF()
+	private var handlePos = PointF()
 	private var shadeColor = 0
 	private var handleGrabbed = false
 
@@ -68,6 +68,13 @@ class DetectorView : View {
 				} else {
 					false
 				}
+			}
+			MotionEvent.ACTION_CANCEL -> {
+				if (handleGrabbed) {
+					snap(event.x, event.y)
+					handleGrabbed = false
+				}
+				false
 			}
 			MotionEvent.ACTION_UP -> {
 				if (handleGrabbed) {
