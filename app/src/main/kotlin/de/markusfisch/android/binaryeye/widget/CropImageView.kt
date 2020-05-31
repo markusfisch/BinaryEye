@@ -1,11 +1,13 @@
 package de.markusfisch.android.binaryeye.widget
 
 import android.content.Context
-import android.graphics.*
-import android.support.v4.content.ContextCompat
+import android.graphics.Canvas
+import android.graphics.Point
+import android.graphics.Rect
+import android.graphics.RectF
 import android.util.AttributeSet
-import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.graphics.Candidates
+import de.markusfisch.android.binaryeye.graphics.getDashedBorderPaint
 import kotlin.math.roundToInt
 
 class CropImageView(context: Context, attr: AttributeSet) :
@@ -15,10 +17,9 @@ class CropImageView(context: Context, attr: AttributeSet) :
 	var onScan: (() -> List<Point>?)? = null
 
 	private val candidates = Candidates(context)
-	private val boundsPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+	private val boundsPaint = context.getDashedBorderPaint()
 	private val lastMappedRect = RectF()
-	private val dp = context.resources.displayMetrics.density
-	private val padding: Int = (dp * 24f).roundToInt()
+	private val padding: Int = (24f * context.resources.displayMetrics.density).roundToInt()
 	private val onScanRunnable = Runnable {
 		onScan?.invoke()?.let {
 			candidatePoints = it
@@ -29,10 +30,6 @@ class CropImageView(context: Context, attr: AttributeSet) :
 	private var candidatePoints: List<Point>? = null
 
 	init {
-		boundsPaint.color = ContextCompat.getColor(context, R.color.crop_bound)
-		boundsPaint.style = Paint.Style.STROKE
-		boundsPaint.strokeWidth = dp * 2f
-		boundsPaint.pathEffect = DashPathEffect(floatArrayOf(dp * 10f, dp * 10f), 0f)
 		scaleType = ScaleType.CENTER_CROP
 	}
 

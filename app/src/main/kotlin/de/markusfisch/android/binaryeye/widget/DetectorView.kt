@@ -11,6 +11,7 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.graphics.Candidates
 import de.markusfisch.android.binaryeye.graphics.getBitmapFromDrawable
+import de.markusfisch.android.binaryeye.graphics.getDashedBorderPaint
 import kotlin.math.abs
 import kotlin.math.min
 import kotlin.math.round
@@ -26,13 +27,14 @@ class DetectorView : View {
 		marks = null
 		invalidate()
 	}
-	private val roiPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+	private val roiPaint = context.getDashedBorderPaint()
 	private val handleBitmap = resources.getBitmapFromDrawable(
 		R.drawable.ic_crop_handle
 	)
 	private val handleXRadius = handleBitmap.width / 2
 	private val handleYRadius = handleBitmap.height / 2
 	private val distToFull: Float
+	private val cornerRadius: Float
 
 	private var marks: List<Point>? = null
 	private var center = PointF()
@@ -43,12 +45,7 @@ class DetectorView : View {
 	init {
 		val dp = context.resources.displayMetrics.density
 		distToFull = 24f * dp
-		roiPaint.apply {
-			style = Paint.Style.STROKE
-			color = 0xffffffff.toInt()
-			strokeWidth = 2f * dp
-			pathEffect = DashPathEffect(floatArrayOf(10f, 20f), 0f)
-		}
+		cornerRadius = 16f * dp
 	}
 
 	constructor(context: Context, attrs: AttributeSet) :
@@ -133,12 +130,22 @@ class DetectorView : View {
 
 	override fun onDraw(canvas: Canvas) {
 		canvas.drawColor(0, PorterDuff.Mode.CLEAR)
-		updateClipRect()
+		val minDist = updateClipRect()
 		if (roi.height() > 0 && roi.width() > 0) {
 			// canvas.clipRect() doesn't work reliably below KITKAT
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+				val radius = min(minDist * .5f, cornerRadius)
 				canvas.save()
-				canvas.clipOutRectCompat(roi)
+				canvas.clipOutPathCompat(
+					calculateRoundedRectPath(
+						roi.left.toFloat(),
+						roi.top.toFloat(),
+						roi.right.toFloat(),
+						roi.bottom.toFloat(),
+						radius,
+						radius
+					)
+				)
 				canvas.drawColor(shadeColor, PorterDuff.Mode.SRC)
 				canvas.restore()
 			} else {
@@ -158,7 +165,7 @@ class DetectorView : View {
 		}
 	}
 
-	private fun updateClipRect() {
+	private fun updateClipRect(): Float {
 		val dx = abs(handlePos.x - center.x)
 		val dy = abs(handlePos.y - center.y)
 		val d = min(dx, dy)
@@ -169,14 +176,41 @@ class DetectorView : View {
 			(center.x + dx).roundToInt(),
 			(center.y + dy).roundToInt()
 		)
+		return d
 	}
 }
 
-private fun Canvas.clipOutRectCompat(rect: Rect) {
+private fun Canvas.clipOutPathCompat(path: Path) {
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-		clipOutRect(rect)
+		clipOutPath(path)
 	} else {
 		@Suppress("DEPRECATION")
-		clipRect(rect, Region.Op.DIFFERENCE)
+		clipPath(path, Region.Op.DIFFERENCE)
+	}
+}
+
+private fun calculateRoundedRectPath(
+	left: Float,
+	top: Float,
+	right: Float,
+	bottom: Float,
+	rx: Float,
+	ry: Float
+): Path {
+	val width = right - left
+	val height = bottom - top
+	val widthMinusCorners = width - 2 * rx
+	val heightMinusCorners = height - 2 * ry
+	return Path().apply {
+		moveTo(right, top + ry)
+		rQuadTo(0f, -ry, -rx, -ry)
+		rLineTo(-widthMinusCorners, 0f)
+		rQuadTo(-rx, 0f, -rx, ry)
+		rLineTo(0f, heightMinusCorners)
+		rQuadTo(0f, ry, rx, ry)
+		rLineTo(widthMinusCorners, 0f)
+		rQuadTo(rx, 0f, rx, -ry)
+		rLineTo(0f, -heightMinusCorners)
+		close()
 	}
 }
