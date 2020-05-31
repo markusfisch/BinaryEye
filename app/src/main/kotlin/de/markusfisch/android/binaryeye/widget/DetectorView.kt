@@ -33,19 +33,24 @@ class DetectorView : View {
 	)
 	private val handleXRadius = handleBitmap.width / 2
 	private val handleYRadius = handleBitmap.height / 2
+	private val handlePos = PointF()
+	private val center = PointF()
+	private val touchDown = PointF()
 	private val distToFull: Float
+	private val minMoveThresholdSq: Float
 	private val cornerRadius: Float
 
 	private var marks: List<Point>? = null
-	private var center = PointF()
-	private var handlePos = PointF()
 	private var handleGrabbed = false
 	private var shadeColor = 0
+	private var movedHandle = false
 
 	init {
 		val dp = context.resources.displayMetrics.density
 		distToFull = 24f * dp
-		cornerRadius = 16f * dp
+		val minMoveThreshold = 8f * dp
+		minMoveThresholdSq = minMoveThreshold * minMoveThreshold
+		cornerRadius = 8f * dp
 	}
 
 	constructor(context: Context, attrs: AttributeSet) :
@@ -67,6 +72,7 @@ class DetectorView : View {
 		return when (event.actionMasked) {
 			MotionEvent.ACTION_DOWN -> {
 				if (prefs.showCropHandle) {
+					touchDown.set(event.x, event.y)
 					handleGrabbed = abs(event.x - handlePos.x) < handleXRadius &&
 							abs(event.y - handlePos.y) < handleYRadius
 					handleGrabbed
@@ -77,6 +83,9 @@ class DetectorView : View {
 			MotionEvent.ACTION_MOVE -> {
 				if (handleGrabbed) {
 					handlePos.set(event.x, event.y)
+					if (distSq(handlePos, touchDown) > minMoveThresholdSq) {
+						movedHandle = true
+					}
 					invalidate()
 					true
 				} else {
@@ -92,7 +101,13 @@ class DetectorView : View {
 			}
 			MotionEvent.ACTION_UP -> {
 				if (handleGrabbed) {
-					snap(event.x, event.y)
+					if (!movedHandle) {
+						handlePos.set(center.x * 1.75f, center.y * 1.25f)
+						movedHandle = true
+						invalidate()
+					} else {
+						snap(event.x, event.y)
+					}
 					updateRoi?.invoke()
 					handleGrabbed = false
 				}
@@ -106,10 +121,12 @@ class DetectorView : View {
 		if (abs(x - center.x) < distToFull) {
 			handlePos.x = center.x
 			invalidate()
+			movedHandle = false
 		}
 		if (abs(y - center.y) < distToFull) {
 			handlePos.y = center.y
 			invalidate()
+			movedHandle = false
 		}
 	}
 
@@ -178,6 +195,12 @@ class DetectorView : View {
 		)
 		return d
 	}
+}
+
+private fun distSq(a: PointF, b: PointF): Float {
+	val dx = a.x - b.x
+	val dy = a.y - b.y
+	return dx * dx + dy * dy
 }
 
 private fun Canvas.clipOutPathCompat(path: Path) {
