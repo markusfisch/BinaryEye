@@ -34,6 +34,7 @@ class DetectorView : View {
 	)
 	private val handleXRadius = handleBitmap.width / 2
 	private val handleYRadius = handleBitmap.height / 2
+	private val handleHome = PointF()
 	private val handlePos = PointF(-1f, -1f)
 	private val center = PointF()
 	private val touchDown = PointF()
@@ -46,8 +47,8 @@ class DetectorView : View {
 	private var marks: List<Point>? = null
 	private var orientation = resources.configuration.orientation
 	private var handleGrabbed = false
+	private var handleMoved = false
 	private var shadeColor = 0
-	private var movedHandle = false
 
 	init {
 		val dp = context.resources.displayMetrics.density
@@ -66,8 +67,15 @@ class DetectorView : View {
 	constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) :
 			super(context, attrs, defStyleAttr)
 
+	fun mark(points: List<Point>) {
+		marks = points
+		invalidate()
+		removeCallbacks(invalidateRunnable)
+		postDelayed(invalidateRunnable, 500)
+	}
+
 	override fun onSaveInstanceState(): Parcelable? {
-		if (!movedHandle) {
+		if (!handleMoved) {
 			return super.onSaveInstanceState()
 		}
 		return SavedState(super.onSaveInstanceState()).apply {
@@ -87,19 +95,12 @@ class DetectorView : View {
 						state.handlePos.x
 					)
 				}
-				movedHandle = true
+				handleMoved = true
 				state.superState
 			} else {
 				state
 			}
 		)
-	}
-
-	fun mark(points: List<Point>) {
-		marks = points
-		invalidate()
-		removeCallbacks(invalidateRunnable)
-		postDelayed(invalidateRunnable, 500)
 	}
 
 	@SuppressLint("ClickableViewAccessibility")
@@ -120,7 +121,7 @@ class DetectorView : View {
 				if (handleGrabbed) {
 					handlePos.set(event.x, event.y)
 					if (distSq(handlePos, touchDown) > minMoveThresholdSq) {
-						movedHandle = true
+						handleMoved = true
 					}
 					invalidate()
 					true
@@ -137,9 +138,9 @@ class DetectorView : View {
 			}
 			MotionEvent.ACTION_UP -> {
 				if (handleGrabbed) {
-					if (!movedHandle) {
-						handlePos.set(center.x * 1.75f, center.y * 1.25f)
-						movedHandle = true
+					if (!handleMoved) {
+						handlePos.set(center.x * 1.5f, center.y * 1.25f)
+						handleMoved = true
 						invalidate()
 					} else {
 						snap(event.x, event.y)
@@ -154,15 +155,12 @@ class DetectorView : View {
 	}
 
 	private fun snap(x: Float, y: Float) {
-		if (abs(x - center.x) < distToFull) {
-			handlePos.x = center.x
+		if (abs(x - center.x) < distToFull ||
+			abs(y - center.y) < distToFull
+		) {
+			handlePos.set(handleHome.x, handleHome.y)
+			handleMoved = false
 			invalidate()
-			movedHandle = false
-		}
-		if (abs(y - center.y) < distToFull) {
-			handlePos.y = center.y
-			invalidate()
-			movedHandle = false
 		}
 	}
 
@@ -174,39 +172,19 @@ class DetectorView : View {
 			(left + (width / 2)).toFloat(),
 			(top + (height / 2)).toFloat()
 		)
+		handleHome.set(
+			width - handleXRadius - paddingRight - padding,
+			height - handleYRadius - paddingBottom - fabHeight
+		)
 		if (handlePos.x < 0) {
-			handlePos.set(
-				width - handleXRadius - paddingRight - padding,
-				height - handleYRadius - paddingBottom - fabHeight
-			)
+			handlePos.set(handleHome.x, handleHome.y)
 		}
 	}
 
 	override fun onDraw(canvas: Canvas) {
 		canvas.drawColor(0, PorterDuff.Mode.CLEAR)
-		if (movedHandle) {
-			val minDist = updateClipRect()
-			if (roi.height() > 0 && roi.width() > 0) {
-				// canvas.clipRect() doesn't work reliably below KITKAT
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-					val radius = min(minDist * .5f, cornerRadius)
-					canvas.save()
-					canvas.clipOutPathCompat(
-						calculateRoundedRectPath(
-							roi.left.toFloat(),
-							roi.top.toFloat(),
-							roi.right.toFloat(),
-							roi.bottom.toFloat(),
-							radius,
-							radius
-						)
-					)
-					canvas.drawColor(shadeColor, PorterDuff.Mode.SRC)
-					canvas.restore()
-				} else {
-					canvas.drawRect(roi, roiPaint)
-				}
-			}
+		if (handleMoved) {
+			drawClip(canvas)
 		}
 		marks?.let {
 			dots.draw(canvas, it)
@@ -218,6 +196,32 @@ class DetectorView : View {
 				handlePos.y - handleYRadius,
 				null
 			)
+		}
+	}
+
+	private fun drawClip(canvas: Canvas) {
+		val minDist = updateClipRect()
+		if (minDist < 1f) {
+			return
+		}
+		// canvas.clipRect() doesn't work reliably below KITKAT
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			val radius = min(minDist * .5f, cornerRadius)
+			canvas.save()
+			canvas.clipOutPathCompat(
+				calculateRoundedRectPath(
+					roi.left.toFloat(),
+					roi.top.toFloat(),
+					roi.right.toFloat(),
+					roi.bottom.toFloat(),
+					radius,
+					radius
+				)
+			)
+			canvas.drawColor(shadeColor, PorterDuff.Mode.SRC)
+			canvas.restore()
+		} else {
+			canvas.drawRect(roi, roiPaint)
 		}
 	}
 
