@@ -8,6 +8,7 @@
 	<string name="binary_data">(data biner)</string>
 	<plurals name="barcode_info">
 		<item quantity="other">%1$s, %2$d karakter</item>
+
 	</plurals>
 	<string name="error_correction_level">Level koreksi kesalahan</string>
 	<string name="issue_number">Nomor pemindaian</string>
@@ -37,9 +38,9 @@
 	<string name="switch_camera">Ganti kamera</string>
 	<string name="history">Riwayat</string>
 	<string name="preferences">Preferensi</string>
-	<string name="show_crop_handle">Show cropping limiter</string>
+	<string name="show_crop_handle">Tampilkan pembatas pemotongan</string>
 	<string name="zoom_by_swiping">Perbesar kamera dengan menggeser ke atas/bawah</string>
-	<string name="auto_rotate">Recognize 1D barcodes vertically</string>
+	<string name="auto_rotate">Kenali barcode 1D secara vertikal</string>
 	<string name="try_harder">Optimalkan akurasi, bukan kecepatan</string>
 	<string name="vibrate">Bergetar saat mendeteksi</string>
 	<string name="use_history">Simpan riwayat pemindaian</string>
@@ -50,9 +51,9 @@
 	<string name="open_with_url">Buka data tak dikenal dengan URL</string>
 	<string name="really_remove_scan">Yakin menghapus pemindaian?</string>
 	<string name="really_remove_all_scans">Yakin menghapus semua pemindaian?</string>
-	<string name="really_remove_selected_scans">Really remove selected scans?</string>
+	<string name="really_remove_selected_scans">Yakin menghapus semua pemindaian?</string>
 	<string name="clear_history">Hapus riwayat</string>
-	<string name="copy_scan">Copy scan</string>
+	<string name="copy_scan">Salin pemindaian</string>
 	<string name="edit_scan">Sunting label</string>
 	<string name="remove_scan">Buang pindaian</string>
 	<string name="enter_name">Masukkan keterangan pemindaian</string>
