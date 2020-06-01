@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.os.Build
+import android.os.Parcel
+import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
@@ -16,6 +18,7 @@ import kotlin.math.abs
 import kotlin.math.min
 import kotlin.math.round
 import kotlin.math.roundToInt
+
 
 class DetectorView : View {
 	val roi = Rect()
@@ -33,7 +36,7 @@ class DetectorView : View {
 	)
 	private val handleXRadius = handleBitmap.width / 2
 	private val handleYRadius = handleBitmap.height / 2
-	private val handlePos = PointF()
+	private val handlePos = PointF(-1f, -1f)
 	private val center = PointF()
 	private val touchDown = PointF()
 	private val distToFull: Float
@@ -41,6 +44,7 @@ class DetectorView : View {
 	private val cornerRadius: Float
 
 	private var marks: List<Point>? = null
+	private var orientation = resources.configuration.orientation
 	private var handleGrabbed = false
 	private var shadeColor = 0
 	private var movedHandle = false
@@ -51,6 +55,7 @@ class DetectorView : View {
 		val minMoveThreshold = 8f * dp
 		minMoveThresholdSq = minMoveThreshold * minMoveThreshold
 		cornerRadius = 8f * dp
+		isSaveEnabled = true
 	}
 
 	constructor(context: Context, attrs: AttributeSet) :
@@ -58,6 +63,31 @@ class DetectorView : View {
 
 	constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) :
 			super(context, attrs, defStyleAttr)
+
+	override fun onSaveInstanceState(): Parcelable? {
+		return SavedState(super.onSaveInstanceState()).apply {
+			handlePos.set(this@DetectorView.handlePos)
+			orientation = this@DetectorView.orientation
+		}
+	}
+
+	override fun onRestoreInstanceState(state: Parcelable) {
+		super.onRestoreInstanceState(
+			if (state is SavedState) {
+				if (state.orientation == orientation) {
+					handlePos.set(state.handlePos)
+				} else {
+					handlePos.set(
+						state.handlePos.y,
+						state.handlePos.x
+					)
+				}
+				state.superState
+			} else {
+				state
+			}
+		)
+	}
 
 	fun mark(points: List<Point>) {
 		marks = points
@@ -138,10 +168,12 @@ class DetectorView : View {
 			(left + (width / 2)).toFloat(),
 			(top + (height / 2)).toFloat()
 		)
-		if (width > height) {
-			handlePos.set(round(right * .75f), center.y)
-		} else {
-			handlePos.set(center.x, round(bottom * .75f))
+		if (handlePos.x < 0) {
+			if (width > height) {
+				handlePos.set(round(right * .75f), center.y)
+			} else {
+				handlePos.set(center.x, round(bottom * .75f))
+			}
 		}
 	}
 
@@ -194,6 +226,37 @@ class DetectorView : View {
 			(center.y + dy).roundToInt()
 		)
 		return d
+	}
+
+	internal class SavedState : BaseSavedState {
+		val handlePos = PointF()
+
+		var orientation = 0
+
+		constructor(superState: Parcelable?) : super(superState)
+
+		private constructor(parcel: Parcel) : super(parcel) {
+			handlePos.set(
+				parcel.readFloat(),
+				parcel.readFloat()
+			)
+			orientation = parcel.readInt()
+		}
+
+		override fun writeToParcel(out: Parcel, flags: Int) {
+			super.writeToParcel(out, flags)
+			out.writeFloat(handlePos.x)
+			out.writeFloat(handlePos.y)
+			out.writeInt(orientation)
+		}
+
+		companion object {
+			@JvmField
+			val CREATOR = object : Parcelable.Creator<SavedState> {
+				override fun createFromParcel(source: Parcel) = SavedState(source)
+				override fun newArray(size: Int): Array<SavedState?> = arrayOfNulls(size)
+			}
+		}
 	}
 }
 
