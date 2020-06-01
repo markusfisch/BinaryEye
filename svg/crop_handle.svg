@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg height="48px" viewBox="0 0 48 48" width="48px" xmlns="http://www.w3.org/2000/svg">
-  <circle style="fill: rgb(182, 212, 111);" cx="24" cy="24" r="24"/>
-  <path d="M 29 27 L 31 27 L 31 19 C 31 17.9 30.1 17 29 17 L 21 17 L 21 19 L 29 19 L 29 27 Z M 19 29 L 19 13 L 17 13 L 17 17 L 13 17 L 13 19 L 17 19 L 17 29 C 17 30.1 17.9 31 19 31 L 29 31 L 29 35 L 31 35 L 31 31 L 35 31 L 35 29 L 19 29 Z" style="fill: rgb(255, 255, 255);"/>
-</svg>

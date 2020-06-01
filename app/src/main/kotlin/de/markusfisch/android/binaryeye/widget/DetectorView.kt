@@ -19,7 +19,6 @@ import kotlin.math.min
 import kotlin.math.round
 import kotlin.math.roundToInt
 
-
 class DetectorView : View {
 	val roi = Rect()
 
@@ -32,7 +31,7 @@ class DetectorView : View {
 	}
 	private val roiPaint = context.getDashedBorderPaint()
 	private val handleBitmap = resources.getBitmapFromDrawable(
-		R.drawable.ic_crop_handle
+		R.drawable.button_crop
 	)
 	private val handleXRadius = handleBitmap.width / 2
 	private val handleYRadius = handleBitmap.height / 2
