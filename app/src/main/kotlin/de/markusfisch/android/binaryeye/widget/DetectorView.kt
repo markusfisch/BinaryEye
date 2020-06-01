@@ -34,15 +34,15 @@ class DetectorView : View {
 	)
 	private val handleXRadius = handleBitmap.width / 2
 	private val handleYRadius = handleBitmap.height / 2
-	private val handleHome = PointF()
-	private val handlePos = PointF(-1f, -1f)
-	private val center = PointF()
-	private val touchDown = PointF()
-	private val distToFull: Float
-	private val minMoveThresholdSq: Float
-	private val cornerRadius: Float
-	private val fabHeight: Float
-	private val padding: Float
+	private val handleHome = Point()
+	private val handlePos = Point(-1, -1)
+	private val center = Point()
+	private val touchDown = Point()
+	private val distToFull: Int
+	private val minMoveThresholdSq: Int
+	private val cornerRadius: Int
+	private val fabHeight: Int
+	private val padding: Int
 
 	private var marks: List<Point>? = null
 	private var orientation = resources.configuration.orientation
@@ -52,12 +52,12 @@ class DetectorView : View {
 
 	init {
 		val dp = context.resources.displayMetrics.density
-		distToFull = 24f * dp
-		val minMoveThreshold = 8f * dp
+		distToFull = (24f * dp).roundToInt()
+		val minMoveThreshold = (8f * dp).roundToInt()
 		minMoveThresholdSq = minMoveThreshold * minMoveThreshold
-		cornerRadius = 8f * dp
-		fabHeight = (72f + 20f) * dp
-		padding = 20f * dp
+		cornerRadius = (8f * dp).roundToInt()
+		fabHeight = (92f * dp).roundToInt()
+		padding = (20f * dp).roundToInt()
 		isSaveEnabled = true
 	}
 
@@ -79,20 +79,20 @@ class DetectorView : View {
 			return super.onSaveInstanceState()
 		}
 		return SavedState(super.onSaveInstanceState()).apply {
-			handlePos.set(this@DetectorView.handlePos)
-			orientation = this@DetectorView.orientation
+			savedHandlePos.set(handlePos)
+			savedOrientation = orientation
 		}
 	}
 
 	override fun onRestoreInstanceState(state: Parcelable) {
 		super.onRestoreInstanceState(
 			if (state is SavedState) {
-				if (state.orientation == orientation) {
-					handlePos.set(state.handlePos)
+				if (state.savedOrientation == orientation) {
+					handlePos.set(state.savedHandlePos)
 				} else {
 					handlePos.set(
-						state.handlePos.y,
-						state.handlePos.x
+						state.savedHandlePos.y,
+						state.savedHandlePos.x
 					)
 				}
 				handleMoved = true
@@ -106,12 +106,14 @@ class DetectorView : View {
 	@SuppressLint("ClickableViewAccessibility")
 	override fun onTouchEvent(event: MotionEvent?): Boolean {
 		event ?: return super.onTouchEvent(event)
+		val x = event.x.roundToInt()
+		val y = event.y.roundToInt()
 		return when (event.actionMasked) {
 			MotionEvent.ACTION_DOWN -> {
 				if (prefs.showCropHandle) {
-					touchDown.set(event.x, event.y)
-					handleGrabbed = abs(event.x - handlePos.x) < handleXRadius &&
-							abs(event.y - handlePos.y) < handleYRadius
+					touchDown.set(x, y)
+					handleGrabbed = abs(x - handlePos.x) < handleXRadius &&
+							abs(y - handlePos.y) < handleYRadius
 					handleGrabbed
 				} else {
 					false
@@ -119,7 +121,7 @@ class DetectorView : View {
 			}
 			MotionEvent.ACTION_MOVE -> {
 				if (handleGrabbed) {
-					handlePos.set(event.x, event.y)
+					handlePos.set(x, y)
 					if (distSq(handlePos, touchDown) > minMoveThresholdSq) {
 						handleMoved = true
 					}
@@ -131,7 +133,7 @@ class DetectorView : View {
 			}
 			MotionEvent.ACTION_CANCEL -> {
 				if (handleGrabbed) {
-					snap(event.x, event.y)
+					snap(x, y)
 					handleGrabbed = false
 				}
 				false
@@ -139,11 +141,14 @@ class DetectorView : View {
 			MotionEvent.ACTION_UP -> {
 				if (handleGrabbed) {
 					if (!handleMoved) {
-						handlePos.set(center.x * 1.5f, center.y * 1.25f)
+						handlePos.set(
+							(center.x * 1.5f).roundToInt(),
+							(center.y * 1.25f).roundToInt()
+						)
 						handleMoved = true
 						invalidate()
 					} else {
-						snap(event.x, event.y)
+						snap(x, y)
 					}
 					updateRoi?.invoke()
 					handleGrabbed = false
@@ -154,11 +159,11 @@ class DetectorView : View {
 		}
 	}
 
-	private fun snap(x: Float, y: Float) {
+	private fun snap(x: Int, y: Int) {
 		if (abs(x - center.x) < distToFull ||
 			abs(y - center.y) < distToFull
 		) {
-			handlePos.set(handleHome.x, handleHome.y)
+			handlePos.set(handleHome)
 			handleMoved = false
 			invalidate()
 		}
@@ -169,15 +174,15 @@ class DetectorView : View {
 		val width = right - left
 		val height = bottom - top
 		center.set(
-			(left + (width / 2)).toFloat(),
-			(top + (height / 2)).toFloat()
+			left + (width / 2),
+			top + (height / 2)
 		)
 		handleHome.set(
 			width - handleXRadius - paddingRight - padding,
 			height - handleYRadius - paddingBottom - fabHeight
 		)
 		if (handlePos.x < 0) {
-			handlePos.set(handleHome.x, handleHome.y)
+			handlePos.set(handleHome)
 		}
 	}
 
@@ -192,8 +197,8 @@ class DetectorView : View {
 		if (prefs.showCropHandle) {
 			canvas.drawBitmap(
 				handleBitmap,
-				handlePos.x - handleXRadius,
-				handlePos.y - handleYRadius,
+				(handlePos.x - handleXRadius).toFloat(),
+				(handlePos.y - handleYRadius).toFloat(),
 				null
 			)
 		}
@@ -201,12 +206,12 @@ class DetectorView : View {
 
 	private fun drawClip(canvas: Canvas) {
 		val minDist = updateClipRect()
-		if (minDist < 1f) {
+		if (minDist < 1) {
 			return
 		}
 		// canvas.clipRect() doesn't work reliably below KITKAT
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-			val radius = min(minDist * .5f, cornerRadius)
+			val radius = min(minDist / 2, cornerRadius).toFloat()
 			canvas.save()
 			canvas.clipOutPathCompat(
 				calculateRoundedRectPath(
@@ -225,40 +230,43 @@ class DetectorView : View {
 		}
 	}
 
-	private fun updateClipRect(): Float {
+	private fun updateClipRect(): Int {
 		val dx = abs(handlePos.x - center.x)
 		val dy = abs(handlePos.y - center.y)
 		val d = min(dx, dy)
-		shadeColor = (min(1f, d / distToFull) * 128f).toInt() shl 24
+		shadeColor = (min(
+			1f,
+			d.toFloat() / distToFull.toFloat()
+		) * 128f).toInt() shl 24
 		roi.set(
-			(center.x - dx).roundToInt(),
-			(center.y - dy).roundToInt(),
-			(center.x + dx).roundToInt(),
-			(center.y + dy).roundToInt()
+			center.x - dx,
+			center.y - dy,
+			center.x + dx,
+			center.y + dy
 		)
 		return d
 	}
 
 	internal class SavedState : BaseSavedState {
-		val handlePos = PointF()
+		val savedHandlePos = Point()
 
-		var orientation = 0
+		var savedOrientation = 0
 
 		constructor(superState: Parcelable?) : super(superState)
 
 		private constructor(parcel: Parcel) : super(parcel) {
-			handlePos.set(
-				parcel.readFloat(),
-				parcel.readFloat()
+			savedHandlePos.set(
+				parcel.readInt(),
+				parcel.readInt()
 			)
-			orientation = parcel.readInt()
+			savedOrientation = parcel.readInt()
 		}
 
 		override fun writeToParcel(out: Parcel, flags: Int) {
 			super.writeToParcel(out, flags)
-			out.writeFloat(handlePos.x)
-			out.writeFloat(handlePos.y)
-			out.writeInt(orientation)
+			out.writeInt(savedHandlePos.x)
+			out.writeInt(savedHandlePos.y)
+			out.writeInt(savedOrientation)
 		}
 
 		companion object {
@@ -271,10 +279,15 @@ class DetectorView : View {
 	}
 }
 
-private fun distSq(a: PointF, b: PointF): Float {
+private fun distSq(a: Point, b: Point): Int {
 	val dx = a.x - b.x
 	val dy = a.y - b.y
 	return dx * dx + dy * dy
+}
+
+private fun Point.set(point: Point) {
+	x = point.x
+	y = point.y
 }
 
 private fun Canvas.clipOutPathCompat(path: Path) {
