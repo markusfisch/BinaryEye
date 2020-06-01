@@ -10,6 +10,7 @@ import android.hardware.Camera
 import android.net.Uri
 import android.os.Bundle
 import android.os.Vibrator
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.support.v8.renderscript.RSRuntimeException
@@ -54,7 +55,7 @@ class CameraActivity : AppCompatActivity() {
 	private lateinit var cameraView: CameraView
 	private lateinit var detectorView: DetectorView
 	private lateinit var zoomBar: SeekBar
-	private lateinit var flashFab: View
+	private lateinit var flashFab: FloatingActionButton
 
 	private var preprocessor: Preprocessor? = null
 	private var nativeMapping: Mapping? = null
@@ -111,8 +112,7 @@ class CameraActivity : AppCompatActivity() {
 		cameraView = findViewById(R.id.camera_view) as CameraView
 		detectorView = findViewById(R.id.detector_view) as DetectorView
 		zoomBar = findViewById(R.id.zoom) as SeekBar
-		flashFab = findViewById(R.id.flash)
-		flashFab.setOnClickListener { toggleTorchMode() }
+		flashFab = findViewById(R.id.flash) as FloatingActionButton
 
 		initCameraView()
 		initZoomBar()
@@ -195,7 +195,7 @@ class CameraActivity : AppCompatActivity() {
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return when (item.itemId) {
 			R.id.create -> {
-				startActivity(MainActivity.getEncodeIntent(this))
+				createBarcode()
 				true
 			}
 			R.id.history -> {
@@ -228,6 +228,10 @@ class CameraActivity : AppCompatActivity() {
 			}
 			else -> super.onOptionsItemSelected(item)
 		}
+	}
+
+	private fun createBarcode() {
+		startActivity(MainActivity.getEncodeIntent(this))
 	}
 
 	private fun switchCamera() {
@@ -414,11 +418,13 @@ class CameraActivity : AppCompatActivity() {
 		)
 	}
 
-	private fun updateFlashFab(available: Boolean) {
-		flashFab.visibility = if (available) {
-			View.GONE
+	private fun updateFlashFab(unavailable: Boolean) {
+		if (unavailable) {
+			flashFab.setImageResource(R.drawable.ic_action_create)
+			flashFab.setOnClickListener { createBarcode() }
 		} else {
-			View.VISIBLE
+			flashFab.setImageResource(R.drawable.ic_action_flash)
+			flashFab.setOnClickListener { toggleTorchMode() }
 		}
 	}
 
