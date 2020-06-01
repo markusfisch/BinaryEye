@@ -28,6 +28,7 @@ import de.markusfisch.android.binaryeye.graphics.Mapping
 import de.markusfisch.android.binaryeye.graphics.frameToView
 import de.markusfisch.android.binaryeye.graphics.isPortrait
 import de.markusfisch.android.binaryeye.rs.Preprocessor
+import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
@@ -117,6 +118,7 @@ class CameraActivity : AppCompatActivity() {
 		initZoomBar()
 		restoreZoom()
 		detectorView.updateRoi = { recreatePreprocessor = true }
+		detectorView.setPaddingFromWindowInsets()
 
 		if (intent?.action == Intent.ACTION_SEND &&
 			intent.type == "text/plain"

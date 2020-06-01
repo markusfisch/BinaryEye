@@ -16,7 +16,6 @@ import de.markusfisch.android.binaryeye.graphics.getBitmapFromDrawable
 import de.markusfisch.android.binaryeye.graphics.getDashedBorderPaint
 import kotlin.math.abs
 import kotlin.math.min
-import kotlin.math.round
 import kotlin.math.roundToInt
 
 class DetectorView : View {
@@ -41,6 +40,8 @@ class DetectorView : View {
 	private val distToFull: Float
 	private val minMoveThresholdSq: Float
 	private val cornerRadius: Float
+	private val fabHeight: Float
+	private val padding: Float
 
 	private var marks: List<Point>? = null
 	private var orientation = resources.configuration.orientation
@@ -54,6 +55,8 @@ class DetectorView : View {
 		val minMoveThreshold = 8f * dp
 		minMoveThresholdSq = minMoveThreshold * minMoveThreshold
 		cornerRadius = 8f * dp
+		fabHeight = (72f + 20f) * dp
+		padding = 20f * dp
 		isSaveEnabled = true
 	}
 
@@ -64,6 +67,9 @@ class DetectorView : View {
 			super(context, attrs, defStyleAttr)
 
 	override fun onSaveInstanceState(): Parcelable? {
+		if (!movedHandle) {
+			return super.onSaveInstanceState()
+		}
 		return SavedState(super.onSaveInstanceState()).apply {
 			handlePos.set(this@DetectorView.handlePos)
 			orientation = this@DetectorView.orientation
@@ -81,6 +87,7 @@ class DetectorView : View {
 						state.handlePos.x
 					)
 				}
+				movedHandle = true
 				state.superState
 			} else {
 				state
@@ -168,36 +175,37 @@ class DetectorView : View {
 			(top + (height / 2)).toFloat()
 		)
 		if (handlePos.x < 0) {
-			if (width > height) {
-				handlePos.set(round(right * .75f), center.y)
-			} else {
-				handlePos.set(center.x, round(bottom * .75f))
-			}
+			handlePos.set(
+				width - handleXRadius - paddingRight - padding,
+				height - handleYRadius - paddingBottom - fabHeight
+			)
 		}
 	}
 
 	override fun onDraw(canvas: Canvas) {
 		canvas.drawColor(0, PorterDuff.Mode.CLEAR)
-		val minDist = updateClipRect()
-		if (roi.height() > 0 && roi.width() > 0) {
-			// canvas.clipRect() doesn't work reliably below KITKAT
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-				val radius = min(minDist * .5f, cornerRadius)
-				canvas.save()
-				canvas.clipOutPathCompat(
-					calculateRoundedRectPath(
-						roi.left.toFloat(),
-						roi.top.toFloat(),
-						roi.right.toFloat(),
-						roi.bottom.toFloat(),
-						radius,
-						radius
+		if (movedHandle) {
+			val minDist = updateClipRect()
+			if (roi.height() > 0 && roi.width() > 0) {
+				// canvas.clipRect() doesn't work reliably below KITKAT
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+					val radius = min(minDist * .5f, cornerRadius)
+					canvas.save()
+					canvas.clipOutPathCompat(
+						calculateRoundedRectPath(
+							roi.left.toFloat(),
+							roi.top.toFloat(),
+							roi.right.toFloat(),
+							roi.bottom.toFloat(),
+							radius,
+							radius
+						)
 					)
-				)
-				canvas.drawColor(shadeColor, PorterDuff.Mode.SRC)
-				canvas.restore()
-			} else {
-				canvas.drawRect(roi, roiPaint)
+					canvas.drawColor(shadeColor, PorterDuff.Mode.SRC)
+					canvas.restore()
+				} else {
+					canvas.drawRect(roi, roiPaint)
+				}
 			}
 		}
 		marks?.let {
