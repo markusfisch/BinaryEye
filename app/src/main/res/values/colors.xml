@@ -9,5 +9,5 @@
 	<color name="selected_row">#222</color>
 	<color name="separator">#333</color>
 	<color name="crop_bound">#fff</color>
-	<color name="candidate">#80b6d46f</color>
+	<color name="dot">#80b6d46f</color>
 </resources>

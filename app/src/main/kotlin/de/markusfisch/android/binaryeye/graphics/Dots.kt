@@ -7,14 +7,14 @@ import android.graphics.Point
 import android.support.v4.content.ContextCompat
 import de.markusfisch.android.binaryeye.R
 
-class Candidates(context: Context) {
+class Dots(context: Context) {
 	private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 	private val radius = 8f * context.resources.displayMetrics.density
 
 	init {
 		paint.color = ContextCompat.getColor(
 			context,
-			R.color.candidate
+			R.color.dot
 		)
 		paint.style = Paint.Style.FILL
 	}

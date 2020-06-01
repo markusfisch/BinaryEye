@@ -11,7 +11,7 @@ import android.view.MotionEvent
 import android.view.View
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.prefs
-import de.markusfisch.android.binaryeye.graphics.Candidates
+import de.markusfisch.android.binaryeye.graphics.Dots
 import de.markusfisch.android.binaryeye.graphics.getBitmapFromDrawable
 import de.markusfisch.android.binaryeye.graphics.getDashedBorderPaint
 import kotlin.math.abs
@@ -24,7 +24,7 @@ class DetectorView : View {
 
 	var updateRoi: (() -> Unit)? = null
 
-	private val candidates = Candidates(context)
+	private val dots = Dots(context)
 	private val invalidateRunnable: Runnable = Runnable {
 		marks = null
 		invalidate()
@@ -201,7 +201,7 @@ class DetectorView : View {
 			}
 		}
 		marks?.let {
-			candidates.draw(canvas, it)
+			dots.draw(canvas, it)
 		}
 		if (prefs.showCropHandle) {
 			canvas.drawBitmap(

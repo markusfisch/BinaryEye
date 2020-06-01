@@ -6,7 +6,7 @@ import android.graphics.Point
 import android.graphics.Rect
 import android.graphics.RectF
 import android.util.AttributeSet
-import de.markusfisch.android.binaryeye.graphics.Candidates
+import de.markusfisch.android.binaryeye.graphics.Dots
 import de.markusfisch.android.binaryeye.graphics.getDashedBorderPaint
 import kotlin.math.roundToInt
 
@@ -16,18 +16,18 @@ class CropImageView(context: Context, attr: AttributeSet) :
 
 	var onScan: (() -> List<Point>?)? = null
 
-	private val candidates = Candidates(context)
+	private val dots = Dots(context)
 	private val boundsPaint = context.getDashedBorderPaint()
 	private val lastMappedRect = RectF()
 	private val padding: Int = (24f * context.resources.displayMetrics.density).roundToInt()
 	private val onScanRunnable = Runnable {
 		onScan?.invoke()?.let {
-			candidatePoints = it
+			resultPoints = it
 			invalidate()
 		}
 	}
 
-	private var candidatePoints: List<Point>? = null
+	private var resultPoints: List<Point>? = null
 
 	init {
 		scaleType = ScaleType.CENTER_CROP
@@ -82,10 +82,10 @@ class CropImageView(context: Context, attr: AttributeSet) :
 	override fun onDraw(canvas: Canvas) {
 		super.onDraw(canvas)
 		canvas.drawRect(bounds, boundsPaint)
-		candidatePoints?.let {
-			candidates.draw(canvas, it)
+		resultPoints?.let {
+			dots.draw(canvas, it)
 		}
-		candidatePoints = null
+		resultPoints = null
 		val mr = mappedRect ?: return
 		if (mr != lastMappedRect) {
 			removeCallbacks(onScanRunnable)
