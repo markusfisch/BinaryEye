@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.30.1
+* Improve usability of cropping limiter
+* Draw round corners around region of interest
+* Update Indonesian translation
+
 ## 1.30.0
 * Add a handle to define a region of interest
 * Add a setting to show/hide cropping limiter
