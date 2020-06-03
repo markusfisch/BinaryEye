@@ -64,6 +64,7 @@ class CameraActivity : AppCompatActivity() {
 	private var rotate = false
 	private var invert = false
 	private var flash = false
+	private var decoding = true
 	private var returnResult = false
 	private var frontFacing = false
 	private var fallbackBuffer: IntArray? = null
@@ -117,7 +118,14 @@ class CameraActivity : AppCompatActivity() {
 		initCameraView()
 		initZoomBar()
 		restoreZoom()
-		detectorView.updateRoi = { recreatePreprocessor = true }
+
+		detectorView.onRoiChange = {
+			decoding = false
+		}
+		detectorView.onRoiChanged = {
+			decoding = true
+			recreatePreprocessor = true
+		}
 		detectorView.setPaddingFromWindowInsets()
 
 		if (intent?.action == Intent.ACTION_SEND &&
@@ -347,7 +355,7 @@ class CameraActivity : AppCompatActivity() {
 				val frameWidth = cameraView.frameWidth
 				val frameHeight = cameraView.frameHeight
 				val frameOrientation = cameraView.frameOrientation
-				var decoding = true
+				decoding = true
 				camera.setPreviewCallback { frameData, _ ->
 					if (decoding) {
 						decodeFrame(

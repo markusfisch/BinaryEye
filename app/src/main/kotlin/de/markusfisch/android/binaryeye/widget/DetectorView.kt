@@ -21,7 +21,8 @@ import kotlin.math.roundToInt
 class DetectorView : View {
 	val roi = Rect()
 
-	var updateRoi: (() -> Unit)? = null
+	var onRoiChange: (() -> Unit)? = null
+	var onRoiChanged: (() -> Unit)? = null
 
 	private val dots = Dots(context)
 	private val invalidateRunnable: Runnable = Runnable {
@@ -114,6 +115,9 @@ class DetectorView : View {
 					touchDown.set(x, y)
 					handleGrabbed = abs(x - handlePos.x) < handleXRadius &&
 							abs(y - handlePos.y) < handleYRadius
+					if (handleGrabbed) {
+						onRoiChange?.invoke()
+					}
 					handleGrabbed
 				} else {
 					false
@@ -150,7 +154,7 @@ class DetectorView : View {
 					} else {
 						snap(x, y)
 					}
-					updateRoi?.invoke()
+					onRoiChanged?.invoke()
 					handleGrabbed = false
 				}
 				false
