@@ -1,4 +1,4 @@
-package de.markusfisch.android.binaryeye.data
+package de.markusfisch.android.binaryeye.database
 
 import android.os.Parcel
 import android.os.Parcelable

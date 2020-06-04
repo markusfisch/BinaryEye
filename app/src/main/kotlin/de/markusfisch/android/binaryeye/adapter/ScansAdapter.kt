@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.CursorAdapter
 import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.data.Database
+import de.markusfisch.android.binaryeye.database.Database
 
 class ScansAdapter(context: Context, cursor: Cursor) :
 	CursorAdapter(context, cursor, false) {

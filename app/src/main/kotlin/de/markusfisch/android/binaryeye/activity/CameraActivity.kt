@@ -24,7 +24,7 @@ import com.google.zxing.ResultMetadataType
 import com.google.zxing.ResultPointCallback
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.*
-import de.markusfisch.android.binaryeye.data.Scan
+import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.graphics.Mapping
 import de.markusfisch.android.binaryeye.graphics.frameToView
 import de.markusfisch.android.binaryeye.graphics.isPortrait

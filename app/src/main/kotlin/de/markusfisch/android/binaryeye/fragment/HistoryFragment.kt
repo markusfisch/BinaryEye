@@ -21,10 +21,10 @@ import android.widget.ListView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.ScansAdapter
 import de.markusfisch.android.binaryeye.app.*
-import de.markusfisch.android.binaryeye.data.Database
-import de.markusfisch.android.binaryeye.data.exportCsv
-import de.markusfisch.android.binaryeye.data.exportDatabase
-import de.markusfisch.android.binaryeye.data.exportJson
+import de.markusfisch.android.binaryeye.database.Database
+import de.markusfisch.android.binaryeye.database.exportCsv
+import de.markusfisch.android.binaryeye.database.exportDatabase
+import de.markusfisch.android.binaryeye.database.exportJson
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.useVisibility
 import de.markusfisch.android.binaryeye.widget.toast

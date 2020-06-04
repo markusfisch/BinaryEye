@@ -15,7 +15,7 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
 import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
 import de.markusfisch.android.binaryeye.app.*
-import de.markusfisch.android.binaryeye.data.Scan
+import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.toast
 import kotlinx.coroutines.CoroutineScope

@@ -1,4 +1,4 @@
-package de.markusfisch.android.binaryeye.data
+package de.markusfisch.android.binaryeye.database
 
 import android.content.ContentValues
 import android.content.Context
