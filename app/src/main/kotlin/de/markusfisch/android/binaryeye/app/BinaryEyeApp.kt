@@ -11,12 +11,11 @@ val prefs = Preferences()
 class BinaryEyeApp : Application() {
 	override fun onCreate() {
 		super.onCreate()
+		db.open(this)
 		prefs.init(this)
 
 		if (prefs.forceCompat) {
 			RenderScript.forceCompat()
 		}
-
-		db.open(this)
 	}
 }
