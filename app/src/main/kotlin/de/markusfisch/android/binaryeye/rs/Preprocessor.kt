@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Rect
 import android.support.v8.renderscript.*
 import de.markusfisch.android.binaryeye.renderscript.ScriptC_rotator
+import kotlin.math.max
 import kotlin.math.roundToInt
 
 private const val SCALE_FACTOR = .75f
@@ -65,6 +66,10 @@ class Preprocessor(
 			// make sure the dimensions are always a multiple of 4
 			outWidth -= outWidth % 4
 			outHeight -= outHeight % 4
+
+			// make sure the dimensions are always greater than 4
+			outWidth = max(4, outWidth)
+			outHeight = max(4, outHeight)
 		} else {
 			outWidth = (width * SCALE_FACTOR).roundToInt()
 			outHeight = (height * SCALE_FACTOR).roundToInt()

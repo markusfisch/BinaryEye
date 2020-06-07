@@ -169,6 +169,7 @@ class DetectorView : View {
 		) {
 			handlePos.set(handleHome)
 			handleMoved = false
+			roi.set(0, 0, 0, 0)
 			invalidate()
 		}
 	}
