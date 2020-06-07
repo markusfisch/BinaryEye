@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.31.0
+* Stop detection while region of interest is modified
+* Fix resetting region of interest
+* Add Polish translation
+
 ## 1.30.1
 * Improve usability of cropping limiter
 * Draw round corners around region of interest
