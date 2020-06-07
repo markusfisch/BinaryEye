@@ -34,7 +34,8 @@ class PreprocessorTest {
 			val preprocessor = Preprocessor(
 				InstrumentationRegistry.getTargetContext(),
 				frameWidth.toInt(),
-				frameHeight.toInt()
+				frameHeight.toInt(),
+				null
 			)
 			val outWidth: Int
 			val outHeight: Int
