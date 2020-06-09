@@ -3,7 +3,6 @@ package de.markusfisch.android.binaryeye.rs
 import android.content.Context
 import android.graphics.Rect
 import android.support.v8.renderscript.*
-import de.markusfisch.android.binaryeye.renderscript.ScriptC_rotator
 import kotlin.math.max
 import kotlin.math.roundToInt
 
@@ -20,7 +19,7 @@ class Preprocessor(
 
 	private val rs = RenderScript.create(context)
 	private val resizeScript = ScriptIntrinsicResize.create(rs)
-	private val rotatorScript = ScriptC_rotator(rs)
+	private val rotateScript = ScriptC_rotate(rs)
 
 	private var yuvType: Type? = null
 	private var yuvAlloc: Allocation? = null
@@ -118,7 +117,7 @@ class Preprocessor(
 		rotatedAlloc?.destroy()
 		rotatedAlloc = null
 		resizeScript.destroy()
-		rotatorScript.destroy()
+		rotateScript.destroy()
 		rs.destroy()
 	}
 
@@ -130,10 +129,10 @@ class Preprocessor(
 	fun resizeAndRotate(frame: ByteArray) {
 		resize(frame)
 		val t = resizedType ?: return
-		rotatorScript._inImage = resizedAlloc
-		rotatorScript._inWidth = t.x
-		rotatorScript._inHeight = t.y
-		rotatorScript.forEach_rotate90(
+		rotateScript._inImage = resizedAlloc
+		rotateScript._inWidth = t.x
+		rotateScript._inHeight = t.y
+		rotateScript.forEach_rotate90(
 			rotatedAlloc, // ignored in kernel, just to satisfy forEach
 			rotatedAlloc
 		)
