@@ -1,14 +1,13 @@
 package de.markusfisch.android.binaryeye
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-
 import de.markusfisch.android.binaryeye.rs.Preprocessor
 import de.markusfisch.android.binaryeye.zxing.Zxing
-
 import org.junit.Test
 import org.junit.runner.RunWith
-
 import java.util.regex.Pattern
 
 @RunWith(AndroidJUnit4::class)
@@ -19,22 +18,25 @@ class PreprocessorTest {
 		val assets = InstrumentationRegistry.getInstrumentation()
 			.context.assets
 		val pattern = Pattern.compile(
-			"[0-9]+-([0-9]+)x([0-9]+)-([0-9]+)deg.yuv"
+			"[0-9]+-([0-9]+)deg.jpg"
 		)
-		val files = assets.list("yuv") ?: return
-		for (file in files) {
-			val m = pattern.matcher(file)
+		val samples = assets.list("samples") ?: return
+		for (sample in samples) {
+			val m = pattern.matcher(sample)
 			if (!m.find() || m.groupCount() < 3) {
 				continue
 			}
-			val frameWidth = m.group(1) ?: return
-			val frameHeight = m.group(2) ?: return
-			val frameOrientation = m.group(3) ?: return
-			val frameData = assets.open("yuv/$file").readBytes()
+			val bitmap = BitmapFactory.decodeStream(
+				assets.open("samples/$sample")
+			)
+			val frameData = getNV21(bitmap)
+			val frameWidth = bitmap.width
+			val frameHeight = bitmap.height
+			val frameOrientation = m.group(1) ?: return
 			val preprocessor = Preprocessor(
 				InstrumentationRegistry.getTargetContext(),
-				frameWidth.toInt(),
-				frameHeight.toInt(),
+				frameWidth,
+				frameHeight,
 				null
 			)
 			val outWidth: Int
@@ -52,7 +54,48 @@ class PreprocessorTest {
 			val result = zxing.decode(frameData, outWidth, outHeight)
 			preprocessor.destroy()
 
-			checkNotNull(result) { "no barcode found in $file" }
+			checkNotNull(result) { "no barcode found in $sample" }
 		}
 	}
 }
+
+fun getNV21(bitmap: Bitmap): ByteArray {
+	val width = bitmap.width
+	val height = bitmap.height
+	val argb = IntArray(width * height)
+	bitmap.getPixels(argb, 0, width, 0, 0, width, height)
+	return encodeYUV420SP(argb, width, height)
+}
+
+private fun encodeYUV420SP(argb: IntArray, width: Int, height: Int): ByteArray {
+	val yuv = ByteArray(ceilIfUneven(width) * ceilIfUneven(height) * 3 / 2)
+	var yIndex = 0
+	var uvIndex = width * height
+	var r: Int
+	var g: Int
+	var b: Int
+	var Y: Int
+	var u: Int
+	var v: Int
+	var index = 0
+	for (y in 0 until height) {
+		for (x in 0 until width) {
+			val pixel = argb[index]
+			r = pixel and 0xff0000 shr 16
+			g = pixel and 0xff00 shr 8
+			b = pixel and 0xff
+			Y = (66 * r + 129 * g + 25 * b + 128 shr 8) + 16
+			u = (-38 * r - 74 * g + 112 * b + 128 shr 8) + 128
+			v = (112 * r - 94 * g - 18 * b + 128 shr 8) + 128
+			yuv[yIndex++] = (if (Y < 0) 0 else if (Y > 255) 255 else Y).toByte()
+			if (y % 2 == 0 && index % 2 == 0) {
+				yuv[uvIndex++] = (if (v < 0) 0 else if (v > 255) 255 else v).toByte()
+				yuv[uvIndex++] = (if (u < 0) 0 else if (u > 255) 255 else u).toByte()
+			}
+			++index
+		}
+	}
+	return yuv
+}
+
+private fun ceilIfUneven(n: Int) = if (n and 1 == 1) n + 1 else n
