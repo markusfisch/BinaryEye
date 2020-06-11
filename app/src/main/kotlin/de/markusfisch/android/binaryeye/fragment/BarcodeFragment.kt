@@ -25,7 +25,12 @@ import java.io.OutputStream
 import java.util.*
 
 class BarcodeFragment : Fragment() {
-	private var barcode: Bitmap? = null
+	private enum class FileType {
+		PNG, SVG
+	}
+
+	private var barcodeBitmap: Bitmap? = null
+	private var barcodeSvg: String? = null
 	private var content: String = ""
 	private var format: BarcodeFormat? = null
 
@@ -53,7 +58,8 @@ class BarcodeFragment : Fragment() {
 		val format = args.getSerializable(FORMAT) as BarcodeFormat? ?: return view
 		val size = args.getInt(SIZE)
 		try {
-			barcode = Zxing.encodeAsBitmap(content, format, size, size)
+			barcodeBitmap = Zxing.encodeAsBitmap(content, format, size, size)
+			barcodeSvg = Zxing.encodeAsSvg(content, format, size, size)
 		} catch (e: Exception) {
 			var message = e.message
 			if (message == null || message.isEmpty()) {
@@ -71,14 +77,14 @@ class BarcodeFragment : Fragment() {
 		val imageView = view.findViewById<ConfinedScalingImageView>(
 			R.id.barcode
 		)
-		imageView.setImageBitmap(barcode)
+		imageView.setImageBitmap(barcodeBitmap)
 		imageView.post {
 			// make sure to invoke this after ScalingImageView.onLayout()
 			imageView.minWidth /= 2f
 		}
 
 		view.findViewById<View>(R.id.share).setOnClickListener {
-			val bitmap = barcode
+			val bitmap = barcodeBitmap
 			bitmap?.let {
 				share(bitmap)
 			}
@@ -98,8 +104,12 @@ class BarcodeFragment : Fragment() {
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return when (item.itemId) {
-			R.id.save -> {
-				askForFileNameAndSave()
+			R.id.export_svg -> {
+				askForFileNameAndSave(FileType.SVG)
+				true
+			}
+			R.id.export_png -> {
+				askForFileNameAndSave(FileType.PNG)
 				true
 			}
 			else -> super.onOptionsItemSelected(item)
@@ -108,23 +118,33 @@ class BarcodeFragment : Fragment() {
 
 	// dialogs do not have a parent view
 	@SuppressLint("InflateParams")
-	private fun askForFileNameAndSave() {
+	private fun askForFileNameAndSave(fileType: FileType) {
 		val ac = activity ?: return
+		if (!hasWritePermission(ac)) {
+			return
+		}
 		val view = ac.layoutInflater.inflate(R.layout.dialog_save_file, null)
 		val editText = view.findViewById<EditText>(R.id.file_name)
 		editText.setText(encodeFileName("${format.toString()}_$content"))
 		AlertDialog.Builder(ac)
 			.setView(view)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
-				val bitmap = barcode
-				bitmap?.let {
-					saveAsFile(
-						bitmap,
-						addSuffixIfNotGiven(
-							editText.text.toString(),
-							".png"
-						)
-					)
+				val fileName = editText.text.toString()
+				when (fileType) {
+					FileType.PNG -> saveAs(
+						addSuffixIfNotGiven(fileName, ".png"),
+						"image/png"
+					) {
+						barcodeBitmap?.saveAsPng(it)
+					}
+					FileType.SVG -> saveAs(
+						addSuffixIfNotGiven(fileName, ".svg"),
+						"image/svg+xmg"
+					) { outputStream ->
+						barcodeSvg?.let {
+							outputStream.write(it.toByteArray())
+						}
+					}
 				}
 			}
 			.setNegativeButton(android.R.string.cancel) { _, _ ->
@@ -132,15 +152,14 @@ class BarcodeFragment : Fragment() {
 			.show()
 	}
 
-	private fun saveAsFile(bitmap: Bitmap, fileName: String) {
+	private fun saveAs(
+		fileName: String,
+		mimeType: String,
+		write: (outputStream: OutputStream) -> Unit
+	) {
 		val ac = activity ?: return
-		if (!hasWritePermission(ac)) {
-			return
-		}
 		GlobalScope.launch {
-			val message = writeExternalFile(ac, fileName, "image/png") {
-				bitmap.saveAsPng(it)
-			}.toSaveResult()
+			val message = writeExternalFile(ac, fileName, mimeType, write).toSaveResult()
 			GlobalScope.launch(Main) {
 				ac.toast(message)
 			}

@@ -87,6 +87,8 @@
 	<string name="search_web">Искать в сети</string>
 	<string name="search_scan">Поиск сканирования</string>
 	<string name="export_to_file">Экспортировать в файл</string>
+	<string name="export_png">Export as PNG</string>
+	<string name="export_svg">Export as SVG</string>
 	<string name="export_as">Формат экспортируемого файла</string>
 	<string name="export_csv_comma">CSV (разделитель - запятая)</string>
 	<string name="export_csv_semicolon">CSV (разделитель - точка с запятой)</string>

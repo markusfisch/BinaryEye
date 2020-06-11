@@ -156,5 +156,42 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 			bitmap.setPixels(pixels, 0, w, 0, 0, w, h)
 			return bitmap
 		}
+
+		fun encodeAsSvg(
+			text: String,
+			format: BarcodeFormat,
+			width: Int,
+			height: Int
+		): String {
+			val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)
+			hints[EncodeHintType.CHARACTER_SET] = "utf-8"
+			val result = MultiFormatWriter().encode(
+				text,
+				format,
+				0,
+				0,
+				hints
+			)
+			val sb = StringBuilder()
+			sb.append("<svg width=\"$width\" height=\"$height\"")
+			sb.append(" viewBox=\"0 0 $width $height\"")
+			sb.append(" xmlns=\"http://www.w3.org/2000/svg\">\n")
+			val w = result.width
+			val h = result.height
+			val xf = width.toFloat() / w
+			val yf = height.toFloat() / h
+			for (y in 0 until h) {
+				for (x in 0 until w) {
+					if (result.get(x, y)) {
+						val ox = x * xf
+						val oy = y * yf
+						sb.append("<rect x=\"$ox\" y=\"$oy\"")
+						sb.append(" width=\"$xf\" height=\"$yf\"/>\n")
+					}
+				}
+			}
+			sb.append("</svg>\n")
+			return sb.toString()
+		}
 	}
 }

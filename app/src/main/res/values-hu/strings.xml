@@ -83,6 +83,8 @@
 	<string name="search_web">Keresés a weben</string>
 	<string name="search_scan">Search scan</string>
 	<string name="export_to_file">Exportálás fájlba</string>
+	<string name="export_png">Export as PNG</string>
+	<string name="export_svg">Export as SVG</string>
 	<string name="export_as">Export as?</string>
 	<string name="export_csv_comma">CSV with commas</string>
 	<string name="export_csv_semicolon">CSV with semicolons</string>
