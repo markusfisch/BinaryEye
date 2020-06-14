@@ -25,6 +25,7 @@ import de.markusfisch.android.binaryeye.view.recordToolbarHeight
 import de.markusfisch.android.binaryeye.widget.CropImageView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
+import kotlinx.coroutines.*
 
 class PickActivity : AppCompatActivity() {
 	private val zxing = Zxing()
@@ -68,6 +69,8 @@ class PickActivity : AppCompatActivity() {
 			return
 		}
 
+		var result: Result? = null
+		val scope = CoroutineScope(Dispatchers.IO)
 		val scannedRect = Rect()
 		fun scanWithinBounds() = crop(
 			bitmap,
@@ -75,31 +78,38 @@ class PickActivity : AppCompatActivity() {
 			cropImageView.imageRotation
 		)?.let {
 			scannedRect.set(0, 0, it.width, it.height)
-			zxing.decodePositiveNegative(it)
+			scope.launch(Dispatchers.IO) {
+				result = zxing.decodePositiveNegative(it)
+				result?.let {
+					withContext(Dispatchers.Main) {
+						if (!isFinishing) {
+							vibrator.vibrate()
+						}
+						cropImageView.updateResultPoints(
+							mapResult(
+								scannedRect.width(),
+								scannedRect.height(),
+								0,
+								cropImageView.getBoundsRect(),
+								it
+							)
+						)
+					}
+				}
+			}
 		}
 
 		cropImageView = findViewById(R.id.image) as CropImageView
 		cropImageView.setImageBitmap(bitmap)
 		cropImageView.onScan = {
-			scanWithinBounds()?.let {
-				if (!isFinishing) {
-					vibrator.vibrate()
-				}
-				mapResult(
-					scannedRect.width(),
-					scannedRect.height(),
-					0,
-					cropImageView.getBoundsRect(),
-					it
-				)
-			}
+			scanWithinBounds()
 		}
 		cropImageView.doOnApplyWindowInsets { v, insets ->
 			(v as CropImageView).windowInsets.set(insets)
 		}
 
 		findViewById(R.id.scan).setOnClickListener {
-			scanImage(scanWithinBounds())
+			scanImage(result)
 		}
 	}
 

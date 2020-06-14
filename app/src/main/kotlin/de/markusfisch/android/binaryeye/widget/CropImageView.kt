@@ -14,23 +14,23 @@ class CropImageView(context: Context, attr: AttributeSet) :
 	ConfinedScalingImageView(context, attr) {
 	val windowInsets = Rect()
 
-	var onScan: (() -> List<Point>?)? = null
+	var onScan: (() -> Unit)? = null
 
 	private val dots = Dots(context)
 	private val boundsPaint = context.getDashedBorderPaint()
 	private val lastMappedRect = RectF()
 	private val padding: Int = (24f * context.resources.displayMetrics.density).roundToInt()
-	private val onScanRunnable = Runnable {
-		onScan?.invoke()?.let {
-			resultPoints = it
-			invalidate()
-		}
-	}
+	private val onScanRunnable = Runnable { onScan?.invoke() }
 
 	private var resultPoints: List<Point>? = null
 
 	init {
 		scaleType = ScaleType.CENTER_CROP
+	}
+
+	fun updateResultPoints(points: List<Point>) {
+		resultPoints = points
+		invalidate()
 	}
 
 	override fun onLayout(
