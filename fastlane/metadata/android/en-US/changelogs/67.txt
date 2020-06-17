@@ -1,0 +1,4 @@
+* Improve usability of cropping limiter
+* Draw round corners around region of interest
+* Update Indonesian translation
+
