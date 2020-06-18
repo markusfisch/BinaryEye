@@ -24,6 +24,7 @@ class DetectorView : View {
 	var onRoiChange: (() -> Unit)? = null
 	var onRoiChanged: (() -> Unit)? = null
 
+	private val orientation = resources.configuration.orientation
 	private val dots = Dots(context)
 	private val invalidateRunnable: Runnable = Runnable {
 		marks = null
@@ -46,7 +47,6 @@ class DetectorView : View {
 	private val padding: Int
 
 	private var marks: List<Point>? = null
-	private var orientation = resources.configuration.orientation
 	private var handleGrabbed = false
 	private var handleMoved = false
 	private var shadeColor = 0
@@ -145,9 +145,18 @@ class DetectorView : View {
 			MotionEvent.ACTION_UP -> {
 				if (handleGrabbed) {
 					if (!handleMoved) {
+						val xf: Float
+						val yf: Float
+						if (center.x > center.y) {
+							xf = 1.4f
+							yf = 1.5f
+						} else {
+							xf = 1.7f
+							yf = 1.4f
+						}
 						handlePos.set(
-							(center.x * 1.5f).roundToInt(),
-							(center.y * 1.25f).roundToInt()
+							(center.x * xf).roundToInt(),
+							(center.y * yf).roundToInt()
 						)
 						handleMoved = true
 						invalidate()
