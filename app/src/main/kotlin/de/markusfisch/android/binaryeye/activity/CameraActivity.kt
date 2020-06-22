@@ -117,7 +117,6 @@ class CameraActivity : AppCompatActivity() {
 
 		initCameraView()
 		initZoomBar()
-		restoreZoom()
 		initDetectorView()
 
 		if (intent?.action == Intent.ACTION_SEND &&
@@ -397,6 +396,7 @@ class CameraActivity : AppCompatActivity() {
 
 			override fun onStopTrackingTouch(seekBar: SeekBar) {}
 		})
+		restoreZoom()
 	}
 
 	@Suppress("DEPRECATION")
@@ -429,11 +429,6 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun initDetectorView() {
-		detectorView.setCropHandlePos(
-			prefs.cropHandleX,
-			prefs.cropHandleY,
-			prefs.cropHandleOrientation
-		)
 		detectorView.onRoiChange = {
 			decoding = false
 		}
@@ -442,6 +437,7 @@ class CameraActivity : AppCompatActivity() {
 			recreatePreprocessor = true
 		}
 		detectorView.setPaddingFromWindowInsets()
+		restoreCropHandlePos()
 	}
 
 	private fun saveCropHandlePos() {
@@ -449,6 +445,14 @@ class CameraActivity : AppCompatActivity() {
 		prefs.cropHandleX = pos.x
 		prefs.cropHandleY = pos.y
 		prefs.cropHandleOrientation = detectorView.currentOrientation
+	}
+
+	private fun restoreCropHandlePos() {
+		detectorView.setCropHandlePos(
+			prefs.cropHandleX,
+			prefs.cropHandleY,
+			prefs.cropHandleOrientation
+		)
 	}
 
 	private fun updateFlashFab(unavailable: Boolean) {
