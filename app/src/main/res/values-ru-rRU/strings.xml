@@ -7,9 +7,7 @@
 	<string name="content">Текст</string>
 	<string name="binary_data">(двоичные данные)</string>
 	<plurals name="barcode_info">
-		<item quantity="zero">%2$d символов, %1$s</item>
 		<item quantity="one">%2$d символ, %1$s</item>
-		<item quantity="two">%2$d символа, %1$s</item>
 		<item quantity="few">%2$d символа, %1$s</item>
 		<item quantity="many">%2$d символов, %1$s</item>
 		<item quantity="other">%2$d символов, %1$s</item>

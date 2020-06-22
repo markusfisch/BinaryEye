@@ -8,7 +8,6 @@
 	<string name="binary_data">(data biner)</string>
 	<plurals name="barcode_info">
 		<item quantity="other">%1$s, %2$d karakter</item>
-
 	</plurals>
 	<string name="error_correction_level">Level koreksi kesalahan</string>
 	<string name="issue_number">Nomor pemindaian</string>
