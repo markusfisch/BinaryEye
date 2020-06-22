@@ -159,6 +159,7 @@ class DetectorView : View {
 							(center.y * yf).roundToInt()
 						)
 						handleMoved = true
+						updateClipRect()
 						invalidate()
 					} else {
 						snap(x, y)
