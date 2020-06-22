@@ -6,6 +6,7 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import de.markusfisch.android.binaryeye.rs.Preprocessor
 import de.markusfisch.android.binaryeye.zxing.Zxing
+import org.junit.Assert.fail;
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.regex.Pattern
@@ -20,11 +21,12 @@ class PreprocessorTest {
 		val pattern = Pattern.compile(
 			"[0-9]+-([0-9]+)deg.jpg"
 		)
-		val samples = assets.list("samples") ?: return
+		val samples = assets.list("samples")
+		checkNotNull(samples) { "no samples found" }
 		for (sample in samples) {
 			val m = pattern.matcher(sample)
-			if (!m.find() || m.groupCount() < 3) {
-				continue
+			if (!m.find() || m.groupCount() < 1) {
+				fail("invalid sample: $sample")
 			}
 			val bitmap = BitmapFactory.decodeStream(
 				assets.open("samples/$sample")
