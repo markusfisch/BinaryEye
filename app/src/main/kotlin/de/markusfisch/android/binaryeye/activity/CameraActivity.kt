@@ -195,6 +195,15 @@ class CameraActivity : AppCompatActivity() {
 		super.onSaveInstanceState(outState)
 	}
 
+	override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+		// always give crop handle precedence over other controls
+		// because it can easily overlap and would then be inaccessible
+		if (detectorView.onTouchEvent(ev)) {
+			return true
+		}
+		return super.dispatchTouchEvent(ev)
+	}
+
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
 		menuInflater.inflate(R.menu.activity_camera, menu)
 		return true
