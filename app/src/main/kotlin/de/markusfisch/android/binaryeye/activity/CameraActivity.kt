@@ -118,15 +118,7 @@ class CameraActivity : AppCompatActivity() {
 		initCameraView()
 		initZoomBar()
 		restoreZoom()
-
-		detectorView.onRoiChange = {
-			decoding = false
-		}
-		detectorView.onRoiChanged = {
-			decoding = true
-			recreatePreprocessor = true
-		}
-		detectorView.setPaddingFromWindowInsets()
+		initDetectorView()
 
 		if (intent?.action == Intent.ACTION_SEND &&
 			intent.type == "text/plain"
@@ -140,6 +132,7 @@ class CameraActivity : AppCompatActivity() {
 		resetPreProcessor()
 		fallbackBuffer = null
 		saveZoom()
+		saveCropHandlePos()
 	}
 
 	override fun onResume() {
@@ -433,6 +426,29 @@ class CameraActivity : AppCompatActivity() {
 			ZOOM_LEVEL,
 			zoomBar.progress
 		)
+	}
+
+	private fun initDetectorView() {
+		detectorView.setCropHandlePos(
+			prefs.cropHandleX,
+			prefs.cropHandleY,
+			prefs.cropHandleOrientation
+		)
+		detectorView.onRoiChange = {
+			decoding = false
+		}
+		detectorView.onRoiChanged = {
+			decoding = true
+			recreatePreprocessor = true
+		}
+		detectorView.setPaddingFromWindowInsets()
+	}
+
+	private fun saveCropHandlePos() {
+		val pos = detectorView.getCropHandlePos()
+		prefs.cropHandleX = pos.x
+		prefs.cropHandleY = pos.y
+		prefs.cropHandleOrientation = detectorView.currentOrientation
 	}
 
 	private fun updateFlashFab(unavailable: Boolean) {

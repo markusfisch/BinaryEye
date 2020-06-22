@@ -7,6 +7,21 @@ import android.preference.PreferenceManager
 class Preferences {
 	lateinit var preferences: SharedPreferences
 
+	var cropHandleX = -1
+		set(value) {
+			apply(CROP_HANDLE_X, value)
+			field = value
+		}
+	var cropHandleY = -1
+		set(value) {
+			apply(CROP_HANDLE_Y, value)
+			field = value
+		}
+	var cropHandleOrientation = 0
+		set(value) {
+			apply(CROP_HANDLE_ORIENTATION, value)
+			field = value
+		}
 	var showCropHandle = true
 		set(value) {
 			apply(SHOW_CROP_HANDLE, value)
@@ -85,6 +100,12 @@ class Preferences {
 	}
 
 	fun update() {
+		cropHandleX = preferences.getInt(CROP_HANDLE_X, cropHandleX)
+		cropHandleY = preferences.getInt(CROP_HANDLE_Y, cropHandleY)
+		cropHandleOrientation = preferences.getInt(
+			CROP_HANDLE_ORIENTATION,
+			cropHandleOrientation
+		)
 		showCropHandle = preferences.getBoolean(SHOW_CROP_HANDLE, showCropHandle)
 		zoomBySwiping = preferences.getBoolean(ZOOM_BY_SWIPING, zoomBySwiping)
 		autoRotate = preferences.getBoolean(AUTO_ROTATE, autoRotate)
@@ -131,6 +152,9 @@ class Preferences {
 	}
 
 	companion object {
+		const val CROP_HANDLE_X = "crop_handle_x"
+		const val CROP_HANDLE_Y = "crop_handle_y"
+		const val CROP_HANDLE_ORIENTATION = "crop_handle_orientation"
 		const val SHOW_CROP_HANDLE = "show_crop_handle"
 		const val ZOOM_BY_SWIPING = "zoom_by_swiping"
 		const val AUTO_ROTATE = "auto_rotate"
