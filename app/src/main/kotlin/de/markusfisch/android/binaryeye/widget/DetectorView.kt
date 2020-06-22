@@ -145,18 +145,10 @@ class DetectorView : View {
 			MotionEvent.ACTION_UP -> {
 				if (handleGrabbed) {
 					if (!handleMoved) {
-						val xf: Float
-						val yf: Float
-						if (center.x > center.y) {
-							xf = 1.4f
-							yf = 1.5f
-						} else {
-							xf = 1.7f
-							yf = 1.4f
-						}
+						val mn = min(center.x, center.y) * .8f
 						handlePos.set(
-							(center.x * xf).roundToInt(),
-							(center.y * yf).roundToInt()
+							(center.x + mn).roundToInt(),
+							(center.y + mn).roundToInt()
 						)
 						handleMoved = true
 						updateClipRect()
