@@ -35,6 +35,7 @@
 	<string name="view_barcode">檢視條碼</string>
 	<string name="info">資訊</string>
 	<string name="switch_camera">切換相機</string>
+	<string name="bulk_mode">Scan continuously</string>
 	<string name="history">歷史</string>
 	<string name="show_crop_handle">Show cropping limiter</string>
 	<string name="zoom_by_swiping">Zoom camera by swiping up/down</string>

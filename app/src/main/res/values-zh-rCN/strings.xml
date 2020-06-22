@@ -35,6 +35,7 @@
 	<string name="view_barcode">查看条形码</string>
 	<string name="info">信息</string>
 	<string name="switch_camera">切换摄像头</string>
+	<string name="bulk_mode">Scan continuously</string>
 	<string name="history">历史</string>
 	<string name="preferences">首选项</string>
 	<string name="show_crop_handle">Show cropping limiter</string>

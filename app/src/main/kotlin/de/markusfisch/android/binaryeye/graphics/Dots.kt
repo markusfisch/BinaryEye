@@ -12,10 +12,7 @@ class Dots(context: Context) {
 	private val radius = 8f * context.resources.displayMetrics.density
 
 	init {
-		paint.color = ContextCompat.getColor(
-			context,
-			R.color.dot
-		)
+		paint.color = ContextCompat.getColor(context, R.color.dot)
 		paint.style = Paint.Style.FILL
 	}
 

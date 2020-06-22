@@ -36,6 +36,7 @@
 	<string name="view_barcode">Vonalkód megtekintése</string>
 	<string name="info">Információ</string>
 	<string name="switch_camera">Kamera átkapcsolása</string>
+	<string name="bulk_mode">Scan continuously</string>
 	<string name="history">Előzmények</string>
 	<string name="preferences">Beállítások</string>
 	<string name="show_crop_handle">Show cropping limiter</string>

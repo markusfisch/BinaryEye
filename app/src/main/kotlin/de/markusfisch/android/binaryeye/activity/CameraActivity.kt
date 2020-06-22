@@ -67,6 +67,8 @@ class CameraActivity : AppCompatActivity() {
 	private var decoding = true
 	private var returnResult = false
 	private var frontFacing = false
+	private var bulkMode = false
+	private var ignoreNext: String? = null
 	private var fallbackBuffer: IntArray? = null
 
 	override fun onRequestPermissionsResult(
@@ -178,12 +180,14 @@ class CameraActivity : AppCompatActivity() {
 		zoomBar.max = savedState.getInt(ZOOM_MAX)
 		zoomBar.progress = savedState.getInt(ZOOM_LEVEL)
 		frontFacing = savedState.getBoolean(FRONT_FACING)
+		bulkMode = savedState.getBoolean(BULK_MODE)
 	}
 
 	override fun onSaveInstanceState(outState: Bundle) {
 		outState.putInt(ZOOM_MAX, zoomBar.max)
 		outState.putInt(ZOOM_LEVEL, zoomBar.progress)
 		outState.putBoolean(FRONT_FACING, frontFacing)
+		outState.putBoolean(BULK_MODE, bulkMode)
 		super.onSaveInstanceState(outState)
 	}
 
@@ -198,6 +202,7 @@ class CameraActivity : AppCompatActivity() {
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
 		menuInflater.inflate(R.menu.activity_camera, menu)
+		menu.findItem(R.id.bulk_mode).isChecked = bulkMode
 		return true
 	}
 
@@ -225,6 +230,11 @@ class CameraActivity : AppCompatActivity() {
 			}
 			R.id.switch_camera -> {
 				switchCamera()
+				true
+			}
+			R.id.bulk_mode -> {
+				bulkMode = bulkMode xor true
+				item.isChecked = bulkMode
 				true
 			}
 			R.id.preferences -> {
@@ -356,6 +366,7 @@ class CameraActivity : AppCompatActivity() {
 				val frameWidth = cameraView.frameWidth
 				val frameHeight = cameraView.frameHeight
 				val frameOrientation = cameraView.frameOrientation
+				ignoreNext = null
 				decoding = true
 				camera.setPreviewCallback { frameData, _ ->
 					if (decoding) {
@@ -365,8 +376,10 @@ class CameraActivity : AppCompatActivity() {
 							frameHeight,
 							frameOrientation
 						)?.let { result ->
-							postResult(result)
-							decoding = false
+							if (result.text != ignoreNext) {
+								postResult(result)
+								decoding = false
+							}
 						}
 					}
 				}
@@ -628,8 +641,16 @@ class CameraActivity : AppCompatActivity() {
 			showResult(
 				this@CameraActivity,
 				result,
-				returnResult
+				returnResult,
+				bulkMode
 			)
+			if (bulkMode) {
+				ignoreNext = result.text
+				toast(result.text)
+				detectorView.postDelayed({
+					decoding = true
+				}, 500)
+			}
 		}
 	}
 
@@ -641,24 +662,28 @@ class CameraActivity : AppCompatActivity() {
 		private const val ZOOM_MAX = "zoom_max"
 		private const val ZOOM_LEVEL = "zoom_level"
 		private const val FRONT_FACING = "front_facing"
+		private const val BULK_MODE = "bulk_mode"
 	}
 }
 
 fun showResult(
 	activity: Activity,
 	result: Result,
-	isResult: Boolean = false
+	isResult: Boolean = false,
+	bulkMode: Boolean = false
 ) {
-	val scan = Scan(result)
 	if (isResult) {
 		activity.setResult(Activity.RESULT_OK, getReturnIntent(result))
 		activity.finish()
-	} else {
-		if (prefs.useHistory) {
-			GlobalScope.launch {
-				db.insertScan(scan)
-			}
+		return
+	}
+	val scan = Scan(result)
+	if (prefs.useHistory) {
+		GlobalScope.launch {
+			db.insertScan(scan)
 		}
+	}
+	if (!bulkMode) {
 		activity.startActivity(
 			MainActivity.getDecodeIntent(activity, scan)
 		)

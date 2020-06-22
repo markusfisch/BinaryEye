@@ -40,6 +40,7 @@
 	<string name="view_barcode">Просмотр штрих-кода</string>
 	<string name="info">Информация</string>
 	<string name="switch_camera">Переключить камеру</string>
+	<string name="bulk_mode">Scan continuously</string>
 	<string name="history">История</string>
 	<string name="preferences">Настройки</string>
 	<string name="show_crop_handle">Show cropping limiter</string>

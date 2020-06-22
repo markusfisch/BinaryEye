@@ -56,6 +56,7 @@
 	<string name="show_hex_dump">Pokazuj zrzut szesnastkowy</string>
 	<string name="show_meta_data">Pokazuj metadane</string>
 	<string name="switch_camera">Przełącz aparat</string>
+	<string name="bulk_mode">Scan continuously</string>
 	<string name="toggle_flash">Przełącz lampę błyskową</string>
 	<string name="wifi_added">Wi-Fi dodane</string>
 	<string name="zoom_by_swiping">Przybliżaj kamerę, przesuwając w górę/dół</string>

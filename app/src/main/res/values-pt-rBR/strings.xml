@@ -36,6 +36,7 @@
 	<string name="view_barcode">Ver código de barras</string>
 	<string name="info">Informações</string>
 	<string name="switch_camera">Trocar câmera</string>
+	<string name="bulk_mode">Scan continuously</string>
 	<string name="history">Histórico</string>
 	<string name="preferences">Preferências</string>
 	<string name="show_crop_handle">Show cropping limiter</string>

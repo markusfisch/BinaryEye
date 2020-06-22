@@ -36,6 +36,7 @@
 	<string name="view_barcode">Lihat barcode</string>
 	<string name="info">Info</string>
 	<string name="switch_camera">Ganti kamera</string>
+	<string name="bulk_mode">Scan continuously</string>
 	<string name="history">Riwayat</string>
 	<string name="preferences">Preferensi</string>
 	<string name="show_crop_handle">Tampilkan pembatas pemotongan</string>

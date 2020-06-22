@@ -36,6 +36,7 @@
 	<string name="view_barcode">Barcode ansehen</string>
 	<string name="info">Info</string>
 	<string name="switch_camera">Kamera wechseln</string>
+	<string name="bulk_mode">Fortlaufend Scannen</string>
 	<string name="history">Gespeicherte Codes</string>
 	<string name="preferences">Einstellungen</string>
 	<string name="show_crop_handle">Bereich verkleinern anzeigen</string>

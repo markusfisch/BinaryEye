@@ -22,6 +22,12 @@
 		android:icon="@drawable/ic_action_switch_camera"
 		material:showAsAction="ifRoom"/>
 	<item
+		android:id="@+id/bulk_mode"
+		android:title="@string/bulk_mode"
+		android:icon="@drawable/ic_action_bulk_mode"
+		android:checkable="true"
+		material:showAsAction="ifRoom"/>
+	<item
 		android:id="@+id/preferences"
 		android:title="@string/preferences"
 		android:icon="@drawable/ic_action_preferences"
