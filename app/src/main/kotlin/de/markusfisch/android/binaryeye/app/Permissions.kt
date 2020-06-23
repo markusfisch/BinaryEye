@@ -6,41 +6,48 @@ import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 
-fun hasCameraPermission(activity: Activity, requestCode: Int = 1): Boolean {
-	return hasPermission(activity, Manifest.permission.CAMERA, requestCode)
+const val PERMISSION_CAMERA = 1
+fun hasCameraPermission(activity: Activity): Boolean {
+	return hasPermission(
+		activity,
+		Manifest.permission.CAMERA,
+		PERMISSION_CAMERA
+	)
 }
 
-fun hasWritePermission(activity: Activity, requestCode: Int = 2): Boolean {
+const val PERMISSION_WRITE = 2
+fun hasWritePermission(activity: Activity): Boolean {
 	return hasPermission(
 		activity,
 		Manifest.permission.WRITE_EXTERNAL_STORAGE,
-		requestCode
+		PERMISSION_WRITE
 	)
 }
 
-fun hasLocationPermission(activity: Activity, requestCode: Int = 3): Boolean {
+const val PERMISSION_LOCATION = 3
+fun hasLocationPermission(activity: Activity): Boolean {
 	return hasPermission(
 		activity,
 		Manifest.permission.ACCESS_FINE_LOCATION,
-		requestCode
+		PERMISSION_LOCATION
 	)
 }
 
-fun hasPermission(
+private fun hasPermission(
 	activity: Activity,
 	permission: String,
 	requestCode: Int
-): Boolean {
-	return if (ContextCompat.checkSelfPermission(activity, permission) !=
-		PackageManager.PERMISSION_GRANTED
-	) {
-		ActivityCompat.requestPermissions(
-			activity,
-			arrayOf(permission),
-			requestCode
-		)
-		false
-	} else {
-		true
-	}
+) = if (ContextCompat.checkSelfPermission(
+		activity,
+		permission
+	) != PackageManager.PERMISSION_GRANTED
+) {
+	ActivityCompat.requestPermissions(
+		activity,
+		arrayOf(permission),
+		requestCode
+	)
+	false
+} else {
+	true
 }

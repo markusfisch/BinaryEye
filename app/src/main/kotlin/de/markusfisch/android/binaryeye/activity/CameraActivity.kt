@@ -75,7 +75,7 @@ class CameraActivity : AppCompatActivity() {
 		grantResults: IntArray
 	) {
 		when (requestCode) {
-			REQUEST_CAMERA -> if (grantResults.isNotEmpty() &&
+			PERMISSION_CAMERA -> if (grantResults.isNotEmpty() &&
 				grantResults[0] != PackageManager.PERMISSION_GRANTED
 			) {
 				toast(R.string.no_camera_no_fun)
@@ -139,7 +139,7 @@ class CameraActivity : AppCompatActivity() {
 		System.gc()
 		zxing.updateHints(prefs.tryHarder)
 		returnResult = "com.google.zxing.client.android.SCAN" == intent.action
-		if (hasCameraPermission(this, REQUEST_CAMERA)) {
+		if (hasCameraPermission(this)) {
 			openCamera()
 		}
 	}
@@ -655,7 +655,6 @@ class CameraActivity : AppCompatActivity() {
 	private fun getMapping() = if (rotate) rotatedMapping else nativeMapping
 
 	companion object {
-		private const val REQUEST_CAMERA = 1
 		private const val PICK_FILE_RESULT_CODE = 1
 		private const val ZOOM_MAX = "zoom_max"
 		private const val ZOOM_LEVEL = "zoom_level"
