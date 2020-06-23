@@ -19,7 +19,7 @@ data class Scan(
 	val suggestedPrice: String?,
 	val upcEanExtension: String?,
 	val timestamp: String = getDateTime(),
-	val id: Long = 0L
+	var id: Long = 0L
 ) : Parcelable {
 	constructor(result: Result) : this(
 		result.text,

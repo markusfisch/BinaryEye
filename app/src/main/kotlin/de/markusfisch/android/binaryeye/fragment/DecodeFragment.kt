@@ -31,13 +31,14 @@ class DecodeFragment : Fragment() {
 	private lateinit var format: String
 	private lateinit var fab: FloatingActionButton
 
-	private var action = ActionRegistry.DEFAULT_ACTION
-	private var isBinary = false
+	private val parentJob = Job()
+	private val scope: CoroutineScope = CoroutineScope(Dispatchers.Main + parentJob)
 	private val content: String
 		get() = contentView.text.toString()
 
-	private val parentJob = Job()
-	private val scope: CoroutineScope = CoroutineScope(Dispatchers.Main + parentJob)
+	private var action = ActionRegistry.DEFAULT_ACTION
+	private var isBinary = false
+	private var id = 0L
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -59,6 +60,7 @@ class DecodeFragment : Fragment() {
 
 		val scan = arguments?.getParcelable(SCAN) as Scan?
 			?: throw IllegalArgumentException("DecodeFragment needs a Scan")
+		id = scan.id
 
 		val inputContent = scan.content
 		isBinary = hasNonPrintableCharacters(
@@ -196,6 +198,9 @@ class DecodeFragment : Fragment() {
 			menu.findItem(R.id.copy_to_clipboard).isVisible = false
 			menu.findItem(R.id.create).isVisible = false
 		}
+		if (id > 0L) {
+			menu.findItem(R.id.remove).isVisible = true
+		}
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -215,6 +220,11 @@ class DecodeFragment : Fragment() {
 				)
 				true
 			}
+			R.id.remove -> {
+				db.removeScan(id)
+				backOrFinish()
+				true
+			}
 			else -> super.onOptionsItemSelected(item)
 		}
 	}
@@ -223,6 +233,15 @@ class DecodeFragment : Fragment() {
 		activity?.apply {
 			copyToClipboard(text)
 			toast(R.string.copied_to_clipboard)
+		}
+	}
+
+	private fun backOrFinish() {
+		val fm = fragmentManager
+		if (fm != null && fm.backStackEntryCount > 0) {
+			fm.popBackStack()
+		} else {
+			activity?.finish()
 		}
 	}
 

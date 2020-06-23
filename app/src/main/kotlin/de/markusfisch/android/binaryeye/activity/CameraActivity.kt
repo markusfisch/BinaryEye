@@ -34,8 +34,6 @@ import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.cameraview.widget.CameraView
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -679,9 +677,7 @@ fun showResult(
 	}
 	val scan = Scan(result)
 	if (prefs.useHistory) {
-		GlobalScope.launch {
-			db.insertScan(scan)
-		}
+		scan.id = db.insertScan(scan)
 	}
 	if (!bulkMode) {
 		activity.startActivity(
