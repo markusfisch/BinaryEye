@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.32.0
+* Add bulk mode
+* Remember region of interest permanently
+* Export generated barcode as SVG
+* Run detection on images in background
+* Remove a scan from result view
+* Update Indonesian translation
+
 ## 1.31.0
 * Stop detection while region of interest is modified
 * Fix resetting region of interest
