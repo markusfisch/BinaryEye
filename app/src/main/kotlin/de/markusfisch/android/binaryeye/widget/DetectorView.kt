@@ -50,7 +50,7 @@ class DetectorView : View {
 
 	private var marks: List<Point>? = null
 	private var handleGrabbed = false
-	private var handleMoved = false
+	private var handleActive = false
 	private var minY = 0
 	private var maxY = 0
 	private var minDist = 0
@@ -80,11 +80,11 @@ class DetectorView : View {
 			handlePos.set(y, x)
 		}
 		if (x > -1) {
-			handleMoved = true
+			handleActive = true
 		}
 	}
 
-	fun getCropHandlePos() = if (roi.width() > 0) {
+	fun getCropHandlePos() = if (handleActive) {
 		handlePos
 	} else {
 		Point(-1, -1)
@@ -98,11 +98,11 @@ class DetectorView : View {
 	}
 
 	override fun onSaveInstanceState(): Parcelable? {
-		if (!handleMoved) {
+		if (!handleActive) {
 			return super.onSaveInstanceState()
 		}
 		return SavedState(super.onSaveInstanceState()).apply {
-			savedHandlePos.set(handlePos)
+			savedHandlePos.set(getCropHandlePos())
 			savedOrientation = currentOrientation
 		}
 	}
@@ -145,7 +145,7 @@ class DetectorView : View {
 				if (handleGrabbed) {
 					handlePos.set(x, y)
 					if (distSq(handlePos, touchDown) > minMoveThresholdSq) {
-						handleMoved = true
+						handleActive = true
 					}
 					updateClipRect()
 					invalidate()
@@ -163,13 +163,13 @@ class DetectorView : View {
 			}
 			MotionEvent.ACTION_UP -> {
 				if (handleGrabbed) {
-					if (!handleMoved) {
+					if (!handleActive) {
 						val mn = min(center.x, center.y) * .8f
 						handlePos.set(
 							(center.x + mn).roundToInt(),
 							(center.y + mn).roundToInt()
 						)
-						handleMoved = true
+						handleActive = true
 						invalidate()
 					} else {
 						snap(x, y)
@@ -195,12 +195,15 @@ class DetectorView : View {
 
 	private fun reset() {
 		handlePos.set(handleHome)
-		handleMoved = false
+		handleActive = false
 		roi.set(0, 0, 0, 0)
 	}
 
 	override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
 		super.onLayout(changed, left, top, right, bottom)
+		if (!changed) {
+			return
+		}
 		val width = right - left
 		val height = bottom - top
 		center.set(
@@ -213,17 +216,16 @@ class DetectorView : View {
 			width - handleXRadius - paddingRight - padding,
 			height - handleYRadius - paddingBottom - fabHeight
 		)
-		if (handlePos.x < 0) {
-			reset()
-		} else {
-			handleMoved = true
+		if (handleActive) {
 			updateClipRect()
+		} else {
+			reset()
 		}
 	}
 
 	override fun onDraw(canvas: Canvas) {
 		canvas.drawColor(0, PorterDuff.Mode.CLEAR)
-		if (handleMoved) {
+		if (handleActive) {
 			drawClip(canvas)
 		}
 		marks?.let {
