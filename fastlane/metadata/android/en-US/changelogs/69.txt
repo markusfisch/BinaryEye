@@ -1,0 +1,7 @@
+* Add bulk mode
+* Remember region of interest permanently
+* Export generated barcode as SVG
+* Run detection on images in background
+* Remove a scan from result view
+* Update Indonesian translation
+
