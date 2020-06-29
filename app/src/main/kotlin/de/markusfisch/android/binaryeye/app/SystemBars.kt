@@ -7,6 +7,7 @@ import android.os.Build
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.view.WindowManager
 import android.widget.AbsListView
 import de.markusfisch.android.binaryeye.R
 
@@ -50,7 +51,12 @@ private fun lastChildOutOfView(listView: AbsListView): Boolean {
 
 fun initSystemBars(activity: AppCompatActivity) {
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-		activity.window.decorView.systemUiVisibility =
+		// keeps the soft keyboard from repositioning the layout
+		val window = activity.window
+		window.setSoftInputMode(
+			WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+		)
+		window.decorView.systemUiVisibility =
 			View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
 					View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
 					View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
