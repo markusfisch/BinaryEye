@@ -31,11 +31,6 @@ class EncodeFragment : Fragment() {
 		BarcodeFormat.UPC_A
 	)
 
-	override fun onCreate(state: Bundle?) {
-		super.onCreate(state)
-		setHasOptionsMenu(true)
-	}
-
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
@@ -92,20 +87,6 @@ class EncodeFragment : Fragment() {
 	override fun onPause() {
 		super.onPause()
 		prefs.indexOfLastSelectedFormat = formatView.selectedItemPosition
-	}
-
-	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-		inflater.inflate(R.menu.fragment_encode, menu)
-	}
-
-	override fun onOptionsItemSelected(item: MenuItem): Boolean {
-		return when (item.itemId) {
-			R.id.next -> {
-				encode()
-				true
-			}
-			else -> super.onOptionsItemSelected(item)
-		}
 	}
 
 	private fun encode() {
