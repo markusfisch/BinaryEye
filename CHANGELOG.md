@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.32.1
+* Alternatively remove region of interest by dragging handle to a screen corner
+* Restrict region of interest to screen space
+* Remove extra action item to create barcode
+
 ## 1.32.0
 * Add bulk mode
 * Remember region of interest permanently
