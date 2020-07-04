@@ -185,8 +185,18 @@ class DetectorView : View {
 	}
 
 	private fun snap(x: Int, y: Int) {
-		if (abs(x - center.x) < distToFull ||
-			abs(y - center.y) < distToFull
+		val cx = clampX(x)
+		val cy = clampY(y)
+		val dx = abs(cx - center.x)
+		val dy = abs(cy - center.y)
+		// check if handle is close to the vertical or horizontal center line
+		if (dx < distToFull ||
+			dy < distToFull ||
+			// check if handle is close to a screen corner
+			(
+				(abs(cy - minY) < distToFull || abs(maxY - cy) < distToFull) &&
+				abs(dx - center.x) < distToFull
+			)
 		) {
 			reset()
 			invalidate()
@@ -284,9 +294,13 @@ class DetectorView : View {
 	}
 
 	private fun clampHandlePos() {
-		handlePos.x = min(center.x * 2, max(0, handlePos.x))
-		handlePos.y = min(maxY, max(minY, handlePos.y))
+		handlePos.x = clampX(handlePos.x)
+		handlePos.y = clampY(handlePos.y)
 	}
+
+	private fun clampX(x: Int) = min(center.x * 2, max(0, x))
+
+	private fun clampY(y: Int) = min(maxY, max(minY, y))
 
 	internal class SavedState : BaseSavedState {
 		val savedHandlePos = Point()
