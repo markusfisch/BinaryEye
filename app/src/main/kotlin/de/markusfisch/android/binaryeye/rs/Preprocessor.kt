@@ -147,7 +147,7 @@ class Preprocessor(
 					0, 0,
 					roi.width(), roi.height(),
 					yuvAlloc,
-					roi.left, roi.top
+					max(0, roi.left), max(0, roi.top)
 				)
 				roiAlloc
 			} else {

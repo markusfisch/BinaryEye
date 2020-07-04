@@ -590,14 +590,19 @@ class CameraActivity : AppCompatActivity() {
 		) {
 			null
 		} else {
-			// map ROI in detectorView to cameraView because cameraView may
-			// be larger than the detectorView
+			// map ROI in detectorView to cameraView
 			val previewRect = cameraView.previewRect
+			// previewRect may be larger than the screen (and thus as the
+			// detectorView) in which case its left and/or top coordinate
+			// will be negative which must then be clamped to the
+			// screen/DetectorView
+			val previewLeft = max(0, previewRect.left)
+			val previewTop = max(0, previewRect.top)
 			val previewRoi = Rect(
-				previewRect.left + viewRoi.left,
-				previewRect.top + viewRoi.top,
-				previewRect.left + viewRoi.right,
-				previewRect.top + viewRoi.bottom
+				previewLeft + viewRoi.left,
+				previewTop + viewRoi.top,
+				previewLeft + viewRoi.right,
+				previewTop + viewRoi.bottom
 			)
 			val previewRectWidth = previewRect.width().toFloat()
 			val previewRectHeight = previewRect.height().toFloat()
