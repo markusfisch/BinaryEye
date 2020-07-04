@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+# ensure this app builds *without* the NDK because using the NDK will
+# produce broken for Android 6
+export ANDROID_NDK_HOME=
+
 ##############################################################################
 ##
 ##  Gradle start up script for UN*X
