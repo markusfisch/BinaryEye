@@ -22,6 +22,7 @@
 	<string name="share">Condividi</string>
 	<string name="copy_to_clipboard">Copia negli appunti</string>
 	<string name="copied_to_clipboard">Metti negli appunti</string>
+	<string name="copy_password">Copy password into clipboard</string>
 	<string name="copied_password_to_clipboard">Password copiata negli appunti</string>
 	<string name="open_url">Apri URL</string>
 	<string name="cannot_resolve_action">Nessuna app può aprirlo</string>

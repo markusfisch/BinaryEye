@@ -21,6 +21,7 @@
 	<string name="share">分享</string>
 	<string name="copy_to_clipboard">复制到剪切板</string>
 	<string name="copied_to_clipboard">复制到剪切板</string>
+	<string name="copy_password">Copy password into clipboard</string>
 	<string name="copied_password_to_clipboard">Password copied to clipboard</string>
 	<string name="open_url">打开链接</string>
 	<string name="cannot_resolve_action">没有相关APP可以打开它</string>

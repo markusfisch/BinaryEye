@@ -6,20 +6,26 @@
 		android:title="@string/remove_scan"
 		android:icon="@drawable/ic_action_remove"
 		android:visible="false"
-		material:showAsAction="always"/>
+		material:showAsAction="ifRoom"/>
+	<item
+		android:id="@+id/copy_password"
+		android:title="@string/copy_password"
+		android:icon="@drawable/ic_action_copy_password"
+		android:visible="false"
+		material:showAsAction="ifRoom"/>
 	<item
 		android:id="@+id/copy_to_clipboard"
 		android:title="@string/copy_to_clipboard"
 		android:icon="@drawable/ic_action_copy"
-		material:showAsAction="always"/>
+		material:showAsAction="ifRoom"/>
 	<item
 		android:id="@+id/share"
 		android:title="@string/share"
 		android:icon="@drawable/ic_action_share"
-		material:showAsAction="always"/>
+		material:showAsAction="ifRoom"/>
 	<item
 		android:id="@+id/create"
 		android:title="@string/compose_barcode"
 		android:icon="@drawable/ic_action_create"
-		material:showAsAction="always"/>
+		material:showAsAction="ifRoom"/>
 </menu>

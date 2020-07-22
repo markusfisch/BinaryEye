@@ -115,15 +115,6 @@ class DecodeFragment : Fragment() {
 		hexView = view.findViewById(R.id.hex)
 
 		updateViewsAndAction(raw)
-		if (action is WifiAction) {
-			val password = (action as WifiAction).password
-			if (password != null) {
-				activity?.apply {
-					copyToClipboard(password)
-					toast(R.string.copied_password_to_clipboard)
-				}
-			}
-		}
 
 		if (prefs.showMetaData) {
 			fillMetaView(metaView, scan)
@@ -201,10 +192,17 @@ class DecodeFragment : Fragment() {
 		if (id > 0L) {
 			menu.findItem(R.id.remove).isVisible = true
 		}
+		if (action is WifiAction) {
+			menu.findItem(R.id.copy_password).isVisible = true
+		}
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return when (item.itemId) {
+			R.id.copy_password -> {
+				copyPasswordToClipboard()
+				true
+			}
 			R.id.copy_to_clipboard -> {
 				copyToClipboard(content)
 				true
@@ -226,6 +224,18 @@ class DecodeFragment : Fragment() {
 				true
 			}
 			else -> super.onOptionsItemSelected(item)
+		}
+	}
+
+	private fun copyPasswordToClipboard() {
+		val ac = action
+		if (ac is WifiAction) {
+			ac.password?.let { password ->
+				activity?.apply {
+					copyToClipboard(password)
+					toast(R.string.copied_password_to_clipboard)
+				}
+			}
 		}
 	}
 

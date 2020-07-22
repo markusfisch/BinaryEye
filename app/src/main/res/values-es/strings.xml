@@ -22,6 +22,7 @@
 	<string name="share">Compartir</string>
 	<string name="copy_to_clipboard">Copiar al portapapeles</string>
 	<string name="copied_to_clipboard">Copiado al portapapeles</string>
+	<string name="copy_password">Copy password into clipboard</string>
 	<string name="copied_password_to_clipboard">Contraseña copiada al portapapeles</string>
 	<string name="open_url">Abrir URL</string>
 	<string name="cannot_resolve_action">Ninguna aplicación puede abrir esto</string>

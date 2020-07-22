@@ -22,6 +22,7 @@
 	<string name="share">Megosztás</string>
 	<string name="copy_to_clipboard">Másolás a vágólapra</string>
 	<string name="copied_to_clipboard">Vágólapra helyezés</string>
+	<string name="copy_password">Copy password into clipboard</string>
 	<string name="copied_password_to_clipboard">Password copied to clipboard</string>
 	<string name="open_url">URL megnyitása</string>
 	<string name="cannot_resolve_action">Nincs alkalmazás, amely meg tudná nyitni azt</string>

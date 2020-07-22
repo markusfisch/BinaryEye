@@ -24,6 +24,7 @@
 	<string name="share">Поделиться</string>
 	<string name="copy_to_clipboard">Скопировать в буфер обмена</string>
 	<string name="copied_to_clipboard">Скопирован в буфер обмена</string>
+	<string name="copy_password">Copy password into clipboard</string>
 	<string name="copied_password_to_clipboard">Пароль скопирован в буфер обмена</string>
 	<string name="open_url">Открыть URL</string>
 	<string name="cannot_resolve_action">Не найдено приложение для этого действия</string>
