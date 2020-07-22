@@ -70,6 +70,7 @@
 	<string name="use_history">Zapisuj historię skanowania</string>
 	<string name="vibrate">Wibruj po wykryciu</string>
 	<string name="open_immediately">Pomiń kontrolę i natychmiast otwórz zawartość</string>
+	<string name="copy_immediately">Automatically copy contents into clipboard</string>
 	<string name="show_crop_handle">Pokazuj ogranicznik przycinania</string>
 	<string name="search_web">Szukaj w sieci</string>
 	<string name="search_scan">Szukaj skanu</string>

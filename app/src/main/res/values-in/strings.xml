@@ -46,6 +46,7 @@
 	<string name="use_history">Simpan riwayat pemindaian</string>
 	<string name="ignore_consecutive_duplicates">Jangan simpan duplikat berturutan</string>
 	<string name="open_immediately">Lewati inspeksi dan segera buka konten</string>
+	<string name="copy_immediately">Automatically copy contents into clipboard</string>
 	<string name="show_meta_data">Tampilkan metadata</string>
 	<string name="show_hex_dump">Tampilkan hex dump</string>
 	<string name="open_with_url">Buka data tak dikenal dengan URL</string>

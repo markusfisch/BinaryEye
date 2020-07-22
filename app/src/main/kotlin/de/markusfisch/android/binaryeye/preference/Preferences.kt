@@ -61,6 +61,11 @@ class Preferences {
 			apply(IGNORE_CONSECUTIVE_DUPLICATES, value)
 			field = value
 		}
+	var copyImmediately = false
+		set(value) {
+			apply(COPY_IMMEDIATELY, value)
+			field = value
+		}
 	var openImmediately = false
 		set(value) {
 			apply(OPEN_IMMEDIATELY, value)
@@ -116,6 +121,10 @@ class Preferences {
 			IGNORE_CONSECUTIVE_DUPLICATES,
 			ignoreConsecutiveDuplicates
 		)
+		copyImmediately = preferences.getBoolean(
+			COPY_IMMEDIATELY,
+			copyImmediately
+		)
 		openImmediately = preferences.getBoolean(
 			OPEN_IMMEDIATELY,
 			openImmediately
@@ -163,6 +172,7 @@ class Preferences {
 		const val USE_HISTORY = "use_history"
 		const val IGNORE_CONSECUTIVE_DUPLICATES = "ignore_consecutive_duplicates"
 		const val OPEN_IMMEDIATELY = "open_immediately"
+		const val COPY_IMMEDIATELY = "copy_immediately"
 		const val SHOW_HEX_DUMP = "show_hex_dump"
 		const val SHOW_META_DATA = "show_meta_data"
 		const val OPEN_WITH_URL = "open_with_url"

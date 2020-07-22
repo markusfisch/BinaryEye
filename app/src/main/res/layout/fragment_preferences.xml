@@ -59,6 +59,12 @@
 			android:layout_marginBottom="32dp"
 			android:text="@string/open_immediately"/>
 		<android.support.v7.widget.SwitchCompat
+			android:id="@+id/copy_immediately"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="32dp"
+			android:text="@string/copy_immediately"/>
+		<android.support.v7.widget.SwitchCompat
 			android:id="@+id/show_meta_data"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"

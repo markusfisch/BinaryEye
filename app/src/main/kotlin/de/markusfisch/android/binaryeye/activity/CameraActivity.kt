@@ -679,6 +679,9 @@ fun showResult(
 		activity.finish()
 		return
 	}
+	if (prefs.copyImmediately) {
+		activity.copyToClipboard(result.text)
+	}
 	val scan = Scan(result)
 	if (prefs.useHistory) {
 		scan.id = db.insertScan(scan)

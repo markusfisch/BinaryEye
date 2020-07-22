@@ -20,6 +20,7 @@ class PreferencesFragment : Fragment() {
 	private lateinit var useHistorySwitch: SwitchCompat
 	private lateinit var ignoreConsecutiveDuplicatesSwitch: SwitchCompat
 	private lateinit var openImmediatelySwitch: SwitchCompat
+	private lateinit var copyImmediatelySwitch: SwitchCompat
 	private lateinit var showMetaDataSwitch: SwitchCompat
 	private lateinit var showHexDumpSwitch: SwitchCompat
 	private lateinit var openWithUrlInput: EditText
@@ -79,6 +80,11 @@ class PreferencesFragment : Fragment() {
 			openImmediatelySwitch.toggle()
 		}
 
+		copyImmediatelySwitch = view.findViewById(R.id.copy_immediately)
+		if (prefs.copyImmediately) {
+			copyImmediatelySwitch.toggle()
+		}
+
 		showMetaDataSwitch = view.findViewById(R.id.show_meta_data)
 		if (prefs.showMetaData) {
 			showMetaDataSwitch.toggle()
@@ -107,6 +113,7 @@ class PreferencesFragment : Fragment() {
 		prefs.useHistory = useHistorySwitch.isChecked
 		prefs.ignoreConsecutiveDuplicates = ignoreConsecutiveDuplicatesSwitch.isChecked
 		prefs.openImmediately = openImmediatelySwitch.isChecked
+		prefs.copyImmediately = copyImmediatelySwitch.isChecked
 		prefs.showMetaData = showMetaDataSwitch.isChecked
 		prefs.showHexDump = showHexDumpSwitch.isChecked
 		prefs.openWithUrl = openWithUrlInput.text.toString()

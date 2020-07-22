@@ -49,6 +49,7 @@
 	<string name="use_history">Сохранять историю сканирования</string>
 	<string name="ignore_consecutive_duplicates">Не сохранять последовательные дубликаты</string>
 	<string name="open_immediately">Пропускать проверку и сразу открыть содержимое</string>
+	<string name="copy_immediately">Automatically copy contents into clipboard</string>
 	<string name="show_meta_data">Показывать метаданные</string>
 	<string name="show_hex_dump">Показать шестнадцатеричный дамп</string>
 	<string name="open_with_url">Открыть неизвестные данные с помощью URL</string>

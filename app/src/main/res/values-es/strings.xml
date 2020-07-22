@@ -47,6 +47,7 @@
 	<string name="use_history">Guardar historial de escaneados</string>
 	<string name="ignore_consecutive_duplicates">No guardar duplicados consecutivos</string>
 	<string name="open_immediately">Saltar la inspección y abrir el contenido inmediatamente</string>
+	<string name="copy_immediately">Automatically copy contents into clipboard</string>
 	<string name="show_meta_data">Mostrar metadatos</string>
 	<string name="show_hex_dump">Mostrar volcado hexagonal</string>
 	<string name="open_with_url">Abrir datos desconocidos con URL</string>
