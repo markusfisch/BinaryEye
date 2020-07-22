@@ -126,6 +126,11 @@ class DecodeFragment : Fragment() {
 		return view
 	}
 
+	override fun onDestroyView() {
+		parentJob.cancel()
+		super.onDestroyView()
+	}
+
 	private fun updateViewsAndAction(bytes: ByteArray) {
 		val prevAction = action
 		if (!prevAction.canExecuteOn(bytes)) {
@@ -153,7 +158,7 @@ class DecodeFragment : Fragment() {
 
 	private fun fillMetaView(tableLayout: TableLayout, scan: Scan) {
 		val ctx = tableLayout.context
-		val spaceBetween = (ctx.resources.displayMetrics.density * 16f).toInt()
+		val spaceBetween = (16f * ctx.resources.displayMetrics.density).toInt()
 		var hasMeta = false
 		sortedMapOf(
 			R.string.error_correction_level to scan.errorCorrectionLevel,
@@ -286,11 +291,6 @@ class DecodeFragment : Fragment() {
 			}.toSaveResult()
 			ac.toast(message)
 		}
-	}
-
-	override fun onDestroyView() {
-		parentJob.cancel()
-		super.onDestroyView()
 	}
 
 	companion object {
