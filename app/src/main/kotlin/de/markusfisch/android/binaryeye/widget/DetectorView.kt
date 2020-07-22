@@ -211,9 +211,6 @@ class DetectorView : View {
 
 	override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
 		super.onLayout(changed, left, top, right, bottom)
-		if (!changed) {
-			return
-		}
 		val width = right - left
 		val height = bottom - top
 		center.set(
