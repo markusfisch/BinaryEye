@@ -51,6 +51,7 @@
 	<string name="show_meta_data">Show metadata</string>
 	<string name="show_hex_dump">Show hex dump</string>
 	<string name="open_with_url">使用URL打开未知数据</string>
+	<string name="send_scan_url">Send every scan to URL</string>
 	<string name="really_remove_scan">确定删除记录?</string>
 	<string name="really_remove_all_scans">确定删除全部记录?</string>
 	<string name="really_remove_selected_scans">Really remove selected scans?</string>

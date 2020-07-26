@@ -24,6 +24,7 @@ class PreferencesFragment : Fragment() {
 	private lateinit var showMetaDataSwitch: SwitchCompat
 	private lateinit var showHexDumpSwitch: SwitchCompat
 	private lateinit var openWithUrlInput: EditText
+	private lateinit var sendScanUrlInput: EditText
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -98,6 +99,9 @@ class PreferencesFragment : Fragment() {
 		openWithUrlInput = view.findViewById(R.id.open_with_url)
 		openWithUrlInput.setText(prefs.openWithUrl)
 
+		sendScanUrlInput = view.findViewById(R.id.send_scan_url)
+		sendScanUrlInput.setText(prefs.sendScanUrl)
+
 		(view.findViewById(R.id.scroll_view) as View).setPaddingFromWindowInsets()
 
 		return view
@@ -117,5 +121,6 @@ class PreferencesFragment : Fragment() {
 		prefs.showMetaData = showMetaDataSwitch.isChecked
 		prefs.showHexDump = showHexDumpSwitch.isChecked
 		prefs.openWithUrl = openWithUrlInput.text.toString()
+		prefs.sendScanUrl = sendScanUrlInput.text.toString()
 	}
 }

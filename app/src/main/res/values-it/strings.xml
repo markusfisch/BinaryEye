@@ -52,6 +52,7 @@
 	<string name="show_meta_data">Mostra metadati</string>
 	<string name="show_hex_dump">Mostra dump esadecimale</string>
 	<string name="open_with_url">Apri dati sconosciuti con URL</string>
+	<string name="send_scan_url">Send every scan to URL</string>
 	<string name="really_remove_scan">Vuoi veramente rimuovere la scansione?</string>
 	<string name="really_remove_all_scans">Vuoi veramente rimuovere tutte le scansioni?</string>
 	<string name="really_remove_selected_scans">Really remove selected scans?</string>

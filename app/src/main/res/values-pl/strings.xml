@@ -77,6 +77,7 @@
 	<string name="export_database">Eksportuj do bazy danych SQLite</string>
 	<string name="ignore_consecutive_duplicates">Nie zapisuj kolejnych duplikatów</string>
 	<string name="open_with_url">Otwieraj nieznane dane za pomocą adresu URL</string>
+	<string name="send_scan_url">Send every scan to URL</string>
 	<string name="copy_password">Copy password into clipboard</string>
 	<string name="copied_password_to_clipboard">Hasło skopiowane do schowka</string>
 	<string name="pdf417_extra_metadata">Metadane PDF417</string>

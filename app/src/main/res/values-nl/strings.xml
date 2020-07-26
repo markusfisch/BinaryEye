@@ -91,6 +91,7 @@
 	<string name="export_database">Export SQLite database</string>
 	<string name="error_saving_file">Kon bestand niet opslaan</string>
 	<string name="open_with_url">Niet herkende data met URL openen</string>
+	<string name="send_scan_url">Send every scan to URL</string>
 	<string name="pick_list_separator">Hoe de lijstonderdelen te separeren?</string>
 	<string name="saved_in_downloads">In downloads opgeslagen</string>
 	<string name="vevent_failed">Kon niet aan kalender toevoegen</string>

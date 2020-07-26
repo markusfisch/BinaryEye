@@ -80,7 +80,8 @@
 	<string name="vevent_add">添加至行事曆</string>
 	<string name="vevent_failed">不能添加至行事曆</string>
 	<string name="preferences">Preferences</string>
-	<string name="open_with_url">Preferences</string>
+	<string name="open_with_url">Open unknown data with URL</string>
+	<string name="send_scan_url">Send every scan to URL</string>
 	<string name="otpauth_add">Add 2FA</string>
 	<string name="search_web">Search the web</string>
 	<string name="search_scan">Search scan</string>

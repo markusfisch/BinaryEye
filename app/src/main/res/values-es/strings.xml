@@ -52,6 +52,7 @@
 	<string name="show_meta_data">Mostrar metadatos</string>
 	<string name="show_hex_dump">Mostrar volcado hexagonal</string>
 	<string name="open_with_url">Abrir datos desconocidos con URL</string>
+	<string name="send_scan_url">Send every scan to URL</string>
 	<string name="really_remove_scan">¿Realmente desea borrar el escaneo seleccionado?</string>
 	<string name="really_remove_all_scans">¿Realmente desea borrar todo lo escaneado?</string>
 	<string name="really_remove_selected_scans">¿Realmente desea borrar los escaneos seleccionados?</string>
