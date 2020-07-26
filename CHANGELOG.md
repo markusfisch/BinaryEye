@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.33.0
+* Add a setting to sending scanned codes to a custom URL in background
+* Add a setting to automatically put contents into clipboard
+* Add an explicit button to copy WiFi password into clipboard
+* Update Indonesian translation
+
 ## 1.32.1
 * Alternatively remove region of interest by dragging handle to a screen corner
 * Restrict region of interest to screen space
