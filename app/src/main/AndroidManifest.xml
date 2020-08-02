@@ -14,6 +14,7 @@
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 	<uses-feature android:name="android.hardware.camera"/>
 	<uses-feature android:name="android.hardware.camera.autofocus"/>
+	<uses-sdk tools:overrideLibrary="android.support.v14.preference"/>
 	<application
 		tools:ignore="UnusedAttribute"
 		android:name=".app.BinaryEyeApp"

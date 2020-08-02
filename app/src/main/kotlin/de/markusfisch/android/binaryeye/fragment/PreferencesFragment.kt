@@ -1,126 +1,67 @@
 package de.markusfisch.android.binaryeye.fragment
 
+import android.content.SharedPreferences
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.SwitchCompat
+import android.support.v7.preference.EditTextPreference
+import android.support.v7.preference.Preference
+import android.support.v7.preference.PreferenceFragmentCompat
+import android.support.v7.preference.PreferenceGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.app.systemBarRecyclerViewScrollListener
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 
-class PreferencesFragment : Fragment() {
-	private lateinit var showCropHandleSwitch: SwitchCompat
-	private lateinit var zoomBySwipingSwitch: SwitchCompat
-	private lateinit var autoResizeSwitch: SwitchCompat
-	private lateinit var tryHarderSwitch: SwitchCompat
-	private lateinit var vibrateSwitch: SwitchCompat
-	private lateinit var useHistorySwitch: SwitchCompat
-	private lateinit var ignoreConsecutiveDuplicatesSwitch: SwitchCompat
-	private lateinit var openImmediatelySwitch: SwitchCompat
-	private lateinit var copyImmediatelySwitch: SwitchCompat
-	private lateinit var showMetaDataSwitch: SwitchCompat
-	private lateinit var showHexDumpSwitch: SwitchCompat
-	private lateinit var openWithUrlInput: EditText
-	private lateinit var sendScanUrlInput: EditText
-
-	override fun onCreateView(
-		inflater: LayoutInflater,
-		container: ViewGroup?,
-		state: Bundle?
-	): View? {
-		activity?.setTitle(R.string.preferences)
-
-		val view = inflater.inflate(
-			R.layout.fragment_preferences,
-			container,
-			false
-		)
-
-		showCropHandleSwitch = view.findViewById(R.id.show_crop_handle)
-		if (prefs.showCropHandle) {
-			showCropHandleSwitch.toggle()
+class PreferencesFragment : PreferenceFragmentCompat() {
+	private val changeListener = object : OnSharedPreferenceChangeListener {
+		override fun onSharedPreferenceChanged(
+			sharedPreferences: SharedPreferences,
+			key: String
+		) {
+			val preference = findPreference(key) ?: return
+			prefs.update()
+			setSummary(preference)
 		}
-
-		zoomBySwipingSwitch = view.findViewById(R.id.zoom_by_swiping)
-		if (prefs.zoomBySwiping) {
-			zoomBySwipingSwitch.toggle()
-		}
-
-		autoResizeSwitch = view.findViewById(R.id.auto_rotate)
-		if (prefs.autoRotate) {
-			autoResizeSwitch.toggle()
-		}
-
-		tryHarderSwitch = view.findViewById(R.id.try_harder)
-		if (prefs.tryHarder) {
-			tryHarderSwitch.toggle()
-		}
-
-		vibrateSwitch = view.findViewById(R.id.vibrate)
-		if (prefs.vibrate) {
-			vibrateSwitch.toggle()
-		}
-
-		useHistorySwitch = view.findViewById(R.id.use_history)
-		if (prefs.useHistory) {
-			useHistorySwitch.toggle()
-		}
-
-		ignoreConsecutiveDuplicatesSwitch = view.findViewById(
-			R.id.ignore_consecutive_duplicates
-		)
-		if (prefs.ignoreConsecutiveDuplicates) {
-			ignoreConsecutiveDuplicatesSwitch.toggle()
-		}
-
-		openImmediatelySwitch = view.findViewById(R.id.open_immediately)
-		if (prefs.openImmediately) {
-			openImmediatelySwitch.toggle()
-		}
-
-		copyImmediatelySwitch = view.findViewById(R.id.copy_immediately)
-		if (prefs.copyImmediately) {
-			copyImmediatelySwitch.toggle()
-		}
-
-		showMetaDataSwitch = view.findViewById(R.id.show_meta_data)
-		if (prefs.showMetaData) {
-			showMetaDataSwitch.toggle()
-		}
-
-		showHexDumpSwitch = view.findViewById(R.id.show_hex_dump)
-		if (prefs.showHexDump) {
-			showHexDumpSwitch.toggle()
-		}
-
-		openWithUrlInput = view.findViewById(R.id.open_with_url)
-		openWithUrlInput.setText(prefs.openWithUrl)
-
-		sendScanUrlInput = view.findViewById(R.id.send_scan_url)
-		sendScanUrlInput.setText(prefs.sendScanUrl)
-
-		(view.findViewById(R.id.scroll_view) as View).setPaddingFromWindowInsets()
-
-		return view
 	}
 
-	override fun onStop() {
-		super.onStop()
-		prefs.showCropHandle = showCropHandleSwitch.isChecked
-		prefs.zoomBySwiping = zoomBySwipingSwitch.isChecked
-		prefs.autoRotate = autoResizeSwitch.isChecked
-		prefs.tryHarder = tryHarderSwitch.isChecked
-		prefs.vibrate = vibrateSwitch.isChecked
-		prefs.useHistory = useHistorySwitch.isChecked
-		prefs.ignoreConsecutiveDuplicates = ignoreConsecutiveDuplicatesSwitch.isChecked
-		prefs.openImmediately = openImmediatelySwitch.isChecked
-		prefs.copyImmediately = copyImmediatelySwitch.isChecked
-		prefs.showMetaData = showMetaDataSwitch.isChecked
-		prefs.showHexDump = showHexDumpSwitch.isChecked
-		prefs.openWithUrl = openWithUrlInput.text.toString()
-		prefs.sendScanUrl = sendScanUrlInput.text.toString()
+	override fun onCreatePreferences(state: Bundle?, rootKey: String?) {
+		addPreferencesFromResource(R.xml.preferences)
+		activity?.setTitle(R.string.preferences)
+	}
+
+	override fun onResume() {
+		super.onResume()
+		listView.setPaddingFromWindowInsets()
+		listView.removeOnScrollListener(systemBarRecyclerViewScrollListener)
+		listView.addOnScrollListener(systemBarRecyclerViewScrollListener)
+		preferenceScreen
+			.sharedPreferences
+			.registerOnSharedPreferenceChangeListener(changeListener)
+		setSummaries(preferenceScreen)
+	}
+
+	override fun onPause() {
+		super.onPause()
+		preferenceScreen
+			.sharedPreferences
+			.unregisterOnSharedPreferenceChangeListener(changeListener)
+	}
+
+	private fun setSummaries(screen: PreferenceGroup) {
+		var i = screen.preferenceCount
+		while (i-- > 0) {
+			setSummary(screen.getPreference(i))
+		}
+	}
+
+	private fun setSummary(preference: Preference) {
+		if (preference is EditTextPreference) {
+			preference.setSummary(preference.text)
+		} else if (preference is PreferenceGroup) {
+			setSummaries(preference)
+		}
 	}
 }

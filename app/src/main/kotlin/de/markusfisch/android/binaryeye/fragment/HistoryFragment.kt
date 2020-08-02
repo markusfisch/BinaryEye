@@ -151,7 +151,7 @@ class HistoryFragment : Fragment() {
 			}
 			true
 		}
-		listView.setOnScrollListener(systemBarScrollListener)
+		listView.setOnScrollListener(systemBarListViewScrollListener)
 
 		fab = view.findViewById(R.id.share)
 		fab.setOnClickListener { v ->

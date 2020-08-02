@@ -6,19 +6,16 @@
 		<item name="android:windowBackground">@drawable/background_window</item>
 		<item name="windowActionModeOverlay">true</item>
 		<item name="actionModeBackground">@color/accent</item>
+		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
 	</style>
 	<style name="SplashTheme" parent="@style/AppTheme">
 		<item name="android:windowBackground">@drawable/background_splash</item>
 	</style>
-	<style
-		name="SecondaryText"
-		parent="@android:style/Widget.TextView">
+	<style name="SecondaryText" parent="@android:style/Widget.TextView">
 		<item name="android:textSize">12sp</item>
 		<item name="android:textColor">?android:attr/textColorSecondary</item>
 	</style>
-	<style
-		name="Button"
-		parent="@android:style/Widget.Button">
+	<style name="Button" parent="@android:style/Widget.Button">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">48dp</item>
 		<item name="android:layout_gravity">center_horizontal</item>
@@ -29,9 +26,7 @@
 		<item name="android:paddingRight">@dimen/button_padding</item>
 		<item name="android:maxLines">1</item>
 	</style>
-	<style
-		name="FAB"
-		parent="Widget.Design.FloatingActionButton">
+	<style name="FAB" parent="Widget.Design.FloatingActionButton">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_margin">20dp</item>
