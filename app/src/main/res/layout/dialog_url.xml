@@ -8,7 +8,7 @@
 	<EditText
 		tools:targetApi="o"
 		android:id="@+id/url"
-		android:inputType="text"
+		android:inputType="textUri"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:hint="@string/url_hint"

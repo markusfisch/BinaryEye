@@ -1,0 +1,12 @@
+<resources>
+	<string-array name="send_type_names">
+		<item>@string/send_type_get_add_content</item>
+		<item>@string/send_type_get_query_string</item>
+		<item>@string/send_type_post_form</item>
+	</string-array>
+	<string-array name="send_type_values">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+	</string-array>
+</resources>

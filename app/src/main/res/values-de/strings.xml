@@ -65,7 +65,12 @@
 	<string name="show_hex_dump">Hex Dump anzeigen</string>
 	<string name="show_hex_dump_summary">Zeigt einen Hexdump des eingelesenen Inhalts an.</string>
 	<string name="open_with_url">URL zum Öffnen unbekannter Daten</string>
+	<string name="send_category">Weiterleitung</string>
 	<string name="send_scan_url">URL die für jeden Scan aufgerufen werden soll</string>
+	<string name="send_scan_type">Typ des Requests für jeden Scan</string>
+	<string name="send_type_get_add_content">GET mit an die URL angehängtem Inhalt</string>
+	<string name="send_type_get_query_string">GET mit vollständigem Query-String</string>
+	<string name="send_type_post_form">POST form-urlencoded</string>
 	<string name="really_remove_scan">Code wirklich entfernen?</string>
 	<string name="really_remove_all_scans">Alle Codes entfernen?</string>
 	<string name="really_remove_selected_scans">Alle ausgewählten Codes entfernen?</string>

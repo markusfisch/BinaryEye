@@ -28,7 +28,7 @@ import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.graphics.Mapping
 import de.markusfisch.android.binaryeye.graphics.frameToView
 import de.markusfisch.android.binaryeye.graphics.isPortrait
-import de.markusfisch.android.binaryeye.net.send
+import de.markusfisch.android.binaryeye.net.sendAsync
 import de.markusfisch.android.binaryeye.rs.Preprocessor
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.DetectorView
@@ -684,8 +684,12 @@ fun showResult(
 		activity.copyToClipboard(result.text)
 	}
 	val scan = Scan(result)
-	prefs.sendScanUrl?.let {
-		scan.send(activity.applicationContext, it)
+	if (prefs.sendScanUrl.isNotEmpty()) {
+		scan.sendAsync(
+			activity.applicationContext,
+			prefs.sendScanUrl,
+			prefs.sendScanType
+		)
 	}
 	if (prefs.useHistory) {
 		scan.id = db.insertScan(scan)

@@ -13,16 +13,16 @@ class UrlDialogFragment : PreferenceDialogFragmentCompat() {
 	override fun onBindDialogView(view: View?) {
 		super.onBindDialogView(view)
 		urlView = view?.findViewById(R.id.url)
-		urlView?.text = (preference as UrlPreference).getUrl()
+		urlView?.text = urlPreference().getUrl()
 	}
 
 	override fun onDialogClosed(positiveResult: Boolean) {
 		if (positiveResult) {
-			(preference as UrlPreference).setUrl(
-				urlView?.text.toString()
-			)
+			urlPreference().setUrl(urlView?.text.toString())
 		}
 	}
+
+	private fun urlPreference() = preference as UrlPreference
 
 	companion object {
 		fun newInstance(key: String): UrlDialogFragment {

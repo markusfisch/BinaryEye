@@ -88,7 +88,12 @@ class Preferences {
 		}
 	var sendScanUrl: String = ""
 		set(value) {
-			apply(POST_SCAN_URL, value)
+			apply(SEND_SCAN_URL, value)
+			field = value
+		}
+	var sendScanType: String = "0"
+		set(value) {
+			apply(SEND_SCAN_TYPE, value)
 			field = value
 		}
 	var indexOfLastSelectedFormat: Int = 0
@@ -139,8 +144,11 @@ class Preferences {
 		preferences.getString(OPEN_WITH_URL, openWithUrl)?.also {
 			openWithUrl = it
 		}
-		preferences.getString(POST_SCAN_URL, sendScanUrl)?.also {
+		preferences.getString(SEND_SCAN_URL, sendScanUrl)?.also {
 			sendScanUrl = it
+		}
+		preferences.getString(SEND_SCAN_TYPE, sendScanType)?.also {
+			sendScanType = it
 		}
 		indexOfLastSelectedFormat = preferences.getInt(
 			INDEX_OF_LAST_SELECTED_FORMAT,
@@ -184,7 +192,8 @@ class Preferences {
 		const val SHOW_HEX_DUMP = "show_hex_dump"
 		const val SHOW_META_DATA = "show_meta_data"
 		const val OPEN_WITH_URL = "open_with_url"
-		const val POST_SCAN_URL = "post_scan_url"
+		const val SEND_SCAN_URL = "send_scan_url"
+		const val SEND_SCAN_TYPE = "send_scan_type"
 		const val INDEX_OF_LAST_SELECTED_FORMAT = "index_of_last_selected_format"
 		const val FORCE_COMPAT = "force_compat"
 	}

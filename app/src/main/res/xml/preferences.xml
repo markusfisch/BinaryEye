@@ -43,10 +43,18 @@
 			android:key="copy_immediately"
 			android:title="@string/copy_immediately"
 			android:summary="@string/copy_immediately_summary"/>
+	</PreferenceCategory>
+	<PreferenceCategory android:title="@string/send_category">
 		<de.markusfisch.android.binaryeye.preference.UrlPreference
 			android:key="send_scan_url"
 			android:title="@string/send_scan_url"
 			android:summary="@string/url_hint"/>
+		<ListPreference
+			android:key="send_scan_type"
+			android:title="@string/send_scan_type"
+			android:entries="@array/send_type_names"
+			android:entryValues="@array/send_type_values"
+			android:defaultValue="0"/>
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/content_category">
 		<android.support.v7.preference.SwitchPreferenceCompat

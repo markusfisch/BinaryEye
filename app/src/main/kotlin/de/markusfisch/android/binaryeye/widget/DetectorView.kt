@@ -26,7 +26,6 @@ class DetectorView : View {
 	var onRoiChange: (() -> Unit)? = null
 	var onRoiChanged: (() -> Unit)? = null
 
-	private val orientation = resources.configuration.orientation
 	private val dots = Dots(context)
 	private val invalidateRunnable: Runnable = Runnable {
 		marks = null
@@ -193,10 +192,8 @@ class DetectorView : View {
 		if (dx < distToFull ||
 			dy < distToFull ||
 			// check if handle is close to a screen corner
-			(
-				(abs(cy - minY) < distToFull || abs(maxY - cy) < distToFull) &&
-				abs(dx - center.x) < distToFull
-			)
+			((abs(cy - minY) < distToFull || abs(maxY - cy) < distToFull) &&
+					abs(dx - center.x) < distToFull)
 		) {
 			reset()
 			invalidate()

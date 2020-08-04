@@ -2,7 +2,9 @@ package de.markusfisch.android.binaryeye.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import com.google.zxing.BarcodeFormat
 import de.markusfisch.android.binaryeye.R

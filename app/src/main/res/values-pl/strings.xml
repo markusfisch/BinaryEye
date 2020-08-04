@@ -86,7 +86,12 @@
 	<string name="ignore_consecutive_duplicates">Nie zapisuj kolejnych duplikatów</string>
 	<string name="ignore_consecutive_duplicates_summary">Do not save consecutive duplicates in the scan history.</string>
 	<string name="open_with_url">Otwieraj nieznane dane za pomocą adresu URL</string>
+	<string name="send_category">Forwarding</string>
 	<string name="send_scan_url">Send every scan to URL</string>
+	<string name="send_scan_type">Type of request for every scan</string>
+	<string name="send_type_get_add_content">GET and simply add content</string>
+	<string name="send_type_get_query_string">GET with compelete query string</string>
+	<string name="send_type_post_form">POST form-urlencoded</string>
 	<string name="copy_password">Copy password into clipboard</string>
 	<string name="copied_password_to_clipboard">Hasło skopiowane do schowka</string>
 	<string name="pdf417_extra_metadata">Metadane PDF417</string>

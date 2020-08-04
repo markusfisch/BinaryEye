@@ -26,10 +26,12 @@ class UrlPreference(
 		restorePersistedValue: Boolean,
 		defaultValue: Any?
 	) {
-		setUrl(if (restorePersistedValue) {
-			getPersistedString(url)
-		} else {
-			defaultValue as String
-		})
+		setUrl(
+			if (restorePersistedValue) {
+				getPersistedString(url)
+			} else {
+				defaultValue as String
+			}
+		)
 	}
 }

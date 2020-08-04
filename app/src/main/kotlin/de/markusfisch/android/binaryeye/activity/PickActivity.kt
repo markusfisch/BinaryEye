@@ -25,7 +25,10 @@ import de.markusfisch.android.binaryeye.view.recordToolbarHeight
 import de.markusfisch.android.binaryeye.widget.CropImageView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class PickActivity : AppCompatActivity() {
 	private val zxing = Zxing()

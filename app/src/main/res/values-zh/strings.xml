@@ -94,7 +94,12 @@
 	<string name="scan_category">Scan</string>
 	<string name="content_category">Content</string>
 	<string name="open_with_url">Open unknown data with URL</string>
+	<string name="send_category">Forwarding</string>
 	<string name="send_scan_url">Send every scan to URL</string>
+	<string name="send_scan_type">Type of request for every scan</string>
+	<string name="send_type_get_add_content">GET and simply add content</string>
+	<string name="send_type_get_query_string">GET with compelete query string</string>
+	<string name="send_type_post_form">POST form-urlencoded</string>
 	<string name="otpauth_add">Add 2FA</string>
 	<string name="search_web">Search the web</string>
 	<string name="search_scan">Search scan</string>
