@@ -43,7 +43,7 @@
 			android:key="copy_immediately"
 			android:title="@string/copy_immediately"
 			android:summary="@string/copy_immediately_summary"/>
-		<EditTextPreference
+		<de.markusfisch.android.binaryeye.preference.UrlPreference
 			android:key="send_scan_url"
 			android:title="@string/send_scan_url"
 			android:summary="@string/url_hint"/>
@@ -64,7 +64,7 @@
 			android:key="show_hex_dump"
 			android:title="@string/show_hex_dump"
 			android:summary="@string/show_hex_dump_summary"/>
-		<EditTextPreference
+		<de.markusfisch.android.binaryeye.preference.UrlPreference
 			android:key="open_with_url"
 			android:title="@string/open_with_url"
 			android:summary="@string/url_hint"/>
