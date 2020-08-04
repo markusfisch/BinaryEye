@@ -70,7 +70,6 @@ class PickActivity : AppCompatActivity() {
 		}
 
 		var result: Result? = null
-		val scope = CoroutineScope(Dispatchers.IO)
 		val scannedRect = Rect()
 		fun scanWithinBounds() = crop(
 			bitmap,
@@ -78,7 +77,7 @@ class PickActivity : AppCompatActivity() {
 			cropImageView.imageRotation
 		)?.let {
 			scannedRect.set(0, 0, it.width, it.height)
-			scope.launch(Dispatchers.IO) {
+			CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
 				result = zxing.decodePositiveNegative(it)
 				result?.let {
 					withContext(Dispatchers.Main) {
