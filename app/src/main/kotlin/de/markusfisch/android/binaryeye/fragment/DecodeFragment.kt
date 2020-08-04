@@ -306,7 +306,7 @@ class DecodeFragment : Fragment() {
 	}
 }
 
-fun hexDump(bytes: ByteArray, charsPerLine: Int = 33): String {
+private fun hexDump(bytes: ByteArray, charsPerLine: Int = 33): String {
 	if (charsPerLine < 4 || bytes.isEmpty()) {
 		return ""
 	}
