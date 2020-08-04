@@ -114,4 +114,5 @@
 	<string name="shortcut_decode">Barcode lesen</string>
 	<string name="shortcut_encode">Barcode erstellen</string>
 	<string name="shortcut_preferences">Einstellungen</string>
+	<string name="background_request_failed">Background request failed</string>
 </resources>

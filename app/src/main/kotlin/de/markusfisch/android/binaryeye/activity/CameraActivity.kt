@@ -685,7 +685,7 @@ fun showResult(
 	}
 	val scan = Scan(result)
 	prefs.sendScanUrl?.let {
-		scan.send(it)
+		scan.send(activity.applicationContext, it)
 	}
 	if (prefs.useHistory) {
 		scan.id = db.insertScan(scan)

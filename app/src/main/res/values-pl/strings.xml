@@ -110,4 +110,5 @@
 	<string name="auto_rotate_summary">Automatically rotate the camera frame to recognize vertical 1D barcodes. Depending on the device, this may affect performance.</string>
 	<string name="save_as_file_name">Jak zapisać plik w pobranych?</string>
 	<string name="issue_number">Numer wydania</string>
+	<string name="background_request_failed">Background request failed</string>
 </resources>

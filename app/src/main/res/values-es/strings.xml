@@ -114,4 +114,5 @@
 	<string name="shortcut_decode">Escanear un código de barras</string>
 	<string name="shortcut_encode">Crear un código de barras</string>
 	<string name="shortcut_preferences">Ajustes</string>
+	<string name="background_request_failed">Background request failed</string>
 </resources>

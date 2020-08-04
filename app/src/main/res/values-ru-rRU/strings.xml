@@ -116,4 +116,5 @@
 	<string name="shortcut_decode">Сканировать штрих-код</string>
 	<string name="shortcut_encode">Создать штрих-код</string>
 	<string name="shortcut_preferences">Настройки</string>
+	<string name="background_request_failed">Background request failed</string>
 </resources>

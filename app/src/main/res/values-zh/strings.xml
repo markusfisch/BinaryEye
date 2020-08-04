@@ -113,4 +113,5 @@
 	<string name="shortcut_decode">Scan a barcode</string>
 	<string name="shortcut_encode">Create a barcode</string>
 	<string name="shortcut_preferences">Settings</string>
+	<string name="background_request_failed">Background request failed</string>
 </resources>
