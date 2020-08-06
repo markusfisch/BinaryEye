@@ -9,6 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
@@ -38,6 +39,14 @@ private fun Scan.send(url: String, type: String): Int {
 				close()
 			}
 		}
+		"3" -> request(url) {  con ->
+			con.requestMethod = "POST"
+			con.setRequestProperty("Content-Type", "application/json")
+			con.outputStream.apply {
+				write(asJson().toString().toByteArray())
+				close()
+			}
+		}
 		else -> request(
 			url + urlEncode(content)
 		)
@@ -47,6 +56,10 @@ private fun Scan.send(url: String, type: String): Int {
 private fun Scan.asUrlArguments(): String = getMap().map { (k, v) ->
 	"${k}=${urlEncode(v)}"
 }.joinToString("&")
+
+private fun Scan.asJson() = JSONObject().apply {
+	getMap().forEach { (k, v) -> put(k, v) }
+}
 
 private fun urlEncode(s: String) = URLEncoder.encode(s, "utf-8")
 

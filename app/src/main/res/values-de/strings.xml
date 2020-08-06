@@ -70,7 +70,8 @@
 	<string name="send_scan_type">Typ des Requests für jeden Scan</string>
 	<string name="send_type_get_add_content">GET mit an die URL angehängtem Inhalt</string>
 	<string name="send_type_get_query_string">GET mit vollständigem Query-String</string>
-	<string name="send_type_post_form">POST form-urlencoded</string>
+	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
+	<string name="send_type_post_json">POST application/json</string>
 	<string name="really_remove_scan">Code wirklich entfernen?</string>
 	<string name="really_remove_all_scans">Alle Codes entfernen?</string>
 	<string name="really_remove_selected_scans">Alle ausgewählten Codes entfernen?</string>
