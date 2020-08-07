@@ -16,6 +16,7 @@ android {
 		// able to provide all the functionality
 		renderscriptTargetApi 24
 		renderscriptSupportModeEnabled true
+		renderscriptSupportModeBlasEnabled true
 
 		testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
 	}

@@ -79,29 +79,6 @@ be thrown and the only option is to restart the app, this time with calling
 Calling `RenderScript.forceCompat()` means the processing is done in
 software so you probably don't want to enable it by default.
 
-### macOS Catalina
-
-At the time of writing, calling `RenderScript.forceCompat()` in a build made
-on macOS Catalina with build tools 29.0.3 will crash the app. This is a bug
-in the build tools for Catalina.
-
-So *do not* build release builts on macOS Catalina with build tools 29.0.3.
-
-Building on Linux with 29.0.3 works fine.
-
-### Side by Side NDK
-
-At the time of writing, it's important to _not_ have the NDK available when
-compiling the custom rotation kernel. This will produce a broken build for
-some ARMv7 devices running Android 6 (e.g. One Plus X, Yotaphone 2, Moto E)
-while it works for newer Android versions.
-
-### App Bundle
-
-At the time of writing, `./gradlew bundleRelease` will produce a broken
-App Bundle without the necessary RenderScript libraries. This is another
-bug in the build tools.
-
 ### 2D barcodes
 
 If you want to fork this and are only interested in reading 2D barcodes
