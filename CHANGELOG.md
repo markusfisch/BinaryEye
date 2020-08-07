@@ -1,7 +1,11 @@
 # Change Log
 
+## 1.34.0
+* Use Material Design settings with headers
+* Add a setting to choose the message type when forwarding scanned content
+
 ## 1.33.0
-* Add a setting to sending scanned codes to a custom URL in background
+* Add a setting to automatically send the scanned content to a custom URL
 * Add a setting to automatically put contents into clipboard
 * Add an explicit button to copy WiFi password into clipboard
 * Update Indonesian translation
