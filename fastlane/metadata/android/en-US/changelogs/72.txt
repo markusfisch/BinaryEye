@@ -1,0 +1,3 @@
+* Use Material Design settings with headers
+* Add a setting to choose the message type when forwarding scanned content
+

@@ -1,0 +1,5 @@
+* Add a setting to sending scanned codes to a custom URL in background
+* Add a setting to automatically put contents into clipboard
+* Add an explicit button to copy WiFi password into clipboard
+* Update Indonesian translation
+
