@@ -12,9 +12,14 @@ library.
 
 ## Screenshots
 
-![Screenshot Scanning](fastlane/metadata/android/en-US/images/phoneScreenshots/screencap-scanning.png)
-![Screenshot Result](fastlane/metadata/android/en-US/images/phoneScreenshots/screencap-decoded.png)
-![Screenshot Compose Barcode](fastlane/metadata/android/en-US/images/phoneScreenshots/screencap-compose-barcode.png)
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screencap-scanning.png"
+	alt="Screenshot Gallery" width="160"/>
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screencap-scanning-cropped.png"
+	alt="Screenshot Gallery" width="160"/>
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screencap-decoded.png"
+	alt="Screenshot Theme" width="160"/>
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screencap-compose-barcode.png"
+	alt="Screenshot Editor" width="160"/>
 
 ## Download
 
