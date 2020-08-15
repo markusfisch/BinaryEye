@@ -47,8 +47,7 @@
 	<PreferenceCategory android:title="@string/send_category">
 		<de.markusfisch.android.binaryeye.preference.UrlPreference
 			android:key="send_scan_url"
-			android:title="@string/send_scan_url"
-			android:summary="@string/url_hint"/>
+			android:title="@string/send_scan_url"/>
 		<ListPreference
 			android:key="send_scan_type"
 			android:title="@string/send_scan_type"
@@ -74,7 +73,6 @@
 			android:summary="@string/show_hex_dump_summary"/>
 		<de.markusfisch.android.binaryeye.preference.UrlPreference
 			android:key="open_with_url"
-			android:title="@string/open_with_url"
-			android:summary="@string/url_hint"/>
+			android:title="@string/open_with_url"/>
 	</PreferenceCategory>
 </PreferenceScreen>

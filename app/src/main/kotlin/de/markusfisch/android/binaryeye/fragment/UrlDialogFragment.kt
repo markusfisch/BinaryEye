@@ -5,6 +5,7 @@ import android.support.v7.preference.PreferenceDialogFragmentCompat
 import android.view.View
 import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.preference.Preferences
 import de.markusfisch.android.binaryeye.preference.UrlPreference
 
 class UrlDialogFragment : PreferenceDialogFragmentCompat() {
@@ -13,7 +14,12 @@ class UrlDialogFragment : PreferenceDialogFragmentCompat() {
 	override fun onBindDialogView(view: View?) {
 		super.onBindDialogView(view)
 		urlView = view?.findViewById(R.id.url)
-		urlView?.text = urlPreference().getUrl()
+		val urlPref = urlPreference()
+		urlView?.text = urlPref.getUrl()
+		urlView?.hint = getString(when (urlPref.key) {
+			Preferences.OPEN_WITH_URL -> R.string.url_hint_add_content
+			else -> R.string.url_hint
+		})
 	}
 
 	override fun onDialogClosed(positiveResult: Boolean) {
