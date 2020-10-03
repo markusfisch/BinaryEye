@@ -15,6 +15,16 @@
 	<uses-feature android:name="android.hardware.camera"/>
 	<uses-feature android:name="android.hardware.camera.autofocus"/>
 	<uses-sdk tools:overrideLibrary="android.support.v14.preference"/>
+	<queries>
+		<intent>
+			<action android:name="android.intent.action.VIEW"/>
+			<data android:scheme="https"/>
+		</intent>
+		<intent>
+			<action android:name="android.intent.action.VIEW"/>
+			<data android:scheme="http"/>
+		</intent>
+	</queries>
 	<application
 		tools:ignore="UnusedAttribute"
 		android:name=".app.BinaryEyeApp"
