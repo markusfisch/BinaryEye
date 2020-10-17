@@ -109,6 +109,7 @@
 	<string name="export_to_file">Експортувати в файл</string>
 	<string name="export_png">Експортувати як PNG</string>
 	<string name="export_svg">Експортувати як SVG</string>
+	<string name="export_txt">Експортувати як TXT</string>
 	<string name="export_as">Експортувати як?</string>
 	<string name="export_csv_comma">CSV із комами</string>
 	<string name="export_csv_semicolon">CSV із крапкою з комою</string>

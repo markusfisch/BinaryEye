@@ -107,6 +107,7 @@
 	<string name="export_to_file">导出为文件</string>
 	<string name="export_png">导出为PNG</string>
 	<string name="export_svg">导出为SVG</string>
+	<string name="export_txt">导出为TXT</string>
 	<string name="export_as">另存为？</string>
 	<string name="export_csv_comma">逗号分隔的CSV</string>
 	<string name="export_csv_semicolon">分号分隔的CSV</string>

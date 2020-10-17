@@ -107,6 +107,7 @@
 	<string name="export_to_file">Ekspor ke berkas</string>
 	<string name="export_png">Ekspor sebagai PNG</string>
 	<string name="export_svg">Ekspor sebagai SVG</string>
+	<string name="export_txt">Ekspor sebagai TXT</string>
 	<string name="export_as">Ekspor sebagai?</string>
 	<string name="export_csv_comma">CSV dengan koma</string>
 	<string name="export_csv_semicolon">CSV dengan titik koma</string>

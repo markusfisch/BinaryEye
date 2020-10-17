@@ -2,6 +2,11 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:material="http://schemas.android.com/apk/res-auto">
 	<item
+		android:id="@+id/export_txt"
+		android:title="@string/export_txt"
+		android:icon="@drawable/ic_action_save_txt"
+		material:showAsAction="ifRoom"/>
+	<item
 		android:id="@+id/export_svg"
 		android:title="@string/export_svg"
 		android:icon="@drawable/ic_action_save_svg"

@@ -183,14 +183,37 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 			for (y in 0 until h) {
 				for (x in 0 until w) {
 					if (result.get(x, y)) {
-						val ox = x * xf
-						val oy = y * yf
-						sb.append("<rect x=\"$ox\" y=\"$oy\"")
+						sb.append("<rect x=\"${x * xf}\" y=\"${y * yf}\"")
 						sb.append(" width=\"$xf\" height=\"$yf\"/>\n")
 					}
 				}
 			}
 			sb.append("</svg>\n")
+			return sb.toString()
+		}
+
+		fun encodeAsTxt(
+			text: String,
+			format: BarcodeFormat
+		): String {
+			val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)
+			hints[EncodeHintType.CHARACTER_SET] = "utf-8"
+			val result = MultiFormatWriter().encode(
+				text,
+				format,
+				0,
+				0,
+				hints
+			)
+			val w = result.width
+			val h = result.height
+			val sb = StringBuilder()
+			for (y in 0 until h) {
+				for (x in 0 until w) {
+					sb.append(if (result.get(x, y)) "█" else " ")
+				}
+				sb.append("\n")
+			}
 			return sb.toString()
 		}
 	}

@@ -110,6 +110,7 @@
 	<string name="export_to_file">Экспортировать в файл</string>
 	<string name="export_png">Сохранить как PNG</string>
 	<string name="export_svg">Сохранить как SVG</string>
+	<string name="export_txt">Сохранить как TXT</string>
 	<string name="export_as">Формат экспортируемого файла</string>
 	<string name="export_csv_comma">CSV (разделитель - запятая)</string>
 	<string name="export_csv_semicolon">CSV (разделитель - точка с запятой)</string>

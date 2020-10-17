@@ -26,11 +26,12 @@ import java.util.*
 
 class BarcodeFragment : Fragment() {
 	private enum class FileType {
-		PNG, SVG
+		PNG, SVG, TXT
 	}
 
 	private var barcodeBitmap: Bitmap? = null
 	private var barcodeSvg: String? = null
+	private var barcodeTxt: String? = null
 	private var content: String = ""
 	private var format: BarcodeFormat? = null
 
@@ -60,6 +61,7 @@ class BarcodeFragment : Fragment() {
 		try {
 			barcodeBitmap = Zxing.encodeAsBitmap(content, format, size, size)
 			barcodeSvg = Zxing.encodeAsSvg(content, format, size, size)
+			barcodeTxt = Zxing.encodeAsTxt(content, format)
 		} catch (e: Exception) {
 			var message = e.message
 			if (message == null || message.isEmpty()) {
@@ -112,6 +114,10 @@ class BarcodeFragment : Fragment() {
 				askForFileNameAndSave(FileType.PNG)
 				true
 			}
+			R.id.export_txt -> {
+				askForFileNameAndSave(FileType.TXT)
+				true
+			}
 			else -> super.onOptionsItemSelected(item)
 		}
 	}
@@ -142,6 +148,14 @@ class BarcodeFragment : Fragment() {
 						"image/svg+xmg"
 					) { outputStream ->
 						barcodeSvg?.let {
+							outputStream.write(it.toByteArray())
+						}
+					}
+					FileType.TXT -> saveAs(
+						addSuffixIfNotGiven(fileName, ".txt"),
+						"text/plain"
+					) { outputStream ->
+						barcodeTxt?.let {
 							outputStream.write(it.toByteArray())
 						}
 					}

@@ -16,6 +16,7 @@
 	<string name="export_to_file">Eksportuj do pliku</string>
 	<string name="export_png">Export as PNG</string>
 	<string name="export_svg">Export as SVG</string>
+	<string name="export_txt">Export as text</string>
 	<string name="file_name">Nazwa pliku</string>
 	<string name="export_json">Eksportuj jako JSON</string>
 	<string name="pick_search_engine">Wybierz wyszukiwarkę</string>

@@ -110,6 +110,7 @@
 	<string name="export_to_file">ექსპორტი ფაილში</string>
 	<string name="export_png">შენახვა როგორც PNG</string>
 	<string name="export_svg">შენახვა როგორც SVG</string>
+	<string name="export_txt">შენახვა როგორც TXT</string>
 	<string name="export_as">შესანახი ფაილის ფორმატი</string>
 	<string name="export_csv_comma">CSV (გამყოფი - მძიმე)</string>
 	<string name="export_csv_semicolon">CSV (გამყოფი - წერტილ-მძიმე,)</string>

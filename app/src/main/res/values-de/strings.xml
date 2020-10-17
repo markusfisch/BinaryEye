@@ -108,6 +108,7 @@
 	<string name="export_to_file">In Datei exportieren</string>
 	<string name="export_png">Als PNG exportieren</string>
 	<string name="export_svg">Als SVG exportieren</string>
+	<string name="export_txt">Als Text exportieren</string>
 	<string name="export_as">Exportieren als?</string>
 	<string name="export_csv_comma">CSV mit Kommas</string>
 	<string name="export_csv_semicolon">CSV mit Semikolons</string>
