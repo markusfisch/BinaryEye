@@ -16,6 +16,7 @@ import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.ConfinedScalingImageView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -204,7 +205,7 @@ class BarcodeFragment : Fragment() {
 	}
 
 	private fun share(bitmap: Bitmap) {
-		GlobalScope.launch {
+		GlobalScope.launch(Dispatchers.IO) {
 			val file = File(
 				context.externalCacheDir,
 				"shared_barcode.png"
