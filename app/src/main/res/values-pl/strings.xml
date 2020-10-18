@@ -8,15 +8,13 @@
 	<string name="vevent_add">Dodaj do kalendarza</string>
 	<string name="shortcut_preferences">Ustawienia</string>
 	<string name="share">Udostępnij</string>
+	<string name="share_as">Share as?</string>
 	<string name="error_saving_file">Nie można zapisać pliku</string>
 	<string name="clear_history">Wyczyść historię</string>
 	<string name="compose_barcode">Utwórz kod kreskowy</string>
 	<string name="history">Historia</string>
 	<string name="format">Format</string>
 	<string name="export_to_file">Eksportuj do pliku</string>
-	<string name="export_png">Export as PNG</string>
-	<string name="export_svg">Export as SVG</string>
-	<string name="export_txt">Export as text</string>
 	<string name="file_name">Nazwa pliku</string>
 	<string name="export_json">Eksportuj jako JSON</string>
 	<string name="pick_search_engine">Wybierz wyszukiwarkę</string>

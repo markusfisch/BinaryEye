@@ -20,6 +20,7 @@
 	<string name="upc_ean_extension">Estensione UPC EAN</string>
 	<string name="toggle_flash">Flash</string>
 	<string name="share">Condividi</string>
+	<string name="share_as">Share as?</string>
 	<string name="copy_to_clipboard">Copia negli appunti</string>
 	<string name="copied_to_clipboard">Copiato negli appunti</string>
 	<string name="copy_password">Copia password negli appunti</string>
@@ -106,9 +107,6 @@
 	<string name="search_web">Cerca nel web</string>
 	<string name="search_scan">Cerca scansione</string>
 	<string name="export_to_file">Esporta su file</string>
-	<string name="export_png">Esporta come PNG</string>
-	<string name="export_svg">Esporta come SVG</string>
-	<string name="export_txt">Esporta come TXT</string>
 	<string name="export_as">Esportare come?</string>
 	<string name="export_csv_comma">CSV con virgole</string>
 	<string name="export_csv_semicolon">CSV con punti e virgola</string>

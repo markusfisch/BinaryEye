@@ -2,18 +2,13 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:material="http://schemas.android.com/apk/res-auto">
 	<item
-		android:id="@+id/export_txt"
-		android:title="@string/export_txt"
-		android:icon="@drawable/ic_action_save_txt"
+		android:id="@+id/copy_to_clipboard"
+		android:title="@string/copy_to_clipboard"
+		android:icon="@drawable/ic_action_copy"
 		material:showAsAction="ifRoom"/>
 	<item
-		android:id="@+id/export_svg"
-		android:title="@string/export_svg"
-		android:icon="@drawable/ic_action_save_svg"
-		material:showAsAction="ifRoom"/>
-	<item
-		android:id="@+id/export_png"
-		android:title="@string/export_png"
-		android:icon="@drawable/ic_action_save_png"
+		android:id="@+id/export_to_file"
+		android:title="@string/export_to_file"
+		android:icon="@drawable/ic_action_save"
 		material:showAsAction="ifRoom"/>
 </menu>

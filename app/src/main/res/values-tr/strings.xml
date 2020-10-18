@@ -20,6 +20,7 @@
 	<string name="upc_ean_extension">UPC EAN eklentisi</string>
 	<string name="toggle_flash">Flaşı aç</string>
 	<string name="share">Paylaş</string>
+	<string name="share_as">Share as?</string>
 	<string name="copy_to_clipboard">Panoya kopyala</string>
 	<string name="copied_to_clipboard">Panoya kopyalandı</string>
 	<string name="copy_password">Parolayı panoya kopyala</string>
@@ -106,9 +107,6 @@
 	<string name="search_web">Web\'i ara</string>
 	<string name="search_scan">Taramayı ara</string>
 	<string name="export_to_file">Dosyaya dışa aktar</string>
-	<string name="export_png">PNG olarak dışa aktar</string>
-	<string name="export_svg">SVG olarak dışa aktar</string>
-	<string name="export_txt">TXT olarak dışa aktar</string>
 	<string name="export_as">Ne olarak dışa aktar?</string>
 	<string name="export_csv_comma">Virgüller ile CSV</string>
 	<string name="export_csv_semicolon">Noktalı virgüller ile CSV</string>

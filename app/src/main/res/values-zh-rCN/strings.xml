@@ -19,6 +19,7 @@
 	<string name="upc_ean_extension">UPC EAN 扩展</string>
 	<string name="toggle_flash">开关闪光灯</string>
 	<string name="share">分享</string>
+	<string name="share_as">Share as?</string>
 	<string name="copy_to_clipboard">复制到剪贴板</string>
 	<string name="copied_to_clipboard">已复制到剪贴板</string>
 	<string name="copy_password">复制密码到剪贴板</string>
@@ -105,9 +106,6 @@
 	<string name="search_web">在互联网中搜索</string>
 	<string name="search_scan">搜索扫描记录</string>
 	<string name="export_to_file">导出为文件</string>
-	<string name="export_png">导出为PNG</string>
-	<string name="export_svg">导出为SVG</string>
-	<string name="export_txt">导出为TXT</string>
 	<string name="export_as">另存为？</string>
 	<string name="export_csv_comma">逗号分隔的CSV</string>
 	<string name="export_csv_semicolon">分号分隔的CSV</string>

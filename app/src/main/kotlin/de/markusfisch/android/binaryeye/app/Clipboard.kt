@@ -11,7 +11,7 @@ fun Context.copyToClipboard(text: String) {
 		(service as android.text.ClipboardManager).text = text
 	} else {
 		(service as android.content.ClipboardManager).setPrimaryClip(
-			ClipData.newPlainText("simple text", text)
+			ClipData.newPlainText("plain text", text)
 		)
 	}
 }

@@ -22,6 +22,7 @@
 	<string name="upc_ean_extension">UPC EAN расширение</string>
 	<string name="toggle_flash">Включить вспышку</string>
 	<string name="share">Поделиться</string>
+	<string name="share_as">Share as?</string>
 	<string name="copy_to_clipboard">Скопировать в буфер обмена</string>
 	<string name="copied_to_clipboard">Скопирован в буфер обмена</string>
 	<string name="copy_password">Скопировать пароль в буфер обмена</string>
@@ -108,9 +109,6 @@
 	<string name="search_web">Искать в сети</string>
 	<string name="search_scan">Поиск сканирования</string>
 	<string name="export_to_file">Экспортировать в файл</string>
-	<string name="export_png">Сохранить как PNG</string>
-	<string name="export_svg">Сохранить как SVG</string>
-	<string name="export_txt">Сохранить как TXT</string>
 	<string name="export_as">Формат экспортируемого файла</string>
 	<string name="export_csv_comma">CSV (разделитель - запятая)</string>
 	<string name="export_csv_semicolon">CSV (разделитель - точка с запятой)</string>

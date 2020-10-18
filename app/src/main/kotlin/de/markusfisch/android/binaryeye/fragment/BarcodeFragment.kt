@@ -2,6 +2,7 @@ package de.markusfisch.android.binaryeye.fragment
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -86,9 +87,8 @@ class BarcodeFragment : Fragment() {
 		}
 
 		view.findViewById<View>(R.id.share).setOnClickListener {
-			val bitmap = barcodeBitmap
-			bitmap?.let {
-				share(bitmap)
+			pickFileType(context, R.string.share_as) {
+				shareAs(it)
 			}
 		}
 
@@ -106,20 +106,35 @@ class BarcodeFragment : Fragment() {
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return when (item.itemId) {
-			R.id.export_svg -> {
-				askForFileNameAndSave(FileType.SVG)
+			R.id.copy_to_clipboard -> {
+				barcodeTxt?.let {
+					context.copyToClipboard(it)
+					context.toast(R.string.copied_to_clipboard)
+				}
 				true
 			}
-			R.id.export_png -> {
-				askForFileNameAndSave(FileType.PNG)
-				true
-			}
-			R.id.export_txt -> {
-				askForFileNameAndSave(FileType.TXT)
+			R.id.export_to_file -> {
+				pickFileType(context, R.string.export_as) {
+					askForFileNameAndSave(it)
+				}
 				true
 			}
 			else -> super.onOptionsItemSelected(item)
 		}
+	}
+
+	private fun pickFileType(
+		context: Context,
+		title: Int,
+		action: (FileType) -> Unit
+	) {
+		val fileTypes = FileType.values()
+		AlertDialog.Builder(context)
+			.setTitle(title)
+			.setItems(fileTypes.map { it.name }.toTypedArray()) { _, which ->
+				action(fileTypes[which])
+			}
+			.show()
 	}
 
 	// dialogs do not have a parent view
@@ -139,13 +154,13 @@ class BarcodeFragment : Fragment() {
 				when (fileType) {
 					FileType.PNG -> saveAs(
 						addSuffixIfNotGiven(fileName, ".png"),
-						"image/png"
+						MIME_PNG
 					) {
 						barcodeBitmap?.saveAsPng(it)
 					}
 					FileType.SVG -> saveAs(
 						addSuffixIfNotGiven(fileName, ".svg"),
-						"image/svg+xmg"
+						MIME_SVG
 					) { outputStream ->
 						barcodeSvg?.let {
 							outputStream.write(it.toByteArray())
@@ -153,7 +168,7 @@ class BarcodeFragment : Fragment() {
 					}
 					FileType.TXT -> saveAs(
 						addSuffixIfNotGiven(fileName, ".txt"),
-						"text/plain"
+						MIME_TXT
 					) { outputStream ->
 						barcodeTxt?.let {
 							outputStream.write(it.toByteArray())
@@ -177,6 +192,14 @@ class BarcodeFragment : Fragment() {
 			GlobalScope.launch(Main) {
 				ac.toast(message)
 			}
+		}
+	}
+
+	private fun shareAs(fileType: FileType) {
+		when (fileType) {
+			FileType.PNG -> barcodeBitmap?.let { share(it) }
+			FileType.SVG -> barcodeSvg?.let { shareText(context, it, MIME_SVG) }
+			FileType.TXT -> barcodeTxt?.let { shareText(context, it) }
 		}
 	}
 
@@ -208,6 +231,9 @@ class BarcodeFragment : Fragment() {
 		private const val CONTENT = "content"
 		private const val FORMAT = "format"
 		private const val SIZE = "size"
+		private const val MIME_PNG = "image/png"
+		private const val MIME_SVG = "image/svg+xmg"
+		private const val MIME_TXT = "text/plain"
 
 		fun newInstance(
 			content: String,
