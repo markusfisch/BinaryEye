@@ -14,9 +14,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.google.zxing.Result
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.app.colorSystemAndToolBars
-import de.markusfisch.android.binaryeye.app.initSystemBars
-import de.markusfisch.android.binaryeye.app.vibrate
+import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.graphics.crop
 import de.markusfisch.android.binaryeye.graphics.loadImageUri
 import de.markusfisch.android.binaryeye.graphics.mapResult
@@ -36,9 +34,17 @@ class PickActivity : AppCompatActivity() {
 	private lateinit var vibrator: Vibrator
 	private lateinit var cropImageView: CropImageView
 
+	override fun attachBaseContext(base: Context?) {
+		base?.applyLocale(prefs.customLocale)
+		super.attachBaseContext(base)
+	}
+
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
 		setContentView(R.layout.activity_pick)
+
+		// necessary to get the right translation after setting a custom locale
+		setTitle(R.string.pick_code_to_scan)
 
 		zxing.updateHints(true)
 		vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator

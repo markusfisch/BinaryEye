@@ -1,13 +1,17 @@
 package de.markusfisch.android.binaryeye.fragment
 
+import android.app.Activity
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.preference.ListPreference
 import android.support.v7.preference.Preference
 import android.support.v7.preference.PreferenceFragmentCompat
 import android.support.v7.preference.PreferenceGroup
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.activity.SplashActivity
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.app.systemBarRecyclerViewScrollListener
 import de.markusfisch.android.binaryeye.preference.UrlPreference
@@ -21,7 +25,11 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		) {
 			val preference = findPreference(key) ?: return
 			prefs.update()
-			setSummary(preference)
+			if (preference.key == "custom_locale") {
+				activity?.restartApp()
+			} else {
+				setSummary(preference)
+			}
 		}
 	}
 
@@ -78,4 +86,18 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 			}
 		}
 	}
+}
+
+private fun Activity.restartApp() {
+	val intent = Intent(this, SplashActivity::class.java)
+	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+		intent.addFlags(
+			Intent.FLAG_ACTIVITY_NEW_TASK or
+					Intent.FLAG_ACTIVITY_CLEAR_TASK
+		)
+	}
+	startActivity(intent)
+	finish()
+	// restart to begin with an unmodified Locale to follow system settings
+	Runtime.getRuntime().exit(0)
 }

@@ -43,6 +43,9 @@
 	<string name="preferences">Einstellungen</string>
 	<string name="scan_category">Scannen</string>
 	<string name="content_category">Inhalt</string>
+	<string name="locale_category">Sprache</string>
+	<string name="custom_locale">Abweichendes Gebietsschema</string>
+	<string name="follow_system_settings">Systemeinstellung übernehmen</string>
 	<string name="show_crop_handle">Ausschnitt verkleinern anzeigen</string>
 	<string name="show_crop_handle_summary">Scannen auf einen anpassbaren Bereich einschränken.</string>
 	<string name="zoom_by_swiping">Geste für Kamerazoom</string>
@@ -119,5 +122,5 @@
 	<string name="shortcut_decode">Barcode lesen</string>
 	<string name="shortcut_encode">Barcode erstellen</string>
 	<string name="shortcut_preferences">Einstellungen</string>
-	<string name="background_request_failed">Background request failed</string>
+	<string name="background_request_failed">Hintergrundanfrage fehlgeschlagen</string>
 </resources>

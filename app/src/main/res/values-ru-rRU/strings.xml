@@ -45,6 +45,9 @@
 	<string name="preferences">Настройки</string>
 	<string name="scan_category">Сканирование</string>
 	<string name="content_category">Содержимое</string>
+	<string name="locale_category">Language</string>
+	<string name="custom_locale">Custom locale</string>
+	<string name="follow_system_settings">Follow system settings</string>
 	<string name="show_crop_handle">Показывать область сканирования</string>
 	<string name="show_crop_handle_summary">Ограничить сканирование изменяемой областью.</string>
 	<string name="zoom_by_swiping">Масштабировать движением пальцем вверх/вниз</string>

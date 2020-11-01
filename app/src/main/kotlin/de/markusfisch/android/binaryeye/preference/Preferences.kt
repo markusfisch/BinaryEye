@@ -96,6 +96,11 @@ class Preferences {
 			apply(SEND_SCAN_TYPE, value)
 			field = value
 		}
+	var customLocale: String = ""
+		set(value) {
+			apply(CUSTOM_LOCALE, value)
+			field = value
+		}
 	var indexOfLastSelectedFormat: Int = 0
 		set(value) {
 			apply(INDEX_OF_LAST_SELECTED_FORMAT, value)
@@ -150,6 +155,9 @@ class Preferences {
 		preferences.getString(SEND_SCAN_TYPE, sendScanType)?.also {
 			sendScanType = it
 		}
+		preferences.getString(CUSTOM_LOCALE, customLocale)?.also {
+			customLocale = it
+		}
 		indexOfLastSelectedFormat = preferences.getInt(
 			INDEX_OF_LAST_SELECTED_FORMAT,
 			indexOfLastSelectedFormat
@@ -194,6 +202,7 @@ class Preferences {
 		const val OPEN_WITH_URL = "open_with_url"
 		const val SEND_SCAN_URL = "send_scan_url"
 		const val SEND_SCAN_TYPE = "send_scan_type"
+		const val CUSTOM_LOCALE = "custom_locale"
 		const val INDEX_OF_LAST_SELECTED_FORMAT = "index_of_last_selected_format"
 		const val FORCE_COMPAT = "force_compat"
 	}

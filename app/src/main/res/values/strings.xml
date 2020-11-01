@@ -43,6 +43,9 @@
 	<string name="preferences">Preferences</string>
 	<string name="scan_category">Scan</string>
 	<string name="content_category">Content</string>
+	<string name="locale_category">Language</string>
+	<string name="custom_locale">Custom locale</string>
+	<string name="follow_system_settings">Follow system settings</string>
 	<string name="show_crop_handle">Show cropping limiter</string>
 	<string name="show_crop_handle_summary">Restrict scanning to a customizable region.</string>
 	<string name="zoom_by_swiping">Swipe up/down to zoom</string>

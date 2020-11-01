@@ -102,9 +102,17 @@ class CameraActivity : AppCompatActivity() {
 		}
 	}
 
+	override fun attachBaseContext(base: Context?) {
+		base?.applyLocale(prefs.customLocale)
+		super.attachBaseContext(base)
+	}
+
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
 		setContentView(R.layout.activity_camera)
+
+		// necessary to get the right translation after setting a custom locale
+		setTitle(R.string.scan_code)
 
 		vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 

@@ -99,6 +99,9 @@
 	<string name="preferences">Ustawienia</string>
 	<string name="scan_category">Scan</string>
 	<string name="content_category">Content</string>
+	<string name="locale_category">Language</string>
+	<string name="custom_locale">Custom locale</string>
+	<string name="follow_system_settings">Follow system settings</string>
 	<string name="decode_barcode">Dekoduj kod kreskowy</string>
 	<string name="upc_ean_extension">Dodatek UPC EAN</string>
 	<string name="possible_country">Możliwy kraj produkcji</string>

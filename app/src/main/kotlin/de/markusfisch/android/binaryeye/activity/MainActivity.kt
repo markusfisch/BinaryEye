@@ -8,8 +8,10 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.app.applyLocale
 import de.markusfisch.android.binaryeye.app.colorSystemAndToolBars
 import de.markusfisch.android.binaryeye.app.initSystemBars
+import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.app.setFragment
 import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.fragment.DecodeFragment
@@ -27,6 +29,11 @@ class MainActivity : AppCompatActivity() {
 			finish()
 		}
 		return true
+	}
+
+	override fun attachBaseContext(base: Context?) {
+		base?.applyLocale(prefs.customLocale)
+		super.attachBaseContext(base)
 	}
 
 	override fun onCreate(state: Bundle?) {

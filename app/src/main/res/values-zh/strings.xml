@@ -94,6 +94,9 @@
 	<string name="preferences">Preferences</string>
 	<string name="scan_category">Scan</string>
 	<string name="content_category">Content</string>
+	<string name="locale_category">Language</string>
+	<string name="custom_locale">Custom locale</string>
+	<string name="follow_system_settings">Follow system settings</string>
 	<string name="open_with_url">Open unknown data with URL</string>
 	<string name="send_category">Forwarding</string>
 	<string name="send_scan_url">Send every scan to URL</string>

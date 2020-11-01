@@ -43,6 +43,9 @@
 	<string name="preferences">Tercihler</string>
 	<string name="scan_category">Tarama</string>
 	<string name="content_category">İçerik</string>
+	<string name="locale_category">Language</string>
+	<string name="custom_locale">Custom locale</string>
+	<string name="follow_system_settings">Follow system settings</string>
 	<string name="show_crop_handle">Kırpım kısıtlayıcıyı göster</string>
 	<string name="show_crop_handle_summary">Taramayı özelleştirilebilir bölgeyle sınırla.</string>
 	<string name="zoom_by_swiping">Aşağı/yukarı kaydırarak yakınlaştır</string>

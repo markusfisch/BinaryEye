@@ -42,6 +42,9 @@
 	<string name="preferences">Preferensi</string>
 	<string name="scan_category">Pemindaian</string>
 	<string name="content_category">Konten</string>
+	<string name="locale_category">Language</string>
+	<string name="custom_locale">Custom locale</string>
+	<string name="follow_system_settings">Follow system settings</string>
 	<string name="show_crop_handle">Tampilkan pembatas pemotongan</string>
 	<string name="show_crop_handle_summary">Batasi pemindaian ke batas area tertentu.</string>
 	<string name="zoom_by_swiping">Geser ke atas/bawah untuk memperbesar</string>

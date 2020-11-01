@@ -1,0 +1,40 @@
+<resources>
+	<string-array name="locale_names">
+		<item>@string/follow_system_settings</item>
+		<item>English</item>
+		<item>German</item>
+		<item>Spanish</item>
+		<item>French</item>
+		<item>Hungarian</item>
+		<item>Indonesian</item>
+		<item>Italian</item>
+		<item>Georgian</item>
+		<item>Dutch</item>
+		<item>Polish</item>
+		<item>Portuguese (Brazil)</item>
+		<item>Russian</item>
+		<item>Turkish</item>
+		<item>Ukrainian</item>
+		<item>Chinese</item>
+		<item>Chinese (Simplified Han,China)</item>
+	</string-array>
+	<string-array name="locale_values">
+		<item></item>
+		<item>en</item>
+		<item>de</item>
+		<item>es</item>
+		<item>fr</item>
+		<item>hu</item>
+		<item>in</item>
+		<item>it</item>
+		<item>ka</item>
+		<item>nl</item>
+		<item>pl</item>
+		<item>pt-rBR</item>
+		<item>ru-rRU</item>
+		<item>tr</item>
+		<item>uk</item>
+		<item>zh</item>
+		<item>zh-rCN</item>
+	</string-array>
+</resources>

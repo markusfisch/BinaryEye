@@ -75,4 +75,12 @@
 			android:key="open_with_url"
 			android:title="@string/open_with_url"/>
 	</PreferenceCategory>
+	<PreferenceCategory android:title="@string/locale_category">
+		<ListPreference
+			android:key="custom_locale"
+			android:title="@string/custom_locale"
+			android:entries="@array/locale_names"
+			android:entryValues="@array/locale_values"
+			android:defaultValue="0"/>
+	</PreferenceCategory>
 </PreferenceScreen>
