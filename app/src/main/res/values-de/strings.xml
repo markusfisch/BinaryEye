@@ -11,6 +11,10 @@
 		<item quantity="other">%2$d Zeichen, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Fehlerkorrektur-Level</string>
+	<string name="error_correction_level_l">Low (~7%% wiederherstellbar)</string>
+	<string name="error_correction_level_m">Medium (~15%% wiederherstellbar)</string>
+	<string name="error_correction_level_q">Quartile (~25%% wiederherstellbar)</string>
+	<string name="error_correction_level_h">High (~30%% wiederherstellbar)</string>
 	<string name="issue_number">Ausgabe Nummer</string>
 	<string name="orientation">Orientierung</string>
 	<string name="other_meta_data">Metadaten</string>

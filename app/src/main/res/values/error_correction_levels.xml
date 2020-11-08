@@ -1,0 +1,8 @@
+<resources>
+	<string-array name="error_correction_levels">
+		<item>@string/error_correction_level_l</item>
+		<item>@string/error_correction_level_m</item>
+		<item>@string/error_correction_level_q</item>
+		<item>@string/error_correction_level_h</item>
+	</string-array>
+</resources>

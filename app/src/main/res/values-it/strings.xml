@@ -11,6 +11,10 @@
 		<item quantity="other">%2$d caratteri, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Livello di correzione errori</string>
+	<string name="error_correction_level_l">Low (~7%% correction)</string>
+	<string name="error_correction_level_m">Medium (~15%% correction)</string>
+	<string name="error_correction_level_q">Quartile (~25%% correction)</string>
+	<string name="error_correction_level_h">High (~30%% correction)</string>
 	<string name="issue_number">Numero di edizione</string>
 	<string name="orientation">Orientamento</string>
 	<string name="other_meta_data">Metadati</string>

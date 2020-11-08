@@ -3,6 +3,7 @@ package de.markusfisch.android.binaryeye.zxing
 import android.graphics.Bitmap
 import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import java.util.*
 
 class Zxing(possibleResultPoint: ResultPointCallback? = null) {
@@ -127,10 +128,14 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 			text: String,
 			format: BarcodeFormat,
 			width: Int,
-			height: Int
+			height: Int,
+			errorCorrectionLevel: ErrorCorrectionLevel? = null
 		): Bitmap? {
 			val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)
 			hints[EncodeHintType.CHARACTER_SET] = "utf-8"
+			errorCorrectionLevel?.let {
+				hints[EncodeHintType.ERROR_CORRECTION] = it
+			}
 			val result = MultiFormatWriter().encode(
 				text,
 				format,
@@ -161,10 +166,14 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 			text: String,
 			format: BarcodeFormat,
 			width: Int,
-			height: Int
+			height: Int,
+			errorCorrectionLevel: ErrorCorrectionLevel? = null
 		): String {
 			val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)
 			hints[EncodeHintType.CHARACTER_SET] = "utf-8"
+			errorCorrectionLevel?.let {
+				hints[EncodeHintType.ERROR_CORRECTION] = it
+			}
 			val result = MultiFormatWriter().encode(
 				text,
 				format,
@@ -194,10 +203,14 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 
 		fun encodeAsTxt(
 			text: String,
-			format: BarcodeFormat
+			format: BarcodeFormat,
+			errorCorrectionLevel: ErrorCorrectionLevel? = null
 		): String {
 			val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)
 			hints[EncodeHintType.CHARACTER_SET] = "utf-8"
+			errorCorrectionLevel?.let {
+				hints[EncodeHintType.ERROR_CORRECTION] = it
+			}
 			val result = MultiFormatWriter().encode(
 				text,
 				format,

@@ -24,6 +24,18 @@
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="16dp"/>
 			<TextView
+				android:id="@+id/error_correction_label"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="8dp"
+				android:text="@string/error_correction_level"/>
+			<Spinner
+				android:id="@+id/error_correction_level"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="16dp"
+				android:entries="@array/error_correction_levels"/>
+			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="8dp"
