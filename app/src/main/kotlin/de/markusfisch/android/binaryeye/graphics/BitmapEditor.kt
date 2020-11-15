@@ -7,6 +7,8 @@ import android.graphics.Matrix
 import android.graphics.RectF
 import android.net.Uri
 import java.io.IOException
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.roundToInt
 
 fun loadImageUri(cr: ContentResolver, uri: Uri): Bitmap? = try {
@@ -51,12 +53,14 @@ fun crop(bitmap: Bitmap, rect: RectF, rotation: Float) = try {
 	val erected = erect(bitmap, rotation)
 	val w = erected.width
 	val h = erected.height
+	val x = max(0, (rect.left * w).roundToInt())
+	val y = max(0, (rect.top * h).roundToInt())
 	Bitmap.createBitmap(
 		erected,
-		(rect.left * w).roundToInt(),
-		(rect.top * h).roundToInt(),
-		(rect.width() * w).roundToInt(),
-		(rect.height() * h).roundToInt()
+		x,
+		y,
+		min(w - x, (rect.width() * w).roundToInt()),
+		min(h - y, (rect.height() * h).roundToInt())
 	)
 } catch (e: OutOfMemoryError) {
 	null

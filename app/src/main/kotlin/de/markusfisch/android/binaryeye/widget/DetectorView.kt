@@ -143,11 +143,12 @@ class DetectorView : View {
 			MotionEvent.ACTION_MOVE -> {
 				if (handleGrabbed) {
 					handlePos.set(x, y)
-					if (distSq(handlePos, touchDown) > minMoveThresholdSq) {
-						handleActive = true
+					handleActive =
+						handleActive or (distSq(handlePos, touchDown) > minMoveThresholdSq)
+					if (handleActive) {
+						updateClipRect()
+						invalidate()
 					}
-					updateClipRect()
-					invalidate()
 					true
 				} else {
 					false
@@ -163,17 +164,15 @@ class DetectorView : View {
 			MotionEvent.ACTION_UP -> {
 				if (handleGrabbed) {
 					if (!handleActive) {
-						val mn = min(center.x, center.y) * .8f
-						handlePos.set(
-							(center.x + mn).roundToInt(),
-							(center.y + mn).roundToInt()
-						)
+						setHandleToDefaultRoi()
 						handleActive = true
-						invalidate()
 					} else {
 						snap(x, y)
 					}
-					updateClipRect()
+					if (handleActive) {
+						updateClipRect()
+						invalidate()
+					}
 					onRoiChanged?.invoke()
 					handleGrabbed = false
 				}
@@ -181,6 +180,14 @@ class DetectorView : View {
 			}
 			else -> super.onTouchEvent(event)
 		}
+	}
+
+	private fun setHandleToDefaultRoi() {
+		val mn = min(center.x, center.y) * .8f
+		handlePos.set(
+			(center.x + mn).roundToInt(),
+			(center.y + mn).roundToInt()
+		)
 	}
 
 	private fun snap(x: Int, y: Int) {
@@ -228,7 +235,6 @@ class DetectorView : View {
 	}
 
 	override fun onDraw(canvas: Canvas) {
-		canvas.drawColor(0, PorterDuff.Mode.CLEAR)
 		if (handleActive) {
 			drawClip(canvas)
 		}
@@ -263,7 +269,7 @@ class DetectorView : View {
 					radius
 				)
 			)
-			canvas.drawColor(shadeColor, PorterDuff.Mode.SRC)
+			canvas.drawColor(shadeColor)
 			canvas.restore()
 		} else {
 			canvas.drawRect(roi, roiPaint)

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Rect
+import android.graphics.RectF
 import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
@@ -18,9 +19,10 @@ import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.graphics.crop
 import de.markusfisch.android.binaryeye.graphics.loadImageUri
 import de.markusfisch.android.binaryeye.graphics.mapResult
-import de.markusfisch.android.binaryeye.view.doOnApplyWindowInsets
 import de.markusfisch.android.binaryeye.view.recordToolbarHeight
+import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.CropImageView
+import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import kotlinx.coroutines.CoroutineScope
@@ -33,6 +35,9 @@ class PickActivity : AppCompatActivity() {
 
 	private lateinit var vibrator: Vibrator
 	private lateinit var cropImageView: CropImageView
+	private lateinit var detectorView: DetectorView
+
+	private var result: Result? = null
 
 	override fun attachBaseContext(base: Context?) {
 		base?.applyLocale(prefs.customLocale)
@@ -78,46 +83,58 @@ class PickActivity : AppCompatActivity() {
 			return
 		}
 
-		var result: Result? = null
-		val scannedRect = Rect()
-		fun scanWithinBounds() = crop(
-			bitmap,
-			cropImageView.normalizedRectInBounds,
-			cropImageView.imageRotation
-		)?.let {
-			scannedRect.set(0, 0, it.width, it.height)
-			CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
-				result = zxing.decodePositiveNegative(it)
-				result?.let {
-					withContext(Dispatchers.Main) {
-						if (!isFinishing) {
-							vibrator.vibrate()
-						}
-						cropImageView.updateResultPoints(
-							mapResult(
-								scannedRect.width(),
-								scannedRect.height(),
-								0,
-								cropImageView.getBoundsRect(),
-								it
-							)
-						)
-					}
-				}
-			}
-		}
-
 		cropImageView = findViewById(R.id.image) as CropImageView
 		cropImageView.setImageBitmap(bitmap)
 		cropImageView.onScan = {
-			scanWithinBounds()
-		}
-		cropImageView.doOnApplyWindowInsets { v, insets ->
-			(v as CropImageView).windowInsets.set(insets)
+			scanWithinBounds(bitmap)
 		}
 
+		detectorView = findViewById(R.id.detector_view) as DetectorView
+		detectorView.onRoiChanged = {
+			scanWithinBounds(bitmap)
+		}
+		detectorView.setPaddingFromWindowInsets()
+
 		findViewById(R.id.scan).setOnClickListener {
-			scanImage(result)
+			showResult()
+		}
+	}
+
+	private fun scanWithinBounds(bitmap: Bitmap) {
+		val roi = detectorView.roi
+		val rectInView = if (roi.width() < 1) {
+			cropImageView.getBoundsRect()
+		} else {
+			roi
+		}
+		val imageRect = cropImageView.mappedRect
+		val rectInImage = normalizeRoi(imageRect, rectInView)
+		val cropped = crop(
+			bitmap,
+			rectInImage,
+			cropImageView.imageRotation
+		) ?: return
+		CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
+			result = zxing.decodePositiveNegative(cropped)
+			result?.let {
+				withContext(Dispatchers.Main) {
+					if (!isFinishing) {
+						vibrator.vibrate()
+					}
+					val rc = Rect()
+					imageRect.round(rc)
+					rectInView.intersect(rc)
+					detectorView.mark(
+						mapResult(
+							cropped.width,
+							cropped.height,
+							0,
+							rectInView,
+							it
+						)
+					)
+				}
+			}
 		}
 	}
 
@@ -152,12 +169,23 @@ class PickActivity : AppCompatActivity() {
 		return loadImageUri(contentResolver, uri)
 	}
 
-	private fun scanImage(result: Result?) {
-		if (result != null) {
-			showResult(this, result)
+	private fun showResult() {
+		result?.let {
+			showResult(this, it)
 			finish()
 			return
 		}
 		applicationContext.toast(R.string.no_barcode_found)
 	}
+}
+
+private fun normalizeRoi(imageRect: RectF, roi: Rect): RectF {
+	val w = imageRect.width()
+	val h = imageRect.height()
+	return RectF(
+		(roi.left - imageRect.left) / w,
+		(roi.top - imageRect.top) / h,
+		(roi.right - imageRect.left) / w,
+		(roi.bottom - imageRect.top) / h
+	)
 }
