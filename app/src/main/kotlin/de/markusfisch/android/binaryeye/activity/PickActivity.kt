@@ -84,6 +84,7 @@ class PickActivity : AppCompatActivity() {
 		}
 
 		cropImageView = findViewById(R.id.image) as CropImageView
+		cropImageView.restrictTranslation = false
 		cropImageView.setImageBitmap(bitmap)
 		cropImageView.onScan = {
 			scanWithinBounds(bitmap)
