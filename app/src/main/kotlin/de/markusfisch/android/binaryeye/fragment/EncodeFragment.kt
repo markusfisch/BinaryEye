@@ -123,12 +123,16 @@ class EncodeFragment : Fragment() {
 
 	private fun encode() {
 		val format = writers[formatView.selectedItemPosition]
-		val ecl = arrayListOf(
-			ErrorCorrectionLevel.L,
-			ErrorCorrectionLevel.M,
-			ErrorCorrectionLevel.Q,
-			ErrorCorrectionLevel.H
-		)[errorCorrectionLevel.selectedItemPosition]
+		val ecl = if (format == BarcodeFormat.QR_CODE) {
+			arrayListOf(
+				ErrorCorrectionLevel.L,
+				ErrorCorrectionLevel.M,
+				ErrorCorrectionLevel.Q,
+				ErrorCorrectionLevel.H
+			)[errorCorrectionLevel.selectedItemPosition]
+		} else {
+			null
+		}
 		val size = getSize(sizeBarView.progress)
 		val content = contentView.text.toString()
 		if (content.isEmpty()) {

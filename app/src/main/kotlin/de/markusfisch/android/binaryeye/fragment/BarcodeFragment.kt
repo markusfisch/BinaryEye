@@ -62,7 +62,7 @@ class BarcodeFragment : Fragment() {
 		val format = args.getSerializable(FORMAT) as BarcodeFormat? ?: return view
 		val ecl = args.getSerializable(
 			ERROR_CORRECTION_LEVEL
-		) as ErrorCorrectionLevel? ?: ErrorCorrectionLevel.L
+		) as ErrorCorrectionLevel?
 		val size = args.getInt(SIZE)
 		try {
 			barcodeBitmap = Zxing.encodeAsBitmap(content, format, size, size, ecl)
