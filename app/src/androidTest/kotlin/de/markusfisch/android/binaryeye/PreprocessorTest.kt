@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import android.support.v8.renderscript.RenderScript
 import de.markusfisch.android.binaryeye.rs.Preprocessor
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import org.junit.Assert.fail;
@@ -35,8 +36,11 @@ class PreprocessorTest {
 			val frameWidth = bitmap.width
 			val frameHeight = bitmap.height
 			val frameOrientation = m.group(1) ?: return
-			val preprocessor = Preprocessor(
+			val rs = RenderScript.create(
 				InstrumentationRegistry.getTargetContext(),
+			)
+			val preprocessor = Preprocessor(
+				rs,
 				frameWidth,
 				frameHeight,
 				null
@@ -55,6 +59,7 @@ class PreprocessorTest {
 			}
 			val result = zxing.decode(frameData, outWidth, outHeight)
 			preprocessor.destroy()
+			rs.destroy()
 
 			checkNotNull(result) { "no barcode found in $sample" }
 		}
