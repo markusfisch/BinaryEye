@@ -11,6 +11,7 @@ import android.os.Parcelable
 import android.os.Vibrator
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.support.v8.renderscript.RenderScript
 import android.view.Menu
 import android.view.MenuItem
 import com.google.zxing.Result
@@ -19,6 +20,7 @@ import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.graphics.crop
 import de.markusfisch.android.binaryeye.graphics.loadImageUri
 import de.markusfisch.android.binaryeye.graphics.mapResult
+import de.markusfisch.android.binaryeye.rs.fixTransparency
 import de.markusfisch.android.binaryeye.view.recordToolbarHeight
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.CropImageView
@@ -33,6 +35,7 @@ import kotlinx.coroutines.withContext
 class PickActivity : AppCompatActivity() {
 	private val zxing = Zxing()
 
+	private lateinit var rs: RenderScript
 	private lateinit var vibrator: Vibrator
 	private lateinit var cropImageView: CropImageView
 	private lateinit var detectorView: DetectorView
@@ -52,6 +55,7 @@ class PickActivity : AppCompatActivity() {
 		setTitle(R.string.pick_code_to_scan)
 
 		zxing.updateHints(true)
+		rs = RenderScript.create(this)
 		vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
 		initSystemBars(this)
@@ -63,19 +67,10 @@ class PickActivity : AppCompatActivity() {
 			colorSystemAndToolBars(this@PickActivity)
 		}
 
-		val bitmap = if (
-			intent?.action == Intent.ACTION_SEND &&
-			intent.type?.startsWith("image/") == true
-		) {
-			loadSentImage(intent)
-		} else if (
-			intent?.action == Intent.ACTION_VIEW &&
-			intent.type?.startsWith("image/") == true
-		) {
-			loadImageToOpen(intent)
-		} else {
-			null
-		}
+		val bitmap = fixTransparency(
+			rs,
+			getBitmapFromIntent()
+		)
 
 		if (bitmap == null) {
 			applicationContext.toast(R.string.error_no_content)
@@ -99,6 +94,20 @@ class PickActivity : AppCompatActivity() {
 		findViewById(R.id.scan).setOnClickListener {
 			showResult()
 		}
+	}
+
+	private fun getBitmapFromIntent(): Bitmap? = if (
+		intent?.action == Intent.ACTION_SEND &&
+		intent.type?.startsWith("image/") == true
+	) {
+		loadSentImage(intent)
+	} else if (
+		intent?.action == Intent.ACTION_VIEW &&
+		intent.type?.startsWith("image/") == true
+	) {
+		loadImageToOpen(intent)
+	} else {
+		null
 	}
 
 	private fun scanWithinBounds(bitmap: Bitmap) {
@@ -137,6 +146,11 @@ class PickActivity : AppCompatActivity() {
 				}
 			}
 		}
+	}
+
+	override fun onDestroy() {
+		super.onDestroy()
+		rs.destroy()
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {

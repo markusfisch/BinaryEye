@@ -1,6 +1,5 @@
 package de.markusfisch.android.binaryeye.rs
 
-import android.content.Context
 import android.graphics.Rect
 import android.support.v8.renderscript.*
 import kotlin.math.max
@@ -9,7 +8,7 @@ import kotlin.math.roundToInt
 private const val SCALE_FACTOR = .75f
 
 class Preprocessor(
-	context: Context,
+	rs: RenderScript,
 	width: Int,
 	height: Int,
 	private val roi: Rect?
@@ -17,7 +16,6 @@ class Preprocessor(
 	var outWidth = 0
 	var outHeight = 0
 
-	private val rs = RenderScript.create(context)
 	private val resizeScript = ScriptIntrinsicResize.create(rs)
 	private val rotateScript = ScriptC_rotate(rs)
 
@@ -118,7 +116,6 @@ class Preprocessor(
 		rotatedAlloc = null
 		resizeScript.destroy()
 		rotateScript.destroy()
-		rs.destroy()
 	}
 
 	fun resizeOnly(frame: ByteArray) {

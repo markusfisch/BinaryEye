@@ -14,6 +14,7 @@ import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.support.v8.renderscript.RSRuntimeException
+import android.support.v8.renderscript.RenderScript
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
@@ -50,6 +51,7 @@ class CameraActivity : AppCompatActivity() {
 		}
 	})
 
+	private lateinit var rs: RenderScript
 	private lateinit var vibrator: Vibrator
 	private lateinit var cameraView: CameraView
 	private lateinit var detectorView: DetectorView
@@ -114,6 +116,7 @@ class CameraActivity : AppCompatActivity() {
 		// necessary to get the right translation after setting a custom locale
 		setTitle(R.string.scan_code)
 
+		rs = RenderScript.create(this)
 		vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
 		initSystemBars(this)
@@ -141,6 +144,7 @@ class CameraActivity : AppCompatActivity() {
 		fallbackBuffer = null
 		saveZoom()
 		saveCropHandlePos()
+		rs.destroy()
 	}
 
 	override fun onResume() {
@@ -562,7 +566,7 @@ class CameraActivity : AppCompatActivity() {
 			frameOrientation
 		)
 		val pp = Preprocessor(
-			this,
+			rs,
 			frameWidth,
 			frameHeight,
 			frameRoi
