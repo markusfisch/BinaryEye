@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.35.0
+* Put images with transparent pixels on white/black
+* Use cropping limiter when scanning from images too
+* Support setting the error correction level when creating QR Codes
+* Support setting a custom deviating locale
+* Use adaptive icons for shortcut icons
+* Add exporting barcodes as plain text
+* Add Ukrainian translation
+* Add Turkish translation
+* Add Georgian translation
+* Update Indonesian translation
+* Update Russian translation
+* Update Italian translation
+* Update Simplified Chinese translation
+
 ## 1.34.0
 * Use Material Design settings with headers
 * Add a setting to choose the message type when forwarding scanned content
