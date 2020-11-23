@@ -13,10 +13,10 @@
 		<item quantity="other">%2$d სიმბოლო, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">შეცდომების კორექციის დონე</string>
-	<string name="error_correction_level_l">Low (~7%% correction)</string>
-	<string name="error_correction_level_m">Medium (~15%% correction)</string>
-	<string name="error_correction_level_q">Quartile (~25%% correction)</string>
-	<string name="error_correction_level_h">High (~30%% correction)</string>
+	<string name="error_correction_level_l">Low (~7&#37; correction)</string>
+	<string name="error_correction_level_m">Medium (~15&#37; correction)</string>
+	<string name="error_correction_level_q">Quartile (~25&#37; correction)</string>
+	<string name="error_correction_level_h">High (~30&#37; correction)</string>
 	<string name="issue_number">გამოშვების ნომერი</string>
 	<string name="orientation">ორიენტაცია</string>
 	<string name="other_meta_data">მეტამონაცემები</string>
