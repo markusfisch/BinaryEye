@@ -1,0 +1,14 @@
+* Put images with transparent pixels on white/black
+* Use cropping limiter when scanning from images too
+* Support setting the error correction level when creating QR Codes
+* Support setting a custom deviating locale
+* Use adaptive icons for shortcut icons
+* Add exporting barcodes as plain text
+* Add Ukrainian translation
+* Add Turkish translation
+* Add Georgian translation
+* Update Indonesian translation
+* Update Russian translation
+* Update Italian translation
+* Update Simplified Chinese translation
+
