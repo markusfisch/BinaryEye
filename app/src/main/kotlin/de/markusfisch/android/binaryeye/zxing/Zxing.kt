@@ -182,23 +182,23 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 				hints
 			)
 			val sb = StringBuilder()
-			sb.append("<svg width=\"$width\" height=\"$height\"")
-			sb.append(" viewBox=\"0 0 $width $height\"")
-			sb.append(" xmlns=\"http://www.w3.org/2000/svg\">\n")
 			val w = result.width
-			val h = result.height
-			val xf = width.toFloat() / w
-			val yf = height.toFloat() / h
+			var h = result.height
+			val moduleHeight = if (h == 1) w / 2 else 1
 			for (y in 0 until h) {
 				for (x in 0 until w) {
 					if (result.get(x, y)) {
-						sb.append("<rect x=\"${x * xf}\" y=\"${y * yf}\"")
-						sb.append(" width=\"$xf\" height=\"$yf\"/>\n")
+						sb.append(" M${x},${y}h1v${moduleHeight}h-1z");
 					}
 				}
 			}
-			sb.append("</svg>\n")
-			return sb.toString()
+			h *= moduleHeight
+			return """<svg width="$w" height="$h"
+viewBox="0 0 $w $h"
+xmlns="http://www.w3.org/2000/svg">
+<path d="${sb.toString()}"/>
+</svg>
+"""
 		}
 
 		fun encodeAsTxt(
