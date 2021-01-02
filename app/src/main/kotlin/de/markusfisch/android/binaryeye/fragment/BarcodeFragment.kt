@@ -16,7 +16,9 @@ import de.markusfisch.android.binaryeye.view.doOnApplyWindowInsets
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.ConfinedScalingImageView
 import de.markusfisch.android.binaryeye.widget.toast
-import de.markusfisch.android.binaryeye.zxing.Zxing
+import de.markusfisch.android.binaryeye.zxing.encodeAsBitmap
+import de.markusfisch.android.binaryeye.zxing.encodeAsSvg
+import de.markusfisch.android.binaryeye.zxing.encodeAsText
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
@@ -63,9 +65,9 @@ class BarcodeFragment : Fragment() {
 		val hints = args.getSerializable(HINTS) as EnumMap<EncodeHintType, Any>?
 		val size = args.getInt(SIZE)
 		try {
-			barcodeBitmap = Zxing.encodeAsBitmap(content, format, size, size, hints)
-			barcodeSvg = Zxing.encodeAsSvg(content, format, hints)
-			barcodeTxt = Zxing.encodeAsText(content, format, hints)
+			barcodeBitmap = encodeAsBitmap(content, format, size, size, hints)
+			barcodeSvg = encodeAsSvg(content, format, hints)
+			barcodeTxt = encodeAsText(content, format, hints)
 		} catch (e: Exception) {
 			var message = e.message
 			if (message == null || message.isEmpty()) {
