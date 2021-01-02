@@ -9,7 +9,7 @@ import android.support.v4.app.Fragment
 import android.view.*
 import android.widget.EditText
 import com.google.zxing.BarcodeFormat
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
+import com.google.zxing.EncodeHintType
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.view.doOnApplyWindowInsets
@@ -60,14 +60,12 @@ class BarcodeFragment : Fragment() {
 		val args = arguments ?: return view
 		val content = args.getString(CONTENT) ?: return view
 		val format = args.getSerializable(FORMAT) as BarcodeFormat? ?: return view
-		val ecl = args.getSerializable(
-			ERROR_CORRECTION_LEVEL
-		) as ErrorCorrectionLevel?
+		val hints = args.getSerializable(HINTS) as EnumMap<EncodeHintType, Any>?
 		val size = args.getInt(SIZE)
 		try {
-			barcodeBitmap = Zxing.encodeAsBitmap(content, format, size, size, ecl)
-			barcodeSvg = Zxing.encodeAsSvg(content, format, size, size, ecl)
-			barcodeTxt = Zxing.encodeAsTxt(content, format, ecl)
+			barcodeBitmap = Zxing.encodeAsBitmap(content, format, size, size, hints)
+			barcodeSvg = Zxing.encodeAsSvg(content, format, hints)
+			barcodeTxt = Zxing.encodeAsText(content, format, hints)
 		} catch (e: Exception) {
 			var message = e.message
 			if (message == null || message.isEmpty()) {
@@ -235,7 +233,7 @@ class BarcodeFragment : Fragment() {
 	companion object {
 		private const val CONTENT = "content"
 		private const val FORMAT = "format"
-		private const val ERROR_CORRECTION_LEVEL = "error_correction_level"
+		private const val HINTS = "hints"
 		private const val SIZE = "size"
 		private const val MIME_PNG = "image/png"
 		private const val MIME_SVG = "image/svg+xmg"
@@ -245,13 +243,13 @@ class BarcodeFragment : Fragment() {
 			content: String,
 			format: BarcodeFormat,
 			size: Int,
-			errorCorrectionLevel: ErrorCorrectionLevel? = null
+			hints: EnumMap<EncodeHintType, Any>? = null
 		): Fragment {
 			val args = Bundle()
 			args.putString(CONTENT, content)
 			args.putSerializable(FORMAT, format)
-			errorCorrectionLevel?.let {
-				args.putSerializable(ERROR_CORRECTION_LEVEL, it)
+			hints?.let {
+				args.putSerializable(HINTS, it)
 			}
 			args.putInt(SIZE, size)
 			val fragment = BarcodeFragment()

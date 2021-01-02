@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.google.zxing.BarcodeFormat
+import com.google.zxing.EncodeHintType
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.hideSoftKeyboard
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
+import java.util.*
 
 class EncodeFragment : Fragment() {
 	private lateinit var formatView: Spinner
@@ -122,16 +124,15 @@ class EncodeFragment : Fragment() {
 	}
 
 	private fun encode() {
+		val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)
 		val format = writers[formatView.selectedItemPosition]
-		val ecl = if (format == BarcodeFormat.QR_CODE) {
-			arrayListOf(
+		if (format == BarcodeFormat.QR_CODE) {
+			hints[EncodeHintType.ERROR_CORRECTION] = arrayListOf(
 				ErrorCorrectionLevel.L,
 				ErrorCorrectionLevel.M,
 				ErrorCorrectionLevel.Q,
 				ErrorCorrectionLevel.H
 			)[errorCorrectionLevel.selectedItemPosition]
-		} else {
-			null
 		}
 		val size = getSize(sizeBarView.progress)
 		val content = contentView.text.toString()
@@ -145,7 +146,7 @@ class EncodeFragment : Fragment() {
 			activity?.hideSoftKeyboard(contentView)
 			addFragment(
 				fragmentManager,
-				BarcodeFragment.newInstance(content, format, size, ecl)
+				BarcodeFragment.newInstance(content, format, size, hints)
 			)
 		}
 	}

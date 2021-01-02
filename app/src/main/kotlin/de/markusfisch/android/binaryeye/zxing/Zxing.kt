@@ -2,8 +2,8 @@ package de.markusfisch.android.binaryeye.zxing
 
 import android.graphics.Bitmap
 import com.google.zxing.*
+import com.google.zxing.common.BitMatrix
 import com.google.zxing.common.HybridBinarizer
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import java.util.*
 
 class Zxing(possibleResultPoint: ResultPointCallback? = null) {
@@ -11,7 +11,7 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 	private val multiFormatReader = MultiFormatReader()
 
 	init {
-		val decodeFormats = EnumSet.noneOf<BarcodeFormat>(
+		val decodeFormats = EnumSet.noneOf(
 			BarcodeFormat::class.java
 		)
 		decodeFormats.addAll(
@@ -129,27 +129,16 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 			format: BarcodeFormat,
 			width: Int,
 			height: Int,
-			errorCorrectionLevel: ErrorCorrectionLevel? = null
+			hints: EnumMap<EncodeHintType, Any>? = null
 		): Bitmap? {
-			val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)
-			hints[EncodeHintType.CHARACTER_SET] = "utf-8"
-			errorCorrectionLevel?.let {
-				hints[EncodeHintType.ERROR_CORRECTION] = it
-			}
-			val result = MultiFormatWriter().encode(
-				text,
-				format,
-				width,
-				height,
-				hints
-			)
-			val w = result.width
-			val h = result.height
+			val bitMatrix = encode(text, format, hints, width, height)
+			val w = bitMatrix.width
+			val h = bitMatrix.height
 			val pixels = IntArray(w * h)
 			var offset = 0
 			for (y in 0 until h) {
 				for (x in 0 until w) {
-					pixels[offset + x] = if (result.get(x, y)) {
+					pixels[offset + x] = if (bitMatrix.get(x, y)) {
 						BLACK
 					} else {
 						WHITE
@@ -165,30 +154,17 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 		fun encodeAsSvg(
 			text: String,
 			format: BarcodeFormat,
-			width: Int,
-			height: Int,
-			errorCorrectionLevel: ErrorCorrectionLevel? = null
+			hints: EnumMap<EncodeHintType, Any>? = null
 		): String {
-			val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)
-			hints[EncodeHintType.CHARACTER_SET] = "utf-8"
-			errorCorrectionLevel?.let {
-				hints[EncodeHintType.ERROR_CORRECTION] = it
-			}
-			val result = MultiFormatWriter().encode(
-				text,
-				format,
-				0,
-				0,
-				hints
-			)
+			val bitMatrix = encode(text, format, hints)
 			val sb = StringBuilder()
-			val w = result.width
-			var h = result.height
+			val w = bitMatrix.width
+			var h = bitMatrix.height
 			val moduleHeight = if (h == 1) w / 2 else 1
 			for (y in 0 until h) {
 				for (x in 0 until w) {
-					if (result.get(x, y)) {
-						sb.append(" M${x},${y}h1v${moduleHeight}h-1z");
+					if (bitMatrix.get(x, y)) {
+						sb.append(" M${x},${y}h1v${moduleHeight}h-1z")
 					}
 				}
 			}
@@ -196,38 +172,47 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 			return """<svg width="$w" height="$h"
 viewBox="0 0 $w $h"
 xmlns="http://www.w3.org/2000/svg">
-<path d="${sb.toString()}"/>
+<path d="$sb"/>
 </svg>
 """
 		}
 
-		fun encodeAsTxt(
+		fun encodeAsText(
 			text: String,
 			format: BarcodeFormat,
-			errorCorrectionLevel: ErrorCorrectionLevel? = null
+			hints: EnumMap<EncodeHintType, Any>? = null
 		): String {
-			val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)
-			hints[EncodeHintType.CHARACTER_SET] = "utf-8"
-			errorCorrectionLevel?.let {
-				hints[EncodeHintType.ERROR_CORRECTION] = it
-			}
-			val result = MultiFormatWriter().encode(
-				text,
-				format,
-				0,
-				0,
-				hints
-			)
-			val w = result.width
-			val h = result.height
+			val bitMatrix = encode(text, format, hints)
+			val w = bitMatrix.width
+			val h = bitMatrix.height
 			val sb = StringBuilder()
 			for (y in 0 until h) {
 				for (x in 0 until w) {
-					sb.append(if (result.get(x, y)) "█" else " ")
+					sb.append(if (bitMatrix.get(x, y)) "█" else " ")
 				}
 				sb.append("\n")
 			}
 			return sb.toString()
+		}
+
+		private fun encode(
+			text: String,
+			format: BarcodeFormat,
+			encodeHints: EnumMap<EncodeHintType, Any>? = null,
+			width: Int = 0,
+			height: Int = 0
+		): BitMatrix {
+			val hints = encodeHints ?: EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)
+			if (!hints.contains(EncodeHintType.CHARACTER_SET)) {
+				hints[EncodeHintType.CHARACTER_SET] = "utf-8"
+			}
+			return MultiFormatWriter().encode(
+				text,
+				format,
+				width,
+				height,
+				hints
+			)
 		}
 	}
 }
