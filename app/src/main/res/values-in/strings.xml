@@ -10,10 +10,10 @@
 		<item quantity="other">%1$s, %2$d karakter</item>
 	</plurals>
 	<string name="error_correction_level">Level koreksi kesalahan</string>
-	<string name="error_correction_level_l">Low (~7&#37; correction)</string>
-	<string name="error_correction_level_m">Medium (~15&#37; correction)</string>
-	<string name="error_correction_level_q">Quartile (~25&#37; correction)</string>
-	<string name="error_correction_level_h">High (~30&#37; correction)</string>
+	<string name="error_correction_level_l">Rendah (~7&#37; koreksi)</string>
+	<string name="error_correction_level_m">Medium (~15&#37; koreksi)</string>
+	<string name="error_correction_level_q">Kuartil (~25&#37; koreksi)</string>
+	<string name="error_correction_level_h">Tinggi (~30&#37; koreksi)</string>
 	<string name="issue_number">Nomor pindaian</string>
 	<string name="orientation">Orientasi</string>
 	<string name="other_meta_data">Metadata</string>
@@ -23,7 +23,7 @@
 	<string name="upc_ean_extension">Ekstensi UPC EAN</string>
 	<string name="toggle_flash">Nyala/matikan blitz</string>
 	<string name="share">Bagikan</string>
-	<string name="share_as">Share as?</string>
+	<string name="share_as">Bagikan sebagai?</string>
 	<string name="copy_to_clipboard">Salin ke clipboard</string>
 	<string name="copied_to_clipboard">Disalin ke clipboard</string>
 	<string name="copy_password">Salin sandi ke clipboard</string>
@@ -46,9 +46,9 @@
 	<string name="preferences">Preferensi</string>
 	<string name="scan_category">Pemindaian</string>
 	<string name="content_category">Konten</string>
-	<string name="locale_category">Language</string>
-	<string name="custom_locale">Custom locale</string>
-	<string name="follow_system_settings">Follow system settings</string>
+	<string name="locale_category">Bahasa</string>
+	<string name="custom_locale">Bahasa lainnya</string>
+	<string name="follow_system_settings">Ikuti pengaturan sistem</string>
 	<string name="show_crop_handle">Tampilkan pembatas pemotongan</string>
 	<string name="show_crop_handle_summary">Batasi pemindaian ke batas area tertentu.</string>
 	<string name="zoom_by_swiping">Geser ke atas/bawah untuk memperbesar</string>
