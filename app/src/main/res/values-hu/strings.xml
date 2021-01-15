@@ -117,10 +117,10 @@
 	<string name="search_scan">Search scan</string>
 	<string name="export_to_file">Exportálás fájlba</string>
 	<string name="export_as">Export as?</string>
-	<string name="export_csv_comma">CSV with commas</string>
-	<string name="export_csv_semicolon">CSV with semicolons</string>
-	<string name="export_json">Export as JSON</string>
-	<string name="export_database">Export SQLite database</string>
+	<string name="export_csv_comma">CSV file with commas</string>
+	<string name="export_csv_semicolon">CSV file with semicolons</string>
+	<string name="export_json">JSON file</string>
+	<string name="export_database">SQLite database</string>
 	<string name="saved_in_downloads">Elmentve a letöltésekbe</string>
 	<string name="rotate_image_cw">Kép forgatása jobbra</string>
 	<string name="pick_file">Képfájl kiválasztása</string>

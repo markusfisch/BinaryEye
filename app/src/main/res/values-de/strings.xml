@@ -117,10 +117,10 @@
 	<string name="search_scan">Code suchen</string>
 	<string name="export_to_file">In Datei exportieren</string>
 	<string name="export_as">Exportieren als?</string>
-	<string name="export_csv_comma">CSV mit Kommas</string>
-	<string name="export_csv_semicolon">CSV mit Semikolons</string>
-	<string name="export_json">Als JSON exportieren</string>
-	<string name="export_database">SQLite Datenbank exportieren</string>
+	<string name="export_csv_comma">CSV Datei mit Kommas</string>
+	<string name="export_csv_semicolon">CSV Datei mit Semikolons</string>
+	<string name="export_json">JSON Datei</string>
+	<string name="export_database">SQLite Datenbank</string>
 	<string name="saved_in_downloads">In den Downloads gespeichert</string>
 	<string name="rotate_image_cw">Bild im Uhrzeigersinn rotieren</string>
 	<string name="pick_file">Bilddatei auswählen</string>
