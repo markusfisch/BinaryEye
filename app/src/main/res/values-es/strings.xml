@@ -72,6 +72,8 @@
 	<string name="show_meta_data_summary">Show additional data about the scanned barcoded.</string>
 	<string name="show_hex_dump">Mostrar volcado hexagonal</string>
 	<string name="show_hex_dump_summary">Show a hex dump of the scanned contents.</string>
+	<string name="close_automatically">Go back after Copy/Share</string>
+	<string name="close_automatically_summary">Automatically return to the scan screen after copying or sharing the read contents.</string>
 	<string name="open_with_url">Abrir datos desconocidos con URL</string>
 	<string name="send_category">Forwarding</string>
 	<string name="send_scan_url">Send every scan to URL</string>

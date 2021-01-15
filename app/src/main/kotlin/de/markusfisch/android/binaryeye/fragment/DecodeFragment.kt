@@ -14,6 +14,7 @@ import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
 import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
+import de.markusfisch.android.binaryeye.activity.MainActivity
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
@@ -36,6 +37,7 @@ class DecodeFragment : Fragment() {
 	private val content: String
 		get() = contentView.text.toString()
 
+	private var closeAutomatically = false
 	private var action = ActionRegistry.DEFAULT_ACTION
 	private var isBinary = false
 	private var id = 0L
@@ -57,6 +59,9 @@ class DecodeFragment : Fragment() {
 			container,
 			false
 		)
+
+		closeAutomatically = prefs.closeAutomatically &&
+				activity?.intent?.hasExtra(MainActivity.DECODED) == true
 
 		val scan = arguments?.getParcelable(SCAN) as Scan?
 			?: throw IllegalArgumentException("DecodeFragment needs a Scan")
@@ -206,14 +211,19 @@ class DecodeFragment : Fragment() {
 		return when (item.itemId) {
 			R.id.copy_password -> {
 				copyPasswordToClipboard()
+				maybeBackOrFinish()
 				true
 			}
 			R.id.copy_to_clipboard -> {
 				copyToClipboard(content)
+				maybeBackOrFinish()
 				true
 			}
 			R.id.share -> {
-				context?.also { shareText(it, content) }
+				context?.also {
+					shareText(it, content)
+					maybeBackOrFinish()
+				}
 				true
 			}
 			R.id.create -> {
@@ -251,6 +261,12 @@ class DecodeFragment : Fragment() {
 		}
 	}
 
+	private fun maybeBackOrFinish() {
+		if (closeAutomatically) {
+			backOrFinish()
+		}
+	}
+
 	private fun backOrFinish() {
 		val fm = fragmentManager
 		if (fm != null && fm.backStackEntryCount > 0) {
@@ -271,6 +287,7 @@ class DecodeFragment : Fragment() {
 			}
 			scope.launch {
 				action.execute(ac, content)
+				maybeBackOrFinish()
 			}
 		}
 	}

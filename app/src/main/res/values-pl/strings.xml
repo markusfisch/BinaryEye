@@ -57,6 +57,8 @@
 	<string name="binary_data">(dane binarne)</string>
 	<string name="show_hex_dump">Pokazuj zrzut szesnastkowy</string>
 	<string name="show_hex_dump_summary">Show a hex dump of the scanned contents.</string>
+	<string name="close_automatically">Go back after Copy/Share</string>
+	<string name="close_automatically_summary">Automatically return to the scan screen after copying or sharing the read contents.</string>
 	<string name="show_meta_data">Pokazuj metadane</string>
 	<string name="show_meta_data_summary">Show additional data about the scanned barcoded.</string>
 	<string name="switch_camera">Przełącz aparat</string>

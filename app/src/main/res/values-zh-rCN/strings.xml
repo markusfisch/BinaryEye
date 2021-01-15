@@ -71,6 +71,8 @@
 	<string name="show_meta_data_summary">显示已扫描条形码的额外数据</string>
 	<string name="show_hex_dump">显示16进制数据</string>
 	<string name="show_hex_dump_summary">显示已扫描条形码的16进制数据</string>
+	<string name="close_automatically">Go back after Copy/Share</string>
+	<string name="close_automatically_summary">Automatically return to the scan screen after copying or sharing the read contents.</string>
 	<string name="open_with_url">使用URL打开未知数据</string>
 	<string name="send_category">转发</string>
 	<string name="send_scan_url">将每个扫描结果发送到URL</string>

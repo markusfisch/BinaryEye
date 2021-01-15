@@ -81,6 +81,11 @@ class Preferences {
 			apply(SHOW_HEX_DUMP, value)
 			field = value
 		}
+	var closeAutomatically = false
+		set(value) {
+			apply(CLOSE_AUTOMATICALLY, value)
+			field = value
+		}
 	var openWithUrl: String = ""
 		set(value) {
 			apply(OPEN_WITH_URL, value)
@@ -146,6 +151,10 @@ class Preferences {
 		)
 		showMetaData = preferences.getBoolean(SHOW_META_DATA, showMetaData)
 		showHexDump = preferences.getBoolean(SHOW_HEX_DUMP, showHexDump)
+		closeAutomatically = preferences.getBoolean(
+			CLOSE_AUTOMATICALLY,
+			closeAutomatically
+		)
 		preferences.getString(OPEN_WITH_URL, openWithUrl)?.also {
 			openWithUrl = it
 		}
@@ -197,8 +206,9 @@ class Preferences {
 		const val IGNORE_CONSECUTIVE_DUPLICATES = "ignore_consecutive_duplicates"
 		const val OPEN_IMMEDIATELY = "open_immediately"
 		const val COPY_IMMEDIATELY = "copy_immediately"
-		const val SHOW_HEX_DUMP = "show_hex_dump"
 		const val SHOW_META_DATA = "show_meta_data"
+		const val SHOW_HEX_DUMP = "show_hex_dump"
+		const val CLOSE_AUTOMATICALLY = "close_automatically"
 		const val OPEN_WITH_URL = "open_with_url"
 		const val SEND_SCAN_URL = "send_scan_url"
 		const val SEND_SCAN_TYPE = "send_scan_type"

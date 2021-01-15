@@ -71,6 +71,8 @@
 	<string name="show_meta_data_summary">Tampilkan data tambahan tentang barcode yang dipindai.</string>
 	<string name="show_hex_dump">Tampilkan hex dump</string>
 	<string name="show_hex_dump_summary">Tampilkan hex dump dari konten hasil pemindaian.</string>
+	<string name="close_automatically">Go back after Copy/Share</string>
+	<string name="close_automatically_summary">Automatically return to the scan screen after copying or sharing the read contents.</string>
 	<string name="open_with_url">Buka data tak dikenal dengan URL</string>
 	<string name="send_category">Penerusan</string>
 	<string name="send_scan_url">Kirim setiap pindaian ke URL</string>

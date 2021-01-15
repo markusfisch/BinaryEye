@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 		private const val PREFERENCES = "preferences"
 		private const val HISTORY = "history"
 		private const val ENCODE = "encode"
-		private const val DECODED = "decoded"
+		const val DECODED = "decoded"
 
 		private fun getFragmentForIntent(intent: Intent?): Fragment {
 			intent ?: return PreferencesFragment()

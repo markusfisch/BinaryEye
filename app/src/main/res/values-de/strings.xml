@@ -72,6 +72,8 @@
 	<string name="show_meta_data_summary">Zusätzliche Daten über den eingelesenen Barcode anzeigen.</string>
 	<string name="show_hex_dump">Hex Dump anzeigen</string>
 	<string name="show_hex_dump_summary">Zeigt einen Hexdump des eingelesenen Inhalts an.</string>
+	<string name="close_automatically">Automatisch zurückkehren</string>
+	<string name="close_automatically_summary">Nach dem Kopieren/Teilen automatisch zum Scanbildschirm zurückkehren.</string>
 	<string name="open_with_url">URL zum Öffnen unbekannter Daten</string>
 	<string name="send_category">Weiterleitung</string>
 	<string name="send_scan_url">URL die für jeden Scan aufgerufen werden soll</string>

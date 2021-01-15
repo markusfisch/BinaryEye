@@ -71,6 +71,11 @@
 			android:key="show_hex_dump"
 			android:title="@string/show_hex_dump"
 			android:summary="@string/show_hex_dump_summary"/>
+		<android.support.v7.preference.SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:key="close_automatically"
+			android:title="@string/close_automatically"
+			android:summary="@string/close_automatically_summary"/>
 		<de.markusfisch.android.binaryeye.preference.UrlPreference
 			android:key="open_with_url"
 			android:title="@string/open_with_url"/>
