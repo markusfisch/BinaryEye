@@ -10,23 +10,29 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
+import java.io.BufferedReader
 import java.io.IOException
+import java.io.InputStream
+import java.io.InputStreamReader
 import java.net.HttpURLConnection
+import java.net.ProtocolException
 import java.net.URL
 import java.net.URLEncoder
 
 fun Scan.sendAsync(context: Context, url: String, type: String) {
 	CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
-		val code = send(url, type)
+		val response = send(url, type)
 		withContext(Dispatchers.Main) {
-			if (code < 200 || code > 299) {
+			if (response.body != null && response.body.isNotEmpty()) {
+				context.toast(response.body)
+			} else if (response.code == null || response.code > 299) {
 				context.toast(R.string.background_request_failed)
 			}
 		}
 	}
 }
 
-private fun Scan.send(url: String, type: String): Int {
+private fun Scan.send(url: String, type: String): Response {
 	return when (type) {
 		"1" -> request(
 			url + "?" + asUrlArguments()
@@ -84,15 +90,35 @@ private fun Map<String, String?>.filterNullValues() =
 private fun request(
 	url: String,
 	writer: ((HttpURLConnection) -> Any)? = null
-): Int {
+): Response {
 	var con: HttpURLConnection? = null
 	return try {
 		con = URL(url).openConnection() as HttpURLConnection
 		writer?.invoke(con)
-		con.responseCode
+		val body = con.inputStream.readHead()
+		Response(con.responseCode, body)
+	} catch (e: ProtocolException) {
+		Response(null, e.message)
 	} catch (e: IOException) {
-		-1
+		val body = con?.errorStream?.readHead()
+		Response(con?.responseCode, body)
 	} finally {
 		con?.disconnect()
 	}
 }
+
+private fun InputStream.readHead(): String {
+	val sb = StringBuilder()
+	val br = BufferedReader(InputStreamReader(this))
+	var line = br.readLine()
+	var i = 0
+	while (line != null && sb.length < 240) {
+		sb.append(line)
+		line = br.readLine()
+		++i
+	}
+	br.close()
+	return sb.toString()
+}
+
+private data class Response(val code: Int?, val body: String?)
