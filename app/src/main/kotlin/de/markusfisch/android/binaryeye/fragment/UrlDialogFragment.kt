@@ -36,7 +36,7 @@ class UrlDialogFragment : PreferenceDialogFragmentCompat() {
 		}
 	}
 
-	private fun getUrl() = decorate(urlView?.text.toString())
+	private fun getUrl() = completeUrl(urlView?.text.toString())
 
 	private fun urlPreference() = preference as UrlPreference
 
@@ -79,10 +79,18 @@ class UrlDialogFragment : PreferenceDialogFragmentCompat() {
 	}
 }
 
-private fun decorate(url: String) = url.trim().also {
-	return if (it.isEmpty() || it.startsWith("http")) {
-		it
-	} else {
-		"http://${it}"
+private fun completeUrl(template: String): String {
+	var s = template.trim()
+	if (s.isEmpty()) {
+		return ""
 	}
+	if (!s.startsWith("http")) {
+		s = "http://${s}"
+	}
+	if (prefs.sendScanType == "0" &&
+		!s.matches(".*/[a-zA-Z._-]*\\?[a-zA-Z0-9_-]+=$".toRegex())
+	) {
+		s = "${s}?content="
+	}
+	return s
 }
