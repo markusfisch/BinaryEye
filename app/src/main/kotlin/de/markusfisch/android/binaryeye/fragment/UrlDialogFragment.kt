@@ -5,20 +5,26 @@ import android.support.v7.preference.PreferenceDialogFragmentCompat
 import android.view.View
 import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.preference.Preferences
+import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.database.Scan
+import de.markusfisch.android.binaryeye.net.sendAsync
 import de.markusfisch.android.binaryeye.preference.UrlPreference
 
 class UrlDialogFragment : PreferenceDialogFragmentCompat() {
 	private var urlView: TextView? = null
+	private var testButton: TextView? = null
 
 	override fun onBindDialogView(view: View?) {
 		super.onBindDialogView(view)
 		urlView = view?.findViewById(R.id.url)
-		val urlPref = urlPreference()
-		urlView?.text = urlPref.getUrl()
+		testButton = view?.findViewById(R.id.test_url)
+		testButton?.setOnClickListener {
+			testUrl(testButton)
+		}
+		urlView?.text = urlPreference().getUrl()
 		urlView?.hint = getString(
-			when (urlPref.key) {
-				Preferences.OPEN_WITH_URL -> R.string.url_hint_add_content
+			when (prefs.sendScanType) {
+				"0" -> R.string.url_hint_add_content
 				else -> R.string.url_hint
 			}
 		)
@@ -26,11 +32,41 @@ class UrlDialogFragment : PreferenceDialogFragmentCompat() {
 
 	override fun onDialogClosed(positiveResult: Boolean) {
 		if (positiveResult) {
-			urlPreference().setUrl(decorate(urlView?.text.toString()))
+			urlPreference().setUrl(getUrl())
 		}
 	}
 
+	private fun getUrl() = decorate(urlView?.text.toString())
+
 	private fun urlPreference() = preference as UrlPreference
+
+	private fun testUrl(textView: TextView?) {
+		val url = getUrl()
+		if (url.isEmpty()) {
+			return
+		}
+		textView ?: return
+		textView.text = "…"
+		Scan(
+			"test",
+			null,
+			"none",
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null
+		).sendAsync(url, prefs.sendScanType) { code, body ->
+			textView.text = when {
+				code != null -> "$code"
+				body != null -> body
+				else -> getString(R.string.background_request_failed)
+			}
+		}
+	}
 
 	companion object {
 		fun newInstance(key: String): UrlDialogFragment {

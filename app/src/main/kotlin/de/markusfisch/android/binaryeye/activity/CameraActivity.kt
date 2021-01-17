@@ -698,10 +698,15 @@ fun showResult(
 	val scan = Scan(result)
 	if (prefs.sendScanUrl.isNotEmpty()) {
 		scan.sendAsync(
-			activity.applicationContext,
 			prefs.sendScanUrl,
 			prefs.sendScanType
-		)
+		) { code, body ->
+			if (body != null && body.isNotEmpty()) {
+				activity.toast(body)
+			} else if (code == null || code > 299) {
+				activity.toast(R.string.background_request_failed)
+			}
+		}
 	}
 	if (prefs.useHistory) {
 		scan.id = db.insertScan(scan)

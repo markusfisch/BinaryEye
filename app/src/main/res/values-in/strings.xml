@@ -81,6 +81,7 @@
 	<string name="send_type_get_query_string">GET dengan kueri lema lengkap</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
+	<string name="test_url">Test URL</string>
 	<string name="really_remove_scan">Yakin menghapus pindaian?</string>
 	<string name="really_remove_all_scans">Yakin menghapus semua pindaian?</string>
 	<string name="really_remove_selected_scans">Yakin menghapus pindaian yang dipilih?</string>

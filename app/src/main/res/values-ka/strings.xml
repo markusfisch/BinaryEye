@@ -84,6 +84,7 @@
 	<string name="send_type_get_query_string">GET მოთხოვნის სრული პარამეტრებით</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
+	<string name="test_url">Test URL</string>
 	<string name="really_remove_scan">ნამდვილად გსურთ სკანირების წაშლა?</string>
 	<string name="really_remove_all_scans">ნამდვილად გსურთ ყველაფრის წაშლა?</string>
 	<string name="really_remove_selected_scans">ნამდვილად გსურთ შერჩეული შტრიხ-კოდების წაშლა?</string>

@@ -1,10 +1,7 @@
 package de.markusfisch.android.binaryeye.net
 
-import android.content.Context
-import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.toHexString
 import de.markusfisch.android.binaryeye.database.Scan
-import de.markusfisch.android.binaryeye.widget.toast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,15 +16,11 @@ import java.net.ProtocolException
 import java.net.URL
 import java.net.URLEncoder
 
-fun Scan.sendAsync(context: Context, url: String, type: String) {
+fun Scan.sendAsync(url: String, type: String, callback: (Int?, String?) -> Unit) {
 	CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
 		val response = send(url, type)
 		withContext(Dispatchers.Main) {
-			if (response.body != null && response.body.isNotEmpty()) {
-				context.toast(response.body)
-			} else if (response.code == null || response.code > 299) {
-				context.toast(R.string.background_request_failed)
-			}
+			callback(response.code, response.body)
 		}
 	}
 }
@@ -100,8 +93,12 @@ private fun request(
 	} catch (e: ProtocolException) {
 		Response(null, e.message)
 	} catch (e: IOException) {
-		val body = con?.errorStream?.readHead()
-		Response(con?.responseCode, body)
+		try {
+			val body = con?.errorStream?.readHead() ?: e.message
+			Response(con?.responseCode, body)
+		} catch (e: IOException) {
+			Response(null, e.message)
+		}
 	} finally {
 		con?.disconnect()
 	}
