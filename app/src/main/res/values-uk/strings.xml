@@ -12,10 +12,10 @@
 		<item quantity="many">%2$d символів, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Рівень виправлення помилок</string>
-	<string name="error_correction_level_l">Low (~7&#37; correction)</string>
-	<string name="error_correction_level_m">Medium (~15&#37; correction)</string>
-	<string name="error_correction_level_q">Quartile (~25&#37; correction)</string>
-	<string name="error_correction_level_h">High (~30&#37; correction)</string>
+	<string name="error_correction_level_l" formatted="false">Low (~7&#37; correction)</string>
+	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; correction)</string>
+	<string name="error_correction_level_q" formatted="false">Quartile (~25&#37; correction)</string>
+	<string name="error_correction_level_h" formatted="false">High (~30&#37; correction)</string>
 	<string name="issue_number">Номер випуску</string>
 	<string name="orientation">Орієнтація</string>
 	<string name="other_meta_data">Метадані</string>

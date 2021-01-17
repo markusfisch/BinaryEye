@@ -11,10 +11,10 @@
 		<item quantity="other">%2$d karakter, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Hata düzeltme düzeyi</string>
-	<string name="error_correction_level_l">Düşük (~&#37;7 düzeltim)</string>
-	<string name="error_correction_level_m">Orta (~&#37;15 düzeltim)</string>
-	<string name="error_correction_level_q">Dörtte Bir (~&#37;25 düzeltim)</string>
-	<string name="error_correction_level_h">Yüksek (~&#37;30 düzeltim)</string>
+	<string name="error_correction_level_l" formatted="false">Düşük (~&#37;7 düzeltim)</string>
+	<string name="error_correction_level_m" formatted="false">Orta (~&#37;15 düzeltim)</string>
+	<string name="error_correction_level_q" formatted="false">Dörtte Bir (~&#37;25 düzeltim)</string>
+	<string name="error_correction_level_h" formatted="false">Yüksek (~&#37;30 düzeltim)</string>
 	<string name="issue_number">Basım sayısı</string>
 	<string name="orientation">Yönelim</string>
 	<string name="other_meta_data">Üst veri</string>

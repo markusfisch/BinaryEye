@@ -11,10 +11,10 @@
 		<item quantity="other">%2$d caractères, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Niveau de correction d\'erreur</string>
-	<string name="error_correction_level_l">Faible (~7% de correction)</string>
-	<string name="error_correction_level_m">Moyen (~15% de correction)</string>
-	<string name="error_correction_level_q">Quartile (~25% de correction)</string>
-	<string name="error_correction_level_h">Élevé (~30% de correction)</string>
+	<string name="error_correction_level_l" formatted="false">Faible (~7% de correction)</string>
+	<string name="error_correction_level_m" formatted="false">Moyen (~15% de correction)</string>
+	<string name="error_correction_level_q" formatted="false">Quartile (~25% de correction)</string>
+	<string name="error_correction_level_h" formatted="false">Élevé (~30% de correction)</string>
 	<string name="issue_number">Issue number</string>
 	<string name="orientation">Orientation</string>
 	<string name="other_meta_data">Métadonnées</string>

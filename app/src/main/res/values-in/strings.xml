@@ -10,10 +10,10 @@
 		<item quantity="other">%1$s, %2$d karakter</item>
 	</plurals>
 	<string name="error_correction_level">Level koreksi kesalahan</string>
-	<string name="error_correction_level_l">Rendah (~7&#37; koreksi)</string>
-	<string name="error_correction_level_m">Medium (~15&#37; koreksi)</string>
-	<string name="error_correction_level_q">Kuartil (~25&#37; koreksi)</string>
-	<string name="error_correction_level_h">Tinggi (~30&#37; koreksi)</string>
+	<string name="error_correction_level_l" formatted="false">Rendah (~7&#37; koreksi)</string>
+	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; koreksi)</string>
+	<string name="error_correction_level_q" formatted="false">Kuartil (~25&#37; koreksi)</string>
+	<string name="error_correction_level_h" formatted="false">Tinggi (~30&#37; koreksi)</string>
 	<string name="issue_number">Nomor pindaian</string>
 	<string name="orientation">Orientasi</string>
 	<string name="other_meta_data">Metadata</string>
