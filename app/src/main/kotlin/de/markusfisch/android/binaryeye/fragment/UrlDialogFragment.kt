@@ -26,7 +26,7 @@ class UrlDialogFragment : PreferenceDialogFragmentCompat() {
 
 	override fun onDialogClosed(positiveResult: Boolean) {
 		if (positiveResult) {
-			urlPreference().setUrl(urlView?.text.toString())
+			urlPreference().setUrl(decorate(urlView?.text.toString()))
 		}
 	}
 
@@ -40,5 +40,13 @@ class UrlDialogFragment : PreferenceDialogFragmentCompat() {
 			fragment.arguments = args
 			return fragment
 		}
+	}
+}
+
+private fun decorate(url: String) = url.trim().also {
+	return if (it.isEmpty() || it.startsWith("http")) {
+		it
+	} else {
+		"http://${it}"
 	}
 }
