@@ -281,7 +281,7 @@ class DecodeFragment : Fragment() {
 		if (content.isNotEmpty()) {
 			if (action is WifiAction &&
 				Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
-				!hasLocationPermission(ac)
+				!hasLocationPermission(ac) { executeAction(content) }
 			) {
 				return
 			}
@@ -294,7 +294,7 @@ class DecodeFragment : Fragment() {
 
 	private fun askForFileNameAndSave(raw: ByteArray) {
 		val ac = activity ?: return
-		if (!hasWritePermission(ac)) {
+		if (!hasWritePermission(ac) { askForFileNameAndSave(raw) }) {
 			return
 		}
 		scope.launch(Dispatchers.Main) {

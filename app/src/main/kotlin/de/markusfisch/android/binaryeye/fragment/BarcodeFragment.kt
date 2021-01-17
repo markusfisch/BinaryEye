@@ -146,7 +146,7 @@ class BarcodeFragment : Fragment() {
 	@SuppressLint("InflateParams")
 	private fun askForFileNameAndSave(fileType: FileType) {
 		val ac = activity ?: return
-		if (!hasWritePermission(ac)) {
+		if (!hasWritePermission(ac) { askForFileNameAndSave(fileType) }) {
 			return
 		}
 		val view = ac.layoutInflater.inflate(R.layout.dialog_save_file, null)

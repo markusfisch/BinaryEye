@@ -6,17 +6,18 @@ import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 
+var permissionGrantedCallback: (() -> Any)? = null
+
 const val PERMISSION_CAMERA = 1
-fun hasCameraPermission(activity: Activity): Boolean {
-	return hasPermission(
-		activity,
-		Manifest.permission.CAMERA,
-		PERMISSION_CAMERA
-	)
-}
+fun hasCameraPermission(activity: Activity) = hasPermission(
+	activity,
+	Manifest.permission.CAMERA,
+	PERMISSION_CAMERA
+)
 
 const val PERMISSION_WRITE = 2
-fun hasWritePermission(activity: Activity): Boolean {
+fun hasWritePermission(activity: Activity, callback: () -> Any): Boolean {
+	permissionGrantedCallback = callback
 	return hasPermission(
 		activity,
 		Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -25,7 +26,8 @@ fun hasWritePermission(activity: Activity): Boolean {
 }
 
 const val PERMISSION_LOCATION = 3
-fun hasLocationPermission(activity: Activity): Boolean {
+fun hasLocationPermission(activity: Activity, callback: () -> Any): Boolean {
+	permissionGrantedCallback = callback
 	return hasPermission(
 		activity,
 		Manifest.permission.ACCESS_FINE_LOCATION,

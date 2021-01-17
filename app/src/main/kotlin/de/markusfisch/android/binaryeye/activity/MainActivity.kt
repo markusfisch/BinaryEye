@@ -2,17 +2,14 @@ package de.markusfisch.android.binaryeye.activity
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.app.applyLocale
-import de.markusfisch.android.binaryeye.app.colorSystemAndToolBars
-import de.markusfisch.android.binaryeye.app.initSystemBars
-import de.markusfisch.android.binaryeye.app.prefs
-import de.markusfisch.android.binaryeye.app.setFragment
+import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.fragment.DecodeFragment
 import de.markusfisch.android.binaryeye.fragment.EncodeFragment
@@ -21,6 +18,21 @@ import de.markusfisch.android.binaryeye.fragment.PreferencesFragment
 import de.markusfisch.android.binaryeye.view.recordToolbarHeight
 
 class MainActivity : AppCompatActivity() {
+	override fun onRequestPermissionsResult(
+		requestCode: Int,
+		permissions: Array<String>,
+		grantResults: IntArray
+	) {
+		when (requestCode) {
+			PERMISSION_LOCATION, PERMISSION_WRITE -> if (grantResults.isNotEmpty() &&
+				grantResults[0] == PackageManager.PERMISSION_GRANTED
+			) {
+				permissionGrantedCallback?.invoke()
+				permissionGrantedCallback = null
+			}
+		}
+	}
+
 	override fun onSupportNavigateUp(): Boolean {
 		val fm = supportFragmentManager
 		if (fm != null && fm.backStackEntryCount > 0) {

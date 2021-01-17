@@ -357,41 +357,43 @@ class HistoryFragment : Fragment() {
 			.show()
 	}
 
-	private fun askToExportToFile(context: Context) = scope.launch {
-		val ac = activity ?: return@launch
-		progressView.useVisibility {
-			if (!hasWritePermission(ac)) {
-				return@useVisibility
-			}
-			val options = context.resources.getStringArray(
-				R.array.export_options_values
-			)
-			val delimiter = alertDialog<String>(context) { resume ->
-				setTitle(R.string.export_as)
-				setItems(R.array.export_options_names) { _, which ->
-					resume(options[which])
+	private fun askToExportToFile(context: Context) {
+		scope.launch {
+			val ac = activity ?: return@launch
+			progressView.useVisibility {
+				if (!hasWritePermission(ac) { askToExportToFile(context) }) {
+					return@useVisibility
 				}
-			} ?: return@useVisibility
-			val name = withContext(Dispatchers.Main) {
-				ac.askForFileName(
-					when (delimiter) {
-						"db" -> ".db"
-						"json" -> ".json"
-						else -> ".csv"
-					}
+				val options = context.resources.getStringArray(
+					R.array.export_options_values
 				)
-			} ?: return@useVisibility
-			val message = when (delimiter) {
-				"db" -> exportDatabase(ac, name)
-				else -> db.getScansDetailed(filter)?.use {
-					when (delimiter) {
-						"json" -> exportJson(context, name, it)
-						else -> exportCsv(context, name, it, delimiter)
+				val delimiter = alertDialog<String>(context) { resume ->
+					setTitle(R.string.export_as)
+					setItems(R.array.export_options_names) { _, which ->
+						resume(options[which])
 					}
-				} ?: false
-			}.toSaveResult()
-			withContext(Dispatchers.Main) {
-				ac.toast(message)
+				} ?: return@useVisibility
+				val name = withContext(Dispatchers.Main) {
+					ac.askForFileName(
+						when (delimiter) {
+							"db" -> ".db"
+							"json" -> ".json"
+							else -> ".csv"
+						}
+					)
+				} ?: return@useVisibility
+				val message = when (delimiter) {
+					"db" -> exportDatabase(ac, name)
+					else -> db.getScansDetailed(filter)?.use {
+						when (delimiter) {
+							"json" -> exportJson(context, name, it)
+							else -> exportCsv(context, name, it, delimiter)
+						}
+					} ?: false
+				}.toSaveResult()
+				withContext(Dispatchers.Main) {
+					ac.toast(message)
+				}
 			}
 		}
 	}
