@@ -39,7 +39,7 @@ private fun Scan.send(url: String, type: String): Int {
 				close()
 			}
 		}
-		"3" -> request(url) {  con ->
+		"3" -> request(url) { con ->
 			con.requestMethod = "POST"
 			con.setRequestProperty("Content-Type", "application/json")
 			con.outputStream.apply {

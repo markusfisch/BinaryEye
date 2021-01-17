@@ -87,6 +87,8 @@ private fun Cursor.toCsvRecord(
 	return sb.toString().toByteArray()
 }
 
-private fun String.quoteAndEscape() = "\"${this
-	.replace("\n", " ")
-	.replace("\"", "\"\"")}\""
+private fun String.quoteAndEscape() = "\"${
+	this
+		.replace("\n", " ")
+		.replace("\"", "\"\"")
+}\""
