@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.36.0
+* Add a setting to automatically return to scanning screen after copying
+* Add a button to test the background request
+* Show HTTP response for background requests
+* Improve SVG export
+* Automatically continue with an action after granting a permission
+* Update Chinese translation
+* Update French translation
+* Update Indonesian translation
+* Update Turkish translation
+* Update Ukrainian translation
+
 ## 1.35.0
 * Put images with transparent pixels on white/black
 * Use cropping limiter when scanning from images too
