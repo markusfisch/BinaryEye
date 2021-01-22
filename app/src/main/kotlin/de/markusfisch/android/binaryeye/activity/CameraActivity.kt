@@ -7,6 +7,8 @@ import android.content.pm.PackageManager
 import android.graphics.Rect
 import android.graphics.RectF
 import android.hardware.Camera
+import android.media.AudioManager
+import android.media.ToneGenerator
 import android.net.Uri
 import android.os.Bundle
 import android.os.Vibrator
@@ -657,6 +659,7 @@ class CameraActivity : AppCompatActivity() {
 			showResult(
 				this@CameraActivity,
 				result,
+				vibrator,
 				returnResult,
 				bulkMode
 			)
@@ -684,8 +687,9 @@ class CameraActivity : AppCompatActivity() {
 fun showResult(
 	activity: Activity,
 	result: Result,
+	vibrator: Vibrator,
 	isResult: Boolean = false,
-	bulkMode: Boolean = false
+	bulkMode: Boolean = false,
 ) {
 	if (isResult) {
 		activity.setResult(Activity.RESULT_OK, getReturnIntent(result))
@@ -701,6 +705,10 @@ fun showResult(
 			prefs.sendScanUrl,
 			prefs.sendScanType
 		) { code, body ->
+			if (code == null || code < 200 || code > 299) {
+				vibrator.error()
+				beepBeepBeep()
+			}
 			if (body != null && body.isNotEmpty()) {
 				activity.toast(body)
 			} else if (code == null || code > 299) {
@@ -757,4 +765,11 @@ fun getReturnIntent(result: Result): Intent {
 		}
 	}
 	return intent
+}
+
+private fun beepBeepBeep() {
+	ToneGenerator(AudioManager.STREAM_ALARM, 100).startTone(
+		ToneGenerator.TONE_CDMA_CONFIRM,
+		1000
+	)
 }

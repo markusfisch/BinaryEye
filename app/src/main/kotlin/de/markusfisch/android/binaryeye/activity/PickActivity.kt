@@ -186,7 +186,7 @@ class PickActivity : AppCompatActivity() {
 
 	private fun showResult() {
 		result?.let {
-			showResult(this, it)
+			showResult(this, it, vibrator)
 			finish()
 			return
 		}
