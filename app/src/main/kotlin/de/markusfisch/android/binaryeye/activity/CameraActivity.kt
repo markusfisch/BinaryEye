@@ -24,7 +24,6 @@ import android.view.View
 import android.widget.SeekBar
 import com.google.zxing.Result
 import com.google.zxing.ResultMetadataType
-import com.google.zxing.ResultPointCallback
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.database.Scan
@@ -43,7 +42,7 @@ import kotlin.math.min
 import kotlin.math.roundToInt
 
 class CameraActivity : AppCompatActivity() {
-	private val zxing = Zxing(ResultPointCallback { point ->
+	private val zxing = Zxing { point ->
 		point?.let {
 			getMapping()?.map(it)?.let {
 				detectorView.post {
@@ -51,7 +50,7 @@ class CameraActivity : AppCompatActivity() {
 				}
 			}
 		}
-	})
+	}
 
 	private lateinit var rs: RenderScript
 	private lateinit var vibrator: Vibrator
