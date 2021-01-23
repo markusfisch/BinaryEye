@@ -1,0 +1,11 @@
+* Add a setting to automatically return to scanning screen after copying
+* Add a button to test the background request
+* Show HTTP response for background requests
+* Improve SVG export
+* Automatically continue with an action after granting a permission
+* Update Chinese translation
+* Update French translation
+* Update Indonesian translation
+* Update Turkish translation
+* Update Ukrainian translation
+
