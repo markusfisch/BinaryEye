@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.37.0
+* Improve formatting date and time in history listing
+* Add haptic and audible feedback for background request errors
+
 ## 1.36.0
 * Add a setting to automatically return to scanning screen after copying
 * Add a button to test the background request
