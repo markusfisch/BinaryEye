@@ -131,9 +131,9 @@ class DecodeFragment : Fragment() {
 		return view
 	}
 
-	override fun onDestroyView() {
+	override fun onDestroy() {
+		super.onDestroy()
 		parentJob.cancel()
-		super.onDestroyView()
 	}
 
 	private fun updateViewsAndAction(bytes: ByteArray) {
