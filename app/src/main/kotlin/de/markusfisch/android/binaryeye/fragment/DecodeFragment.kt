@@ -15,6 +15,7 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
 import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
 import de.markusfisch.android.binaryeye.activity.MainActivity
+import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
@@ -144,7 +145,7 @@ class DecodeFragment : Fragment() {
 		formatView.text = resources.getQuantityString(
 			R.plurals.barcode_info,
 			bytes.size,
-			format,
+			prettifyFormatName(format),
 			bytes.size
 		)
 		hexView.text = if (prefs.showHexDump) hexDump(bytes) else ""
