@@ -34,6 +34,7 @@ import de.markusfisch.android.binaryeye.net.sendAsync
 import de.markusfisch.android.binaryeye.os.error
 import de.markusfisch.android.binaryeye.os.vibrate
 import de.markusfisch.android.binaryeye.rs.Preprocessor
+import de.markusfisch.android.binaryeye.view.initSystemBars
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast

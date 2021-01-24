@@ -13,9 +13,9 @@ import android.support.v7.preference.PreferenceGroup
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.activity.SplashActivity
 import de.markusfisch.android.binaryeye.app.prefs
-import de.markusfisch.android.binaryeye.app.systemBarRecyclerViewScrollListener
 import de.markusfisch.android.binaryeye.preference.UrlPreference
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
+import de.markusfisch.android.binaryeye.view.systemBarRecyclerViewScrollListener
 
 class PreferencesFragment : PreferenceFragmentCompat() {
 	private val changeListener = object : OnSharedPreferenceChangeListener {

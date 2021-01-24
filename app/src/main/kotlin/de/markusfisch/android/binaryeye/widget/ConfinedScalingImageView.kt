@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.util.AttributeSet
-import de.markusfisch.android.binaryeye.app.colorSystemAndToolBars
+import de.markusfisch.android.binaryeye.view.colorSystemAndToolBars
 import de.markusfisch.android.scalingimageview.widget.ScalingImageView
 
 open class ConfinedScalingImageView : ScalingImageView {

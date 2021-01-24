@@ -3,7 +3,7 @@ package de.markusfisch.android.binaryeye.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.ScrollView
-import de.markusfisch.android.binaryeye.app.colorSystemAndToolBars
+import de.markusfisch.android.binaryeye.view.colorSystemAndToolBars
 
 class ConfinedScrollView : ScrollView {
 	private var scrollable = false

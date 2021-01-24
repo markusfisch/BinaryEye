@@ -15,6 +15,8 @@ import de.markusfisch.android.binaryeye.fragment.DecodeFragment
 import de.markusfisch.android.binaryeye.fragment.EncodeFragment
 import de.markusfisch.android.binaryeye.fragment.HistoryFragment
 import de.markusfisch.android.binaryeye.fragment.PreferencesFragment
+import de.markusfisch.android.binaryeye.view.colorSystemAndToolBars
+import de.markusfisch.android.binaryeye.view.initSystemBars
 import de.markusfisch.android.binaryeye.view.recordToolbarHeight
 
 class MainActivity : AppCompatActivity() {
