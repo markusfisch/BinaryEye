@@ -2,7 +2,7 @@ package de.markusfisch.android.binaryeye.database
 
 import android.app.Activity
 import android.os.Environment
-import de.markusfisch.android.binaryeye.app.writeExternalFile
+import de.markusfisch.android.binaryeye.io.writeExternalFile
 import java.io.File
 import java.io.FileInputStream
 

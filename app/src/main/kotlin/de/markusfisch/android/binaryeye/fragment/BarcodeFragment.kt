@@ -11,7 +11,13 @@ import android.widget.EditText
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.app.*
+import de.markusfisch.android.binaryeye.app.copyToClipboard
+import de.markusfisch.android.binaryeye.app.hasWritePermission
+import de.markusfisch.android.binaryeye.app.shareFile
+import de.markusfisch.android.binaryeye.app.shareText
+import de.markusfisch.android.binaryeye.io.addSuffixIfNotGiven
+import de.markusfisch.android.binaryeye.io.toSaveResult
+import de.markusfisch.android.binaryeye.io.writeExternalFile
 import de.markusfisch.android.binaryeye.view.doOnApplyWindowInsets
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.ConfinedScalingImageView

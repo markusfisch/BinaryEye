@@ -1,4 +1,4 @@
-package de.markusfisch.android.binaryeye.app
+package de.markusfisch.android.binaryeye.io
 
 import android.app.Activity
 import android.content.ContentValues
@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.support.annotation.MainThread
 import android.widget.EditText
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.app.alertDialog
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
