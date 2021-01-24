@@ -17,6 +17,8 @@ import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
 import de.markusfisch.android.binaryeye.activity.MainActivity
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
 import de.markusfisch.android.binaryeye.app.*
+import de.markusfisch.android.binaryeye.content.copyToClipboard
+import de.markusfisch.android.binaryeye.content.shareText
 import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.io.askForFileName
 import de.markusfisch.android.binaryeye.io.toSaveResult

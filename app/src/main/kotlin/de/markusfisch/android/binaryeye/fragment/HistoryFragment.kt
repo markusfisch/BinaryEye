@@ -21,6 +21,8 @@ import android.widget.ListView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.ScansAdapter
 import de.markusfisch.android.binaryeye.app.*
+import de.markusfisch.android.binaryeye.content.copyToClipboard
+import de.markusfisch.android.binaryeye.content.shareText
 import de.markusfisch.android.binaryeye.database.Database
 import de.markusfisch.android.binaryeye.database.exportCsv
 import de.markusfisch.android.binaryeye.database.exportDatabase

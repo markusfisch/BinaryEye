@@ -2,8 +2,8 @@ package de.markusfisch.android.binaryeye.actions
 
 import android.content.Context
 import android.content.Intent
-import de.markusfisch.android.binaryeye.app.execShareIntent
 import de.markusfisch.android.binaryeye.app.parseAndNormalizeUri
+import de.markusfisch.android.binaryeye.content.execShareIntent
 import de.markusfisch.android.binaryeye.widget.toast
 
 interface IAction {

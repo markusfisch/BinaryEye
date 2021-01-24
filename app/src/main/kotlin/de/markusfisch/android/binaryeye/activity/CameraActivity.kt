@@ -26,6 +26,7 @@ import com.google.zxing.Result
 import com.google.zxing.ResultMetadataType
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.*
+import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.graphics.Mapping
 import de.markusfisch.android.binaryeye.graphics.frameToView

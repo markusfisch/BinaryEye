@@ -5,9 +5,9 @@ import android.content.Intent
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.IAction
 import de.markusfisch.android.binaryeye.app.alertDialog
-import de.markusfisch.android.binaryeye.app.execShareIntent
 import de.markusfisch.android.binaryeye.app.parseAndNormalizeUri
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.content.execShareIntent
 import de.markusfisch.android.binaryeye.widget.toast
 import java.net.URLEncoder
 
