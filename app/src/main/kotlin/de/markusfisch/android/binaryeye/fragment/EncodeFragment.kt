@@ -12,8 +12,8 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
 import de.markusfisch.android.binaryeye.app.addFragment
-import de.markusfisch.android.binaryeye.app.hideSoftKeyboard
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.view.hideSoftKeyboard
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import java.util.*
 

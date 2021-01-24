@@ -1,4 +1,4 @@
-package de.markusfisch.android.binaryeye.app
+package de.markusfisch.android.binaryeye.view
 
 import android.content.Context
 import android.view.View
