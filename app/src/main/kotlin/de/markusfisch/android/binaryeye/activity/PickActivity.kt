@@ -20,6 +20,7 @@ import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.graphics.crop
 import de.markusfisch.android.binaryeye.graphics.loadImageUri
 import de.markusfisch.android.binaryeye.graphics.mapResult
+import de.markusfisch.android.binaryeye.os.vibrate
 import de.markusfisch.android.binaryeye.rs.fixTransparency
 import de.markusfisch.android.binaryeye.view.recordToolbarHeight
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets

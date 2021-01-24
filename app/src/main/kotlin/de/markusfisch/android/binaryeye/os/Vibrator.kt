@@ -1,8 +1,9 @@
-package de.markusfisch.android.binaryeye.app
+package de.markusfisch.android.binaryeye.os
 
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
+import de.markusfisch.android.binaryeye.app.prefs
 
 private const val MILLISECONDS = 100L
 private val errorPatternTimings = longArrayOf(

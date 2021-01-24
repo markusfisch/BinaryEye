@@ -31,6 +31,8 @@ import de.markusfisch.android.binaryeye.graphics.Mapping
 import de.markusfisch.android.binaryeye.graphics.frameToView
 import de.markusfisch.android.binaryeye.graphics.isPortrait
 import de.markusfisch.android.binaryeye.net.sendAsync
+import de.markusfisch.android.binaryeye.os.error
+import de.markusfisch.android.binaryeye.os.vibrate
 import de.markusfisch.android.binaryeye.rs.Preprocessor
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.DetectorView
