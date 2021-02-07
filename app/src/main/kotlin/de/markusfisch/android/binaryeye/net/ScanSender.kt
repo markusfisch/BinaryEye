@@ -87,6 +87,7 @@ private fun request(
 	var con: HttpURLConnection? = null
 	return try {
 		con = URL(url).openConnection() as HttpURLConnection
+		con.connectTimeout = 5000
 		writer?.invoke(con)
 		val body = con.inputStream.readHead()
 		Response(con.responseCode, body)
