@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.38.0
+* Add a quick settings tile to scan from settings
+* Make custom background requests time out after 5 seconds
+* Add Japanese translation
+* Updated French translation
+
 ## 1.37.0
 * Improve formatting date and time in history listing
 * Add haptic and audible feedback for background request errors
