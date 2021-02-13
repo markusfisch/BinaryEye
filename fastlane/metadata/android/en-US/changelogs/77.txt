@@ -1,0 +1,5 @@
+* Add a quick settings tile to scan from settings
+* Make custom background requests time out after 5 seconds
+* Add Japanese translation
+* Updated French translation
+
