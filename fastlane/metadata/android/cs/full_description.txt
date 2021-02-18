@@ -1,0 +1,10 @@
+Funguje na výšku i na šířku, dokáže přečíst otočené kódy,
+používá Material Design a v neposlední řadě umí čárové kódy i generovat.
+
+Binary Eye pro skenování používá knihovnu ZXing ("Zebra Crossing").
+Podporované formáty: AZTEC, CODABAR, CODE 39, CODE 93, CODE 128,
+DATA MATRIX, EAN 8, EAN 13, ITF, PDF417, QR CODE, RSS 14, RSS EXPANDED,
+UPC A, UPC E and UPC EAN EXTENSION.
+
+Tato aplikace je open source:
+https://github.com/markusfisch/BinaryEye
