@@ -8,6 +8,7 @@
 	<string name="binary_data">(binární data)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d znak, %1$s</item>
+		<item quantity="few">%2$d znaky, %1$s</item>
 		<item quantity="other">%2$d znaků, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Stupeň korekce chyb</string>
