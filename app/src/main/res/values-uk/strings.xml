@@ -49,7 +49,7 @@
 	<string name="scan_category">Сканування</string>
 	<string name="content_category">Вміст</string>
 	<string name="locale_category">Language</string>
-	<string name="custom_locale">Custom locale</string>
+	<string name="custom_locale">Custom language</string>
 	<string name="follow_system_settings">Follow system settings</string>
 	<string name="show_crop_handle">Обмежити область сканування</string>
 	<string name="show_crop_handle_summary">Обмежити сканування до налаштованої області.</string>
