@@ -8,13 +8,14 @@
 	<string name="binary_data">(binární data)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d znak, %1$s</item>
+		<item quantity="few">%2$d znaky, %1$s</item>
 		<item quantity="other">%2$d znaků, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Stupeň korekce chyb</string>
 	<string name="error_correction_level_l" formatted="false">Nízký (~7&#37; korekce)</string>
-    <string name="error_correction_level_m" formatted="false">Střední (~15&#37; korekce)</string>
-    <string name="error_correction_level_q" formatted="false">Čtvrtinový (~25&#37; korekce)</string>
-    <string name="error_correction_level_h" formatted="false">Vysoký (~30&#37; korekce)</string>
+	<string name="error_correction_level_m" formatted="false">Střední (~15&#37; korekce)</string>
+	<string name="error_correction_level_q" formatted="false">Čtvrtinový (~25&#37; korekce)</string>
+	<string name="error_correction_level_h" formatted="false">Vysoký (~30&#37; korekce)</string>
 	<string name="issue_number">Issue number</string>
 	<string name="orientation">Orientace</string>
 	<string name="other_meta_data">Metadata</string>
@@ -26,7 +27,7 @@
 	<string name="share">Sdílet</string>
 	<string name="share_as">Sdílet jako</string>
 	<string name="copy_to_clipboard">Zkopírovat do schránky</string>
-    <string name="copied_to_clipboard">Zkopírováno do schránky</string>
+	<string name="copied_to_clipboard">Zkopírováno do schránky</string>
 	<string name="copy_password">Zkopírovat heslo do schránky</string>
 	<string name="copied_password_to_clipboard">Heslo zkopírováno do schránky</string>
 	<string name="open_url">Otevřít URL</string>
@@ -39,7 +40,7 @@
 	<string name="encode">ZAKÓDOVAT</string>
 	<string name="error_no_content">Chybí obsah</string>
 	<string name="error_encoding_barcode">Nepodařilo se vygenerovat čárový kód</string>
-    <string name="view_barcode">Zobrazit čárový kód</string>
+	<string name="view_barcode">Zobrazit čárový kód</string>
 	<string name="info">Info</string>
 	<string name="switch_camera">Přepnout kameru</string>
 	<string name="bulk_mode">Skenovat nepřetržitě</string>
@@ -84,8 +85,8 @@
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="test_url">Otestovat URL</string>
 	<string name="really_remove_scan">Opravdu odstranit sken?</string>
-    <string name="really_remove_all_scans">Opravdu odstranit všechny skeny?</string>
-    <string name="really_remove_selected_scans">Opravdu odstranit zvolené skeny?</string>
+	<string name="really_remove_all_scans">Opravdu odstranit všechny skeny?</string>
+	<string name="really_remove_selected_scans">Opravdu odstranit zvolené skeny?</string>
 	<string name="clear_history">Vymazat historii</string>
 	<string name="copy_scan">Zkopírovat sken</string>
 	<string name="edit_scan">Upravit popisek</string>
@@ -98,7 +99,7 @@
 	<string name="separator_ruler">Svislice</string>
 	<string name="save_as_file_name">Uložit jako do složky Stahování</string>
 	<string name="file_name">Název souboru</string>
-    <string name="error_saving_file">Soubor se nepodařilo uložit</string>
+	<string name="error_saving_file">Soubor se nepodařilo uložit</string>
 	<string name="error_file_exists">Soubor již existuje</string>
 	<string name="connect_to_wifi">Připojit k WiFi</string>
 	<string name="wifi_config_failed">Nepodařilo se nastavit WiFi</string>
@@ -127,7 +128,7 @@
 	<string name="pick_file">Zvolte obrázek</string>
 	<string name="pick_code_to_scan">Zvolte kód k naskenování</string>
 	<string name="shortcut_decode">Skenovat čárový kód</string>
-    <string name="shortcut_encode">Vytvořit čárový kód</string>
+	<string name="shortcut_encode">Vytvořit čárový kód</string>
 	<string name="shortcut_preferences">Nastavení</string>
 	<string name="background_request_failed">Požadavek na pozadí selhal</string>
 </resources>
