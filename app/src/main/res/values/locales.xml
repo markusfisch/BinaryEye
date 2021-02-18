@@ -17,6 +17,7 @@
 		<item>Ukrainian</item>
 		<item>Chinese</item>
 		<item>Chinese (Simplified Han,China)</item>
+		<item>Czech</item>
 	</string-array>
 	<string-array name="locale_values">
 		<item></item>
@@ -37,5 +38,6 @@
 		<item>zh</item>
 		<item>zh-rCN</item>
 		<item>ja</item>
+		<item>cs</item>
 	</string-array>
 </resources>
