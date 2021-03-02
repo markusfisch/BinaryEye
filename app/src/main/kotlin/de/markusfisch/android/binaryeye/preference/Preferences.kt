@@ -46,6 +46,13 @@ class Preferences {
 			commit(TRY_HARDER, value)
 			field = value
 		}
+	var bulkMode = false
+		set(value) {
+			// immediately save this setting because it's only ever read
+			// before the camera is opened
+			commit(BULK_MODE, value)
+			field = value
+		}
 	var vibrate = true
 		set(value) {
 			apply(VIBRATE, value)
@@ -135,6 +142,7 @@ class Preferences {
 		zoomBySwiping = preferences.getBoolean(ZOOM_BY_SWIPING, zoomBySwiping)
 		autoRotate = preferences.getBoolean(AUTO_ROTATE, autoRotate)
 		tryHarder = preferences.getBoolean(TRY_HARDER, tryHarder)
+		bulkMode = preferences.getBoolean(BULK_MODE, bulkMode)
 		vibrate = preferences.getBoolean(VIBRATE, vibrate)
 		useHistory = preferences.getBoolean(USE_HISTORY, useHistory)
 		ignoreConsecutiveDuplicates = preferences.getBoolean(
@@ -201,6 +209,7 @@ class Preferences {
 		const val ZOOM_BY_SWIPING = "zoom_by_swiping"
 		const val AUTO_ROTATE = "auto_rotate"
 		const val TRY_HARDER = "try_harder"
+		const val BULK_MODE = "bulk_mode"
 		const val VIBRATE = "vibrate"
 		const val USE_HISTORY = "use_history"
 		const val IGNORE_CONSECUTIVE_DUPLICATES = "ignore_consecutive_duplicates"

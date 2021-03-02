@@ -42,6 +42,7 @@
 	<string name="info">关于</string>
 	<string name="switch_camera">切换摄像头</string>
 	<string name="bulk_mode">连续扫描</string>
+	<string name="bulk_mode_summary">Always start scanning continuously.</string>
 	<string name="history">历史</string>
 	<string name="preferences">首选项</string>
 	<string name="scan_category">扫描</string>

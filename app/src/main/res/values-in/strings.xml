@@ -42,6 +42,7 @@
 	<string name="info">Info</string>
 	<string name="switch_camera">Ganti kamera</string>
 	<string name="bulk_mode">Pindai tanpa henti</string>
+	<string name="bulk_mode_summary">Always start scanning continuously.</string>
 	<string name="history">Riwayat</string>
 	<string name="preferences">Preferensi</string>
 	<string name="scan_category">Pemindaian</string>

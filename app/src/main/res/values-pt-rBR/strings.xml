@@ -43,6 +43,7 @@
 	<string name="info">Informações</string>
 	<string name="switch_camera">Trocar câmera</string>
 	<string name="bulk_mode">Scan continuously</string>
+	<string name="bulk_mode_summary">Always start scanning continuously.</string>
 	<string name="history">Histórico</string>
 	<string name="preferences">Preferências</string>
 	<string name="scan_category">Scan</string>

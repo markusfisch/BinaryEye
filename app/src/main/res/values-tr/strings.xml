@@ -43,6 +43,7 @@
 	<string name="info">Bilgi</string>
 	<string name="switch_camera">Kamerayı değiştir</string>
 	<string name="bulk_mode">Sürekli tara</string>
+	<string name="bulk_mode_summary">Always start scanning continuously.</string>
 	<string name="history">Geçmiş</string>
 	<string name="preferences">Tercihler</string>
 	<string name="scan_category">Tarama</string>

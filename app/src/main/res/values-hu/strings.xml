@@ -43,6 +43,7 @@
 	<string name="info">Információ</string>
 	<string name="switch_camera">Kamera átkapcsolása</string>
 	<string name="bulk_mode">Scan continuously</string>
+	<string name="bulk_mode_summary">Always start scanning continuously.</string>
 	<string name="history">Előzmények</string>
 	<string name="preferences">Beállítások</string>
 	<string name="scan_category">Scan</string>

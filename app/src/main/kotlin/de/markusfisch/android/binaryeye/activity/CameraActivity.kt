@@ -74,7 +74,7 @@ class CameraActivity : AppCompatActivity() {
 	private var decoding = true
 	private var returnResult = false
 	private var frontFacing = false
-	private var bulkMode = false
+	private var bulkMode = prefs.bulkMode
 	private var ignoreNext: String? = null
 	private var fallbackBuffer: IntArray? = null
 
@@ -157,6 +157,11 @@ class CameraActivity : AppCompatActivity() {
 		super.onResume()
 		System.gc()
 		zxing.updateHints(prefs.tryHarder)
+		if (bulkMode != prefs.bulkMode) {
+			bulkMode = prefs.bulkMode
+			invalidateOptionsMenu()
+			ignoreNext = null
+		}
 		returnResult = "com.google.zxing.client.android.SCAN" == intent.action
 		if (hasCameraPermission(this)) {
 			openCamera()
@@ -252,6 +257,7 @@ class CameraActivity : AppCompatActivity() {
 			R.id.bulk_mode -> {
 				bulkMode = bulkMode xor true
 				item.isChecked = bulkMode
+				ignoreNext = null
 				true
 			}
 			R.id.preferences -> {

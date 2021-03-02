@@ -45,6 +45,7 @@
 	<string name="info">Информация</string>
 	<string name="switch_camera">Переключить камеру</string>
 	<string name="bulk_mode">Сканировать непрерывно</string>
+	<string name="bulk_mode_summary">Always start scanning continuously.</string>
 	<string name="history">История</string>
 	<string name="preferences">Настройки</string>
 	<string name="scan_category">Сканирование</string>

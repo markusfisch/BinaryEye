@@ -45,6 +45,7 @@
 	<string name="info">ინფორმაცია</string>
 	<string name="switch_camera">კამერის გადართვა</string>
 	<string name="bulk_mode">სკანირება უწყვეტად</string>
+	<string name="bulk_mode_summary">Always start scanning continuously.</string>
 	<string name="history">ისტორია</string>
 	<string name="preferences">პარამეტრები</string>
 	<string name="scan_category">სკანირება</string>

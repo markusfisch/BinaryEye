@@ -43,6 +43,7 @@
 	<string name="info">ソースコード</string>
 	<string name="switch_camera">カメラを切り替え</string>
 	<string name="bulk_mode">まとめてスキャンする</string>
+	<string name="bulk_mode_summary">Always start scanning continuously.</string>
 	<string name="history">履歴</string>
 	<string name="preferences">設定</string>
 	<string name="scan_category">スキャン</string>

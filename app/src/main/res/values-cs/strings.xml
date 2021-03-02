@@ -44,6 +44,7 @@
 	<string name="info">Info</string>
 	<string name="switch_camera">Přepnout kameru</string>
 	<string name="bulk_mode">Skenovat nepřetržitě</string>
+	<string name="bulk_mode_summary">Always start scanning continuously.</string>
 	<string name="history">Historie</string>
 	<string name="preferences">Nastavení</string>
 	<string name="scan_category">Skenování</string>

@@ -63,6 +63,7 @@
 	<string name="show_meta_data_summary">Show additional data about the scanned barcoded.</string>
 	<string name="switch_camera">Przełącz aparat</string>
 	<string name="bulk_mode">Scan continuously</string>
+	<string name="bulk_mode_summary">Always start scanning continuously.</string>
 	<string name="toggle_flash">Przełącz lampę błyskową</string>
 	<string name="wifi_added">Wi-Fi dodane</string>
 	<string name="zoom_by_swiping">Przybliżaj kamerę, przesuwając w górę/dół</string>
