@@ -27,6 +27,7 @@ import com.google.zxing.ResultMetadataType
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.content.copyToClipboard
+import de.markusfisch.android.binaryeye.content.execShareIntent
 import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.graphics.Mapping
 import de.markusfisch.android.binaryeye.graphics.frameToView
@@ -280,11 +281,7 @@ class CameraActivity : AppCompatActivity() {
 			Intent.ACTION_VIEW,
 			Uri.parse(getString(R.string.project_url))
 		)
-		if (intent.resolveActivity(packageManager) != null) {
-			startActivity(intent)
-		} else {
-			toast(R.string.project_url)
-		}
+		execShareIntent(intent)
 	}
 
 	private fun handleSendText(intent: Intent) {
