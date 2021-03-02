@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.39.0
+* Fix adding contacts and calendar entries on Android 11+
+* Add a setting to always start in bulk mode
+* Add Czech translation
+* Update Spanish translation
+* Update Czech translation
+
 ## 1.38.0
 * Add a quick settings tile to scan from settings
 * Make custom background requests time out after 5 seconds
