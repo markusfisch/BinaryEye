@@ -1,0 +1,6 @@
+* Fix adding contacts and calendar entries on Android 11+
+* Add a setting to always start in bulk mode
+* Add Czech translation
+* Update Spanish translation
+* Update Czech translation
+
