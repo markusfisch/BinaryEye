@@ -157,7 +157,7 @@ class CameraActivity : AppCompatActivity() {
 		super.onResume()
 		System.gc()
 		zxing.updateHints(prefs.tryHarder)
-		if (bulkMode != prefs.bulkMode) {
+		if (prefs.bulkMode && bulkMode != prefs.bulkMode) {
 			bulkMode = prefs.bulkMode
 			invalidateOptionsMenu()
 			ignoreNext = null
