@@ -30,6 +30,11 @@
 			android:summary="@string/bulk_mode_summary"/>
 		<android.support.v7.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
+			android:key="show_toast_in_bulk_mode"
+			android:title="@string/show_toast_in_bulk_mode"
+			android:summary="@string/show_toast_in_bulk_mode_summary"/>
+		<android.support.v7.preference.SwitchPreferenceCompat
+			android:defaultValue="true"
 			android:key="vibrate"
 			android:title="@string/vibrate"
 			android:summary="@string/vibrate_summary"/>

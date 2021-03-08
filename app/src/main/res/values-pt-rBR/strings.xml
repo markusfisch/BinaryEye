@@ -59,6 +59,8 @@
 	<string name="auto_rotate_summary">Automatically rotate the camera frame to recognize vertical 1D barcodes. Depending on the device, this may affect performance.</string>
 	<string name="try_harder">Optimize reader for accuracy, not speed</string>
 	<string name="try_harder_summary">Enable this option for very hard to read codes. Will affect performance.</string>
+	<string name="show_toast_in_bulk_mode">Show data in continuous mode</string>
+	<string name="show_toast_in_bulk_mode_summary">Briefly show the scanned data when scanning continuously.</string>
 	<string name="vibrate">Vibrate on detection</string>
 	<string name="vibrate_summary">Enable this if you want your device to vibrate when a code is recognized.</string>
 	<string name="use_history">Salvar histórico de escaneamento</string>

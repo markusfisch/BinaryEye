@@ -58,6 +58,8 @@
 	<string name="auto_rotate_summary">Otomatis putar frame kamera mengenali barcode vertikal 1D. Tergantung pada perangkat, mungkin akan berpengaruh pada performa.</string>
 	<string name="try_harder">Optimalkan akurasi pembaca</string>
 	<string name="try_harder_summary">Aktifkan opsi ini untuk kode yang susah dibaca. Akan berpengaruh pada performa.</string>
+	<string name="show_toast_in_bulk_mode">Show data in continuous mode</string>
+	<string name="show_toast_in_bulk_mode_summary">Briefly show the scanned data when scanning continuously.</string>
 	<string name="vibrate">Bergetar saat mendeteksi</string>
 	<string name="vibrate_summary">Aktifkan opsi ini jika anda ingin perangkat anda bergetar ketika kode berhasil dipindai.</string>
 	<string name="use_history">Simpan riwayat pemindaian</string>

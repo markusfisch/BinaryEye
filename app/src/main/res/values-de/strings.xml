@@ -59,6 +59,8 @@
 	<string name="auto_rotate_summary">Das Kamerabild automatisch drehen um vertikale 1D Barcodes zu erkennen. Je nach Gerät kann dies die Leistung beeinträchtigen.</string>
 	<string name="try_harder">Gründliche Suche</string>
 	<string name="try_harder_summary">Aktivieren Sie diese Option für sehr schwer lesbare Codes. Beeinträchtigt die Leistung.</string>
+	<string name="show_toast_in_bulk_mode">Daten einblenden</string>
+	<string name="show_toast_in_bulk_mode_summary">Die gescannten Daten werden kurz eingeblenet, wenn fortlaufend gescannt wird.</string>
 	<string name="vibrate">Bei Erkennung vibrieren</string>
 	<string name="vibrate_summary">Das Gerät soll vibrieren wenn ein Code erkannt wird.</string>
 	<string name="use_history">Codes speichern</string>

@@ -59,6 +59,8 @@
 	<string name="auto_rotate_summary">自動的に画像を回転させ、縦方向の一次元バーコードを読み取れるようにします。端末によっては処理速度に影響が出る場合があります。</string>
 	<string name="try_harder">より正確な読み込みを試みる</string>
 	<string name="try_harder_summary">バーコードをうまく読み取れない場合はこのオプションを有効にしてください。処理速度に影響が出る場合があります。</string>
+	<string name="show_toast_in_bulk_mode">Show data in continuous mode</string>
+	<string name="show_toast_in_bulk_mode_summary">Briefly show the scanned data when scanning continuously.</string>
 	<string name="vibrate">認識時に振動する</string>
 	<string name="vibrate_summary">バーコードが認識されたときにバイブレーションを行います。</string>
 	<string name="use_history">スキャン履歴を保存する</string>

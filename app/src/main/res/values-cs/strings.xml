@@ -60,6 +60,8 @@
 	<string name="auto_rotate_summary">Automaticky otočí obraz a tak detekuje 1D čárové kódy na výšku. Na některých zařízeních může snížit výkonnost.</string>
 	<string name="try_harder">Optimalizovat pro přesnost</string>
 	<string name="try_harder_summary">Použijte pro velmi nečitelné kódy. Sníží výkonnost.</string>
+	<string name="show_toast_in_bulk_mode">Show data in continuous mode</string>
+	<string name="show_toast_in_bulk_mode_summary">Briefly show the scanned data when scanning continuously.</string>
 	<string name="vibrate">Zavibrovat při detekování</string>
 	<string name="vibrate_summary">Zařízení zavibruje, když rozpozná čárový kód.</string>
 	<string name="use_history">Ukládat historii skenování</string>

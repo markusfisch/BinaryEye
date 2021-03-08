@@ -671,7 +671,9 @@ class CameraActivity : AppCompatActivity() {
 			)
 			if (bulkMode) {
 				ignoreNext = result.text
-				toast(result.text)
+				if (prefs.showToastInBulkMode) {
+					toast(result.text)
+				}
 				detectorView.postDelayed({
 					decoding = true
 				}, 500)

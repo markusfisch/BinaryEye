@@ -61,6 +61,8 @@
 	<string name="auto_rotate_summary">კამერის ავტომატური შეტრიალება  ვერტიკალური 1D შტრიხ-კოდების ამოსაცნობად. მოწყობილობიდან გამომდინარე, შესაძლოა იმოქმედოს წარმადობაზე.</string>
 	<string name="try_harder">წაკითხვის ოპტიმიზირება სიზუსტეზე და არა სისწრაფეზე</string>
 	<string name="try_harder_summary">ეს პარამეტრი ჩართეთ იმ შტრიხ-კოდებისთვის, რომელთა ამოცნობაც ძალიან ძნელია. მოქმედებს წარმადობაზე.</string>
+	<string name="show_toast_in_bulk_mode">Show data in continuous mode</string>
+	<string name="show_toast_in_bulk_mode_summary">Briefly show the scanned data when scanning continuously.</string>
 	<string name="vibrate">ვიბრირება პოვნისას</string>
 	<string name="vibrate_summary">ჩართეთ ეს პარამეტრი, თუ გსურთ მოწყობილობის ვიბრირება,როდესაც შტრიხ-კოდი ამოცნობილი იქნება.</string>
 	<string name="use_history">სკანირების ისტორიის შენახვა</string>

@@ -59,6 +59,8 @@
 	<string name="auto_rotate_summary">Yatay 1B barkodları tanımak için kamera çerçevesini kendiliğinden döndür. Bu, aygıta bağlı olarak performansı etkileyebilir.</string>
 	<string name="try_harder">Kesinlik için okuyucuyu iyileştir</string>
 	<string name="try_harder_summary">Okuması zor barkodlar için bu seçeneği etkinleştir. Performansı etkileyecektir.</string>
+	<string name="show_toast_in_bulk_mode">Show data in continuous mode</string>
+	<string name="show_toast_in_bulk_mode_summary">Briefly show the scanned data when scanning continuously.</string>
 	<string name="vibrate">Tanıyınca titre</string>
 	<string name="vibrate_summary">Kod tanındığında aygıtınızın titremesini istiyorsanız bunu etkinleştirin.</string>
 	<string name="use_history">Tarama geçmişini kaydet</string>
