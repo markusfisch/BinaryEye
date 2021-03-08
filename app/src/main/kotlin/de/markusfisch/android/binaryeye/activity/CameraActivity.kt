@@ -672,7 +672,7 @@ class CameraActivity : AppCompatActivity() {
 			if (bulkMode) {
 				ignoreNext = result.text
 				if (prefs.showToastInBulkMode) {
-					toast(result.text)
+					toast(result.text.abbreviateIfNeccessary(50))
 				}
 				detectorView.postDelayed({
 					decoding = true
@@ -690,6 +690,12 @@ class CameraActivity : AppCompatActivity() {
 		private const val FRONT_FACING = "front_facing"
 		private const val BULK_MODE = "bulk_mode"
 	}
+}
+
+fun String.abbreviateIfNeccessary(max: Int) = if (length < max) {
+	this
+} else {
+	"${take(max)}…"
 }
 
 fun showResult(
