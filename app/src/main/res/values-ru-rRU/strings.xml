@@ -1,6 +1,6 @@
 <resources>
 	<string name="no_camera_no_fun">Это приложение не имеет никакого смысла без доступа к камере</string>
-	<string name="camera_error">Не удается получить доступ к камере, пожалуйста, попробуйте еще раз</string>
+	<string name="camera_error">Невозможно получить доступ к камере, попробуйте ещё раз</string>
 	<string name="scan_code">Сканирование штрих-кода</string>
 	<string name="compose_barcode">Создание штрих-кода</string>
 	<string name="decode_barcode">Декодирование штрих-кода</string>
@@ -13,22 +13,22 @@
 		<item quantity="other">%2$d символов, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Уровень коррекции ошибок</string>
-	<string name="error_correction_level_l" formatted="false">Low (~7&#37; correction)</string>
-	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; correction)</string>
-	<string name="error_correction_level_q" formatted="false">Quartile (~25&#37; correction)</string>
-	<string name="error_correction_level_h" formatted="false">High (~30&#37; correction)</string>
-	<string name="issue_number">Номер выпуская</string>
+	<string name="error_correction_level_l" formatted="false">Низкий (≈7&#37; исправлений)</string>
+	<string name="error_correction_level_m" formatted="false">Средний (≈15&#37; исправлений)</string>
+	<string name="error_correction_level_q" formatted="false">Квартиль (≈25&#37; исправлений)</string>
+	<string name="error_correction_level_h" formatted="false">Высокий (≈30&#37; исправлений)</string>
+	<string name="issue_number">Номер выпуска</string>
 	<string name="orientation">Ориентация</string>
 	<string name="other_meta_data">Метаданные</string>
-	<string name="pdf417_extra_metadata">PDF417 метаданные</string>
+	<string name="pdf417_extra_metadata">Метаданные PDF417</string>
 	<string name="possible_country">Возможная страна изготовления</string>
 	<string name="suggested_price">Предположительная цена</string>
-	<string name="upc_ean_extension">UPC EAN расширение</string>
+	<string name="upc_ean_extension">Расширение UPC EAN</string>
 	<string name="toggle_flash">Включить вспышку</string>
 	<string name="share">Поделиться</string>
-	<string name="share_as">Share as?</string>
+	<string name="share_as">Поделиться как?</string>
 	<string name="copy_to_clipboard">Скопировать в буфер обмена</string>
-	<string name="copied_to_clipboard">Скопирован в буфер обмена</string>
+	<string name="copied_to_clipboard">Скопировано в буфер обмена</string>
 	<string name="copy_password">Скопировать пароль в буфер обмена</string>
 	<string name="copied_password_to_clipboard">Пароль скопирован в буфер обмена</string>
 	<string name="open_url">Открыть URL</string>
@@ -44,21 +44,21 @@
 	<string name="view_barcode">Просмотр штрих-кода</string>
 	<string name="info">Информация</string>
 	<string name="switch_camera">Переключить камеру</string>
-	<string name="bulk_mode">Сканировать непрерывно</string>
-	<string name="bulk_mode_summary">Always start scanning continuously.</string>
+	<string name="bulk_mode">Непрерывное сканирование</string>
+	<string name="bulk_mode_summary">Всегда запускать непрерывное сканирование.</string>
 	<string name="history">История</string>
 	<string name="preferences">Настройки</string>
 	<string name="scan_category">Сканирование</string>
 	<string name="content_category">Содержимое</string>
-	<string name="locale_category">Language</string>
-	<string name="custom_locale">Custom language</string>
-	<string name="follow_system_settings">Follow system settings</string>
+	<string name="locale_category">Язык</string>
+	<string name="custom_locale">Выбрать язык</string>
+	<string name="follow_system_settings">Как в системе</string>
 	<string name="show_crop_handle">Показывать область сканирования</string>
 	<string name="show_crop_handle_summary">Ограничить сканирование изменяемой областью.</string>
-	<string name="zoom_by_swiping">Масштабировать движением пальцем вверх/вниз</string>
+	<string name="zoom_by_swiping">Масштабировать жестом вверх/вниз</string>
 	<string name="zoom_by_swiping_summary">Проведите пальцем вверх или вниз для управления масштабированием камеры.</string>
 	<string name="auto_rotate">Распознавать 1D штрих-коды вертикально</string>
-	<string name="auto_rotate_summary">Автоматически поварачивать камеру для распознавания вертикальных 1D штрих-кодов. В зависимости от устройства, это может повлиять на производительность.</string>
+	<string name="auto_rotate_summary">Автоматически поворачивать камеру для распознавания вертикальных 1D штрих-кодов. В зависимости от устройства, это может повлиять на производительность.</string>
 	<string name="try_harder">Оптимизировать считывание на точность, а не скорость</string>
 	<string name="try_harder_summary">Включите эту настройку для штрих-кодов, которые очень сложно прочитать. Влияет на производительность.</string>
 	<string name="vibrate">Вибрировать при обнаружении</string>
@@ -75,8 +75,8 @@
 	<string name="show_meta_data_summary">Показывать дополнительную информацию об отсканированных штрих-кодах.</string>
 	<string name="show_hex_dump">Показывать шестнадцатеричный дамп</string>
 	<string name="show_hex_dump_summary">Показывать шестнадцатеричный дамп содержимого отсканированного штрих-кода.</string>
-	<string name="close_automatically">Go back after Copy/Share</string>
-	<string name="close_automatically_summary">Automatically return to the scan screen after copying or sharing the read contents.</string>
+	<string name="close_automatically">Возвращаться после копирования/обмена</string>
+	<string name="close_automatically_summary">Автоматически возвращаться к экрану сканирования после копирования или передачу через функцию «Поделиться» считанного содержимого.</string>
 	<string name="open_with_url">Открывать неизвестные данные с помощью URL</string>
 	<string name="send_category">Отправка</string>
 	<string name="send_scan_url">Отправлять каждый отсканированный штрих-код на URL</string>
@@ -85,7 +85,7 @@
 	<string name="send_type_get_query_string">GET с полной строкой параметров запроса</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
-	<string name="test_url">Test URL</string>
+	<string name="test_url">Проверка URL</string>
 	<string name="really_remove_scan">Действительно удалить сканирование?</string>
 	<string name="really_remove_all_scans">Действительно удалить все сканирования?</string>
 	<string name="really_remove_selected_scans">Действительно удалить выбранные штрих-коды?</string>
@@ -96,26 +96,26 @@
 	<string name="enter_name">Укажите название сканирования</string>
 	<string name="enter_name_hint">Название сканирования</string>
 	<string name="no_barcode_found">Штрих-код не найден</string>
-	<string name="pick_list_separator">Чем разделитять элементы списка?</string>
+	<string name="pick_list_separator">Чем разделять элементы списка?</string>
 	<string name="separator_line_break">Разрыв строки</string>
 	<string name="separator_ruler">Горизонтальная линия</string>
 	<string name="save_as_file_name">Сохранить файл как</string>
 	<string name="file_name">Имя файла</string>
-	<string name="error_saving_file">Не удается сохранить файл</string>
+	<string name="error_saving_file">Невозможно сохранить файл</string>
 	<string name="error_file_exists">Файл уже существует</string>
-	<string name="connect_to_wifi">Подключиться к WiFi</string>
-	<string name="wifi_config_failed">Не удалось настроить WiFi</string>
-	<string name="wifi_added">WiFi добавлен</string>
-	<string name="sms_send">Отправить СМС</string>
-	<string name="sms_error">Не удалось отправить СМС</string>
+	<string name="connect_to_wifi">Подключиться к Wi-Fi</string>
+	<string name="wifi_config_failed">Невозможно настроить Wi-Fi</string>
+	<string name="wifi_added">Wi-Fi добавлен</string>
+	<string name="sms_send">Отправить SMS</string>
+	<string name="sms_error">Невозможно отправить SMS</string>
 	<string name="tel_dial">Набрать номер</string>
-	<string name="tel_error">Не удалось набрать номер</string>
+	<string name="tel_error">Невозможно набрать номер</string>
 	<string name="mail_send">Отправить письмо</string>
-	<string name="mail_error">Не удалось отправить почту</string>
+	<string name="mail_error">Невозможно отправить почту</string>
 	<string name="vcard_add">Добавить в контакты</string>
-	<string name="vcard_failed">Не удалось добавить в контакты</string>
+	<string name="vcard_failed">Невозможно добавить в контакты</string>
 	<string name="vevent_add">Добавить в календарь</string>
-	<string name="vevent_failed">Не удалось добавить в календарь</string>
+	<string name="vevent_failed">Невозможно добавить в календарь</string>
 	<string name="otpauth_add">Добавить 2FA</string>
 	<string name="search_web">Искать в сети</string>
 	<string name="search_scan">Поиск сканирования</string>
@@ -124,7 +124,7 @@
 	<string name="export_csv_comma">CSV (разделитель - запятая)</string>
 	<string name="export_csv_semicolon">CSV (разделитель - точка с запятой)</string>
 	<string name="export_json">JSON</string>
-	<string name="export_database">SQLite база данных</string>
+	<string name="export_database">База данных SQLite</string>
 	<string name="saved_in_downloads">Сохранено в загрузках</string>
 	<string name="rotate_image_cw">Повернуть изображение по часовой стрелке</string>
 	<string name="pick_file">Выберите файл с изображением</string>
@@ -132,5 +132,5 @@
 	<string name="shortcut_decode">Сканировать штрих-код</string>
 	<string name="shortcut_encode">Создать штрих-код</string>
 	<string name="shortcut_preferences">Настройки</string>
-	<string name="background_request_failed">Фоновый запрос не удался</string>
+	<string name="background_request_failed">Фоновый запрос не выполнен</string>
 </resources>
