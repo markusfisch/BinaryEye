@@ -117,6 +117,8 @@
 	<string name="error_no_content">Brak zawartości</string>
 	<string name="try_harder">Zoptymalizuj czytnik pod kątem dokładności, a nie prędkości</string>
 	<string name="try_harder_summary">Enable this option for very hard to read codes. Will affect performance.</string>
+	<string name="show_toast_in_bulk_mode">Show data in continuous mode</string>
+	<string name="show_toast_in_bulk_mode_summary">Briefly show the scanned data when scanning continuously.</string>
 	<string name="cannot_resolve_action">Żadna aplikacja nie może tego otworzyć</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">Wprowadź zawartość tutaj</string>

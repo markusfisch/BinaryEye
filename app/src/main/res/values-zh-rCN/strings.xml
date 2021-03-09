@@ -58,6 +58,8 @@
 	<string name="auto_rotate_summary">自动旋转相机以识别竖直的1D条形码（可能会影响一些设备的扫描性能）</string>
 	<string name="try_harder">提高扫描精度</string>
 	<string name="try_harder_summary">扫描很难识别的条形码时可启用该选项，会降低扫描速度</string>
+	<string name="show_toast_in_bulk_mode">Show data in continuous mode</string>
+	<string name="show_toast_in_bulk_mode_summary">Briefly show the scanned data when scanning continuously.</string>
 	<string name="vibrate">振动提示</string>
 	<string name="vibrate_summary">扫描完成时振动提示</string>
 	<string name="use_history">保存扫描历史</string>

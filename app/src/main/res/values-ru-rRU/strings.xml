@@ -61,6 +61,8 @@
 	<string name="auto_rotate_summary">Автоматически поворачивать камеру для распознавания вертикальных 1D штрих-кодов. В зависимости от устройства, это может повлиять на производительность.</string>
 	<string name="try_harder">Оптимизировать считывание на точность, а не скорость</string>
 	<string name="try_harder_summary">Включите эту настройку для штрих-кодов, которые очень сложно прочитать. Влияет на производительность.</string>
+	<string name="show_toast_in_bulk_mode">Show data in continuous mode</string>
+	<string name="show_toast_in_bulk_mode_summary">Briefly show the scanned data when scanning continuously.</string>
 	<string name="vibrate">Вибрировать при обнаружении</string>
 	<string name="vibrate_summary">Включите эту настройку если хотите, чтобы устройство вибрировало, кода штрих-код распознан.</string>
 	<string name="use_history">Сохранять историю сканирования</string>

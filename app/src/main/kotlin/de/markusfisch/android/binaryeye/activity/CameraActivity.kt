@@ -157,7 +157,7 @@ class CameraActivity : AppCompatActivity() {
 		super.onResume()
 		System.gc()
 		zxing.updateHints(prefs.tryHarder)
-		if (bulkMode != prefs.bulkMode) {
+		if (prefs.bulkMode && bulkMode != prefs.bulkMode) {
 			bulkMode = prefs.bulkMode
 			invalidateOptionsMenu()
 			ignoreNext = null
@@ -671,7 +671,9 @@ class CameraActivity : AppCompatActivity() {
 			)
 			if (bulkMode) {
 				ignoreNext = result.text
-				toast(result.text)
+				if (prefs.showToastInBulkMode) {
+					toast(result.text.abbreviateIfNeccessary(50))
+				}
 				detectorView.postDelayed({
 					decoding = true
 				}, 500)
@@ -688,6 +690,12 @@ class CameraActivity : AppCompatActivity() {
 		private const val FRONT_FACING = "front_facing"
 		private const val BULK_MODE = "bulk_mode"
 	}
+}
+
+fun String.abbreviateIfNeccessary(max: Int) = if (length < max) {
+	this
+} else {
+	"${take(max)}…"
 }
 
 fun showResult(

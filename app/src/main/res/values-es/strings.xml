@@ -59,6 +59,8 @@
 	<string name="auto_rotate_summary">Rotar automáticamente el marco de la cámara para reconocer los códigos de barras 1D verticales. Dependiendo del dispositivo, esto puede afectar al rendimiento.</string>
 	<string name="try_harder">Optimizar la precisión del lector</string>
 	<string name="try_harder_summary">Active esta opción para códigos muy difíciles de leer. Esto afectará al rendimiento.</string>
+	<string name="show_toast_in_bulk_mode">Show data in continuous mode</string>
+	<string name="show_toast_in_bulk_mode_summary">Briefly show the scanned data when scanning continuously.</string>
 	<string name="vibrate">Vibrar al detectar</string>
 	<string name="vibrate_summary">Active esta opción si desea que su dispositivo vibre cuando se reconozca un código.</string>
 	<string name="use_history">Guardar historial de escaneo</string>

@@ -46,6 +46,7 @@ class DecodeFragment : Fragment() {
 	private var closeAutomatically = false
 	private var action = ActionRegistry.DEFAULT_ACTION
 	private var isBinary = false
+	private var raw: ByteArray = ByteArray(0)
 	private var id = 0L
 
 	override fun onCreate(state: Bundle?) {
@@ -77,7 +78,7 @@ class DecodeFragment : Fragment() {
 		isBinary = hasNonPrintableCharacters(
 			inputContent
 		) or inputContent.isEmpty()
-		val raw = scan.raw ?: inputContent.toByteArray()
+		raw = scan.raw ?: inputContent.toByteArray()
 		format = scan.format
 
 		contentView = view.findViewById(R.id.content)
@@ -221,13 +222,13 @@ class DecodeFragment : Fragment() {
 				true
 			}
 			R.id.copy_to_clipboard -> {
-				copyToClipboard(content)
+				copyToClipboard(textOrHex())
 				maybeBackOrFinish()
 				true
 			}
 			R.id.share -> {
 				context?.also {
-					shareText(it, content)
+					shareText(it, textOrHex())
 					maybeBackOrFinish()
 				}
 				true
@@ -246,6 +247,12 @@ class DecodeFragment : Fragment() {
 			}
 			else -> super.onOptionsItemSelected(item)
 		}
+	}
+
+	private fun textOrHex() = if (isBinary) {
+		raw.toHexString()
+	} else {
+		content
 	}
 
 	private fun copyPasswordToClipboard() {

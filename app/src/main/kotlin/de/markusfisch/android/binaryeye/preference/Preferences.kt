@@ -53,6 +53,13 @@ class Preferences {
 			commit(BULK_MODE, value)
 			field = value
 		}
+	var showToastInBulkMode = true
+		set(value) {
+			// immediately save this setting because it's only ever read
+			// before the camera is opened
+			commit(SHOW_TOAST_IN_BULK_MODE, value)
+			field = value
+		}
 	var vibrate = true
 		set(value) {
 			apply(VIBRATE, value)
@@ -138,11 +145,18 @@ class Preferences {
 			CROP_HANDLE_ORIENTATION,
 			cropHandleOrientation
 		)
-		showCropHandle = preferences.getBoolean(SHOW_CROP_HANDLE, showCropHandle)
+		showCropHandle = preferences.getBoolean(
+			SHOW_CROP_HANDLE,
+			showCropHandle
+		)
 		zoomBySwiping = preferences.getBoolean(ZOOM_BY_SWIPING, zoomBySwiping)
 		autoRotate = preferences.getBoolean(AUTO_ROTATE, autoRotate)
 		tryHarder = preferences.getBoolean(TRY_HARDER, tryHarder)
 		bulkMode = preferences.getBoolean(BULK_MODE, bulkMode)
+		showToastInBulkMode = preferences.getBoolean(
+			SHOW_TOAST_IN_BULK_MODE,
+			showToastInBulkMode
+		)
 		vibrate = preferences.getBoolean(VIBRATE, vibrate)
 		useHistory = preferences.getBoolean(USE_HISTORY, useHistory)
 		ignoreConsecutiveDuplicates = preferences.getBoolean(
@@ -210,6 +224,7 @@ class Preferences {
 		const val AUTO_ROTATE = "auto_rotate"
 		const val TRY_HARDER = "try_harder"
 		const val BULK_MODE = "bulk_mode"
+		const val SHOW_TOAST_IN_BULK_MODE = "show_toast_in_bulk_mode"
 		const val VIBRATE = "vibrate"
 		const val USE_HISTORY = "use_history"
 		const val IGNORE_CONSECUTIVE_DUPLICATES = "ignore_consecutive_duplicates"
