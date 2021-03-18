@@ -1,0 +1,1 @@
+Skaner kodów kreskowych
