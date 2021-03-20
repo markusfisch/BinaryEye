@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.40.0
+* Add a setting to show/hide scanned data when scanning continuously
+* Only show the first 50 characters when scanning continuously
+* Share binary data as hex dump
+* Update Russian language
+
 ## 1.39.0
 * Fix adding contacts and calendar entries on Android 11+
 * Add a setting to always start in bulk mode
