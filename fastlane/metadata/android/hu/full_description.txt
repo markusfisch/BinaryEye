@@ -1,0 +1,10 @@
+Működik álló és fekvő tájolásban is, képes beolvasni fordított kódokat,
+Material Design szemléletben készült és még vonalkódokat is képes előállítani.
+
+A ZXing („Zebra Crossing”) vonalkód-leolvasó programkönyvtárat használja.
+A támogatott vonalkódformátumok: AZTEC, CODABAR, CODE 39, CODE 93, CODE 128,
+DATA MATRIX, EAN 8, EAN 13, ITF, PDF417, QR CODE, RSS 14, RSS EXPANDED,
+UPC A, UPC E és UPC EAN EXTENSION.
+
+Ez az alkalmazás nyílt forráskódú:
+https://github.com/markusfisch/BinaryEye
