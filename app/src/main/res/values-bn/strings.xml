@@ -13,7 +13,7 @@
 	<string name="error_correction_level">ত্রুটি ঠিককরণ পরিমাণ</string>
 	<string name="error_correction_level_l" formatted="false">কম (~৭&#37; ঠিককরণ)</string>
 	<string name="error_correction_level_m" formatted="false">মধ্যম (~১৫&#37; ঠিককরণ)</string>
-	<string name="error_correction_level_q" formatted="false">বেশি (~২৫&#37; ঠিককরণ)</string>)</string>
+	<string name="error_correction_level_q" formatted="false">বেশি (~২৫&#37; ঠিককরণ)</string>
 	<string name="error_correction_level_h" formatted="false">অনেক বেশি (~৩০&#37; ঠিককরণ)</string>
 	<string name="issue_number">সমস্যা ক্রম</string>
 	<string name="orientation">দিক</string>
