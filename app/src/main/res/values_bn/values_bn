@@ -8,250 +8,129 @@
 	<string name="binary_data">(বাইনারি তথ্য)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$dটি অক্ষর, %1$s</item>
-		<item quantity="other">
-%2$dটি অক্ষর, %1$s</item>
+		<item quantity="other">%2$dটি অক্ষর, %1$s</item>
 	</plurals>
-	<string name="error_correction_level">
-ত্রুটি ঠিককরণ পরিমাণ</string>
-	<string name="error_correction_level_l" formatted="false">
-কম (~৭&#37; ঠিককরণ)</string>
-	<string name="error_correction_level_m" formatted="false">
-মধ্যম (~১৫&#37; ঠিককরণ)</string>
-	<string name="error_correction_level_q" formatted="false">
-বেশি (~২৫&#37; ঠিককরণ)</string>)</string>
-	<string name="error_correction_level_h" formatted="false">
-অনেক বেশি (~৩০&#37; ঠিককরণ)</string>
-	<string name="issue_number">
-সমস্যা ক্রম</string>
-	<string name="orientation">
-দিক</string>
-	<string name="other_meta_data">
-মেটাতথ্য</string>
-	<string name="pdf417_extra_metadata">
-পিডিএফ৪১৭ মেটাতথ্য</string>
-	<string name="possible_country">
-তৈরির সম্ভাব্য দেশ</string>
-	<string name="suggested_price">
-প্রস্তসবিত দাম</string>
-	<string name="upc_ean_extension">
-ইউপিসি ইএএন বর্ধিত</string>
-	<string name="toggle_flash">
-আলো</string>
-	<string name="share">
-শেয়ার</string>
-	<string name="share_as">
-শেয়ার করার মাধ্যম</string>
-	<string name="copy_to_clipboard">
-ক্লিপবোর্ডে অনুলিপি</string>
-	<string name="copied_to_clipboard">Copied to clipboard
-ক্লিপবোর্ডে অনুলিপিত</string>
-	<string name="copy_password">Copy password into clipboard
-ক্লিপবোর্ডে পাসওয়ার্ড অনুলিপি করো</string>
-	<string name="copied_password_to_clipboard">Password copied to clipboard
-ক্লিপবোর্ডে পাসওয়ার্ড অনুলিপিত</string>
-	<string name="open_url">Open url
-ইউআরএল খুলো</string>
-	<string name="cannot_resolve_action">No application can open that
-খোলার মতো অ্যাপ নেই</string>
-	<string name="pick_search_engine">Pick a search engine
-একটা সার্চ ইঞ্জিন নাও</string>
-	<string name="format">Format
-ধরণ</string>
-	<string name="size">Size in pixels
-পিক্সেলে আকার</string>
+	<string name="error_correction_level">ত্রুটি ঠিককরণ পরিমাণ</string>
+	<string name="error_correction_level_l" formatted="false">কম (~৭&#37; ঠিককরণ)</string>
+	<string name="error_correction_level_m" formatted="false">মধ্যম (~১৫&#37; ঠিককরণ)</string>
+	<string name="error_correction_level_q" formatted="false">বেশি (~২৫&#37; ঠিককরণ)</string>)</string>
+	<string name="error_correction_level_h" formatted="false">অনেক বেশি (~৩০&#37; ঠিককরণ)</string>
+	<string name="issue_number">সমস্যা ক্রম</string>
+	<string name="orientation">দিক</string>
+	<string name="other_meta_data">মেটাতথ্য</string>
+	<string name="pdf417_extra_metadata">পিডিএফ৪১৭ মেটাতথ্য</string>
+	<string name="possible_country">তৈরির সম্ভাব্য দেশ</string>
+	<string name="suggested_price">প্রস্তসবিত দাম</string>
+	<string name="upc_ean_extension">ইউপিসি ইএএন বর্ধিত</string>
+	<string name="toggle_flash">আলো</string>
+	<string name="share">ভাগ করো</string>
+	<string name="share_as">ভাগ করার মাধ্যম</string>
+	<string name="copy_to_clipboard">ক্লিপবোর্ডে অনুলিপি</string>
+	<string name="copied_to_clipboard">ক্লিপবোর্ডে অনুলিপিত</string>
+	<string name="copy_password">ক্লিপবোর্ডে পাসওয়ার্ড অনুলিপি করো</string>
+	<string name="copied_password_to_clipboard">ক্লিপবোর্ডে পাসওয়ার্ড অনুলিপিত</string>
+	<string name="open_url">ইউআরএল খুলো</string>
+	<string name="cannot_resolve_action">খোলার মতো অ্যাপ নেই</string>
+	<string name="pick_search_engine">একটা সার্চ ইঞ্জিন নাও</string>
+	<string name="format">ধরণ</string>
+	<string name="size">পিক্সেলে আকার</string>
 	<string name="width_by_height">%1$d×%2$d</string>
-	<string name="input_content_here">Input content here
-এখানে তথ্য দাও</string>
-	<string name="encode">ENCODE
-সংকেতকরণ</string>
-	<string name="error_no_content">Missing content
-তথ্য নেই</string>
-	<string name="error_encoding_barcode">Barcode cannot be generated
-বারকোড বানানো যায়নি</string>
-	<string name="view_barcode">View barcode
-বারকোড দেখো</string>
-	<string name="info">Info
-তথ্য</string>
-	<string name="switch_camera">Switch camera
-ক্যামেরা পাল্টাও</string>
-	<string name="bulk_mode">Scan continuously
-ধারাবাহিকভাবে খুঁজো</string>
-	<string name="bulk_mode_summary">Always start scanning continuously.
-শুরুতে সবসময় ধারাবাহিকভাবে খুঁজো</string>
-	<string name="history">History
-ইতিহাস</string>
-	<string name="preferences">Preferences
-পছন্দসমূহ</string>
-	<string name="scan_category">Scan
-খুঁজো</string>
-	<string name="content_category">Content
-তথ্য</string>
-	<string name="locale_category">Language
-ভাষা</string>
-	<string name="custom_locale">Custom language
-আলাদা ভাষা</string>
-	<string name="follow_system_settings">Follow system settings
-ব্যবস্থার‌ পছন্দসমূহ অনুসরণ করো</string>
-	<string name="show_crop_handle">Show cropping limiter
-ছাটার সীমা দেখাও</string>
-	<string name="show_crop_handle_summary">Restrict scanning to a customizable region.
-পরিবর্তনযোগ্য জায়গায়ই শুধু খুঁজো।</string>
-	<string name="zoom_by_swiping">Swipe up/down to zoom
-ওপরে/নিচে টানো বড়ো করার জন্য</string>
-	<string name="zoom_by_swiping_summary">Swipe up or down in camera screen to control the camera zoom.
-ক্যামেরার ছোটো-বড় নিয়ন্ত্রণের জন্য উপরে-নিচে টানো।</string>
-	<string name="auto_rotate">Recognize vertical 1D barcodes
-খাড়া ১ডি বারকোড সনাক্ত করো</string>
-	<string name="auto_rotate_summary">Automatically rotate the camera frame to recognize vertical 1D barcodes. Depending on the device, this may affect performance.
-১ডি বারকোড সনাক্ত করতে স্বয়ংক্রিয়ভাবে ঘুরাও। যন্ত্রনির্ভরে এটি কার্যসম্পাদনের হার কমাতে পারে।</string>
-	<string name="try_harder">Optimize reader for accuracy
-পাঠকের নির্ভুলতা বাড়াও</string>
-	<string name="try_harder_summary">Enable this option for very hard to read codes. Will affect performance.
-অনেক কঠিন সংকেতের জন্য এটা চালু করো। এতে কার্যসম্পাদনার হার কমতে পারে।</string>
-	<string name="show_toast_in_bulk_mode">Show data in continuous mode
-ধারাবাহিকভাবে তথ্য দেখাও</string>
-	<string name="show_toast_in_bulk_mode_summary">Briefly show the scanned data when scanning continuously.
-ধারাবাহিকভাবে তথ্য দেখানোর সময় মুহূর্তের জন্য তথ্য দেখাও।</string>
-	<string name="vibrate">Vibrate on detection
-চিনলে কাঁপো</string>
-	<string name="vibrate_summary">Enable this if you want your device to vibrate when a code is recognized.
-এটা সক্ষম রাখলে সংকেত চিনার সাথে সাথে কাঁপবে।</string>
-	<string name="use_history">Save scan history
-ইতিহাস সংরক্ষণ করো।</string>
-	<string name="use_history_summary">Save recognized codes on your device.
-সনাক্তকৃত সংকেত যন্ত্রে সংরক্ষণ করো।</string>
-	<string name="ignore_consecutive_duplicates">Ignore duplicates
-দ্বিত্ব উপেক্ষা করো</string>
-	<string name="ignore_consecutive_duplicates_summary">Do not save consecutive duplicates in the scan history.
-দুইটা ইতিহাস সংরক্ষণ করবে না।</string>
-	<string name="open_immediately">Open immediately
-সাথে সাথে খুলো</string>
-	<string name="open_immediately_summary">Skip inspection and open contents immediately. May open harmful content if enabled.
-না দেখে সাথে সাথে খুলো। সক্রিয় থাকলে ক্ষতিকারক তথ্য খুলতে পারে।
-</string>
-	<string name="copy_immediately">Put into clipboard
-ক্লিপবোর্ডে রাখো</string>
-	<string name="copy_immediately_summary">Automatically copy scanned contents into clipboard. Please note that other apps may snoop on your clipboard in the background.
-স্বয়ংক্রিয়ভাবে ক্লিপবোর্ডে অনুলিপি করো। বিশেষ দ্রষ্টব্য অন্য অ্যাপ পটভূমিতে এই তথ্য দেখে ফেলতে পারে।</string>
-	<string name="show_meta_data">Show metadata
-মেটাতথ্য দেখাও</string>
-	<string name="show_meta_data_summary">Show additional data about the scanned barcode.
-সনাক্তকৃত বারকোড নিয়ে অতিরিক্ত তথ্য দেখাও।</string>
-	<string name="show_hex_dump">Show hex dump
-ষড় সংকেত দেখাও</string>
-	<string name="show_hex_dump_summary">Show a hex dump of the scanned contents.
-পড়া তথ্যের ষড় সংকেত দেখাও</string>
-	<string name="close_automatically">Go back after Copy/Share
-অনুলিপি/ভাগ করার পরে পিছনে যাও</string>
-	<string name="close_automatically_summary">Automatically return to the scan screen after copying or sharing the read contents.
-তথ্য অনুলিপি/ভাগ করার পরে স্বয়ংক্রিয়ভাবে পিছনে যাও।</string>
-	<string name="open_with_url">Open unknown data with URL
-অজানা ইউআরএল খুলো</string>
-	<string name="send_category">Forwarding
-অন্যকে পাঠাও</string>
-	<string name="send_scan_url">Send every scan to URL
-প্রতিটি পাঠোদ্ধার ইউআরএল-এ পাঠাও</string>
-	<string name="send_scan_type">Type of request for every scan
-প্রতি পাঠোদ্ধারের জন্য অনুরোধ</string>
-	<string name="send_type_get_add_content">GET and simply add content
-গেট(GET) দিয়ে তথ্য যোগ করো</string>
-	<string name="send_type_get_query_string">GET with compelete query string
-সম্পূর্ণ কুয়েরি স্ট্রিং দিয়ে গেট(GET) করো</string>
+	<string name="input_content_here">এখানে তথ্য দাও</string>
+	<string name="encode">সংকেতকরণ</string>
+	<string name="error_no_content">তথ্য নেই</string>
+	<string name="error_encoding_barcode">বারকোড বানানো যায়নি</string>
+	<string name="view_barcode">বারকোড দেখো</string>
+	<string name="info">তথ্য</string>
+	<string name="switch_camera">ক্যামেরা পাল্টাও</string>
+	<string name="bulk_mode">ধারাবাহিকভাবে খুঁজো</string>
+	<string name="bulk_mode_summary">শুরুতে সবসময় ধারাবাহিকভাবে খুঁজো</string>
+	<string name="history">ইতিহাস</string>
+	<string name="preferences">পছন্দসমূহ</string>
+	<string name="scan_category">খুঁজো</string>
+	<string name="content_category">তথ্য</string>
+	<string name="locale_category">ভাষা</string>
+	<string name="custom_locale">আলাদা ভাষা</string>
+	<string name="follow_system_settings">ব্যবস্থার পছন্দসমূহ অনুসরণ করো</string>
+	<string name="show_crop_handle">ছাটার সীমা দেখাও</string>
+	<string name="show_crop_handle_summary">পরিবর্তনযোগ্য জায়গায়ই শুধু খুঁজো।</string>
+	<string name="zoom_by_swiping">ওপরে/নিচে টানো বড়ো করার জন্য</string>
+	<string name="zoom_by_swiping_summary">ক্যামেরার ছোটো-বড় নিয়ন্ত্রণের জন্য উপরে-নিচে টানো।</string>
+	<string name="auto_rotate">খাড়া ১ডি বারকোড সনাক্ত করো</string>
+	<string name="auto_rotate_summary">১ডি বারকোড সনাক্ত করতে স্বয়ংক্রিয়ভাবে ঘুরাও। যন্ত্রনির্ভরে এটি কার্যসম্পাদনের হার কমাতে পারে।</string>
+	<string name="try_harder">পাঠকের নির্ভুলতা বাড়াও</string>
+	<string name="try_harder_summary">অনেক কঠিন সংকেতের জন্য এটা চালু করো। এতে কার্যসম্পাদনার হার কমতে পারে।</string>
+	<string name="show_toast_in_bulk_mode">ধারাবাহিকভাবে তথ্য দেখাও</string>
+	<string name="show_toast_in_bulk_mode_summary">ধারাবাহিকভাবে তথ্য দেখানোর সময় মুহূর্তের জন্য তথ্য দেখাও।</string>
+	<string name="vibrate">চিনলে কাঁপো</string>
+	<string name="vibrate_summary">এটা সক্ষম রাখলে সংকেত চিনার সাথে সাথে কাঁপবে।</string>
+	<string name="use_history">ইতিহাস সংরক্ষণ করো।</string>
+	<string name="use_history_summary">সনাক্তকৃত সংকেত যন্ত্রে সংরক্ষণ করো।</string>
+	<string name="ignore_consecutive_duplicates">দ্বিত্ব উপেক্ষা করো</string>
+	<string name="ignore_consecutive_duplicates_summary">দুইটা ইতিহাস সংরক্ষণ করবে না।</string>
+	<string name="open_immediately">সাথে সাথে খুলো</string>
+	<string name="open_immediately_summary">না দেখে সাথে সাথে খুলো। সক্রিয় থাকলে ক্ষতিকারক তথ্য খুলতে পারে।</string>
+	<string name="copy_immediately">ক্লিপবোর্ডে রাখো</string>
+	<string name="copy_immediately_summary">স্বয়ংক্রিয়ভাবে ক্লিপবোর্ডে অনুলিপি করো। বিশেষ দ্রষ্টব্য অন্য অ্যাপ পটভূমিতে এই তথ্য দেখে ফেলতে পারে।</string>
+	<string name="show_meta_data">মেটাতথ্য দেখাও</string>
+	<string name="show_meta_data_summary">সনাক্তকৃত বারকোড নিয়ে অতিরিক্ত তথ্য দেখাও।</string>
+	<string name="show_hex_dump">ষড়(hex) সংকেত দেখাও</string>
+	<string name="show_hex_dump_summary">পড়া তথ্যের ষড় সংকেত দেখাও</string>
+	<string name="close_automatically">অনুলিপি/ভাগ করার পরে পিছনে যাও</string>
+	<string name="close_automatically_summary">তথ্য অনুলিপি/ভাগ করার পরে স্বয়ংক্রিয়ভাবে পিছনে যাও।</string>
+	<string name="open_with_url">অজানা ইউআরএল খুলো</string>
+	<string name="send_category">অন্যকে পাঠাও</string>
+	<string name="send_scan_url">প্রতিটি পাঠোদ্ধার ইউআরএল-এ পাঠাও</string>
+	<string name="send_scan_type">প্রতি পাঠোদ্ধারের জন্য অনুরোধ</string>
+	<string name="send_type_get_add_content">গেট(GET) দিয়ে তথ্য যোগ করো</string>
+	<string name="send_type_get_query_string">সম্পূর্ণ কুয়েরি স্ট্রিং দিয়ে গেট(GET) করো</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
-	<string name="test_url">Test URL</string>
-	<string name="really_remove_scan">Really remove scan?
-আসলেই এটা মুছবে?</string>
-	<string name="really_remove_all_scans">Really remove all scans?
-আসলেই সব মুছবে?</string>
-	<string name="really_remove_selected_scans">Really remove selected scans?
-আসলেই নির্বাচিত সব মুছবে?</string>
-	<string name="clear_history">Clear history
-ইতিহাস মুছো</string>
-	<string name="copy_scan">Copy scan
-পাঠোদ্ধার অনুলিপি করো</string>
-	<string name="edit_scan">Edit label
-চিহ্ন সম্পাদনা করো</string>
-	<string name="remove_scan">Remove scan
-পাঠোদ্ধার মুছো</string>
-	<string name="enter_name">Enter a name to describe the scan
-পাঠোদ্ধার ব্যাখ্যা করতে একটা নাম দাও</string>
-	<string name="enter_name_hint">Name of the scan
-পাঠোদ্ধারের নাম</string>
-	<string name="no_barcode_found">No barcode found
-বারকোড পাওয়া যায়নি</string>
-	<string name="pick_list_separator">How to separate list items?
-তালিকার ভুক্তি কিভাবে আলাদা করবো?</string>
-	<string name="separator_line_break">Line break
-বাক্য বিরতি</string>
-	<string name="separator_ruler">Ruler
-মাপকাঠি</string>
-	<string name="save_as_file_name">Save as in Downloads file?
-ডাউনলোডে নথি হিসেবে সংরক্ষণ করবে?</string>
-	<string name="file_name">File name
-নথি নাম</string>
-	<string name="error_saving_file">Cannot save file
-নথি সংরক্ষণ করা যায়নি</string>
-	<string name="error_file_exists">File already exists
-নথি আগে থেকে আছে</string>
-	<string name="connect_to_wifi">Connect to WiFi
-ওয়াইফাইর সাথে যুক্ত করো</string>
-	<string name="wifi_config_failed">Could not configure WiFi
-ওয়াইফাইয়ে ঠিক করে যুক্ত হওয়া যায়নি</string>
-	<string name="wifi_added">WiFi added
-ওয়াইফাই যোগকৃত</string>
-	<string name="sms_send">Send SMS
-এসএমএস পাঠাও</string>
-	<string name="sms_error">Could not send SMS
-এসএমএস পাঠানো যায়নি</string>
-	<string name="tel_dial">Dial number
-নম্বরে ডাকো</string>
-	<string name="tel_error">Could not dial number
-নম্বর ডাকা যায়নি</string>
-	<string name="mail_send">Send mail
-চিঠি পাঠাও</string>
-	<string name="mail_error">Could not send mail
-চিঠি পাঠাতে ব্যর্থ</string>
-	<string name="vcard_add">Add to contacts
-যোগাযোগে যুক্ত</string>
-	<string name="vcard_failed">Could not add to contacts
-ষোগাযোগে যোগ করা যায়নি</string>
-	<string name="vevent_add">Add to calendar
-বর্ষপঞ্জিকায় যোগ করো</string>
-	<string name="vevent_failed">Could not add to calendar
-বর্ষপঞ্জিকায় যোগ করা যায়নি</string>
-	<string name="otpauth_add">Add 2FA
-২এফএ যোগ করো</string>
-	<string name="search_web">Search the web
-ওয়েবে খুঁজো</string>
-	<string name="search_scan">Search scan
-আগেরগুলোতে খুঁজো</string>
-	<string name="export_to_file">Export to file
-নথিতে রপ্তানি করো</string>
-	<string name="export_as">Export as?
-রপ্তানির ধরণ?</string>
-	<string name="export_csv_comma">CSV file with commas
-কমাসহ সিএসভি(.csv) নথি</string>
-	<string name="export_csv_semicolon">CSV file with semicolons
-সেমিকোলনসহ সিএসভি(.csv) নথি</string>
-	<string name="export_json">JSON file
-জেসন নথি</string>
-	<string name="export_database">SQLite database
-এসকিউলাইট তথ্যভিত্তি</string>
-	<string name="saved_in_downloads">Saved in downloads
-ডাউনলোডে সংরক্ষিত</string>
-	<string name="rotate_image_cw">Rotate image clockwise
-ছবি ঘড়ির দিকে ঘুরাও</string>
-	<string name="pick_file">Pick image file
-ছবি নাও</string>
-	<string name="pick_code_to_scan">Pick code to scan
-খুঁজার জন্য কোড নাও</string>
-	<string name="shortcut_decode">Scan a barcode
-বারকোড খুজো</string>
-	<string name="shortcut_encode">Create a barcode
-বারকোড বানাও</string>
-	<string name="shortcut_preferences">Settings
-পছন্দসমূহ</string>
-	<string name="background_request_failed">Background request failed
-পটভূমির অনুরোধ ব্যর্থ</string>
+	<string name="test_url">পরীক্ষার জন্য ইউআরএল</string>
+	<string name="really_remove_scan">আসলেই এটা মুছবে?</string>
+	<string name="really_remove_all_scans">আসলেই সব মুছবে?</string>
+	<string name="really_remove_selected_scans">আসলেই নির্বাচিত সব মুছবে?</string>
+	<string name="clear_history">ইতিহাস মুছো</string>
+	<string name="copy_scan">পাঠোদ্ধার অনুলিপি করো</string>
+	<string name="edit_scan">চিহ্ন সম্পাদনা করো</string>
+	<string name="remove_scan">পাঠোদ্ধার মুছো</string>
+	<string name="enter_name">পাঠোদ্ধার ব্যাখ্যা করতে একটা নাম দাও</string>
+	<string name="enter_name_hint">পাঠোদ্ধারের নাম</string>
+	<string name="no_barcode_found">বারকোড পাওয়া যায়নি</string>
+	<string name="pick_list_separator">তালিকার ভুক্তি কিভাবে আলাদা করবো?</string>
+	<string name="separator_line_break">বাক্য বিরতি</string>
+	<string name="separator_ruler">মাপকাঠি</string>
+	<string name="save_as_file_name">ডাউনলোডে নথি হিসেবে সংরক্ষণ করবে?</string>
+	<string name="file_name">নথির নাম</string>
+	<string name="error_saving_file">নথি সংরক্ষণ করা যায়নি</string>
+	<string name="error_file_exists">নথি আগে থেকে আছে</string>
+	<string name="connect_to_wifi">ওয়াইফাইর সাথে যুক্ত করো</string>
+	<string name="wifi_config_failed">ওয়াইফাইয়ে ঠিক করে যুক্ত হওয়া যায়নি</string>
+	<string name="wifi_added">ওয়াইফাই যোগকৃত</string>
+	<string name="sms_send">এসএমএস পাঠাও</string>
+	<string name="sms_error">এসএমএস পাঠানো যায়নি</string>
+	<string name="tel_dial">নম্বরে ডাকো</string>
+	<string name="tel_error">নম্বর ডাকা যায়নি</string>
+	<string name="mail_send">চিঠি পাঠাও</string>
+	<string name="mail_error">চিঠি পাঠাতে ব্যর্থ</string>
+	<string name="vcard_add">যোগাযোগে যুক্ত</string>
+	<string name="vcard_failed">ষোগাযোগে যোগ করা যায়নি</string>
+	<string name="vevent_add">বর্ষপঞ্জিকায় যোগ করো</string>
+	<string name="vevent_failed">বর্ষপঞ্জিকায় যোগ করা যায়নি</string>
+	<string name="otpauth_add">২এফএ যোগ করো</string>
+	<string name="search_web">ওয়েবে খুঁজো</string>
+	<string name="search_scan">আগেরগুলোতে খুঁজো</string>
+	<string name="export_to_file">নথিতে রপ্তানি করো</string>
+	<string name="export_as">রপ্তানির ধরণ?</string>
+	<string name="export_csv_comma">কমাসহ সিএসভি(.csv) নথি</string>
+	<string name="export_csv_semicolon">সেমিকোলনসহ সিএসভি(.csv) নথি</string>
+	<string name="export_json">জেসন নথি</string>
+	<string name="export_database">এসকিউলাইট তথ্যভিত্তি</string>
+	<string name="saved_in_downloads">ডাউনলোডে সংরক্ষিত</string>
+	<string name="rotate_image_cw">ছবি ঘড়ির দিকে ঘুরাও</string>
+	<string name="pick_file">ছবি নাও</string>
+	<string name="pick_code_to_scan">খুঁজার জন্য কোড নাও</string>
+	<string name="shortcut_decode">বারকোড খুজো</string>
+	<string name="shortcut_encode">বারকোড বানাও</string>
+	<string name="shortcut_preferences">পছন্দসমূহ</string>
+	<string name="background_request_failed">পটভূমির অনুরোধ ব্যর্থ</string>
 </resources>
