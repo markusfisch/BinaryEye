@@ -7,12 +7,12 @@ import android.preference.PreferenceManager
 class Preferences {
 	lateinit var preferences: SharedPreferences
 
-	var cropHandleX = -1
+	var cropHandleX = -2 // -2 means set default roi
 		set(value) {
 			apply(CROP_HANDLE_X, value)
 			field = value
 		}
-	var cropHandleY = -1
+	var cropHandleY = -2
 		set(value) {
 			apply(CROP_HANDLE_Y, value)
 			field = value
