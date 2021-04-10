@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.41.0
+* Use cropping limiter by default for new installations
+* Truncate all toasts with strings from the outside
+* Add Bangla translation
+* Add missing Japanese locale
+* Update Hungarian translation
+* Update Russian app description
+
 ## 1.40.0
 * Add a setting to show/hide scanned data when scanning continuously
 * Only show the first 50 characters when scanning continuously
