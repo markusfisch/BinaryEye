@@ -1,0 +1,7 @@
+* Use cropping limiter by default for new installations
+* Truncate all toasts with strings from the outside
+* Add Bangla translation
+* Add missing Japanese locale
+* Update Hungarian translation
+* Update Russian app description
+
