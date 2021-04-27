@@ -98,6 +98,6 @@ private fun Activity.restartApp() {
 	}
 	startActivity(intent)
 	finish()
-	// restart to begin with an unmodified Locale to follow system settings
+	// Restart to begin with an unmodified Locale to follow system settings.
 	Runtime.getRuntime().exit(0)
 }

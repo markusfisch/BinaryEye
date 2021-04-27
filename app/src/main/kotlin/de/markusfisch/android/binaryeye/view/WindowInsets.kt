@@ -29,10 +29,10 @@ fun View.doOnApplyWindowInsets(f: (View, Rect) -> Unit) {
 			f(v, insetsWithToolbar(insets))
 			insets
 		}
-		// it's important to explicitly request the insets (again) in
+		// It's important to explicitly request the insets (again) in
 		// case the view was created in Fragment.onCreateView() because
 		// setOnApplyWindowInsetsListener() won't fire when the view
-		// isn't attached
+		// isn't attached.
 		requestApplyInsetsWhenAttached()
 	}
 }

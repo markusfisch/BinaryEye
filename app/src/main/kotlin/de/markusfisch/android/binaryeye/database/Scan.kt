@@ -138,8 +138,12 @@ private fun getRawBytes(result: Result): ByteArray? {
 	for (seg in segments as Iterable<ByteArray>) {
 		bytes += seg
 	}
-	// byte segments can never be shorter than the text.
-	// Zxing cuts off content prefixes like "WIFI:"
+	// If the byte segments are shorter than the converted string, the
+	// content of the QR Code has been encoded with different encoding
+	// modes (e.g. some parts in alphanumeric, some in byte encoding).
+	// This is because Zxing only records byte segments for byte encoded
+	// parts. Please note the byte segments can actually be longer than
+	// the string because Zxing cuts off prefixes like "WIFI:".
 	return if (bytes.size >= result.text.length) bytes else null
 }
 

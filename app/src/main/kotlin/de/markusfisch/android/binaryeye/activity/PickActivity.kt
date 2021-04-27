@@ -54,7 +54,8 @@ class PickActivity : AppCompatActivity() {
 		super.onCreate(state)
 		setContentView(R.layout.activity_pick)
 
-		// necessary to get the right translation after setting a custom locale
+		// Necessary to get the right translation after setting a custom
+		// locale.
 		setTitle(R.string.pick_code_to_scan)
 
 		zxing.updateHints(true)

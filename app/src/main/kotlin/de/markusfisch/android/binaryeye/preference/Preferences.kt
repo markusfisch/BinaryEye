@@ -7,7 +7,7 @@ import android.preference.PreferenceManager
 class Preferences {
 	lateinit var preferences: SharedPreferences
 
-	var cropHandleX = -2 // -2 means set default roi
+	var cropHandleX = -2 // -2 means set default roi.
 		set(value) {
 			apply(CROP_HANDLE_X, value)
 			field = value
@@ -34,29 +34,29 @@ class Preferences {
 		}
 	var autoRotate = false
 		set(value) {
-			// immediately save this setting before it shouldn't change
-			// on the fly while scanning
+			// Immediately save this setting before it shouldn't change
+			// on the fly while scanning.
 			commit(AUTO_ROTATE, value)
 			field = value
 		}
 	var tryHarder = false
 		set(value) {
-			// immediately save this setting because it's only ever read
-			// before the camera is opened
+			// Immediately save this setting because it's only ever read
+			// before the camera is opened.
 			commit(TRY_HARDER, value)
 			field = value
 		}
 	var bulkMode = false
 		set(value) {
-			// immediately save this setting because it's only ever read
-			// before the camera is opened
+			// Immediately save this setting because it's only ever read
+			// before the camera is opened.
 			commit(BULK_MODE, value)
 			field = value
 		}
 	var showToastInBulkMode = true
 		set(value) {
-			// immediately save this setting because it's only ever read
-			// before the camera is opened
+			// Immediately save this setting because it's only ever read
+			// before the camera is opened.
 			commit(SHOW_TOAST_IN_BULK_MODE, value)
 			field = value
 		}
@@ -127,8 +127,8 @@ class Preferences {
 		}
 	var forceCompat: Boolean = false
 		set(value) {
-			// since the app may be about to crash when forceCompat is set,
-			// it's necessary to `commit()` this synchronously
+			// Since the app may be about to crash when forceCompat is set,
+			// it's necessary to `commit()` this synchronously.
 			commit(FORCE_COMPAT, value)
 			field = value
 		}

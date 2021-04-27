@@ -258,7 +258,7 @@ class DetectorView : View {
 		if (minDist < 1) {
 			return
 		}
-		// canvas.clipRect() doesn't work reliably below KITKAT
+		// canvas.clipRect() doesn't work reliably below KITKAT.
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 			val radius = min(minDist / 2, cornerRadius).toFloat()
 			canvas.save()

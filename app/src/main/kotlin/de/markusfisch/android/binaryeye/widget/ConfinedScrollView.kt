@@ -23,8 +23,8 @@ class ConfinedScrollView : ScrollView {
 	) {
 		super.onLayout(changed, left, top, right, bottom)
 		if (changed) {
-			// give Android some time to settle down before running this,
-			// not putting it on the queue makes it only work sometimes
+			// Give Android some time to settle down before running this,
+			// not putting it on the queue makes it only work sometimes.
 			post {
 				getChildAt(0)?.also { child ->
 					scrollable = height < child.height + paddingTop + paddingBottom

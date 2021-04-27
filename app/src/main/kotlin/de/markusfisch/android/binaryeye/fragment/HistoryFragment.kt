@@ -265,7 +265,7 @@ class HistoryFragment : Fragment() {
 					View.GONE
 				}
 				cursor?.let { cursor ->
-					// close previous cursor
+					// Close previous cursor.
 					scansAdapter?.also { it.changeCursor(null) }
 					scansAdapter = ScansAdapter(ac, cursor)
 					listView.adapter = scansAdapter
@@ -298,7 +298,7 @@ class HistoryFragment : Fragment() {
 				DecodeFragment.newInstance(scan)
 			)
 		} catch (e: IllegalArgumentException) {
-			// ignore, can never happen
+			// Ignore, can never happen.
 		}
 	}
 
@@ -307,7 +307,7 @@ class HistoryFragment : Fragment() {
 		return cursor?.getString(cursor.getColumnIndex(Database.SCANS_NAME))
 	}
 
-	// dialogs don't have a parent layout
+	// Dialogs don't have a parent layout.
 	@SuppressLint("InflateParams")
 	private fun askForName(context: Context, id: Long, text: String?) {
 		val view = LayoutInflater.from(context).inflate(
