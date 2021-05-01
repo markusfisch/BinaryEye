@@ -10,10 +10,10 @@
 		<item quantity="other">%2$d 字符， %1$s</item>
 	</plurals>
 	<string name="error_correction_level">纠错级别</string>
-	<string name="error_correction_level_l" formatted="false">Low (~7&#37; correction)</string>
-	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; correction)</string>
+	<string name="error_correction_level_l" formatted="false">低 (~7&#37; correction)</string>
+	<string name="error_correction_level_m" formatted="false">中 (~15&#37; correction)</string>
 	<string name="error_correction_level_q" formatted="false">Quartile (~25&#37; correction)</string>
-	<string name="error_correction_level_h" formatted="false">High (~30&#37; correction)</string>
+	<string name="error_correction_level_h" formatted="false">高 (~30&#37; correction)</string>
 	<string name="issue_number">发行编号</string>
 	<string name="orientation">方向</string>
 	<string name="other_meta_data">元数据</string>
@@ -23,7 +23,7 @@
 	<string name="upc_ean_extension">UPC EAN 扩展</string>
 	<string name="toggle_flash">开关闪光灯</string>
 	<string name="share">分享</string>
-	<string name="share_as">Share as?</string>
+	<string name="share_as">以何种方式分享?</string>
 	<string name="copy_to_clipboard">复制到剪贴板</string>
 	<string name="copied_to_clipboard">已复制到剪贴板</string>
 	<string name="copy_password">复制密码到剪贴板</string>
@@ -42,14 +42,14 @@
 	<string name="info">关于</string>
 	<string name="switch_camera">切换摄像头</string>
 	<string name="bulk_mode">连续扫描</string>
-	<string name="bulk_mode_summary">Always start scanning continuously.</string>
+	<string name="bulk_mode_summary">始终开启连续扫描</string>
 	<string name="history">历史</string>
 	<string name="preferences">首选项</string>
 	<string name="scan_category">扫描</string>
 	<string name="content_category">内容</string>
-	<string name="locale_category">Language</string>
-	<string name="custom_locale">Custom language</string>
-	<string name="follow_system_settings">Follow system settings</string>
+	<string name="locale_category">语言</string>
+	<string name="custom_locale">设定语言</string>
+	<string name="follow_system_settings">跟随系统设置</string>
 	<string name="show_crop_handle">限制扫描区域</string>
 	<string name="show_crop_handle_summary">把扫描区域限制在选定范围内</string>
 	<string name="zoom_by_swiping">上下滑动缩放</string>
@@ -57,9 +57,9 @@
 	<string name="auto_rotate">识别竖直的1D条形码</string>
 	<string name="auto_rotate_summary">自动旋转相机以识别竖直的1D条形码（可能会影响一些设备的扫描性能）</string>
 	<string name="try_harder">提高扫描精度</string>
-	<string name="try_harder_summary">扫描很难识别的条形码时可启用该选项，会降低扫描速度</string>
-	<string name="show_toast_in_bulk_mode">Show data in continuous mode</string>
-	<string name="show_toast_in_bulk_mode_summary">Briefly show the scanned data when scanning continuously.</string>
+	<string name="try_harder_summary">扫描很难识别的条形码时可启用该选项，但会降低扫描速度</string>
+	<string name="show_toast_in_bulk_mode">在连续扫描模式中显示数据</string>
+	<string name="show_toast_in_bulk_mode_summary">连续扫描时简要显示扫描数据。</string>
 	<string name="vibrate">振动提示</string>
 	<string name="vibrate_summary">扫描完成时振动提示</string>
 	<string name="use_history">保存扫描历史</string>
@@ -74,8 +74,8 @@
 	<string name="show_meta_data_summary">显示已扫描条形码的额外数据</string>
 	<string name="show_hex_dump">显示16进制数据</string>
 	<string name="show_hex_dump_summary">显示已扫描条形码的16进制数据</string>
-	<string name="close_automatically">Go back after Copy/Share</string>
-	<string name="close_automatically_summary">Automatically return to the scan screen after copying or sharing the read contents.</string>
+	<string name="close_automatically">复制/分享后自动返回</string>
+	<string name="close_automatically_summary">复制或分享读取的内容后自动返回扫描主界面。</string>
 	<string name="open_with_url">使用URL打开未知数据</string>
 	<string name="send_category">转发</string>
 	<string name="send_scan_url">将每个扫描结果发送到URL</string>
@@ -84,7 +84,7 @@
 	<string name="send_type_get_query_string">GET 完整查询数据</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
-	<string name="test_url">Test URL</string>
+	<string name="test_url">测试 URL</string>
 	<string name="really_remove_scan">确定删除记录？</string>
 	<string name="really_remove_all_scans">确定删除全部记录？</string>
 	<string name="really_remove_selected_scans">确定删除所选记录？</string>
