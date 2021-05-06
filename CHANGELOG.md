@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.41.1
+* Update Bengali translation
+* Update Simplified Chinese
+
 ## 1.41.0
 * Use cropping limiter by default for new installations
 * Truncate all toasts with strings from the outside
