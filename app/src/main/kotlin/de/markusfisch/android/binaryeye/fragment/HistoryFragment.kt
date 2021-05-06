@@ -224,7 +224,7 @@ class HistoryFragment : Fragment() {
 				true
 			}
 			R.id.export_history -> {
-				askToExportToFile(context)
+				askToExportToFile()
 				true
 			}
 			else -> super.onOptionsItemSelected(item)
@@ -360,11 +360,11 @@ class HistoryFragment : Fragment() {
 			.show()
 	}
 
-	private fun askToExportToFile(context: Context) {
+	private fun askToExportToFile() {
 		scope.launch {
 			val ac = activity ?: return@launch
 			progressView.useVisibility {
-				if (!hasWritePermission(ac) { askToExportToFile(context) }) {
+				if (!hasWritePermission(ac) { askToExportToFile() }) {
 					return@useVisibility
 				}
 				val options = context.resources.getStringArray(
