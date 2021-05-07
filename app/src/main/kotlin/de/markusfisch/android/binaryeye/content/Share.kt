@@ -12,6 +12,12 @@ import de.markusfisch.android.binaryeye.widget.toast
 import java.io.File
 
 fun Context.execShareIntent(intent: Intent) {
+	if (!startIntent(intent)) {
+		toast(R.string.cannot_resolve_action)
+	}
+}
+
+fun Context.startIntent(intent: Intent) = try {
 	// Avoid using `intent.resolveActivity()` at API level 30+ due
 	// to the new package visibility restrictions. In order for
 	// `resolveActivity()` to "see" another package, we would need
@@ -20,11 +26,10 @@ fun Context.execShareIntent(intent: Intent) {
 	// an exception if the Intent cannot be resolved, it's much easier
 	// and more robust to just try and catch that exception if
 	// necessary.
-	try {
-		startActivity(intent)
-	} catch (e: ActivityNotFoundException) {
-		toast(R.string.cannot_resolve_action)
-	}
+	startActivity(intent)
+	true
+} catch (e: ActivityNotFoundException) {
+	false
 }
 
 fun shareText(context: Context, text: String, type: String = "text/plain") {
