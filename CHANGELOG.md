@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.42.0
+* Add a setting to pick a default search engine
+* Update Traditional Chinese
+* Update Dutch translation
+
 ## 1.41.1
 * Update Bengali translation
 * Update Simplified Chinese
