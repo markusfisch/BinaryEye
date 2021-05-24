@@ -78,6 +78,8 @@
 	<string name="show_hex_dump_summary">Показувати шістнадцятковий дамп відсканованого вмісту.</string>
 	<string name="close_automatically">Go back after Copy/Share</string>
 	<string name="close_automatically_summary">Automatically return to the scan screen after copying or sharing the read contents.</string>
+	<string name="default_search_engine">Open unknown data in</string>
+	<string name="always_ask">Always ask</string>
 	<string name="open_with_url">Відкривати невідомі дані за допомогою URL</string>
 	<string name="send_category">Пересилання</string>
 	<string name="send_scan_url">Надсилати кожне сканування на URL</string>

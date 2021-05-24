@@ -77,6 +77,8 @@
 	<string name="show_hex_dump_summary">A beolvasott tartalom hexakiírásának megjelenítése.</string>
 	<string name="close_automatically">Ugrás vissza másolás vagy megosztás után</string>
 	<string name="close_automatically_summary">Automatikus visszatérés a beolvasási képernyőre a beolvasott tartalom másolása vagy megosztása után.</string>
+	<string name="default_search_engine">Open unknown data in</string>
+	<string name="always_ask">Always ask</string>
 	<string name="open_with_url">Ismeretlen adat megnyitása URL-lel</string>
 	<string name="send_category">Továbbítás</string>
 	<string name="send_scan_url">Összes beolvasás küldése egy URL-re</string>

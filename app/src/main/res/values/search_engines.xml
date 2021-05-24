@@ -1,5 +1,6 @@
 <resources>
 	<string-array name="search_engines_names">
+		<item>@string/always_ask</item>
 		<item>Google</item>
 		<item>DuckDuckGo</item>
 		<item>Qwant</item>
@@ -10,6 +11,7 @@
 		<item>OpenPetFoodFacts.org</item>
 	</string-array>
 	<string-array name="search_engines_values">
+		<item></item>
 		<item>https://www.google.com/search?q=</item>
 		<item>https://duckduckgo.com/?q=</item>
 		<item>https://www.qwant.com/?q=</item>

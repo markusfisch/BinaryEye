@@ -91,6 +91,8 @@
 	<string name="export_database">Eksportuj do bazy danych SQLite</string>
 	<string name="ignore_consecutive_duplicates">Nie zapisuj kolejnych duplikatów</string>
 	<string name="ignore_consecutive_duplicates_summary">Do not save consecutive duplicates in the scan history.</string>
+	<string name="default_search_engine">Open unknown data in</string>
+	<string name="always_ask">Always ask</string>
 	<string name="open_with_url">Otwieraj nieznane dane za pomocą adresu URL</string>
 	<string name="send_category">Forwarding</string>
 	<string name="send_scan_url">Send every scan to URL</string>

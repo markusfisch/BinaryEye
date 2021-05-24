@@ -7,19 +7,17 @@ import de.markusfisch.android.binaryeye.actions.IAction
 import de.markusfisch.android.binaryeye.app.alertDialog
 import de.markusfisch.android.binaryeye.app.parseAndNormalizeUri
 import de.markusfisch.android.binaryeye.app.prefs
-import de.markusfisch.android.binaryeye.content.execShareIntent
 import de.markusfisch.android.binaryeye.content.startIntent
-import de.markusfisch.android.binaryeye.widget.toast
 import java.net.URLEncoder
 
 object OpenOrSearchAction : IAction {
 	override val iconResId: Int = R.drawable.ic_action_search
 	override val titleResId: Int = R.string.search_web
 
-	override fun canExecuteOn(bytes: ByteArray): Boolean = false
+	override fun canExecuteOn(data: ByteArray): Boolean = false
 
-	override suspend fun execute(context: Context, bytes: ByteArray) {
-		view(context, String(bytes), true)
+	override suspend fun execute(context: Context, data: ByteArray) {
+		view(context, String(data), true)
 	}
 
 	private suspend fun view(context: Context, s: String, search: Boolean) {
@@ -30,12 +28,25 @@ object OpenOrSearchAction : IAction {
 	}
 
 	private suspend fun openSearch(context: Context, query: String) {
+		val defaultSearchUrl = prefs.defaultSearchUrl
+		if (defaultSearchUrl.isNotEmpty()) {
+			view(
+				context,
+				defaultSearchUrl + URLEncoder.encode(query, "utf-8"),
+				false
+			)
+			return
+		}
 		val names = context.resources.getStringArray(
 			R.array.search_engines_names
 		).toMutableList()
 		val urls = context.resources.getStringArray(
 			R.array.search_engines_values
 		).toMutableList()
+		// Remove the "Always ask" entry. The arrays search_engines_*
+		// are used in the preferences too.
+		names.removeFirst()
+		urls.removeFirst()
 		if (prefs.openWithUrl.isNotEmpty()) {
 			names.add(prefs.openWithUrl)
 			urls.add(prefs.openWithUrl)
