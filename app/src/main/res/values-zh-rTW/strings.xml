@@ -48,7 +48,7 @@
 	<string name="preferences">偏好設定</string>
 	<string name="scan_category">掃描</string>
 	<string name="content_category">內容</string>
-	<string name="locale_category">語言</string>
+        <string name="locale_category">語言</string>
 	<string name="custom_locale">設定語言</string>
 	<string name="follow_system_settings">跟隨系統設定</string>
 	<string name="show_crop_handle">限制掃描區域</string>
