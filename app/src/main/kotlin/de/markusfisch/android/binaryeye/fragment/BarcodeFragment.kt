@@ -93,7 +93,7 @@ class BarcodeFragment : Fragment() {
 		)
 		imageView.setImageBitmap(barcodeBitmap)
 		imageView.post {
-			// make sure to invoke this after ScalingImageView.onLayout()
+			// Make sure to invoke this after ScalingImageView.onLayout().
 			imageView.minWidth /= 2f
 		}
 
@@ -148,7 +148,7 @@ class BarcodeFragment : Fragment() {
 			.show()
 	}
 
-	// dialogs do not have a parent view
+	// Dialogs do not have a parent view.
 	@SuppressLint("InflateParams")
 	private fun askForFileNameAndSave(fileType: FileType) {
 		val ac = activity ?: return

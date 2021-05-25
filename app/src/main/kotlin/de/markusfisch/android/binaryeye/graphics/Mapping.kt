@@ -72,7 +72,7 @@ data class Mapping(
 	}
 
 	fun map(points: Array<ResultPoint?>): List<Point> =
-		// because ZXing apparently returns null in this array sometimes
+		// Because ZXing apparently returns null in this array sometimes.
 		points.filterNotNull().map { map(it) }
 
 	private fun rotate(point: Point) = when (frameOrientation) {

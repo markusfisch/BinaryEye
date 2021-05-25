@@ -75,7 +75,7 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 			icon, 0, 0, 0
 		)
 		holder.formatView.text = prettifyFormatName(cursor.getString(formatIndex))
-		// view.isSelected needs to be put on the queue to work
+		// view.isSelected needs to be put on the queue to work.
 		val selected = cursor.getLong(idIndex) == selectedScanId
 		view.post {
 			view.isSelected = selected

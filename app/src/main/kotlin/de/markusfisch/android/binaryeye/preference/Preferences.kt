@@ -7,12 +7,12 @@ import android.preference.PreferenceManager
 class Preferences {
 	lateinit var preferences: SharedPreferences
 
-	var cropHandleX = -1
+	var cropHandleX = -2 // -2 means set default roi.
 		set(value) {
 			apply(CROP_HANDLE_X, value)
 			field = value
 		}
-	var cropHandleY = -1
+	var cropHandleY = -2
 		set(value) {
 			apply(CROP_HANDLE_Y, value)
 			field = value
@@ -34,29 +34,29 @@ class Preferences {
 		}
 	var autoRotate = false
 		set(value) {
-			// immediately save this setting before it shouldn't change
-			// on the fly while scanning
+			// Immediately save this setting before it shouldn't change
+			// on the fly while scanning.
 			commit(AUTO_ROTATE, value)
 			field = value
 		}
 	var tryHarder = false
 		set(value) {
-			// immediately save this setting because it's only ever read
-			// before the camera is opened
+			// Immediately save this setting because it's only ever read
+			// before the camera is opened.
 			commit(TRY_HARDER, value)
 			field = value
 		}
 	var bulkMode = false
 		set(value) {
-			// immediately save this setting because it's only ever read
-			// before the camera is opened
+			// Immediately save this setting because it's only ever read
+			// before the camera is opened.
 			commit(BULK_MODE, value)
 			field = value
 		}
 	var showToastInBulkMode = true
 		set(value) {
-			// immediately save this setting because it's only ever read
-			// before the camera is opened
+			// Immediately save this setting because it's only ever read
+			// before the camera is opened.
 			commit(SHOW_TOAST_IN_BULK_MODE, value)
 			field = value
 		}
@@ -100,6 +100,11 @@ class Preferences {
 			apply(CLOSE_AUTOMATICALLY, value)
 			field = value
 		}
+	var defaultSearchUrl = ""
+		set(value) {
+			apply(DEFAULT_SEARCH_URL, value)
+			field = value
+		}
 	var openWithUrl: String = ""
 		set(value) {
 			apply(OPEN_WITH_URL, value)
@@ -127,8 +132,8 @@ class Preferences {
 		}
 	var forceCompat: Boolean = false
 		set(value) {
-			// since the app may be about to crash when forceCompat is set,
-			// it's necessary to `commit()` this synchronously
+			// Since the app may be about to crash when forceCompat is set,
+			// it's necessary to `commit()` this synchronously.
 			commit(FORCE_COMPAT, value)
 			field = value
 		}
@@ -177,6 +182,9 @@ class Preferences {
 			CLOSE_AUTOMATICALLY,
 			closeAutomatically
 		)
+		preferences.getString(DEFAULT_SEARCH_URL, defaultSearchUrl)?.also {
+			defaultSearchUrl = it
+		}
 		preferences.getString(OPEN_WITH_URL, openWithUrl)?.also {
 			openWithUrl = it
 		}
@@ -233,6 +241,7 @@ class Preferences {
 		const val SHOW_META_DATA = "show_meta_data"
 		const val SHOW_HEX_DUMP = "show_hex_dump"
 		const val CLOSE_AUTOMATICALLY = "close_automatically"
+		const val DEFAULT_SEARCH_URL = "default_search_url"
 		const val OPEN_WITH_URL = "open_with_url"
 		const val SEND_SCAN_URL = "send_scan_url"
 		const val SEND_SCAN_TYPE = "send_scan_type"

@@ -45,7 +45,7 @@ object WifiConnector {
 			invoke(parsedData.password)
 		}
 		return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-			// WifiConfiguration is deprecated in Android Q
+			// WifiConfiguration is deprecated in Android Q.
 			@Suppress("DEPRECATION")
 			WifiConfiguration().apply(parsedData)
 		} else {
@@ -58,7 +58,7 @@ object WifiConnector {
 			Context.WIFI_SERVICE
 		) as WifiManager
 		return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-			// WifiConfiguration is deprecated in Android Q
+			// WifiConfiguration is deprecated in Android Q.
 			@Suppress("DEPRECATION")
 			val wifiConfig = config as WifiConfiguration
 			if (wifiManager.enableWifi() &&
@@ -72,7 +72,7 @@ object WifiConnector {
 		} else {
 			val suggestion = (config as WifiNetworkSuggestion.Builder).build()
 			val suggestions = listOf(suggestion)
-			// remove previous conflicting network suggestion
+			// Remove previous conflicting network suggestion.
 			wifiManager.removeNetworkSuggestions(suggestions)
 			val result = wifiManager.addNetworkSuggestions(suggestions)
 			if (result == WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS) {
@@ -84,11 +84,11 @@ object WifiConnector {
 	}
 
 	internal fun parseMap(string: String): Map<String, String>? {
-		// normally those codes should have the last semicolon, but many
-		// generators don't add it
+		// Normally those codes should have the last semicolon, but many
+		// generators don't add it.
 		val wifiRegex = """^WIFI:((?:.+?:(?:[^\\;]|\\.)*;)+);?$""".toRegex()
-		// should be: ^(.+):((?:[^\\;,":]|\\.)*);$ but allows unescaped , "
-		// and : because many QR Code creators don't escape properly
+		// Should be: ^(.+):((?:[^\\;,":]|\\.)*);$ but allows unescaped , "
+		// and : because many QR Code creators don't escape properly.
 		val pairRegex = """(.+?):((?:[^\\;]|\\.)*);""".toRegex()
 		return wifiRegex.matchEntire(
 			string
@@ -102,7 +102,7 @@ object WifiConnector {
 	internal class SimpleDataAccessor private constructor(
 		private val inputMap: Map<String, String>
 	) {
-		// this should be private but because of testing it isn't possible
+		// This should be private but because of testing it isn't possible.
 		internal val ssid: String
 			get() = inputMap.getValue("S").unescape
 		internal val securityType: String
@@ -212,7 +212,7 @@ object WifiConnector {
 		return this.applyCommon(data)?.applySecurity(data)
 	}
 
-	// WifiConfiguration is deprecated in Android Q
+	// WifiConfiguration is deprecated in Android Q.
 	@Suppress("DEPRECATION")
 	private fun WifiConfiguration.apply(
 		data: SimpleDataAccessor
@@ -274,7 +274,7 @@ object WifiConnector {
 					allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.OPEN)
 					allowedProtocols.set(WifiConfiguration.Protocol.RSN) // WPA2
 					allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_EAP)
-					@Suppress("DEPRECATION") // TKIP is insecure and has bad performance
+					@Suppress("DEPRECATION") // TKIP is insecure and has bad performance.
 					allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP)
 					allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP)
 					allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP)
@@ -300,8 +300,8 @@ object WifiConnector {
 	}
 }
 
-// keep possibility of wrongly unescaped \ by explicitly searching
-// for special chars
+// Keep possibility of wrongly unescaped \ by explicitly searching
+// for special chars.
 private val escapedRegex = """\\([\\;,":])""".toRegex()
 private val String.unescape: String
 	get() = this.replace(escapedRegex) { escaped ->
@@ -327,12 +327,12 @@ private fun String.isHex() = length == 64 && matches(hexRegex)
 
 private fun WifiManager.enableWifi(): Boolean {
 	// setWifiEnabled() will always return false for Android Q
-	// because Q doesn't allow apps to enable/disable Wi-Fi anymore
+	// because Q doesn't allow apps to enable/disable Wi-Fi anymore.
 	@Suppress("DEPRECATION")
 	return isWifiEnabled || setWifiEnabled(true)
 }
 
-// WifiConfiguration is deprecated in Android Q
+// WifiConfiguration is deprecated in Android Q.
 @Suppress("DEPRECATION")
 private fun WifiManager.removeOldNetwork(
 	wifiConfig: WifiConfiguration
@@ -345,13 +345,13 @@ private fun WifiManager.removeOldNetwork(
 			removeNetwork(it)
 		}
 	} catch (e: SecurityException) {
-		// the user didn't allow ACCESS_FINE_LOCATION which is
-		// required to access configuredNetworks and that's fine
+		// The user didn't allow ACCESS_FINE_LOCATION which is
+		// required to access configuredNetworks and that's fine.
 	}
 	return true
 }
 
-// WifiConfiguration is deprecated in Android Q
+// WifiConfiguration is deprecated in Android Q.
 @Suppress("DEPRECATION")
 private fun WifiManager.enableNewNetwork(
 	wifiConfig: WifiConfiguration

@@ -1,0 +1,4 @@
+* Add a setting to pick a default search engine
+* Update Traditional Chinese
+* Update Dutch translation
+

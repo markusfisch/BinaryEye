@@ -224,7 +224,7 @@ class HistoryFragment : Fragment() {
 				true
 			}
 			R.id.export_history -> {
-				askToExportToFile(context)
+				askToExportToFile()
 				true
 			}
 			else -> super.onOptionsItemSelected(item)
@@ -265,7 +265,7 @@ class HistoryFragment : Fragment() {
 					View.GONE
 				}
 				cursor?.let { cursor ->
-					// close previous cursor
+					// Close previous cursor.
 					scansAdapter?.also { it.changeCursor(null) }
 					scansAdapter = ScansAdapter(ac, cursor)
 					listView.adapter = scansAdapter
@@ -298,7 +298,7 @@ class HistoryFragment : Fragment() {
 				DecodeFragment.newInstance(scan)
 			)
 		} catch (e: IllegalArgumentException) {
-			// ignore, can never happen
+			// Ignore, can never happen.
 		}
 	}
 
@@ -307,7 +307,7 @@ class HistoryFragment : Fragment() {
 		return cursor?.getString(cursor.getColumnIndex(Database.SCANS_NAME))
 	}
 
-	// dialogs don't have a parent layout
+	// Dialogs don't have a parent layout.
 	@SuppressLint("InflateParams")
 	private fun askForName(context: Context, id: Long, text: String?) {
 		val view = LayoutInflater.from(context).inflate(
@@ -360,11 +360,11 @@ class HistoryFragment : Fragment() {
 			.show()
 	}
 
-	private fun askToExportToFile(context: Context) {
+	private fun askToExportToFile() {
 		scope.launch {
 			val ac = activity ?: return@launch
 			progressView.useVisibility {
-				if (!hasWritePermission(ac) { askToExportToFile(context) }) {
+				if (!hasWritePermission(ac) { askToExportToFile() }) {
 					return@useVisibility
 				}
 				val options = context.resources.getStringArray(

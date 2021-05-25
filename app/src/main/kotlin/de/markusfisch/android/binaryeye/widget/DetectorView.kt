@@ -165,7 +165,6 @@ class DetectorView : View {
 				if (handleGrabbed) {
 					if (!handleActive) {
 						setHandleToDefaultRoi()
-						handleActive = true
 					} else {
 						snap(x, y)
 					}
@@ -188,6 +187,7 @@ class DetectorView : View {
 			(center.x + mn).roundToInt(),
 			(center.y + mn).roundToInt()
 		)
+		handleActive = true
 	}
 
 	private fun snap(x: Int, y: Int) {
@@ -227,6 +227,9 @@ class DetectorView : View {
 			width - handleXRadius - paddingRight - padding,
 			height - handleYRadius - paddingBottom - fabHeight
 		)
+		if (handlePos.x == -2) {
+			setHandleToDefaultRoi()
+		}
 		if (handleActive) {
 			updateClipRect()
 		} else {
@@ -255,7 +258,7 @@ class DetectorView : View {
 		if (minDist < 1) {
 			return
 		}
-		// canvas.clipRect() doesn't work reliably below KITKAT
+		// canvas.clipRect() doesn't work reliably below KITKAT.
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 			val radius = min(minDist / 2, cornerRadius).toFloat()
 			canvas.save()

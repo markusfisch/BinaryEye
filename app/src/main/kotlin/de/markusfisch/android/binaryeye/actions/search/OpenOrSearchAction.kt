@@ -7,8 +7,7 @@ import de.markusfisch.android.binaryeye.actions.IAction
 import de.markusfisch.android.binaryeye.app.alertDialog
 import de.markusfisch.android.binaryeye.app.parseAndNormalizeUri
 import de.markusfisch.android.binaryeye.app.prefs
-import de.markusfisch.android.binaryeye.content.execShareIntent
-import de.markusfisch.android.binaryeye.widget.toast
+import de.markusfisch.android.binaryeye.content.startIntent
 import java.net.URLEncoder
 
 object OpenOrSearchAction : IAction {
@@ -18,36 +17,36 @@ object OpenOrSearchAction : IAction {
 	override fun canExecuteOn(data: ByteArray): Boolean = false
 
 	override suspend fun execute(context: Context, data: ByteArray) {
-		val intent = openUri(context, String(data)) ?: return
-		context.execShareIntent(intent)
+		view(context, String(data), true)
 	}
 
-	private suspend fun openUri(
-		context: Context,
-		data: String,
-		search: Boolean = true
-	): Intent? {
-		val uri = parseAndNormalizeUri(data)
-		val intent = Intent(Intent.ACTION_VIEW, uri)
-		return when {
-			// It's okay to use `resolveActivity()` at API level 30+ here
-			// because ACTION_VIEW is defined in `<queries>` in the Manifest.
-			intent.resolveActivity(context.packageManager) != null -> intent
-			search -> getSearchIntent(context, data)
-			else -> {
-				context.toast(R.string.cannot_resolve_action)
-				null
-			}
+	private suspend fun view(context: Context, s: String, search: Boolean) {
+		val intent = Intent(Intent.ACTION_VIEW, parseAndNormalizeUri(s))
+		if (!context.startIntent(intent) && search) {
+			openSearch(context, s)
 		}
 	}
 
-	private suspend fun getSearchIntent(context: Context, query: String): Intent? {
+	private suspend fun openSearch(context: Context, query: String) {
+		val defaultSearchUrl = prefs.defaultSearchUrl
+		if (defaultSearchUrl.isNotEmpty()) {
+			view(
+				context,
+				defaultSearchUrl + URLEncoder.encode(query, "utf-8"),
+				false
+			)
+			return
+		}
 		val names = context.resources.getStringArray(
 			R.array.search_engines_names
 		).toMutableList()
 		val urls = context.resources.getStringArray(
 			R.array.search_engines_values
 		).toMutableList()
+		// Remove the "Always ask" entry. The arrays search_engines_*
+		// are used in the preferences too.
+		names.removeFirst()
+		urls.removeFirst()
 		if (prefs.openWithUrl.isNotEmpty()) {
 			names.add(prefs.openWithUrl)
 			urls.add(prefs.openWithUrl)
@@ -57,7 +56,7 @@ object OpenOrSearchAction : IAction {
 			setItems(names.toTypedArray()) { _, which ->
 				resume(urls[which] + URLEncoder.encode(query, "utf-8"))
 			}
-		} ?: return null
-		return openUri(context, queryUri, false)
+		} ?: return
+		view(context, queryUri, false)
 	}
 }

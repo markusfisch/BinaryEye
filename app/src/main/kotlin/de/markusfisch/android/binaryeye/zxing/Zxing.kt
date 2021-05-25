@@ -113,7 +113,13 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 		val bitmap = BinaryBitmap(HybridBinarizer(source))
 		return try {
 			multiFormatReader.decode(bitmap, hints)
-		} catch (e: ReaderException) {
+		} catch (e: Exception) {
+			// Usually it's bad practice to blindly catch *all* exceptions
+			// because this can hide problems we want to know about. But
+			// since ZXing has some errors (like all software) and I don't
+			// want this app to break in the hands of my users, which won't
+			// see the stack trace anyway, it's better to just catch all
+			// exceptions here and live on.
 			null
 		} finally {
 			multiFormatReader.reset()

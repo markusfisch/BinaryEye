@@ -86,6 +86,12 @@
 			android:key="close_automatically"
 			android:title="@string/close_automatically"
 			android:summary="@string/close_automatically_summary"/>
+		<ListPreference
+			android:key="default_search_url"
+			android:title="@string/default_search_engine"
+			android:entries="@array/search_engines_names"
+			android:entryValues="@array/search_engines_values"
+			android:defaultValue=""/>
 		<de.markusfisch.android.binaryeye.preference.UrlPreference
 			android:key="open_with_url"
 			android:title="@string/open_with_url"/>

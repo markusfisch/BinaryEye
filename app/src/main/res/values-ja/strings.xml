@@ -77,6 +77,8 @@
 	<string name="show_hex_dump_summary">スキャンされたコンテンツの16進数データを確認できるようにします。</string>
 	<string name="close_automatically">コピー/共有後に戻る</string>
 	<string name="close_automatically_summary">コンテンツをコピー/共有した後、自動的にスキャン画面に戻るようにします。</string>
+	<string name="default_search_engine">Open unknown data in</string>
+	<string name="always_ask">Always ask</string>
 	<string name="open_with_url">未知のデータを次のURLから開く</string>
 	<string name="send_category">転送</string>
 	<string name="send_scan_url">スキャンしたデータを次のURLから開く</string>

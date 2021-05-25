@@ -1,0 +1,5 @@
+* Add a setting to show/hide scanned data when scanning continuously
+* Only show the first 50 characters when scanning continuously
+* Share binary data as hex dump
+* Update Russian language
+

@@ -60,11 +60,11 @@ class Preprocessor(
 			outWidth = (roiWidth * SCALE_FACTOR).roundToInt()
 			outHeight = (roiHeight * SCALE_FACTOR).roundToInt()
 
-			// make sure the dimensions are always a multiple of 4
+			// Make sure the dimensions are always a multiple of 4.
 			outWidth -= outWidth % 4
 			outHeight -= outHeight % 4
 
-			// make sure the dimensions are always greater than 4
+			// Make sure the dimensions are always greater than 4.
 			outWidth = max(4, outWidth)
 			outHeight = max(4, outHeight)
 		} else {
@@ -130,7 +130,7 @@ class Preprocessor(
 		rotateScript._inWidth = t.x
 		rotateScript._inHeight = t.y
 		rotateScript.forEach_rotate90(
-			rotatedAlloc, // ignored in kernel, just to satisfy forEach
+			rotatedAlloc, // Ignored in kernel, just to satisfy forEach.
 			rotatedAlloc
 		)
 		rotatedAlloc?.copyTo(frame)

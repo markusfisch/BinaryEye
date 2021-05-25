@@ -78,6 +78,8 @@
 	<string name="show_hex_dump_summary">Zobrazí hex dump naskenovaného obsahu.</string>
 	<string name="close_automatically">Vrátit se po zkopírování/sdílení</string>
 	<string name="close_automatically_summary">Po zkopírovaní či sdílení se automaticky vrátí na skenovací obrazovku.</string>
+	<string name="default_search_engine">Open unknown data in</string>
+	<string name="always_ask">Always ask</string>
 	<string name="open_with_url">Otevřít neznámá data pomocí URL</string>
 	<string name="send_category">Přesměrování</string>
 	<string name="send_scan_url">Posílat každý sken na URL</string>

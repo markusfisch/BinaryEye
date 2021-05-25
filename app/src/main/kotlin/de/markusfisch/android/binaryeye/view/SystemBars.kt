@@ -20,8 +20,8 @@ val systemBarListViewScrollListener = object : AbsListView.OnScrollListener {
 		visibleItemCount: Int,
 		totalItemCount: Int
 	) {
-		// give Android some time to settle down before running this,
-		// not putting it on the queue makes it only work sometimes
+		// Give Android some time to settle down before running this,
+		// not putting it on the queue makes it only work sometimes.
 		view.post {
 			val scrolled = firstVisibleItem > 0 ||
 					(totalItemCount > 0 && firstChildScrolled(view))
@@ -59,7 +59,7 @@ private fun lastChildOutOfView(listView: AbsListView): Boolean {
 
 fun initSystemBars(activity: AppCompatActivity) {
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-		// keeps the soft keyboard from repositioning the layout
+		// Keeps the soft keyboard from repositioning the layout.
 		val window = activity.window
 		window.setSoftInputMode(
 			WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
@@ -109,11 +109,11 @@ fun colorSystemAndToolBars(
 	}
 	activity.supportActionBar?.setBackgroundDrawable(
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			// avoid allocation on Honeycomb and better
+			// Avoid allocation on Honeycomb and better.
 			actionBarBackground.color = topColor
 			actionBarBackground
 		} else {
-			// ColorDrawable.setColor() doesn't exist pre Honeycomb
+			// ColorDrawable.setColor() doesn't exist pre Honeycomb.
 			ColorDrawable(topColor)
 		}
 	)

@@ -56,7 +56,8 @@ object VEventAction : IntentAction() {
 		}
 	}
 
-	@SuppressLint("SimpleDateFormat") // we definitely don't wan't the local format
+	// We definitely don't wan't the local format.
+	@SuppressLint("SimpleDateFormat")
 	private val dateFormats = listOf(
 		SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'"),
 		SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"),

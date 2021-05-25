@@ -119,7 +119,8 @@ class CameraActivity : AppCompatActivity() {
 		super.onCreate(state)
 		setContentView(R.layout.activity_camera)
 
-		// necessary to get the right translation after setting a custom locale
+		// Necessary to get the right translation after setting a
+		// custom locale.
 		setTitle(R.string.scan_code)
 
 		rs = RenderScript.create(this)
@@ -193,7 +194,7 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun closeCamera() {
 		cameraView.close()
-		// closing the camera will also shut off the flash
+		// Closing the camera will also shut off the flash.
 		flash = false
 	}
 
@@ -214,8 +215,8 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
-		// always give crop handle precedence over other controls
-		// because it can easily overlap and would then be inaccessible
+		// Always give crop handle precedence over other controls
+		// because it can easily overlap and would then be inaccessible.
 		if (detectorView.onTouchEvent(ev)) {
 			return true
 		}
@@ -329,8 +330,8 @@ class CameraActivity : AppCompatActivity() {
 						}
 					}
 					MotionEvent.ACTION_UP -> {
-						// stop calling focusTo() as soon as it returns false
-						// to avoid throwing and catching future exceptions
+						// Stop calling focusTo() as soon as it returns false
+						// to avoid throwing and catching future exceptions.
 						if (focus) {
 							focus = cameraView.focusTo(v, event.x, event.y)
 							if (focus) {
@@ -378,9 +379,9 @@ class CameraActivity : AppCompatActivity() {
 			}
 
 			override fun onCameraReady(camera: Camera) {
-				// reset preprocessor to make sure it always fits the current
-				// frame orientation; important for landscape to landscape
-				// orientation changes
+				// Reset preprocessor to make sure it always fits the current
+				// frame orientation. Important for landscape to landscape
+				// orientation changes.
 				resetPreProcessor()
 				val frameWidth = cameraView.frameWidth
 				val frameHeight = cameraView.frameHeight
@@ -440,7 +441,7 @@ class CameraActivity : AppCompatActivity() {
 				params.zoom = zoom
 				camera.parameters = params
 			} catch (e: RuntimeException) {
-				// ignore; there's nothing we can do
+				// Ignore. There's nothing we can do.
 			}
 		}
 	}
@@ -511,7 +512,7 @@ class CameraActivity : AppCompatActivity() {
 				camera.parameters = parameters
 				flash = flash xor true
 			} catch (e: RuntimeException) {
-				// ignore; there's nothing we can do
+				// Ignore. There's nothing we can do.
 			}
 		}
 	}
@@ -555,9 +556,9 @@ class CameraActivity : AppCompatActivity() {
 			zxing.decode(frameData, w, h, invert)
 		} catch (e: RSRuntimeException) {
 			prefs.forceCompat = prefs.forceCompat xor true
-			// now the only option is to restart the app because
+			// Now the only option is to restart the app because
 			// RenderScript.forceCompat() needs to be called before
-			// RenderScript is initialized
+			// RenderScript is initialized.
 			restartApp(this)
 			null
 		}
@@ -611,12 +612,12 @@ class CameraActivity : AppCompatActivity() {
 		) {
 			null
 		} else {
-			// map ROI in detectorView to cameraView
+			// Map ROI in detectorView to cameraView.
 			val previewRect = cameraView.previewRect
 			// previewRect may be larger than the screen (and thus as the
 			// detectorView) in which case its left and/or top coordinate
 			// will be negative which must then be clamped to the
-			// screen/DetectorView
+			// screen/DetectorView.
 			val previewLeft = max(0, previewRect.left)
 			val previewTop = max(0, previewRect.top)
 			val previewRoi = Rect(
@@ -633,8 +634,8 @@ class CameraActivity : AppCompatActivity() {
 				previewRoi.right.toFloat() / previewRectWidth,
 				previewRoi.bottom.toFloat() / previewRectHeight
 			)
-			// since the ROI is always centered and symmetric, we don't
-			// need to distinguish between 0 and 180 or 90 and 270 degree
+			// Since the ROI is always centered and symmetric, we don't
+			// need to distinguish between 0 and 180 or 90 and 270 degree.
 			if (isPortrait(frameOrientation)) {
 				Rect(
 					(normalizedRoi.top * frameWidth.toFloat()).roundToInt(),
@@ -654,7 +655,7 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun postResult(result: Result) {
-		// get mapping for the current rotate value
+		// Get mapping for the current rotate value.
 		val mapping = getMapping()
 		cameraView.post {
 			val rp = result.resultPoints
