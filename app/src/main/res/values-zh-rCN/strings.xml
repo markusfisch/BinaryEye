@@ -76,6 +76,8 @@
 	<string name="show_hex_dump_summary">显示已扫描条形码的16进制数据</string>
 	<string name="close_automatically">复制/分享后自动返回</string>
 	<string name="close_automatically_summary">复制或分享读取的内容后自动返回扫描主界面。</string>
+	<string name="default_search_engine">Open unknown data in</string>
+	<string name="always_ask">Always ask</string>
 	<string name="open_with_url">使用URL打开未知数据</string>
 	<string name="send_category">转发</string>
 	<string name="send_scan_url">将每个扫描结果发送到URL</string>

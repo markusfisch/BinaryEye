@@ -77,6 +77,8 @@
 	<string name="show_hex_dump_summary">পড়া তথ্যের ষড় সংকেত দেখাও</string>
 	<string name="close_automatically">অনুলিপি/ভাগ করার পরে পিছনে যাও</string>
 	<string name="close_automatically_summary">তথ্য অনুলিপি/ভাগ করার পরে স্বয়ংক্রিয়ভাবে পিছনে যাও।</string>
+	<string name="default_search_engine">Open unknown data in</string>
+	<string name="always_ask">Always ask</string>
 	<string name="open_with_url">অজানা ইউআরএল খুলো</string>
 	<string name="send_category">অন্যকে পাঠাও</string>
 	<string name="send_scan_url">প্রতিটি পাঠোদ্ধার ইউআরএল-এ পাঠাও</string>

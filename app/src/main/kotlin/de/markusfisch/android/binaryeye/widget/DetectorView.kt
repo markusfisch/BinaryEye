@@ -228,7 +228,7 @@ class DetectorView : View {
 			height - handleYRadius - paddingBottom - fabHeight
 		)
 		if (handlePos.x == -2) {
-			setHandleToDefaultRoi();
+			setHandleToDefaultRoi()
 		}
 		if (handleActive) {
 			updateClipRect()

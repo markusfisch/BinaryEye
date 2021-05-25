@@ -9,8 +9,8 @@ android {
 		minSdkVersion 9
 		targetSdkVersion sdk_version
 
-		versionCode 81
-		versionName '1.41.1'
+		versionCode 82
+		versionName '1.42.0'
 
 		// it's recommended to set this value to the lowest API level
 		// able to provide all the functionality

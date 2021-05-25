@@ -79,6 +79,8 @@
 	<string name="show_hex_dump_summary">Показывать шестнадцатеричный дамп содержимого отсканированного штрих-кода.</string>
 	<string name="close_automatically">Возвращаться после копирования/обмена</string>
 	<string name="close_automatically_summary">Автоматически возвращаться к экрану сканирования после копирования или передачу через функцию «Поделиться» считанного содержимого.</string>
+	<string name="default_search_engine">Открывать неизвестные данные в</string>
+	<string name="always_ask">Всегда спрашивать</string>
 	<string name="open_with_url">Открывать неизвестные данные с помощью URL</string>
 	<string name="send_category">Отправка</string>
 	<string name="send_scan_url">Отправлять каждый отсканированный штрих-код на URL</string>

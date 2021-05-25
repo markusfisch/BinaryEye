@@ -100,6 +100,11 @@ class Preferences {
 			apply(CLOSE_AUTOMATICALLY, value)
 			field = value
 		}
+	var defaultSearchUrl = ""
+		set(value) {
+			apply(DEFAULT_SEARCH_URL, value)
+			field = value
+		}
 	var openWithUrl: String = ""
 		set(value) {
 			apply(OPEN_WITH_URL, value)
@@ -177,6 +182,9 @@ class Preferences {
 			CLOSE_AUTOMATICALLY,
 			closeAutomatically
 		)
+		preferences.getString(DEFAULT_SEARCH_URL, defaultSearchUrl)?.also {
+			defaultSearchUrl = it
+		}
 		preferences.getString(OPEN_WITH_URL, openWithUrl)?.also {
 			openWithUrl = it
 		}
@@ -233,6 +241,7 @@ class Preferences {
 		const val SHOW_META_DATA = "show_meta_data"
 		const val SHOW_HEX_DUMP = "show_hex_dump"
 		const val CLOSE_AUTOMATICALLY = "close_automatically"
+		const val DEFAULT_SEARCH_URL = "default_search_url"
 		const val OPEN_WITH_URL = "open_with_url"
 		const val SEND_SCAN_URL = "send_scan_url"
 		const val SEND_SCAN_TYPE = "send_scan_type"

@@ -79,6 +79,8 @@
 	<string name="show_hex_dump_summary">სკანირებული შტრიხ-კოდის კონტენტის თექვსმეტობითი dump-ის ჩვენება.</string>
 	<string name="close_automatically">Go back after Copy/Share</string>
 	<string name="close_automatically_summary">Automatically return to the scan screen after copying or sharing the read contents.</string>
+	<string name="default_search_engine">Open unknown data in</string>
+	<string name="always_ask">Always ask</string>
 	<string name="open_with_url">უცნობი მონაცემების ამ ბმულის საშუალებით გახსნა</string>
 	<string name="send_category">გადაგზავნა</string>
 	<string name="send_scan_url">ყოველი სკანირებული შტრიხ-კოდის ბმულის საშუალებით გახსნა</string>

@@ -114,6 +114,8 @@
 	<string name="export_json">JSON-bestand</string>
 	<string name="export_database">SQLite-databank</string>
 	<string name="error_saving_file">Het bestand kan niet worden opgeslagen</string>
+	<string name="default_search_engine">Open unknown data in</string>
+	<string name="always_ask">Always ask</string>
 	<string name="open_with_url">Niet-herkende data met url openen</string>
 	<string name="send_category">Doorsturen</string>
 	<string name="send_scan_url">Elke scan doorsturen naar url</string>

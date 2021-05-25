@@ -77,6 +77,8 @@
 	<string name="show_hex_dump_summary">Mostrar un dump hexadecimal del contenido escaneado.</string>
 	<string name="close_automatically">Retroceder luego de Copiar/Compartir</string>
 	<string name="close_automatically_summary">Regresar automáticamente a la pantalla de escaneo luego de copiar o compartir el contenido leído.</string>
+	<string name="default_search_engine">Open unknown data in</string>
+	<string name="always_ask">Always ask</string>
 	<string name="open_with_url">Abrir datos desconocidos con la URL</string>
 	<string name="send_category">Reenvío</string>
 	<string name="send_scan_url">Enviar todo escaneo a la URL</string>
