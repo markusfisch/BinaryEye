@@ -11,15 +11,15 @@
 		<item quantity="other">%2$d 個字符， %1$s</item>
 	</plurals>
 	<string name="error_correction_level">糾錯等級</string>
-	<string name="error_correction_level_l" formatted="false">低 (~7&#37; correction)</string>
-	<string name="error_correction_level_m" formatted="false">中 (~15&#37; correction)</string>
-	<string name="error_correction_level_q" formatted="false">Quartile (~25&#37; correction)</string>
-	<string name="error_correction_level_h" formatted="false">高 (~30&#37; correction)</string>
+	<string name="error_correction_level_l" formatted="false">低 (~7&#37; 準確度)</string>
+	<string name="error_correction_level_m" formatted="false">中 (~15&#37; 準確度)</string>
+	<string name="error_correction_level_q" formatted="false">Quartile (~25&#37; 準確度)</string>
+	<string name="error_correction_level_h" formatted="false">高 (~30&#37; 準確度)</string>
 	<string name="issue_number">發行編號</string>
 	<string name="orientation">方向</string>
 	<string name="other_meta_data">Metadata</string>
 	<string name="pdf417_extra_metadata">PDF417 metadata</string>
-	<string name="possible_country">可能製作地點</string>
+	<string name="possible_country">製作國家</string>
 	<string name="suggested_price">建議價格</string>
 	<string name="upc_ean_extension">UPC EAN 擴充</string>
 	<string name="toggle_flash">開關閃光燈</string>
@@ -48,7 +48,7 @@
 	<string name="preferences">偏好設定</string>
 	<string name="scan_category">掃描</string>
 	<string name="content_category">內容</string>
-	<string name="locale_category">語言</string>
+  <string name="locale_category">語言</string>
 	<string name="custom_locale">設定語言</string>
 	<string name="follow_system_settings">跟隨系統設定</string>
 	<string name="show_crop_handle">限制掃描區域</string>
@@ -77,8 +77,8 @@
 	<string name="show_hex_dump_summary">顯示已掃描條碼的 Hex dump</string>
 	<string name="close_automatically">複製/分享後自動返回</string>
 	<string name="close_automatically_summary">複製或分享讀取的內容後自動返回掃描主要界面。</string>
-	<string name="default_search_engine">Open unknown data in</string>
-	<string name="always_ask">Always ask</string>
+	<string name="default_search_engine">在開啟未知資料時</string>
+	<string name="always_ask">總是詢問</string>
 	<string name="open_with_url">使用 URL 開啟未知資料</string>
 	<string name="send_category">轉發</string>
 	<string name="send_scan_url">將每個掃描結果傳送到 URL</string>

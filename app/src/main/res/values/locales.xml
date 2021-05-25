@@ -16,6 +16,7 @@
 		<item>Turkish</item>
 		<item>Ukrainian</item>
 		<item>Chinese</item>
+		<item>Traditional Chinese</item>
 		<item>Chinese (Simplified Han, China)</item>
 		<item>Japanese</item>
 		<item>Czech</item>
@@ -37,6 +38,7 @@
 		<item>tr</item>
 		<item>uk</item>
 		<item>zh</item>
+		<item>zh-TW</item>
 		<item>zh-rCN</item>
 		<item>ja</item>
 		<item>cs</item>
