@@ -1,18 +1,21 @@
 package de.markusfisch.android.binaryeye.fragment
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.support.v7.preference.ListPreference
 import android.support.v7.preference.Preference
 import android.support.v7.preference.PreferenceFragmentCompat
 import android.support.v7.preference.PreferenceGroup
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.wifi.clearNetworkSuggestions
+import de.markusfisch.android.binaryeye.actions.wifi.removeNetworkSuggestions
 import de.markusfisch.android.binaryeye.activity.SplashActivity
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.preference.UrlPreference
@@ -48,18 +51,34 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 			pref.isVisible = false
 		} else {
 			pref.setOnPreferenceClickListener { _ ->
-				context.toast(
-					if (
-						clearNetworkSuggestions(context) == WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS
-					) {
-						R.string.clear_network_suggestions_success
-					} else {
-						R.string.clear_network_suggestions_nothing_to_remove
-					}
-				)
+				askToClearNetworkSuggestions(context)
 				true
 			}
 		}
+	}
+
+	@RequiresApi(Build.VERSION_CODES.Q)
+	private fun askToClearNetworkSuggestions(context: Context) {
+		AlertDialog.Builder(context)
+			.setMessage(R.string.really_remove_all_scans)
+			.setPositiveButton(android.R.string.ok) { _, _ ->
+				clearNetworkSuggestions(context)
+			}
+			.setNegativeButton(android.R.string.cancel) { _, _ -> }
+			.show()
+	}
+
+	@RequiresApi(Build.VERSION_CODES.Q)
+	private fun clearNetworkSuggestions(context: Context) {
+		context.toast(
+			if (
+				removeNetworkSuggestions(context) == WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS
+			) {
+				R.string.clear_network_suggestions_success
+			} else {
+				R.string.clear_network_suggestions_nothing_to_remove
+			}
+		)
 	}
 
 	override fun onResume() {

@@ -11,7 +11,7 @@ import de.markusfisch.android.binaryeye.R
 import java.util.*
 
 @RequiresApi(Build.VERSION_CODES.Q)
-fun clearNetworkSuggestions(context: Context): Int =
+fun removeNetworkSuggestions(context: Context): Int =
 	(context.applicationContext.getSystemService(
 		Context.WIFI_SERVICE
 	) as WifiManager).removeNetworkSuggestions(listOf())
