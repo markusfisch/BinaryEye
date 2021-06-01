@@ -80,6 +80,10 @@
 	<string name="default_search_engine">Unbekannte Daten öffnen mit</string>
 	<string name="always_ask">Immer fragen</string>
 	<string name="open_with_url">URL zum Öffnen unbekannter Daten</string>
+	<string name="clear_network_suggestions">WiFi Netzwerkvorschläge entfernen</string>
+	<string name="clear_network_suggestions_summary">Betrifft alle WiFi Netzwerke, die zuvor mit dieser App bereitgestellt wurden.</string>
+	<string name="clear_network_suggestions_success">Netzwerkvorschläge entfernt</string>
+	<string name="clear_network_suggestions_nothing_to_remove">Nichts zu entfernen</string>
 	<string name="send_category">Weiterleitung</string>
 	<string name="send_scan_url">URL die für jeden Scan aufgerufen werden soll</string>
 	<string name="send_scan_type">Typ des Requests für jeden Scan</string>
