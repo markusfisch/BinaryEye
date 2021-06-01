@@ -1,0 +1,40 @@
+<resources>
+	<string-array name="barcode_formats_names">
+		<item>AZTEC</item>
+		<item>CODABAR</item>
+		<item>CODE 39</item>
+		<item>CODE 93</item>
+		<item>CODE 128</item>
+		<item>DATA MATRIX</item>
+		<item>EAN 8</item>
+		<item>EAN 13</item>
+		<item>ITF</item>
+		<item>MAXICODE</item>
+		<item>PDF 417</item>
+		<item>QR CODE</item>
+		<item>RSS 14</item>
+		<item>RSS EXPANDED</item>
+		<item>UPC A</item>
+		<item>UPC E</item>
+		<item>UPC EAN EXTENSION</item>
+	</string-array>
+	<string-array name="barcode_formats_values">
+		<item>AZTEC</item>
+		<item>CODABAR</item>
+		<item>CODE_39</item>
+		<item>CODE_93</item>
+		<item>CODE_128</item>
+		<item>DATA_MATRIX</item>
+		<item>EAN_8</item>
+		<item>EAN_13</item>
+		<item>ITF</item>
+		<item>MAXICODE</item>
+		<item>PDF_417</item>
+		<item>QR_CODE</item>
+		<item>RSS_14</item>
+		<item>RSS_EXPANDED</item>
+		<item>UPC_A</item>
+		<item>UPC_E</item>
+		<item>UPC_EAN_EXTENSION</item>
+	</string-array>
+</resources>

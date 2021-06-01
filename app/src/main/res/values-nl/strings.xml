@@ -53,6 +53,7 @@
 	<string name="follow_system_settings">Systeeminstellingen gebruiken</string>
 	<string name="show_crop_handle">Bijsnijdhulpmiddel tonen</string>
 	<string name="show_crop_handle_summary">Beperk scannen tot een aanpasbaar gebied.</string>
+	<string name="barcode_formats">Barcode formats</string>
 	<string name="zoom_by_swiping">Camera zoomen door omhoog/omlaag te vegen</string>
 	<string name="zoom_by_swiping_summary">Veeg omhoog of omlaag op het camerascherm om in en uit te zoomen.</string>
 	<string name="auto_rotate">1D-barcodes verticaal scannen</string>
@@ -119,6 +120,7 @@
 	<string name="open_with_url">Niet-herkende data met url openen</string>
 	<string name="clear_network_suggestions">Netwerksuggesties wissen</string>
 	<string name="clear_network_suggestions_summary">Wis alle eerder getoonde netwerksuggesties.</string>
+	<string name="really_remove_all_networks">Really remove all networks?</string>
 	<string name="clear_network_suggestions_success">De netwersuggesties zijn gewist</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Er valt niks te wissen</string>
 	<string name="send_category">Doorsturen</string>

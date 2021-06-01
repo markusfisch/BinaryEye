@@ -11,44 +11,30 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 	private val multiFormatReader = MultiFormatReader()
 
 	init {
-		val decodeFormats = EnumSet.noneOf(
-			BarcodeFormat::class.java
-		)
-		decodeFormats.addAll(
-			EnumSet.copyOf(
-				listOf(
-					BarcodeFormat.AZTEC,
-					BarcodeFormat.CODABAR,
-					BarcodeFormat.CODE_39,
-					BarcodeFormat.CODE_93,
-					BarcodeFormat.CODE_128,
-					BarcodeFormat.DATA_MATRIX,
-					BarcodeFormat.EAN_8,
-					BarcodeFormat.EAN_13,
-					BarcodeFormat.ITF,
-					BarcodeFormat.MAXICODE,
-					BarcodeFormat.PDF_417,
-					BarcodeFormat.QR_CODE,
-					BarcodeFormat.RSS_14,
-					BarcodeFormat.RSS_EXPANDED,
-					BarcodeFormat.UPC_A,
-					BarcodeFormat.UPC_E,
-					BarcodeFormat.UPC_EAN_EXTENSION
-				)
-			)
-		)
-		hints[DecodeHintType.POSSIBLE_FORMATS] = decodeFormats
 		possibleResultPoint?.let {
 			hints[DecodeHintType.NEED_RESULT_POINT_CALLBACK] = it
 		}
 	}
 
-	fun updateHints(tryHarder: Boolean) {
+	fun updateHints(tryHarder: Boolean, formats: Set<String>) {
 		if (tryHarder) {
 			hints[DecodeHintType.TRY_HARDER] = java.lang.Boolean.TRUE
 		} else {
 			hints.remove(DecodeHintType.TRY_HARDER)
 		}
+		setDecodeFormats(formats)
+	}
+
+	private fun setDecodeFormats(formats: Set<String>) {
+		val decodeFormats = EnumSet.noneOf(
+			BarcodeFormat::class.java
+		)
+		decodeFormats.addAll(
+			EnumSet.copyOf(
+				formats.map { BarcodeFormat.valueOf(it) }
+			)
+		)
+		hints[DecodeHintType.POSSIBLE_FORMATS] = decodeFormats
 	}
 
 	fun decode(

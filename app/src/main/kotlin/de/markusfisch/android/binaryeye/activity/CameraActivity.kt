@@ -157,7 +157,10 @@ class CameraActivity : AppCompatActivity() {
 	override fun onResume() {
 		super.onResume()
 		System.gc()
-		zxing.updateHints(prefs.tryHarder)
+		zxing.updateHints(
+			prefs.tryHarder,
+			prefs.barcodeFormats
+		)
 		if (prefs.bulkMode && bulkMode != prefs.bulkMode) {
 			bulkMode = prefs.bulkMode
 			invalidateOptionsMenu()

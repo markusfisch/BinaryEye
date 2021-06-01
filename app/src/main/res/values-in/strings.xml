@@ -52,6 +52,7 @@
 	<string name="follow_system_settings">Ikuti pengaturan sistem</string>
 	<string name="show_crop_handle">Tampilkan pembatas pemotongan</string>
 	<string name="show_crop_handle_summary">Batasi pemindaian ke batas area tertentu.</string>
+	<string name="barcode_formats">Barcode formats</string>
 	<string name="zoom_by_swiping">Geser ke atas/bawah untuk memperbesar</string>
 	<string name="zoom_by_swiping_summary">Geser layar kamera ke atas atau ke bawah untuk mengontrol perbesaran gambar.</string>
 	<string name="auto_rotate">Kenali barcode vertikal 1D</string>
@@ -81,6 +82,7 @@
 	<string name="open_with_url">Buka data tak dikenal dengan URL</string>
 	<string name="clear_network_suggestions">Clear network suggestions</string>
 	<string name="clear_network_suggestions_summary">Remove all of the network suggestions that were previously provided by this app.</string>
+	<string name="really_remove_all_networks">Really remove all networks?</string>
 	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Nothing to remove</string>
 	<string name="send_category">Penerusan</string>

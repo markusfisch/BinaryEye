@@ -48,11 +48,12 @@
 	<string name="preferences">偏好設定</string>
 	<string name="scan_category">掃描</string>
 	<string name="content_category">內容</string>
-  <string name="locale_category">語言</string>
+	<string name="locale_category">語言</string>
 	<string name="custom_locale">設定語言</string>
 	<string name="follow_system_settings">跟隨系統設定</string>
 	<string name="show_crop_handle">限制掃描區域</string>
 	<string name="show_crop_handle_summary">把掃描區域限制在選定範圍內</string>
+	<string name="barcode_formats">Barcode formats</string>
 	<string name="zoom_by_swiping">上下滑動縮放</string>
 	<string name="zoom_by_swiping_summary">通過上下滑動在掃描界面控制相機縮放</string>
 	<string name="auto_rotate">識別豎直的 1D 條碼</string>
@@ -82,6 +83,7 @@
 	<string name="open_with_url">使用 URL 開啟未知資料</string>
 	<string name="clear_network_suggestions">Clear network suggestions</string>
 	<string name="clear_network_suggestions_summary">Remove all of the network suggestions that were previously provided by this app.</string>
+	<string name="really_remove_all_networks">Really remove all networks?</string>
 	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Nothing to remove</string>
 	<string name="send_category">轉發</string>

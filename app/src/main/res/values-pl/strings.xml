@@ -86,6 +86,7 @@
 	<string name="copy_immediately_summary">Automatically copy scanned contents into clipboard. Please note that other apps may snoop on your clipboard in the background.</string>
 	<string name="show_crop_handle">Pokazuj ogranicznik przycinania</string>
 	<string name="show_crop_handle_summary">Restrict scanning to a customizable region.</string>
+	<string name="barcode_formats">Barcode formats</string>
 	<string name="search_web">Szukaj w sieci</string>
 	<string name="search_scan">Szukaj skanu</string>
 	<string name="export_database">Eksportuj do bazy danych SQLite</string>
@@ -96,6 +97,7 @@
 	<string name="open_with_url">Otwieraj nieznane dane za pomocą adresu URL</string>
 	<string name="clear_network_suggestions">Clear network suggestions</string>
 	<string name="clear_network_suggestions_summary">Remove all of the network suggestions that were previously provided by this app.</string>
+	<string name="really_remove_all_networks">Really remove all networks?</string>
 	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Nothing to remove</string>
 	<string name="send_category">Forwarding</string>

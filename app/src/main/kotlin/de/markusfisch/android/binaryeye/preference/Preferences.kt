@@ -2,11 +2,37 @@ package de.markusfisch.android.binaryeye.preference
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Build
 import android.preference.PreferenceManager
+import android.support.annotation.RequiresApi
 
 class Preferences {
 	lateinit var preferences: SharedPreferences
 
+	var barcodeFormats = setOf(
+		"AZTEC",
+		"CODABAR",
+		"CODE_39",
+		"CODE_93",
+		"CODE_128",
+		"DATA_MATRIX",
+		"EAN_8",
+		"EAN_13",
+		"ITF",
+		"MAXICODE",
+		"PDF_417",
+		"QR_CODE",
+		"RSS_14",
+		"RSS_EXPANDED",
+		"UPC_A",
+		"UPC_E",
+		"UPC_EAN_EXTENSION"
+	)
+		@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
+		set(value) {
+			apply(BARCODE_FORMATS, value)
+			field = value
+		}
 	var cropHandleX = -2 // -2 means set default roi.
 		set(value) {
 			apply(CROP_HANDLE_X, value)
@@ -144,6 +170,11 @@ class Preferences {
 	}
 
 	fun update() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			preferences.getStringSet(BARCODE_FORMATS, barcodeFormats)?.let {
+				barcodeFormats = it
+			}
+		}
 		cropHandleX = preferences.getInt(CROP_HANDLE_X, cropHandleX)
 		cropHandleY = preferences.getInt(CROP_HANDLE_Y, cropHandleY)
 		cropHandleOrientation = preferences.getInt(
@@ -223,7 +254,13 @@ class Preferences {
 		preferences.edit().putInt(label, value).apply()
 	}
 
+	@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
+	private fun apply(label: String, value: Set<String>) {
+		preferences.edit().putStringSet(label, value).apply()
+	}
+
 	companion object {
+		const val BARCODE_FORMATS = "barcode_formats"
 		const val CROP_HANDLE_X = "crop_handle_x"
 		const val CROP_HANDLE_Y = "crop_handle_y"
 		const val CROP_HANDLE_ORIENTATION = "crop_handle_orientation"

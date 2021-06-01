@@ -10,6 +10,7 @@ import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
+import android.support.v14.preference.MultiSelectListPreference
 import android.support.v7.preference.ListPreference
 import android.support.v7.preference.Preference
 import android.support.v7.preference.PreferenceFragmentCompat
@@ -60,7 +61,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 	@RequiresApi(Build.VERSION_CODES.Q)
 	private fun askToClearNetworkSuggestions(context: Context) {
 		AlertDialog.Builder(context)
-			.setMessage(R.string.really_remove_all_scans)
+			.setMessage(R.string.really_remove_all_networks)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				clearNetworkSuggestions(context)
 			}
@@ -123,6 +124,13 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 			}
 			is ListPreference -> {
 				preference.setSummary(preference.entry)
+			}
+			is MultiSelectListPreference -> {
+				preference.setSummary(
+					preference.values.joinToString(", ") {
+						it.replace(Regex("_"), " ")
+					}
+				)
 			}
 			is PreferenceGroup -> {
 				setSummaries(preference)

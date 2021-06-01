@@ -53,6 +53,7 @@
 	<string name="follow_system_settings">Systemeinstellung übernehmen</string>
 	<string name="show_crop_handle">Ausschnitt verkleinern anzeigen</string>
 	<string name="show_crop_handle_summary">Scannen auf einen anpassbaren Bereich einschränken.</string>
+	<string name="barcode_formats">Barcode Formate</string>
 	<string name="zoom_by_swiping">Geste für Kamerazoom</string>
 	<string name="zoom_by_swiping_summary">Im Kamerabildschirm nach oben oder unten streichen, um den Kamerazoom zu steuern.</string>
 	<string name="auto_rotate">Vertikale Erkennung</string>
@@ -82,6 +83,7 @@
 	<string name="open_with_url">URL zum Öffnen unbekannter Daten</string>
 	<string name="clear_network_suggestions">WiFi Netzwerkvorschläge entfernen</string>
 	<string name="clear_network_suggestions_summary">Betrifft alle WiFi Netzwerke, die zuvor mit dieser App bereitgestellt wurden.</string>
+	<string name="really_remove_all_networks">Alle Netzwerkvorschläge entfernen?</string>
 	<string name="clear_network_suggestions_success">Netzwerkvorschläge entfernt</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Nichts zu entfernen</string>
 	<string name="send_category">Weiterleitung</string>

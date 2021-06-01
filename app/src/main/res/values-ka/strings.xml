@@ -55,6 +55,7 @@
 	<string name="follow_system_settings">Follow system settings</string>
 	<string name="show_crop_handle">სკანირების არეალის ჩვენება</string>
 	<string name="show_crop_handle_summary">სკანირების შეზღუდვა შერჩეული არეალით.</string>
+	<string name="barcode_formats">Barcode formats</string>
 	<string name="zoom_by_swiping">მასშტაბირება თითის მოძრაობით მაღლა/დაბლა</string>
 	<string name="zoom_by_swiping_summary">გაატარეთ თითი მაღლა ან დაბლა კამერის მასშტაბირების სამართავად.</string>
 	<string name="auto_rotate">1D ვერტიკალური შტრიხ-კოდების ამოცნობა</string>
@@ -84,6 +85,7 @@
 	<string name="open_with_url">უცნობი მონაცემების ამ ბმულის საშუალებით გახსნა</string>
 	<string name="clear_network_suggestions">Clear network suggestions</string>
 	<string name="clear_network_suggestions_summary">Remove all of the network suggestions that were previously provided by this app.</string>
+	<string name="really_remove_all_networks">Really remove all networks?</string>
 	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Nothing to remove</string>
 	<string name="send_category">გადაგზავნა</string>

@@ -54,6 +54,7 @@
 	<string name="follow_system_settings">Řídit se nastavením systému</string>
 	<string name="show_crop_handle">Zobrazovat hrany výřezu</string>
 	<string name="show_crop_handle_summary">Omezí skenování na zvolenou oblast.</string>
+	<string name="barcode_formats">Barcode formats</string>
 	<string name="zoom_by_swiping">Potáhnutím nahoru/dolů přiblížit</string>
 	<string name="zoom_by_swiping_summary">Přetáhnutím nahoru nebo dolů se zvětší / zmenší úroveň přiblížení.</string>
 	<string name="auto_rotate">Rozpoznávat otočené 1D čárové kódy</string>
@@ -83,6 +84,7 @@
 	<string name="open_with_url">Otevřít neznámá data pomocí URL</string>
 	<string name="clear_network_suggestions">Clear network suggestions</string>
 	<string name="clear_network_suggestions_summary">Remove all of the network suggestions that were previously provided by this app.</string>
+	<string name="really_remove_all_networks">Really remove all networks?</string>
 	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Nothing to remove</string>
 	<string name="send_category">Přesměrování</string>

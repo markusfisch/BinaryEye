@@ -55,6 +55,7 @@
 	<string name="follow_system_settings">Как в системе</string>
 	<string name="show_crop_handle">Показывать область сканирования</string>
 	<string name="show_crop_handle_summary">Ограничить сканирование изменяемой областью.</string>
+	<string name="barcode_formats">Barcode formats</string>
 	<string name="zoom_by_swiping">Масштабировать жестом вверх/вниз</string>
 	<string name="zoom_by_swiping_summary">Проведите пальцем вверх или вниз для управления масштабированием камеры.</string>
 	<string name="auto_rotate">Распознавать 1D штрих-коды вертикально</string>
@@ -84,6 +85,7 @@
 	<string name="open_with_url">Открывать неизвестные данные по URL</string>
 	<string name="clear_network_suggestions">Очистить сетевые предложения</string>
 	<string name="clear_network_suggestions_summary">Удалите все сетевые предложения, которые ранее предоставлялись этим приложением.</string>
+	<string name="really_remove_all_networks">Really remove all networks?</string>
 	<string name="clear_network_suggestions_success">Сетевые предложения удалены</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Нечего удалять</string>
 	<string name="send_category">Отправка</string>
