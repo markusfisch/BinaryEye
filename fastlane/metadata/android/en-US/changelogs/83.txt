@@ -1,0 +1,4 @@
+* Add a preference item to remove WiFi network suggestions
+* Update Traditional Chinese Translation
+* Update Russian language
+
