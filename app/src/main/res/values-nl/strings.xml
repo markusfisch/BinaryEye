@@ -95,7 +95,7 @@
 	<string name="error_file_exists">Het bestand bestaat al</string>
 	<string name="connect_to_wifi">Verbinden met wifi-netwerk</string>
 	<string name="wifi_config_failed">Het wifi-netwerk kan niet worden ingesteld</string>
-	<string name="wifi_added">Het wifi-netwerk toegevoegd</string>
+	<string name="wifi_added">Het wifi-netwerk is toegevoegd</string>
 	<string name="sms_send">SMS versturen</string>
 	<string name="sms_error">De sms kan niet worden verstuurd</string>
 	<string name="tel_dial">Nummer bellen</string>
@@ -120,7 +120,7 @@
 	<string name="open_with_url">Niet-herkende data met url openen</string>
 	<string name="clear_network_suggestions">Netwerksuggesties wissen</string>
 	<string name="clear_network_suggestions_summary">Wis alle eerder getoonde netwerksuggesties.</string>
-	<string name="really_remove_all_networks">Really remove all networks?</string>
+	<string name="really_remove_all_networks">Weet je zeker dat je alle netwerken wilt verwijderen?</string>
 	<string name="clear_network_suggestions_success">De netwersuggesties zijn gewist</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Er valt niks te wissen</string>
 	<string name="send_category">Doorsturen</string>
