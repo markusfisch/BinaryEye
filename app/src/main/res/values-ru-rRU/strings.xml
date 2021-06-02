@@ -82,6 +82,10 @@
 	<string name="default_search_engine">Открывать неизвестные данные в</string>
 	<string name="always_ask">Всегда спрашивать</string>
 	<string name="open_with_url">Открывать неизвестные данные с помощью URL</string>
+	<string name="clear_network_suggestions">Clear network suggestions</string>
+	<string name="clear_network_suggestions_summary">Remove all of the network suggestions that were previously provided by this app.</string>
+	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
+	<string name="clear_network_suggestions_nothing_to_remove">Nothing to remove</string>
 	<string name="send_category">Отправка</string>
 	<string name="send_scan_url">Отправлять каждый отсканированный штрих-код на URL</string>
 	<string name="send_scan_type">Тип запроса для каждого отсканированного штрих-кода</string>

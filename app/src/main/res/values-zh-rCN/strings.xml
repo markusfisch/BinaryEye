@@ -79,6 +79,10 @@
 	<string name="default_search_engine">Open unknown data in</string>
 	<string name="always_ask">Always ask</string>
 	<string name="open_with_url">使用URL打开未知数据</string>
+	<string name="clear_network_suggestions">Clear network suggestions</string>
+	<string name="clear_network_suggestions_summary">Remove all of the network suggestions that were previously provided by this app.</string>
+	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
+	<string name="clear_network_suggestions_nothing_to_remove">Nothing to remove</string>
 	<string name="send_category">转发</string>
 	<string name="send_scan_url">将每个扫描结果发送到URL</string>
 	<string name="send_scan_type">请求类型</string>

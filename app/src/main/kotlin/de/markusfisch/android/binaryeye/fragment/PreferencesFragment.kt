@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
+import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.preference.ListPreference
@@ -11,11 +12,13 @@ import android.support.v7.preference.Preference
 import android.support.v7.preference.PreferenceFragmentCompat
 import android.support.v7.preference.PreferenceGroup
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.actions.wifi.clearNetworkSuggestions
 import de.markusfisch.android.binaryeye.activity.SplashActivity
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.preference.UrlPreference
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.systemBarRecyclerViewScrollListener
+import de.markusfisch.android.binaryeye.widget.toast
 
 class PreferencesFragment : PreferenceFragmentCompat() {
 	private val changeListener = object : OnSharedPreferenceChangeListener {
@@ -36,6 +39,27 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 	override fun onCreatePreferences(state: Bundle?, rootKey: String?) {
 		addPreferencesFromResource(R.xml.preferences)
 		activity?.setTitle(R.string.preferences)
+		wireClearNetworkPreferences()
+	}
+
+	private fun wireClearNetworkPreferences() {
+		val pref = findPreference("clear_network_suggestions") ?: return
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+			pref.isVisible = false
+		} else {
+			pref.setOnPreferenceClickListener { _ ->
+				context.toast(
+					if (
+						clearNetworkSuggestions(context) == WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS
+					) {
+						R.string.clear_network_suggestions_success
+					} else {
+						R.string.clear_network_suggestions_nothing_to_remove
+					}
+				)
+				true
+			}
+		}
 	}
 
 	override fun onResume() {
