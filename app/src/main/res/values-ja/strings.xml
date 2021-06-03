@@ -53,6 +53,7 @@
 	<string name="follow_system_settings">システム設定に従う</string>
 	<string name="show_crop_handle">トリミングツールを表示</string>
 	<string name="show_crop_handle_summary">スキャンする範囲を制限するトリミングツールを表示します。</string>
+	<string name="barcode_formats">Barcode formats</string>
 	<string name="zoom_by_swiping">スワイプでズーム調節</string>
 	<string name="zoom_by_swiping_summary">上下にスワイプすることで、カメラのズームを調節できるようにします。</string>
 	<string name="auto_rotate">縦向きの一次元バーコードを読み取る</string>
@@ -80,6 +81,11 @@
 	<string name="default_search_engine">Open unknown data in</string>
 	<string name="always_ask">Always ask</string>
 	<string name="open_with_url">未知のデータを次のURLから開く</string>
+	<string name="clear_network_suggestions">Clear network suggestions</string>
+	<string name="clear_network_suggestions_summary">Remove all of the network suggestions that were previously provided by this app.</string>
+	<string name="really_remove_all_networks">Really remove all networks?</string>
+	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
+	<string name="clear_network_suggestions_nothing_to_remove">Nothing to remove</string>
 	<string name="send_category">転送</string>
 	<string name="send_scan_url">スキャンしたデータを次のURLから開く</string>
 	<string name="send_scan_type">リクエスト方式</string>

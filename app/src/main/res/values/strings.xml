@@ -53,6 +53,7 @@
 	<string name="follow_system_settings">Follow system settings</string>
 	<string name="show_crop_handle">Show cropping limiter</string>
 	<string name="show_crop_handle_summary">Restrict scanning to a customizable region.</string>
+	<string name="barcode_formats">Barcode formats</string>
 	<string name="zoom_by_swiping">Swipe up/down to zoom</string>
 	<string name="zoom_by_swiping_summary">Swipe up or down in camera screen to control the camera zoom.</string>
 	<string name="auto_rotate">Recognize vertical 1D barcodes</string>
@@ -80,6 +81,11 @@
 	<string name="default_search_engine">Open unknown data in</string>
 	<string name="always_ask">Always ask</string>
 	<string name="open_with_url">Open unknown data with URL</string>
+	<string name="clear_network_suggestions">Clear network suggestions</string>
+	<string name="clear_network_suggestions_summary">Remove all of the network suggestions that were previously provided by this app.</string>
+	<string name="really_remove_all_networks">Really remove all networks?</string>
+	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
+	<string name="clear_network_suggestions_nothing_to_remove">Nothing to remove</string>
 	<string name="send_category">Forwarding</string>
 	<string name="send_scan_url">Send every scan to URL</string>
 	<string name="send_scan_type">Type of request for every scan</string>

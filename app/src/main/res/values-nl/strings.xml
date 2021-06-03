@@ -53,6 +53,7 @@
 	<string name="follow_system_settings">Systeeminstellingen gebruiken</string>
 	<string name="show_crop_handle">Bijsnijdhulpmiddel tonen</string>
 	<string name="show_crop_handle_summary">Beperk scannen tot een aanpasbaar gebied.</string>
+	<string name="barcode_formats">Barcode formats</string>
 	<string name="zoom_by_swiping">Camera zoomen door omhoog/omlaag te vegen</string>
 	<string name="zoom_by_swiping_summary">Veeg omhoog of omlaag op het camerascherm om in en uit te zoomen.</string>
 	<string name="auto_rotate">1D-barcodes verticaal scannen</string>
@@ -94,7 +95,7 @@
 	<string name="error_file_exists">Het bestand bestaat al</string>
 	<string name="connect_to_wifi">Verbinden met wifi-netwerk</string>
 	<string name="wifi_config_failed">Het wifi-netwerk kan niet worden ingesteld</string>
-	<string name="wifi_added">Het wifi-netwerk toegevoegd</string>
+	<string name="wifi_added">Het wifi-netwerk is toegevoegd</string>
 	<string name="sms_send">SMS versturen</string>
 	<string name="sms_error">De sms kan niet worden verstuurd</string>
 	<string name="tel_dial">Nummer bellen</string>
@@ -114,9 +115,14 @@
 	<string name="export_json">JSON-bestand</string>
 	<string name="export_database">SQLite-databank</string>
 	<string name="error_saving_file">Het bestand kan niet worden opgeslagen</string>
-	<string name="default_search_engine">Open unknown data in</string>
+	<string name="default_search_engine">Onbekende data openen in</string>
 	<string name="always_ask">Always ask</string>
 	<string name="open_with_url">Niet-herkende data met url openen</string>
+	<string name="clear_network_suggestions">Netwerksuggesties wissen</string>
+	<string name="clear_network_suggestions_summary">Wis alle eerder getoonde netwerksuggesties.</string>
+	<string name="really_remove_all_networks">Weet je zeker dat je alle netwerken wilt verwijderen?</string>
+	<string name="clear_network_suggestions_success">De netwersuggesties zijn gewist</string>
+	<string name="clear_network_suggestions_nothing_to_remove">Er valt niks te wissen</string>
 	<string name="send_category">Doorsturen</string>
 	<string name="send_scan_url">Elke scan doorsturen naar url</string>
 	<string name="send_scan_type">Soort verzoek van elke scan</string>

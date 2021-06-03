@@ -53,6 +53,7 @@
 	<string name="follow_system_settings">ব্যবস্থার পছন্দসমূহ অনুসরণ করো</string>
 	<string name="show_crop_handle">ছাটার সীমা দেখাও</string>
 	<string name="show_crop_handle_summary">পরিবর্তনযোগ্য জায়গায়ই শুধু খুঁজো।</string>
+	<string name="barcode_formats">Barcode formats</string>
 	<string name="zoom_by_swiping">ওপরে/নিচে টানো বড়ো করার জন্য</string>
 	<string name="zoom_by_swiping_summary">ক্যামেরার ছোটো-বড় নিয়ন্ত্রণের জন্য উপরে-নিচে টানো।</string>
 	<string name="auto_rotate">খাড়া ১ডি বারকোড সনাক্ত করো</string>
@@ -80,6 +81,11 @@
 	<string name="default_search_engine">Open unknown data in</string>
 	<string name="always_ask">Always ask</string>
 	<string name="open_with_url">অজানা ইউআরএল খুলো</string>
+	<string name="clear_network_suggestions">Clear network suggestions</string>
+	<string name="clear_network_suggestions_summary">Remove all of the network suggestions that were previously provided by this app.</string>
+	<string name="really_remove_all_networks">Really remove all networks?</string>
+	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
+	<string name="clear_network_suggestions_nothing_to_remove">Nothing to remove</string>
 	<string name="send_category">অন্যকে পাঠাও</string>
 	<string name="send_scan_url">প্রতিটি পাঠোদ্ধার ইউআরএল-এ পাঠাও</string>
 	<string name="send_scan_type">প্রতি পাঠোদ্ধারের জন্য অনুরোধ</string>

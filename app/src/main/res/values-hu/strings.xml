@@ -53,6 +53,7 @@
 	<string name="follow_system_settings">Rendszerbeállítások követése</string>
 	<string name="show_crop_handle">Levágási korlátozó megjelenítése</string>
 	<string name="show_crop_handle_summary">Beolvasás korlátozása egy személyre szabható területre.</string>
+	<string name="barcode_formats">Barcode formats</string>
 	<string name="zoom_by_swiping">Kamera nagyítása fel/le pöccintéssel</string>
 	<string name="zoom_by_swiping_summary">Pöccintsen fel vagy le a kamera képernyőjén a kamera nagyításának vezérléséhez.</string>
 	<string name="auto_rotate">1D vonalkódok felismerése függőlegesen</string>
@@ -80,6 +81,11 @@
 	<string name="default_search_engine">Open unknown data in</string>
 	<string name="always_ask">Always ask</string>
 	<string name="open_with_url">Ismeretlen adat megnyitása URL-lel</string>
+	<string name="clear_network_suggestions">Clear network suggestions</string>
+	<string name="clear_network_suggestions_summary">Remove all of the network suggestions that were previously provided by this app.</string>
+	<string name="really_remove_all_networks">Really remove all networks?</string>
+	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
+	<string name="clear_network_suggestions_nothing_to_remove">Nothing to remove</string>
 	<string name="send_category">Továbbítás</string>
 	<string name="send_scan_url">Összes beolvasás küldése egy URL-re</string>
 	<string name="send_scan_type">Kérés típusa az egyes beolvasásoknál</string>

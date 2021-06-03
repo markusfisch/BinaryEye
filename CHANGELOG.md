@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.43.0
+* Add a preference item to remove WiFi network suggestions
+* Update Traditional Chinese Translation
+* Update Russian language
+
 ## 1.42.0
 * Add a setting to pick a default search engine
 * Update Traditional Chinese

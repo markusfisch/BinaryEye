@@ -3,6 +3,11 @@
 	android:title="@string/preferences"
 	android:key="preferences">
 	<PreferenceCategory android:title="@string/scan_category">
+		<MultiSelectListPreference
+			android:key="barcode_formats"
+			android:title="@string/barcode_formats"
+			android:entries="@array/barcode_formats_names"
+			android:entryValues="@array/barcode_formats_values"/>
 		<android.support.v7.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="show_crop_handle"

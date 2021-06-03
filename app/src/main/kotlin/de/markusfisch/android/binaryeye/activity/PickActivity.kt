@@ -58,7 +58,10 @@ class PickActivity : AppCompatActivity() {
 		// locale.
 		setTitle(R.string.pick_code_to_scan)
 
-		zxing.updateHints(true)
+		zxing.updateHints(
+			true,
+			prefs.barcodeFormats
+		)
 		rs = RenderScript.create(this)
 		vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 

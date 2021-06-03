@@ -52,6 +52,7 @@
 	<string name="follow_system_settings">跟随系统设置</string>
 	<string name="show_crop_handle">限制扫描区域</string>
 	<string name="show_crop_handle_summary">把扫描区域限制在选定范围内</string>
+	<string name="barcode_formats">Barcode formats</string>
 	<string name="zoom_by_swiping">上下滑动缩放</string>
 	<string name="zoom_by_swiping_summary">通过上下滑动在扫描界面控制相机缩放</string>
 	<string name="auto_rotate">识别竖直的1D条形码</string>
@@ -79,6 +80,11 @@
 	<string name="default_search_engine">Open unknown data in</string>
 	<string name="always_ask">Always ask</string>
 	<string name="open_with_url">使用URL打开未知数据</string>
+	<string name="clear_network_suggestions">Clear network suggestions</string>
+	<string name="clear_network_suggestions_summary">Remove all of the network suggestions that were previously provided by this app.</string>
+	<string name="really_remove_all_networks">Really remove all networks?</string>
+	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
+	<string name="clear_network_suggestions_nothing_to_remove">Nothing to remove</string>
 	<string name="send_category">转发</string>
 	<string name="send_scan_url">将每个扫描结果发送到URL</string>
 	<string name="send_scan_type">请求类型</string>

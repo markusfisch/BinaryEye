@@ -10,6 +10,12 @@ import android.support.annotation.RequiresApi
 import de.markusfisch.android.binaryeye.R
 import java.util.*
 
+@RequiresApi(Build.VERSION_CODES.Q)
+fun removeNetworkSuggestions(context: Context): Int =
+	(context.applicationContext.getSystemService(
+		Context.WIFI_SERVICE
+	) as WifiManager).removeNetworkSuggestions(listOf())
+
 /**
  * Normal:
  * WIFI:S:[network SSID];T:<WPA|WEP|nopass|>;P:[network password];H:<true|false|>;;
