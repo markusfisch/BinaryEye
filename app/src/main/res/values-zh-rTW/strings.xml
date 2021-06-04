@@ -48,7 +48,7 @@
 	<string name="preferences">偏好設定</string>
 	<string name="scan_category">掃描</string>
 	<string name="content_category">內容</string>
-	<string name="locale_category">語言</string>
+  <string name="locale_category">語言</string>
 	<string name="custom_locale">設定語言</string>
 	<string name="follow_system_settings">跟隨系統設定</string>
 	<string name="show_crop_handle">限制掃描區域</string>
@@ -71,7 +71,7 @@
 	<string name="open_immediately">立即開啟</string>
 	<string name="open_immediately_summary">跳過檢查並立即開啟內容。 如果啟用，可能會開啟有害內容。</string>
 	<string name="copy_immediately">自動複製掃描結果到剪貼簿</string>
-	<string name="copy_immediately_summary">自動將掃描的內容複製到剪貼簿。 請注意，其他 APP 可能會在背景監控剪貼簿。</string>
+	<string name="copy_immediately_summary">自動將掃描的內容複製到剪貼簿。 請注意，其他 App 可能會在背景監控剪貼簿。</string>
 	<string name="show_meta_data">顯示 Metadata</string>
 	<string name="show_meta_data_summary">顯示已掃描條碼的額外資訊</string>
 	<string name="show_hex_dump">顯示 Hex dump</string>
@@ -81,11 +81,11 @@
 	<string name="default_search_engine">在開啟未知資料時</string>
 	<string name="always_ask">總是詢問</string>
 	<string name="open_with_url">使用 URL 開啟未知資料</string>
-	<string name="clear_network_suggestions">Clear network suggestions</string>
-	<string name="clear_network_suggestions_summary">Remove all of the network suggestions that were previously provided by this app.</string>
-	<string name="really_remove_all_networks">Really remove all networks?</string>
-	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
-	<string name="clear_network_suggestions_nothing_to_remove">Nothing to remove</string>
+	<string name="clear_network_suggestions">清除網路建議</string>
+	<string name="clear_network_suggestions_summary">移除此 App 之前提供的所有網路建議。</string>
+	<string name="really_remove_all_networks">真的要移除所有網路嗎?</string>
+	<string name="clear_network_suggestions_success">網路建議已清除</string>
+	<string name="clear_network_suggestions_nothing_to_remove">沒有什麼可以移除的</string>
 	<string name="send_category">轉發</string>
 	<string name="send_scan_url">將每個掃描結果傳送到 URL</string>
 	<string name="send_scan_type">每次掃描的請求類型</string>
