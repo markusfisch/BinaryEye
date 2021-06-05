@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.44.0
+* Add a setting to choose barcode formats to scan
+* Ask before removing network suggestions
+* Update Traditional Chinese Translation
+* Update Russian language
+* Update Dutch translation
+
 ## 1.43.0
 * Add a preference item to remove WiFi network suggestions
 * Update Traditional Chinese Translation
