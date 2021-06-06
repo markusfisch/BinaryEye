@@ -1,0 +1,6 @@
+* Add a setting to choose barcode formats to scan
+* Ask before removing network suggestions
+* Update Traditional Chinese Translation
+* Update Russian language
+* Update Dutch translation
+
