@@ -1,0 +1,2 @@
+Yet another barcode scanner for Android. Free, no ads and open source.
+Android向けの高機能なバーコードスキャナです。フリーで広告がなく、オープンソースです。
