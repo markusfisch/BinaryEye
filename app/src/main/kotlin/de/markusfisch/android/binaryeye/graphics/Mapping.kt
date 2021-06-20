@@ -47,23 +47,25 @@ data class Mapping(
 	val offsetX: Int,
 	val offsetY: Int
 ) {
+	val ratioX: Float
+	val ratioY: Float
+
+	init {
+		val targetSize = if (isPortrait(frameOrientation)) {
+			Point(frameHeight, frameWidth)
+		} else {
+			Point(frameWidth, frameHeight)
+		}
+		ratioX = viewWidth / targetSize.x.toFloat()
+		ratioY = viewHeight / targetSize.y.toFloat()
+	}
+
 	fun map(resultPoint: ResultPoint): Point {
 		val point = Point(
 			resultPoint.x.roundToInt(),
 			resultPoint.y.roundToInt()
 		)
 		rotate(point)
-		val w: Int
-		val h: Int
-		if (isPortrait(frameOrientation)) {
-			w = frameHeight
-			h = frameWidth
-		} else {
-			w = frameWidth
-			h = frameHeight
-		}
-		val ratioX = viewWidth / w.toFloat()
-		val ratioY = viewHeight / h.toFloat()
 		point.set(
 			(point.x * ratioX).roundToInt() + offsetX,
 			(point.y * ratioY).roundToInt() + offsetY
