@@ -349,7 +349,7 @@ private fun hexDump(bytes: ByteArray, charsPerLine: Int = 33): String {
 	while (true) {
 		val ord = bytes[i]
 		hex.append(String.format("%02X ", ord))
-		ascii.append(if (ord > 31) ord.toChar() else " ")
+		ascii.append(if (ord > 31) ord.toInt().toChar() else " ")
 		++i
 		val posInLine = i % itemsPerLine
 		val atEnd = i >= len

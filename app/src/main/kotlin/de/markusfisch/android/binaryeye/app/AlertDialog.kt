@@ -11,7 +11,7 @@ suspend inline fun <T : Any> alertDialog(
 	context: Context,
 	crossinline build: AlertDialog.Builder.(resume: (T?) -> Unit) -> Unit
 ): T? = withContext(Dispatchers.Main) {
-	suspendCoroutine<T?> { continuation ->
+	suspendCoroutine { continuation ->
 		AlertDialog.Builder(context).apply {
 			setOnCancelListener {
 				continuation.resume(null)

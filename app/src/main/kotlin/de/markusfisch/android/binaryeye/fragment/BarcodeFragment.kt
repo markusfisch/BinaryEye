@@ -273,4 +273,4 @@ private fun Bitmap.saveAsPng(outputStream: OutputStream, quality: Int = 90) {
 
 private val fileNameCharacters = "[^A-Za-z0-9]".toRegex()
 private fun encodeFileName(name: String): String =
-	fileNameCharacters.replace(name, "_").take(16).trim('_').toLowerCase(Locale.getDefault())
+	fileNameCharacters.replace(name, "_").take(16).trim('_').lowercase(Locale.getDefault())
