@@ -6,12 +6,12 @@ import android.graphics.*
 import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.prefs
-import de.markusfisch.android.binaryeye.graphics.Dots
 import de.markusfisch.android.binaryeye.graphics.getBitmapFromDrawable
 import de.markusfisch.android.binaryeye.graphics.getDashedBorderPaint
 import kotlin.math.abs
@@ -20,18 +20,23 @@ import kotlin.math.min
 import kotlin.math.roundToInt
 
 class DetectorView : View {
+	val coordinates = FloatArray(32)
 	val currentOrientation = resources.configuration.orientation
 	val roi = Rect()
 
 	var onRoiChange: (() -> Unit)? = null
 	var onRoiChanged: (() -> Unit)? = null
 
-	private val dots = Dots(context)
 	private val invalidateRunnable: Runnable = Runnable {
-		marks = null
+		coordinatesLast = 0
 		invalidate()
 	}
 	private val roiPaint = context.getDashedBorderPaint()
+	private val dotPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+		color = ContextCompat.getColor(context, R.color.dot)
+		style = Paint.Style.FILL
+	}
+	private val dotRadius: Float
 	private val handleBitmap = resources.getBitmapFromDrawable(
 		R.drawable.button_crop
 	)
@@ -47,7 +52,7 @@ class DetectorView : View {
 	private val fabHeight: Int
 	private val padding: Int
 
-	private var marks: List<Point>? = null
+	private var coordinatesLast = 0
 	private var handleGrabbed = false
 	private var handleActive = false
 	private var minY = 0
@@ -57,6 +62,7 @@ class DetectorView : View {
 
 	init {
 		val dp = context.resources.displayMetrics.density
+		dotRadius = 8f * dp
 		distToFull = (24f * dp).roundToInt()
 		val minMoveThreshold = (8f * dp).roundToInt()
 		minMoveThresholdSq = minMoveThreshold * minMoveThreshold
@@ -89,8 +95,8 @@ class DetectorView : View {
 		Point(-1, -1)
 	}
 
-	fun mark(points: List<Point>) {
-		marks = points
+	fun update(numberOfResultPoints: Int) {
+		coordinatesLast = numberOfResultPoints * 2
 		invalidate()
 		removeCallbacks(invalidateRunnable)
 		postDelayed(invalidateRunnable, 500)
@@ -241,15 +247,25 @@ class DetectorView : View {
 		if (handleActive) {
 			drawClip(canvas)
 		}
-		marks?.let {
-			dots.draw(canvas, it)
-		}
+		drawDots(canvas)
 		if (prefs.showCropHandle) {
 			canvas.drawBitmap(
 				handleBitmap,
 				(handlePos.x - handleXRadius).toFloat(),
 				(handlePos.y - handleYRadius).toFloat(),
 				null
+			)
+		}
+	}
+
+	private fun drawDots(canvas: Canvas) {
+		var i = 0
+		while (i < coordinatesLast) {
+			canvas.drawCircle(
+				coordinates[i++],
+				coordinates[i++],
+				dotRadius,
+				dotPaint
 			)
 		}
 	}
