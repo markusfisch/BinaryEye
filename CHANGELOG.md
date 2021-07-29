@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.44.1
+* Update Spanish translation
+* Update Japanese translation
+* Fix in-app language switching for App Bundles
+
 ## 1.44.0
 * Add a setting to choose barcode formats to scan
 * Ask before removing network suggestions
