@@ -26,7 +26,6 @@ import de.markusfisch.android.binaryeye.zxing.encodeAsBitmap
 import de.markusfisch.android.binaryeye.zxing.encodeAsSvg
 import de.markusfisch.android.binaryeye.zxing.encodeAsText
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.File
@@ -198,9 +197,9 @@ class BarcodeFragment : Fragment() {
 		write: (outputStream: OutputStream) -> Unit
 	) {
 		val ac = activity ?: return
-		GlobalScope.launch {
+		GlobalScope.launch(Dispatchers.IO) {
 			val message = writeExternalFile(ac, fileName, mimeType, write).toSaveResult()
-			GlobalScope.launch(Main) {
+			launch(Dispatchers.Main) {
 				ac.toast(message)
 			}
 		}
@@ -228,7 +227,7 @@ class BarcodeFragment : Fragment() {
 			} catch (e: IOException) {
 				false
 			}
-			GlobalScope.launch(Main) {
+			launch(Dispatchers.Main) {
 				if (success) {
 					shareFile(context, file, "image/png")
 				} else {
