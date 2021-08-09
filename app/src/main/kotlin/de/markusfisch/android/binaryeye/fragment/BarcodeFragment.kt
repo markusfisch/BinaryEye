@@ -214,9 +214,10 @@ class BarcodeFragment : Fragment() {
 	}
 
 	private fun share(bitmap: Bitmap) {
+		val ctx = context ?: return
 		GlobalScope.launch(Dispatchers.IO) {
 			val file = File(
-				context.externalCacheDir,
+				ctx.externalCacheDir,
 				"shared_barcode.png"
 			)
 			val success = try {
@@ -229,9 +230,9 @@ class BarcodeFragment : Fragment() {
 			}
 			launch(Dispatchers.Main) {
 				if (success) {
-					shareFile(context, file, "image/png")
+					shareFile(ctx, file, "image/png")
 				} else {
-					activity?.toast(R.string.error_saving_file)
+					ctx.toast(R.string.error_saving_file)
 				}
 			}
 		}
