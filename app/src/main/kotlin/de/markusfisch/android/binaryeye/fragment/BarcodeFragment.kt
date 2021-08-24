@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.*
@@ -151,7 +152,10 @@ class BarcodeFragment : Fragment() {
 	@SuppressLint("InflateParams")
 	private fun askForFileNameAndSave(fileType: FileType) {
 		val ac = activity ?: return
-		if (!hasWritePermission(ac) { askForFileNameAndSave(fileType) }) {
+		// write permission is only required before Android Q
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
+			!hasWritePermission(ac) { askForFileNameAndSave(fileType) }
+		) {
 			return
 		}
 		val view = ac.layoutInflater.inflate(R.layout.dialog_save_file, null)
