@@ -167,17 +167,17 @@ object WifiConnector {
 	@RequiresApi(Build.VERSION_CODES.Q)
 	private fun WifiNetworkSuggestion.Builder.apply(
 		data: SimpleDataAccessor
-	): WifiNetworkSuggestion.Builder? {
+	): WifiNetworkSuggestion.Builder {
 		fun WifiNetworkSuggestion.Builder.applyCommon(
 			data: SimpleDataAccessor
-		): WifiNetworkSuggestion.Builder? {
+		): WifiNetworkSuggestion.Builder {
 			setSsid(data.ssid)
 			return this
 		}
 
 		fun WifiNetworkSuggestion.Builder.applySecurity(
 			data: SimpleDataAccessor
-		): WifiNetworkSuggestion.Builder? {
+		): WifiNetworkSuggestion.Builder {
 			when (data.securityType) {
 				"WPA", "WPA2" -> {
 					data.password?.let {
@@ -215,7 +215,7 @@ object WifiConnector {
 			return this
 		}
 
-		return this.applyCommon(data)?.applySecurity(data)
+		return this.applyCommon(data).applySecurity(data)
 	}
 
 	// WifiConfiguration is deprecated in Android Q.
@@ -228,7 +228,7 @@ object WifiConnector {
 
 		fun WifiConfiguration.applyCommon(
 			data: SimpleDataAccessor
-		): WifiConfiguration? {
+		): WifiConfiguration {
 			allowedAuthAlgorithms.clear()
 			allowedGroupCiphers.clear()
 			allowedKeyManagement.clear()
@@ -298,7 +298,7 @@ object WifiConnector {
 			return this
 		}
 
-		return this.applyCommon(data)?.applySecurity(data)
+		return this.applyCommon(data).applySecurity(data)
 	}
 
 	private inline fun <T> requireSdk(version: Int, block: () -> T): T? {

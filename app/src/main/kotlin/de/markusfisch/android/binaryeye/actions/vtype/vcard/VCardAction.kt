@@ -23,7 +23,7 @@ object VCardAction : IntentAction() {
 		return VTypeParser.parseVType(String(data)) == "VCARD"
 	}
 
-	override suspend fun createIntent(context: Context, data: ByteArray): Intent? {
+	override suspend fun createIntent(context: Context, data: ByteArray): Intent {
 		val info = VTypeParser.parseMap(String(data))
 
 		return Intent(Intent.ACTION_INSERT_OR_EDIT).apply {
