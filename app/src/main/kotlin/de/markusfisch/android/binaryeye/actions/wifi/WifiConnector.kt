@@ -100,7 +100,7 @@ object WifiConnector {
 			string
 		)?.groupValues?.get(1)?.let { pairs ->
 			pairRegex.findAll(pairs).map { pair ->
-				pair.groupValues[1].toUpperCase(Locale.US) to pair.groupValues[2]
+				pair.groupValues[1].uppercase(Locale.US) to pair.groupValues[2]
 			}.toMap()
 		}
 	}

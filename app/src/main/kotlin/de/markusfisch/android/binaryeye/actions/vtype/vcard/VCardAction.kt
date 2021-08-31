@@ -50,7 +50,7 @@ object VCardAction : IntentAction() {
 				}
 				putExtra(
 					extraPhone,
-					phoneProperty.value.toLowerCase(Locale.US).removePrefix("tel:")
+					phoneProperty.value.lowercase(Locale.US).removePrefix("tel:")
 				)
 			}
 			info["EMAIL"]?.forEachIndexed { index, mailProperty ->
@@ -142,7 +142,7 @@ object VCardAction : IntentAction() {
 			} ?: this
 
 	private val String.mailType: Int?
-		get() = when (this.toUpperCase(Locale.US)) {
+		get() = when (this.uppercase(Locale.US)) {
 			"HOME" -> ContactsContract.CommonDataKinds.Email.TYPE_HOME
 			"WORK" -> ContactsContract.CommonDataKinds.Email.TYPE_WORK
 			"OTHER" -> ContactsContract.CommonDataKinds.Email.TYPE_OTHER
@@ -151,7 +151,7 @@ object VCardAction : IntentAction() {
 		}
 
 	private val String.phoneType: Int?
-		get() = when (this.toUpperCase(Locale.US)) {
+		get() = when (this.uppercase(Locale.US)) {
 			"HOME" -> ContactsContract.CommonDataKinds.Phone.TYPE_HOME
 			"MOBILE", "CELL" -> ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE
 			"WORK" -> ContactsContract.CommonDataKinds.Phone.TYPE_WORK

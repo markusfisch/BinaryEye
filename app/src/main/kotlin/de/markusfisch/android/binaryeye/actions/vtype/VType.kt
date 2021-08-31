@@ -15,7 +15,7 @@ object VTypeParser {
 
 	fun parseVType(data: String): String? = vTypeRegex.matchEntire(
 		data
-	)?.groupValues?.get(1)?.toUpperCase(Locale.US)
+	)?.groupValues?.get(1)?.uppercase(Locale.US)
 
 	fun parseMap(
 		data: String
@@ -26,7 +26,7 @@ object VTypeParser {
 				it.groupValues[2]
 			)
 		}
-	}.groupBy({ it.first.toUpperCase(Locale.US) }) { it.second }
+	}.groupBy({ it.first.uppercase(Locale.US) }) { it.second }
 }
 
 data class VTypeProperty(
