@@ -20,7 +20,16 @@ object VCardAction : IntentAction() {
 		get() = R.string.vcard_failed
 
 	override fun canExecuteOn(data: ByteArray): Boolean {
-		return VTypeParser.parseVType(String(data)) == "VCARD"
+		var stringData = String(data)
+		// Quick & dirty MECARD support: simply make it a VCARD.
+		if (stringData.startsWith("MECARD:")) {
+			stringData = stringData
+				.trim()
+				.replace("MECARD:", "BEGIN:VCARD\n")
+				.replace(";;", "\nEND:VCARD\n")
+				.replace(";", "\n")
+		}
+		return VTypeParser.parseVType(stringData) == "VCARD"
 	}
 
 	override suspend fun createIntent(context: Context, data: ByteArray): Intent {
