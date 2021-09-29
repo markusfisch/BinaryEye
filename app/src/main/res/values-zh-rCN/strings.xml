@@ -43,6 +43,12 @@
 	<string name="switch_camera">切换摄像头</string>
 	<string name="bulk_mode">连续扫描</string>
 	<string name="bulk_mode_summary">始终开启连续扫描</string>
+	<string name="bulk_mode_delay">Delay between continuous scans</string>
+	<string name="quarter_second">A quarter second</string>
+	<string name="half_second">Half a second</string>
+	<string name="a_second">One second</string>
+	<string name="two_seconds">Two seconds</string>
+	<string name="five_seconds">Five seconds</string>
 	<string name="history">历史</string>
 	<string name="preferences">首选项</string>
 	<string name="scan_category">扫描</string>

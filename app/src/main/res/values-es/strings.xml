@@ -44,6 +44,12 @@
 	<string name="switch_camera">Cambiar cámara</string>
 	<string name="bulk_mode">Escanear constantemente</string>
 	<string name="bulk_mode_summary">Siempre iniciar escaneando constantemente</string>
+	<string name="bulk_mode_delay">Delay between continuous scans</string>
+	<string name="quarter_second">A quarter second</string>
+	<string name="half_second">Half a second</string>
+	<string name="a_second">One second</string>
+	<string name="two_seconds">Two seconds</string>
+	<string name="five_seconds">Five seconds</string>
 	<string name="history">Historial</string>
 	<string name="preferences">Configuración</string>
 	<string name="scan_category">Escanear</string>

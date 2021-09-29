@@ -1,0 +1,16 @@
+<resources>
+	<string-array name="bulk_mode_delays_names">
+		<item>@string/quarter_second</item>
+		<item>@string/half_second</item>
+		<item>@string/a_second</item>
+		<item>@string/two_seconds</item>
+		<item>@string/five_seconds</item>
+	</string-array>
+	<string-array name="bulk_mode_delays_values">
+		<item>250</item>
+		<item>500</item>
+		<item>1000</item>
+		<item>2000</item>
+		<item>5000</item>
+	</string-array>
+</resources>

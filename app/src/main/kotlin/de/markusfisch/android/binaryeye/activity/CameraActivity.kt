@@ -693,7 +693,7 @@ class CameraActivity : AppCompatActivity() {
 				}
 				detectorView.postDelayed({
 					decoding = true
-				}, 500)
+				}, prefs.bulkModeDelay.toLong())
 			}
 		}
 	}

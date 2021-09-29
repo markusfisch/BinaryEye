@@ -44,6 +44,12 @@
 	<string name="switch_camera">Kamerayı değiştir</string>
 	<string name="bulk_mode">Sürekli tara</string>
 	<string name="bulk_mode_summary">Always start scanning continuously.</string>
+	<string name="bulk_mode_delay">Delay between continuous scans</string>
+	<string name="quarter_second">A quarter second</string>
+	<string name="half_second">Half a second</string>
+	<string name="a_second">One second</string>
+	<string name="two_seconds">Two seconds</string>
+	<string name="five_seconds">Five seconds</string>
 	<string name="history">Geçmiş</string>
 	<string name="preferences">Tercihler</string>
 	<string name="scan_category">Tarama</string>
