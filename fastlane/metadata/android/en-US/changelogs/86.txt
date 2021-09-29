@@ -1,0 +1,4 @@
+* Add a setting to set the delay for bulk mode
+* Add support for MECARD contact format
+* Remove unused permissions on Android Q
+
