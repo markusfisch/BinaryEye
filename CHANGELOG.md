@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.45.0
+* Add a setting to set the delay for bulk mode
+* Add support for MECARD contact format
+* Remove unused permissions on Android Q
+
 ## 1.44.1
 * Update Spanish translation
 * Update Japanese translation
