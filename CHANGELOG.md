@@ -1,5 +1,22 @@
 # Change Log
 
+## 1.45.0
+* Add a setting to set the delay for bulk mode
+* Add support for MECARD contact format
+* Remove unused permissions on Android Q
+
+## 1.44.1
+* Update Spanish translation
+* Update Japanese translation
+* Fix in-app language switching for App Bundles
+
+## 1.44.0
+* Add a setting to choose barcode formats to scan
+* Ask before removing network suggestions
+* Update Traditional Chinese Translation
+* Update Russian language
+* Update Dutch translation
+
 ## 1.43.0
 * Add a preference item to remove WiFi network suggestions
 * Update Traditional Chinese Translation

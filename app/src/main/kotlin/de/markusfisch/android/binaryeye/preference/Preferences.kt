@@ -79,6 +79,13 @@ class Preferences {
 			commit(BULK_MODE, value)
 			field = value
 		}
+	var bulkModeDelay = "500"
+		set(value) {
+			// Immediately save this setting because it's only ever read
+			// before the camera is opened.
+			commit(BULK_MODE_DELAY, value)
+			field = value
+		}
 	var showToastInBulkMode = true
 		set(value) {
 			// Immediately save this setting because it's only ever read
@@ -189,6 +196,10 @@ class Preferences {
 		autoRotate = preferences.getBoolean(AUTO_ROTATE, autoRotate)
 		tryHarder = preferences.getBoolean(TRY_HARDER, tryHarder)
 		bulkMode = preferences.getBoolean(BULK_MODE, bulkMode)
+		bulkModeDelay = preferences.getString(
+			BULK_MODE_DELAY,
+			bulkModeDelay
+		) ?: bulkModeDelay
 		showToastInBulkMode = preferences.getBoolean(
 			SHOW_TOAST_IN_BULK_MODE,
 			showToastInBulkMode
@@ -238,7 +249,14 @@ class Preferences {
 	private fun put(label: String, value: Boolean) =
 		preferences.edit().putBoolean(label, value)
 
+	private fun put(label: String, value: String) =
+		preferences.edit().putString(label, value)
+
 	private fun commit(label: String, value: Boolean) {
+		put(label, value).commit()
+	}
+
+	private fun commit(label: String, value: String) {
 		put(label, value).commit()
 	}
 
@@ -269,6 +287,7 @@ class Preferences {
 		const val AUTO_ROTATE = "auto_rotate"
 		const val TRY_HARDER = "try_harder"
 		const val BULK_MODE = "bulk_mode"
+		const val BULK_MODE_DELAY = "bulk_mode_delay"
 		const val SHOW_TOAST_IN_BULK_MODE = "show_toast_in_bulk_mode"
 		const val VIBRATE = "vibrate"
 		const val USE_HISTORY = "use_history"

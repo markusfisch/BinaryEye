@@ -19,7 +19,7 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.graphics.crop
 import de.markusfisch.android.binaryeye.graphics.loadImageUri
-import de.markusfisch.android.binaryeye.graphics.mapResult
+import de.markusfisch.android.binaryeye.graphics.mapResultToView
 import de.markusfisch.android.binaryeye.os.vibrate
 import de.markusfisch.android.binaryeye.rs.fixTransparency
 import de.markusfisch.android.binaryeye.view.colorSystemAndToolBars
@@ -135,19 +135,21 @@ class PickActivity : AppCompatActivity() {
 			result = zxing.decodePositiveNegative(cropped)
 			result?.let {
 				withContext(Dispatchers.Main) {
-					if (!isFinishing) {
-						vibrator.vibrate()
+					if (isFinishing) {
+						return@withContext
 					}
+					vibrator.vibrate()
 					val rc = Rect()
 					imageRect.round(rc)
 					rectInView.intersect(rc)
-					detectorView.mark(
-						mapResult(
+					detectorView.update(
+						mapResultToView(
 							cropped.width,
 							cropped.height,
 							0,
 							rectInView,
-							it
+							it.resultPoints,
+							detectorView.coordinates
 						)
 					)
 				}

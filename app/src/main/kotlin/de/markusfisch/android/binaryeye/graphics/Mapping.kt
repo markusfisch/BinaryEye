@@ -1,85 +1,62 @@
 package de.markusfisch.android.binaryeye.graphics
 
-import android.graphics.Point
+import android.graphics.Matrix
 import android.graphics.Rect
-import com.google.zxing.Result
 import com.google.zxing.ResultPoint
-import kotlin.math.roundToInt
 
-fun mapResult(
+fun mapResultToView(
 	frameWidth: Int,
 	frameHeight: Int,
 	frameOrientation: Int,
 	viewRect: Rect,
-	result: Result
-): List<Point> = frameToView(
+	resultPoints: Array<ResultPoint?>,
+	targetArray: FloatArray
+): Int = getFrameToViewMatrix(
 	frameWidth,
 	frameHeight,
 	frameOrientation,
 	viewRect
 ).map(
-	result.resultPoints
+	resultPoints,
+	targetArray
 )
 
-fun frameToView(
+fun getFrameToViewMatrix(
 	frameWidth: Int,
 	frameHeight: Int,
 	frameOrientation: Int,
 	viewRect: Rect
-) = Mapping(
-	frameWidth,
-	frameHeight,
-	frameOrientation,
-	viewRect.width().toFloat(),
-	viewRect.height().toFloat(),
-	viewRect.left,
-	viewRect.top
-)
+) = Matrix().apply {
+	// Normalize to frame dimensions for rotation.
+	postScale(
+		1f / frameWidth,
+		1f / frameHeight
+	)
+	// Rotate around center.
+	postRotate(frameOrientation.toFloat(), 0.5f, 0.5f)
+	// Scale up to view size.
+	postScale(viewRect.width().toFloat(), viewRect.height().toFloat())
+	// Apply view displacement.
+	postTranslate(viewRect.left.toFloat(), viewRect.top.toFloat())
+}
 
-fun isPortrait(orientation: Int) = orientation == 90 || orientation == 270
-
-data class Mapping(
-	val frameWidth: Int,
-	val frameHeight: Int,
-	val frameOrientation: Int,
-	val viewWidth: Float,
-	val viewHeight: Float,
-	val offsetX: Int,
-	val offsetY: Int
-) {
-	fun map(resultPoint: ResultPoint): Point {
-		val point = Point(
-			resultPoint.x.roundToInt(),
-			resultPoint.y.roundToInt()
-		)
-		rotate(point)
-		val w: Int
-		val h: Int
-		if (isPortrait(frameOrientation)) {
-			w = frameHeight
-			h = frameWidth
-		} else {
-			w = frameWidth
-			h = frameHeight
-		}
-		val ratioX = viewWidth / w.toFloat()
-		val ratioY = viewHeight / h.toFloat()
-		point.set(
-			(point.x * ratioX).roundToInt() + offsetX,
-			(point.y * ratioY).roundToInt() + offsetY
-		)
-		return point
-	}
-
-	fun map(points: Array<ResultPoint?>): List<Point> =
+fun Matrix.map(
+	resultPoints: Array<ResultPoint?>,
+	targetArray: FloatArray
+): Int {
+	val max = targetArray.size
+	var i = 0
+	for (resultPoint in resultPoints) {
 		// Because ZXing apparently returns null in this array sometimes.
-		points.filterNotNull().map { map(it) }
-
-	private fun rotate(point: Point) = when (frameOrientation) {
-		90 -> point.set(frameHeight - point.y, point.x)
-		180 -> point.set(frameWidth - point.x, frameHeight - point.y)
-		270 -> point.set(point.y, frameWidth - point.x)
-		else -> {
+		if (resultPoint == null) {
+			continue
+		}
+		targetArray[i++] = resultPoint.x
+		targetArray[i++] = resultPoint.y
+		if (i >= max) {
+			break
 		}
 	}
+	mapPoints(targetArray, 0, targetArray, 0, i)
+	return i
 }

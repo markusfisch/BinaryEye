@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Matrix
 import android.graphics.Rect
 import android.graphics.RectF
 import android.hardware.Camera
@@ -29,9 +30,8 @@ import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.execShareIntent
 import de.markusfisch.android.binaryeye.database.Scan
-import de.markusfisch.android.binaryeye.graphics.Mapping
-import de.markusfisch.android.binaryeye.graphics.frameToView
-import de.markusfisch.android.binaryeye.graphics.isPortrait
+import de.markusfisch.android.binaryeye.graphics.getFrameToViewMatrix
+import de.markusfisch.android.binaryeye.graphics.map
 import de.markusfisch.android.binaryeye.net.sendAsync
 import de.markusfisch.android.binaryeye.os.error
 import de.markusfisch.android.binaryeye.os.vibrate
@@ -48,12 +48,15 @@ import kotlin.math.roundToInt
 
 class CameraActivity : AppCompatActivity() {
 	private val zxing = Zxing { point ->
-		point?.let {
-			getMapping()?.map(it)?.let {
-				detectorView.post {
-					detectorView.mark(listOf(it))
-				}
-			}
+		point ?: return@Zxing
+		val matrix = getMappingMatrix() ?: return@Zxing
+		detectorView.post {
+			detectorView.update(
+				matrix.map(
+					arrayOf(point),
+					detectorView.coordinates
+				)
+			)
 		}
 	}
 
@@ -65,8 +68,8 @@ class CameraActivity : AppCompatActivity() {
 	private lateinit var flashFab: FloatingActionButton
 
 	private var preprocessor: Preprocessor? = null
-	private var nativeMapping: Mapping? = null
-	private var rotatedMapping: Mapping? = null
+	private var nativeMappingMatrix: Matrix? = null
+	private var rotatedMappingMatrix: Matrix? = null
 	private var recreatePreprocessor = false
 	private var rotate = false
 	private var invert = false
@@ -588,13 +591,13 @@ class CameraActivity : AppCompatActivity() {
 		} else {
 			cameraView.previewRect
 		}
-		nativeMapping = frameToView(
+		nativeMappingMatrix = getFrameToViewMatrix(
 			pp.outWidth,
 			pp.outHeight,
 			frameOrientation,
 			viewRect
 		)
-		rotatedMapping = frameToView(
+		rotatedMappingMatrix = getFrameToViewMatrix(
 			pp.outHeight,
 			pp.outWidth,
 			(frameOrientation - 90 + 360) % 360,
@@ -639,32 +642,42 @@ class CameraActivity : AppCompatActivity() {
 			)
 			// Since the ROI is always centered and symmetric, we don't
 			// need to distinguish between 0 and 180 or 90 and 270 degree.
-			if (isPortrait(frameOrientation)) {
-				Rect(
-					(normalizedRoi.top * frameWidth.toFloat()).roundToInt(),
-					(normalizedRoi.left * frameHeight.toFloat()).roundToInt(),
-					(normalizedRoi.bottom * frameWidth.toFloat()).roundToInt(),
-					(normalizedRoi.right * frameHeight.toFloat()).roundToInt()
+			val errectedRoi = if (isPortrait(frameOrientation)) {
+				RectF(
+					normalizedRoi.top,
+					normalizedRoi.left,
+					normalizedRoi.bottom,
+					normalizedRoi.right
 				)
 			} else {
-				Rect(
-					(normalizedRoi.left * frameWidth.toFloat()).roundToInt(),
-					(normalizedRoi.top * frameHeight.toFloat()).roundToInt(),
-					(normalizedRoi.right * frameWidth.toFloat()).roundToInt(),
-					(normalizedRoi.bottom * frameHeight.toFloat()).roundToInt()
-				)
+				normalizedRoi
 			}
+			Rect(
+				(errectedRoi.left * frameWidth.toFloat()).roundToInt(),
+				(errectedRoi.top * frameHeight.toFloat()).roundToInt(),
+				(errectedRoi.right * frameWidth.toFloat()).roundToInt(),
+				(errectedRoi.bottom * frameHeight.toFloat()).roundToInt()
+			)
 		}
 	}
 
 	private fun postResult(result: Result) {
-		// Get mapping for the current rotate value.
-		val mapping = getMapping()
+		// Get matrix for the current rotate value.
+		val matrix = getMappingMatrix()
+		val resultPoints = result.resultPoints
+		if (matrix == null ||
+			resultPoints == null ||
+			resultPoints.isEmpty()
+		) {
+			return
+		}
 		cameraView.post {
-			val rp = result.resultPoints
-			if (mapping != null && rp != null && rp.isNotEmpty()) {
-				detectorView.mark(mapping.map(rp))
-			}
+			detectorView.update(
+				matrix.map(
+					resultPoints,
+					detectorView.coordinates
+				)
+			)
 			vibrator.vibrate()
 			showResult(
 				this@CameraActivity,
@@ -680,12 +693,16 @@ class CameraActivity : AppCompatActivity() {
 				}
 				detectorView.postDelayed({
 					decoding = true
-				}, 500)
+				}, prefs.bulkModeDelay.toLong())
 			}
 		}
 	}
 
-	private fun getMapping() = if (rotate) rotatedMapping else nativeMapping
+	private fun getMappingMatrix() = if (rotate) {
+		rotatedMappingMatrix
+	} else {
+		nativeMappingMatrix
+	}
 
 	companion object {
 		private const val PICK_FILE_RESULT_CODE = 1
@@ -785,3 +802,7 @@ private fun beepBeepBeep() {
 		1000
 	)
 }
+
+private fun isPortrait(
+	orientation: Int
+) = orientation == 90 || orientation == 270

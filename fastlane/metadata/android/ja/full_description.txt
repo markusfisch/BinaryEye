@@ -1,0 +1,11 @@
+縦方向、横方向や、反転したバーコードも読み取ることができます。
+バーコードの作成も可能な、マテリアルデザインを採用したバーコードスキャナのアプリです。
+
+ZXing("Zebra Crossing") をバーコード読み込みライブラリに利用しています。
+対応しているバーコード形式は次の通りです。
+AZTEC, CODABAR, CODE 39, CODE 93, CODE 128,
+DATA MATRIX, EAN 8, EAN 13, ITF, PDF417, QR CODE, RSS 14, RSS EXPANDED,
+UPC A, UPC E and UPC EAN EXTENSION.
+
+このアプリはオープンソースです。
+ソースコード:https://github.com/markusfisch/BinaryEye

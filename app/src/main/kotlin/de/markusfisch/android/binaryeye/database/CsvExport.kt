@@ -16,7 +16,7 @@ fun exportCsv(
 	exportCsv(outputStream, cursor, delimiter)
 }
 
-fun exportCsv(cursor: Cursor, delimiter: String): String? {
+fun exportCsv(cursor: Cursor, delimiter: String): String {
 	val outputStream = ByteArrayOutputStream()
 	exportCsv(outputStream, cursor, delimiter)
 	return outputStream.toString()

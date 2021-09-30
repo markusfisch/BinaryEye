@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.*
@@ -26,7 +27,6 @@ import de.markusfisch.android.binaryeye.zxing.encodeAsBitmap
 import de.markusfisch.android.binaryeye.zxing.encodeAsSvg
 import de.markusfisch.android.binaryeye.zxing.encodeAsText
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.File
@@ -152,7 +152,10 @@ class BarcodeFragment : Fragment() {
 	@SuppressLint("InflateParams")
 	private fun askForFileNameAndSave(fileType: FileType) {
 		val ac = activity ?: return
-		if (!hasWritePermission(ac) { askForFileNameAndSave(fileType) }) {
+		// write permission is only required before Android Q
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
+			!hasWritePermission(ac) { askForFileNameAndSave(fileType) }
+		) {
 			return
 		}
 		val view = ac.layoutInflater.inflate(R.layout.dialog_save_file, null)
@@ -198,9 +201,9 @@ class BarcodeFragment : Fragment() {
 		write: (outputStream: OutputStream) -> Unit
 	) {
 		val ac = activity ?: return
-		GlobalScope.launch {
+		GlobalScope.launch(Dispatchers.IO) {
 			val message = writeExternalFile(ac, fileName, mimeType, write).toSaveResult()
-			GlobalScope.launch(Main) {
+			launch(Dispatchers.Main) {
 				ac.toast(message)
 			}
 		}
@@ -215,9 +218,10 @@ class BarcodeFragment : Fragment() {
 	}
 
 	private fun share(bitmap: Bitmap) {
+		val ctx = context ?: return
 		GlobalScope.launch(Dispatchers.IO) {
 			val file = File(
-				context.externalCacheDir,
+				ctx.externalCacheDir,
 				"shared_barcode.png"
 			)
 			val success = try {
@@ -228,11 +232,11 @@ class BarcodeFragment : Fragment() {
 			} catch (e: IOException) {
 				false
 			}
-			GlobalScope.launch(Main) {
+			launch(Dispatchers.Main) {
 				if (success) {
-					shareFile(context, file, "image/png")
+					shareFile(ctx, file, "image/png")
 				} else {
-					activity?.toast(R.string.error_saving_file)
+					ctx.toast(R.string.error_saving_file)
 				}
 			}
 		}
@@ -273,4 +277,4 @@ private fun Bitmap.saveAsPng(outputStream: OutputStream, quality: Int = 90) {
 
 private val fileNameCharacters = "[^A-Za-z0-9]".toRegex()
 private fun encodeFileName(name: String): String =
-	fileNameCharacters.replace(name, "_").take(16).trim('_').toLowerCase(Locale.getDefault())
+	fileNameCharacters.replace(name, "_").take(16).trim('_').lowercase(Locale.getDefault())

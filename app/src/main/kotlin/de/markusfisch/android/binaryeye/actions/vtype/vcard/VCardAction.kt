@@ -20,10 +20,19 @@ object VCardAction : IntentAction() {
 		get() = R.string.vcard_failed
 
 	override fun canExecuteOn(data: ByteArray): Boolean {
-		return VTypeParser.parseVType(String(data)) == "VCARD"
+		var stringData = String(data)
+		// Quick & dirty MECARD support: simply make it a VCARD.
+		if (stringData.startsWith("MECARD:")) {
+			stringData = stringData
+				.trim()
+				.replace("MECARD:", "BEGIN:VCARD\n")
+				.replace(";;", "\nEND:VCARD\n")
+				.replace(";", "\n")
+		}
+		return VTypeParser.parseVType(stringData) == "VCARD"
 	}
 
-	override suspend fun createIntent(context: Context, data: ByteArray): Intent? {
+	override suspend fun createIntent(context: Context, data: ByteArray): Intent {
 		val info = VTypeParser.parseMap(String(data))
 
 		return Intent(Intent.ACTION_INSERT_OR_EDIT).apply {
@@ -50,7 +59,7 @@ object VCardAction : IntentAction() {
 				}
 				putExtra(
 					extraPhone,
-					phoneProperty.value.toLowerCase(Locale.US).removePrefix("tel:")
+					phoneProperty.value.lowercase(Locale.US).removePrefix("tel:")
 				)
 			}
 			info["EMAIL"]?.forEachIndexed { index, mailProperty ->
@@ -142,7 +151,7 @@ object VCardAction : IntentAction() {
 			} ?: this
 
 	private val String.mailType: Int?
-		get() = when (this.toUpperCase(Locale.US)) {
+		get() = when (this.uppercase(Locale.US)) {
 			"HOME" -> ContactsContract.CommonDataKinds.Email.TYPE_HOME
 			"WORK" -> ContactsContract.CommonDataKinds.Email.TYPE_WORK
 			"OTHER" -> ContactsContract.CommonDataKinds.Email.TYPE_OTHER
@@ -151,7 +160,7 @@ object VCardAction : IntentAction() {
 		}
 
 	private val String.phoneType: Int?
-		get() = when (this.toUpperCase(Locale.US)) {
+		get() = when (this.uppercase(Locale.US)) {
 			"HOME" -> ContactsContract.CommonDataKinds.Phone.TYPE_HOME
 			"MOBILE", "CELL" -> ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE
 			"WORK" -> ContactsContract.CommonDataKinds.Phone.TYPE_WORK

@@ -9,11 +9,11 @@ android {
 		minSdkVersion 9
 		targetSdkVersion sdk_version
 
-		versionCode 83
-		versionName '1.43.0'
+		versionCode 86
+		versionName '1.45.0'
 
-		// it's recommended to set this value to the lowest API level
-		// able to provide all the functionality
+		// It's recommended to set this value to the lowest API level
+		// able to provide all the functionality.
 		renderscriptTargetApi 24
 		renderscriptSupportModeEnabled true
 		renderscriptSupportModeBlasEnabled true
@@ -50,10 +50,22 @@ android {
 		}
 	}
 
+	bundle {
+		language {
+			// To make the app bundle contain all language resources
+			// so the in-app language setting works. Another solution
+			// would be to use the PlayCore API to download language
+			// resources on demand, but it makes much more sense to
+			// simply include the ~60 kb than adding fragile code and
+			// dependencies.
+			enableSplit = false
+		}
+	}
+
 	lintOptions {
-		// because at the time of writing, even the latest version
+		// Because at the time of writing, even the latest version
 		// of RenderScript is raising this error no matter if
-		// renderscriptTargetApi matches targetSdkVersion
+		// renderscriptTargetApi matches targetSdkVersion.
 		disable 'GradleCompatible'
 	}
 }

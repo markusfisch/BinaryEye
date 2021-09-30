@@ -51,7 +51,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
 			pref.isVisible = false
 		} else {
-			pref.setOnPreferenceClickListener { _ ->
+			pref.setOnPreferenceClickListener {
 				askToClearNetworkSuggestions(context)
 				true
 			}

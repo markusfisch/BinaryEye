@@ -45,6 +45,12 @@
 	<string name="switch_camera">Přepnout kameru</string>
 	<string name="bulk_mode">Skenovat nepřetržitě</string>
 	<string name="bulk_mode_summary">Always start scanning continuously.</string>
+	<string name="bulk_mode_delay">Delay between continuous scans</string>
+	<string name="quarter_second">A quarter second</string>
+	<string name="half_second">Half a second</string>
+	<string name="a_second">One second</string>
+	<string name="two_seconds">Two seconds</string>
+	<string name="five_seconds">Five seconds</string>
 	<string name="history">Historie</string>
 	<string name="preferences">Nastavení</string>
 	<string name="scan_category">Skenování</string>
