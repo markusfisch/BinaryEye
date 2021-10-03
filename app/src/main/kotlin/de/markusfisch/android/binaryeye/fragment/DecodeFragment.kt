@@ -14,6 +14,7 @@ import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
 import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
+import de.markusfisch.android.binaryeye.actions.wifi.WifiConnector
 import de.markusfisch.android.binaryeye.activity.MainActivity
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
 import de.markusfisch.android.binaryeye.app.*
@@ -33,6 +34,7 @@ import kotlinx.coroutines.launch
 class DecodeFragment : Fragment() {
 	private lateinit var contentView: EditText
 	private lateinit var formatView: TextView
+	private lateinit var dataView: TableLayout
 	private lateinit var metaView: TableLayout
 	private lateinit var hexView: TextView
 	private lateinit var format: String
@@ -123,10 +125,15 @@ class DecodeFragment : Fragment() {
 		}
 
 		formatView = view.findViewById(R.id.format)
+		dataView = view.findViewById(R.id.data)
 		metaView = view.findViewById(R.id.meta)
 		hexView = view.findViewById(R.id.hex)
 
 		updateViewsAndAction(raw)
+
+		if (!isBinary) {
+			fillDataView(dataView, inputContent)
+		}
 
 		if (prefs.showMetaData) {
 			fillMetaView(metaView, scan)
@@ -168,20 +175,13 @@ class DecodeFragment : Fragment() {
 		}
 	}
 
-	private fun fillMetaView(tableLayout: TableLayout, scan: Scan) {
+	private fun fillDataTable(tableLayout: TableLayout, items: LinkedHashMap<Int, String?>?) {
 		val ctx = tableLayout.context
 		val spaceBetween = (16f * ctx.resources.displayMetrics.density).toInt()
-		var hasMeta = false
-		sortedMapOf(
-			R.string.error_correction_level to scan.errorCorrectionLevel,
-			R.string.issue_number to scan.issueNumber,
-			R.string.orientation to scan.orientation,
-			R.string.other_meta_data to scan.otherMetaData,
-			R.string.pdf417_extra_metadata to scan.pdf417ExtraMetaData,
-			R.string.possible_country to scan.possibleCountry,
-			R.string.suggested_price to scan.suggestedPrice,
-			R.string.upc_ean_extension to scan.upcEanExtension
-		).forEach { item ->
+
+		var hasEntries = false
+
+		items?.forEach { item ->
 			item.value?.let {
 				val tr = TableRow(ctx)
 				val keyView = TextView(ctx)
@@ -192,12 +192,47 @@ class DecodeFragment : Fragment() {
 				tr.addView(keyView)
 				tr.addView(valueView)
 				tableLayout.addView(tr)
-				hasMeta = true
+				hasEntries = true
 			}
 		}
-		if (hasMeta) {
+		if (hasEntries) {
 			tableLayout.setPadding(0, 0, 0, spaceBetween)
 		}
+	}
+
+	private fun fillDataView(tableLayout: TableLayout, content: String) {
+		val items = LinkedHashMap<Int, String?>()
+
+		if (action is WifiAction) {
+			val wifiData = WifiConnector.parseMap(content)
+
+			if (wifiData != null) {
+				items[R.string.entry_type] = getString(R.string.wifi_network)
+				items[R.string.wifi_ssid] = wifiData["S"]
+				items[R.string.wifi_password] = wifiData["P"]
+				items[R.string.wifi_type] = wifiData["T"]
+				items[R.string.wifi_hidden] = wifiData["H"]
+				items[R.string.wifi_eap] = wifiData["E"]
+				items[R.string.wifi_identity] = wifiData["I"]
+				items[R.string.wifi_anonymous_identity] = wifiData["A"]
+				items[R.string.wifi_phase2] = wifiData["PH2"]
+			}
+		}
+
+		fillDataTable(tableLayout, items)
+	}
+
+	private fun fillMetaView(tableLayout: TableLayout, scan: Scan) {
+		fillDataTable(tableLayout, linkedMapOf(
+			R.string.error_correction_level to scan.errorCorrectionLevel,
+			R.string.issue_number to scan.issueNumber,
+			R.string.orientation to scan.orientation,
+			R.string.other_meta_data to scan.otherMetaData,
+			R.string.pdf417_extra_metadata to scan.pdf417ExtraMetaData,
+			R.string.possible_country to scan.possibleCountry,
+			R.string.suggested_price to scan.suggestedPrice,
+			R.string.upc_ean_extension to scan.upcEanExtension
+		))
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
