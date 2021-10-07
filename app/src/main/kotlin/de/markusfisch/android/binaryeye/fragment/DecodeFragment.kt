@@ -25,7 +25,6 @@ import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.io.askForFileName
 import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.io.writeExternalFile
-import de.markusfisch.android.binaryeye.link_utils.getLinks
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.toast
 import kotlinx.coroutines.CoroutineScope
@@ -34,7 +33,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class DecodeFragment : Fragment() {
-
 	private lateinit var contentView: EditText
 	private lateinit var formatView: TextView
 	private lateinit var dataView: TableLayout
@@ -120,10 +118,8 @@ class DecodeFragment : Fragment() {
 			if (prefs.openImmediately) {
 				executeAction(content.toByteArray())
 			}
-
 			linksView.text = getLinks(inputContent).joinToString("\n")
 			linksView.movementMethod = LinkMovementMethod.getInstance()
-
 		} else {
 			contentView.setText(R.string.binary_data)
 			contentView.isEnabled = false
@@ -232,16 +228,18 @@ class DecodeFragment : Fragment() {
 	}
 
 	private fun fillMetaView(tableLayout: TableLayout, scan: Scan) {
-		fillDataTable(tableLayout, linkedMapOf(
-			R.string.error_correction_level to scan.errorCorrectionLevel,
-			R.string.issue_number to scan.issueNumber,
-			R.string.orientation to scan.orientation,
-			R.string.other_meta_data to scan.otherMetaData,
-			R.string.pdf417_extra_metadata to scan.pdf417ExtraMetaData,
-			R.string.possible_country to scan.possibleCountry,
-			R.string.suggested_price to scan.suggestedPrice,
-			R.string.upc_ean_extension to scan.upcEanExtension
-		))
+		fillDataTable(
+			tableLayout, linkedMapOf(
+				R.string.error_correction_level to scan.errorCorrectionLevel,
+				R.string.issue_number to scan.issueNumber,
+				R.string.orientation to scan.orientation,
+				R.string.other_meta_data to scan.otherMetaData,
+				R.string.pdf417_extra_metadata to scan.pdf417ExtraMetaData,
+				R.string.possible_country to scan.possibleCountry,
+				R.string.suggested_price to scan.suggestedPrice,
+				R.string.upc_ean_extension to scan.upcEanExtension
+			)
+		)
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

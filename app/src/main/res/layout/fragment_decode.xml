@@ -68,7 +68,6 @@
 				android:textSize="12sp"
 				android:typeface="monospace"
 				tools:text="54 65 73 74 20 51 52 20  Test QR\n43 6F 64 65              Code" />
-
 			<TextView
 				android:id="@+id/links"
 				android:autoLink="web"
@@ -80,7 +79,6 @@
 				android:textSize="12sp"
 				android:typeface="monospace"
 				tools:text="@tools:sample/lorem/random" />
-
 		</RelativeLayout>
 	</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>
 	<android.support.design.widget.CoordinatorLayout
@@ -88,8 +86,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 		<android.support.design.widget.FloatingActionButton
-			android:id="@+id/open"
 			style="@style/FAB"
+			android:id="@+id/open"
 			android:contentDescription="@string/open_url"
 			android:src="@drawable/ic_action_open" />
 	</android.support.design.widget.CoordinatorLayout>
