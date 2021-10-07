@@ -149,4 +149,14 @@
 	<string name="shortcut_encode">შტრიხ-კოდის შექმნა</string>
 	<string name="shortcut_preferences">პარამეტრები</string>
 	<string name="background_request_failed">ფონური მოთხოვნა ვერ მოხერხდა</string>
+	<string name="entry_type">Type</string>
+	<string name="wifi_network">Wi-Fi network</string>
+	<string name="wifi_ssid">Name</string>
+	<string name="wifi_type">Authentication type</string>
+	<string name="wifi_password">Password</string>
+	<string name="wifi_hidden">Hidden network</string>
+	<string name="wifi_eap">EAP method</string>
+	<string name="wifi_anonymous_identity">Anonymous identity</string>
+	<string name="wifi_identity">Identity</string>
+	<string name="wifi_phase2">Phase 2 method</string>
 </resources>

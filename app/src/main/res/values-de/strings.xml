@@ -147,4 +147,14 @@
 	<string name="shortcut_encode">Barcode erstellen</string>
 	<string name="shortcut_preferences">Einstellungen</string>
 	<string name="background_request_failed">Hintergrundanfrage fehlgeschlagen</string>
+	<string name="entry_type">Typ</string>
+	<string name="wifi_network">Wi-Fi Netzwerk</string>
+	<string name="wifi_ssid">Name</string>
+	<string name="wifi_type">Authentifizierungstyp</string>
+	<string name="wifi_password">Passwort</string>
+	<string name="wifi_hidden">Verstecktes Netzwerk</string>
+	<string name="wifi_eap">EAP Methode</string>
+	<string name="wifi_anonymous_identity">Anonyme Identität</string>
+	<string name="wifi_identity">Identität</string>
+	<string name="wifi_phase2">Phase 2 Methode</string>
 </resources>
