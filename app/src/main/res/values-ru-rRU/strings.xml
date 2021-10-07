@@ -149,14 +149,14 @@
 	<string name="shortcut_encode">Создать штрих-код</string>
 	<string name="shortcut_preferences">Настройки</string>
 	<string name="background_request_failed">Фоновый запрос не выполнен</string>
-	<string name="entry_type">Type</string>
-	<string name="wifi_network">Wi-Fi network</string>
-	<string name="wifi_ssid">Name</string>
-	<string name="wifi_type">Authentication type</string>
-	<string name="wifi_password">Password</string>
-	<string name="wifi_hidden">Hidden network</string>
-	<string name="wifi_eap">EAP method</string>
-	<string name="wifi_anonymous_identity">Anonymous identity</string>
-	<string name="wifi_identity">Identity</string>
-	<string name="wifi_phase2">Phase 2 method</string>
+	<string name="entry_type">Тип</string>
+	<string name="wifi_network">Сеть Wi-Fi</string>
+	<string name="wifi_ssid">Имя</string>
+	<string name="wifi_type">Метод аутентификации</string>
+	<string name="wifi_password">Пароль</string>
+	<string name="wifi_hidden">Скрытая сеть</string>
+	<string name="wifi_eap">Тип EAP</string>
+	<string name="wifi_anonymous_identity">Аноним</string>
+	<string name="wifi_identity">Пользователь</string>
+	<string name="wifi_phase2">Двухэтапный метод</string>
 </resources>
