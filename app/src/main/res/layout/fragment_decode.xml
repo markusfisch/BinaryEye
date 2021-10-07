@@ -51,10 +51,10 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_below="@+id/data"
-				android:layout_marginEnd="16dp"
 				android:layout_marginStart="16dp"
 				android:layout_marginLeft="16dp"
-				android:layout_marginRight="16dp"/>
+				android:layout_marginEnd="16dp"
+				android:layout_marginRight="16dp" />
 			<TextView
 				android:id="@+id/hex"
 				android:layout_width="match_parent"
@@ -65,9 +65,22 @@
 				android:layout_marginEnd="16dp"
 				android:layout_marginRight="16dp"
 				android:layout_marginBottom="16dp"
-				android:typeface="monospace"
 				android:textSize="12sp"
-				tools:text="54 65 73 74 20 51 52 20  Test QR\n43 6F 64 65              Code"/>
+				android:typeface="monospace"
+				tools:text="54 65 73 74 20 51 52 20  Test QR\n43 6F 64 65              Code" />
+
+			<TextView
+				android:id="@+id/links"
+				android:autoLink="web"
+				android:lineHeight="24sp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/hex"
+				android:layout_marginHorizontal="16dp"
+				android:textSize="12sp"
+				android:typeface="monospace"
+				tools:text="@tools:sample/lorem/random" />
+
 		</RelativeLayout>
 	</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>
 	<android.support.design.widget.CoordinatorLayout
@@ -75,9 +88,9 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 		<android.support.design.widget.FloatingActionButton
-			style="@style/FAB"
 			android:id="@+id/open"
+			style="@style/FAB"
 			android:contentDescription="@string/open_url"
-			android:src="@drawable/ic_action_open"/>
+			android:src="@drawable/ic_action_open" />
 	</android.support.design.widget.CoordinatorLayout>
 </FrameLayout>
