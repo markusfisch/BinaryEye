@@ -167,7 +167,7 @@ object WifiConnector {
 	@RequiresApi(Build.VERSION_CODES.Q)
 	private fun WifiNetworkSuggestion.Builder.apply(
 		data: SimpleDataAccessor
-	): WifiNetworkSuggestion.Builder {
+	): WifiNetworkSuggestion.Builder? {
 		fun WifiNetworkSuggestion.Builder.applyCommon(
 			data: SimpleDataAccessor
 		): WifiNetworkSuggestion.Builder {
@@ -177,40 +177,45 @@ object WifiConnector {
 
 		fun WifiNetworkSuggestion.Builder.applySecurity(
 			data: SimpleDataAccessor
-		): WifiNetworkSuggestion.Builder {
-			when (data.securityType) {
-				"WPA", "WPA2" -> {
-					data.password?.let {
-						setWpa2Passphrase(it)
+		): WifiNetworkSuggestion.Builder? {
+			try {
+				when (data.securityType) {
+					"WPA", "WPA2" -> {
+						data.password?.let {
+							setWpa2Passphrase(it)
+						}
+					}
+					"WPA2-EAP" -> {
+						data.password?.let {
+							setWpa2Passphrase(it)
+						}
+						setWpa2EnterpriseConfig(WifiEnterpriseConfig().apply {
+							identity = data.identity
+							anonymousIdentity = data.anonymousIdentity
+							password = data.password
+							data.eapMethod?.let { eapMethod = it }
+							data.phase2Method?.let { phase2Method = it }
+						})
+					}
+					"WPA3" -> {
+						data.password?.let {
+							setWpa3Passphrase(it)
+						}
+					}
+					"WPA3-EAP" -> {
+						data.password?.let { setWpa3Passphrase(it) }
+						setWpa3EnterpriseConfig(WifiEnterpriseConfig().apply {
+							identity = data.identity
+							anonymousIdentity = data.anonymousIdentity
+							password = data.password
+							data.eapMethod?.let { eapMethod = it }
+							data.phase2Method?.let { phase2Method = it }
+						})
 					}
 				}
-				"WPA2-EAP" -> {
-					data.password?.let {
-						setWpa2Passphrase(it)
-					}
-					setWpa2EnterpriseConfig(WifiEnterpriseConfig().apply {
-						identity = data.identity
-						anonymousIdentity = data.anonymousIdentity
-						password = data.password
-						data.eapMethod?.let { eapMethod = it }
-						data.phase2Method?.let { phase2Method = it }
-					})
-				}
-				"WPA3" -> {
-					data.password?.let {
-						setWpa3Passphrase(it)
-					}
-				}
-				"WPA3-EAP" -> {
-					data.password?.let { setWpa3Passphrase(it) }
-					setWpa3EnterpriseConfig(WifiEnterpriseConfig().apply {
-						identity = data.identity
-						anonymousIdentity = data.anonymousIdentity
-						password = data.password
-						data.eapMethod?.let { eapMethod = it }
-						data.phase2Method?.let { phase2Method = it }
-					})
-				}
+			} catch (e: IllegalArgumentException) {
+				// Don't accept passphrases that aren't ASCII encodeable.
+				return null
 			}
 			return this
 		}
