@@ -21,6 +21,30 @@ class WifiConnectorTest {
 	}
 
 	@Test
+	fun anonymousIdentity() {
+		val info = simpleDataAccessor("WIFI:T:WPA2-EAP;S:wifi;P:password;I:ident;A:anonymous;;")
+
+		assertEquals("WPA2-EAP", info.securityType)
+		assertEquals("wifi", info.ssid)
+		assertEquals("password", info.password)
+		assertEquals("ident", info.identity)
+		assertEquals("anonymous", info.anonymousIdentity)
+		assertFalse(info.hidden)
+	}
+
+	@Test
+	fun anonymousIdentityAI() {
+		val info = simpleDataAccessor("WIFI:T:WPA2-EAP;S:wifi;P:password;I:ident;AI:anonymous;;")
+
+		assertEquals("WPA2-EAP", info.securityType)
+		assertEquals("wifi", info.ssid)
+		assertEquals("password", info.password)
+		assertEquals("ident", info.identity)
+		assertEquals("anonymous", info.anonymousIdentity)
+		assertFalse(info.hidden)
+	}
+
+	@Test
 	fun hidden() {
 		val info = simpleDataAccessor("WIFI:T:WPA;S:asdfz;P:password;H:true;;")
 

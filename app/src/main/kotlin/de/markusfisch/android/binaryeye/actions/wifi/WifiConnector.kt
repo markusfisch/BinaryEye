@@ -118,7 +118,7 @@ object WifiConnector {
 		internal val hidden: Boolean
 			get() = inputMap["H"]?.unescape == "true"
 		internal val anonymousIdentity: String
-			get() = inputMap["AI"]?.unescape ?: ""
+			get() = inputMap["AI"]?.unescape ?: inputMap["A"]?.unescape ?: ""
 		internal val identity: String
 			get() = inputMap["I"]?.unescape ?: ""
 		internal val eapMethod: Int?
