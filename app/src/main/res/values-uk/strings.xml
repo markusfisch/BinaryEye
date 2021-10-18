@@ -12,10 +12,10 @@
 		<item quantity="many">%2$d символів, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Рівень виправлення помилок</string>
-	<string name="error_correction_level_l" formatted="false">Low (~7&#37; correction)</string>
-	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; correction)</string>
-	<string name="error_correction_level_q" formatted="false">Quartile (~25&#37; correction)</string>
-	<string name="error_correction_level_h" formatted="false">High (~30&#37; correction)</string>
+	<string name="error_correction_level_l" formatted="false">Низький (~7&#37; виправлення)</string>
+	<string name="error_correction_level_m" formatted="false">Середній (~15&#37; виправлення)</string>
+	<string name="error_correction_level_q" formatted="false">Квартиль (~25&#37; виправлення)</string>
+	<string name="error_correction_level_h" formatted="false">Високий (~30&#37; виправлення)</string>
 	<string name="issue_number">Номер випуску</string>
 	<string name="orientation">Орієнтація</string>
 	<string name="other_meta_data">Метадані</string>
@@ -25,7 +25,7 @@
 	<string name="upc_ean_extension">Розширення UPC EAN</string>
 	<string name="toggle_flash">Увімкнути спалах</string>
 	<string name="share">Поділитися</string>
-	<string name="share_as">Share as?</string>
+	<string name="share_as">Поділитися як?</string>
 	<string name="copy_to_clipboard">Копіювати у буфер обміну</string>
 	<string name="copied_to_clipboard">Скопійовано у буфер обміну</string>
 	<string name="copy_password">Копіювати пароль у буфер обміну</string>
@@ -44,31 +44,31 @@
 	<string name="info">Інформація</string>
 	<string name="switch_camera">Переключити камеру</string>
 	<string name="bulk_mode">Сканувати безперервно</string>
-	<string name="bulk_mode_summary">Always start scanning continuously.</string>
-	<string name="bulk_mode_delay">Delay between continuous scans</string>
-	<string name="quarter_second">A quarter second</string>
-	<string name="half_second">Half a second</string>
-	<string name="a_second">One second</string>
-	<string name="two_seconds">Two seconds</string>
-	<string name="five_seconds">Five seconds</string>
+	<string name="bulk_mode_summary">Завжди починати безперервне сканування.</string>
+	<string name="bulk_mode_delay">Затримка між безперервним скануванням</string>
+	<string name="quarter_second">Чверть секунди</string>
+	<string name="half_second">Півсекунди</string>
+	<string name="a_second">Одна секунда</string>
+	<string name="two_seconds">Дві секунди</string>
+	<string name="five_seconds">П\'ять секунд</string>
 	<string name="history">Історія</string>
 	<string name="preferences">Налаштування</string>
 	<string name="scan_category">Сканування</string>
 	<string name="content_category">Вміст</string>
-	<string name="locale_category">Language</string>
-	<string name="custom_locale">Custom language</string>
-	<string name="follow_system_settings">Follow system settings</string>
+	<string name="locale_category">Мова</string>
+	<string name="custom_locale">Вибрати мову</string>
+	<string name="follow_system_settings">Дотримуватись системних налаштувань</string>
 	<string name="show_crop_handle">Обмежити область сканування</string>
 	<string name="show_crop_handle_summary">Обмежити сканування до налаштованої області.</string>
-	<string name="barcode_formats">Barcode formats</string>
+	<string name="barcode_formats">Формати штрих-коду</string>
 	<string name="zoom_by_swiping">Проведіть пальцем вгору/вниз, для масштабування</string>
 	<string name="zoom_by_swiping_summary">Проведіть пальцем вгору або вниз по екрану камери, щоб керувати масштабуванням камери.</string>
 	<string name="auto_rotate">Розпізнавати вертикальні 1D штрихкоди</string>
 	<string name="auto_rotate_summary">Автоматично повертати кадр камери, щоб розпізнати вертикальні 1D штрих-коди. Залежно від пристрою, це може вплинути на продуктивність.</string>
 	<string name="try_harder">Оптимізувати зчитувач для точності</string>
 	<string name="try_harder_summary">Увімкніть цю опцію для дуже важких для зчитування кодів. Це вплине на продуктивність.</string>
-	<string name="show_toast_in_bulk_mode">Show data in continuous mode</string>
-	<string name="show_toast_in_bulk_mode_summary">Briefly show the scanned data when scanning continuously.</string>
+	<string name="show_toast_in_bulk_mode">Показувати дані в безперервному режимі</string>
+	<string name="show_toast_in_bulk_mode_summary">Коротко показати відскановані дані під час безперервного сканування.</string>
 	<string name="vibrate">Вібрувати при виявленні</string>
 	<string name="vibrate_summary">Увімкніть це, якщо хочете, щоб пристрій вібрував, коли код розпізнано.</string>
 	<string name="use_history">Зберігати історію сканування</string>
@@ -83,16 +83,16 @@
 	<string name="show_meta_data_summary">Показувати додаткові дані про відскановані штрих-коди.</string>
 	<string name="show_hex_dump">Показувати шістнадцятковий дамп</string>
 	<string name="show_hex_dump_summary">Показувати шістнадцятковий дамп відсканованого вмісту.</string>
-	<string name="close_automatically">Go back after Copy/Share</string>
-	<string name="close_automatically_summary">Automatically return to the scan screen after copying or sharing the read contents.</string>
-	<string name="default_search_engine">Open unknown data in</string>
-	<string name="always_ask">Always ask</string>
+	<string name="close_automatically">Повернутися після копіювання/поширення</string>
+	<string name="close_automatically_summary">Автоматично повернутися на екран сканування після копіювання або поширення прочитаного вмісту.</string>
+	<string name="default_search_engine">Відкривати невідомі дані в</string>
+	<string name="always_ask">Завжди запитувати</string>
 	<string name="open_with_url">Відкривати невідомі дані за допомогою URL</string>
-	<string name="clear_network_suggestions">Clear network suggestions</string>
-	<string name="clear_network_suggestions_summary">Remove all of the network suggestions that were previously provided by this app.</string>
-	<string name="really_remove_all_networks">Really remove all networks?</string>
-	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
-	<string name="clear_network_suggestions_nothing_to_remove">Nothing to remove</string>
+	<string name="clear_network_suggestions">Очистити мережеві пропозиції</string>
+	<string name="clear_network_suggestions_summary">Видалити усі мережеві пропозиції, які раніше надавала ця програма.</string>
+	<string name="really_remove_all_networks">Ви впевнені, що хочете видалити всі мережі?</string>
+	<string name="clear_network_suggestions_success">Мережеві пропозиції очищено</string>
+	<string name="clear_network_suggestions_nothing_to_remove">Нічого видаляти</string>
 	<string name="send_category">Пересилання</string>
 	<string name="send_scan_url">Надсилати кожне сканування на URL</string>
 	<string name="send_scan_type">Тип запиту для кожного сканування</string>
@@ -100,7 +100,7 @@
 	<string name="send_type_get_query_string">GET з повним рядком параметрів запиту</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
-	<string name="test_url">Test URL</string>
+	<string name="test_url">Перевірити URL</string>
 	<string name="really_remove_scan">Дійсно видалити сканування?</string>
 	<string name="really_remove_all_scans">Дійсно видалити всі сканування?</string>
 	<string name="really_remove_selected_scans">Дійсно видалити вибрані сканування?</string>
@@ -148,14 +148,14 @@
 	<string name="shortcut_encode">Створити штрих-код</string>
 	<string name="shortcut_preferences">Налаштування</string>
 	<string name="background_request_failed">Помилка фонового запиту</string>
-	<string name="entry_type">Type</string>
-	<string name="wifi_network">Wi-Fi network</string>
-	<string name="wifi_ssid">Name</string>
-	<string name="wifi_type">Authentication type</string>
-	<string name="wifi_password">Password</string>
-	<string name="wifi_hidden">Hidden network</string>
-	<string name="wifi_eap">EAP method</string>
-	<string name="wifi_anonymous_identity">Anonymous identity</string>
-	<string name="wifi_identity">Identity</string>
-	<string name="wifi_phase2">Phase 2 method</string>
+	<string name="entry_type">Тип</string>
+	<string name="wifi_network">Wi-Fi мережа</string>
+	<string name="wifi_ssid">Ім\'я</string>
+	<string name="wifi_type">Тип автентифікації</string>
+	<string name="wifi_password">Пароль</string>
+	<string name="wifi_hidden">Прихована мережа</string>
+	<string name="wifi_eap">Метод EAP</string>
+	<string name="wifi_anonymous_identity">Анонімна особа</string>
+	<string name="wifi_identity">Користувач</string>
+	<string name="wifi_phase2">Phase 2 метод</string>
 </resources>
