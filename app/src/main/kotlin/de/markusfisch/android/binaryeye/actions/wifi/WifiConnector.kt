@@ -181,9 +181,7 @@ object WifiConnector {
 			try {
 				when (data.securityType) {
 					"WPA", "WPA2" -> {
-						data.password?.let {
-							setWpa2Passphrase(it)
-						}
+						data.password?.let { setWpa2Passphrase(it) }
 					}
 					"WPA2-EAP" -> {
 						data.password?.let {
@@ -198,9 +196,7 @@ object WifiConnector {
 						})
 					}
 					"WPA3" -> {
-						data.password?.let {
-							setWpa3Passphrase(it)
-						}
+						data.password?.let { setWpa3Passphrase(it) }
 					}
 					"WPA3-EAP" -> {
 						data.password?.let { setWpa3Passphrase(it) }
