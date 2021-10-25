@@ -184,9 +184,6 @@ object WifiConnector {
 						data.password?.let { setWpa2Passphrase(it) }
 					}
 					"WPA2-EAP" -> {
-						data.password?.let {
-							setWpa2Passphrase(it)
-						}
 						setWpa2EnterpriseConfig(WifiEnterpriseConfig().apply {
 							identity = data.identity
 							anonymousIdentity = data.anonymousIdentity
@@ -199,7 +196,6 @@ object WifiConnector {
 						data.password?.let { setWpa3Passphrase(it) }
 					}
 					"WPA3-EAP" -> {
-						data.password?.let { setWpa3Passphrase(it) }
 						setWpa3EnterpriseConfig(WifiEnterpriseConfig().apply {
 							identity = data.identity
 							anonymousIdentity = data.anonymousIdentity
