@@ -42,6 +42,7 @@ import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.cameraview.widget.CameraView
+import java.net.URLEncoder
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -76,6 +77,7 @@ class CameraActivity : AppCompatActivity() {
 	private var flash = false
 	private var decoding = true
 	private var returnResult = false
+	private var returnUrlTemplate: String? = null
 	private var frontFacing = false
 	private var bulkMode = prefs.bulkMode
 	private var ignoreNext: String? = null
@@ -169,9 +171,20 @@ class CameraActivity : AppCompatActivity() {
 			invalidateOptionsMenu()
 			ignoreNext = null
 		}
-		returnResult = "com.google.zxing.client.android.SCAN" == intent.action
+		setReturnTarget(intent)
 		if (hasCameraPermission(this)) {
 			openCamera()
+		}
+	}
+
+	private fun setReturnTarget(intent: Intent?) {
+		when {
+			intent?.action == "com.google.zxing.client.android.SCAN" -> {
+				returnResult = true
+			}
+			isReturnUrl(intent) -> intent?.data?.let {
+				returnUrlTemplate = it.getQueryParameter("ret")
+			}
 		}
 	}
 
@@ -679,13 +692,31 @@ class CameraActivity : AppCompatActivity() {
 				)
 			)
 			vibrator.vibrate()
-			showResult(
-				this@CameraActivity,
-				result,
-				vibrator,
-				returnResult,
-				bulkMode
-			)
+			val returnUri = returnUrlTemplate?.let {
+				try {
+					completeUrl(it, result)
+				} catch (e: Exception) {
+					e.message?.let { message ->
+						toast(message)
+					}
+					null
+				}
+			}
+			when {
+				returnResult -> {
+					setResult(Activity.RESULT_OK, getReturnIntent(result))
+					finish()
+				}
+				returnUri != null -> execShareIntent(
+					Intent(Intent.ACTION_VIEW, returnUri)
+				)
+				else -> showResult(
+					this@CameraActivity,
+					result,
+					vibrator,
+					bulkMode
+				)
+			}
 			if (bulkMode) {
 				ignoreNext = result.text
 				if (prefs.showToastInBulkMode) {
@@ -717,14 +748,8 @@ fun showResult(
 	activity: Activity,
 	result: Result,
 	vibrator: Vibrator,
-	isResult: Boolean = false,
 	bulkMode: Boolean = false,
 ) {
-	if (isResult) {
-		activity.setResult(Activity.RESULT_OK, getReturnIntent(result))
-		activity.finish()
-		return
-	}
 	if (prefs.copyImmediately) {
 		activity.copyToClipboard(result.text)
 	}
@@ -795,6 +820,36 @@ fun getReturnIntent(result: Result): Intent {
 	}
 	return intent
 }
+
+private fun isReturnUrl(intent: Intent?): Boolean {
+	val dataString = intent?.dataString
+	return listOf(
+		"binaryeye://scan",
+		"http://markusfisch.de/BinaryEye",
+		"https://markusfisch.de/BinaryEye"
+	).firstOrNull {
+		val result = dataString?.startsWith(it) == true
+		result
+	} != null
+}
+
+private fun completeUrl(urlTemplate: String, result: Result) = Uri.parse(
+	urlTemplate
+		.replace("{RESULT}", URLEncoder.encode(result.text, "UTF-8"))
+		.replace("{RESULT_BYTES}", result.rawBytes?.toHexString() ?: "")
+		.replace(
+			"{FORMAT}", URLEncoder.encode(
+				result.barcodeFormat.toString(), "UTF-8"
+			)
+		)
+		.replace(
+			"{META}", URLEncoder.encode(
+				result.resultMetadata?.toString() ?: "", "UTF-8"
+			)
+		)
+		// And support {CODE} from the old ZXing app, too.
+		.replace("{CODE}", URLEncoder.encode(result.text, "UTF-8"))
+)
 
 private fun beepBeepBeep() {
 	ToneGenerator(AudioManager.STREAM_ALARM, 100).startTone(

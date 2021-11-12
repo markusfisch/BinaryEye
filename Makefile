@@ -23,6 +23,19 @@ test:
 cat:
 	./gradlew test cAT
 
+testview:
+	adb shell am start -W -a android.intent.action.VIEW -d 'binaryeye://scan'
+
+testscan:
+	adb shell am start -a android.intent.action.VIEW \
+		-c android.intent.category.BROWSABLE \
+		-d 'binaryeye://scan/?ret=http%3A%2F%2Fmarkusfisch.de%2F%3Fresult%3D{RESULT}'
+
+testurl:
+	adb shell am start -a android.intent.action.VIEW \
+		-c android.intent.category.BROWSABLE \
+		-d 'http://markusfisch.de/BinaryEye?ret=http%3A%2F%2Fmarkusfisch.de%2F%3Fresult%3D{RESULT}'
+
 install:
 	adb $(TARGET) install -r app/build/outputs/apk/debug/app-debug.apk
 
