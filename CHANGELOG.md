@@ -1,5 +1,16 @@
 # Change Log
 
+## 1.46.0
+* Support deep links
+* Support "A:" in WIFI codes
+* Allow multiple query arguments in custom URL
+* Add Wi-Fi info data section
+* Add Vietnamese translation
+* Update Brazilian Portuguese translation
+* Update Hungarian translation
+* Update Ukrainian translation
+* Update Russian translation
+
 ## 1.45.0
 * Add a setting to set the delay for bulk mode
 * Add support for MECARD contact format
