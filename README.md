@@ -64,6 +64,54 @@ ZXing can generate the following barcode formats:
 * [QR CODE][qr_code]
 * [UPC A][upc_a]
 
+## Deep Links and Intents
+
+### Deep Links
+
+You can invoke Binary Eye with a web URI intent from anything that can
+open URIs. There are two options:
+
+1. [binaryeye://scan](binaryeye://scan)
+2. [http(s)://markusfisch.de/BinaryEye](http://markusfisch.de/BinaryEye)
+
+If you want to get the scanned contents, you can add a `ret` query
+argument with a (URL encoded) URI template. For example:
+
+[http://markusfisch.de/BinaryEye?ret=http%3A%2F%2Fexample.com%2F%3Fresult%3D{RESULT}](http://markusfisch.de/BinaryEye?ret=http%3A%2F%2Fexample.com%2F%3Fresult%3D{RESULT})
+
+Supported symbols are:
+
+* `RESULT` - scanned content
+* `RESULT_BYTES` - raw result as a hex string
+* `FORMAT` - barcode format
+* `META` - the meta data, if available
+
+### SCAN Intent
+
+You can also use Binary Eye from other apps by using the
+`com.google.zxing.client.android.SCAN` Intent with `startActivityForResult()`
+like this:
+
+	startActivityForResult(
+		Intent("com.google.zxing.client.android.SCAN"),
+		SOME_NUMBER
+	)
+
+And process the result in `onActivityResult()` of your `Activity`:
+
+	override fun onActivityResult(
+		requestCode: Int,
+		resultCode: Int,
+		data: Intent?
+	) {
+		when (requestCode) {
+			SOME_NUMBER -> if (resultCode == RESULT_OK) {
+				val result = data.getStringExtra("SCAN_RESULT")
+				…
+			}
+		}
+	}
+
 ## RenderScript
 
 This app uses [RenderScript][rs] to resize and rotate the camera image.
