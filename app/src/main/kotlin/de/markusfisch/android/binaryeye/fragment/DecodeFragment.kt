@@ -6,7 +6,6 @@ import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.text.Editable
 import android.text.TextWatcher
-import android.text.method.LinkMovementMethod
 import android.view.*
 import android.widget.EditText
 import android.widget.TableLayout
@@ -38,7 +37,6 @@ class DecodeFragment : Fragment() {
 	private lateinit var dataView: TableLayout
 	private lateinit var metaView: TableLayout
 	private lateinit var hexView: TextView
-	private lateinit var linksView: TextView
 	private lateinit var format: String
 	private lateinit var fab: FloatingActionButton
 
@@ -86,7 +84,6 @@ class DecodeFragment : Fragment() {
 		format = scan.format
 
 		contentView = view.findViewById(R.id.content)
-		linksView = view.findViewById(R.id.links)
 		fab = view.findViewById(R.id.open)
 
 		if (!isBinary) {
@@ -118,8 +115,6 @@ class DecodeFragment : Fragment() {
 			if (prefs.openImmediately) {
 				executeAction(content.toByteArray())
 			}
-			linksView.text = getLinks(inputContent).joinToString("\n")
-			linksView.movementMethod = LinkMovementMethod.getInstance()
 		} else {
 			contentView.setText(R.string.binary_data)
 			contentView.isEnabled = false
