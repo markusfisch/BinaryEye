@@ -74,11 +74,7 @@ class PickActivity : AppCompatActivity() {
 			colorSystemAndToolBars(this@PickActivity)
 		}
 
-		val bitmap = fixTransparency(
-			rs,
-			getBitmapFromIntent()
-		)
-
+		val bitmap = fixTransparency(rs, getBitmapFromIntent())
 		if (bitmap == null) {
 			applicationContext.toast(R.string.error_no_content)
 			finish()
@@ -97,6 +93,7 @@ class PickActivity : AppCompatActivity() {
 			scanWithinBounds(bitmap)
 		}
 		detectorView.setPaddingFromWindowInsets()
+		detectorView.restoreCropHandlePos()
 
 		findViewById(R.id.scan).setOnClickListener {
 			showResult()
@@ -159,6 +156,7 @@ class PickActivity : AppCompatActivity() {
 
 	override fun onDestroy() {
 		super.onDestroy()
+		detectorView.saveCropHandlePos()
 		rs.destroy()
 	}
 
@@ -194,12 +192,13 @@ class PickActivity : AppCompatActivity() {
 	}
 
 	private fun showResult() {
-		result?.let {
-			showResult(this, it, vibrator)
+		val r = result
+		if (r != null) {
+			showResult(this, r, vibrator)
 			finish()
-			return
+		} else {
+			applicationContext.toast(R.string.no_barcode_found)
 		}
-		applicationContext.toast(R.string.no_barcode_found)
 	}
 }
 

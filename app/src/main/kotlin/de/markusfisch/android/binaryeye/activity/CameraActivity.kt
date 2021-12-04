@@ -155,7 +155,7 @@ class CameraActivity : AppCompatActivity() {
 		resetPreProcessor()
 		fallbackBuffer = null
 		saveZoom()
-		saveCropHandlePos()
+		detectorView.saveCropHandlePos()
 		rs.destroy()
 	}
 
@@ -489,22 +489,7 @@ class CameraActivity : AppCompatActivity() {
 			recreatePreprocessor = true
 		}
 		detectorView.setPaddingFromWindowInsets()
-		restoreCropHandlePos()
-	}
-
-	private fun saveCropHandlePos() {
-		val pos = detectorView.getCropHandlePos()
-		prefs.cropHandleX = pos.x
-		prefs.cropHandleY = pos.y
-		prefs.cropHandleOrientation = detectorView.currentOrientation
-	}
-
-	private fun restoreCropHandlePos() {
-		detectorView.setCropHandlePos(
-			prefs.cropHandleX,
-			prefs.cropHandleY,
-			prefs.cropHandleOrientation
-		)
+		detectorView.restoreCropHandlePos()
 	}
 
 	private fun updateFlashFab(unavailable: Boolean) {

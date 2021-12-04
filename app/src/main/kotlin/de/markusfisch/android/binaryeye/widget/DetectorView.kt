@@ -21,12 +21,12 @@ import kotlin.math.roundToInt
 
 class DetectorView : View {
 	val coordinates = FloatArray(32)
-	val currentOrientation = resources.configuration.orientation
 	val roi = Rect()
 
 	var onRoiChange: (() -> Unit)? = null
 	var onRoiChanged: (() -> Unit)? = null
 
+	private val currentOrientation = resources.configuration.orientation
 	private val invalidateRunnable: Runnable = Runnable {
 		coordinatesLast = 0
 		invalidate()
@@ -78,7 +78,28 @@ class DetectorView : View {
 	constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) :
 			super(context, attrs, defStyleAttr)
 
-	fun setCropHandlePos(x: Int, y: Int, orientation: Int) {
+	fun saveCropHandlePos() {
+		val pos = getCropHandlePos()
+		prefs.cropHandleX = pos.x
+		prefs.cropHandleY = pos.y
+		prefs.cropHandleOrientation = currentOrientation
+	}
+
+	private fun getCropHandlePos() = if (handleActive) {
+		handlePos
+	} else {
+		Point(-1, -1)
+	}
+
+	fun restoreCropHandlePos() {
+		setCropHandlePos(
+			prefs.cropHandleX,
+			prefs.cropHandleY,
+			prefs.cropHandleOrientation
+		)
+	}
+
+	private fun setCropHandlePos(x: Int, y: Int, orientation: Int) {
 		if (orientation == currentOrientation) {
 			handlePos.set(x, y)
 		} else {
@@ -87,12 +108,6 @@ class DetectorView : View {
 		if (x > -1) {
 			handleActive = true
 		}
-	}
-
-	fun getCropHandlePos() = if (handleActive) {
-		handlePos
-	} else {
-		Point(-1, -1)
 	}
 
 	fun update(numberOfResultPoints: Int) {
