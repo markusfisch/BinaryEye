@@ -110,8 +110,8 @@ class DetectorView : View {
 		}
 	}
 
-	fun update(numberOfResultPoints: Int) {
-		coordinatesLast = numberOfResultPoints * 2
+	fun update(numberOfCoordinates: Int) {
+		coordinatesLast = numberOfCoordinates
 		invalidate()
 		removeCallbacks(invalidateRunnable)
 		postDelayed(invalidateRunnable, 500)
