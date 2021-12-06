@@ -1,0 +1,4 @@
+* Use cropping limiter settings for image picking too
+* Remove extra link on result screen
+* Update Turkish translation
+
