@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.46.1
+* Use cropping limiter settings for image picking too
+* Remove extra link on result screen
+* Update Turkish translation
+
 ## 1.46.0
 * Support deep links
 * Support "A:" in WIFI codes
