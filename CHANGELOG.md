@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.46.2
+* Fix saving external files on Android Q and newer
+
 ## 1.46.1
 * Use cropping limiter settings for image picking too
 * Remove extra link on result screen
