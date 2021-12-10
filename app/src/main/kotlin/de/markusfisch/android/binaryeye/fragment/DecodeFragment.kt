@@ -344,7 +344,10 @@ class DecodeFragment : Fragment() {
 
 	private fun askForFileNameAndSave(raw: ByteArray) {
 		val ac = activity ?: return
-		if (!hasWritePermission(ac) { askForFileNameAndSave(raw) }) {
+		// Write permission is only required before Android Q.
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
+			!hasWritePermission(ac) { askForFileNameAndSave(raw) }
+		) {
 			return
 		}
 		scope.launch(Dispatchers.Main) {

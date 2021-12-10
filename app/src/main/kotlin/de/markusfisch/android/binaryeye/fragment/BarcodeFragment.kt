@@ -152,7 +152,7 @@ class BarcodeFragment : Fragment() {
 	@SuppressLint("InflateParams")
 	private fun askForFileNameAndSave(fileType: FileType) {
 		val ac = activity ?: return
-		// write permission is only required before Android Q
+		// Write permission is only required before Android Q.
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
 			!hasWritePermission(ac) { askForFileNameAndSave(fileType) }
 		) {

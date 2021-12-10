@@ -364,7 +364,10 @@ class HistoryFragment : Fragment() {
 		scope.launch {
 			val ac = activity ?: return@launch
 			progressView.useVisibility {
-				if (!hasWritePermission(ac) { askToExportToFile() }) {
+				// Write permission is only required before Android Q.
+				if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
+					!hasWritePermission(ac) { askToExportToFile() }
+				) {
 					return@useVisibility
 				}
 				val options = context.resources.getStringArray(
