@@ -138,7 +138,9 @@ class PickActivity : AppCompatActivity() {
 					vibrator.vibrate()
 					val rc = Rect()
 					imageRect.round(rc)
-					rectInView.intersect(rc)
+					if (!rectInView.intersect(rc)) {
+						return@withContext
+					}
 					detectorView.update(
 						mapResultToView(
 							cropped.width,
