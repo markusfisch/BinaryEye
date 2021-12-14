@@ -218,8 +218,8 @@ class BarcodeFragment : Fragment() {
 	private fun shareAs(fileType: FileType) {
 		when (fileType) {
 			FileType.PNG -> barcodeBitmap?.let { share(it) }
-			FileType.SVG -> barcodeSvg?.let { shareText(context, it, MIME_SVG) }
-			FileType.TXT -> barcodeTxt?.let { shareText(context, it) }
+			FileType.SVG -> barcodeSvg?.let { context.shareText(it, MIME_SVG) }
+			FileType.TXT -> barcodeTxt?.let { context.shareText(it) }
 		}
 	}
 
@@ -240,7 +240,7 @@ class BarcodeFragment : Fragment() {
 			}
 			launch(Dispatchers.Main) {
 				if (success) {
-					shareFile(ctx, file, "image/png")
+					ctx.shareFile(file, "image/png")
 				} else {
 					ctx.toast(R.string.error_saving_file)
 				}

@@ -264,8 +264,8 @@ class DecodeFragment : Fragment() {
 				true
 			}
 			R.id.share -> {
-				context?.also {
-					shareText(it, textOrHex())
+				context?.apply {
+					shareText(textOrHex())
 					maybeBackOrFinish()
 				}
 				true

@@ -429,7 +429,7 @@ class HistoryFragment : Fragment() {
 			}
 			text?.let {
 				withContext(Dispatchers.Main) {
-					shareText(context, it)
+					context.shareText(it)
 				}
 			}
 		}

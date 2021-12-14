@@ -32,35 +32,35 @@ fun Context.startIntent(intent: Intent) = try {
 	false
 }
 
-fun shareText(context: Context, text: String, type: String = "text/plain") {
-	val intent = Intent(Intent.ACTION_SEND)
-	intent.putExtra(Intent.EXTRA_TEXT, text)
-	intent.type = type
-	context.execShareIntent(intent)
+fun Context.shareText(text: String, mimeType: String = "text/plain") {
+	execShareIntent(Intent(Intent.ACTION_SEND).apply {
+		putExtra(Intent.EXTRA_TEXT, text)
+		type = mimeType
+	})
 }
 
-fun shareUri(context: Context, uri: Uri, type: String) {
-	val intent = Intent(Intent.ACTION_SEND)
-	intent.putExtra(Intent.EXTRA_STREAM, uri)
-	intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-	intent.type = type
-	context.execShareIntent(intent)
-}
-
-fun shareFile(context: Context, file: File, type: String) {
-	getUriForFile(context, file)?.let {
-		shareUri(context, it, type)
+fun Context.shareFile(file: File, mimeType: String) {
+	getUriForFile(file)?.let {
+		shareUri(it, mimeType)
 	}
 }
 
-fun getUriForFile(context: Context, file: File): Uri? {
-	return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-		Uri.fromFile(file)
-	} else {
-		FileProvider.getUriForFile(
-			context,
-			BuildConfig.APPLICATION_ID + ".provider",
-			file
-		)
-	}
+private fun Context.getUriForFile(file: File): Uri? = if (
+	Build.VERSION.SDK_INT < Build.VERSION_CODES.N
+) {
+	Uri.fromFile(file)
+} else {
+	FileProvider.getUriForFile(
+		this,
+		BuildConfig.APPLICATION_ID + ".provider",
+		file
+	)
+}
+
+private fun Context.shareUri(uri: Uri, mimeType: String) {
+	execShareIntent(Intent(Intent.ACTION_SEND).apply {
+		putExtra(Intent.EXTRA_STREAM, uri)
+		addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+		type = mimeType
+	})
 }
