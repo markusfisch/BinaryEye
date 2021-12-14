@@ -13,7 +13,7 @@ class SplashActivity : AppCompatActivity() {
 		// because that would happen after the app is fully
 		// initialized what is too late.
 
-		setRestartCount(intent)
+		intent?.setRestartCount()
 		startActivity(Intent(applicationContext, CameraActivity::class.java))
 		finish()
 	}

@@ -563,7 +563,7 @@ class CameraActivity : AppCompatActivity() {
 			// Now the only option is to restart the app because
 			// RenderScript.forceCompat() needs to be called before
 			// RenderScript is initialized.
-			restartApp(this)
+			restartApp()
 			null
 		}
 	}
