@@ -271,8 +271,7 @@ class DecodeFragment : Fragment() {
 				true
 			}
 			R.id.create -> {
-				addFragment(
-					fragmentManager,
+				fragmentManager?.addFragment(
 					EncodeFragment.newInstance(content, format)
 				)
 				true

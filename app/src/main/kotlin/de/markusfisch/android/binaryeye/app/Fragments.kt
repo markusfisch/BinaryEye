@@ -5,16 +5,15 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import de.markusfisch.android.binaryeye.R
 
-fun setFragment(fm: FragmentManager?, fragment: Fragment) {
-	fm?.let { getTransaction(fm, fragment).commit() }
+fun FragmentManager.setFragment(fragment: Fragment) {
+	getTransaction(fragment).commit()
 }
 
-fun addFragment(fm: FragmentManager?, fragment: Fragment) {
-	fm?.let { getTransaction(fm, fragment).addToBackStack(null).commit() }
+fun FragmentManager.addFragment(fragment: Fragment) {
+	getTransaction(fragment).addToBackStack(null).commit()
 }
 
 @SuppressLint("CommitTransaction")
-private fun getTransaction(
-	fm: FragmentManager,
+private fun FragmentManager.getTransaction(
 	fragment: Fragment
-) = fm.beginTransaction().replace(R.id.content_frame, fragment)
+) = beginTransaction().replace(R.id.content_frame, fragment)

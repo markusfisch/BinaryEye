@@ -293,10 +293,7 @@ class HistoryFragment : Fragment() {
 	private fun showScan(id: Long) = db.getScan(id)?.also { scan ->
 		closeActionMode()
 		try {
-			addFragment(
-				fragmentManager,
-				DecodeFragment.newInstance(scan)
-			)
+			fragmentManager?.addFragment(DecodeFragment.newInstance(scan))
 		} catch (e: IllegalArgumentException) {
 			// Ignore, can never happen.
 		}

@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 		}
 
 		if (state == null) {
-			setFragment(supportFragmentManager, getFragmentForIntent(intent))
+			supportFragmentManager?.setFragment(getFragmentForIntent(intent))
 		}
 	}
 
