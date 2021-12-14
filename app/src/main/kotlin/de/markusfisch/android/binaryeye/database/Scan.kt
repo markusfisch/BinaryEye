@@ -84,7 +84,7 @@ data class Scan(
 
 	private constructor(parcel: Parcel) : this(
 		content = parcel.readString() ?: "",
-		raw = readByteArray(parcel),
+		raw = parcel.readSizedByteArray(),
 		format = parcel.readString() ?: "",
 		errorCorrectionLevel = parcel.readString(),
 		issueNumber = parcel.readString(),
@@ -99,19 +99,21 @@ data class Scan(
 	)
 
 	override fun writeToParcel(parcel: Parcel, flags: Int) {
-		parcel.writeString(content)
-		writeByteArray(parcel, raw)
-		parcel.writeString(format)
-		parcel.writeString(errorCorrectionLevel)
-		parcel.writeString(issueNumber)
-		parcel.writeString(orientation)
-		parcel.writeString(otherMetaData)
-		parcel.writeString(pdf417ExtraMetaData)
-		parcel.writeString(possibleCountry)
-		parcel.writeString(suggestedPrice)
-		parcel.writeString(upcEanExtension)
-		parcel.writeString(timestamp)
-		parcel.writeLong(id)
+		parcel.apply {
+			writeString(content)
+			writeSizedByteArray(raw)
+			writeString(format)
+			writeString(errorCorrectionLevel)
+			writeString(issueNumber)
+			writeString(orientation)
+			writeString(otherMetaData)
+			writeString(pdf417ExtraMetaData)
+			writeString(possibleCountry)
+			writeString(suggestedPrice)
+			writeString(upcEanExtension)
+			writeString(timestamp)
+			writeLong(id)
+		}
 	}
 
 	override fun describeContents() = 0
@@ -153,19 +155,19 @@ private fun Result.getMetaString(
 	it[key]?.toString()
 }
 
-private fun writeByteArray(parcel: Parcel, array: ByteArray?) {
+private fun Parcel.writeSizedByteArray(array: ByteArray?) {
 	val size = array?.size ?: 0
-	parcel.writeInt(size)
+	writeInt(size)
 	if (size > 0) {
-		parcel.writeByteArray(array)
+		writeByteArray(array)
 	}
 }
 
-private fun readByteArray(parcel: Parcel): ByteArray? {
-	val size = parcel.readInt()
+private fun Parcel.readSizedByteArray(): ByteArray? {
+	val size = readInt()
 	return if (size > 0) {
 		val array = ByteArray(size)
-		parcel.readByteArray(array)
+		readByteArray(array)
 		array
 	} else {
 		null
