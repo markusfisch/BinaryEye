@@ -59,8 +59,8 @@ fun crop(bitmap: Bitmap, rect: RectF, rotation: Float) = try {
 		erected,
 		x,
 		y,
-		min(w - x, (rect.width() * w).roundToInt()),
-		min(h - y, (rect.height() * h).roundToInt())
+		min(w - x, (rect.right * w).roundToInt() - x),
+		min(h - y, (rect.bottom * h).roundToInt() - y)
 	)
 } catch (e: OutOfMemoryError) {
 	null
