@@ -111,7 +111,7 @@ class PickActivity : AppCompatActivity() {
 	}
 
 	private fun scanWithinBounds(bitmap: Bitmap) {
-		val roi = detectorView.roi
+		val roi = Rect(detectorView.roi)
 		val rectInView = if (roi.width() < 1) {
 			cropImageView.getBoundsRect()
 		} else {
