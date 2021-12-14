@@ -25,7 +25,7 @@ class Database {
 			FROM $SCANS
 			${getWhereClause(query)}
 			ORDER BY $SCANS_DATETIME DESC
-		""", getWhereArguments(query)
+		""".trimMargin(), getWhereArguments(query)
 	)
 
 	fun getScansDetailed(query: String? = null): Cursor? = db.rawQuery(
@@ -47,7 +47,7 @@ class Database {
 			FROM $SCANS
 			${getWhereClause(query)}
 			ORDER BY $SCANS_DATETIME DESC
-		""", getWhereArguments(query)
+		""".trimMargin(), getWhereArguments(query)
 	)
 
 	private fun getWhereClause(
@@ -87,7 +87,7 @@ class Database {
 			$SCANS_UPC_EAN_EXTENSION
 			FROM $SCANS
 			WHERE $SCANS_ID = ?
-		""", arrayOf("$id")
+		""".trimMargin(), arrayOf("$id")
 	)?.use {
 		if (it.moveToFirst()) {
 			Scan(
@@ -148,9 +148,8 @@ class Database {
 		content: String,
 		raw: ByteArray?,
 		format: String
-	): Long {
-		return db.rawQuery(
-			"""SELECT
+	): Long = db.rawQuery(
+		"""SELECT
 				$SCANS_ID,
 				$SCANS_CONTENT,
 				$SCANS_RAW,
@@ -158,21 +157,20 @@ class Database {
 				FROM $SCANS
 				ORDER BY $SCANS_ID DESC
 				LIMIT 1
-			""", null
-		)?.use {
-			if (it.count > 0 &&
-				it.moveToFirst() &&
-				it.getString(it.getColumnIndex(SCANS_CONTENT)) == content &&
-				(raw == null || it.getBlob(it.getColumnIndex(SCANS_RAW))
-					?.contentEquals(raw) == true) &&
-				it.getString(it.getColumnIndex(SCANS_FORMAT)) == format
-			) {
-				it.getLong(it.getColumnIndex(SCANS_ID))
-			} else {
-				0L
-			}
-		} ?: 0L
-	}
+			""".trimMargin(), null
+	)?.use {
+		if (it.count > 0 &&
+			it.moveToFirst() &&
+			it.getString(it.getColumnIndex(SCANS_CONTENT)) == content &&
+			(raw == null || it.getBlob(it.getColumnIndex(SCANS_RAW))
+				?.contentEquals(raw) == true) &&
+			it.getString(it.getColumnIndex(SCANS_FORMAT)) == format
+		) {
+			it.getLong(it.getColumnIndex(SCANS_ID))
+		} else {
+			0L
+		}
+	} ?: 0L
 
 	fun removeScan(id: Long) {
 		db.delete(SCANS, "$SCANS_ID = ?", arrayOf("$id"))
@@ -230,7 +228,7 @@ class Database {
 		const val SCANS_UPC_EAN_EXTENSION = "upc_ean_extension"
 
 		private fun createScans(db: SQLiteDatabase) {
-			db.execSQL("DROP TABLE IF EXISTS $SCANS")
+			db.execSQL("DROP TABLE IF EXISTS $SCANS".trimMargin())
 			db.execSQL(
 				"""CREATE TABLE $SCANS (
 					$SCANS_ID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -247,39 +245,41 @@ class Database {
 					$SCANS_POSSIBLE_COUNTRY TEXT,
 					$SCANS_SUGGESTED_PRICE TEXT,
 					$SCANS_UPC_EAN_EXTENSION TEXT
-				)"""
+				)""".trimMargin()
 			)
 		}
 
 		private fun addRawColumn(db: SQLiteDatabase) {
-			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_RAW BLOB")
+			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_RAW BLOB".trimMargin())
 		}
 
 		private fun addMetaDataColumns(db: SQLiteDatabase) {
-			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_ERROR_CORRECTION_LEVEL TEXT")
-			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_ISSUE_NUMBER INT")
-			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_ORIENTATION INT")
-			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_OTHER_META_DATA TEXT")
-			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_PDF417_EXTRA_METADATA TEXT")
-			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_POSSIBLE_COUNTRY TEXT")
-			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_SUGGESTED_PRICE TEXT")
-			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_UPC_EAN_EXTENSION TEXT")
+			db.apply {
+				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_ERROR_CORRECTION_LEVEL TEXT".trimMargin())
+				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_ISSUE_NUMBER INT".trimMargin())
+				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_ORIENTATION INT".trimMargin())
+				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_OTHER_META_DATA TEXT".trimMargin())
+				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_PDF417_EXTRA_METADATA TEXT".trimMargin())
+				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_POSSIBLE_COUNTRY TEXT".trimMargin())
+				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_SUGGESTED_PRICE TEXT".trimMargin())
+				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_UPC_EAN_EXTENSION TEXT".trimMargin())
+			}
 		}
 
 		private fun addNameColumn(db: SQLiteDatabase) {
-			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_NAME TEXT")
+			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_NAME TEXT".trimMargin())
 		}
 	}
 }
 
-private fun Cursor.getString(name: String) = this.getString(
-	this.getColumnIndex(name)
+private fun Cursor.getString(name: String) = getString(
+	getColumnIndex(name)
 )
 
-private fun Cursor.getBlob(name: String) = this.getBlob(
-	this.getColumnIndex(name)
+private fun Cursor.getBlob(name: String) = getBlob(
+	getColumnIndex(name)
 )
 
-private fun Cursor.getLong(name: String) = this.getLong(
-	this.getColumnIndex(name)
+private fun Cursor.getLong(name: String) = getLong(
+	getColumnIndex(name)
 )
