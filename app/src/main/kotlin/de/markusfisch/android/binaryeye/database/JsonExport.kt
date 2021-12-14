@@ -8,18 +8,17 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-fun exportJson(
-	context: Context,
+fun Context.exportJson(
 	name: String,
 	cursor: Cursor
-) = writeExternalFile(context, name, "application/json") { outputStream ->
-	exportJson(cursor)?.let {
+) = writeExternalFile(name, "application/json") { outputStream ->
+	cursor.exportJson()?.let {
 		outputStream.write(it.toByteArray())
 	}
 }
 
-fun exportJson(cursor: Cursor): String? {
-	if (!cursor.moveToFirst()) {
+fun Cursor.exportJson(): String? {
+	if (!moveToFirst()) {
 		return null
 	}
 	val columns = arrayOf(
@@ -36,21 +35,21 @@ fun exportJson(cursor: Cursor): String? {
 		Database.SCANS_UPC_EAN_EXTENSION
 	)
 	val indices = columns.map {
-		Pair(cursor.getColumnIndex(it), it)
+		Pair(getColumnIndex(it), it)
 	}
-	val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
-	val rawIndex = cursor.getColumnIndex(Database.SCANS_RAW)
+	val contentIndex = getColumnIndex(Database.SCANS_CONTENT)
+	val rawIndex = getColumnIndex(Database.SCANS_RAW)
 	val root = JSONArray()
 	do {
 		var deviation: Pair<Int, String>? = null
-		if (cursor.getString(contentIndex)?.isEmpty() == true) {
+		if (getString(contentIndex)?.isEmpty() == true) {
 			deviation = Pair(
 				contentIndex,
-				cursor.getBlob(rawIndex).toHexString()
+				getBlob(rawIndex).toHexString()
 			)
 		}
-		root.put(cursor.toJsonObject(indices, deviation))
-	} while (cursor.moveToNext())
+		root.put(toJsonObject(indices, deviation))
+	} while (moveToNext())
 	return root.toString()
 }
 

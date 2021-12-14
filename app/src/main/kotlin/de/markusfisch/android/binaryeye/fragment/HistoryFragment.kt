@@ -389,11 +389,11 @@ class HistoryFragment : Fragment() {
 					)
 				} ?: return@useVisibility
 				val message = when (delimiter) {
-					"db" -> exportDatabase(ac, name)
+					"db" -> ac.exportDatabase(name)
 					else -> db.getScansDetailed(filter)?.use {
 						when (delimiter) {
-							"json" -> exportJson(context, name, it)
-							else -> exportCsv(context, name, it, delimiter)
+							"json" -> context.exportJson(name, it)
+							else -> context.exportCsv(name, it, delimiter)
 						}
 					} ?: false
 				}.toSaveResult()
@@ -422,9 +422,9 @@ class HistoryFragment : Fragment() {
 			db.getScansDetailed(filter)?.use { cursor ->
 				val details = format.split(":")
 				text = when (details[0]) {
-					"text" -> exportText(cursor, details[1])
-					"csv" -> exportCsv(cursor, details[1])
-					else -> exportJson(cursor)
+					"text" -> cursor.exportText(details[1])
+					"csv" -> cursor.exportCsv(details[1])
+					else -> cursor.exportJson()
 				}
 			}
 			text?.let {
@@ -436,17 +436,17 @@ class HistoryFragment : Fragment() {
 	}
 }
 
-private fun exportText(cursor: Cursor, separator: String): String {
+private fun Cursor.exportText(separator: String): String {
 	val sb = StringBuilder()
-	val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
-	if (cursor.moveToFirst()) {
+	val contentIndex = getColumnIndex(Database.SCANS_CONTENT)
+	if (moveToFirst()) {
 		do {
-			val content = cursor.getString(contentIndex)
+			val content = getString(contentIndex)
 			if (content?.isNotEmpty() == true) {
 				sb.append(content)
 				sb.append(separator)
 			}
-		} while (cursor.moveToNext())
+		} while (moveToNext())
 	}
 	return sb.toString()
 }

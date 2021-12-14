@@ -7,18 +7,17 @@ import de.markusfisch.android.binaryeye.io.writeExternalFile
 import java.io.ByteArrayOutputStream
 import java.io.OutputStream
 
-fun exportCsv(
-	context: Context,
+fun Context.exportCsv(
 	name: String,
 	cursor: Cursor,
 	delimiter: String
-) = writeExternalFile(context, name, "text/csv") { outputStream ->
+) = writeExternalFile(name, "text/csv") { outputStream ->
 	exportCsv(outputStream, cursor, delimiter)
 }
 
-fun exportCsv(cursor: Cursor, delimiter: String): String {
+fun Cursor.exportCsv(delimiter: String): String {
 	val outputStream = ByteArrayOutputStream()
-	exportCsv(outputStream, cursor, delimiter)
+	exportCsv(outputStream, this, delimiter)
 	return outputStream.toString()
 }
 

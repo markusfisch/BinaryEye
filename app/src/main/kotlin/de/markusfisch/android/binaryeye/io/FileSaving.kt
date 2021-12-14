@@ -46,20 +46,18 @@ fun Boolean.toSaveResult() = if (this) {
 	R.string.error_saving_file
 }
 
-fun writeExternalFile(
-	context: Context,
+fun Context.writeExternalFile(
 	fileName: String,
 	mimeType: String,
 	write: (outputStream: OutputStream) -> Unit
 ): Boolean = try {
-	openExternalOutputStream(context, fileName, mimeType).use { write(it) }
+	openExternalOutputStream(fileName, mimeType).use { write(it) }
 	true
 } catch (e: IOException) {
 	false
 }
 
-private fun openExternalOutputStream(
-	context: Context,
+private fun Context.openExternalOutputStream(
 	fileName: String,
 	mimeType: String
 ): OutputStream = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
@@ -75,7 +73,7 @@ private fun openExternalOutputStream(
 	}
 	FileOutputStream(file)
 } else {
-	val resolver = context.contentResolver
+	val resolver = contentResolver
 	val uri = resolver.insert(
 		MediaStore.Downloads.EXTERNAL_CONTENT_URI,
 		ContentValues().apply {

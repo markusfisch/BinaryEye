@@ -352,8 +352,7 @@ class DecodeFragment : Fragment() {
 		}
 		scope.launch(Dispatchers.Main) {
 			val name = ac.askForFileName() ?: return@launch
-			val message = writeExternalFile(
-				ac,
+			val message = ac.writeExternalFile(
 				name,
 				"application/octet-stream"
 			) {

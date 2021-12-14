@@ -99,8 +99,10 @@ class BarcodeFragment : Fragment() {
 		}
 
 		view.findViewById<View>(R.id.share).setOnClickListener {
-			pickFileType(context, R.string.share_as) {
-				shareAs(it)
+			it.context?.apply {
+				pickFileType(R.string.share_as) { fileType ->
+					shareAs(fileType)
+				}
 			}
 		}
 
@@ -131,7 +133,7 @@ class BarcodeFragment : Fragment() {
 				true
 			}
 			R.id.export_to_file -> {
-				pickFileType(context, R.string.export_as) {
+				context.pickFileType(R.string.export_as) {
 					askForFileNameAndSave(it)
 				}
 				true
@@ -140,13 +142,12 @@ class BarcodeFragment : Fragment() {
 		}
 	}
 
-	private fun pickFileType(
-		context: Context,
+	private fun Context.pickFileType(
 		title: Int,
 		action: (FileType) -> Unit
 	) {
 		val fileTypes = FileType.values()
-		AlertDialog.Builder(context)
+		AlertDialog.Builder(this)
 			.setTitle(title)
 			.setItems(fileTypes.map { it.name }.toTypedArray()) { _, which ->
 				action(fileTypes[which])
@@ -207,27 +208,26 @@ class BarcodeFragment : Fragment() {
 		write: (outputStream: OutputStream) -> Unit
 	) {
 		val ac = activity ?: return
-		GlobalScope.launch(Dispatchers.IO) {
-			val message = writeExternalFile(ac, fileName, mimeType, write).toSaveResult()
-			launch(Dispatchers.Main) {
+		scope.launch(Dispatchers.IO) {
+			val message = ac.writeExternalFile(fileName, mimeType, write).toSaveResult()
+			withContext(Dispatchers.Main) {
 				ac.toast(message)
 			}
 		}
 	}
 
-	private fun shareAs(fileType: FileType) {
+	private fun Context.shareAs(fileType: FileType) {
 		when (fileType) {
 			FileType.PNG -> barcodeBitmap?.let { share(it) }
-			FileType.SVG -> barcodeSvg?.let { context.shareText(it, MIME_SVG) }
-			FileType.TXT -> barcodeTxt?.let { context.shareText(it) }
+			FileType.SVG -> barcodeSvg?.let { shareText(it, MIME_SVG) }
+			FileType.TXT -> barcodeTxt?.let { shareText(it) }
 		}
 	}
 
-	private fun share(bitmap: Bitmap) {
-		val ctx = context ?: return
-		GlobalScope.launch(Dispatchers.IO) {
+	private fun Context.share(bitmap: Bitmap) {
+		scope.launch(Dispatchers.IO) {
 			val file = File(
-				ctx.externalCacheDir,
+				externalCacheDir,
 				"shared_barcode.png"
 			)
 			val success = try {
@@ -238,11 +238,11 @@ class BarcodeFragment : Fragment() {
 			} catch (e: IOException) {
 				false
 			}
-			launch(Dispatchers.Main) {
+			withContext(Dispatchers.Main) {
 				if (success) {
-					ctx.shareFile(file, "image/png")
+					shareFile(file, "image/png")
 				} else {
-					ctx.toast(R.string.error_saving_file)
+					toast(R.string.error_saving_file)
 				}
 			}
 		}
