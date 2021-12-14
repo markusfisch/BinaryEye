@@ -172,7 +172,7 @@ class CameraActivity : AppCompatActivity() {
 			ignoreNext = null
 		}
 		setReturnTarget(intent)
-		if (hasCameraPermission(this)) {
+		if (hasCameraPermission()) {
 			openCamera()
 		}
 	}

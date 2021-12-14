@@ -331,7 +331,7 @@ class DecodeFragment : Fragment() {
 		if (content.isNotEmpty()) {
 			if (action is WifiAction &&
 				Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
-				!hasLocationPermission(ac) { executeAction(content) }
+				!ac.hasLocationPermission { executeAction(content) }
 			) {
 				return
 			}
@@ -346,7 +346,7 @@ class DecodeFragment : Fragment() {
 		val ac = activity ?: return
 		// Write permission is only required before Android Q.
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
-			!hasWritePermission(ac) { askForFileNameAndSave(raw) }
+			!ac.hasWritePermission { askForFileNameAndSave(raw) }
 		) {
 			return
 		}

@@ -160,7 +160,7 @@ class BarcodeFragment : Fragment() {
 		val ac = activity ?: return
 		// Write permission is only required before Android Q.
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
-			!hasWritePermission(ac) { askForFileNameAndSave(fileType) }
+			!ac.hasWritePermission { askForFileNameAndSave(fileType) }
 		) {
 			return
 		}

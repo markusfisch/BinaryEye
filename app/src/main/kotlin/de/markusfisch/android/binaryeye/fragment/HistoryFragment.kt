@@ -366,7 +366,7 @@ class HistoryFragment : Fragment() {
 			progressView.useVisibility {
 				// Write permission is only required before Android Q.
 				if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
-					!hasWritePermission(ac) { askToExportToFile() }
+					!ac.hasWritePermission { askToExportToFile() }
 				) {
 					return@useVisibility
 				}
