@@ -22,21 +22,17 @@ import de.markusfisch.android.binaryeye.graphics.loadImageUri
 import de.markusfisch.android.binaryeye.graphics.mapResultToView
 import de.markusfisch.android.binaryeye.os.vibrate
 import de.markusfisch.android.binaryeye.rs.fixTransparency
-import de.markusfisch.android.binaryeye.view.colorSystemAndToolBars
-import de.markusfisch.android.binaryeye.view.initSystemBars
-import de.markusfisch.android.binaryeye.view.recordToolbarHeight
-import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
+import de.markusfisch.android.binaryeye.view.*
 import de.markusfisch.android.binaryeye.widget.CropImageView
 import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class PickActivity : AppCompatActivity() {
 	private val zxing = Zxing()
+	private val parentJob = Job()
+	private val scope = CoroutineScope(Dispatchers.IO + parentJob)
 
 	private lateinit var rs: RenderScript
 	private lateinit var vibrator: Vibrator
@@ -128,7 +124,7 @@ class PickActivity : AppCompatActivity() {
 			rectInImage,
 			cropImageView.imageRotation
 		) ?: return
-		CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
+		scope.launch {
 			result = zxing.decodePositiveNegative(cropped)
 			result?.let {
 				withContext(Dispatchers.Main) {
@@ -160,6 +156,7 @@ class PickActivity : AppCompatActivity() {
 		super.onDestroy()
 		detectorView.saveCropHandlePos()
 		rs.destroy()
+		parentJob.cancel()
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {

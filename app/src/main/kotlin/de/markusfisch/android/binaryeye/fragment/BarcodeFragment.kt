@@ -26,9 +26,7 @@ import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.encodeAsBitmap
 import de.markusfisch.android.binaryeye.zxing.encodeAsSvg
 import de.markusfisch.android.binaryeye.zxing.encodeAsText
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -39,6 +37,9 @@ class BarcodeFragment : Fragment() {
 	private enum class FileType {
 		PNG, SVG, TXT
 	}
+
+	private val parentJob = Job()
+	private val scope = CoroutineScope(Dispatchers.IO + parentJob)
 
 	private var barcodeBitmap: Bitmap? = null
 	private var barcodeSvg: String? = null
@@ -109,6 +110,11 @@ class BarcodeFragment : Fragment() {
 		}
 
 		return view
+	}
+
+	override fun onDestroyView() {
+		super.onDestroyView()
+		parentJob.cancel()
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
