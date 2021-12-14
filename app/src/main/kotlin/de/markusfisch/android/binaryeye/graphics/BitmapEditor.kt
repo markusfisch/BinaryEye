@@ -11,9 +11,9 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
 
-fun loadImageUri(cr: ContentResolver, uri: Uri): Bitmap? = try {
+fun ContentResolver.loadImageUri(uri: Uri): Bitmap? = try {
 	val options = BitmapFactory.Options()
-	cr.openInputStream(uri)?.use {
+	openInputStream(uri)?.use {
 		options.inJustDecodeBounds = true
 		BitmapFactory.decodeStream(it, null, options)
 		options.inSampleSize = calculateInSampleSize(
@@ -22,7 +22,7 @@ fun loadImageUri(cr: ContentResolver, uri: Uri): Bitmap? = try {
 		)
 		options.inJustDecodeBounds = false
 	}
-	cr.openInputStream(uri)?.use {
+	openInputStream(uri)?.use {
 		BitmapFactory.decodeStream(it, null, options)
 	}
 } catch (e: IOException) {
@@ -49,8 +49,8 @@ private fun calculateInSampleSize(
 	return inSampleSize
 }
 
-fun crop(bitmap: Bitmap, rect: RectF, rotation: Float) = try {
-	val erected = erect(bitmap, rotation)
+fun Bitmap.crop(rect: RectF, rotation: Float) = try {
+	val erected = erect(rotation)
 	val w = erected.width
 	val h = erected.height
 	val x = max(0, (rect.left * w).roundToInt())
@@ -68,20 +68,20 @@ fun crop(bitmap: Bitmap, rect: RectF, rotation: Float) = try {
 	null
 }
 
-private fun erect(bitmap: Bitmap, rotation: Float): Bitmap = if (
+private fun Bitmap.erect(rotation: Float): Bitmap = if (
 	rotation % 360f != 0f
 ) {
-	val matrix = Matrix()
-	matrix.setRotate(rotation)
 	Bitmap.createBitmap(
-		bitmap,
+		this,
 		0,
 		0,
-		bitmap.width,
-		bitmap.height,
-		matrix,
+		width,
+		height,
+		Matrix().apply {
+			setRotate(rotation)
+		},
 		true
 	)
 } else {
-	bitmap
+	this
 }

@@ -119,8 +119,7 @@ class PickActivity : AppCompatActivity() {
 		}
 		val imageRect = cropImageView.mappedRect
 		val rectInImage = normalizeRoi(imageRect, rectInView)
-		val cropped = crop(
-			bitmap,
+		val cropped = bitmap.crop(
 			rectInImage,
 			cropImageView.imageRotation
 		) ?: return
@@ -182,12 +181,12 @@ class PickActivity : AppCompatActivity() {
 		val uri = intent.getParcelableExtra<Parcelable>(
 			Intent.EXTRA_STREAM
 		) as? Uri ?: return null
-		return loadImageUri(contentResolver, uri)
+		return contentResolver.loadImageUri(uri)
 	}
 
 	private fun loadImageToOpen(intent: Intent): Bitmap? {
 		val uri = intent.data ?: return null
-		return loadImageUri(contentResolver, uri)
+		return contentResolver.loadImageUri(uri)
 	}
 
 	private fun showResult() {
