@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.46.3
+* Fix cropping still images
+* Improve usability of zoom slider
+* Update Dutch translation
+* Update Chinese translation
+
 ## 1.46.2
 * Fix saving external files on Android Q and newer
 
