@@ -368,7 +368,7 @@ class CameraActivity : AppCompatActivity() {
 			override fun onConfigureParameters(
 				parameters: Camera.Parameters
 			) {
-				if (parameters.isZoomSupported) {
+				zoomBar.visibility = if (parameters.isZoomSupported) {
 					val max = parameters.maxZoom
 					if (zoomBar.max != max) {
 						zoomBar.max = max
@@ -376,8 +376,9 @@ class CameraActivity : AppCompatActivity() {
 						saveZoom()
 					}
 					parameters.zoom = zoomBar.progress
+					View.VISIBLE
 				} else {
-					zoomBar.visibility = View.GONE
+					View.GONE
 				}
 				val sceneModes = parameters.supportedSceneModes
 				sceneModes?.let {
