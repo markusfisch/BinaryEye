@@ -77,9 +77,7 @@ class DecodeFragment : Fragment() {
 		id = scan.id
 
 		val inputContent = scan.content
-		isBinary = hasNonPrintableCharacters(
-			inputContent
-		) or inputContent.isEmpty()
+		isBinary = inputContent.isNotEmpty() && inputContent.hasNonPrintableCharacters()
 		raw = scan.raw ?: inputContent.toByteArray()
 		format = scan.format
 
