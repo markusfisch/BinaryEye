@@ -1,6 +1,7 @@
 package de.markusfisch.android.binaryeye.net
 
 import de.markusfisch.android.binaryeye.app.toHexString
+import de.markusfisch.android.binaryeye.app.urlEncode
 import de.markusfisch.android.binaryeye.database.Scan
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +15,6 @@ import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.ProtocolException
 import java.net.URL
-import java.net.URLEncoder
 
 fun Scan.sendAsync(
 	url: String,
@@ -51,20 +51,18 @@ private fun Scan.send(url: String, type: String): Response {
 			}
 		}
 		else -> request(
-			url + urlEncode(content)
+			url + content.urlEncode()
 		)
 	}
 }
 
 private fun Scan.asUrlArguments(): String = getMap().map { (k, v) ->
-	"${k}=${urlEncode(v)}"
+	"${k}=${v.urlEncode()}"
 }.joinToString("&")
 
 private fun Scan.asJson() = JSONObject().apply {
 	getMap().forEach { (k, v) -> put(k, v) }
 }
-
-private fun urlEncode(s: String) = URLEncoder.encode(s, "utf-8")
 
 private fun Scan.getMap(): Map<String, String> = mapOf(
 	"content" to content,

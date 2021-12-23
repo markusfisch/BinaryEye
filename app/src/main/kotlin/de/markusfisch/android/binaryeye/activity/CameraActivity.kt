@@ -42,7 +42,6 @@ import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.cameraview.widget.CameraView
-import java.net.URLEncoder
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -821,20 +820,16 @@ private fun isReturnUrl(intent: Intent?): Boolean {
 
 private fun completeUrl(urlTemplate: String, result: Result) = Uri.parse(
 	urlTemplate
-		.replace("{RESULT}", URLEncoder.encode(result.text, "UTF-8"))
+		.replace("{RESULT}", result.text.urlEncode())
 		.replace("{RESULT_BYTES}", result.rawBytes?.toHexString() ?: "")
 		.replace(
-			"{FORMAT}", URLEncoder.encode(
-				result.barcodeFormat.toString(), "UTF-8"
-			)
+			"{FORMAT}", result.barcodeFormat.toString().urlEncode()
 		)
 		.replace(
-			"{META}", URLEncoder.encode(
-				result.resultMetadata?.toString() ?: "", "UTF-8"
-			)
+			"{META}", result.resultMetadata?.toString()?.urlEncode() ?: ""
 		)
 		// And support {CODE} from the old ZXing app, too.
-		.replace("{CODE}", URLEncoder.encode(result.text, "UTF-8"))
+		.replace("{CODE}", result.text.urlEncode())
 )
 
 private fun beepBeepBeep() {

@@ -4,9 +4,9 @@ import android.content.Context
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.IAction
 import de.markusfisch.android.binaryeye.app.alertDialog
+import de.markusfisch.android.binaryeye.app.urlEncode
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.content.openUrl
-import java.net.URLEncoder
 
 object OpenOrSearchAction : IAction {
 	override val iconResId: Int = R.drawable.ic_action_search
@@ -33,7 +33,7 @@ object OpenOrSearchAction : IAction {
 		if (defaultSearchUrl.isNotEmpty()) {
 			view(
 				context,
-				defaultSearchUrl + URLEncoder.encode(query, "utf-8"),
+				defaultSearchUrl + query.urlEncode(),
 				false
 			)
 			return
@@ -55,7 +55,7 @@ object OpenOrSearchAction : IAction {
 		val queryUri = alertDialog<String>(context) { resume ->
 			setTitle(R.string.pick_search_engine)
 			setItems(names.toTypedArray()) { _, which ->
-				resume(urls[which] + URLEncoder.encode(query, "utf-8"))
+				resume(urls[which] + query.urlEncode())
 			}
 		} ?: return
 		view(context, queryUri, false)
