@@ -99,6 +99,7 @@
 	<string name="send_type_get_query_string">GET with compelete query string</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
+	<string name="send_type_external_browser">Open in external browser</string>
 	<string name="test_url">Test URL</string>
 	<string name="really_remove_scan">Really remove scan?</string>
 	<string name="really_remove_all_scans">Really remove all scans?</string>

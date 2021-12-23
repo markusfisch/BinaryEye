@@ -99,6 +99,7 @@
 	<string name="send_type_get_query_string">GET với xâu truy vấn đầy đủ</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
+	<string name="send_type_external_browser">Open in external browser</string>
 	<string name="test_url">URL thử</string>
 	<string name="really_remove_scan">Thật sự xoá lần quét này?</string>
 	<string name="really_remove_all_scans">Thật sự xoá tất cả các lần quét?</string>

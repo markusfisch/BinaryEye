@@ -99,6 +99,7 @@
 	<string name="send_type_get_query_string">GET で文字列のコンテンツを付加</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
+	<string name="send_type_external_browser">Open in external browser</string>
 	<string name="test_url">URLをテスト</string>
 	<string name="really_remove_scan">このスキャン履歴を削除しても宜しいですか？</string>
 	<string name="really_remove_all_scans">全てのスキャン履歴を削除しても宜しいですか？</string>

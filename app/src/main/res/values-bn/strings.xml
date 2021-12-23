@@ -99,6 +99,7 @@
 	<string name="send_type_get_query_string">সম্পূর্ণ কুয়েরি স্ট্রিং দিয়ে গেট(GET) করো</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
+	<string name="send_type_external_browser">Open in external browser</string>
 	<string name="test_url">পরীক্ষার জন্য ইউআরএল</string>
 	<string name="really_remove_scan">আসলেই এটা মুছবে?</string>
 	<string name="really_remove_all_scans">আসলেই সব মুছবে?</string>

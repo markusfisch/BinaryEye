@@ -99,6 +99,7 @@
 	<string name="send_type_get_query_string">GET 完整查詢資料</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
+	<string name="send_type_external_browser">Open in external browser</string>
 	<string name="test_url">測試 URL</string>
 	<string name="really_remove_scan">確定刪除記錄?</string>
 	<string name="really_remove_all_scans">確定刪除全部掃描記錄?</string>

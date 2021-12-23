@@ -29,6 +29,7 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.execShareIntent
+import de.markusfisch.android.binaryeye.content.openUrl
 import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.graphics.getFrameToViewMatrix
 import de.markusfisch.android.binaryeye.graphics.map
@@ -739,7 +740,16 @@ fun showResult(
 		activity.copyToClipboard(result.text)
 	}
 	val scan = Scan(result)
+	if (prefs.useHistory) {
+		scan.id = db.insertScan(scan)
+	}
 	if (prefs.sendScanUrl.isNotEmpty()) {
+		if (prefs.sendScanType == "4") {
+			activity.openUrl(
+				prefs.sendScanUrl + scan.content.urlEncode()
+			)
+			return
+		}
 		scan.sendAsync(
 			prefs.sendScanUrl,
 			prefs.sendScanType
@@ -754,9 +764,6 @@ fun showResult(
 				activity.toast(R.string.background_request_failed)
 			}
 		}
-	}
-	if (prefs.useHistory) {
-		scan.id = db.insertScan(scan)
 	}
 	if (!bulkMode) {
 		activity.startActivity(

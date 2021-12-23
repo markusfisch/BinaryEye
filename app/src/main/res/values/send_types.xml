@@ -4,11 +4,13 @@
 		<item>@string/send_type_get_query_string</item>
 		<item>@string/send_type_post_form</item>
 		<item>@string/send_type_post_json</item>
+		<item>@string/send_type_external_browser</item>
 	</string-array>
 	<string-array name="send_type_values">
 		<item>0</item>
 		<item>1</item>
 		<item>2</item>
 		<item>3</item>
+		<item>4</item>
 	</string-array>
 </resources>
