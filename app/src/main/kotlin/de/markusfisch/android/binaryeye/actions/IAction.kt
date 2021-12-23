@@ -18,10 +18,12 @@ abstract class IntentAction : IAction {
 	abstract val errorMsg: Int
 
 	final override suspend fun execute(context: Context, data: ByteArray) {
-		val intent = createIntent(context, data) ?: return context.toast(
-			errorMsg
-		)
-		context.execShareIntent(intent)
+		val intent = createIntent(context, data)
+		if (intent == null) {
+			context.toast(errorMsg)
+		} else {
+			context.execShareIntent(intent)
+		}
 	}
 
 	abstract suspend fun createIntent(context: Context, data: ByteArray): Intent?
