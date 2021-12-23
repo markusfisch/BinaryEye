@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.47.0
+* Add forwarding into external browser
+* Fix visibility of zoom slider when switching cameras
+
 ## 1.46.3
 * Fix cropping still images
 * Improve usability of zoom slider
