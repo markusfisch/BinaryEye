@@ -16,7 +16,11 @@ import java.net.ProtocolException
 import java.net.URL
 import java.net.URLEncoder
 
-fun Scan.sendAsync(url: String, type: String, callback: (Int?, String?) -> Unit) {
+fun Scan.sendAsync(
+	url: String,
+	type: String,
+	callback: (Int?, String?) -> Unit
+) {
 	CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
 		val response = send(url, type)
 		withContext(Dispatchers.Main) {

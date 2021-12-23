@@ -7,8 +7,9 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.IntentAction
 
 object SmsAction : IntentAction() {
-	private val smsRegex =
-		"""^sms(?:to)?:(\+?[0-9]+)(?::([\S\s]*))?$""".toRegex(RegexOption.IGNORE_CASE)
+	private val smsRegex = """^sms(?:to)?:(\+?[0-9]+)(?::([\S\s]*))?$""".toRegex(
+		RegexOption.IGNORE_CASE
+	)
 
 	override val iconResId: Int = R.drawable.ic_action_sms
 	override val titleResId: Int = R.string.sms_send
@@ -28,7 +29,9 @@ object SmsAction : IntentAction() {
 			Intent.ACTION_SENDTO,
 			Uri.parse("smsto:$number")
 		).apply {
-			if (message.isNotEmpty()) putExtra("sms_body", message)
+			if (message.isNotEmpty()) {
+				putExtra("sms_body", message)
+			}
 		}
 	}
 }
