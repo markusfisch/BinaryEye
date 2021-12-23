@@ -1,13 +1,11 @@
 package de.markusfisch.android.binaryeye.actions.search
 
 import android.content.Context
-import android.content.Intent
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.IAction
 import de.markusfisch.android.binaryeye.app.alertDialog
-import de.markusfisch.android.binaryeye.app.parseAndNormalizeUri
 import de.markusfisch.android.binaryeye.app.prefs
-import de.markusfisch.android.binaryeye.content.startIntent
+import de.markusfisch.android.binaryeye.content.openUrl
 import java.net.URLEncoder
 
 object OpenOrSearchAction : IAction {
@@ -20,10 +18,13 @@ object OpenOrSearchAction : IAction {
 		view(context, String(data), true)
 	}
 
-	private suspend fun view(context: Context, s: String, search: Boolean) {
-		val intent = Intent(Intent.ACTION_VIEW, parseAndNormalizeUri(s))
-		if (!context.startIntent(intent) && search) {
-			openSearch(context, s)
+	private suspend fun view(
+		context: Context,
+		url: String,
+		search: Boolean
+	) {
+		if (!context.openUrl(url) && search) {
+			openSearch(context, url)
 		}
 	}
 

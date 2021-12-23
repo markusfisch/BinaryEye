@@ -8,16 +8,19 @@ import android.os.Build
 import android.support.v4.content.FileProvider
 import de.markusfisch.android.binaryeye.BuildConfig
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.app.parseAndNormalizeUri
 import de.markusfisch.android.binaryeye.widget.toast
 import java.io.File
 
-fun Context.execShareIntent(intent: Intent) {
+fun Context.execShareIntent(intent: Intent): Boolean {
 	if (!startIntent(intent)) {
 		toast(R.string.cannot_resolve_action)
+		return false
 	}
+	return true
 }
 
-fun Context.startIntent(intent: Intent) = try {
+fun Context.startIntent(intent: Intent): Boolean = try {
 	// Avoid using `intent.resolveActivity()` at API level 30+ due
 	// to the new package visibility restrictions. In order for
 	// `resolveActivity()` to "see" another package, we would need
@@ -31,6 +34,12 @@ fun Context.startIntent(intent: Intent) = try {
 } catch (e: ActivityNotFoundException) {
 	false
 }
+
+fun Context.openUrl(url: String): Boolean = openUri(parseAndNormalizeUri(url))
+
+fun Context.openUri(uri: Uri): Boolean = execShareIntent(
+	Intent(Intent.ACTION_VIEW, uri)
+)
 
 fun Context.shareText(text: String, mimeType: String = "text/plain") {
 	execShareIntent(Intent(Intent.ACTION_SEND).apply {
