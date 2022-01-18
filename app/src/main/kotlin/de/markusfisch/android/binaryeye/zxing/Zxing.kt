@@ -26,15 +26,15 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 	}
 
 	private fun setDecodeFormats(formats: Set<String>) {
-		val decodeFormats = EnumSet.noneOf(
+		hints[DecodeHintType.POSSIBLE_FORMATS] = EnumSet.noneOf(
 			BarcodeFormat::class.java
-		)
-		decodeFormats.addAll(
-			EnumSet.copyOf(
-				formats.map { BarcodeFormat.valueOf(it) }
+		).apply {
+			addAll(
+				EnumSet.copyOf(
+					formats.map { BarcodeFormat.valueOf(it) }
+				)
 			)
-		)
-		hints[DecodeHintType.POSSIBLE_FORMATS] = decodeFormats
+		}
 	}
 
 	fun decode(
@@ -42,8 +42,8 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 		width: Int,
 		height: Int,
 		invert: Boolean = false
-	): Result? {
-		val source = PlanarYUVLuminanceSource(
+	): Result? = decodeLuminanceSource(
+		PlanarYUVLuminanceSource(
 			yuvData,
 			width,
 			height,
@@ -52,25 +52,20 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 			width,
 			height,
 			false
-		)
-		return decodeLuminanceSource(source, invert)
-	}
+		),
+		invert
+	)
 
 	fun decodePositiveNegative(bitmap: Bitmap): Result? =
 		decode(bitmap, false) ?: decode(bitmap, true)
 
-	private fun decode(bitmap: Bitmap, invert: Boolean = false): Result? {
-		val pixels = IntArray(bitmap.width * bitmap.height)
-		return decode(pixels, bitmap, invert)
-	}
-
 	private fun decode(
-		pixels: IntArray,
 		bitmap: Bitmap,
 		invert: Boolean = false
 	): Result? {
 		val width = bitmap.width
 		val height = bitmap.height
+		val pixels = IntArray(width * height)
 		if (bitmap.config != Bitmap.Config.ARGB_8888) {
 			bitmap.copy(Bitmap.Config.ARGB_8888, true)
 		} else {
@@ -95,21 +90,21 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 		)
 	}
 
-	private fun decodeLuminanceSource(source: LuminanceSource): Result? {
-		val bitmap = BinaryBitmap(HybridBinarizer(source))
-		return try {
-			multiFormatReader.decode(bitmap, hints)
-		} catch (e: Exception) {
-			// Usually it's bad practice to blindly catch *all* exceptions
-			// because this can hide problems we want to know about. But
-			// since ZXing has some errors (like all software) and I don't
-			// want this app to break in the hands of my users, which won't
-			// see the stack trace anyway, it's better to just catch all
-			// exceptions here and live on.
-			null
-		} finally {
-			multiFormatReader.reset()
-		}
+	private fun decodeLuminanceSource(source: LuminanceSource): Result? = try {
+		multiFormatReader.decode(
+			BinaryBitmap(HybridBinarizer(source)),
+			hints
+		)
+	} catch (e: Exception) {
+		// Usually it's bad practice to blindly catch *all* exceptions
+		// because this can hide problems we want to know about. But
+		// since ZXing has some errors (like all software) and I don't
+		// want this app to break in the hands of my users, which won't
+		// see the stack trace anyway, it's better to just catch all
+		// exceptions here and live on.
+		null
+	} finally {
+		multiFormatReader.reset()
 	}
 }
 
