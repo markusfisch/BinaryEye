@@ -9,4 +9,9 @@
 	<issue id="UnusedResources">
 		<ignore path="*/res/rs/debug/raw/bc*" />
 	</issue>
+	<!-- Android 12 requires apps that request ACCESS_FINE_LOCATION
+		to also request ACCESS_COARSE_LOCATION. But this app doesn't
+		request nor requires ACCESS_FINE_LOCATION above SDK 28. So
+		this is a false positive. -->
+	<issue id="CoarseFineLocation" severity="ignore"/>
 </lint>
