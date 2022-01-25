@@ -3,7 +3,7 @@ buildscript {
 		kotlin_version = '1.6.0'
 		tools_version = '7.0.4'
 		build_tools_version = '30.0.2'
-		sdk_version = 30
+		sdk_version = 31
 		support_version = '25.3.1'
 	}
 
