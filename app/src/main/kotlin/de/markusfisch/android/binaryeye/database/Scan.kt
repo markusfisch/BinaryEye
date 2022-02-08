@@ -23,7 +23,7 @@ data class Scan(
 ) : Parcelable {
 	constructor(result: Result) : this(
 		result.text,
-		getRawBytes(result),
+		result.getRawData(),
 		result.barcodeFormat.toString(),
 		result.getMetaString(ResultMetadataType.ERROR_CORRECTION_LEVEL),
 		result.getMetaString(ResultMetadataType.ISSUE_NUMBER),
@@ -132,8 +132,8 @@ private fun getDateTime(time: Long = System.currentTimeMillis()) = DateFormat.fo
 	time
 ).toString()
 
-private fun getRawBytes(result: Result): ByteArray? {
-	val metadata = result.resultMetadata ?: return null
+private fun Result.getRawData(): ByteArray? {
+	val metadata = resultMetadata ?: return null
 	val segments = metadata[ResultMetadataType.BYTE_SEGMENTS] ?: return null
 	var bytes = ByteArray(0)
 	@Suppress("UNCHECKED_CAST")
@@ -146,7 +146,7 @@ private fun getRawBytes(result: Result): ByteArray? {
 	// This is because Zxing only records byte segments for byte encoded
 	// parts. Please note the byte segments can actually be longer than
 	// the string because Zxing cuts off prefixes like "WIFI:".
-	return if (bytes.size >= result.text.length) bytes else null
+	return if (bytes.size >= text.length) bytes else null
 }
 
 private fun Result.getMetaString(
