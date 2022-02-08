@@ -127,7 +127,7 @@ class Database {
 
 	fun insertScan(scan: Scan): Long {
 		val cv = ContentValues()
-		cv.put(SCANS_DATETIME, scan.timestamp)
+		cv.put(SCANS_DATETIME, scan.dateTime)
 		val isRaw = scan.content.hasNonPrintableCharacters()
 		if (isRaw) {
 			cv.put(SCANS_CONTENT, "")

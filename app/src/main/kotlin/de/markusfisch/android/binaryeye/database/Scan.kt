@@ -18,7 +18,7 @@ data class Scan(
 	val possibleCountry: String?,
 	val suggestedPrice: String?,
 	val upcEanExtension: String?,
-	val timestamp: String = getDateTime(),
+	val dateTime: String = getDateTime(),
 	var id: Long = 0L
 ) : Parcelable {
 	constructor(result: Result) : this(
@@ -48,7 +48,7 @@ data class Scan(
 		other as Scan
 
 		return id == other.id &&
-				timestamp == other.timestamp &&
+				dateTime == other.dateTime &&
 				content == other.content &&
 				((raw == null && other.raw == null) ||
 						(raw != null && other.raw != null && raw.contentEquals(other.raw))) &&
@@ -67,7 +67,7 @@ data class Scan(
 	// this isn't handled well by Kotlin
 	override fun hashCode(): Int {
 		var result = id.hashCode()
-		result = 31 * result + timestamp.hashCode()
+		result = 31 * result + dateTime.hashCode()
 		result = 31 * result + content.hashCode()
 		result = 31 * result + (raw?.contentHashCode() ?: 0)
 		result = 31 * result + format.hashCode()
@@ -94,7 +94,7 @@ data class Scan(
 		possibleCountry = parcel.readString(),
 		suggestedPrice = parcel.readString(),
 		upcEanExtension = parcel.readString(),
-		timestamp = parcel.readString() ?: "",
+		dateTime = parcel.readString() ?: "",
 		id = parcel.readLong()
 	)
 
@@ -111,7 +111,7 @@ data class Scan(
 			writeString(possibleCountry)
 			writeString(suggestedPrice)
 			writeString(upcEanExtension)
-			writeString(timestamp)
+			writeString(dateTime)
 			writeLong(id)
 		}
 	}

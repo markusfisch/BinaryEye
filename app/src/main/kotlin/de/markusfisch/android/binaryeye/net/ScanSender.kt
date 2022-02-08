@@ -76,7 +76,7 @@ private fun Scan.getMap(): Map<String, String> = mapOf(
 	"possibleCountry" to possibleCountry,
 	"suggestedPrice" to suggestedPrice,
 	"upcEanExtension" to upcEanExtension,
-	"timestamp" to timestamp
+	"timestamp" to dateTime
 ).filterNullValues()
 
 private fun Map<String, String?>.filterNullValues() =
