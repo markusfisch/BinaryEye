@@ -12,12 +12,13 @@ import de.markusfisch.android.binaryeye.app.parseAndNormalizeUri
 import de.markusfisch.android.binaryeye.widget.toast
 import java.io.File
 
-fun Context.execShareIntent(intent: Intent): Boolean {
-	if (!startIntent(intent)) {
-		toast(R.string.cannot_resolve_action)
-		return false
-	}
-	return true
+fun Context.execShareIntent(intent: Intent): Boolean = if (
+	!startIntent(intent)
+) {
+	toast(R.string.cannot_resolve_action)
+	false
+} else {
+	true
 }
 
 fun Context.startIntent(intent: Intent): Boolean = try {
