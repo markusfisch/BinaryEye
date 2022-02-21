@@ -8,8 +8,6 @@
 	<string name="binary_data">(ორობითი მონაცემები)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d სიმბოლო, %1$s</item>
-		<item quantity="few">%2$d სიმბოლო, %1$s</item>
-		<item quantity="many">%2$d სიმბოლო, %1$s</item>
 		<item quantity="other">%2$d სიმბოლო, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">შეცდომების კორექციის დონე</string>

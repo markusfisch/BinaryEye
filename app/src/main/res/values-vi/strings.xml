@@ -7,7 +7,6 @@
 	<string name="content">Nội dung</string>
 	<string name="binary_data">(thông tin dạng nhị phân)</string>
 	<plurals name="barcode_info">
-		<item quantity="one">%2$d ký tự, %1$s</item>
 		<item quantity="other">%2$d ký tự, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Mức độ tự sửa mã</string>
