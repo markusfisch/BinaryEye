@@ -114,7 +114,7 @@ class DecodeFragment : Fragment() {
 				executeAction(content.toByteArray())
 			}
 		} else {
-			contentView.setText(R.string.binary_data)
+			contentView.setText(String(raw).foldNonAlNum())
 			contentView.isEnabled = false
 			fab.setImageResource(R.drawable.ic_action_save)
 			fab.setOnClickListener {
