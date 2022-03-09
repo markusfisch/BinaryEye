@@ -28,6 +28,11 @@
 		android:checkable="true"
 		material:showAsAction="ifRoom"/>
 	<item
+		android:id="@+id/restrict_format"
+		android:title="@string/restrict_format"
+		android:icon="@drawable/ic_action_restrict_format"
+		material:showAsAction="ifRoom"/>
+	<item
 		android:id="@+id/preferences"
 		android:title="@string/preferences"
 		android:icon="@drawable/ic_action_preferences"
