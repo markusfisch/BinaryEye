@@ -324,11 +324,19 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun showRestrictionDialog() {
-		val names = resources.getStringArray(R.array.barcode_formats_names)
-		val formats = resources.getStringArray(R.array.barcode_formats_values)
+		val names = resources.getStringArray(
+			R.array.barcode_formats_names
+		).toMutableList()
+		val formats = resources.getStringArray(
+			R.array.barcode_formats_values
+		).toMutableList()
+		if (restrictFormat != null) {
+			names.add(0, getString(R.string.remove_restriction))
+			formats.add(0, null)
+		}
 		AlertDialog.Builder(this).apply {
 			setTitle(R.string.restrict_format)
-			setItems(names) { _, which ->
+			setItems(names.toTypedArray()) { _, which ->
 				restrictFormat = formats[which]
 				updateHints()
 			}

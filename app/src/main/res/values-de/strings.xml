@@ -46,6 +46,7 @@
 	<string name="bulk_mode_summary">Immer mit fortlaufendem Scannen starten.</string>
 	<string name="bulk_mode_delay">Pause zwischen fortlaufenden Scans</string>
 	<string name="restrict_format">Format eingrenzen</string>
+	<string name="remove_restriction">Einschränkung entfernen</string>
 	<string name="scan_format">%s scannen</string>
 	<string name="quarter_second">Eine Viertelsekunde</string>
 	<string name="half_second">Eine halbe Sekunde</string>
