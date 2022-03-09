@@ -15,7 +15,7 @@ fun String.urlEncode(): String = try {
 	this
 }
 
-fun parseAndNormalizeUri(input: String): Uri = Uri.parse(input).let {
+fun String.parseAndNormalizeUri(): Uri = Uri.parse(this).let {
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 		it.normalizeScheme()
 	} else {

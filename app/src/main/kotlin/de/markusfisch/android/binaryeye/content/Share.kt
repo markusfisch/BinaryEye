@@ -36,7 +36,7 @@ fun Context.startIntent(intent: Intent): Boolean = try {
 	false
 }
 
-fun Context.openUrl(url: String): Boolean = openUri(parseAndNormalizeUri(url))
+fun Context.openUrl(url: String): Boolean = openUri(url.parseAndNormalizeUri())
 
 fun Context.openUri(uri: Uri): Boolean = execShareIntent(
 	Intent(Intent.ACTION_VIEW, uri)

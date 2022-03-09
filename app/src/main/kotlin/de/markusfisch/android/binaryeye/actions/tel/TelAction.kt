@@ -24,6 +24,6 @@ object TelAction : IntentAction() {
 		data: ByteArray
 	): Intent = Intent(
 		Intent.ACTION_DIAL,
-		parseAndNormalizeUri(String(data))
+		String(data).parseAndNormalizeUri()
 	)
 }
