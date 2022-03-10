@@ -1,0 +1,11 @@
+* Add a menu item to temporarily scan a certain format only
+* Add a monochome launcher icon for Android 13
+* Show alpha numeric characters in binary data
+* Fix showing binary data label for scans from the history
+* Fix handling empty meta strings
+* Update Turkish translation
+* Update Ukrainian translation
+* Update French translation
+* Update Polish translation
+* Update Russian translation
+
