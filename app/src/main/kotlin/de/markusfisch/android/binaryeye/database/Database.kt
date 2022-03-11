@@ -5,7 +5,6 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
 import de.markusfisch.android.binaryeye.app.prefs
 
 fun Cursor.getString(name: String): String {
@@ -128,10 +127,10 @@ class Database {
 	fun insertScan(scan: Scan): Long {
 		val cv = ContentValues()
 		cv.put(SCANS_DATETIME, scan.dateTime)
-		val isRaw = scan.content.hasNonPrintableCharacters()
+		val isRaw = scan.raw != null
 		if (isRaw) {
 			cv.put(SCANS_CONTENT, "")
-			cv.put(SCANS_RAW, scan.raw ?: scan.content.toByteArray())
+			cv.put(SCANS_RAW, scan.raw)
 		} else {
 			cv.put(SCANS_CONTENT, scan.content)
 		}

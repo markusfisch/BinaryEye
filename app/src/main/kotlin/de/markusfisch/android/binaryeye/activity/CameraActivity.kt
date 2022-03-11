@@ -32,7 +32,7 @@ import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.execShareIntent
 import de.markusfisch.android.binaryeye.content.openUrl
-import de.markusfisch.android.binaryeye.database.Scan
+import de.markusfisch.android.binaryeye.database.toScan
 import de.markusfisch.android.binaryeye.graphics.getFrameToViewMatrix
 import de.markusfisch.android.binaryeye.graphics.map
 import de.markusfisch.android.binaryeye.net.sendAsync
@@ -782,7 +782,7 @@ fun showResult(
 	if (prefs.copyImmediately) {
 		activity.copyToClipboard(result.text)
 	}
-	val scan = Scan(result)
+	val scan = result.toScan()
 	if (prefs.useHistory) {
 		scan.id = db.insertScan(scan)
 	}

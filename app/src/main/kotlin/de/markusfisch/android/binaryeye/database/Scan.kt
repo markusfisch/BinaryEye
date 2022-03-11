@@ -5,6 +5,7 @@ import android.os.Parcelable
 import android.text.format.DateFormat
 import com.google.zxing.Result
 import com.google.zxing.ResultMetadataType
+import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
 
 data class Scan(
 	val content: String,
@@ -21,20 +22,6 @@ data class Scan(
 	val dateTime: String = getDateTime(),
 	var id: Long = 0L
 ) : Parcelable {
-	constructor(result: Result) : this(
-		result.text,
-		result.getRawData(),
-		result.barcodeFormat.toString(),
-		result.getMetaString(ResultMetadataType.ERROR_CORRECTION_LEVEL),
-		result.getMetaString(ResultMetadataType.ISSUE_NUMBER),
-		result.getMetaString(ResultMetadataType.ORIENTATION),
-		result.getMetaString(ResultMetadataType.OTHER),
-		result.getMetaString(ResultMetadataType.PDF417_EXTRA_METADATA),
-		result.getMetaString(ResultMetadataType.POSSIBLE_COUNTRY),
-		result.getMetaString(ResultMetadataType.SUGGESTED_PRICE),
-		result.getMetaString(ResultMetadataType.UPC_EAN_EXTENSION)
-	)
-
 	// Needs to be overwritten manually, as ByteArray is an array and
 	// this isn't handled well by Kotlin
 	override fun equals(other: Any?): Boolean {
@@ -132,6 +119,50 @@ private fun getDateTime(time: Long = System.currentTimeMillis()) = DateFormat.fo
 	time
 ).toString()
 
+private fun Parcel.writeSizedByteArray(array: ByteArray?) {
+	val size = array?.size ?: 0
+	writeInt(size)
+	if (size > 0) {
+		writeByteArray(array)
+	}
+}
+
+private fun Parcel.readSizedByteArray(): ByteArray? {
+	val size = readInt()
+	return if (size > 0) {
+		val array = ByteArray(size)
+		readByteArray(array)
+		array
+	} else {
+		null
+	}
+}
+
+fun Result.toScan(): Scan {
+	val content: String
+	val raw: ByteArray?
+	if (text.hasNonPrintableCharacters()) {
+		content = ""
+		raw = getRawData() ?: text.toByteArray()
+	} else {
+		content = text
+		raw = null
+	}
+	return Scan(
+		content,
+		raw,
+		barcodeFormat.toString(),
+		getMetaString(ResultMetadataType.ERROR_CORRECTION_LEVEL),
+		getMetaString(ResultMetadataType.ISSUE_NUMBER),
+		getMetaString(ResultMetadataType.ORIENTATION),
+		getMetaString(ResultMetadataType.OTHER),
+		getMetaString(ResultMetadataType.PDF417_EXTRA_METADATA),
+		getMetaString(ResultMetadataType.POSSIBLE_COUNTRY),
+		getMetaString(ResultMetadataType.SUGGESTED_PRICE),
+		getMetaString(ResultMetadataType.UPC_EAN_EXTENSION)
+	)
+}
+
 private fun Result.getRawData(): ByteArray? {
 	val metadata = resultMetadata ?: return null
 	val segments = metadata[ResultMetadataType.BYTE_SEGMENTS] ?: return null
@@ -153,23 +184,4 @@ private fun Result.getMetaString(
 	key: ResultMetadataType
 ): String? = this.resultMetadata?.let {
 	it[key]?.toString()
-}
-
-private fun Parcel.writeSizedByteArray(array: ByteArray?) {
-	val size = array?.size ?: 0
-	writeInt(size)
-	if (size > 0) {
-		writeByteArray(array)
-	}
-}
-
-private fun Parcel.readSizedByteArray(): ByteArray? {
-	val size = readInt()
-	return if (size > 0) {
-		val array = ByteArray(size)
-		readByteArray(array)
-		array
-	} else {
-		null
-	}
 }
