@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.48.1
+* Fix broken detection of binary content
+
 ## 1.48.0
 * Add a menu item to temporarily scan a certain format only
 * Add a monochome launcher icon for Android 13
