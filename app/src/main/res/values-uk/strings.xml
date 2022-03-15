@@ -46,6 +46,9 @@
 	<string name="bulk_mode">Сканувати безперервно</string>
 	<string name="bulk_mode_summary">Завжди починати безперервне сканування.</string>
 	<string name="bulk_mode_delay">Затримка між безперервним скануванням</string>
+	<string name="restrict_format">Restrict format</string>
+	<string name="remove_restriction">Remove restriction</string>
+	<string name="scan_format">Scan %s</string>
 	<string name="quarter_second">Чверть секунди</string>
 	<string name="half_second">Півсекунди</string>
 	<string name="a_second">Одна секунда</string>
@@ -100,7 +103,7 @@
 	<string name="send_type_get_query_string">GET з повним рядком параметрів запиту</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
-	<string name="send_type_external_browser">Open in external browser</string>
+	<string name="send_type_external_browser">Відкрити у зовнішньому браузері</string>
 	<string name="test_url">Перевірити URL</string>
 	<string name="really_remove_scan">Дійсно видалити сканування?</string>
 	<string name="really_remove_all_scans">Дійсно видалити всі сканування?</string>

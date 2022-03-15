@@ -45,6 +45,9 @@
 	<string name="bulk_mode">Scansione continua</string>
 	<string name="bulk_mode_summary">Always start scanning continuously.</string>
 	<string name="bulk_mode_delay">Delay between continuous scans</string>
+	<string name="restrict_format">Restrict format</string>
+	<string name="remove_restriction">Remove restriction</string>
+	<string name="scan_format">Scan %s</string>
 	<string name="quarter_second">A quarter second</string>
 	<string name="half_second">Half a second</string>
 	<string name="a_second">One second</string>

@@ -3,14 +3,13 @@ apply plugin: 'kotlin-android'
 
 android {
 	compileSdkVersion sdk_version
-	buildToolsVersion build_tools_version
 
 	defaultConfig {
 		minSdkVersion 9
 		targetSdkVersion sdk_version
 
-		versionCode 91
-		versionName '1.47.0'
+		versionCode 93
+		versionName '1.48.1'
 
 		// It's recommended to set this value to the lowest API level
 		// able to provide all the functionality.
@@ -22,7 +21,7 @@ android {
 	}
 
 	signingConfigs {
-		config {
+		release {
 			keyAlias System.getenv('ANDROID_KEY_ALIAS')
 			keyPassword System.getenv('ANDROID_KEY_PASSWORD')
 			storePassword System.getenv('ANDROID_STORE_PASSWORD')
@@ -46,7 +45,7 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 			minifyEnabled true
 			shrinkResources true
-			signingConfig signingConfigs.config
+			signingConfig signingConfigs.release
 		}
 	}
 

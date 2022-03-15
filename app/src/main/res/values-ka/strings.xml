@@ -8,8 +8,6 @@
 	<string name="binary_data">(ორობითი მონაცემები)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d სიმბოლო, %1$s</item>
-		<item quantity="few">%2$d სიმბოლო, %1$s</item>
-		<item quantity="many">%2$d სიმბოლო, %1$s</item>
 		<item quantity="other">%2$d სიმბოლო, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">შეცდომების კორექციის დონე</string>
@@ -47,6 +45,9 @@
 	<string name="bulk_mode">სკანირება უწყვეტად</string>
 	<string name="bulk_mode_summary">Always start scanning continuously.</string>
 	<string name="bulk_mode_delay">Delay between continuous scans</string>
+	<string name="restrict_format">Restrict format</string>
+	<string name="remove_restriction">Remove restriction</string>
+	<string name="scan_format">Scan %s</string>
 	<string name="quarter_second">A quarter second</string>
 	<string name="half_second">Half a second</string>
 	<string name="a_second">One second</string>

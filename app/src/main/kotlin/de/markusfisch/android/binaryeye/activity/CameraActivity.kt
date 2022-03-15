@@ -1,6 +1,7 @@
 package de.markusfisch.android.binaryeye.activity
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -26,11 +27,12 @@ import android.widget.SeekBar
 import com.google.zxing.Result
 import com.google.zxing.ResultMetadataType
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.execShareIntent
 import de.markusfisch.android.binaryeye.content.openUrl
-import de.markusfisch.android.binaryeye.database.Scan
+import de.markusfisch.android.binaryeye.database.toScan
 import de.markusfisch.android.binaryeye.graphics.getFrameToViewMatrix
 import de.markusfisch.android.binaryeye.graphics.map
 import de.markusfisch.android.binaryeye.net.sendAsync
@@ -80,6 +82,7 @@ class CameraActivity : AppCompatActivity() {
 	private var returnUrlTemplate: String? = null
 	private var frontFacing = false
 	private var bulkMode = prefs.bulkMode
+	private var restrictFormat: String? = null
 	private var ignoreNext: String? = null
 	private var fallbackBuffer: IntArray? = null
 
@@ -162,10 +165,7 @@ class CameraActivity : AppCompatActivity() {
 	override fun onResume() {
 		super.onResume()
 		System.gc()
-		zxing.updateHints(
-			prefs.tryHarder,
-			prefs.barcodeFormats
-		)
+		updateHints()
 		if (prefs.bulkMode && bulkMode != prefs.bulkMode) {
 			bulkMode = prefs.bulkMode
 			invalidateOptionsMenu()
@@ -175,6 +175,21 @@ class CameraActivity : AppCompatActivity() {
 		if (hasCameraPermission()) {
 			openCamera()
 		}
+	}
+
+	private fun updateHints() {
+		val restriction = restrictFormat
+		val formats = if (restriction != null) {
+			title = getString(
+				R.string.scan_format,
+				prettifyFormatName(restriction)
+			)
+			setOf(restriction)
+		} else {
+			setTitle(R.string.scan_code)
+			prefs.barcodeFormats
+		}
+		zxing.updateHints(prefs.tryHarder, formats)
 	}
 
 	private fun setReturnTarget(intent: Intent?) {
@@ -223,6 +238,7 @@ class CameraActivity : AppCompatActivity() {
 		zoomBar.progress = savedState.getInt(ZOOM_LEVEL)
 		frontFacing = savedState.getBoolean(FRONT_FACING)
 		bulkMode = savedState.getBoolean(BULK_MODE)
+		restrictFormat = savedState.getString(RESTRICT_FORMAT)
 	}
 
 	override fun onSaveInstanceState(outState: Bundle) {
@@ -230,6 +246,7 @@ class CameraActivity : AppCompatActivity() {
 		outState.putInt(ZOOM_LEVEL, zoomBar.progress)
 		outState.putBoolean(FRONT_FACING, frontFacing)
 		outState.putBoolean(BULK_MODE, bulkMode)
+		outState.putString(RESTRICT_FORMAT, restrictFormat)
 		super.onSaveInstanceState(outState)
 	}
 
@@ -280,6 +297,10 @@ class CameraActivity : AppCompatActivity() {
 				ignoreNext = null
 				true
 			}
+			R.id.restrict_format -> {
+				showRestrictionDialog()
+				true
+			}
 			R.id.preferences -> {
 				startActivity(MainActivity.getPreferencesIntent(this))
 				true
@@ -300,6 +321,27 @@ class CameraActivity : AppCompatActivity() {
 		closeCamera()
 		frontFacing = frontFacing xor true
 		openCamera()
+	}
+
+	private fun showRestrictionDialog() {
+		val names = resources.getStringArray(
+			R.array.barcode_formats_names
+		).toMutableList()
+		val formats = resources.getStringArray(
+			R.array.barcode_formats_values
+		).toMutableList()
+		if (restrictFormat != null) {
+			names.add(0, getString(R.string.remove_restriction))
+			formats.add(0, null)
+		}
+		AlertDialog.Builder(this).apply {
+			setTitle(R.string.restrict_format)
+			setItems(names.toTypedArray()) { _, which ->
+				restrictFormat = formats[which]
+				updateHints()
+			}
+			show()
+		}
 	}
 
 	private fun openReadme() {
@@ -727,6 +769,7 @@ class CameraActivity : AppCompatActivity() {
 		private const val ZOOM_LEVEL = "zoom_level"
 		private const val FRONT_FACING = "front_facing"
 		private const val BULK_MODE = "bulk_mode"
+		private const val RESTRICT_FORMAT = "restrict_format"
 	}
 }
 
@@ -739,7 +782,7 @@ fun showResult(
 	if (prefs.copyImmediately) {
 		activity.copyToClipboard(result.text)
 	}
-	val scan = Scan(result)
+	val scan = result.toScan()
 	if (prefs.useHistory) {
 		scan.id = db.insertScan(scan)
 	}

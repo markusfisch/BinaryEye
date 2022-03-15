@@ -277,9 +277,8 @@ class BarcodeFragment : Fragment() {
 	}
 }
 
-private fun Bitmap.saveAsPng(outputStream: OutputStream, quality: Int = 90) {
-	this.compress(Bitmap.CompressFormat.PNG, quality, outputStream)
-}
+private fun Bitmap.saveAsPng(outputStream: OutputStream, quality: Int = 90) =
+	compress(Bitmap.CompressFormat.PNG, quality, outputStream)
 
 private val fileNameCharacters = "[^A-Za-z0-9]".toRegex()
 private fun encodeFileName(name: String): String =

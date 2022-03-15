@@ -7,7 +7,6 @@
 	<string name="content">Nội dung</string>
 	<string name="binary_data">(thông tin dạng nhị phân)</string>
 	<plurals name="barcode_info">
-		<item quantity="one">%2$d ký tự, %1$s</item>
 		<item quantity="other">%2$d ký tự, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Mức độ tự sửa mã</string>
@@ -45,6 +44,9 @@
 	<string name="bulk_mode">Quét liên tục</string>
 	<string name="bulk_mode_summary">Luôn quét liên tục.</string>
 	<string name="bulk_mode_delay">Thời gian giữa các lần quét</string>
+	<string name="restrict_format">Restrict format</string>
+	<string name="remove_restriction">Remove restriction</string>
+	<string name="scan_format">Scan %s</string>
 	<string name="quarter_second">Một phần tư giây</string>
 	<string name="half_second">Nửa giây</string>
 	<string name="a_second">Một giây</string>

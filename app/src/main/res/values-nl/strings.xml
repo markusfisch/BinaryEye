@@ -45,8 +45,11 @@
 	<string name="bulk_mode">Continu scannen</string>
 	<string name="bulk_mode_summary">Begin altijd continu te scannen</string>
 	<string name="bulk_mode_delay">Vertraging tussen ononderbroken scans</string>
-	<string name="quarter_second">1/4 seconde</string>
-	<string name="half_second">1/2 seconde</string>
+	<string name="restrict_format">Restrict format</string>
+	<string name="remove_restriction">Remove restriction</string>
+	<string name="scan_format">Scan %s</string>
+	<string name="quarter_second">¼ seconde</string>
+	<string name="half_second">½ seconde</string>
 	<string name="a_second">1 seconde</string>
 	<string name="two_seconds">2 seconden</string>
 	<string name="five_seconds">5 seconden</string>

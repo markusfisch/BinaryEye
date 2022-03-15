@@ -45,6 +45,9 @@
 	<string name="bulk_mode">Beolvasás folyamatosan</string>
 	<string name="bulk_mode_summary">Mindig folyamatos beolvasást indítson.</string>
 	<string name="bulk_mode_delay">Folyamatos beolvasások közti késleltetés</string>
+	<string name="restrict_format">Restrict format</string>
+	<string name="remove_restriction">Remove restriction</string>
+	<string name="scan_format">Scan %s</string>
 	<string name="quarter_second">Negyed másodperc</string>
 	<string name="half_second">Fél másodperc</string>
 	<string name="a_second">Egy másodperc</string>

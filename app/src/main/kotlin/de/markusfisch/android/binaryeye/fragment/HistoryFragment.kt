@@ -24,6 +24,7 @@ import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.shareText
 import de.markusfisch.android.binaryeye.database.Database
+import de.markusfisch.android.binaryeye.database.getString
 import de.markusfisch.android.binaryeye.database.exportCsv
 import de.markusfisch.android.binaryeye.database.exportDatabase
 import de.markusfisch.android.binaryeye.database.exportJson
@@ -301,7 +302,7 @@ class HistoryFragment : Fragment() {
 
 	private fun getScanName(position: Int): String? {
 		val cursor = scansAdapter?.getItem(position) as Cursor?
-		return cursor?.getString(cursor.getColumnIndex(Database.SCANS_NAME))
+		return cursor?.getString(Database.SCANS_NAME)
 	}
 
 	// Dialogs don't have a parent layout.
@@ -436,7 +437,7 @@ class HistoryFragment : Fragment() {
 private fun Cursor.exportText(separator: String): String {
 	val sb = StringBuilder()
 	val contentIndex = getColumnIndex(Database.SCANS_CONTENT)
-	if (moveToFirst()) {
+	if (contentIndex > -1 && moveToFirst()) {
 		do {
 			val content = getString(contentIndex)
 			if (content?.isNotEmpty() == true) {

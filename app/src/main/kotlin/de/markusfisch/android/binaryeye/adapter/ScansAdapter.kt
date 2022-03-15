@@ -58,23 +58,26 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 		context: Context,
 		cursor: Cursor
 	) {
-		val holder = getViewHolder(view)
-		holder.timeView.text = formatDateTime(cursor.getString(timeIndex))
-		val name = cursor.getString(nameIndex)
-		val content = cursor.getString(contentIndex)
-		var icon = 0
-		holder.contentView.text = when {
-			name?.isNotEmpty() == true -> {
-				icon = R.drawable.ic_label
-				name
+		getViewHolder(view).apply {
+			timeView.text = formatDateTime(cursor.getString(timeIndex))
+			val name = cursor.getString(nameIndex)
+			val content = cursor.getString(contentIndex)
+			var icon = 0
+			contentView.text = when {
+				name?.isNotEmpty() == true -> {
+					icon = R.drawable.ic_label
+					name
+				}
+				content?.isEmpty() == true -> context.getString(
+					R.string.binary_data
+				)
+				else -> content
 			}
-			content?.isEmpty() == true -> context.getString(R.string.binary_data)
-			else -> content
+			contentView.setCompoundDrawablesWithIntrinsicBounds(
+				icon, 0, 0, 0
+			)
+			formatView.text = prettifyFormatName(cursor.getString(formatIndex))
 		}
-		holder.contentView.setCompoundDrawablesWithIntrinsicBounds(
-			icon, 0, 0, 0
-		)
-		holder.formatView.text = prettifyFormatName(cursor.getString(formatIndex))
 		// view.isSelected needs to be put on the queue to work.
 		val selected = cursor.getLong(idIndex) == selectedScanId
 		view.post {
@@ -82,14 +85,14 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 		}
 	}
 
-	private fun getViewHolder(view: View): ViewHolder {
-		return view.tag as ViewHolder? ?: ViewHolder(
-			view.findViewById(R.id.time),
-			view.findViewById(R.id.content),
-			view.findViewById(R.id.format)
-		).also {
-			view.tag = it
-		}
+	private fun getViewHolder(
+		view: View
+	): ViewHolder = view.tag as ViewHolder? ?: ViewHolder(
+		view.findViewById(R.id.time),
+		view.findViewById(R.id.content),
+		view.findViewById(R.id.format)
+	).also {
+		view.tag = it
 	}
 
 	private data class ViewHolder(

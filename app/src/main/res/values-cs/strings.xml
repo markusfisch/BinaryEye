@@ -9,6 +9,7 @@
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d znak, %1$s</item>
 		<item quantity="few">%2$d znaky, %1$s</item>
+		<item quantity="many">%2$d znaků, %1$s</item>
 		<item quantity="other">%2$d znaků, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Stupeň korekce chyb</string>
@@ -46,6 +47,9 @@
 	<string name="bulk_mode">Skenovat nepřetržitě</string>
 	<string name="bulk_mode_summary">Always start scanning continuously.</string>
 	<string name="bulk_mode_delay">Delay between continuous scans</string>
+	<string name="restrict_format">Restrict format</string>
+	<string name="remove_restriction">Remove restriction</string>
+	<string name="scan_format">Scan %s</string>
 	<string name="quarter_second">A quarter second</string>
 	<string name="half_second">Half a second</string>
 	<string name="a_second">One second</string>
@@ -97,7 +101,7 @@
 	<string name="send_scan_url">Posílat každý sken na URL</string>
 	<string name="send_scan_type">Typ requestu pro každý sken</string>
 	<string name="send_type_get_add_content">GET a simply add content</string>
-	<string name="send_type_get_query_string">GET with compelete query string</string>
+	<string name="send_type_get_query_string">GET with complete query string</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">Open in external browser</string>

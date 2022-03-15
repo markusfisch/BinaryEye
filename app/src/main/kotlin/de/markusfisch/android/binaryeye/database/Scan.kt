@@ -5,6 +5,7 @@ import android.os.Parcelable
 import android.text.format.DateFormat
 import com.google.zxing.Result
 import com.google.zxing.ResultMetadataType
+import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
 
 data class Scan(
 	val content: String,
@@ -18,23 +19,9 @@ data class Scan(
 	val possibleCountry: String?,
 	val suggestedPrice: String?,
 	val upcEanExtension: String?,
-	val timestamp: String = getDateTime(),
+	val dateTime: String = getDateTime(),
 	var id: Long = 0L
 ) : Parcelable {
-	constructor(result: Result) : this(
-		result.text,
-		getRawBytes(result),
-		result.barcodeFormat.toString(),
-		result.getMetaString(ResultMetadataType.ERROR_CORRECTION_LEVEL),
-		result.getMetaString(ResultMetadataType.ISSUE_NUMBER),
-		result.getMetaString(ResultMetadataType.ORIENTATION),
-		result.getMetaString(ResultMetadataType.OTHER),
-		result.getMetaString(ResultMetadataType.PDF417_EXTRA_METADATA),
-		result.getMetaString(ResultMetadataType.POSSIBLE_COUNTRY),
-		result.getMetaString(ResultMetadataType.SUGGESTED_PRICE),
-		result.getMetaString(ResultMetadataType.UPC_EAN_EXTENSION)
-	)
-
 	// Needs to be overwritten manually, as ByteArray is an array and
 	// this isn't handled well by Kotlin
 	override fun equals(other: Any?): Boolean {
@@ -48,7 +35,7 @@ data class Scan(
 		other as Scan
 
 		return id == other.id &&
-				timestamp == other.timestamp &&
+				dateTime == other.dateTime &&
 				content == other.content &&
 				((raw == null && other.raw == null) ||
 						(raw != null && other.raw != null && raw.contentEquals(other.raw))) &&
@@ -67,7 +54,7 @@ data class Scan(
 	// this isn't handled well by Kotlin
 	override fun hashCode(): Int {
 		var result = id.hashCode()
-		result = 31 * result + timestamp.hashCode()
+		result = 31 * result + dateTime.hashCode()
 		result = 31 * result + content.hashCode()
 		result = 31 * result + (raw?.contentHashCode() ?: 0)
 		result = 31 * result + format.hashCode()
@@ -94,7 +81,7 @@ data class Scan(
 		possibleCountry = parcel.readString(),
 		suggestedPrice = parcel.readString(),
 		upcEanExtension = parcel.readString(),
-		timestamp = parcel.readString() ?: "",
+		dateTime = parcel.readString() ?: "",
 		id = parcel.readLong()
 	)
 
@@ -111,7 +98,7 @@ data class Scan(
 			writeString(possibleCountry)
 			writeString(suggestedPrice)
 			writeString(upcEanExtension)
-			writeString(timestamp)
+			writeString(dateTime)
 			writeLong(id)
 		}
 	}
@@ -132,29 +119,6 @@ private fun getDateTime(time: Long = System.currentTimeMillis()) = DateFormat.fo
 	time
 ).toString()
 
-private fun getRawBytes(result: Result): ByteArray? {
-	val metadata = result.resultMetadata ?: return null
-	val segments = metadata[ResultMetadataType.BYTE_SEGMENTS] ?: return null
-	var bytes = ByteArray(0)
-	@Suppress("UNCHECKED_CAST")
-	for (seg in segments as Iterable<ByteArray>) {
-		bytes += seg
-	}
-	// If the byte segments are shorter than the converted string, the
-	// content of the QR Code has been encoded with different encoding
-	// modes (e.g. some parts in alphanumeric, some in byte encoding).
-	// This is because Zxing only records byte segments for byte encoded
-	// parts. Please note the byte segments can actually be longer than
-	// the string because Zxing cuts off prefixes like "WIFI:".
-	return if (bytes.size >= result.text.length) bytes else null
-}
-
-private fun Result.getMetaString(
-	key: ResultMetadataType
-): String? = this.resultMetadata?.let {
-	it[key]?.toString()
-}
-
 private fun Parcel.writeSizedByteArray(array: ByteArray?) {
 	val size = array?.size ?: 0
 	writeInt(size)
@@ -172,4 +136,52 @@ private fun Parcel.readSizedByteArray(): ByteArray? {
 	} else {
 		null
 	}
+}
+
+fun Result.toScan(): Scan {
+	val content: String
+	val raw: ByteArray?
+	if (text.hasNonPrintableCharacters()) {
+		content = ""
+		raw = getRawData() ?: text.toByteArray()
+	} else {
+		content = text
+		raw = null
+	}
+	return Scan(
+		content,
+		raw,
+		barcodeFormat.toString(),
+		getMetaString(ResultMetadataType.ERROR_CORRECTION_LEVEL),
+		getMetaString(ResultMetadataType.ISSUE_NUMBER),
+		getMetaString(ResultMetadataType.ORIENTATION),
+		getMetaString(ResultMetadataType.OTHER),
+		getMetaString(ResultMetadataType.PDF417_EXTRA_METADATA),
+		getMetaString(ResultMetadataType.POSSIBLE_COUNTRY),
+		getMetaString(ResultMetadataType.SUGGESTED_PRICE),
+		getMetaString(ResultMetadataType.UPC_EAN_EXTENSION)
+	)
+}
+
+private fun Result.getRawData(): ByteArray? {
+	val metadata = resultMetadata ?: return null
+	val segments = metadata[ResultMetadataType.BYTE_SEGMENTS] ?: return null
+	var bytes = ByteArray(0)
+	@Suppress("UNCHECKED_CAST")
+	for (seg in segments as Iterable<ByteArray>) {
+		bytes += seg
+	}
+	// If the byte segments are shorter than the converted string, the
+	// content of the QR Code has been encoded with different encoding
+	// modes (e.g. some parts in alphanumeric, some in byte encoding).
+	// This is because Zxing only records byte segments for byte encoded
+	// parts. Please note the byte segments can actually be longer than
+	// the string because Zxing cuts off prefixes like "WIFI:".
+	return if (bytes.size >= text.length) bytes else null
+}
+
+private fun Result.getMetaString(
+	key: ResultMetadataType
+): String? = this.resultMetadata?.let {
+	it[key]?.toString()
 }

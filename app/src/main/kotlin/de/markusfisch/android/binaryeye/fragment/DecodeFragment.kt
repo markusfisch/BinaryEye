@@ -77,7 +77,7 @@ class DecodeFragment : Fragment() {
 		id = scan.id
 
 		val inputContent = scan.content
-		isBinary = inputContent.isNotEmpty() && inputContent.hasNonPrintableCharacters()
+		isBinary = scan.raw != null
 		raw = scan.raw ?: inputContent.toByteArray()
 		format = scan.format
 
@@ -114,7 +114,7 @@ class DecodeFragment : Fragment() {
 				executeAction(content.toByteArray())
 			}
 		} else {
-			contentView.setText(R.string.binary_data)
+			contentView.setText(String(raw).foldNonAlNum())
 			contentView.isEnabled = false
 			fab.setImageResource(R.drawable.ic_action_save)
 			fab.setOnClickListener {
@@ -173,50 +173,25 @@ class DecodeFragment : Fragment() {
 		}
 	}
 
-	private fun fillDataTable(tableLayout: TableLayout, items: LinkedHashMap<Int, String?>?) {
-		val ctx = tableLayout.context
-		val spaceBetween = (16f * ctx.resources.displayMetrics.density).toInt()
-
-		var hasEntries = false
-
-		items?.forEach { item ->
-			item.value?.let {
-				val tr = TableRow(ctx)
-				val keyView = TextView(ctx)
-				keyView.setText(item.key)
-				val valueView = TextView(ctx)
-				valueView.setPadding(spaceBetween, 0, 0, 0)
-				valueView.text = it
-				tr.addView(keyView)
-				tr.addView(valueView)
-				tableLayout.addView(tr)
-				hasEntries = true
-			}
-		}
-		if (hasEntries) {
-			tableLayout.setPadding(0, 0, 0, spaceBetween)
-		}
-	}
-
 	private fun fillDataView(tableLayout: TableLayout, content: String) {
 		val items = LinkedHashMap<Int, String?>()
-
 		if (action is WifiAction) {
-			val wifiData = WifiConnector.parseMap(content)
-
-			if (wifiData != null) {
-				items[R.string.entry_type] = getString(R.string.wifi_network)
-				items[R.string.wifi_ssid] = wifiData["S"]
-				items[R.string.wifi_password] = wifiData["P"]
-				items[R.string.wifi_type] = wifiData["T"]
-				items[R.string.wifi_hidden] = wifiData["H"]
-				items[R.string.wifi_eap] = wifiData["E"]
-				items[R.string.wifi_identity] = wifiData["I"]
-				items[R.string.wifi_anonymous_identity] = wifiData["A"]
-				items[R.string.wifi_phase2] = wifiData["PH2"]
+			WifiConnector.parseMap(content)?.let { wifiData ->
+				items.putAll(
+					linkedMapOf(
+						R.string.entry_type to getString(R.string.wifi_network),
+						R.string.wifi_ssid to wifiData["S"],
+						R.string.wifi_password to wifiData["P"],
+						R.string.wifi_type to wifiData["T"],
+						R.string.wifi_hidden to wifiData["H"],
+						R.string.wifi_eap to wifiData["E"],
+						R.string.wifi_identity to wifiData["I"],
+						R.string.wifi_anonymous_identity to wifiData["A"],
+						R.string.wifi_phase2 to wifiData["PH2"]
+					)
+				)
 			}
 		}
-
 		fillDataTable(tableLayout, items)
 	}
 
@@ -233,6 +208,31 @@ class DecodeFragment : Fragment() {
 				R.string.upc_ean_extension to scan.upcEanExtension
 			)
 		)
+	}
+
+	private fun fillDataTable(
+		tableLayout: TableLayout,
+		items: LinkedHashMap<Int, String?>
+	) {
+		val ctx = tableLayout.context
+		val spaceBetween = (16f * ctx.resources.displayMetrics.density).toInt()
+		items.forEach { item ->
+			val text = item.value
+			if (!text.isNullOrBlank()) {
+				val tr = TableRow(ctx)
+				val keyView = TextView(ctx)
+				keyView.setText(item.key)
+				val valueView = TextView(ctx)
+				valueView.setPadding(spaceBetween, 0, 0, 0)
+				valueView.text = text
+				tr.addView(keyView)
+				tr.addView(valueView)
+				tableLayout.addView(tr)
+			}
+		}
+		if (tableLayout.childCount > 0) {
+			tableLayout.setPadding(0, 0, 0, spaceBetween)
+		}
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -1,7 +1,7 @@
 package de.markusfisch.android.binaryeye.app
 
 import android.content.Context
-import android.support.v7.app.AlertDialog
+import android.app.AlertDialog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.resume

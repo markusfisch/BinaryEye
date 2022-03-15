@@ -7,7 +7,6 @@
 	<string name="content">内容</string>
 	<string name="binary_data">(二進位資料)</string>
 	<plurals name="barcode_info">
-		<item quantity="one">%2$d 個字元，%1$s</item>
 		<item quantity="other">%2$d 個字元，%1$s</item>
 	</plurals>
 	<string name="error_correction_level">糾錯等級</string>
@@ -45,6 +44,9 @@
 	<string name="bulk_mode">連續掃描</string>
 	<string name="bulk_mode_summary">始終開啟連續掃描。</string>
 	<string name="bulk_mode_delay">連續掃描間的延遲</string>
+	<string name="restrict_format">Restrict format</string>
+	<string name="remove_restriction">Remove restriction</string>
+	<string name="scan_format">Scan %s</string>
 	<string name="quarter_second">四分之一秒</string>
 	<string name="half_second">半秒</string>
 	<string name="a_second">一秒</string>

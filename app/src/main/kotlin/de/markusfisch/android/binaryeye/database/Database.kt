@@ -5,8 +5,22 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
 import de.markusfisch.android.binaryeye.app.prefs
+
+fun Cursor.getString(name: String): String {
+	val idx = getColumnIndex(name)
+	return if (idx < 0) "" else getString(idx) ?: ""
+}
+
+fun Cursor.getBlob(name: String): ByteArray? {
+	val idx = getColumnIndex(name)
+	return if (idx < 0) null else getBlob(idx)
+}
+
+fun Cursor.getLong(name: String): Long {
+	val idx = getColumnIndex(name)
+	return if (idx < 0) 0L else getLong(idx)
+}
 
 class Database {
 	private lateinit var db: SQLiteDatabase
@@ -112,11 +126,11 @@ class Database {
 
 	fun insertScan(scan: Scan): Long {
 		val cv = ContentValues()
-		cv.put(SCANS_DATETIME, scan.timestamp)
-		val isRaw = scan.content.hasNonPrintableCharacters()
+		cv.put(SCANS_DATETIME, scan.dateTime)
+		val isRaw = scan.raw != null
 		if (isRaw) {
 			cv.put(SCANS_CONTENT, "")
-			cv.put(SCANS_RAW, scan.raw ?: scan.content.toByteArray())
+			cv.put(SCANS_RAW, scan.raw)
 		} else {
 			cv.put(SCANS_CONTENT, scan.content)
 		}
@@ -161,12 +175,12 @@ class Database {
 	)?.use {
 		if (it.count > 0 &&
 			it.moveToFirst() &&
-			it.getString(it.getColumnIndex(SCANS_CONTENT)) == content &&
-			(raw == null || it.getBlob(it.getColumnIndex(SCANS_RAW))
+			it.getString(SCANS_CONTENT) == content &&
+			(raw == null || it.getBlob(SCANS_RAW)
 				?.contentEquals(raw) == true) &&
-			it.getString(it.getColumnIndex(SCANS_FORMAT)) == format
+			it.getString(SCANS_FORMAT) == format
 		) {
-			it.getLong(it.getColumnIndex(SCANS_ID))
+			it.getLong(SCANS_ID)
 		} else {
 			0L
 		}
@@ -271,15 +285,3 @@ class Database {
 		}
 	}
 }
-
-private fun Cursor.getString(name: String) = getString(
-	getColumnIndex(name)
-)
-
-private fun Cursor.getBlob(name: String) = getBlob(
-	getColumnIndex(name)
-)
-
-private fun Cursor.getLong(name: String) = getLong(
-	getColumnIndex(name)
-)

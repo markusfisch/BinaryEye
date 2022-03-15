@@ -9,4 +9,14 @@
 	<issue id="UnusedResources">
 		<ignore path="*/res/rs/debug/raw/bc*" />
 	</issue>
+	<!-- Android 12 requires apps that request ACCESS_FINE_LOCATION
+		to also request ACCESS_COARSE_LOCATION. But this app doesn't
+		request nor requires ACCESS_FINE_LOCATION above SDK 28. So
+		this is a false positive. -->
+	<issue id="CoarseFineLocation" severity="ignore"/>
+	<!-- Androidx SplashScreen compat library would require minSdk 21,
+		make the app unnecessarily larger and Android 12 automatically
+		replaces our custom splash screen anyway, which is exactly what
+		we want. So there is no reason to complain. -->
+	<issue id="CustomSplashScreen" severity="ignore"/>
 </lint>
