@@ -70,7 +70,7 @@
 	<string name="try_harder">Gründliche Suche</string>
 	<string name="try_harder_summary">Aktivieren Sie diese Option für sehr schwer lesbare Codes. Beeinträchtigt die Leistung.</string>
 	<string name="show_toast_in_bulk_mode">Daten einblenden</string>
-	<string name="show_toast_in_bulk_mode_summary">Die gescannten Daten werden kurz eingeblenet, wenn fortlaufend gescannt wird.</string>
+	<string name="show_toast_in_bulk_mode_summary">Die gescannten Daten werden kurz eingeblendet, wenn fortlaufend gescannt wird.</string>
 	<string name="vibrate">Bei Erkennung vibrieren</string>
 	<string name="vibrate_summary">Das Gerät soll vibrieren wenn ein Code erkannt wird.</string>
 	<string name="use_history">Codes speichern</string>
@@ -102,7 +102,7 @@
 	<string name="send_type_get_query_string">GET mit vollständigem Query-String</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
-	<string name="send_type_external_browser">Open in external browser</string>
+	<string name="send_type_external_browser">In externem Browser öffnen</string>
 	<string name="test_url">Test URL</string>
 	<string name="really_remove_scan">Code wirklich entfernen?</string>
 	<string name="really_remove_all_scans">Alle Codes entfernen?</string>
