@@ -1,6 +1,6 @@
 package de.markusfisch.android.binaryeye.app
 
-import android.app.Application
+import android.support.multidex.MultiDexApplication;
 import android.support.v8.renderscript.RenderScript
 import de.markusfisch.android.binaryeye.database.Database
 import de.markusfisch.android.binaryeye.preference.Preferences
@@ -8,7 +8,7 @@ import de.markusfisch.android.binaryeye.preference.Preferences
 val db = Database()
 val prefs = Preferences()
 
-class BinaryEyeApp : Application() {
+class BinaryEyeApp : MultiDexApplication() {
 	override fun onCreate() {
 		super.onCreate()
 		db.open(this)
