@@ -276,11 +276,11 @@ class CameraActivity : AppCompatActivity() {
 				true
 			}
 			R.id.pick_file -> {
-				val chooseFile = Intent(Intent.ACTION_GET_CONTENT)
-				chooseFile.type = "image/*"
 				startActivityForResult(
 					Intent.createChooser(
-						chooseFile,
+						Intent(Intent.ACTION_GET_CONTENT).apply {
+							type = "image/*"
+						},
 						getString(R.string.pick_file)
 					),
 					PICK_FILE_RESULT_CODE
