@@ -26,7 +26,10 @@ abstract class IntentAction : IAction {
 		}
 	}
 
-	abstract suspend fun createIntent(context: Context, data: ByteArray): Intent?
+	abstract suspend fun createIntent(
+		context: Context,
+		data: ByteArray
+	): Intent?
 }
 
 abstract class SchemeAction : IAction {
@@ -36,7 +39,9 @@ abstract class SchemeAction : IAction {
 	final override fun canExecuteOn(data: ByteArray): Boolean {
 		val content = String(data)
 		return if (buildRegex) {
-			content.matches("""^$scheme://[\w\W]+$""".toRegex(RegexOption.IGNORE_CASE))
+			content.matches("""^$scheme://[\w\W]+$""".toRegex(
+				RegexOption.IGNORE_CASE)
+			)
 		} else {
 			content.startsWith("$scheme://", ignoreCase = true)
 		}
