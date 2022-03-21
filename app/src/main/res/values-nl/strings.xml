@@ -23,6 +23,7 @@
 	<string name="suggested_price">Adviesprijs</string>
 	<string name="upc_ean_extension">UPC EAN extensie</string>
 	<string name="toggle_flash">Zaklamp aan/uit</string>
+	<string name="error_flash">Error toggling flash</string>
 	<string name="share">Delen</string>
 	<string name="share_as">Delen als?</string>
 	<string name="copy_to_clipboard">Naar klembord kopiëren</string>

@@ -74,6 +74,7 @@
 	<string name="two_seconds">Dwie sekundy</string>
 	<string name="five_seconds">Pięć sekund</string>
 	<string name="toggle_flash">Przełącz lampę błyskową</string>
+	<string name="error_flash">Error toggling flash</string>
 	<string name="wifi_added">Wi-Fi dodane</string>
 	<string name="zoom_by_swiping">Przybliżaj kamerę, przesuwając w górę/dół</string>
 	<string name="zoom_by_swiping_summary">Przesuń palcem w górę lub w dół na ekranie aparatu, aby sterować powiększeniem aparatu.</string>

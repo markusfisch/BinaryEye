@@ -23,6 +23,7 @@
 	<string name="suggested_price">დაახლოებითი ფასი</string>
 	<string name="upc_ean_extension">UPC EAN გაფართოება</string>
 	<string name="toggle_flash">განათების ჩართვა</string>
+	<string name="error_flash">Error toggling flash</string>
 	<string name="share">გაზიარება</string>
 	<string name="share_as">Share as?</string>
 	<string name="copy_to_clipboard">გაცვლის ბუფერში კოპირება</string>

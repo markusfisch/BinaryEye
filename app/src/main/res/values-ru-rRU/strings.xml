@@ -25,6 +25,7 @@
 	<string name="suggested_price">Предположительная цена</string>
 	<string name="upc_ean_extension">Расширение UPC EAN</string>
 	<string name="toggle_flash">Включить вспышку</string>
+	<string name="error_flash">Error toggling flash</string>
 	<string name="share">Поделиться</string>
 	<string name="share_as">Поделиться как?</string>
 	<string name="copy_to_clipboard">Скопировать в буфер обмена</string>

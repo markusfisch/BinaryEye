@@ -23,6 +23,7 @@
 	<string name="suggested_price">প্রস্তসবিত দাম</string>
 	<string name="upc_ean_extension">ইউপিসি ইএএন বর্ধিত</string>
 	<string name="toggle_flash">আলো</string>
+	<string name="error_flash">Error toggling flash</string>
 	<string name="share">ভাগ করো</string>
 	<string name="share_as">ভাগ করার মাধ্যম</string>
 	<string name="copy_to_clipboard">ক্লিপবোর্ডে অনুলিপি</string>

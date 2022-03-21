@@ -22,6 +22,7 @@
 	<string name="suggested_price">隐含价格</string>
 	<string name="upc_ean_extension">UPC EAN 扩展</string>
 	<string name="toggle_flash">开关闪光灯</string>
+	<string name="error_flash">Error toggling flash</string>
 	<string name="share">分享</string>
 	<string name="share_as">以何种方式分享?</string>
 	<string name="copy_to_clipboard">复制到剪贴板</string>

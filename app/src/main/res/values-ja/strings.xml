@@ -22,6 +22,7 @@
 	<string name="suggested_price">価格</string>
 	<string name="upc_ean_extension">UPC/EAN 拡張型</string>
 	<string name="toggle_flash">フラッシュを切り替え</string>
+	<string name="error_flash">Error toggling flash</string>
 	<string name="share">共有</string>
 	<string name="share_as">画像形式を選択</string>
 	<string name="copy_to_clipboard">クリップボードにコピー</string>

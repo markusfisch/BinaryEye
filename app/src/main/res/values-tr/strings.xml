@@ -23,6 +23,7 @@
 	<string name="suggested_price">Önerilen fiyat</string>
 	<string name="upc_ean_extension">UPC EAN eklentisi</string>
 	<string name="toggle_flash">Flaşı aç</string>
+	<string name="error_flash">Error toggling flash</string>
 	<string name="share">Paylaş</string>
 	<string name="share_as">Şöyle paylaş:</string>
 	<string name="copy_to_clipboard">Panoya kopyala</string>

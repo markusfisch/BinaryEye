@@ -76,7 +76,6 @@ class CameraActivity : AppCompatActivity() {
 	private var recreatePreprocessor = false
 	private var rotate = false
 	private var invert = false
-	private var flash = false
 	private var decoding = true
 	private var returnResult = false
 	private var returnUrlTemplate: String? = null
@@ -228,8 +227,6 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun closeCamera() {
 		cameraView.close()
-		// Closing the camera will also shut off the flash.
-		flash = false
 	}
 
 	override fun onRestoreInstanceState(savedState: Bundle) {
@@ -547,20 +544,19 @@ class CameraActivity : AppCompatActivity() {
 
 	@Suppress("DEPRECATION")
 	private fun toggleTorchMode() {
-		val camera = cameraView.camera
-		val parameters = camera?.parameters
-		parameters?.flashMode = if (flash) {
+		val camera = cameraView.camera ?: return
+		val parameters = camera.parameters ?: return
+		parameters.flashMode = if (
+			parameters.flashMode != Camera.Parameters.FLASH_MODE_OFF
+		) {
 			Camera.Parameters.FLASH_MODE_OFF
 		} else {
 			Camera.Parameters.FLASH_MODE_TORCH
 		}
-		parameters?.let {
-			try {
-				camera.parameters = parameters
-				flash = flash xor true
-			} catch (e: RuntimeException) {
-				// Ignore. There's nothing we can do.
-			}
+		try {
+			camera.parameters = parameters
+		} catch (e: RuntimeException) {
+			toast(e.message ?: getString(R.string.error_flash))
 		}
 	}
 

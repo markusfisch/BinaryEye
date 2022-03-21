@@ -23,6 +23,7 @@
 	<string name="suggested_price">Ajánlott ár</string>
 	<string name="upc_ean_extension">UPC EAN kiterjesztés</string>
 	<string name="toggle_flash">Vaku be- vagy kikapcsolása</string>
+	<string name="error_flash">Error toggling flash</string>
 	<string name="share">Megosztás</string>
 	<string name="share_as">Megosztja másként?</string>
 	<string name="copy_to_clipboard">Másolás a vágólapra</string>
