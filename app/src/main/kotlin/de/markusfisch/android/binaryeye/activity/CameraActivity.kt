@@ -795,7 +795,9 @@ fun showResult(
 		) { code, body ->
 			if (code == null || code < 200 || code > 299) {
 				vibrator.error()
-				beepBeepBeep()
+				if (!activity.isSilent()) {
+					beepBeepBeep()
+				}
 			}
 			if (body != null && body.isNotEmpty()) {
 				activity.toast(body)
@@ -877,6 +879,15 @@ private fun completeUrl(urlTemplate: String, result: Result) = Uri.parse(
 		// And support {CODE} from the old ZXing app, too.
 		.replace("{CODE}", result.text.urlEncode())
 )
+
+private fun Context.isSilent(): Boolean {
+	val am = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+	return when (am.ringerMode) {
+		AudioManager.RINGER_MODE_SILENT,
+		AudioManager.RINGER_MODE_VIBRATE -> true
+		else -> false
+	}
+}
 
 private fun beepBeepBeep() {
 	ToneGenerator(AudioManager.STREAM_ALARM, 100).startTone(
