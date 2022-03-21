@@ -481,7 +481,7 @@ class CameraActivity : AppCompatActivity() {
 				progress: Int,
 				fromUser: Boolean
 			) {
-				setZoom(progress)
+				cameraView.camera?.setZoom(progress)
 			}
 
 			override fun onStartTrackingTouch(seekBar: SeekBar) {}
@@ -492,16 +492,13 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	@Suppress("DEPRECATION")
-	private fun setZoom(zoom: Int) {
-		val camera: Camera? = cameraView.camera
-		camera?.let {
-			try {
-				val params = camera.parameters
-				params.zoom = zoom
-				camera.parameters = params
-			} catch (e: RuntimeException) {
-				// Ignore. There's nothing we can do.
-			}
+	private fun Camera.setZoom(zoom: Int) {
+		try {
+			val params = parameters
+			params.zoom = zoom
+			parameters = params
+		} catch (e: RuntimeException) {
+			// Ignore. There's nothing we can do.
 		}
 	}
 
