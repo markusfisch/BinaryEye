@@ -124,39 +124,41 @@ class Database {
 		}
 	}
 
-	fun insertScan(scan: Scan): Long {
-		val cv = ContentValues()
-		cv.put(SCANS_DATETIME, scan.dateTime)
-		val isRaw = scan.raw != null
-		if (isRaw) {
-			cv.put(SCANS_CONTENT, "")
-			cv.put(SCANS_RAW, scan.raw)
-		} else {
-			cv.put(SCANS_CONTENT, scan.content)
-		}
-		cv.put(SCANS_FORMAT, scan.format)
-		scan.errorCorrectionLevel?.let {
-			cv.put(SCANS_ERROR_CORRECTION_LEVEL, it)
-		}
-		scan.issueNumber?.let { cv.put(SCANS_ISSUE_NUMBER, it) }
-		scan.orientation?.let { cv.put(SCANS_ORIENTATION, it) }
-		scan.otherMetaData?.let { cv.put(SCANS_OTHER_META_DATA, it) }
-		scan.pdf417ExtraMetaData?.let { cv.put(SCANS_PDF417_EXTRA_METADATA, it) }
-		scan.possibleCountry?.let { cv.put(SCANS_POSSIBLE_COUNTRY, it) }
-		scan.suggestedPrice?.let { cv.put(SCANS_SUGGESTED_PRICE, it) }
-		scan.upcEanExtension?.let { cv.put(SCANS_UPC_EAN_EXTENSION, it) }
-		if (prefs.ignoreConsecutiveDuplicates) {
-			val id = getIdOfLastScan(
-				cv.get(SCANS_CONTENT) as String,
-				if (isRaw) cv.get(SCANS_RAW) as ByteArray else null,
-				scan.format
-			)
-			if (id > 0L) {
-				return id
+	fun insertScan(scan: Scan): Long = db.insert(
+		SCANS,
+		null,
+		ContentValues().apply {
+			put(SCANS_DATETIME, scan.dateTime)
+			val isRaw = scan.raw != null
+			if (isRaw) {
+				put(SCANS_CONTENT, "")
+				put(SCANS_RAW, scan.raw)
+			} else {
+				put(SCANS_CONTENT, scan.content)
+			}
+			put(SCANS_FORMAT, scan.format)
+			scan.errorCorrectionLevel?.let {
+				put(SCANS_ERROR_CORRECTION_LEVEL, it)
+			}
+			scan.issueNumber?.let { put(SCANS_ISSUE_NUMBER, it) }
+			scan.orientation?.let { put(SCANS_ORIENTATION, it) }
+			scan.otherMetaData?.let { put(SCANS_OTHER_META_DATA, it) }
+			scan.pdf417ExtraMetaData?.let { put(SCANS_PDF417_EXTRA_METADATA, it) }
+			scan.possibleCountry?.let { put(SCANS_POSSIBLE_COUNTRY, it) }
+			scan.suggestedPrice?.let { put(SCANS_SUGGESTED_PRICE, it) }
+			scan.upcEanExtension?.let { put(SCANS_UPC_EAN_EXTENSION, it) }
+			if (prefs.ignoreConsecutiveDuplicates) {
+				val id = getIdOfLastScan(
+					get(SCANS_CONTENT) as String,
+					if (isRaw) get(SCANS_RAW) as ByteArray else null,
+					scan.format
+				)
+				if (id > 0L) {
+					return id
+				}
 			}
 		}
-		return db.insert(SCANS, null, cv)
-	}
+	)
 
 	private fun getIdOfLastScan(
 		content: String,
