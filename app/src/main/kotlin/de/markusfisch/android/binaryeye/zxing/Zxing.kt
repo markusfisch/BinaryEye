@@ -80,15 +80,13 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 	private fun decodeLuminanceSource(
 		source: LuminanceSource,
 		invert: Boolean
-	): Result? {
-		return decodeLuminanceSource(
-			if (invert) {
-				source.invert()
-			} else {
-				source
-			}
-		)
-	}
+	): Result? = decodeLuminanceSource(
+		if (invert) {
+			source.invert()
+		} else {
+			source
+		}
+	)
 
 	private fun decodeLuminanceSource(source: LuminanceSource): Result? = try {
 		multiFormatReader.decode(
