@@ -96,6 +96,8 @@
 	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Nothing to remove</string>
 	<string name="send_category">转发</string>
+	<string name="send_scan_active">Forward scans</string>
+	<string name="send_scan_active_summary">Enable to forward scans to a the given URL</string>
 	<string name="send_scan_url">将每个扫描结果发送到URL</string>
 	<string name="send_scan_type">请求类型</string>
 	<string name="send_type_get_add_content">GET 简单附加数据</string>

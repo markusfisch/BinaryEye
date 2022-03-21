@@ -98,6 +98,8 @@
 	<string name="clear_network_suggestions_success">Мережеві пропозиції очищено</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Нічого видаляти</string>
 	<string name="send_category">Пересилання</string>
+	<string name="send_scan_active">Forward scans</string>
+	<string name="send_scan_active_summary">Enable to forward scans to a the given URL</string>
 	<string name="send_scan_url">Надсилати кожне сканування на URL</string>
 	<string name="send_scan_type">Тип запиту для кожного сканування</string>
 	<string name="send_type_get_add_content">GET і просто додати контент</string>

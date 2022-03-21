@@ -99,6 +99,8 @@
 	<string name="clear_network_suggestions_success">Сетевые предложения удалены</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Нечего удалять</string>
 	<string name="send_category">Отправка</string>
+	<string name="send_scan_active">Forward scans</string>
+	<string name="send_scan_active_summary">Enable to forward scans to a the given URL</string>
 	<string name="send_scan_url">Отправлять сканированные штрих-коды на URL</string>
 	<string name="send_scan_type">Тип запроса для отправки штрих-кодов</string>
 	<string name="send_type_get_add_content">GET с добавлением содержимого</string>

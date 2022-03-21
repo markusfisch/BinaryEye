@@ -66,6 +66,11 @@
 			android:summary="@string/copy_immediately_summary"/>
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/send_category">
+		<android.support.v7.preference.SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="send_scan_active"
+			android:title="@string/send_scan_active"
+			android:summary="@string/send_scan_active_summary"/>
 		<de.markusfisch.android.binaryeye.preference.UrlPreference
 			android:key="send_scan_url"
 			android:title="@string/send_scan_url"/>

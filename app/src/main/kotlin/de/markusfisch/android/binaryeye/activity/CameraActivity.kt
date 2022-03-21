@@ -782,7 +782,7 @@ fun showResult(
 	if (prefs.useHistory) {
 		scan.id = db.insertScan(scan)
 	}
-	if (prefs.sendScanUrl.isNotEmpty()) {
+	if (prefs.sendScanActive && prefs.sendScanUrl.isNotEmpty()) {
 		if (prefs.sendScanType == "4") {
 			activity.openUrl(
 				prefs.sendScanUrl + scan.content.urlEncode()

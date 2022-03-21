@@ -97,8 +97,10 @@
 	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Nothing to remove</string>
 	<string name="send_category">Forwarding</string>
-	<string name="send_scan_url">Send every scan to URL</string>
-	<string name="send_scan_type">Type of request for every scan</string>
+	<string name="send_scan_active">Forward scans</string>
+	<string name="send_scan_active_summary">Enable to forward scans to a the given URL</string>
+	<string name="send_scan_url">URL to forward to</string>
+	<string name="send_scan_type">Request type</string>
 	<string name="send_type_get_add_content">GET and simply add content</string>
 	<string name="send_type_get_query_string">GET with complete query string</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>

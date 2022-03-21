@@ -97,6 +97,8 @@
 	<string name="clear_network_suggestions_success">Sugestões da rede removidas</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Nada para remover</string>
 	<string name="send_category">Encaminhar</string>
+	<string name="send_scan_active">Forward scans</string>
+	<string name="send_scan_active_summary">Enable to forward scans to a the given URL</string>
 	<string name="send_scan_url">Enviar cada escaneamento para URL</string>
 	<string name="send_scan_type">Tipo de pedido para cada escaneamento</string>
 	<string name="send_type_get_add_content">GET e simplesmente adicionar conteúdo</string>

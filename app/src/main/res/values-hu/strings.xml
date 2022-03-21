@@ -97,6 +97,8 @@
 	<string name="clear_network_suggestions_success">Hálózati javaslatok törölve</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Nincs mit eltávolítani</string>
 	<string name="send_category">Továbbítás</string>
+	<string name="send_scan_active">Forward scans</string>
+	<string name="send_scan_active_summary">Enable to forward scans to a the given URL</string>
 	<string name="send_scan_url">Összes beolvasás küldése egy URL-re</string>
 	<string name="send_scan_type">Kérés típusa az egyes beolvasásoknál</string>
 	<string name="send_type_get_add_content">GET és a tartalom egyszerű hozzáadása</string>

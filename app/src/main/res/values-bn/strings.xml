@@ -97,6 +97,8 @@
 	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Nothing to remove</string>
 	<string name="send_category">অন্যকে পাঠাও</string>
+	<string name="send_scan_active">Forward scans</string>
+	<string name="send_scan_active_summary">Enable to forward scans to a the given URL</string>
 	<string name="send_scan_url">প্রতিটি পাঠোদ্ধার ইউআরএল-এ পাঠাও</string>
 	<string name="send_scan_type">প্রতি পাঠোদ্ধারের জন্য অনুরোধ</string>
 	<string name="send_type_get_add_content">গেট(GET) দিয়ে তথ্য যোগ করো</string>

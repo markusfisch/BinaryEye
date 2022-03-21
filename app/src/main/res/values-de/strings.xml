@@ -97,8 +97,10 @@
 	<string name="clear_network_suggestions_success">Netzwerkvorschläge entfernt</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Nichts zu entfernen</string>
 	<string name="send_category">Weiterleitung</string>
-	<string name="send_scan_url">URL die für jeden Scan aufgerufen werden soll</string>
-	<string name="send_scan_type">Typ des Requests für jeden Scan</string>
+	<string name="send_scan_active">Scans weiterleiten</string>
+	<string name="send_scan_active_summary">Aktivieren Sie diese Option, um Scans an die angegebene URL weiterzuleiten.</string>
+	<string name="send_scan_url">URL, an die weitergeleitet werden soll</string>
+	<string name="send_scan_type">Requesttyp</string>
 	<string name="send_type_get_add_content">GET mit an die URL angehängtem Inhalt</string>
 	<string name="send_type_get_query_string">GET mit vollständigem Query-String</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>

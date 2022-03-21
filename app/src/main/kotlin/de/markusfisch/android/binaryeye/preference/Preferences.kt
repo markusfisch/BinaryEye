@@ -143,6 +143,11 @@ class Preferences {
 			apply(OPEN_WITH_URL, value)
 			field = value
 		}
+	var sendScanActive: Boolean = false
+		set(value) {
+			apply(SEND_SCAN_ACTIVE, value)
+			field = value
+		}
 	var sendScanUrl: String = ""
 		set(value) {
 			apply(SEND_SCAN_URL, value)
@@ -230,6 +235,10 @@ class Preferences {
 		preferences.getString(OPEN_WITH_URL, openWithUrl)?.also {
 			openWithUrl = it
 		}
+		sendScanActive = preferences.getBoolean(
+			SEND_SCAN_ACTIVE,
+			sendScanActive
+		)
 		preferences.getString(SEND_SCAN_URL, sendScanUrl)?.also {
 			sendScanUrl = it
 		}
@@ -299,6 +308,7 @@ class Preferences {
 		private const val CLOSE_AUTOMATICALLY = "close_automatically"
 		private const val DEFAULT_SEARCH_URL = "default_search_url"
 		private const val OPEN_WITH_URL = "open_with_url"
+		private const val SEND_SCAN_ACTIVE = "send_scan_active"
 		private const val SEND_SCAN_URL = "send_scan_url"
 		private const val SEND_SCAN_TYPE = "send_scan_type"
 		private const val CUSTOM_LOCALE = "custom_locale"

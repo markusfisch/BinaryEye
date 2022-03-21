@@ -88,7 +88,7 @@
 	<string name="show_hex_dump_summary">Hex-dump van de gescande inhoud tonen.</string>
 	<string name="close_automatically">Teruggaan na kopiëren/delen</string>
 	<string name="close_automatically_summary">Automatisch terugkeren naar het scanscherm na het kopiëren of delen van de gelezen inhoud.</string>
-  <string name="default_search_engine">Onbekende data openen in</string>
+	<string name="default_search_engine">Onbekende data openen in</string>
 	<string name="always_ask">Altijd vragen</string>
 	<string name="open_with_url">URL om niet bekende data te openen</string>
 	<string name="clear_network_suggestions">Network suggesties wissen</string>
@@ -97,6 +97,8 @@
 	<string name="clear_network_suggestions_success">Netwerksuggesties gewist</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Niets te wissen</string>
 	<string name="send_category">Doorsturen</string>
+	<string name="send_scan_active">Forward scans</string>
+	<string name="send_scan_active_summary">Enable to forward scans to a the given URL</string>
 	<string name="send_scan_url">Stuur elke scan naar URL</string>
 	<string name="send_scan_type">Type aanvraag voor elke scan</string>
 	<string name="send_type_get_add_content">GET en gewoon inhoud toevoegen</string>

@@ -96,6 +96,8 @@
 	<string name="clear_network_suggestions_success">Gợi ý mạng đã xoá</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Không còn gì để xoá</string>
 	<string name="send_category">Chuyển tới</string>
+	<string name="send_scan_active">Forward scans</string>
+	<string name="send_scan_active_summary">Enable to forward scans to a the given URL</string>
 	<string name="send_scan_url">Gửi tất cả mã quét được đến URL</string>
 	<string name="send_scan_type">Kiểu yêu cầu đối với mỗi lần quét</string>
 	<string name="send_type_get_add_content">GET và chỉ thêm nội dung</string>
