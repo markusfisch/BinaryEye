@@ -368,10 +368,10 @@ class HistoryFragment : Fragment() {
 				) {
 					return@useVisibility
 				}
-				val options = context.resources.getStringArray(
+				val options = ac.resources.getStringArray(
 					R.array.export_options_values
 				)
-				val delimiter = alertDialog<String>(context) { resume ->
+				val delimiter = alertDialog<String>(ac) { resume ->
 					setTitle(R.string.export_as)
 					setItems(R.array.export_options_names) { _, which ->
 						resume(options[which])
@@ -390,8 +390,8 @@ class HistoryFragment : Fragment() {
 					"db" -> ac.exportDatabase(name)
 					else -> db.getScansDetailed(filter)?.use {
 						when (delimiter) {
-							"json" -> context.exportJson(name, it)
-							else -> context.exportCsv(name, it, delimiter)
+							"json" -> ac.exportJson(name, it)
+							else -> ac.exportCsv(name, it, delimiter)
 						}
 					} ?: false
 				}.toSaveResult()
