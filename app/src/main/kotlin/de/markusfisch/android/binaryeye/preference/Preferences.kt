@@ -143,7 +143,7 @@ class Preferences {
 			apply(OPEN_WITH_URL, value)
 			field = value
 		}
-	var sendScanActive: Boolean = false
+	var sendScanActive = false
 		set(value) {
 			apply(SEND_SCAN_ACTIVE, value)
 			field = value
@@ -168,7 +168,7 @@ class Preferences {
 			apply(INDEX_OF_LAST_SELECTED_FORMAT, value)
 			field = value
 		}
-	var forceCompat: Boolean = false
+	var forceCompat = false
 		set(value) {
 			// Since the app may be about to crash when forceCompat is set,
 			// it's necessary to `commit()` this synchronously.
