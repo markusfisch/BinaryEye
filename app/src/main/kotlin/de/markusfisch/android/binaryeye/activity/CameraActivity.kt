@@ -37,6 +37,7 @@ import de.markusfisch.android.binaryeye.graphics.getFrameToViewMatrix
 import de.markusfisch.android.binaryeye.graphics.map
 import de.markusfisch.android.binaryeye.net.sendAsync
 import de.markusfisch.android.binaryeye.os.error
+import de.markusfisch.android.binaryeye.os.getVibrator
 import de.markusfisch.android.binaryeye.os.vibrate
 import de.markusfisch.android.binaryeye.rs.Preprocessor
 import de.markusfisch.android.binaryeye.view.initSystemBars
@@ -131,7 +132,7 @@ class CameraActivity : AppCompatActivity() {
 		setTitle(R.string.scan_code)
 
 		rs = RenderScript.create(this)
-		vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+		vibrator = getVibrator()
 
 		initSystemBars(this)
 		setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
