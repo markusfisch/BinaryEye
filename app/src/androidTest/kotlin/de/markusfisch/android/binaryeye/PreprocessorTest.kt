@@ -16,14 +16,17 @@ import java.util.regex.Pattern
 class PreprocessorTest {
 	@Test
 	fun processSamples() {
-		val zxing = Zxing()
 		val assets = InstrumentationRegistry.getInstrumentation()
 			.context.assets
+		val samples = assets.list("samples")
+		checkNotNull(samples) { "no samples found" }
 		val pattern = Pattern.compile(
 			"[0-9]+-([0-9]+)deg.jpg"
 		)
-		val samples = assets.list("samples")
-		checkNotNull(samples) { "no samples found" }
+		val rs = RenderScript.create(
+			InstrumentationRegistry.getTargetContext(),
+		)
+		val zxing = Zxing()
 		for (sample in samples) {
 			val m = pattern.matcher(sample)
 			if (!m.find() || m.groupCount() < 1) {
@@ -36,9 +39,6 @@ class PreprocessorTest {
 			val frameWidth = bitmap.width
 			val frameHeight = bitmap.height
 			val frameOrientation = m.group(1) ?: return
-			val rs = RenderScript.create(
-				InstrumentationRegistry.getTargetContext(),
-			)
 			val preprocessor = Preprocessor(
 				rs,
 				frameWidth,
@@ -59,10 +59,9 @@ class PreprocessorTest {
 			}
 			val result = zxing.decode(frameData, outWidth, outHeight)
 			preprocessor.destroy()
-			rs.destroy()
-
 			checkNotNull(result) { "no barcode found in $sample" }
 		}
+		rs.destroy()
 	}
 }
 
