@@ -1,0 +1,7 @@
+* Add a setting to quickly enable/disable forwarding
+* Stop playing error beep when in silent mode
+* Improve enabling/disabling torch mode
+* Update to latest ZXing version
+* Update German translation
+* Update Russian translation
+
