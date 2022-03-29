@@ -67,7 +67,7 @@
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/send_category">
 		<android.support.v7.preference.SwitchPreferenceCompat
-			android:defaultValue="false"
+			android:defaultValue="true"
 			android:key="send_scan_active"
 			android:title="@string/send_scan_active"
 			android:summary="@string/send_scan_active_summary"/>
