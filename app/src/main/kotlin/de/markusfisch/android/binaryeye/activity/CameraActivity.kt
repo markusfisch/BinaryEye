@@ -822,7 +822,7 @@ fun getReturnIntent(result: Result): Intent {
 		intent.putExtra("SCAN_RESULT_BYTES", result.rawBytes)
 	}
 	result.resultMetadata?.let { metadata ->
-		metadata[ResultMetadataType.UPC_EAN_EXTENSION]?.let {
+		metadata[ResultMetadataType.ORIENTATION]?.let {
 			intent.putExtra(
 				"SCAN_RESULT_ORIENTATION",
 				it.toString()
