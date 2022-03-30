@@ -197,7 +197,7 @@ class CameraActivity : AppCompatActivity() {
 			intent?.action == "com.google.zxing.client.android.SCAN" -> {
 				returnResult = true
 			}
-			isReturnUrl(intent) -> intent?.data?.let {
+			intent?.dataString?.isReturnUrl() == true -> intent.data?.let {
 				returnUrlTemplate = it.getQueryParameter("ret")
 			}
 		}
@@ -852,17 +852,11 @@ fun getReturnIntent(result: Result): Intent {
 	return intent
 }
 
-private fun isReturnUrl(intent: Intent?): Boolean {
-	val dataString = intent?.dataString
-	return listOf(
-		"binaryeye://scan",
-		"http://markusfisch.de/BinaryEye",
-		"https://markusfisch.de/BinaryEye"
-	).firstOrNull {
-		val result = dataString?.startsWith(it) == true
-		result
-	} != null
-}
+private fun String.isReturnUrl() = listOf(
+	"binaryeye://scan",
+	"http://markusfisch.de/BinaryEye",
+	"https://markusfisch.de/BinaryEye"
+).firstOrNull { startsWith(it) } != null
 
 private fun completeUrl(urlTemplate: String, result: Result) = Uri.parse(
 	urlTemplate
