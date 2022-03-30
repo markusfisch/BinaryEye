@@ -80,6 +80,7 @@ class CameraActivity : AppCompatActivity() {
 	private var decoding = true
 	private var returnResult = false
 	private var returnUrlTemplate: String? = null
+	private var finishAfterShowingResult = false
 	private var frontFacing = false
 	private var bulkMode = prefs.bulkMode
 	private var restrictFormat: String? = null
@@ -197,8 +198,9 @@ class CameraActivity : AppCompatActivity() {
 			intent?.action == "com.google.zxing.client.android.SCAN" -> {
 				returnResult = true
 			}
-			intent?.dataString?.isReturnUrl() == true -> intent.data?.let {
-				returnUrlTemplate = it.getQueryParameter("ret")
+			intent?.dataString?.isReturnUrl() == true -> {
+				finishAfterShowingResult = true
+				returnUrlTemplate = intent.data?.getQueryParameter("ret")
 			}
 		}
 	}
@@ -732,12 +734,20 @@ class CameraActivity : AppCompatActivity() {
 				returnUri != null -> execShareIntent(
 					Intent(Intent.ACTION_VIEW, returnUri)
 				)
-				else -> showResult(
-					this@CameraActivity,
-					result,
-					vibrator,
-					bulkMode
-				)
+				else -> {
+					showResult(
+						this@CameraActivity,
+						result,
+						vibrator,
+						bulkMode
+					)
+					// If this app was invoked via a deep link but without
+					// a return URI, we probably don't want to return to
+					// the camera screen after scanning, but to the caller.
+					if (finishAfterShowingResult) {
+						finish()
+					}
+				}
 			}
 			if (bulkMode) {
 				ignoreNext = result.text
