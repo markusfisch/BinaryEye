@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.49.1
+* Update Simplified Chinese translation
+* Return directly to caller for deep links
+* Fix metadata for deep links
+
 ## 1.49.0
 * Add a setting to quickly enable/disable forwarding
 * Stop playing error beep when in silent mode

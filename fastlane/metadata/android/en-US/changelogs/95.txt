@@ -1,0 +1,4 @@
+* Update Simplified Chinese translation
+* Return directly to caller for deep links
+* Fix metadata for deep links
+

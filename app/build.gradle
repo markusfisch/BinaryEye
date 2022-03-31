@@ -8,8 +8,8 @@ android {
 		minSdkVersion 9
 		targetSdkVersion sdk_version
 
-		versionCode 94
-		versionName '1.49.0'
+		versionCode 95
+		versionName '1.49.1'
 
 		// Required for desugaring.
 		multiDexEnabled true
