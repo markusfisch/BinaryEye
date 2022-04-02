@@ -23,7 +23,7 @@
 	<string name="suggested_price">Preço sugerido</string>
 	<string name="upc_ean_extension">Extensão UPC EAN</string>
 	<string name="toggle_flash">Ativar lanterna</string>
-	<string name="error_flash">--Error toggling flash</string>
+	<string name="error_flash">Falha ao ligar a lanterna</string>
 	<string name="share">Compartilhar</string>
 	<string name="share_as">Compartilhar como?</string>
 	<string name="copy_to_clipboard">Copiar ao clipboard</string>
@@ -98,8 +98,8 @@
 	<string name="clear_network_suggestions_nothing_to_remove">Nada para remover</string>
 	<string name="send_category">Encaminhamento</string>
 	<string name="send_scan_active">Encaminhar escaneamentos</string>
-	<string name="send_scan_active_summary">--Enable to forward scans to a the given URL</string>
-	<string name="send_scan_url">--URL to forward to</string>
+	<string name="send_scan_active_summary">Ativar para encaminhar escaneamentos à URL definida</string>
+	<string name="send_scan_url">URL à qual encaminhar</string>
 	<string name="send_scan_type">Tipo de solicitação</string>
 	<string name="send_type_get_add_content">GET e apenas adicionar o conteúdo</string>
 	<string name="send_type_get_query_string">GET com sequência completa da consulta</string>
