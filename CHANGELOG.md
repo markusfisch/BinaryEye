@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.49.2
+* Update design of app icon
+* Update pt-br translation
+
 ## 1.49.1
 * Update Simplified Chinese translation
 * Return directly to caller for deep links
