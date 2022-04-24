@@ -161,6 +161,6 @@
 	<string name="wifi_hidden">非表示のネットワーク</string>
 	<string name="wifi_eap">EAP method</string>
 	<string name="wifi_anonymous_identity">Anonymous identity</string>
-	<string name="wifi_identity">Identity</st5ring>
+	<string name="wifi_identity">Identity</string>
 	<string name="wifi_phase2">Phase 2 method</string>
 </resources>
