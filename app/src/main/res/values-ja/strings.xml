@@ -97,7 +97,7 @@
 	<string name="clear_network_suggestions_nothing_to_remove">消去するものがありませんでした</string>
 	<string name="send_category">転送</string>
 	<string name="send_scan_active">スキャンしたデータを転送</string>
-	<string name="send_scan_active_summary">指定されたURLにスキャンを転送することを有効にする</string>
+	<string name="send_scan_active_summary">指定されたURLにスキャンしたデータを転送することを有効にする</string>
 	<string name="send_scan_url">スキャンしたデータを次のURLから開く</string>
 	<string name="send_scan_type">リクエスト方式</string>
 	<string name="send_type_get_add_content">GET でコンテンツを付加</string>
@@ -160,7 +160,7 @@
 	<string name="wifi_password">パスワード</string>
 	<string name="wifi_hidden">非表示のネットワーク</string>
 	<string name="wifi_eap">EAP method</string>
-	<string name="wifi_anonymous_identity">Anonymous Identity</string>
+	<string name="wifi_anonymous_identity">Anonymous identity</string>
 	<string name="wifi_identity">Identity</st5ring>
 	<string name="wifi_phase2">Phase 2 method</string>
 </resources>
