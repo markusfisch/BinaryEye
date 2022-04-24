@@ -97,7 +97,7 @@
 	<string name="clear_network_suggestions_nothing_to_remove">消去するものがありませんでした</string>
 	<string name="send_category">転送</string>
 	<string name="send_scan_active">スキャンしたデータを転送</string>
-	<string name="send_scan_active_summary">指定されたURLにスキャンしたデータを転送することを有効にする</string>
+	<string name="send_scan_active_summary">指定されたURLにスキャンしたデータを転送します</string>
 	<string name="send_scan_url">スキャンしたデータを次のURLから開く</string>
 	<string name="send_scan_type">リクエスト方式</string>
 	<string name="send_type_get_add_content">GET でコンテンツを付加</string>
