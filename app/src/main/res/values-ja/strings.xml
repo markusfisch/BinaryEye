@@ -155,7 +155,7 @@
 	<string name="background_request_failed">バックグラウンド要求に失敗しました</string>
 	<string name="entry_type">種類</string>
 	<string name="wifi_network">Wi-Fiネットワーク</string>
-	<string name="wifi_ssid">名前</string>
+	<string name="wifi_ssid">SSID</string>
 	<string name="wifi_type">認証方式</string>
 	<string name="wifi_password">パスワード</string>
 	<string name="wifi_hidden">非表示のネットワーク</string>
