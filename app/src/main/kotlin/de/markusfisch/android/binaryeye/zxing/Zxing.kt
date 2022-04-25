@@ -186,16 +186,11 @@ private fun encode(
 	encodeHints: EnumMap<EncodeHintType, Any>? = null,
 	width: Int = 0,
 	height: Int = 0
-): BitMatrix {
-	val hints = encodeHints ?: EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)
-	if (!hints.contains(EncodeHintType.CHARACTER_SET)) {
-		hints[EncodeHintType.CHARACTER_SET] = "utf-8"
+): BitMatrix = MultiFormatWriter().encode(
+	text, format, width, height,
+	(encodeHints ?: EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)).apply {
+		if (!contains(EncodeHintType.CHARACTER_SET)) {
+			this[EncodeHintType.CHARACTER_SET] = "utf-8"
+		}
 	}
-	return MultiFormatWriter().encode(
-		text,
-		format,
-		width,
-		height,
-		hints
-	)
-}
+)
