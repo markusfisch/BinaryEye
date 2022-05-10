@@ -72,7 +72,7 @@ android {
 		coreLibraryDesugaringEnabled true
 	}
 
-	lintOptions {
+	lint {
 		// Because at the time of writing, even the latest version
 		// of RenderScript is raising this error no matter if
 		// renderscriptTargetApi matches targetSdkVersion.
