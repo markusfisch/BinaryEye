@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
+	namespace 'de.markusfisch.android.binaryeye'
 	compileSdkVersion sdk_version
 
 	defaultConfig {
