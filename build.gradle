@@ -1,7 +1,7 @@
 buildscript {
 	ext {
 		kotlin_version = '1.6.10'
-		tools_version = '7.1.3'
+		tools_version = '7.2.0'
 		sdk_version = 32
 		support_version = '25.3.1'
 	}
