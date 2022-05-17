@@ -22,6 +22,7 @@
 	<string name="possible_country">Possível país de fabricação</string>
 	<string name="suggested_price">Preço sugerido</string>
 	<string name="upc_ean_extension">Extensão UPC EAN</string>
+	<string name="qr_version">QR version</string>
 	<string name="toggle_flash">Ativar lanterna</string>
 	<string name="error_flash">Falha ao ligar a lanterna</string>
 	<string name="share">Compartilhar</string>
@@ -84,6 +85,8 @@
 	<string name="copy_immediately_summary">Copiar automaticamente o conteúdo escaneado ao clipboard. Tem cuidado porque outros apps podem examinar seu clipboard em segundo plano.</string>
 	<string name="show_meta_data">Mostrar metadados</string>
 	<string name="show_meta_data_summary">Mostrar dados adicionais de código escaneado.</string>
+	<string name="show_qr_version">Show QR version</string>
+	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="show_hex_dump">Mostrar impressão hexadecimal</string>
 	<string name="show_hex_dump_summary">Mostrar a impressão hexadecimal de conteúdo escaneado.</string>
 	<string name="close_automatically">Voltar após copiar/compartilhar</string>

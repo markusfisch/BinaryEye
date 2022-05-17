@@ -22,6 +22,7 @@
 	<string name="possible_country">Posible país de fabricación</string>
 	<string name="suggested_price">Precio sugerido</string>
 	<string name="upc_ean_extension">Extensión UPC EAN</string>
+	<string name="qr_version">QR version</string>
 	<string name="toggle_flash">Activar la linterna</string>
 	<string name="error_flash">Error toggling flash</string>
 	<string name="share">Compartir</string>
@@ -84,6 +85,8 @@
 	<string name="copy_immediately_summary">Copiar contenido al portapapeles automáticamente. Ten en cuenta que otras aplicaciones pueden husmear en tu portapapeles en segundo plano.</string>
 	<string name="show_meta_data">Mostrar metadatos</string>
 	<string name="show_meta_data_summary">Mostrar datos adicionales del código escaneado.</string>
+	<string name="show_qr_version">Show QR version</string>
+	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="show_hex_dump">Mostrar dump hexadecimal</string>
 	<string name="show_hex_dump_summary">Mostrar un dump hexadecimal del contenido escaneado.</string>
 	<string name="close_automatically">Retroceder luego de Copiar/Compartir</string>

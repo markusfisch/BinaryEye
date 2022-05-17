@@ -23,6 +23,7 @@
 	<string name="possible_country">Pays de fabrication possible</string>
 	<string name="suggested_price">Prix suggéré</string>
 	<string name="upc_ean_extension">Extension UPC EAN</string>
+	<string name="qr_version">QR version</string>
 	<string name="toggle_flash">Activer le flash</string>
 	<string name="error_flash">Error toggling flash</string>
 	<string name="share">Partager</string>
@@ -85,6 +86,8 @@
 	<string name="copy_immediately_summary">Copier automatiquement les contenus scannés dans le presse-papiers. Veuillez noter que les autres applications peuvent fouiner dans votre presse-papiers en arrière-plan.</string>
 	<string name="show_meta_data">Afficher les méta-données</string>
 	<string name="show_meta_data_summary">Afficher les données supplémentaires sur le code-barres scanné.</string>
+	<string name="show_qr_version">Show QR version</string>
+	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="show_hex_dump">Afficher le dump hexa</string>
 	<string name="show_hex_dump_summary">Affiche un dump hexadécimal du contenu scanné.</string>
 	<string name="close_automatically">Revenir après une copie/partage</string>

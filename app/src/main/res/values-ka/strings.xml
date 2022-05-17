@@ -22,6 +22,7 @@
 	<string name="possible_country">შესაძლო მწარმოებელი ქვეყანა</string>
 	<string name="suggested_price">დაახლოებითი ფასი</string>
 	<string name="upc_ean_extension">UPC EAN გაფართოება</string>
+	<string name="qr_version">QR version</string>
 	<string name="toggle_flash">განათების ჩართვა</string>
 	<string name="error_flash">Error toggling flash</string>
 	<string name="share">გაზიარება</string>
@@ -84,6 +85,8 @@
 	<string name="copy_immediately_summary">სკანირებული შტრიხ-კოდის კონტენტის ავტომატური კოპირება გაცვლის ბუფერში. გთხოვთ გაითვალისწინოთ,ზოგიერთ პროგრამას შესაძლოა ჰქონდეს ფონური წვდომა გაცვლის ბუფერთან.</string>
 	<string name="show_meta_data">მეტამონაცემების ჩვენება</string>
 	<string name="show_meta_data_summary">სკანირებულ შტრიხ-კოდებზე დამატებითი ინფორმაციის ჩვენება.</string>
+	<string name="show_qr_version">Show QR version</string>
+	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="show_hex_dump">თექვსმეტობითი dump-ის ჩვენება</string>
 	<string name="show_hex_dump_summary">სკანირებული შტრიხ-კოდის კონტენტის თექვსმეტობითი dump-ის ჩვენება.</string>
 	<string name="close_automatically">Go back after Copy/Share</string>

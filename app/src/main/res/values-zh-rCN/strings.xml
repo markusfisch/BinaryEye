@@ -21,6 +21,7 @@
 	<string name="possible_country">可能产地</string>
 	<string name="suggested_price">建议价格</string>
 	<string name="upc_ean_extension">UPC EAN 扩展</string>
+	<string name="qr_version">QR version</string>
 	<string name="toggle_flash">开关闪光灯</string>
 	<string name="error_flash">开关闪光灯出错</string>
 	<string name="share">分享</string>
@@ -83,6 +84,8 @@
 	<string name="copy_immediately_summary">注意其他 APP 可能会在后台监控剪贴板</string>
 	<string name="show_meta_data">显示元数据</string>
 	<string name="show_meta_data_summary">显示已扫描条码的额外数据</string>
+	<string name="show_qr_version">Show QR version</string>
+	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="show_hex_dump">显示16进制数据</string>
 	<string name="show_hex_dump_summary">显示已扫描条码的16进制数据</string>
 	<string name="close_automatically">复制/分享后自动返回</string>
