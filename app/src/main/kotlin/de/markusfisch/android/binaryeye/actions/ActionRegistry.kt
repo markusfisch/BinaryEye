@@ -20,8 +20,10 @@ object ActionRegistry {
 		TelAction,
 		VCardAction,
 		VEventAction,
-		WebAction,
-		WifiAction
+		WifiAction,
+		// Try WebAction last because recognizing colloquial URLs is
+		// very aggressive.
+		WebAction
 	)
 
 	fun getAction(data: ByteArray): IAction = REGISTRY.find {

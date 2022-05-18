@@ -24,6 +24,7 @@
 	<string name="possible_country">Возможная страна изготовления</string>
 	<string name="suggested_price">Предположительная цена</string>
 	<string name="upc_ean_extension">Расширение UPC EAN</string>
+	<string name="qr_version">QR version</string>
 	<string name="toggle_flash">Включить вспышку</string>
 	<string name="error_flash">Ошибка при переключении вспышки</string>
 	<string name="share">Поделиться</string>
@@ -78,14 +79,16 @@
 	<string name="vibrate_summary">Включите эту настройку, если хотите, чтобы устройство вибрировало после распознавания штрих-кода.</string>
 	<string name="use_history">Сохранять историю сканирования</string>
 	<string name="use_history_summary">Сохранять распознанные штрих-коды на устройстве.</string>
-	<string name="ignore_consecutive_duplicates">Не хранить последовательные дубликаты</string>
-	<string name="ignore_consecutive_duplicates_summary">Не сохранять последовательные дубликаты в истории сканирования.</string>
+	<string name="ignore_consecutive_duplicates">Не хранить дубликаты</string>
+	<string name="ignore_consecutive_duplicates_summary">Не сохранять повторяющиеся штрих-коды в истории сканирования.</string>
 	<string name="open_immediately">Сразу открывать содержимое</string>
 	<string name="open_immediately_summary">Пропускать проверку и сразу открыть содержимое. Может привести к открытию небезопасного содержимого.</string>
 	<string name="copy_immediately">Автокопирование в буфер обмена</string>
 	<string name="copy_immediately_summary">Автоматически копировать содержимое считанного штрих-кода в буфер обмена. Имейте в виду, что другие приложения могут иметь доступ к буферу обмена в фоне.</string>
 	<string name="show_meta_data">Показывать метаданные</string>
 	<string name="show_meta_data_summary">Показывать дополнительную информацию о считанных штрих-кодах.</string>
+	<string name="show_qr_version">Show QR version</string>
+	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="show_hex_dump">Показывать шестнадцатеричный дамп</string>
 	<string name="show_hex_dump_summary">Показывать шестнадцатеричный дамп содержимого считанного штрих-кода.</string>
 	<string name="close_automatically">Возврат после копирования/обмена</string>

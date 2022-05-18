@@ -45,12 +45,18 @@ object VEventAction : IntentAction() {
 			}
 			info["DTSTART"]?.singleOrNull()?.also { eventStart ->
 				dateFormats.simpleFindParse(eventStart.value)?.also {
-					putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, it.time)
+					putExtra(
+						CalendarContract.EXTRA_EVENT_BEGIN_TIME,
+						it.localTime()
+					)
 				}
 			}
 			info["DTEND"]?.singleOrNull()?.also { eventEnd ->
 				dateFormats.simpleFindParse(eventEnd.value)?.also {
-					putExtra(CalendarContract.EXTRA_EVENT_END_TIME, it.time)
+					putExtra(
+						CalendarContract.EXTRA_EVENT_END_TIME,
+						it.localTime()
+					)
 				}
 			}
 		}
@@ -80,3 +86,6 @@ object VEventAction : IntentAction() {
 		null
 	}
 }
+
+private fun Date.localTime() = time - timezoneOffset * 60000L
+

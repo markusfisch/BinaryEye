@@ -22,6 +22,7 @@
 	<string name="possible_country">Olası üretim yeri</string>
 	<string name="suggested_price">Önerilen fiyat</string>
 	<string name="upc_ean_extension">UPC EAN eklentisi</string>
+	<string name="qr_version">QR version</string>
 	<string name="toggle_flash">Flaşı aç</string>
 	<string name="error_flash">Error toggling flash</string>
 	<string name="share">Paylaş</string>
@@ -84,6 +85,8 @@
 	<string name="copy_immediately_summary">Taranan içerikleri kendiliğinden panoya kopyala. Unutmayın ki, diğer uygulamalar arka planda panonuzu gözetleyebilir.</string>
 	<string name="show_meta_data">Üst veriyi göster</string>
 	<string name="show_meta_data_summary">Taranan barkod ile ilgili ek veriyi göster</string>
+	<string name="show_qr_version">Show QR version</string>
+	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="show_hex_dump">Hex yığınını göster</string>
 	<string name="show_hex_dump_summary">Taranan içeriklerin hex yığınını göster.</string>
 	<string name="close_automatically">Kopyala/Paylaş\'tan sonra geri dön</string>

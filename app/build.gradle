@@ -2,14 +2,15 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
+	namespace 'de.markusfisch.android.binaryeye'
 	compileSdkVersion sdk_version
 
 	defaultConfig {
 		minSdkVersion 9
 		targetSdkVersion sdk_version
 
-		versionCode 93
-		versionName '1.48.1'
+		versionCode 96
+		versionName '1.49.2'
 
 		// Required for desugaring.
 		multiDexEnabled true
@@ -71,7 +72,7 @@ android {
 		coreLibraryDesugaringEnabled true
 	}
 
-	lintOptions {
+	lint {
 		// Because at the time of writing, even the latest version
 		// of RenderScript is raising this error no matter if
 		// renderscriptTargetApi matches targetSdkVersion.
@@ -95,7 +96,7 @@ dependencies {
 	implementation "com.android.support:design:$support_version"
 	implementation "com.android.support:preference-v7:$support_version"
 	implementation "com.android.support:preference-v14:$support_version"
-	implementation 'com.google.zxing:core:3.4.1'
+	implementation 'com.google.zxing:core:3.5.0'
 	implementation 'com.github.markusfisch:CameraView:1.9.1'
 	implementation 'com.github.markusfisch:ScalingImageView:1.3.0'
 }

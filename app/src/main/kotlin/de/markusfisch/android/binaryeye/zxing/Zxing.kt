@@ -80,15 +80,13 @@ class Zxing(possibleResultPoint: ResultPointCallback? = null) {
 	private fun decodeLuminanceSource(
 		source: LuminanceSource,
 		invert: Boolean
-	): Result? {
-		return decodeLuminanceSource(
-			if (invert) {
-				source.invert()
-			} else {
-				source
-			}
-		)
-	}
+	): Result? = decodeLuminanceSource(
+		if (invert) {
+			source.invert()
+		} else {
+			source
+		}
+	)
 
 	private fun decodeLuminanceSource(source: LuminanceSource): Result? = try {
 		multiFormatReader.decode(
@@ -188,16 +186,11 @@ private fun encode(
 	encodeHints: EnumMap<EncodeHintType, Any>? = null,
 	width: Int = 0,
 	height: Int = 0
-): BitMatrix {
-	val hints = encodeHints ?: EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)
-	if (!hints.contains(EncodeHintType.CHARACTER_SET)) {
-		hints[EncodeHintType.CHARACTER_SET] = "utf-8"
+): BitMatrix = MultiFormatWriter().encode(
+	text, format, width, height,
+	(encodeHints ?: EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)).apply {
+		if (!contains(EncodeHintType.CHARACTER_SET)) {
+			this[EncodeHintType.CHARACTER_SET] = "utf-8"
+		}
 	}
-	return MultiFormatWriter().encode(
-		text,
-		format,
-		width,
-		height,
-		hints
-	)
-}
+)

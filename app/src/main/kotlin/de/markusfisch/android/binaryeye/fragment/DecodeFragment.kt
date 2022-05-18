@@ -11,6 +11,8 @@ import android.widget.EditText
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
+import com.google.zxing.qrcode.encoder.Encoder
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
 import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
@@ -196,18 +198,24 @@ class DecodeFragment : Fragment() {
 	}
 
 	private fun fillMetaView(tableLayout: TableLayout, scan: Scan) {
-		fillDataTable(
-			tableLayout, linkedMapOf(
-				R.string.error_correction_level to scan.errorCorrectionLevel,
-				R.string.issue_number to scan.issueNumber,
-				R.string.orientation to scan.orientation,
-				R.string.other_meta_data to scan.otherMetaData,
-				R.string.pdf417_extra_metadata to scan.pdf417ExtraMetaData,
-				R.string.possible_country to scan.possibleCountry,
-				R.string.suggested_price to scan.suggestedPrice,
-				R.string.upc_ean_extension to scan.upcEanExtension
-			)
+		val items = linkedMapOf(
+			R.string.error_correction_level to scan.errorCorrectionLevel,
+			R.string.issue_number to scan.issueNumber,
+			R.string.orientation to scan.orientation,
+			R.string.other_meta_data to scan.otherMetaData,
+			R.string.pdf417_extra_metadata to scan.pdf417ExtraMetaData,
+			R.string.possible_country to scan.possibleCountry,
+			R.string.suggested_price to scan.suggestedPrice,
+			R.string.upc_ean_extension to scan.upcEanExtension
 		)
+		if (prefs.showQrVersion && scan.format == "QR_CODE") {
+			items.putAll(
+				linkedMapOf(
+					R.string.qr_version to "${scan.version()}"
+				)
+			)
+		}
+		fillDataTable(tableLayout, items)
 	}
 
 	private fun fillDataTable(
@@ -410,3 +418,8 @@ private fun hexDump(bytes: ByteArray, charsPerLine: Int = 33): String {
 	}
 	return dump.toString()
 }
+
+private fun Scan.version(): Int = Encoder.encode(
+	content,
+	ErrorCorrectionLevel.valueOf(errorCorrectionLevel ?: "L")
+).version.versionNumber

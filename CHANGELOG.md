@@ -1,5 +1,22 @@
 # Change Log
 
+## 1.49.2
+* Update design of app icon
+* Update pt-br translation
+
+## 1.49.1
+* Update Simplified Chinese translation
+* Return directly to caller for deep links
+* Fix metadata for deep links
+
+## 1.49.0
+* Add a setting to quickly enable/disable forwarding
+* Stop playing error beep when in silent mode
+* Improve enabling/disabling torch mode
+* Update to latest ZXing version
+* Update German translation
+* Update Russian translation
+
 ## 1.48.1
 * Fix broken detection of binary content
 

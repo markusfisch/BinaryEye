@@ -123,6 +123,11 @@ class Preferences {
 			apply(SHOW_META_DATA, value)
 			field = value
 		}
+	var showQrVersion = false
+		set(value) {
+			apply(SHOW_QR_VERSION, value)
+			field = value
+		}
 	var showHexDump = true
 		set(value) {
 			apply(SHOW_HEX_DUMP, value)
@@ -143,7 +148,7 @@ class Preferences {
 			apply(OPEN_WITH_URL, value)
 			field = value
 		}
-	var sendScanActive: Boolean = false
+	var sendScanActive = true
 		set(value) {
 			apply(SEND_SCAN_ACTIVE, value)
 			field = value
@@ -168,7 +173,7 @@ class Preferences {
 			apply(INDEX_OF_LAST_SELECTED_FORMAT, value)
 			field = value
 		}
-	var forceCompat: Boolean = false
+	var forceCompat = false
 		set(value) {
 			// Since the app may be about to crash when forceCompat is set,
 			// it's necessary to `commit()` this synchronously.
@@ -224,6 +229,7 @@ class Preferences {
 			openImmediately
 		)
 		showMetaData = preferences.getBoolean(SHOW_META_DATA, showMetaData)
+		showQrVersion = preferences.getBoolean(SHOW_QR_VERSION, showQrVersion)
 		showHexDump = preferences.getBoolean(SHOW_HEX_DUMP, showHexDump)
 		closeAutomatically = preferences.getBoolean(
 			CLOSE_AUTOMATICALLY,
@@ -304,6 +310,7 @@ class Preferences {
 		private const val OPEN_IMMEDIATELY = "open_immediately"
 		private const val COPY_IMMEDIATELY = "copy_immediately"
 		private const val SHOW_META_DATA = "show_meta_data"
+		private const val SHOW_QR_VERSION = "show_qr_version"
 		private const val SHOW_HEX_DUMP = "show_hex_dump"
 		private const val CLOSE_AUTOMATICALLY = "close_automatically"
 		private const val DEFAULT_SEARCH_URL = "default_search_url"

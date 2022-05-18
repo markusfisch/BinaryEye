@@ -61,6 +61,8 @@
 	<string name="close_automatically_summary">Automatycznie powracaj do ekranu skanowania po skopiowaniu lub udostępnieniu przeczytanej zawartości.</string>
 	<string name="show_meta_data">Pokazuj metadane</string>
 	<string name="show_meta_data_summary">Pokaż dodatkowe dane o zeskanowanym kodzie kreskowym.</string>
+	<string name="show_qr_version">Show QR version</string>
+	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="switch_camera">Przełącz aparat</string>
 	<string name="bulk_mode">Skanuj w sposób ciągły</string>
 	<string name="bulk_mode_summary">Zawsze rozpoczynaj skanowanie w sposób ciągły.</string>
@@ -133,6 +135,7 @@
 	<string name="follow_system_settings">Zgodny z ustawieniami systemu</string>
 	<string name="decode_barcode">Dekoduj kod kreskowy</string>
 	<string name="upc_ean_extension">Dodatek UPC EAN</string>
+	<string name="qr_version">QR version</string>
 	<string name="possible_country">Możliwy kraj produkcji</string>
 	<string name="encode">ZAKODUJ</string>
 	<string name="error_no_content">Brak zawartości</string>

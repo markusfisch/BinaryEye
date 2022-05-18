@@ -16,13 +16,18 @@ import android.view.Menu
 import android.view.MenuItem
 import com.google.zxing.Result
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.app.*
+import de.markusfisch.android.binaryeye.app.applyLocale
+import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.graphics.crop
 import de.markusfisch.android.binaryeye.graphics.loadImageUri
 import de.markusfisch.android.binaryeye.graphics.mapResultToView
+import de.markusfisch.android.binaryeye.os.getVibrator
 import de.markusfisch.android.binaryeye.os.vibrate
 import de.markusfisch.android.binaryeye.rs.fixTransparency
-import de.markusfisch.android.binaryeye.view.*
+import de.markusfisch.android.binaryeye.view.colorSystemAndToolBars
+import de.markusfisch.android.binaryeye.view.initSystemBars
+import de.markusfisch.android.binaryeye.view.recordToolbarHeight
+import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.CropImageView
 import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
@@ -59,7 +64,7 @@ class PickActivity : AppCompatActivity() {
 			prefs.barcodeFormats
 		)
 		rs = RenderScript.create(this)
-		vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+		vibrator = getVibrator()
 
 		initSystemBars(this)
 		val toolbar = findViewById(R.id.toolbar) as Toolbar

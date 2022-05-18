@@ -22,6 +22,7 @@
 	<string name="possible_country">Probabile Paese di fabbricazione</string>
 	<string name="suggested_price">Prezzo consigliato</string>
 	<string name="upc_ean_extension">Estensione UPC EAN</string>
+	<string name="qr_version">QR version</string>
 	<string name="toggle_flash">Flash</string>
 	<string name="error_flash">Error toggling flash</string>
 	<string name="share">Condividi</string>
@@ -84,6 +85,8 @@
 	<string name="copy_immediately_summary">Copia automaticamente i contenuti scansionati negli appunti. Nota che altre app potrebbero leggere gli appunti in secondo piano.</string>
 	<string name="show_meta_data">Mostra metadati</string>
 	<string name="show_meta_data_summary">Mostra dati aggiuntivi sul codice a barre scansionato.</string>
+	<string name="show_qr_version">Show QR version</string>
+	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="show_hex_dump">Mostra dump esadecimale</string>
 	<string name="show_hex_dump_summary">Mostra un dump esadecimale dei contenuti scansionati.</string>
 	<string name="close_automatically">Go back after Copy/Share</string>

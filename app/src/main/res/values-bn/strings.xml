@@ -22,6 +22,7 @@
 	<string name="possible_country">তৈরির সম্ভাব্য দেশ</string>
 	<string name="suggested_price">প্রস্তসবিত দাম</string>
 	<string name="upc_ean_extension">ইউপিসি ইএএন বর্ধিত</string>
+	<string name="qr_version">QR version</string>
 	<string name="toggle_flash">আলো</string>
 	<string name="error_flash">Error toggling flash</string>
 	<string name="share">ভাগ করো</string>
@@ -84,6 +85,8 @@
 	<string name="copy_immediately_summary">স্বয়ংক্রিয়ভাবে ক্লিপবোর্ডে অনুলিপি করো। বিশেষ দ্রষ্টব্য অন্য অ্যাপ পটভূমিতে এই তথ্য দেখে ফেলতে পারে।</string>
 	<string name="show_meta_data">মেটাতথ্য দেখাও</string>
 	<string name="show_meta_data_summary">সনাক্তকৃত বারকোড নিয়ে অতিরিক্ত তথ্য দেখাও।</string>
+	<string name="show_qr_version">Show QR version</string>
+	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="show_hex_dump">ষড়(hex) সংকেত দেখাও</string>
 	<string name="show_hex_dump_summary">পড়া তথ্যের ষড় সংকেত দেখাও</string>
 	<string name="close_automatically">অনুলিপি/ভাগ করার পরে পিছনে যাও</string>

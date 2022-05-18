@@ -89,28 +89,51 @@ Supported symbols are:
 ### SCAN Intent
 
 You can also use Binary Eye from other apps by using the
-`com.google.zxing.client.android.SCAN` Intent with `startActivityForResult()`
-like this:
+`com.google.zxing.client.android.SCAN` Intent with
+[startActivityForResult()][start_activity] like this:
 
-	startActivityForResult(
-		Intent("com.google.zxing.client.android.SCAN"),
-		SOME_NUMBER
-	)
+```kotlin
+startActivityForResult(
+	Intent("com.google.zxing.client.android.SCAN"),
+	SOME_NUMBER
+)
+```
 
-And process the result in `onActivityResult()` of your `Activity`:
+And process the result in [onActivityResult()][on_activity_result] of your
+`Activity`:
 
-	override fun onActivityResult(
-		requestCode: Int,
-		resultCode: Int,
-		data: Intent?
-	) {
-		when (requestCode) {
-			SOME_NUMBER -> if (resultCode == RESULT_OK) {
-				val result = data.getStringExtra("SCAN_RESULT")
-				…
-			}
+```kotlin
+override fun onActivityResult(
+	requestCode: Int,
+	resultCode: Int,
+	data: Intent?
+) {
+	when (requestCode) {
+		SOME_NUMBER -> if (resultCode == RESULT_OK) {
+			val result = data.getStringExtra("SCAN_RESULT")
+			…
 		}
 	}
+}
+```
+
+If you're using AndroidX, this would be the new,
+[recommended way][intent_result]:
+
+```kotlin
+class YourActivity : Activity() {
+	private val resultLauncher = registerForActivityResult(StartActivityForResult()) { result ->
+		if (result.resultCode == Activity.RESULT_OK) {
+			val scan = result.data?.getStringExtra("SCAN_RESULT")
+			…
+		}
+	}
+
+	fun openScanner() {
+		resultLauncher.launch(Intent("com.google.zxing.client.android.SCAN"))
+	}
+}
+```
 
 ## RenderScript
 
@@ -162,3 +185,6 @@ custom RenderScript kernel for each architecture you want to support.
 [upc_ean]: https://en.wikipedia.org/wiki/Universal_Product_Code#EAN-13
 [77]: https://github.com/markusfisch/BinaryEye/issues/77
 [rs]: https://developer.android.com/guide/topics/renderscript/compute
+[start_activity]: https://developer.android.com/reference/android/app/Activity#startActivityForResult(android.content.Intent,%20int)
+[on_activity_result]: https://developer.android.com/reference/android/app/Activity#onActivityResult(int,%20int,%20android.content.Intent)
+[intent_result]: https://developer.android.com/training/basics/intents/result

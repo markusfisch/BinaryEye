@@ -37,6 +37,7 @@ import de.markusfisch.android.binaryeye.graphics.getFrameToViewMatrix
 import de.markusfisch.android.binaryeye.graphics.map
 import de.markusfisch.android.binaryeye.net.sendAsync
 import de.markusfisch.android.binaryeye.os.error
+import de.markusfisch.android.binaryeye.os.getVibrator
 import de.markusfisch.android.binaryeye.os.vibrate
 import de.markusfisch.android.binaryeye.rs.Preprocessor
 import de.markusfisch.android.binaryeye.view.initSystemBars
@@ -79,6 +80,7 @@ class CameraActivity : AppCompatActivity() {
 	private var decoding = true
 	private var returnResult = false
 	private var returnUrlTemplate: String? = null
+	private var finishAfterShowingResult = false
 	private var frontFacing = false
 	private var bulkMode = prefs.bulkMode
 	private var restrictFormat: String? = null
@@ -131,7 +133,7 @@ class CameraActivity : AppCompatActivity() {
 		setTitle(R.string.scan_code)
 
 		rs = RenderScript.create(this)
-		vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+		vibrator = getVibrator()
 
 		initSystemBars(this)
 		setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
@@ -196,8 +198,9 @@ class CameraActivity : AppCompatActivity() {
 			intent?.action == "com.google.zxing.client.android.SCAN" -> {
 				returnResult = true
 			}
-			isReturnUrl(intent) -> intent?.data?.let {
-				returnUrlTemplate = it.getQueryParameter("ret")
+			intent?.dataString?.isReturnUrl() == true -> {
+				finishAfterShowingResult = true
+				returnUrlTemplate = intent.data?.getQueryParameter("ret")
 			}
 		}
 	}
@@ -481,7 +484,7 @@ class CameraActivity : AppCompatActivity() {
 				progress: Int,
 				fromUser: Boolean
 			) {
-				setZoom(progress)
+				cameraView.camera?.setZoom(progress)
 			}
 
 			override fun onStartTrackingTouch(seekBar: SeekBar) {}
@@ -492,16 +495,13 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	@Suppress("DEPRECATION")
-	private fun setZoom(zoom: Int) {
-		val camera: Camera? = cameraView.camera
-		camera?.let {
-			try {
-				val params = camera.parameters
-				params.zoom = zoom
-				camera.parameters = params
-			} catch (e: RuntimeException) {
-				// Ignore. There's nothing we can do.
-			}
+	private fun Camera.setZoom(zoom: Int) {
+		try {
+			val params = parameters
+			params.zoom = zoom
+			parameters = params
+		} catch (e: RuntimeException) {
+			// Ignore. There's nothing we can do.
 		}
 	}
 
@@ -734,12 +734,20 @@ class CameraActivity : AppCompatActivity() {
 				returnUri != null -> execShareIntent(
 					Intent(Intent.ACTION_VIEW, returnUri)
 				)
-				else -> showResult(
-					this@CameraActivity,
-					result,
-					vibrator,
-					bulkMode
-				)
+				else -> {
+					showResult(
+						this@CameraActivity,
+						result,
+						vibrator,
+						bulkMode
+					)
+					// If this app was invoked via a deep link but without
+					// a return URI, we probably don't want to return to
+					// the camera screen after scanning, but to the caller.
+					if (finishAfterShowingResult) {
+						finish()
+					}
+				}
 			}
 			if (bulkMode) {
 				ignoreNext = result.text
@@ -824,7 +832,7 @@ fun getReturnIntent(result: Result): Intent {
 		intent.putExtra("SCAN_RESULT_BYTES", result.rawBytes)
 	}
 	result.resultMetadata?.let { metadata ->
-		metadata[ResultMetadataType.UPC_EAN_EXTENSION]?.let {
+		metadata[ResultMetadataType.ORIENTATION]?.let {
 			intent.putExtra(
 				"SCAN_RESULT_ORIENTATION",
 				it.toString()
@@ -854,17 +862,11 @@ fun getReturnIntent(result: Result): Intent {
 	return intent
 }
 
-private fun isReturnUrl(intent: Intent?): Boolean {
-	val dataString = intent?.dataString
-	return listOf(
-		"binaryeye://scan",
-		"http://markusfisch.de/BinaryEye",
-		"https://markusfisch.de/BinaryEye"
-	).firstOrNull {
-		val result = dataString?.startsWith(it) == true
-		result
-	} != null
-}
+private fun String.isReturnUrl() = listOf(
+	"binaryeye://scan",
+	"http://markusfisch.de/BinaryEye",
+	"https://markusfisch.de/BinaryEye"
+).firstOrNull { startsWith(it) } != null
 
 private fun completeUrl(urlTemplate: String, result: Result) = Uri.parse(
 	urlTemplate
