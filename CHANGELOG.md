@@ -1,5 +1,16 @@
 # Change Log
 
+## 1.50.0
+* Add support for MATMSG format
+* Add a setting to show the QR Code version
+* Add timezone offset in calendar dates
+* Recognize colloquial incomplete URLs
+* Update ZXing library to latest version
+* Update Czech translation
+* Update Russian translation
+* Update Japanese translation
+* Update Hungarian translation
+
 ## 1.49.2
 * Update design of app icon
 * Update pt-br translation

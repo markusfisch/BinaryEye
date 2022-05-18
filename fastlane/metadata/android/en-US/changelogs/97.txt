@@ -1,0 +1,10 @@
+* Add support for MATMSG format
+* Add a setting to show the QR Code version
+* Add timezone offset in calendar dates
+* Recognize colloquial incomplete URLs
+* Update ZXing library to latest version
+* Update Czech translation
+* Update Russian translation
+* Update Japanese translation
+* Update Hungarian translation
+
