@@ -87,8 +87,8 @@
 	<string name="copy_immediately_summary">Автоматически копировать содержимое считанного штрих-кода в буфер обмена. Имейте в виду, что другие приложения могут иметь доступ к буферу обмена в фоне.</string>
 	<string name="show_meta_data">Показывать метаданные</string>
 	<string name="show_meta_data_summary">Показывать дополнительную информацию о считанных штрих-кодах.</string>
-	<string name="show_qr_version">Show QR version</string>
-	<string name="show_qr_version_summary">Show QR version number.</string>
+	<string name="show_qr_version">Показывать версию QR</string>
+	<string name="show_qr_version_summary">Показывать номер версии QR-кода.</string>
 	<string name="show_hex_dump">Показывать шестнадцатеричный дамп</string>
 	<string name="show_hex_dump_summary">Показывать шестнадцатеричный дамп содержимого считанного штрих-кода.</string>
 	<string name="close_automatically">Возврат после копирования/обмена</string>
