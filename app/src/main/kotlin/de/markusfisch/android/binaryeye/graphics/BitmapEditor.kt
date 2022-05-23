@@ -49,8 +49,13 @@ private fun calculateInSampleSize(
 	return inSampleSize
 }
 
-fun Bitmap.crop(rect: RectF, rotation: Float) = try {
-	val erected = erect(rotation)
+fun Bitmap.crop(
+	rect: RectF,
+	rotation: Float,
+	pivotX: Float,
+	pivotY: Float
+) = try {
+	val erected = erect(rotation, pivotX, pivotY)
 	val w = erected.width
 	val h = erected.height
 	val x = max(0, (rect.left * w).roundToInt())
@@ -68,7 +73,11 @@ fun Bitmap.crop(rect: RectF, rotation: Float) = try {
 	null
 }
 
-private fun Bitmap.erect(rotation: Float): Bitmap = if (
+private fun Bitmap.erect(
+	rotation: Float,
+	pivotX: Float,
+	pivotY: Float
+): Bitmap = if (
 	rotation % 360f != 0f
 ) {
 	Bitmap.createBitmap(
@@ -78,7 +87,7 @@ private fun Bitmap.erect(rotation: Float): Bitmap = if (
 		width,
 		height,
 		Matrix().apply {
-			setRotate(rotation)
+			setRotate(rotation, pivotX, pivotY)
 		},
 		true
 	)

@@ -32,6 +32,7 @@ import de.markusfisch.android.binaryeye.widget.CropImageView
 import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
+import de.markusfisch.android.scalingimageview.widget.ScalingImageView
 import kotlinx.coroutines.*
 
 class PickActivity : AppCompatActivity() {
@@ -84,6 +85,7 @@ class PickActivity : AppCompatActivity() {
 
 		cropImageView = findViewById(R.id.image) as CropImageView
 		cropImageView.restrictTranslation = false
+		cropImageView.freeRotation = true
 		cropImageView.setImageBitmap(bitmap)
 		cropImageView.onScan = {
 			scanWithinBounds(bitmap)
@@ -126,7 +128,9 @@ class PickActivity : AppCompatActivity() {
 		val rectInImage = normalizeRoi(imageRect, rectInView)
 		val cropped = bitmap.crop(
 			rectInImage,
-			cropImageView.imageRotation
+			cropImageView.imageRotation,
+			cropImageView.pivotX,
+			cropImageView.pivotY
 		) ?: return
 		scope.launch {
 			result = zxing.decodePositiveNegative(cropped)
