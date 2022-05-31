@@ -1,1 +1,1 @@
-Mais um scanner de código de barras
+Mais um leitor de códigos QR etc
