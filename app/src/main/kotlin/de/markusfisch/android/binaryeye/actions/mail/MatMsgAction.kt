@@ -33,7 +33,7 @@ object MatMsgAction : IntentAction() {
 			Uri.parse("mailto:")
 		).apply {
 			to?.let {
-				putExtra(Intent.EXTRA_EMAIL, to)
+				putExtra(Intent.EXTRA_EMAIL, arrayOf(to))
 			}
 			sub?.let {
 				putExtra(Intent.EXTRA_SUBJECT, sub)
