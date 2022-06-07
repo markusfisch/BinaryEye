@@ -19,30 +19,36 @@ object MatMsgAction : IntentAction() {
 		context: Context,
 		data: ByteArray
 	): Intent? {
-		val encoded = String(data)
-		// Allow arbitrary order.
-		val to = encoded.extractFirst("""[:;]TO:([\w.%@+-]+);""")
-		val sub = encoded.extractFirst("""[:;]SUB:([^;]+);""")
-		val body = encoded.extractFirst("""[:;]BODY:([^;]+);""")
+		val mm = MatMsg(String(data))
 		// Allow incomplete but not completely missing data.
-		if (to == null && sub == null && body == null) {
+		if (mm.isEmpty()) {
 			return null
 		}
 		return Intent(
 			Intent.ACTION_SENDTO,
 			Uri.parse("mailto:")
 		).apply {
-			to?.let {
-				putExtra(Intent.EXTRA_EMAIL, arrayOf(to))
+			mm.to?.let {
+				putExtra(Intent.EXTRA_EMAIL, arrayOf(mm.to))
 			}
-			sub?.let {
-				putExtra(Intent.EXTRA_SUBJECT, sub)
+			mm.sub?.let {
+				putExtra(Intent.EXTRA_SUBJECT, mm.sub)
 			}
-			body?.let {
-				putExtra(Intent.EXTRA_TEXT, body)
+			mm.body?.let {
+				putExtra(Intent.EXTRA_TEXT, mm.body)
 			}
 		}
 	}
+}
+
+// Public so this can be tested.
+class MatMsg(encoded: String) {
+	// Allow arbitrary order.
+	val to = encoded.extractFirst("""[:;]TO:([\w.%@+-]+);""")
+	val sub = encoded.extractFirst("""[:;]SUB:([^;]+);""")
+	val body = encoded.extractFirst("""[:;]BODY:([^;]+);""")
+
+	fun isEmpty() = to == null && sub == null && body == null
 }
 
 private fun String.extractFirst(regex: String) =

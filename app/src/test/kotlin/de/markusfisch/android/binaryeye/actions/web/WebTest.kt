@@ -1,6 +1,5 @@
 package de.markusfisch.android.binaryeye.actions.web
 
-import de.markusfisch.android.binaryeye.simpleFail
 import junit.framework.TestCase.*
 import org.junit.Test
 
