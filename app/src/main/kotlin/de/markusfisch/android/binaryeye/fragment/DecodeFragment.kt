@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.text.Editable
+import android.text.Html
 import android.text.TextWatcher
+import android.text.method.LinkMovementMethod
 import android.view.*
 import android.widget.EditText
 import android.widget.TableLayout
@@ -40,6 +42,7 @@ class DecodeFragment : Fragment() {
 	private lateinit var metaView: TableLayout
 	private lateinit var hexView: TextView
 	private lateinit var format: String
+	private lateinit var stampView: TextView
 	private lateinit var fab: FloatingActionButton
 
 	private val parentJob = Job()
@@ -84,6 +87,7 @@ class DecodeFragment : Fragment() {
 		format = scan.format
 
 		contentView = view.findViewById(R.id.content)
+		stampView = view.findViewById(R.id.stamp)
 		fab = view.findViewById(R.id.open)
 
 		if (!isBinary) {
@@ -122,6 +126,13 @@ class DecodeFragment : Fragment() {
 			fab.setOnClickListener {
 				askForFileNameAndSave(raw)
 			}
+		}
+
+		val trackingLink = generateDpTrackingLink(raw, scan.format)
+		if (trackingLink != null) {
+			stampView.setText(Html.fromHtml(trackingLink))
+			stampView.setClickable(true)
+			stampView.setMovementMethod(LinkMovementMethod.getInstance())
 		}
 
 		formatView = view.findViewById(R.id.format)
@@ -417,6 +428,68 @@ private fun hexDump(bytes: ByteArray, charsPerLine: Int = 33): String {
 		}
 	}
 	return dump.toString()
+}
+
+// CRC-4 with polynomial x^4 + x + 1
+private fun crc4(input: ByteArray): Int {
+	var c: Int
+	var bit: Int
+	var crc = 0
+	var i = 0
+	while (i < input.size) {
+		c = input[i].toInt()
+		var j = 0x80
+		while (j != 0) {
+			bit = crc and 0x8
+			crc = crc shl 1
+			if (c and j != 0) {
+				bit = bit xor 0x8
+			}
+			if (bit != 0) {
+				crc = crc xor 0x3
+			}
+			j = j ushr 1
+		}
+		i++
+	}
+	crc = crc and 0xF
+	return crc
+}
+
+private fun generateDpTrackingLink(raw: ByteArray, format: String): String? {
+	//check for Deutsche Post Matrixcode stamp
+	var isStamp = false
+	var rawData = raw
+	if (format.equals("DATA_MATRIX") and raw.toString(Charsets.ISO_8859_1).startsWith("DEA5")) {
+		if (raw.size == 47) {
+			isStamp = true
+		} else if (raw.size > 47) {
+			// transform back to original data
+			rawData = raw.toString(Charsets.UTF_8).toByteArray(Charsets.ISO_8859_1)
+			if (rawData.size == 47) {
+				isStamp = true
+			}
+		}
+	}
+
+	if (isStamp) {
+		val hex = StringBuilder()
+		hex.append(String.format("%02X", rawData[9]))
+		hex.append(String.format("%02X", rawData[10]))
+		hex.append(String.format("%02X", rawData[11]))
+		hex.append(String.format("%02X", rawData[12]))
+		hex.append(String.format("%02X", rawData[13]))
+		hex.append(String.format("%X", (rawData[4].toInt() and 0x0f).toByte()))
+		hex.append(String.format("%02X", rawData[5]))
+		hex.append(String.format("%02X", rawData[6]))
+		hex.append(String.format("%02X", rawData[7]))
+		hex.append(String.format("%02X", rawData[8]))
+		val hexString = hex.toString()
+		val crcHexString = String.format("%X", crc4(hexString.toByteArray(Charsets.ISO_8859_1)))
+		val trackingNumber = hexString + crcHexString
+		return "<a href=\"https://www.deutschepost.de/de/s/sendungsverfolgung/verfolgen.html?piececode=$trackingNumber\">Deutsche Post: $trackingNumber</a>"
+	} else
+		return null
 }
 
 private fun Scan.version(): Int = Encoder.encode(

@@ -68,6 +68,18 @@
 				android:typeface="monospace"
 				android:textSize="12sp"
 				tools:text="54 65 73 74 20 51 52 20  Test QR\n43 6F 64 65              Code"/>
+			<TextView
+				android:id="@+id/stamp"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/hex"
+				android:layout_marginStart="16dp"
+				android:layout_marginLeft="16dp"
+				android:layout_marginEnd="16dp"
+				android:layout_marginRight="16dp"
+				android:layout_marginBottom="16dp"
+				android:textSize="12sp"
+				android:typeface="monospace" />
 		</RelativeLayout>
 	</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>
 	<android.support.design.widget.CoordinatorLayout
