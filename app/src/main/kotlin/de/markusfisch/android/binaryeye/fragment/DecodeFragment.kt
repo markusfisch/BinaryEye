@@ -130,9 +130,13 @@ class DecodeFragment : Fragment() {
 
 		val trackingLink = generateDpTrackingLink(raw, scan.format)
 		if (trackingLink != null) {
-			stampView.setText(Html.fromHtml(trackingLink))
-			stampView.setClickable(true)
-			stampView.setMovementMethod(LinkMovementMethod.getInstance())
+			stampView.apply {
+				text = Html.fromHtml(trackingLink)
+				isClickable = true
+				movementMethod = LinkMovementMethod.getInstance()
+			}
+		} else {
+			stampView.visibility = View.GONE
 		}
 
 		formatView = view.findViewById(R.id.format)
@@ -430,17 +434,58 @@ private fun hexDump(bytes: ByteArray, charsPerLine: Int = 33): String {
 	return dump.toString()
 }
 
+private fun generateDpTrackingLink(raw: ByteArray, format: String): String? {
+	// Check for Deutsche Post Matrixcode stamp.
+	var isStamp = false
+	var rawData = raw
+	if (format == "DATA_MATRIX" &&
+		raw.toString(Charsets.ISO_8859_1).startsWith("DEA5")
+	) {
+		if (raw.size == 47) {
+			isStamp = true
+		} else if (raw.size > 47) {
+			// Transform back to original data.
+			rawData = raw.toString(Charsets.UTF_8).toByteArray(
+				Charsets.ISO_8859_1
+			)
+			if (rawData.size == 47) {
+				isStamp = true
+			}
+		}
+	}
+
+	if (!isStamp) {
+		return null
+	}
+
+	val hex = StringBuilder()
+	hex.append(String.format("%02X", rawData[9]))
+	hex.append(String.format("%02X", rawData[10]))
+	hex.append(String.format("%02X", rawData[11]))
+	hex.append(String.format("%02X", rawData[12]))
+	hex.append(String.format("%02X", rawData[13]))
+	hex.append(String.format("%X", (rawData[4].toInt() and 0x0f).toByte()))
+	hex.append(String.format("%02X", rawData[5]))
+	hex.append(String.format("%02X", rawData[6]))
+	hex.append(String.format("%02X", rawData[7]))
+	hex.append(String.format("%02X", rawData[8]))
+	val hexString = hex.toString()
+	val trackingNumber = hexString + String.format(
+		"%X",
+		crc4(hexString.toByteArray(Charsets.ISO_8859_1))
+	)
+	return "<a href=\"https://www.deutschepost.de/de/s/sendungsverfolgung/verfolgen.html?piececode=$trackingNumber\">Deutsche Post: $trackingNumber</a>"
+}
+
 // CRC-4 with polynomial x^4 + x + 1.
 private fun crc4(input: ByteArray): Int {
-	var c: Int
-	var bit: Int
 	var crc = 0
 	var i = 0
 	while (i < input.size) {
-		c = input[i].toInt()
+		val c = input[i].toInt()
 		var j = 0x80
 		while (j != 0) {
-			bit = crc and 0x8
+			var bit = crc and 0x8
 			crc = crc shl 1
 			if (c and j != 0) {
 				bit = bit xor 0x8
@@ -450,46 +495,10 @@ private fun crc4(input: ByteArray): Int {
 			}
 			j = j ushr 1
 		}
-		i++
+		++i
 	}
 	crc = crc and 0xF
 	return crc
-}
-
-private fun generateDpTrackingLink(raw: ByteArray, format: String): String? {
-	// Check for Deutsche Post Matrixcode stamp.
-	var isStamp = false
-	var rawData = raw
-	if (format.equals("DATA_MATRIX") && raw.toString(Charsets.ISO_8859_1).startsWith("DEA5")) {
-		if (raw.size == 47) {
-			isStamp = true
-		} else if (raw.size > 47) {
-			// transform back to original data
-			rawData = raw.toString(Charsets.UTF_8).toByteArray(Charsets.ISO_8859_1)
-			if (rawData.size == 47) {
-				isStamp = true
-			}
-		}
-	}
-
-	if (isStamp) {
-		val hex = StringBuilder()
-		hex.append(String.format("%02X", rawData[9]))
-		hex.append(String.format("%02X", rawData[10]))
-		hex.append(String.format("%02X", rawData[11]))
-		hex.append(String.format("%02X", rawData[12]))
-		hex.append(String.format("%02X", rawData[13]))
-		hex.append(String.format("%X", (rawData[4].toInt() and 0x0f).toByte()))
-		hex.append(String.format("%02X", rawData[5]))
-		hex.append(String.format("%02X", rawData[6]))
-		hex.append(String.format("%02X", rawData[7]))
-		hex.append(String.format("%02X", rawData[8]))
-		val hexString = hex.toString()
-		val crcHexString = String.format("%X", crc4(hexString.toByteArray(Charsets.ISO_8859_1)))
-		val trackingNumber = hexString + crcHexString
-		return "<a href=\"https://www.deutschepost.de/de/s/sendungsverfolgung/verfolgen.html?piececode=$trackingNumber\">Deutsche Post: $trackingNumber</a>"
-	} else
-		return null
 }
 
 private fun Scan.version(): Int = Encoder.encode(
