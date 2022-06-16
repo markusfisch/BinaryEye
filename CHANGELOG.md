@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.51.0
+* Add support for Deutsche Post Matrixcode stamp
+* Allow free image rotation for scanning from images
+* Fix setting TO field in MATMSG format
+* Update Italian translation
+* Update zh-rCN translation
+* Update pt-br translation
+
 ## 1.50.0
 * Add support for MATMSG format
 * Add a setting to show the QR Code version
