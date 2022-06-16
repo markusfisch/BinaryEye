@@ -162,8 +162,8 @@ class DetectorView : View {
 			MotionEvent.ACTION_MOVE -> {
 				if (handleGrabbed) {
 					handlePos.set(x, y)
-					handleActive =
-						handleActive or (distSq(handlePos, touchDown) > minMoveThresholdSq)
+					handleActive = handleActive ||
+							distSq(handlePos, touchDown) > minMoveThresholdSq
 					if (handleActive) {
 						updateClipRect()
 						invalidate()

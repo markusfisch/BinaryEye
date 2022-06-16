@@ -460,7 +460,7 @@ private fun generateDpTrackingLink(raw: ByteArray, format: String): String? {
 	//check for Deutsche Post Matrixcode stamp
 	var isStamp = false
 	var rawData = raw
-	if (format.equals("DATA_MATRIX") and raw.toString(Charsets.ISO_8859_1).startsWith("DEA5")) {
+	if (format.equals("DATA_MATRIX") && raw.toString(Charsets.ISO_8859_1).startsWith("DEA5")) {
 		if (raw.size == 47) {
 			isStamp = true
 		} else if (raw.size > 47) {
