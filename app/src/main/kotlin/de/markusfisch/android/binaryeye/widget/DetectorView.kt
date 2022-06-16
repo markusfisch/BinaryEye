@@ -105,9 +105,7 @@ class DetectorView : View {
 		} else {
 			handlePos.set(y, x)
 		}
-		if (x > -1) {
-			handleActive = true
-		}
+		handleActive = handlePos.x > -1
 	}
 
 	fun update(numberOfCoordinates: Int) {
