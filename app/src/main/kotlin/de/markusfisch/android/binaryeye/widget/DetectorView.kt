@@ -261,23 +261,18 @@ class DetectorView : View {
 
 	override fun onDraw(canvas: Canvas) {
 		if (handleActive) {
-			drawClip(canvas)
+			canvas.drawClip()
 		}
-		drawDots(canvas)
+		canvas.drawDots()
 		if (prefs.showCropHandle) {
-			canvas.drawBitmap(
-				handleBitmap,
-				(handlePos.x - handleXRadius).toFloat(),
-				(handlePos.y - handleYRadius).toFloat(),
-				null
-			)
+			canvas.drawHandle()
 		}
 	}
 
-	private fun drawDots(canvas: Canvas) {
+	private fun Canvas.drawDots() {
 		var i = 0
 		while (i < coordinatesLast) {
-			canvas.drawCircle(
+			drawCircle(
 				coordinates[i++],
 				coordinates[i++],
 				dotRadius,
@@ -286,15 +281,15 @@ class DetectorView : View {
 		}
 	}
 
-	private fun drawClip(canvas: Canvas) {
+	private fun Canvas.drawClip() {
 		if (minDist < 1) {
 			return
 		}
 		// canvas.clipRect() doesn't work reliably below KITKAT.
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 			val radius = min(minDist / 2, cornerRadius).toFloat()
-			canvas.save()
-			canvas.clipOutPathCompat(
+			save()
+			clipOutPathCompat(
 				calculateRoundedRectPath(
 					roi.left.toFloat(),
 					roi.top.toFloat(),
@@ -304,11 +299,20 @@ class DetectorView : View {
 					radius
 				)
 			)
-			canvas.drawColor(shadeColor)
-			canvas.restore()
+			drawColor(shadeColor)
+			restore()
 		} else {
-			canvas.drawRect(roi, roiPaint)
+			drawRect(roi, roiPaint)
 		}
+	}
+
+	private fun Canvas.drawHandle() {
+		drawBitmap(
+			handleBitmap,
+			(handlePos.x - handleXRadius).toFloat(),
+			(handlePos.y - handleYRadius).toFloat(),
+			null
+		)
 	}
 
 	private fun updateClipRect() {
