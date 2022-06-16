@@ -143,7 +143,8 @@ fun Result.toScan(): Scan {
 	val raw: ByteArray?
 	if (text.hasNonPrintableCharacters()) {
 		content = ""
-		raw = getRawData() ?: text.toByteArray()
+		// ISO_8859_1 is important to suppress UTF-8 encoding.
+		raw = getRawData() ?: text.toByteArray(Charsets.ISO_8859_1)
 	} else {
 		content = text
 		raw = null
