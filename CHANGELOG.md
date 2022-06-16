@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.51.1
+* Fix extraction of raw bytes for some barcodes
+
 ## 1.51.0
 * Add support for Deutsche Post Matrixcode stamp
 * Allow free image rotation for scanning from images
