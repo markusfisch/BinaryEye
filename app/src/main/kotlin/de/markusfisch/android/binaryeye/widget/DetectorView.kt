@@ -100,6 +100,9 @@ class DetectorView : View {
 	}
 
 	private fun setCropHandlePos(x: Int, y: Int, orientation: Int) {
+		// Always set handlePos even if it's invalid because
+		// handlePos.x may be -2 which is a signal to set the
+		// default ROI.
 		if (orientation == currentOrientation) {
 			handlePos.set(x, y)
 		} else {
@@ -214,10 +217,10 @@ class DetectorView : View {
 		val cy = clampY(y)
 		val dx = abs(cx - center.x)
 		val dy = abs(cy - center.y)
-		// check if handle is close to the vertical or horizontal center line
+		// Check if handle is close to the vertical or horizontal center line.
 		if (dx < distToFull ||
 			dy < distToFull ||
-			// check if handle is close to a screen corner
+			// Check if handle is close to a screen corner.
 			((abs(cy - minY) < distToFull || abs(maxY - cy) < distToFull) &&
 					abs(dx - center.x) < distToFull)
 		) {

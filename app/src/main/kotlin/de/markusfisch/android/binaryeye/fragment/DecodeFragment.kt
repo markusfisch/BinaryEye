@@ -430,7 +430,7 @@ private fun hexDump(bytes: ByteArray, charsPerLine: Int = 33): String {
 	return dump.toString()
 }
 
-// CRC-4 with polynomial x^4 + x + 1
+// CRC-4 with polynomial x^4 + x + 1.
 private fun crc4(input: ByteArray): Int {
 	var c: Int
 	var bit: Int
@@ -457,7 +457,7 @@ private fun crc4(input: ByteArray): Int {
 }
 
 private fun generateDpTrackingLink(raw: ByteArray, format: String): String? {
-	//check for Deutsche Post Matrixcode stamp
+	// Check for Deutsche Post Matrixcode stamp.
 	var isStamp = false
 	var rawData = raw
 	if (format.equals("DATA_MATRIX") && raw.toString(Charsets.ISO_8859_1).startsWith("DEA5")) {
