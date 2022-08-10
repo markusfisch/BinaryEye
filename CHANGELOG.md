@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.52.0
+* Fix parsing timezone in calendar dates
+* Update French translation
+
 ## 1.51.1
 * Fix extraction of raw bytes for some barcodes
 
