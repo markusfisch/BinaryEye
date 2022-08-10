@@ -1,6 +1,5 @@
 package de.markusfisch.android.binaryeye.actions.vtype.vevent
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -47,7 +46,7 @@ object VEventAction : IntentAction() {
 				dateFormats.simpleFindParse(eventStart.value)?.also {
 					putExtra(
 						CalendarContract.EXTRA_EVENT_BEGIN_TIME,
-						it.localTime()
+						it.time
 					)
 				}
 			}
@@ -55,37 +54,39 @@ object VEventAction : IntentAction() {
 				dateFormats.simpleFindParse(eventEnd.value)?.also {
 					putExtra(
 						CalendarContract.EXTRA_EVENT_END_TIME,
-						it.localTime()
+						it.time
 					)
 				}
 			}
 		}
 	}
-
-	// We definitely don't wan't the local format.
-	@SuppressLint("SimpleDateFormat")
-	private val dateFormats = listOf(
-		SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'"),
-		SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"),
-		SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'"),
-		SimpleDateFormat("yyyyMMdd'T'HHmmss"),
-		SimpleDateFormat("yyyy-MM-dd"),
-		SimpleDateFormat("yyyyMMdd")
-	)
-
-	private fun List<SimpleDateFormat>.simpleFindParse(data: String): Date? {
-		for (simpleDataFormat in this) {
-			return simpleDataFormat.simpleParse(data) ?: continue
-		}
-		return null
-	}
-
-	private fun SimpleDateFormat.simpleParse(data: String): Date? = try {
-		this.parse(data)
-	} catch (e: Exception) {
-		null
-	}
 }
 
-private fun Date.localTime() = time - timezoneOffset * 60000L
+private val dateFormats = listOf(
+	"yyyy-MM-dd'T'HH:mm:ssXXX",
+	"yyyy-MM-dd'T'HH:mm:ssZ",
+	"yyyy-MM-dd'T'HH:mm:ssz",
+	"yyyy-MM-dd'T'HH:mm:ss",
+	"yyyyMMdd'T'HHmmssXXX",
+	"yyyyMMdd'T'HHmmssZ",
+	"yyyyMMdd'T'HHmmssz",
+	"yyyyMMdd'T'HHmmss",
+	"yyyy-MM-dd",
+	"yyyyMMdd"
+)
 
+private fun List<String>.simpleFindParse(date: String): Date? {
+	for (pattern in this) {
+		return SimpleDateFormat(
+			pattern,
+			Locale.getDefault()
+		).simpleParse(date) ?: continue
+	}
+	return null
+}
+
+private fun SimpleDateFormat.simpleParse(date: String): Date? = try {
+	parse(date)
+} catch (e: Exception) {
+	null
+}
