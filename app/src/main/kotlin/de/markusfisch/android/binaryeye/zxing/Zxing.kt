@@ -165,32 +165,26 @@ xmlns="http://www.w3.org/2000/svg">
 fun encodeAsText(
 	text: String,
 	format: BarcodeFormat,
-	hints: EnumMap<EncodeHintType, Any>? = null
+	hints: EnumMap<EncodeHintType, Any>? = null,
+	inverted: Boolean = false
 ): String {
 	val bitMatrix = encode(text, format, hints)
 	val w = bitMatrix.width
 	val h = bitMatrix.height
 	val sb = StringBuilder()
+	val map = if (inverted) "█▄▀ " else " ▀▄█"
 	for (y in 0 until h step 2) {
 		for (x in 0 until w) {
-			val tp = bitMatrix.get(y, x)
-			val bt = y + 1 >= h || bitMatrix.get(y + 1, x)
-			sb.append(
-				if (tp && bt) {
-					' '
-				} else if (tp) {
-					'▄'
-				} else if (bt) {
-					'▀'
-				} else {
-					'█'
-				}
-			)
+			val tp = bitMatrix.get(y, x).toInt()
+			val bt = (y + 1 < h && bitMatrix.get(y + 1, x)).toInt()
+			sb.append(map[tp or (bt shl 1)])
 		}
 		sb.append('\n')
 	}
 	return sb.toString()
 }
+
+private fun Boolean.toInt() = if (this) 1 else 0
 
 private fun encode(
 	text: String,
