@@ -174,16 +174,18 @@ fun encodeAsText(
 	for (y in 0 until h step 2) {
 		for (x in 0 until w) {
 			val tp = bitMatrix.get(y, x)
-			var bt = y + 1 >= h || bitMatrix.get(y + 1, x);
-			if (tp && bt) {
-				sb.append(' ')//'\u0020'
-			} else if (tp) {
-				sb.append('▄')//'\u2584'
-			} else if (bt) {
-				sb.append('▀')//'\u2580'
-			} else {
-				sb.append('█')//'\u2588'
-			}
+			val bt = y + 1 >= h || bitMatrix.get(y + 1, x)
+			sb.append(
+				if (tp && bt) {
+					' '
+				} else if (tp) {
+					'▄'
+				} else if (bt) {
+					'▀'
+				} else {
+					'█'
+				}
+			)
 		}
 		sb.append('\n')
 	}
