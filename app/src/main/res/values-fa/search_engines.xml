@@ -1,0 +1,24 @@
+<resources>
+	<string-array name="search_engines_names">
+		<item>@string/always_ask</item>
+		<item>گوگل</item>
+		<item>داک‌داک‌گو</item>
+		<item>Qwant</item>
+		<item>بینگ</item>
+		<item>یاندکس</item>
+		<item>OpenFoodFacts.org</item>
+		<item>OpenBeautyFacts.org</item>
+		<item>OpenPetFoodFacts.org</item>
+	</string-array>
+	<string-array name="search_engines_values">
+		<item></item>
+		<item>https://www.google.com/search?q=</item>
+		<item>https://duckduckgo.com/?q=</item>
+		<item>https://www.qwant.com/?q=</item>
+		<item>https://bing.com/?q=</item>
+		<item>https://yandex.com/?q=</item>
+		<item>https://world.openfoodfacts.org/cgi/search.pl?search_terms=</item>
+		<item>https://world.openbeautyfacts.org/cgi/search.pl?search_terms=</item>
+		<item>https://world.openpetfoodfacts.org/cgi/search.pl?search_terms=</item>
+	</string-array>
+</resources>
