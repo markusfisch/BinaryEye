@@ -74,7 +74,7 @@
 	<string name="show_toast_in_bulk_mode">نمایش داده‌ها در حالت پیوسته</string>
 	<string name="show_toast_in_bulk_mode_summary">هنگام پویش مداوم، داده‌های پویش شده را به طور خلاصه نشان می‌دهید.</string>
 	<string name="vibrate">لرزش هنگام تشخیص</string>
-	<string name="vibrate_summary">اگر می‌خواهید دستگاهتان هنگام شناسایی کد بلرزد، این را فعال کنید.string>
+	<string name="vibrate_summary">اگر می‌خواهید دستگاهتان هنگام شناسایی کد بلرزد، این را فعال کنید.</string>
 	<string name="use_history">ذخیرهٔ تاریخچهٔ پویش</string>
 	<string name="use_history_summary">کدهای شناسایی شده را در همین دستگاه ذخیره می‌کند.</string>
 	<string name="ignore_consecutive_duplicates">نادیده گرفتن موارد تکراری</string>
