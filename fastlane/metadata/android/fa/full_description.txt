@@ -1,0 +1,11 @@
+در هر دو جهت افقی و عمودی کار می‌کند، می‌تواند بارکدهای وارونه را بخواند،
+از طراحی متریال پیروی می‌کند و همچنین قابلیت ایجاد بارکد را نیز داراست.
+
+از کتابخانهٔ پویش بارکد ZXing ("Zebra Crossing") استفاده می‌کند.
+قالب‌های بارکد پشتیبانی‌شده:
+AZTEC, CODABAR, CODE 39, CODE 93, CODE 128, RSS 14,
+DATA MATRIX, EAN 8, EAN 13, ITF, PDF417, QR CODE,
+RSS EXPANDED, UPC A, UPC E, UPC EAN EXTENSION.
+
+این کاره متن‌باز است:
+https://github.com/markusfisch/BinaryEye

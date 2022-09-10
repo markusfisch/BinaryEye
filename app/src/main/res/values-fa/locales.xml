@@ -1,0 +1,46 @@
+<resources>
+	<string-array name="locale_names">
+		<item>@string/follow_system_settings</item>
+		<item>انگلیسی</item>
+		<item>آلمانی</item>
+		<item>اسپانیایی</item>
+		<item>فرانسوی</item>
+		<item>مجارستانی</item>
+		<item>اندونزیایی</item>
+		<item>ایتالیایی</item>
+		<item>گرجستانی</item>
+		<item>هلندی</item>
+		<item>Polski</item>
+		<item>پرتغالی برزیل</item>
+		<item>روسی</item>
+		<item>ترکی</item>
+		<item>اکراینی</item>
+		<item>چینی</item>
+		<item>چینی سنتی</item>
+		<item>چینی (ساده شده هان، چین)</item>
+		<item>ژاپنی</item>
+		<item>چکوسلواکی</item>
+	</string-array>
+	<string-array name="locale_values">
+		<item></item>
+		<item>en</item>
+		<item>de</item>
+		<item>es</item>
+		<item>fr</item>
+		<item>hu</item>
+		<item>in</item>
+		<item>it</item>
+		<item>ka</item>
+		<item>nl</item>
+		<item>pl</item>
+		<item>pt-rBR</item>
+		<item>ru-rRU</item>
+		<item>tr</item>
+		<item>uk</item>
+		<item>zh</item>
+		<item>zh-TW</item>
+		<item>zh-rCN</item>
+		<item>ja</item>
+		<item>cs</item>
+	</string-array>
+</resources>
