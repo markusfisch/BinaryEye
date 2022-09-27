@@ -1,5 +1,5 @@
 <resources>
-	<string name="no_camera_no_fun">Esta aplicación no tiene sentido usar sin acceso a la cámara. Adiós.</string>
+	<string name="no_camera_no_fun">No tiene sentido usar esta aplicación sin acceso a la cámara. Adiós.</string>
 	<string name="camera_error">No se puede acceder a la cámara, por favor, inténtelo de nuevo</string>
 	<string name="scan_code">Escanear código de barras</string>
 	<string name="compose_barcode">Componer código de barras</string>
@@ -23,7 +23,7 @@
 	<string name="suggested_price">Precio sugerido</string>
 	<string name="upc_ean_extension">Extensión UPC EAN</string>
 	<string name="qr_version">QR version</string>
-	<string name="toggle_flash">Activar la linterna</string>
+	<string name="toggle_flash">Activar el flash</string>
 	<string name="error_flash">Error toggling flash</string>
 	<string name="share">Compartir</string>
 	<string name="share_as">¿Compartir como?</string>
@@ -46,15 +46,15 @@
 	<string name="switch_camera">Cambiar cámara</string>
 	<string name="bulk_mode">Escanear constantemente</string>
 	<string name="bulk_mode_summary">Siempre iniciar escaneando constantemente</string>
-	<string name="bulk_mode_delay">Delay between continuous scans</string>
-	<string name="restrict_format">Restrict format</string>
-	<string name="remove_restriction">Remove restriction</string>
-	<string name="scan_format">Scan %s</string>
-	<string name="quarter_second">A quarter second</string>
-	<string name="half_second">Half a second</string>
-	<string name="a_second">One second</string>
-	<string name="two_seconds">Two seconds</string>
-	<string name="five_seconds">Five seconds</string>
+	<string name="bulk_mode_delay">Demora entre escaneos continuos</string>
+	<string name="restrict_format">Restringir formato</string>
+	<string name="remove_restriction">Eliminar restricción</string>
+	<string name="scan_format">Escanear %s</string>
+	<string name="quarter_second">Un cuarto de segundo</string>
+	<string name="half_second">Medio segundo</string>
+	<string name="a_second">Un segundo</string>
+	<string name="two_seconds">Dos segundos</string>
+	<string name="five_seconds">Cinco segundos</string>
 	<string name="history">Historial</string>
 	<string name="preferences">Configuración</string>
 	<string name="scan_category">Escanear</string>
@@ -108,7 +108,7 @@
 	<string name="send_type_get_query_string">GET con consulta completa</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
-	<string name="send_type_external_browser">Open in external browser</string>
+	<string name="send_type_external_browser">Abrir en el navegador</string>
 	<string name="test_url">URL de prueba</string>
 	<string name="really_remove_scan">¿Realmente desea borrar el escaneo seleccionado?</string>
 	<string name="really_remove_all_scans">¿Realmente desea borrar todo lo escaneado?</string>
@@ -158,13 +158,13 @@
 	<string name="shortcut_preferences">Ajustes</string>
 	<string name="background_request_failed">Solicitud de fondo fallida</string>
 	<string name="entry_type">Type</string>
-	<string name="wifi_network">Wi-Fi network</string>
-	<string name="wifi_ssid">Name</string>
-	<string name="wifi_type">Authentication type</string>
-	<string name="wifi_password">Password</string>
-	<string name="wifi_hidden">Hidden network</string>
-	<string name="wifi_eap">EAP method</string>
-	<string name="wifi_anonymous_identity">Anonymous identity</string>
-	<string name="wifi_identity">Identity</string>
+	<string name="wifi_network">Red wi-fi</string>
+	<string name="wifi_ssid">Nombre</string>
+	<string name="wifi_type">Tipo de autenticación</string>
+	<string name="wifi_password">Contraseña</string>
+	<string name="wifi_hidden">Red oculta</string>
+	<string name="wifi_eap">Método EAP</string>
+	<string name="wifi_anonymous_identity">Identidad anónima</string>
+	<string name="wifi_identity">Identidad</string>
 	<string name="wifi_phase2">Phase 2 method</string>
 </resources>
