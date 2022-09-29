@@ -201,7 +201,7 @@ class PickActivity : AppCompatActivity() {
 	private fun showResult() {
 		val r = result
 		if (r != null) {
-			showResult(this, r, vibrator)
+			showResult(this, r.redact(), vibrator)
 			finish()
 		} else {
 			applicationContext.toast(R.string.no_barcode_found)

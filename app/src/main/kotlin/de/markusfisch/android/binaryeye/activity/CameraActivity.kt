@@ -461,18 +461,7 @@ class CameraActivity : AppCompatActivity() {
 							frameOrientation
 						)?.let { result ->
 							if (result.text != ignoreNext) {
-								if (result.barcodeFormat == BarcodeFormat.PDF_417 && result.text != null) {
-									val iso88591Text = result.text.toByteArray(Charset.forName("ISO-8859-1"))
-									val utf8Text = String(iso88591Text, Charset.forName("UTF-8"))
-									postResult(Result(utf8Text,
-										result.rawBytes,
-										result.numBits,
-										result.resultPoints,
-										result.barcodeFormat,
-										result.timestamp))
-								} else {
-									postResult(result)
-								}
+								postResult(result.redact())
 								decoding = false
 							}
 						}
@@ -788,6 +777,25 @@ class CameraActivity : AppCompatActivity() {
 		private const val BULK_MODE = "bulk_mode"
 		private const val RESTRICT_FORMAT = "restrict_format"
 	}
+}
+
+fun Result.redact() = if (
+	barcodeFormat == BarcodeFormat.PDF_417 &&
+	text != null
+) {
+	Result(
+		String(
+			text.toByteArray(Charset.forName("ISO-8859-1")),
+			Charset.forName("UTF-8")
+		),
+		rawBytes,
+		numBits,
+		resultPoints,
+		barcodeFormat,
+		timestamp
+	)
+} else {
+	this
 }
 
 fun showResult(
