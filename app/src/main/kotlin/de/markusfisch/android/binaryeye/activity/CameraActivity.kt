@@ -24,6 +24,7 @@ import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.widget.SeekBar
+import com.google.zxing.BarcodeFormat
 import com.google.zxing.Result
 import com.google.zxing.ResultMetadataType
 import de.markusfisch.android.binaryeye.R
@@ -46,6 +47,7 @@ import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
 import de.markusfisch.android.cameraview.widget.CameraView
+import java.nio.charset.Charset
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -459,7 +461,18 @@ class CameraActivity : AppCompatActivity() {
 							frameOrientation
 						)?.let { result ->
 							if (result.text != ignoreNext) {
-								postResult(result)
+								if (result.barcodeFormat == BarcodeFormat.PDF_417 && result.text != null) {
+									val iso88591Text = result.text.toByteArray(Charset.forName("ISO-8859-1"))
+									val utf8Text = String(iso88591Text, Charset.forName("UTF-8"))
+									postResult(Result(utf8Text,
+										result.rawBytes,
+										result.numBits,
+										result.resultPoints,
+										result.barcodeFormat,
+										result.timestamp))
+								} else {
+									postResult(result)
+								}
 								decoding = false
 							}
 						}
