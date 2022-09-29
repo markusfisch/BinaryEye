@@ -6,9 +6,10 @@ import de.markusfisch.android.binaryeye.actions.IAction
 import de.markusfisch.android.binaryeye.content.openUrl
 
 object WebAction : IAction {
-	private val colloquialRegex = """^(http[s]*://)*([a-z0-9]+[a-z0-9-]*[a-z0-9]+[.])+[a-z]{2,}([?#/]+[\w/=&;._-]*)*$""".toRegex(
-		RegexOption.IGNORE_CASE
-	)
+	private val colloquialRegex =
+		"""^(http[s]*://)*([a-z0-9]+[a-z0-9-]*[a-z0-9]+[.])+[a-z]{2,}([?#/]+[\w/=&;._-]*)*$""".toRegex(
+			RegexOption.IGNORE_CASE
+		)
 
 	override val iconResId: Int = R.drawable.ic_action_open
 	override val titleResId: Int = R.string.open_url

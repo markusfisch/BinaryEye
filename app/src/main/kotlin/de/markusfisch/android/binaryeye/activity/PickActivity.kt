@@ -32,7 +32,6 @@ import de.markusfisch.android.binaryeye.widget.CropImageView
 import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxing.Zxing
-import de.markusfisch.android.scalingimageview.widget.ScalingImageView
 import kotlinx.coroutines.*
 
 class PickActivity : AppCompatActivity() {

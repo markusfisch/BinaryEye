@@ -9,7 +9,6 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.IntentAction
 import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
 import java.util.*
-import kotlin.collections.ArrayList
 
 object VCardAction : IntentAction() {
 	override val iconResId: Int

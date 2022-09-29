@@ -1,6 +1,6 @@
 package de.markusfisch.android.binaryeye.actions.web
 
-import junit.framework.TestCase.*
+import junit.framework.TestCase.assertEquals
 import org.junit.Test
 
 class WebTest {
