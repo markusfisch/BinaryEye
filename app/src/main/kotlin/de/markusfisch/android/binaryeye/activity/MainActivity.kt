@@ -80,9 +80,7 @@ class MainActivity : AppCompatActivity() {
 			return when {
 				intent.hasExtra(PREFERENCES) -> PreferencesFragment()
 				intent.hasExtra(HISTORY) -> HistoryFragment()
-				intent.hasExtra(ENCODE) -> EncodeFragment.newInstance(
-					intent.getStringExtra(ENCODE)!!
-				)
+				intent.hasExtra(ENCODE) -> EncodeFragment.newInstance()
 				intent.hasExtra(DECODED) -> DecodeFragment.newInstance(
 					intent.getParcelableExtra(DECODED)!!
 				)

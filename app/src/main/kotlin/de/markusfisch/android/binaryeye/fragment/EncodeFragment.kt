@@ -94,8 +94,8 @@ class EncodeFragment : Fragment() {
 		contentView = view.findViewById(R.id.content)
 
 		val args = arguments
-		args?.also {
-			contentView.setText(it.getString(CONTENT))
+		args?.getString(CONTENT)?.let {
+			contentView.setText(it)
 		}
 
 		val barcodeFormat = args?.getString(FORMAT)
@@ -181,11 +181,11 @@ class EncodeFragment : Fragment() {
 		private const val FORMAT = "format"
 
 		fun newInstance(
-			content: String,
+			content: String? = null,
 			format: String? = null
 		): Fragment {
 			val args = Bundle()
-			args.putString(CONTENT, content)
+			content?.let { args.putString(CONTENT, content) }
 			format?.let { args.putString(FORMAT, it) }
 			val fragment = EncodeFragment()
 			fragment.arguments = args
