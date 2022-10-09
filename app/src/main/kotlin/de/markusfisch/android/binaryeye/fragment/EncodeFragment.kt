@@ -6,16 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.google.zxing.BarcodeFormat
-import com.google.zxing.EncodeHintType
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
 import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.view.hideSoftKeyboard
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
-import java.util.*
+import de.markusfisch.android.zxingcpp.ZxingCpp.Format
 
 class EncodeFragment : Fragment() {
 	private lateinit var formatView: Spinner
@@ -26,17 +23,18 @@ class EncodeFragment : Fragment() {
 	private lateinit var contentView: EditText
 
 	private val writers = arrayListOf(
-		BarcodeFormat.AZTEC,
-		BarcodeFormat.CODABAR,
-		BarcodeFormat.CODE_39,
-		BarcodeFormat.CODE_128,
-		BarcodeFormat.DATA_MATRIX,
-		BarcodeFormat.EAN_8,
-		BarcodeFormat.EAN_13,
-		BarcodeFormat.ITF,
-		BarcodeFormat.PDF_417,
-		BarcodeFormat.QR_CODE,
-		BarcodeFormat.UPC_A
+		Format.AZTEC,
+		Format.CODABAR,
+		Format.CODE_39,
+		Format.CODE_128,
+		Format.DATA_MATRIX,
+		Format.EAN_8,
+		Format.EAN_13,
+		Format.ITF,
+		Format.PDF_417,
+		Format.QR_CODE,
+		Format.MICRO_QR_CODE,
+		Format.UPC_A
 	)
 
 	override fun onCreateView(
@@ -71,7 +69,7 @@ class EncodeFragment : Fragment() {
 				id: Long
 			) {
 				val visibility = if (
-					writers[position] == BarcodeFormat.QR_CODE
+					writers[position] == Format.QR_CODE
 				) {
 					View.VISIBLE
 				} else {
@@ -125,17 +123,6 @@ class EncodeFragment : Fragment() {
 	}
 
 	private fun encode() {
-		val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)
-		val format = writers[formatView.selectedItemPosition]
-		if (format == BarcodeFormat.QR_CODE) {
-			hints[EncodeHintType.ERROR_CORRECTION] = arrayListOf(
-				ErrorCorrectionLevel.L,
-				ErrorCorrectionLevel.M,
-				ErrorCorrectionLevel.Q,
-				ErrorCorrectionLevel.H
-			)[errorCorrectionLevel.selectedItemPosition]
-		}
-		val size = getSize(sizeBarView.progress)
 		val content = contentView.text.toString()
 		if (content.isEmpty()) {
 			Toast.makeText(
@@ -146,7 +133,12 @@ class EncodeFragment : Fragment() {
 		} else {
 			activity?.hideSoftKeyboard(contentView)
 			fragmentManager?.addFragment(
-				BarcodeFragment.newInstance(content, format, size, hints)
+				BarcodeFragment.newInstance(
+					content,
+					writers[formatView.selectedItemPosition],
+					getSize(sizeBarView.progress),
+					errorCorrectionLevel.selectedItemPosition
+				)
 			)
 		}
 	}
@@ -194,8 +186,8 @@ class EncodeFragment : Fragment() {
 	}
 }
 
-private fun resolveFormat(name: String): BarcodeFormat = try {
-	BarcodeFormat.valueOf(name)
+private fun resolveFormat(name: String): Format = try {
+	Format.valueOf(name)
 } catch (_: IllegalArgumentException) {
-	BarcodeFormat.QR_CODE
+	Format.QR_CODE
 }

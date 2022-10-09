@@ -13,8 +13,6 @@ import android.widget.EditText
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
-import com.google.zxing.qrcode.encoder.Encoder
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
 import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
@@ -215,18 +213,18 @@ class DecodeFragment : Fragment() {
 	private fun fillMetaView(tableLayout: TableLayout, scan: Scan) {
 		val items = linkedMapOf(
 			R.string.error_correction_level to scan.errorCorrectionLevel,
-			R.string.issue_number to scan.issueNumber,
-			R.string.orientation to scan.orientation,
-			R.string.other_meta_data to scan.otherMetaData,
-			R.string.pdf417_extra_metadata to scan.pdf417ExtraMetaData,
-			R.string.possible_country to scan.possibleCountry,
-			R.string.suggested_price to scan.suggestedPrice,
-			R.string.upc_ean_extension to scan.upcEanExtension
+			R.string.sequence_size to scan.sequenceSize.positiveToString(),
+			R.string.sequence_index to scan.sequenceIndex.positiveToString(),
+			R.string.sequence_id to scan.sequenceId,
+			R.string.gtin_country to scan.country,
+			R.string.gtin_add_on to scan.addOn,
+			R.string.gtin_price to scan.price,
+			R.string.gtin_issue_number to scan.issueNumber,
 		)
 		if (prefs.showQrVersion && scan.format == "QR_CODE") {
 			items.putAll(
 				linkedMapOf(
-					R.string.qr_version to "${scan.version()}"
+					R.string.barcode_version_number to "${scan.versionNumber}"
 				)
 			)
 		}
@@ -395,6 +393,8 @@ class DecodeFragment : Fragment() {
 	}
 }
 
+private fun Int.positiveToString() = if (this > -1) this.toString() else ""
+
 private fun hexDump(bytes: ByteArray, charsPerLine: Int = 33): String {
 	if (charsPerLine < 4 || bytes.isEmpty()) {
 		return ""
@@ -500,8 +500,3 @@ private fun crc4(input: ByteArray): Int {
 	crc = crc and 0xF
 	return crc
 }
-
-private fun Scan.version(): Int = Encoder.encode(
-	content,
-	ErrorCorrectionLevel.valueOf(errorCorrectionLevel ?: "L")
-).version.versionNumber

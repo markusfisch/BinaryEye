@@ -11,17 +11,6 @@ android {
 
 		versionCode 100
 		versionName '1.52.0'
-
-		// Required for desugaring.
-		multiDexEnabled true
-
-		// It's recommended to set this value to the lowest API level
-		// able to provide all the functionality.
-		renderscriptTargetApi 24
-		renderscriptSupportModeEnabled true
-		renderscriptSupportModeBlasEnabled true
-
-		testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
 	}
 
 	signingConfigs {
@@ -64,40 +53,18 @@ android {
 			enableSplit = false
 		}
 	}
-
-	compileOptions {
-		// To desugar fancy Java features in ZXing 3.4.+ that don't
-		// work on SDK < 24. See:
-		// https://github.com/zxing/zxing/issues/1170
-		coreLibraryDesugaringEnabled true
-	}
-
-	lint {
-		// Because at the time of writing, even the latest version
-		// of RenderScript is raising this error no matter if
-		// renderscriptTargetApi matches targetSdkVersion.
-		disable 'GradleCompatible'
-	}
 }
 
 dependencies {
-	androidTestImplementation('com.android.support.test:runner:1.0.2') {
-		exclude module: 'support-annotations'
-	}
-	androidTestImplementation('com.android.support.test:rules:1.0.2') {
-		exclude module: 'support-annotations'
-	}
 	testImplementation 'junit:junit:4.13.2'
 
-	coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 	implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2"
 	implementation "com.android.support:appcompat-v7:$support_version"
 	implementation "com.android.support:design:$support_version"
 	implementation "com.android.support:preference-v7:$support_version"
 	implementation "com.android.support:preference-v14:$support_version"
-	implementation 'com.google.zxing:core:3.5.0'
 	implementation 'com.github.markusfisch:CameraView:1.9.1'
 	implementation 'com.github.markusfisch:ScalingImageView:1.4.0'
-	implementation 'com.android.support:multidex:1.0.3'
+	implementation 'com.github.markusfisch:zxing-cpp:v1.4.0.1'
 }

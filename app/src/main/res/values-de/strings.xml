@@ -15,14 +15,14 @@
 	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; wiederherstellbar)</string>
 	<string name="error_correction_level_q" formatted="false">Quartile (~25&#37; wiederherstellbar)</string>
 	<string name="error_correction_level_h" formatted="false">High (~30&#37; wiederherstellbar)</string>
-	<string name="issue_number">Ausgabe Nummer</string>
-	<string name="orientation">Orientierung</string>
-	<string name="other_meta_data">Metadaten</string>
-	<string name="pdf417_extra_metadata">PDF417 Metadaten</string>
-	<string name="possible_country">Mögliches Ursprungsland</string>
-	<string name="suggested_price">Preisvorschlag</string>
-	<string name="upc_ean_extension">UPC EAN Erweiterung</string>
-	<string name="qr_version">QR Version</string>
+	<string name="sequence_size">Sequence size</string>
+	<string name="sequence_index">Sequence index</string>
+	<string name="sequence_id">Sequence ID</string>
+	<string name="gtin_issue_number">Ausgabe Nummer</string>
+	<string name="gtin_country">Mögliches Ursprungsland</string>
+	<string name="gtin_price">Preisvorschlag</string>
+	<string name="gtin_add_on">UPC EAN Erweiterung</string>
+	<string name="barcode_version_number">QR Version</string>
 	<string name="toggle_flash">Licht an/ausschalten</string>
 	<string name="error_flash">Fehler beim ein/ausschalten des Lichts</string>
 	<string name="share">Teilen</string>

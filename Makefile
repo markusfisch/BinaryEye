@@ -20,9 +20,6 @@ infer: clean
 test:
 	./gradlew test
 
-cat:
-	./gradlew test cAT
-
 testview:
 	adb shell am start -W -a android.intent.action.VIEW -d 'binaryeye://scan'
 

@@ -14,14 +14,14 @@
 	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; 准确度)</string>
 	<string name="error_correction_level_q" formatted="false">Quartile (~25&#37; 准确度)</string>
 	<string name="error_correction_level_h" formatted="false">High (~30&#37; 准确度)</string>
-	<string name="issue_number">发行编号</string>
-	<string name="orientation">方向</string>
-	<string name="other_meta_data">元数据</string>
-	<string name="pdf417_extra_metadata">PDF417 元数据</string>
-	<string name="possible_country">可能产地</string>
-	<string name="suggested_price">建议价格</string>
-	<string name="upc_ean_extension">UPC EAN 扩展</string>
-	<string name="qr_version">QR 版本</string>
+	<string name="sequence_size">Sequence size</string>
+	<string name="sequence_index">Sequence index</string>
+	<string name="sequence_id">Sequence ID</string>
+	<string name="gtin_issue_number">发行编号</string>
+	<string name="gtin_country">可能产地</string>
+	<string name="gtin_price">建议价格</string>
+	<string name="gtin_add_on">UPC EAN 扩展</string>
+	<string name="barcode_version_number">QR 版本</string>
 	<string name="toggle_flash">开关闪光灯</string>
 	<string name="error_flash">开关闪光灯出错</string>
 	<string name="share">分享</string>

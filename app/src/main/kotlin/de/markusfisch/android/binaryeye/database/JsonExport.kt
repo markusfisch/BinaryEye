@@ -26,13 +26,14 @@ fun Cursor.exportJson(): String? {
 		Database.SCANS_FORMAT,
 		Database.SCANS_CONTENT,
 		Database.SCANS_ERROR_CORRECTION_LEVEL,
-		Database.SCANS_ISSUE_NUMBER,
-		Database.SCANS_ORIENTATION,
-		Database.SCANS_OTHER_META_DATA,
-		Database.SCANS_PDF417_EXTRA_METADATA,
-		Database.SCANS_POSSIBLE_COUNTRY,
-		Database.SCANS_SUGGESTED_PRICE,
-		Database.SCANS_UPC_EAN_EXTENSION
+		Database.SCANS_VERSION_NUMBER,
+		Database.SCANS_SEQUENCE_SIZE,
+		Database.SCANS_SEQUENCE_INDEX,
+		Database.SCANS_SEQUENCE_ID,
+		Database.SCANS_GTIN_COUNTRY,
+		Database.SCANS_GTIN_ADD_ON,
+		Database.SCANS_GTIN_PRICE,
+		Database.SCANS_GTIN_ISSUE_NUMBER
 	)
 	val indices = columns.map {
 		Pair(getColumnIndex(it), it)

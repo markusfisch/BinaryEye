@@ -15,14 +15,14 @@
 	<string name="error_correction_level_m" formatted="false">Médio (~15&#37; correção)</string>
 	<string name="error_correction_level_q" formatted="false">Quartil (~25&#37; correção)</string>
 	<string name="error_correction_level_h" formatted="false">Alto (~30&#37; correção)</string>
-	<string name="issue_number">Número de emissão</string>
-	<string name="orientation">Orientação</string>
-	<string name="other_meta_data">Metadados</string>
-	<string name="pdf417_extra_metadata">Metadados PDF417</string>
-	<string name="possible_country">Possível país de fabricação</string>
-	<string name="suggested_price">Preço sugerido</string>
-	<string name="upc_ean_extension">Extensão UPC EAN</string>
-	<string name="qr_version">Versão do QR</string>
+	<string name="sequence_size">Sequence size</string>
+	<string name="sequence_index">Sequence index</string>
+	<string name="sequence_id">Sequence ID</string>
+	<string name="gtin_issue_number">Número de emissão</string>
+	<string name="gtin_country">Possível país de fabricação</string>
+	<string name="gtin_price">Preço sugerido</string>
+	<string name="gtin_add_on">Extensão UPC EAN</string>
+	<string name="barcode_version_number">Versão do QR</string>
 	<string name="toggle_flash">Ativar lanterna</string>
 	<string name="error_flash">Falha ao ligar a lanterna</string>
 	<string name="share">Compartilhar</string>

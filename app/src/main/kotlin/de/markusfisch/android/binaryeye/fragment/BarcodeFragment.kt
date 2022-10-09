@@ -9,8 +9,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.*
 import android.widget.EditText
-import com.google.zxing.BarcodeFormat
-import com.google.zxing.EncodeHintType
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.hasWritePermission
 import de.markusfisch.android.binaryeye.content.copyToClipboard
@@ -23,9 +21,8 @@ import de.markusfisch.android.binaryeye.view.doOnApplyWindowInsets
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.ConfinedScalingImageView
 import de.markusfisch.android.binaryeye.widget.toast
-import de.markusfisch.android.binaryeye.zxing.encodeAsBitmap
-import de.markusfisch.android.binaryeye.zxing.encodeAsSvg
-import de.markusfisch.android.binaryeye.zxing.encodeAsText
+import de.markusfisch.android.zxingcpp.ZxingCpp
+import de.markusfisch.android.zxingcpp.ZxingCpp.Format
 import kotlinx.coroutines.*
 import java.io.File
 import java.io.FileOutputStream
@@ -45,7 +42,7 @@ class BarcodeFragment : Fragment() {
 	private var barcodeSvg: String? = null
 	private var barcodeTxt: String? = null
 	private var content: String = ""
-	private var format: BarcodeFormat? = null
+	private var formatName: String = ""
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -67,14 +64,17 @@ class BarcodeFragment : Fragment() {
 		)
 
 		val args = arguments ?: return view
-		val content = args.getString(CONTENT) ?: return view
-		val format = args.getSerializable(FORMAT) as BarcodeFormat? ?: return view
-		val hints = args.getSerializable(HINTS) as EnumMap<EncodeHintType, Any>?
+		content = args.getString(CONTENT) ?: return view
+		formatName = args.getString(FORMAT) ?: return view
+		val format = Format.valueOf(formatName)
 		val size = args.getInt(SIZE)
+		val ecLevel = args.getInt(EC_LEVEL)
 		try {
-			barcodeBitmap = encodeAsBitmap(content, format, size, size, hints)
-			barcodeSvg = encodeAsSvg(content, format, hints)
-			barcodeTxt = encodeAsText(content, format, hints)
+			barcodeBitmap = ZxingCpp.encodeAsBitmap(
+				content, format, size, size, -1, ecLevel
+			)
+			barcodeSvg = ZxingCpp.encodeAsSvg(content, format, -1, ecLevel)
+			barcodeTxt = ZxingCpp.encodeAsText(content, format, -1, ecLevel)
 		} catch (e: Exception) {
 			var message = e.message
 			if (message == null || message.isEmpty()) {
@@ -86,8 +86,6 @@ class BarcodeFragment : Fragment() {
 			fragmentManager.popBackStack()
 			return null
 		}
-		this.content = content
-		this.format = format
 
 		val imageView = view.findViewById<ConfinedScalingImageView>(
 			R.id.barcode
@@ -167,7 +165,7 @@ class BarcodeFragment : Fragment() {
 		}
 		val view = ac.layoutInflater.inflate(R.layout.dialog_save_file, null)
 		val editText = view.findViewById<EditText>(R.id.file_name)
-		editText.setText(encodeFileName("${format.toString()}_$content"))
+		editText.setText(encodeFileName("${formatName}_$content"))
 		AlertDialog.Builder(ac)
 			.setView(view)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
@@ -251,25 +249,23 @@ class BarcodeFragment : Fragment() {
 	companion object {
 		private const val CONTENT = "content"
 		private const val FORMAT = "format"
-		private const val HINTS = "hints"
 		private const val SIZE = "size"
+		private const val EC_LEVEL = "ec_level"
 		private const val MIME_PNG = "image/png"
 		private const val MIME_SVG = "image/svg+xmg"
 		private const val MIME_TXT = "text/plain"
 
 		fun newInstance(
 			content: String,
-			format: BarcodeFormat,
+			format: Format,
 			size: Int,
-			hints: EnumMap<EncodeHintType, Any>? = null
+			ecLevel: Int = -1
 		): Fragment {
 			val args = Bundle()
 			args.putString(CONTENT, content)
-			args.putSerializable(FORMAT, format)
-			hints?.let {
-				args.putSerializable(HINTS, it)
-			}
+			args.putString(FORMAT, format.name)
 			args.putInt(SIZE, size)
+			args.putInt(EC_LEVEL, ecLevel)
 			val fragment = BarcodeFragment()
 			fragment.arguments = args
 			return fragment

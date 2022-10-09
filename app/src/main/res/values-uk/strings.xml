@@ -16,14 +16,14 @@
 	<string name="error_correction_level_m" formatted="false">Середній (~15&#37; виправлення)</string>
 	<string name="error_correction_level_q" formatted="false">Квартиль (~25&#37; виправлення)</string>
 	<string name="error_correction_level_h" formatted="false">Високий (~30&#37; виправлення)</string>
-	<string name="issue_number">Номер випуску</string>
-	<string name="orientation">Орієнтація</string>
-	<string name="other_meta_data">Метадані</string>
-	<string name="pdf417_extra_metadata">Метадані PDF417</string>
-	<string name="possible_country">Можлива країна-виробник</string>
-	<string name="suggested_price">Рекомендована ціна</string>
-	<string name="upc_ean_extension">Розширення UPC EAN</string>
-	<string name="qr_version">QR version</string>
+	<string name="sequence_size">Sequence size</string>
+	<string name="sequence_index">Sequence index</string>
+	<string name="sequence_id">Sequence ID</string>
+	<string name="gtin_issue_number">Номер випуску</string>
+	<string name="gtin_country">Можлива країна-виробник</string>
+	<string name="gtin_price">Рекомендована ціна</string>
+	<string name="gtin_add_on">Розширення UPC EAN</string>
+	<string name="barcode_version_number">QR version</string>
 	<string name="toggle_flash">Увімкнути спалах</string>
 	<string name="error_flash">Error toggling flash</string>
 	<string name="share">Поділитися</string>

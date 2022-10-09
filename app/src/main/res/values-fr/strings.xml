@@ -16,14 +16,14 @@
 	<string name="error_correction_level_m" formatted="false">Moyen (~15% de correction)</string>
 	<string name="error_correction_level_q" formatted="false">Quartile (~25% de correction)</string>
 	<string name="error_correction_level_h" formatted="false">Élevé (~30% de correction)</string>
-	<string name="issue_number">Numéro du problème</string>
-	<string name="orientation">Orientation</string>
-	<string name="other_meta_data">Métadonnées</string>
-	<string name="pdf417_extra_metadata">Métadonnées PDF417</string>
-	<string name="possible_country">Pays de fabrication possible</string>
-	<string name="suggested_price">Prix suggéré</string>
-	<string name="upc_ean_extension">Extension UPC EAN</string>
-	<string name="qr_version">QR version</string>
+	<string name="sequence_size">Sequence size</string>
+	<string name="sequence_index">Sequence index</string>
+	<string name="sequence_id">Sequence ID</string>
+	<string name="gtin_issue_number">Numéro du problème</string>
+	<string name="gtin_country">Pays de fabrication possible</string>
+	<string name="gtin_price">Prix suggéré</string>
+	<string name="gtin_add_on">Extension UPC EAN</string>
+	<string name="barcode_version_number">QR version</string>
 	<string name="toggle_flash">Activer le flash</string>
 	<string name="error_flash">Erreur de basculement du flash</string>
 	<string name="share">Partager</string>

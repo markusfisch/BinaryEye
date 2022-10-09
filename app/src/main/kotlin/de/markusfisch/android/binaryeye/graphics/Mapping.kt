@@ -2,61 +2,86 @@ package de.markusfisch.android.binaryeye.graphics
 
 import android.graphics.Matrix
 import android.graphics.Rect
-import com.google.zxing.ResultPoint
+import android.graphics.RectF
+import de.markusfisch.android.zxingcpp.ZxingCpp.Position
+import kotlin.math.roundToInt
 
-fun mapResultToView(
-	frameWidth: Int,
-	frameHeight: Int,
-	frameOrientation: Int,
-	viewRect: Rect,
-	resultPoints: Array<ResultPoint?>,
-	targetArray: FloatArray
-): Int = getFrameToViewMatrix(
-	frameWidth,
-	frameHeight,
-	frameOrientation,
-	viewRect
-).map(
-	resultPoints,
-	targetArray
+data class FrameMetrics(
+	var width: Int = 0,
+	var height: Int = 0,
+	var orientation: Int = 0
 )
 
-fun getFrameToViewMatrix(
-	frameWidth: Int,
-	frameHeight: Int,
-	frameOrientation: Int,
-	viewRect: Rect
-) = Matrix().apply {
-	// Normalize to frame dimensions for rotation.
-	postScale(
-		1f / frameWidth,
-		1f / frameHeight
-	)
-	// Rotate around center.
-	postRotate(frameOrientation.toFloat(), 0.5f, 0.5f)
-	// Scale up to view size.
-	postScale(viewRect.width().toFloat(), viewRect.height().toFloat())
-	// Apply view displacement.
-	postTranslate(viewRect.left.toFloat(), viewRect.top.toFloat())
+fun Rect.setFrameRoi(
+	frameMetrics: FrameMetrics,
+	viewRect: Rect,
+	viewRoi: Rect
+) {
+	Matrix().apply {
+		// Map ROI from view coordinates to frame coordinates.
+		setScale(1f / viewRect.width(), 1f / viewRect.height())
+		postRotate(-frameMetrics.orientation.toFloat(), .5f, .5f)
+		postScale(frameMetrics.width.toFloat(), frameMetrics.height.toFloat())
+		postTranslate(-viewRect.left.toFloat(), -viewRect.top.toFloat())
+		val frameRoiF = RectF()
+		val viewRoiF = RectF(
+			viewRoi.left.toFloat(),
+			viewRoi.top.toFloat(),
+			viewRoi.right.toFloat(),
+			viewRoi.bottom.toFloat()
+		)
+		mapRect(frameRoiF, viewRoiF)
+		set(
+			frameRoiF.left.roundToInt(),
+			frameRoiF.top.roundToInt(),
+			frameRoiF.right.roundToInt(),
+			frameRoiF.bottom.roundToInt()
+		)
+	}
 }
 
-fun Matrix.map(
-	resultPoints: Array<ResultPoint?>,
-	targetArray: FloatArray
-): Int {
-	val max = targetArray.size
-	var i = 0
-	for (resultPoint in resultPoints) {
-		// Because ZXing apparently returns null in this array sometimes.
-		if (resultPoint == null) {
-			continue
+fun Matrix.setFrameToView(
+	frameMetrics: FrameMetrics,
+	viewRect: Rect,
+	viewRoi: Rect? = null
+) {
+	// Configure this matrix to map points in frame coordinates to
+	// view coordinates.
+	val uprightWidth: Int
+	val uprightHeight: Int
+	when (frameMetrics.orientation) {
+		90, 270 -> {
+			uprightWidth = frameMetrics.height
+			uprightHeight = frameMetrics.width
 		}
-		targetArray[i++] = resultPoint.x
-		targetArray[i++] = resultPoint.y
-		if (i >= max) {
-			break
+		else -> {
+			uprightWidth = frameMetrics.width
+			uprightHeight = frameMetrics.height
 		}
 	}
-	mapPoints(targetArray, 0, targetArray, 0, i)
+	setScale(
+		viewRect.width().toFloat() / uprightWidth,
+		viewRect.height().toFloat() / uprightHeight
+	)
+	viewRoi?.let {
+		postTranslate(viewRoi.left.toFloat(), viewRoi.top.toFloat())
+	}
+}
+
+fun Matrix.mapPosition(
+	position: Position,
+	coords: FloatArray
+): Int {
+	var i = 0
+	setOf(
+		position.topLeft,
+		position.topRight,
+		position.bottomRight,
+		position.bottomLeft
+	).forEach {
+		coords[i++] = it.x.toFloat()
+		coords[i++] = it.y.toFloat()
+	}
+	mapPoints(coords)
 	return i
 }

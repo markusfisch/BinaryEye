@@ -15,14 +15,14 @@
 	<string name="error_correction_level_m" formatted="false">Orta (~&#37;15 düzeltim)</string>
 	<string name="error_correction_level_q" formatted="false">Dörtte Bir (~&#37;25 düzeltim)</string>
 	<string name="error_correction_level_h" formatted="false">Yüksek (~&#37;30 düzeltim)</string>
-	<string name="issue_number">Basım sayısı</string>
-	<string name="orientation">Yönelim</string>
-	<string name="other_meta_data">Üst veri</string>
-	<string name="pdf417_extra_metadata">PDF417 üst verisi</string>
-	<string name="possible_country">Olası üretim yeri</string>
-	<string name="suggested_price">Önerilen fiyat</string>
-	<string name="upc_ean_extension">UPC EAN eklentisi</string>
-	<string name="qr_version">QR version</string>
+	<string name="sequence_size">Sequence size</string>
+	<string name="sequence_index">Sequence index</string>
+	<string name="sequence_id">Sequence ID</string>
+	<string name="gtin_issue_number">Basım sayısı</string>
+	<string name="gtin_country">Olası üretim yeri</string>
+	<string name="gtin_price">Önerilen fiyat</string>
+	<string name="gtin_add_on">UPC EAN eklentisi</string>
+	<string name="barcode_version_number">QR version</string>
 	<string name="toggle_flash">Flaşı aç</string>
 	<string name="error_flash">Error toggling flash</string>
 	<string name="share">Paylaş</string>

@@ -3,6 +3,7 @@ package de.markusfisch.android.binaryeye.activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Matrix
 import android.graphics.Rect
 import android.graphics.RectF
 import android.net.Uri
@@ -11,19 +12,17 @@ import android.os.Parcelable
 import android.os.Vibrator
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.support.v8.renderscript.RenderScript
 import android.view.Menu
 import android.view.MenuItem
-import com.google.zxing.Result
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.applyLocale
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.graphics.crop
+import de.markusfisch.android.binaryeye.graphics.fixTransparency
 import de.markusfisch.android.binaryeye.graphics.loadImageUri
-import de.markusfisch.android.binaryeye.graphics.mapResultToView
+import de.markusfisch.android.binaryeye.graphics.mapPosition
 import de.markusfisch.android.binaryeye.os.getVibrator
 import de.markusfisch.android.binaryeye.os.vibrate
-import de.markusfisch.android.binaryeye.rs.fixTransparency
 import de.markusfisch.android.binaryeye.view.colorSystemAndToolBars
 import de.markusfisch.android.binaryeye.view.initSystemBars
 import de.markusfisch.android.binaryeye.view.recordToolbarHeight
@@ -31,15 +30,18 @@ import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.CropImageView
 import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
-import de.markusfisch.android.binaryeye.zxing.Zxing
+import de.markusfisch.android.zxingcpp.ZxingCpp
+import de.markusfisch.android.zxingcpp.ZxingCpp.Result
 import kotlinx.coroutines.*
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.roundToInt
 
 class PickActivity : AppCompatActivity() {
-	private val zxing = Zxing()
+	private val matrix = Matrix()
 	private val parentJob = Job()
 	private val scope = CoroutineScope(Dispatchers.IO + parentJob)
 
-	private lateinit var rs: RenderScript
 	private lateinit var vibrator: Vibrator
 	private lateinit var cropImageView: CropImageView
 	private lateinit var detectorView: DetectorView
@@ -59,11 +61,6 @@ class PickActivity : AppCompatActivity() {
 		// locale.
 		setTitle(R.string.pick_code_to_scan)
 
-		zxing.updateHints(
-			true,
-			prefs.barcodeFormats
-		)
-		rs = RenderScript.create(this)
 		vibrator = getVibrator()
 
 		initSystemBars(this)
@@ -75,7 +72,7 @@ class PickActivity : AppCompatActivity() {
 			colorSystemAndToolBars(this@PickActivity)
 		}
 
-		val bitmap = fixTransparency(rs, getBitmapFromIntent())
+		val bitmap = getBitmapFromIntent()?.fixTransparency()
 		if (bitmap == null) {
 			applicationContext.toast(R.string.error_no_content)
 			finish()
@@ -117,40 +114,55 @@ class PickActivity : AppCompatActivity() {
 	}
 
 	private fun scanWithinBounds(bitmap: Bitmap) {
-		val roi = Rect(detectorView.roi)
-		val rectInView = if (roi.width() < 1) {
+		val viewRoi = if (detectorView.roi.width() < 1) {
 			cropImageView.getBoundsRect()
 		} else {
-			roi
+			detectorView.roi
 		}
-		val imageRect = cropImageView.mappedRect
-		val rectInImage = normalizeRoi(imageRect, rectInView)
+		val mappedRect = cropImageView.mappedRect
 		val cropped = bitmap.crop(
-			rectInImage,
+			getNormalizedRoi(mappedRect, viewRoi),
 			cropImageView.imageRotation,
 			cropImageView.pivotX,
 			cropImageView.pivotY
 		) ?: return
+		val croppedInView = Rect(
+			max(viewRoi.left, mappedRect.left.roundToInt()),
+			max(viewRoi.top, mappedRect.top.roundToInt()),
+			min(viewRoi.right, mappedRect.right.roundToInt()),
+			min(viewRoi.bottom, mappedRect.bottom.roundToInt())
+		)
+		matrix.apply {
+			setScale(
+				croppedInView.width().toFloat() / cropped.width,
+				croppedInView.height().toFloat() / cropped.height
+			)
+			postTranslate(
+				croppedInView.left.toFloat(),
+				croppedInView.top.toFloat()
+			)
+		}
 		scope.launch {
-			result = zxing.decodePositiveNegative(cropped)
-			result?.let {
+			ZxingCpp.readBitmap(
+				cropped,
+				0, 0,
+				cropped.width, cropped.height,
+				0,
+				prefs.barcodeFormats.joinToString(),
+				tryHarder = true,
+				tryRotate = true,
+				tryInvert = true,
+				tryDownscale = true
+			)?.let {
 				withContext(Dispatchers.Main) {
 					if (isFinishing) {
 						return@withContext
 					}
+					result = it
 					vibrator.vibrate()
-					val rc = Rect()
-					imageRect.round(rc)
-					if (!rectInView.intersect(rc)) {
-						return@withContext
-					}
 					detectorView.update(
-						mapResultToView(
-							cropped.width,
-							cropped.height,
-							0,
-							rectInView,
-							it.resultPoints,
+						matrix.mapPosition(
+							it.position,
 							detectorView.coordinates
 						)
 					)
@@ -162,7 +174,6 @@ class PickActivity : AppCompatActivity() {
 	override fun onDestroy() {
 		super.onDestroy()
 		detectorView.saveCropHandlePos()
-		rs.destroy()
 		parentJob.cancel()
 	}
 
@@ -208,7 +219,7 @@ class PickActivity : AppCompatActivity() {
 	}
 }
 
-private fun normalizeRoi(imageRect: RectF, roi: Rect): RectF {
+private fun getNormalizedRoi(imageRect: RectF, roi: Rect): RectF {
 	val w = imageRect.width()
 	val h = imageRect.height()
 	return RectF(

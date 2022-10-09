@@ -15,14 +15,14 @@
 	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; correction)</string>
 	<string name="error_correction_level_q" formatted="false">Quartile (~25&#37; correction)</string>
 	<string name="error_correction_level_h" formatted="false">High (~30&#37; correction)</string>
-	<string name="issue_number">გამოშვების ნომერი</string>
-	<string name="orientation">ორიენტაცია</string>
-	<string name="other_meta_data">მეტამონაცემები</string>
-	<string name="pdf417_extra_metadata">PDF417 მეტამონაცემები</string>
-	<string name="possible_country">შესაძლო მწარმოებელი ქვეყანა</string>
-	<string name="suggested_price">დაახლოებითი ფასი</string>
-	<string name="upc_ean_extension">UPC EAN გაფართოება</string>
-	<string name="qr_version">QR version</string>
+	<string name="sequence_size">Sequence size</string>
+	<string name="sequence_index">Sequence index</string>
+	<string name="sequence_id">Sequence ID</string>
+	<string name="gtin_issue_number">გამოშვების ნომერი</string>
+	<string name="gtin_country">შესაძლო მწარმოებელი ქვეყანა</string>
+	<string name="gtin_price">დაახლოებითი ფასი</string>
+	<string name="gtin_add_on">UPC EAN გაფართოება</string>
+	<string name="barcode_version_number">QR version</string>
 	<string name="toggle_flash">განათების ჩართვა</string>
 	<string name="error_flash">Error toggling flash</string>
 	<string name="share">გაზიარება</string>

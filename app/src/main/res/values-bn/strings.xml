@@ -15,14 +15,14 @@
 	<string name="error_correction_level_m" formatted="false">মধ্যম (~১৫&#37; ঠিককরণ)</string>
 	<string name="error_correction_level_q" formatted="false">বেশি (~২৫&#37; ঠিককরণ)</string>
 	<string name="error_correction_level_h" formatted="false">অনেক বেশি (~৩০&#37; ঠিককরণ)</string>
-	<string name="issue_number">সমস্যা ক্রম</string>
-	<string name="orientation">দিক</string>
-	<string name="other_meta_data">মেটাতথ্য</string>
-	<string name="pdf417_extra_metadata">পিডিএফ৪১৭ মেটাতথ্য</string>
-	<string name="possible_country">তৈরির সম্ভাব্য দেশ</string>
-	<string name="suggested_price">প্রস্তসবিত দাম</string>
-	<string name="upc_ean_extension">ইউপিসি ইএএন বর্ধিত</string>
-	<string name="qr_version">QR version</string>
+	<string name="sequence_size">Sequence size</string>
+	<string name="sequence_index">Sequence index</string>
+	<string name="sequence_id">Sequence ID</string>
+	<string name="gtin_issue_number">সমস্যা ক্রম</string>
+	<string name="gtin_country">তৈরির সম্ভাব্য দেশ</string>
+	<string name="gtin_price">প্রস্তসবিত দাম</string>
+	<string name="gtin_add_on">ইউপিসি ইএএন বর্ধিত</string>
+	<string name="barcode_version_number">QR version</string>
 	<string name="toggle_flash">আলো</string>
 	<string name="error_flash">Error toggling flash</string>
 	<string name="share">ভাগ করো</string>

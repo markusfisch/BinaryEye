@@ -15,14 +15,14 @@
 	<string name="error_correction_level_m" formatted="false">Middelhoog (~15&#37; correction)</string>
 	<string name="error_correction_level_q" formatted="false">Kwartiel (~25&#37; correction)</string>
 	<string name="error_correction_level_h" formatted="false">Hoog (~30&#37; correction)</string>
-	<string name="issue_number">Uitgiftenummer</string>
-	<string name="orientation">Oriëntatie</string>
-	<string name="other_meta_data">Metadata</string>
-	<string name="pdf417_extra_metadata">PDF417 metadata</string>
-	<string name="possible_country">Mogelijk land van fabricage</string>
-	<string name="suggested_price">Adviesprijs</string>
-	<string name="upc_ean_extension">UPC EAN extensie</string>
-	<string name="qr_version">QR version</string>
+	<string name="sequence_size">Sequence size</string>
+	<string name="sequence_index">Sequence index</string>
+	<string name="sequence_id">Sequence ID</string>
+	<string name="gtin_issue_number">Uitgiftenummer</string>
+	<string name="gtin_country">Mogelijk land van fabricage</string>
+	<string name="gtin_price">Adviesprijs</string>
+	<string name="gtin_add_on">UPC EAN extensie</string>
+	<string name="barcode_version_number">QR version</string>
 	<string name="toggle_flash">Zaklamp aan/uit</string>
 	<string name="error_flash">Error toggling flash</string>
 	<string name="share">Delen</string>

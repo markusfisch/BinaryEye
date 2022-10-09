@@ -15,14 +15,14 @@
 	<string name="error_correction_level_m" formatted="false">Közepes (~15&#37; javítás)</string>
 	<string name="error_correction_level_q" formatted="false">Kvartilis (~25&#37; javítás)</string>
 	<string name="error_correction_level_h" formatted="false">Magas (~30&#37; javítás)</string>
-	<string name="issue_number">Hibaszám</string>
-	<string name="orientation">Tájolás</string>
-	<string name="other_meta_data">Metaadat</string>
-	<string name="pdf417_extra_metadata">PDF417 metaadat</string>
-	<string name="possible_country">Gyártó lehetséges országa</string>
-	<string name="suggested_price">Ajánlott ár</string>
-	<string name="upc_ean_extension">UPC EAN kiterjesztés</string>
-	<string name="qr_version">QR version</string>
+	<string name="sequence_size">Sequence size</string>
+	<string name="sequence_index">Sequence index</string>
+	<string name="sequence_id">Sequence ID</string>
+	<string name="gtin_issue_number">Hibaszám</string>
+	<string name="gtin_country">Gyártó lehetséges országa</string>
+	<string name="gtin_price">Ajánlott ár</string>
+	<string name="gtin_add_on">UPC EAN kiterjesztés</string>
+	<string name="barcode_version_number">QR version</string>
 	<string name="toggle_flash">Vaku be- vagy kikapcsolása</string>
 	<string name="error_flash">Hiba a vaku be- vagy kikapcsolásakor</string>
 	<string name="share">Megosztás</string>

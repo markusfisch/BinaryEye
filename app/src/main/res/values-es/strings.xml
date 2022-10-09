@@ -15,14 +15,14 @@
 	<string name="error_correction_level_m" formatted="false">Medio (~15&#37; de correción)</string>
 	<string name="error_correction_level_q" formatted="false">Cuartil (~25&#37; de correción)</string>
 	<string name="error_correction_level_h" formatted="false">Alto (~30&#37; de correción)</string>
-	<string name="issue_number">Número de emisión</string>
-	<string name="orientation">Orientación</string>
-	<string name="other_meta_data">Metadatos</string>
-	<string name="pdf417_extra_metadata">Metadatos PDF417</string>
-	<string name="possible_country">Posible país de fabricación</string>
-	<string name="suggested_price">Precio sugerido</string>
-	<string name="upc_ean_extension">Extensión UPC EAN</string>
-	<string name="qr_version">QR version</string>
+	<string name="sequence_size">Sequence size</string>
+	<string name="sequence_index">Sequence index</string>
+	<string name="sequence_id">Sequence ID</string>
+	<string name="gtin_issue_number">Número de emisión</string>
+	<string name="gtin_country">Posible país de fabricación</string>
+	<string name="gtin_price">Precio sugerido</string>
+	<string name="gtin_add_on">Extensión UPC EAN</string>
+	<string name="barcode_version_number">QR version</string>
 	<string name="toggle_flash">Activar el flash</string>
 	<string name="error_flash">Error toggling flash</string>
 	<string name="share">Compartir</string>

@@ -17,14 +17,14 @@
 	<string name="error_correction_level_m" formatted="false">Средний (≈15&#37; исправлений)</string>
 	<string name="error_correction_level_q" formatted="false">Квартиль (≈25&#37; исправлений)</string>
 	<string name="error_correction_level_h" formatted="false">Высокий (≈30&#37; исправлений)</string>
-	<string name="issue_number">Номер выпуска</string>
-	<string name="orientation">Ориентация</string>
-	<string name="other_meta_data">Метаданные</string>
-	<string name="pdf417_extra_metadata">Метаданные PDF417</string>
-	<string name="possible_country">Возможная страна изготовления</string>
-	<string name="suggested_price">Предположительная цена</string>
-	<string name="upc_ean_extension">Расширение UPC EAN</string>
-	<string name="qr_version">QR version</string>
+	<string name="sequence_size">Sequence size</string>
+	<string name="sequence_index">Sequence index</string>
+	<string name="sequence_id">Sequence ID</string>
+	<string name="gtin_issue_number">Номер выпуска</string>
+	<string name="gtin_country">Возможная страна изготовления</string>
+	<string name="gtin_price">Предположительная цена</string>
+	<string name="gtin_add_on">Расширение UPC EAN</string>
+	<string name="barcode_version_number">QR version</string>
 	<string name="toggle_flash">Включить вспышку</string>
 	<string name="error_flash">Ошибка при переключении вспышки</string>
 	<string name="share">Поделиться</string>

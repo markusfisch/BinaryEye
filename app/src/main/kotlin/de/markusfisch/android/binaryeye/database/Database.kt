@@ -36,13 +36,14 @@ class Database {
 			$SCANS_RAW,
 			$SCANS_FORMAT,
 			$SCANS_ERROR_CORRECTION_LEVEL,
-			$SCANS_ISSUE_NUMBER,
-			$SCANS_ORIENTATION,
-			$SCANS_OTHER_META_DATA,
-			$SCANS_PDF417_EXTRA_METADATA,
-			$SCANS_POSSIBLE_COUNTRY,
-			$SCANS_SUGGESTED_PRICE,
-			$SCANS_UPC_EAN_EXTENSION
+			$SCANS_VERSION_NUMBER,
+			$SCANS_SEQUENCE_SIZE,
+			$SCANS_SEQUENCE_INDEX,
+			$SCANS_SEQUENCE_ID,
+			$SCANS_GTIN_COUNTRY,
+			$SCANS_GTIN_ADD_ON,
+			$SCANS_GTIN_PRICE,
+			$SCANS_GTIN_ISSUE_NUMBER
 			FROM $SCANS
 			${getWhereClause(query)}
 			ORDER BY $SCANS_DATETIME DESC
@@ -77,13 +78,13 @@ class Database {
 			$SCANS_RAW,
 			$SCANS_FORMAT,
 			$SCANS_ERROR_CORRECTION_LEVEL,
-			$SCANS_ISSUE_NUMBER,
-			$SCANS_ORIENTATION,
-			$SCANS_OTHER_META_DATA,
-			$SCANS_PDF417_EXTRA_METADATA,
-			$SCANS_POSSIBLE_COUNTRY,
-			$SCANS_SUGGESTED_PRICE,
-			$SCANS_UPC_EAN_EXTENSION
+			$SCANS_SEQUENCE_SIZE,
+			$SCANS_SEQUENCE_INDEX,
+			$SCANS_SEQUENCE_ID,
+			$SCANS_GTIN_COUNTRY,
+			$SCANS_GTIN_ADD_ON,
+			$SCANS_GTIN_PRICE,
+			$SCANS_GTIN_ISSUE_NUMBER
 			FROM $SCANS
 			WHERE $SCANS_ID = ?
 		""".trimMargin(), arrayOf("$id")
@@ -94,13 +95,14 @@ class Database {
 				it.getBlob(SCANS_RAW),
 				it.getString(SCANS_FORMAT),
 				it.getString(SCANS_ERROR_CORRECTION_LEVEL),
-				it.getString(SCANS_ISSUE_NUMBER),
-				it.getString(SCANS_ORIENTATION),
-				it.getString(SCANS_OTHER_META_DATA),
-				it.getString(SCANS_PDF417_EXTRA_METADATA),
-				it.getString(SCANS_POSSIBLE_COUNTRY),
-				it.getString(SCANS_SUGGESTED_PRICE),
-				it.getString(SCANS_UPC_EAN_EXTENSION),
+				it.getInt(SCANS_VERSION_NUMBER),
+				it.getInt(SCANS_SEQUENCE_SIZE),
+				it.getInt(SCANS_SEQUENCE_INDEX),
+				it.getString(SCANS_SEQUENCE_ID),
+				it.getString(SCANS_GTIN_COUNTRY),
+				it.getString(SCANS_GTIN_ADD_ON),
+				it.getString(SCANS_GTIN_PRICE),
+				it.getString(SCANS_GTIN_ISSUE_NUMBER),
 				it.getString(SCANS_DATETIME),
 				it.getLong(SCANS_ID)
 			)
@@ -125,13 +127,14 @@ class Database {
 			scan.errorCorrectionLevel?.let {
 				put(SCANS_ERROR_CORRECTION_LEVEL, it)
 			}
-			scan.issueNumber?.let { put(SCANS_ISSUE_NUMBER, it) }
-			scan.orientation?.let { put(SCANS_ORIENTATION, it) }
-			scan.otherMetaData?.let { put(SCANS_OTHER_META_DATA, it) }
-			scan.pdf417ExtraMetaData?.let { put(SCANS_PDF417_EXTRA_METADATA, it) }
-			scan.possibleCountry?.let { put(SCANS_POSSIBLE_COUNTRY, it) }
-			scan.suggestedPrice?.let { put(SCANS_SUGGESTED_PRICE, it) }
-			scan.upcEanExtension?.let { put(SCANS_UPC_EAN_EXTENSION, it) }
+			put(SCANS_VERSION_NUMBER, scan.versionNumber)
+			put(SCANS_SEQUENCE_SIZE, scan.sequenceSize)
+			put(SCANS_SEQUENCE_INDEX, scan.sequenceIndex)
+			put(SCANS_SEQUENCE_ID, scan.sequenceId)
+			scan.country?.let { put(SCANS_GTIN_COUNTRY, it) }
+			scan.addOn?.let { put(SCANS_GTIN_ADD_ON, it) }
+			scan.price?.let { put(SCANS_GTIN_PRICE, it) }
+			scan.issueNumber?.let { put(SCANS_GTIN_ISSUE_NUMBER, it) }
 			if (prefs.ignoreConsecutiveDuplicates) {
 				val id = getIdOfLastScan(
 					get(SCANS_CONTENT) as String,
@@ -188,7 +191,7 @@ class Database {
 	}
 
 	private class OpenHelper(context: Context) :
-		SQLiteOpenHelper(context, FILE_NAME, null, 4) {
+		SQLiteOpenHelper(context, FILE_NAME, null, 5) {
 		override fun onCreate(db: SQLiteDatabase) {
 			createScans(db)
 		}
@@ -207,6 +210,9 @@ class Database {
 			if (oldVersion < 4) {
 				addNameColumn(db)
 			}
+			if (oldVersion < 5) {
+				migrateToZxingCpp(db)
+			}
 		}
 	}
 
@@ -220,6 +226,7 @@ class Database {
 		const val SCANS_RAW = "raw"
 		const val SCANS_FORMAT = "format"
 		const val SCANS_ERROR_CORRECTION_LEVEL = "error_correction_level"
+		const val SCANS_VERSION_NUMBER = "version_number"
 		const val SCANS_ISSUE_NUMBER = "issue_number"
 		const val SCANS_ORIENTATION = "orientation"
 		const val SCANS_OTHER_META_DATA = "other_meta_data"
@@ -227,6 +234,13 @@ class Database {
 		const val SCANS_POSSIBLE_COUNTRY = "possible_country"
 		const val SCANS_SUGGESTED_PRICE = "suggested_price"
 		const val SCANS_UPC_EAN_EXTENSION = "upc_ean_extension"
+		const val SCANS_SEQUENCE_SIZE = "sequence_size"
+		const val SCANS_SEQUENCE_INDEX = "sequence_index"
+		const val SCANS_SEQUENCE_ID = "sequence_id"
+		const val SCANS_GTIN_COUNTRY = "gtin_country"
+		const val SCANS_GTIN_ADD_ON = "gtin_add_on"
+		const val SCANS_GTIN_PRICE = "gtin_price"
+		const val SCANS_GTIN_ISSUE_NUMBER = "gtin_issue_number"
 
 		private fun createScans(db: SQLiteDatabase) {
 			db.execSQL("DROP TABLE IF EXISTS $SCANS".trimMargin())
@@ -239,13 +253,14 @@ class Database {
 					$SCANS_RAW BLOB,
 					$SCANS_FORMAT TEXT NOT NULL,
 					$SCANS_ERROR_CORRECTION_LEVEL TEXT,
-					$SCANS_ISSUE_NUMBER INT,
-					$SCANS_ORIENTATION INT,
-					$SCANS_OTHER_META_DATA TEXT,
-					$SCANS_PDF417_EXTRA_METADATA TEXT,
-					$SCANS_POSSIBLE_COUNTRY TEXT,
-					$SCANS_SUGGESTED_PRICE TEXT,
-					$SCANS_UPC_EAN_EXTENSION TEXT
+					$SCANS_VERSION_NUMBER INTEGER,
+					$SCANS_SEQUENCE_SIZE INTEGER,
+					$SCANS_SEQUENCE_INDEX INTEGER,
+					$SCANS_SEQUENCE_ID TEXT,
+					$SCANS_GTIN_COUNTRY TEXT,
+					$SCANS_GTIN_ADD_ON TEXT,
+					$SCANS_GTIN_PRICE TEXT,
+					$SCANS_GTIN_ISSUE_NUMBER TEXT
 				)""".trimMargin()
 			)
 		}
@@ -269,6 +284,25 @@ class Database {
 
 		private fun addNameColumn(db: SQLiteDatabase) {
 			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_NAME TEXT".trimMargin())
+		}
+
+		private fun migrateToZxingCpp(db: SQLiteDatabase) {
+			db.apply {
+				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_VERSION_NUMBER INTEGER".trimMargin())
+				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_SEQUENCE_SIZE INTEGER".trimMargin())
+				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_SEQUENCE_INDEX INTEGER".trimMargin())
+				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_SEQUENCE_ID TEXT".trimMargin())
+				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_GTIN_COUNTRY TEXT".trimMargin())
+				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_GTIN_ADD_ON TEXT".trimMargin())
+				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_GTIN_PRICE TEXT".trimMargin())
+				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_GTIN_ISSUE_NUMBER TEXT".trimMargin())
+				execSQL("UPDATE $SCANS SET $SCANS_SEQUENCE_SIZE = -1")
+				execSQL("UPDATE $SCANS SET $SCANS_SEQUENCE_INDEX = -1")
+				execSQL("UPDATE $SCANS SET $SCANS_GTIN_COUNTRY = $SCANS_POSSIBLE_COUNTRY")
+				execSQL("UPDATE $SCANS SET $SCANS_GTIN_ADD_ON = $SCANS_UPC_EAN_EXTENSION")
+				execSQL("UPDATE $SCANS SET $SCANS_GTIN_PRICE = $SCANS_SUGGESTED_PRICE")
+				execSQL("UPDATE $SCANS SET $SCANS_GTIN_ISSUE_NUMBER = $SCANS_ISSUE_NUMBER")
+			}
 		}
 	}
 }

@@ -69,13 +69,14 @@ private fun Scan.getMap(): Map<String, String> = mapOf(
 	"raw" to raw?.toHexString(),
 	"format" to format,
 	"errorCorrectionLevel" to errorCorrectionLevel,
+	"versionNumber" to versionNumber.toString(),
+	"sequenceSize" to sequenceSize.toString(),
+	"sequenceIndex" to sequenceIndex.toString(),
+	"sequenceId" to sequenceId,
+	"country" to country,
+	"addOn" to addOn,
+	"price" to price,
 	"issueNumber" to issueNumber,
-	"orientation" to orientation,
-	"otherMetaData" to otherMetaData,
-	"pdf417ExtraMetaData" to pdf417ExtraMetaData,
-	"possibleCountry" to possibleCountry,
-	"suggestedPrice" to suggestedPrice,
-	"upcEanExtension" to upcEanExtension,
 	"timestamp" to dateTime
 ).filterNullValues()
 

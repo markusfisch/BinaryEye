@@ -15,14 +15,14 @@
 	<string name="error_correction_level_m" formatted="false">متوسط (⁦~۱۵٪⁩ تصحیح)</string>
 	<string name="error_correction_level_q" formatted="false">یک‌چهارم (⁦~۲۵٪⁩ تصحیح)</string>
 	<string name="error_correction_level_h" formatted="false">زیاد (⁦~۳۰٪⁩ تصحیح)</string>
-	<string name="issue_number">شمارهٔ اشکال</string>
-	<string name="orientation">جهت</string>
-	<string name="other_meta_data">فراداده</string>
-	<string name="pdf417_extra_metadata">فرادادهٔ PDF417</string>
-	<string name="possible_country">کشور احتمالی سازنده</string>
-	<string name="suggested_price">قیمت پیشنهادی</string>
-	<string name="upc_ean_extension">UPC EAN extension</string>
-	<string name="qr_version">نگارش کیوآر</string>
+	<string name="sequence_size">Sequence size</string>
+	<string name="sequence_index">Sequence index</string>
+	<string name="sequence_id">Sequence ID</string>
+	<string name="gtin_issue_number">شمارهٔ اشکال</string>
+	<string name="gtin_country">کشور احتمالی سازنده</string>
+	<string name="gtin_price">قیمت پیشنهادی</string>
+	<string name="gtin_add_on">UPC EAN extension</string>
+	<string name="barcode_version_number">نگارش کیوآر</string>
 	<string name="toggle_flash">روشن/خاموش کردن چراغ</string>
 	<string name="error_flash">خطا هنگام روشن/خاموش کردن چراغ</string>
 	<string name="share">هم‌رسانی</string>

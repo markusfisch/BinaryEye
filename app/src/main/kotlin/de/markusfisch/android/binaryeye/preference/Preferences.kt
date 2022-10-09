@@ -5,28 +5,29 @@ import android.content.SharedPreferences
 import android.os.Build
 import android.preference.PreferenceManager
 import android.support.annotation.RequiresApi
+import de.markusfisch.android.zxingcpp.ZxingCpp.Format
 
 class Preferences {
 	lateinit var preferences: SharedPreferences
 
 	var barcodeFormats = setOf(
-		"AZTEC",
-		"CODABAR",
-		"CODE_39",
-		"CODE_93",
-		"CODE_128",
-		"DATA_MATRIX",
-		"EAN_8",
-		"EAN_13",
-		"ITF",
-		"MAXICODE",
-		"PDF_417",
-		"QR_CODE",
-		"RSS_14",
-		"RSS_EXPANDED",
-		"UPC_A",
-		"UPC_E",
-		"UPC_EAN_EXTENSION"
+		Format.AZTEC.name,
+		Format.CODABAR.name,
+		Format.CODE_39.name,
+		Format.CODE_93.name,
+		Format.CODE_128.name,
+		Format.DATA_BAR.name,
+		Format.DATA_BAR_EXPANDED.name,
+		Format.DATA_MATRIX.name,
+		Format.EAN_8.name,
+		Format.EAN_13.name,
+		Format.ITF.name,
+		Format.MAXICODE.name,
+		Format.PDF_417.name,
+		Format.QR_CODE.name,
+		Format.MICRO_QR_CODE.name,
+		Format.UPC_A.name,
+		Format.UPC_E.name,
 	)
 		@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 		set(value) {
@@ -293,7 +294,7 @@ class Preferences {
 	}
 
 	companion object {
-		private const val BARCODE_FORMATS = "barcode_formats"
+		private const val BARCODE_FORMATS = "formats"
 		private const val CROP_HANDLE_X = "crop_handle_x"
 		private const val CROP_HANDLE_Y = "crop_handle_y"
 		private const val CROP_HANDLE_ORIENTATION = "crop_handle_orientation"

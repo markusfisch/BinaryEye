@@ -17,14 +17,14 @@
 	<string name="error_correction_level_m" formatted="false">Střední (~15&#37; korekce)</string>
 	<string name="error_correction_level_q" formatted="false">Čtvrtinový (~25&#37; korekce)</string>
 	<string name="error_correction_level_h" formatted="false">Vysoký (~30&#37; korekce)</string>
-	<string name="issue_number">Číslo edice</string>
-	<string name="orientation">Orientace</string>
-	<string name="other_meta_data">Metadata</string>
-	<string name="pdf417_extra_metadata">PDF417 metadata</string>
-	<string name="possible_country">Možná země původu</string>
-	<string name="suggested_price">Doporučená cena</string>
-	<string name="upc_ean_extension">rozšíření UPC EAN</string>
-	<string name="qr_version">QR version</string>
+	<string name="sequence_size">Sequence size</string>
+	<string name="sequence_index">Sequence index</string>
+	<string name="sequence_id">Sequence ID</string>
+	<string name="gtin_issue_number">Číslo edice</string>
+	<string name="gtin_country">Možná země původu</string>
+	<string name="gtin_price">Doporučená cena</string>
+	<string name="gtin_add_on">rozšíření UPC EAN</string>
+	<string name="barcode_version_number">QR version</string>
 	<string name="toggle_flash">Zap/vyp blesk</string>
 	<string name="error_flash">Zapnutí/vypnutí blesku selhalo</string>
 	<string name="share">Sdílet</string>
