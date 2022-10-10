@@ -17,14 +17,14 @@
 	<string name="error_correction_level_m" formatted="false">Средний (≈15&#37; исправлений)</string>
 	<string name="error_correction_level_q" formatted="false">Квартиль (≈25&#37; исправлений)</string>
 	<string name="error_correction_level_h" formatted="false">Высокий (≈30&#37; исправлений)</string>
-	<string name="sequence_size">Sequence size</string>
-	<string name="sequence_index">Sequence index</string>
-	<string name="sequence_id">Sequence ID</string>
+	<string name="sequence_size">Размер последовательности</string>
+	<string name="sequence_index">Индекс последовательности</string>
+	<string name="sequence_id">Идентификатор последовательности</string>
 	<string name="gtin_issue_number">Номер выпуска</string>
 	<string name="gtin_country">Возможная страна изготовления</string>
 	<string name="gtin_price">Предположительная цена</string>
 	<string name="gtin_add_on">Расширение UPC EAN</string>
-	<string name="barcode_version_number">QR version</string>
+	<string name="barcode_version_number">Версия QR</string>
 	<string name="toggle_flash">Включить вспышку</string>
 	<string name="error_flash">Ошибка при переключении вспышки</string>
 	<string name="share">Поделиться</string>
