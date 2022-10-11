@@ -85,8 +85,6 @@
 	<string name="copy_immediately_summary">Eingelesene Inhalte werden automatisch in die Zwischenablage kopiert. Bitte beachten Sie, dass andere Anwendungen die Zwischenablage im Hintergrund auslesen können.</string>
 	<string name="show_meta_data">Meta Daten anzeigen</string>
 	<string name="show_meta_data_summary">Zusätzliche Daten über den eingelesenen Barcode anzeigen.</string>
-	<string name="show_qr_version">QR Version anzeigen</string>
-	<string name="show_qr_version_summary">Versionsnummer für QR Codes anzeigen.</string>
 	<string name="show_hex_dump">Hex Dump anzeigen</string>
 	<string name="show_hex_dump_summary">Zeigt einen Hexdump des eingelesenen Inhalts an.</string>
 	<string name="close_automatically">Automatisch zurückkehren</string>

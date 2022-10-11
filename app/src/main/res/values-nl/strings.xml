@@ -85,8 +85,6 @@
 	<string name="copy_immediately_summary">Kopieer de gescande inhoud automatisch naar het klembord. Let op: andere apps kunnen mogelijk meelezen op de achtergrond.</string>
 	<string name="show_meta_data">Metadata tonen</string>
 	<string name="show_meta_data_summary">Toon extra gegevens over de gescande barcode.</string>
-	<string name="show_qr_version">Show QR version</string>
-	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="show_hex_dump">Hex-dump tonen</string>
 	<string name="show_hex_dump_summary">Hex-dump van de gescande inhoud tonen.</string>
 	<string name="close_automatically">Teruggaan na kopiëren/delen</string>

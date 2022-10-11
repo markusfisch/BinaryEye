@@ -84,8 +84,6 @@
 	<string name="copy_immediately_summary">注意其他 APP 可能会在后台监控剪贴板</string>
 	<string name="show_meta_data">显示元数据</string>
 	<string name="show_meta_data_summary">显示已扫描条码的额外数据</string>
-	<string name="show_qr_version">显示 QR 版本</string>
-	<string name="show_qr_version_summary">显示 QR Code 的版本号</string>
 	<string name="show_hex_dump">显示16进制数据</string>
 	<string name="show_hex_dump_summary">显示已扫描条码的16进制数据</string>
 	<string name="close_automatically">复制/分享后自动返回</string>

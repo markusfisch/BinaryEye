@@ -221,7 +221,7 @@ class DecodeFragment : Fragment() {
 			R.string.gtin_price to scan.price,
 			R.string.gtin_issue_number to scan.issueNumber,
 		)
-		if (prefs.showQrVersion && scan.format == "QR_CODE") {
+		if (scan.format == "QR_CODE") {
 			items.putAll(
 				linkedMapOf(
 					R.string.barcode_version_number to "${scan.versionNumber}"

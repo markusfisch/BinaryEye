@@ -87,8 +87,6 @@
 	<string name="copy_immediately_summary">Automaticky zkopírovat naskenovaný obsah do schránky. Pozor, jiné aplikace jej mohou ze schránky přečíst, i když neběží.</string>
 	<string name="show_meta_data">Zobrazit metadata</string>
 	<string name="show_meta_data_summary">Zobrazí další data o naskenovaném čárovém kódu.</string>
-	<string name="show_qr_version">Show QR version</string>
-	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="show_hex_dump">Zobrazit hex dump</string>
 	<string name="show_hex_dump_summary">Zobrazí hex dump naskenovaného obsahu.</string>
 	<string name="close_automatically">Vrátit se po zkopírování/sdílení</string>

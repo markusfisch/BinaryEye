@@ -85,8 +85,6 @@
 	<string name="copy_immediately_summary">به طور خودکار محتوای پویش شده را در تخته‌گیره رونوشت می‌کند. لطفاً توجه داشته باشید که برنامه‌های دیگر ممکن است در پس‌زمینه تخته‌گیرهٔ شما را شنود کنند.</string>
 	<string name="show_meta_data">نمایش فراداده</string>
 	<string name="show_meta_data_summary">نمایش داده‌های اضافی در مورد بارکد پویش شده.</string>
-	<string name="show_qr_version">نمایش نگارش کیوآر</string>
-	<string name="show_qr_version_summary">نگارش کیوآر را نمایش می‌دهد.</string>
 	<string name="show_hex_dump">نمایش کد هگز استخراج شده</string>
 	<string name="show_hex_dump_summary">نمایش کد هگز استخراج شده از محتویات پویش شده.</string>
 	<string name="close_automatically">بازگشت پس از رونوشت یا هم‌رسانی</string>

@@ -86,8 +86,6 @@
 	<string name="copy_immediately_summary">Автоматично копіювати відсканований вміст у буфер обміну. Зверніть увагу, що інші програми можуть стежити за буфером обміну в фоновому режимі.</string>
 	<string name="show_meta_data">Показувати метадані</string>
 	<string name="show_meta_data_summary">Показувати додаткові дані про відскановані штрих-коди.</string>
-	<string name="show_qr_version">Show QR version</string>
-	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="show_hex_dump">Показувати шістнадцятковий дамп</string>
 	<string name="show_hex_dump_summary">Показувати шістнадцятковий дамп відсканованого вмісту.</string>
 	<string name="close_automatically">Повернутися після копіювання/поширення</string>

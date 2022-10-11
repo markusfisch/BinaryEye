@@ -85,8 +85,6 @@
 	<string name="copy_immediately_summary">Beolvasott tartalom automatikus másolása a vágólapra. Ne feledje, hogy más alkalmazások megfigyelhetik a vágólapját a háttérben.</string>
 	<string name="show_meta_data">Metaadatok megjelenítése</string>
 	<string name="show_meta_data_summary">További adatok megjelenítése a beolvasott vonalkódokról.</string>
-	<string name="show_qr_version">Show QR version</string>
-	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="show_hex_dump">Hexakiírás megjelenítése</string>
 	<string name="show_hex_dump_summary">A beolvasott tartalom hexakiírásának megjelenítése.</string>
 	<string name="close_automatically">Ugrás vissza másolás vagy megosztás után</string>

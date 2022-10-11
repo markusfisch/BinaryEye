@@ -86,8 +86,6 @@
 	<string name="copy_immediately_summary">Copie automatiquement les contenus scannés dans le presse-papiers. Veuillez noter que les autres applications peuvent fouiner dans votre presse-papiers en arrière-plan.</string>
 	<string name="show_meta_data">Afficher les méta-données</string>
 	<string name="show_meta_data_summary">Affiche les données supplémentaires sur le code-barres scanné.</string>
-	<string name="show_qr_version">Afficher la version QR</string>
-	<string name="show_qr_version_summary">Affiche le numéro de version QR.</string>
 	<string name="show_hex_dump">Afficher le dump hexa</string>
 	<string name="show_hex_dump_summary">Affiche le dump hexadécimal du contenu scanné.</string>
 	<string name="close_automatically">Revenir après une copie/partage</string>

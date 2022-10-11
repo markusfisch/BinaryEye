@@ -84,8 +84,6 @@
 	<string name="copy_immediately_summary">自動將掃描的內容複製到剪貼簿。請注意，其他 App 可能會在背景監控剪貼簿。</string>
 	<string name="show_meta_data">顯示 Metadata</string>
 	<string name="show_meta_data_summary">顯示已掃描條碼的額外資訊。</string>
-	<string name="show_qr_version">Show QR version</string>
-	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="show_hex_dump">顯示 Hex dump</string>
 	<string name="show_hex_dump_summary">顯示已掃描條碼的 Hex dump。</string>
 	<string name="close_automatically">複製/分享後自動返回</string>

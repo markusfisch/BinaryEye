@@ -84,8 +84,6 @@
 	<string name="copy_immediately_summary">Tự động sao chép kết quả. Lưu ý: ứng dụng khác có thể xem nội dung bạn đã sao chép.</string>
 	<string name="show_meta_data">Hiện dữ liệu</string>
 	<string name="show_meta_data_summary">Hiện thêm thông tin về mã vạch quét được.</string>
-	<string name="show_qr_version">Show QR version</string>
-	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="show_hex_dump">Hiện mã thập lục phân</string>
 	<string name="show_hex_dump_summary">Hiện mã thập lục phân từ mã quét được.</string>
 	<string name="close_automatically">Quay lại sau khi Sao chép/Chia sẻ</string>

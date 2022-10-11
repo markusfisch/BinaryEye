@@ -85,8 +85,6 @@
 	<string name="copy_immediately_summary">Automatically copy scanned contents into clipboard. Please note that other apps may snoop on your clipboard in the background.</string>
 	<string name="show_meta_data">Show metadata</string>
 	<string name="show_meta_data_summary">Show additional data about the scanned barcode.</string>
-	<string name="show_qr_version">Show QR version</string>
-	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="show_hex_dump">Show hex dump</string>
 	<string name="show_hex_dump_summary">Show a hex dump of the scanned contents.</string>
 	<string name="close_automatically">Go back after Copy/Share</string>

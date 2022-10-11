@@ -84,8 +84,6 @@
 	<string name="copy_immediately_summary">スキャンされたコンテンツを自動的にクリップボードにコピーします。他のアプリはクリップボードの内容を見ることができることにご注意ください。</string>
 	<string name="show_meta_data">メタデータを表示</string>
 	<string name="show_meta_data_summary">スキャンされたバーコードの追加データを確認できるようにします。</string>
-	<string name="show_qr_version">Show QR version</string>
-	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="show_hex_dump">16進数を表示</string>
 	<string name="show_hex_dump_summary">スキャンされたコンテンツの16進数データを確認できるようにします。</string>
 	<string name="close_automatically">コピー/共有後に戻る</string>

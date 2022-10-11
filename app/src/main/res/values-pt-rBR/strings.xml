@@ -85,8 +85,6 @@
 	<string name="copy_immediately_summary">Copiar automaticamente ao clipboard o conteúdo digitalizado. Tem cuidado porque outros apps podem examinar seu clipboard em segundo plano.</string>
 	<string name="show_meta_data">Mostrar metadados</string>
 	<string name="show_meta_data_summary">Mostrar dados adicionais de código digitalizado.</string>
-	<string name="show_qr_version">Mostrar a versão do QR</string>
-	<string name="show_qr_version_summary">Mostrar o número de versão do código QR.</string>
 	<string name="show_hex_dump">Mostrar impressão hexadecimal</string>
 	<string name="show_hex_dump_summary">Mostrar a impressão hexadecimal do conteúdo digitalizado.</string>
 	<string name="close_automatically">Voltar após copiar/compartilhar</string>

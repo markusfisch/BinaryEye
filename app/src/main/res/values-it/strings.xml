@@ -85,8 +85,6 @@
 	<string name="copy_immediately_summary">Copia automaticamente i contenuti scansionati negli appunti. Nota che altre app potrebbero leggere gli appunti in secondo piano.</string>
 	<string name="show_meta_data">Mostra metadati</string>
 	<string name="show_meta_data_summary">Mostra dati aggiuntivi sul codice a barre scansionato.</string>
-	<string name="show_qr_version">Mostra versione QR</string>
-	<string name="show_qr_version_summary">Show QR version number.</string>
 	<string name="show_hex_dump">Mostra dump esadecimale</string>
 	<string name="show_hex_dump_summary">Mostra un dump esadecimale dei contenuti scansionati.</string>
 	<string name="close_automatically">Vai indietro dopo la Copia/Condivisione</string>
