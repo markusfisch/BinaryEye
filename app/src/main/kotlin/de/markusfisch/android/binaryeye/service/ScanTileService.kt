@@ -8,7 +8,6 @@ import de.markusfisch.android.binaryeye.activity.CameraActivity
 
 @RequiresApi(Build.VERSION_CODES.N)
 class ScanTileService : TileService() {
-	@RequiresApi(Build.VERSION_CODES.N)
 	override fun onClick() {
 		super.onClick()
 		val intent = Intent(applicationContext, CameraActivity::class.java)
