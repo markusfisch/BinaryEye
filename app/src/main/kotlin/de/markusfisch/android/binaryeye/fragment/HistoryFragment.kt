@@ -310,7 +310,13 @@ class HistoryFragment : Fragment() {
 		val nameView = view.findViewById<EditText>(R.id.name)
 		nameView.setText(text)
 		AlertDialog.Builder(this)
-			.setTitle(content?.ellipsize(64))
+			.setTitle(
+				if (content.isNullOrEmpty()) {
+					getString(R.string.binary_data)
+				} else {
+					content.ellipsize(64)
+				}
+			)
 			.setView(view)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				val name = nameView.text.toString()
