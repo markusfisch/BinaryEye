@@ -33,7 +33,6 @@ class EncodeFragment : Fragment() {
 		Format.ITF,
 		Format.PDF_417,
 		Format.QR_CODE,
-		Format.MICRO_QR_CODE,
 		Format.UPC_A
 	)
 
