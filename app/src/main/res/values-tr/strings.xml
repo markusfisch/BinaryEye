@@ -22,7 +22,8 @@
 	<string name="gtin_country">Olası üretim yeri</string>
 	<string name="gtin_price">Önerilen fiyat</string>
 	<string name="gtin_add_on">UPC EAN eklentisi</string>
-	<string name="barcode_version_number">QR version</string>
+	<string name="barcode_version_number">Version</string>
+	<string name="qr_version_and_modules">%1$d (%2$d modules)</string>
 	<string name="toggle_flash">Flaşı aç</string>
 	<string name="error_flash">Error toggling flash</string>
 	<string name="share">Paylaş</string>

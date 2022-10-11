@@ -21,7 +21,8 @@
 	<string name="gtin_country">可能产地</string>
 	<string name="gtin_price">建议价格</string>
 	<string name="gtin_add_on">UPC EAN 扩展</string>
-	<string name="barcode_version_number">QR 版本</string>
+	<string name="barcode_version_number">版本</string>
+	<string name="qr_version_and_modules">%1$d (%2$d modules)</string>
 	<string name="toggle_flash">开关闪光灯</string>
 	<string name="error_flash">开关闪光灯出错</string>
 	<string name="share">分享</string>

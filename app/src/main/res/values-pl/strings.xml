@@ -133,7 +133,8 @@
 	<string name="follow_system_settings">Zgodny z ustawieniami systemu</string>
 	<string name="decode_barcode">Dekoduj kod kreskowy</string>
 	<string name="gtin_add_on">Dodatek UPC EAN</string>
-	<string name="barcode_version_number">QR version</string>
+	<string name="barcode_version_number">Version</string>
+	<string name="qr_version_and_modules">%1$d (%2$d modules)</string>
 	<string name="gtin_country">Możliwy kraj produkcji</string>
 	<string name="encode">ZAKODUJ</string>
 	<string name="error_no_content">Brak zawartości</string>
