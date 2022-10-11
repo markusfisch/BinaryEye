@@ -2,6 +2,7 @@ package de.markusfisch.android.binaryeye.adapter
 
 import android.content.Context
 import android.database.Cursor
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,35 +16,64 @@ import java.util.*
 
 class ScansAdapter(context: Context, cursor: Cursor) :
 	CursorAdapter(context, cursor, false) {
-	var selectedScanId = 0L
-	var selectedScanPosition = -1
-
 	private val idIndex = cursor.getColumnIndex(Database.SCANS_ID)
 	private val timeIndex = cursor.getColumnIndex(Database.SCANS_DATETIME)
 	private val nameIndex = cursor.getColumnIndex(Database.SCANS_NAME)
 	private val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
 	private val formatIndex = cursor.getColumnIndex(Database.SCANS_FORMAT)
+	private val selections = mutableMapOf<Long, Int>()
+	private val selectedColor = ContextCompat.getColor(
+		context, R.color.selected_row
+	)
 
-	fun select(id: Long, position: Int) {
-		selectedScanId = id
-		selectedScanPosition = position
+	fun select(view: View, id: Long, position: Int) {
+		view.select(
+			if (selections[id] == null) {
+				selections[id] = position
+				true
+			} else {
+				selections.remove(id)
+				false
+			}
+		)
 	}
 
 	fun clearSelection() {
-		selectedScanId = 0L
-		selectedScanPosition = -1
+		selections.clear()
 	}
 
-	fun getSelectedContent() = if (selectedScanPosition < 0) {
-		null
-	} else {
-		val cursor = getItem(selectedScanPosition)
-		if (cursor is Cursor) {
-			cursor.getString(contentIndex)
-		} else {
-			null
+	fun forSelection(callback: (Long, Int) -> Unit) {
+		selections.forEach {
+			callback.invoke(it.key, it.value)
 		}
 	}
+
+	fun getSelectedIds(): List<Long> = mutableListOf<Long>().apply {
+		forSelection { id, _ ->
+			add(id)
+		}
+	}
+
+	fun getSelectedContent(separator: String): String {
+		val sb = StringBuilder()
+		forSelection { _, position ->
+			getContent(position)?.let {
+				if (sb.isNotEmpty()) {
+					sb.append(separator)
+				}
+				sb.append(it)
+			}
+		}
+		return sb.toString()
+	}
+
+	fun getName(
+		position: Int
+	) = (getItem(position) as Cursor?)?.getString(nameIndex)
+
+	fun getContent(
+		position: Int
+	) = (getItem(position) as Cursor?)?.getString(contentIndex)
 
 	override fun newView(
 		context: Context,
@@ -78,11 +108,15 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 			)
 			formatView.text = prettifyFormatName(cursor.getString(formatIndex))
 		}
-		// view.isSelected needs to be put on the queue to work.
-		val selected = cursor.getLong(idIndex) == selectedScanId
+		val selected = selections[cursor.getLong(idIndex)] != null
 		view.post {
-			view.isSelected = selected
+			// Needs to be put on the queue to work.
+			view.select(selected)
 		}
+	}
+
+	private fun View.select(selected: Boolean) {
+		setBackgroundColor(if (selected) selectedColor else 0)
 	}
 
 	private fun getViewHolder(

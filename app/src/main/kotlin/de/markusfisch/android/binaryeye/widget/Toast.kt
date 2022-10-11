@@ -15,7 +15,7 @@ fun Context.toast(message: String) = Toast.makeText(
 	Toast.LENGTH_LONG
 ).show()
 
-private fun String.ellipsize(max: Int) = if (length < max) {
+fun String.ellipsize(max: Int) = if (length < max) {
 	this
 } else {
 	"${take(max)}…"

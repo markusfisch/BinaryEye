@@ -23,10 +23,14 @@ import de.markusfisch.android.binaryeye.adapter.ScansAdapter
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.shareText
-import de.markusfisch.android.binaryeye.database.*
+import de.markusfisch.android.binaryeye.database.Database
+import de.markusfisch.android.binaryeye.database.exportCsv
+import de.markusfisch.android.binaryeye.database.exportDatabase
+import de.markusfisch.android.binaryeye.database.exportJson
 import de.markusfisch.android.binaryeye.io.askForFileName
 import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.view.*
+import de.markusfisch.android.binaryeye.widget.ellipsize
 import de.markusfisch.android.binaryeye.widget.toast
 import kotlinx.coroutines.*
 
@@ -72,7 +76,7 @@ class HistoryFragment : Fragment() {
 			val ac = activity ?: return false
 			return when (item.itemId) {
 				R.id.copy_scan -> {
-					scansAdapter?.getSelectedContent()?.let {
+					scansAdapter?.getSelectedContent("\n")?.let {
 						ac.copyToClipboard(it)
 						ac.toast(R.string.copied_to_clipboard)
 					}
@@ -80,19 +84,21 @@ class HistoryFragment : Fragment() {
 					true
 				}
 				R.id.edit_scan -> {
-					scansAdapter?.let {
-						askForName(
-							ac,
-							it.selectedScanId,
-							getScanName(it.selectedScanPosition)
+					scansAdapter?.forSelection { id, position ->
+						ac.askForName(
+							id,
+							scansAdapter?.getName(position),
+							scansAdapter?.getContent(position)
 						)
 					}
 					closeActionMode()
 					true
 				}
 				R.id.remove_scan -> {
-					scansAdapter?.let {
-						askToRemoveScan(ac, it.selectedScanId)
+					scansAdapter?.getSelectedIds()?.let {
+						if (it.isNotEmpty()) {
+							ac.askToRemoveScans(it)
+						}
 					}
 					closeActionMode()
 					true
@@ -142,8 +148,7 @@ class HistoryFragment : Fragment() {
 			showScan(id)
 		}
 		listView.setOnItemLongClickListener { _, v, position, id ->
-			v.isSelected = true
-			scansAdapter?.select(id, position)
+			scansAdapter?.select(v, id, position)
 			if (actionMode == null && ac is AppCompatActivity) {
 				actionMode = ac.delegate.startSupportActionMode(
 					actionModeCallback
@@ -155,7 +160,7 @@ class HistoryFragment : Fragment() {
 
 		fab = view.findViewById(R.id.share)
 		fab.setOnClickListener { v ->
-			pickListSeparatorAndShare(v.context)
+			v.context.pickListSeparatorAndShare()
 		}
 
 		progressView = view.findViewById(R.id.progress_view)
@@ -217,7 +222,7 @@ class HistoryFragment : Fragment() {
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return when (item.itemId) {
 			R.id.clear -> {
-				askToRemoveScans(context)
+				context.askToRemoveScans()
 				true
 			}
 			R.id.export_history -> {
@@ -296,20 +301,16 @@ class HistoryFragment : Fragment() {
 		}
 	}
 
-	private fun getScanName(position: Int): String? {
-		val cursor = scansAdapter?.getItem(position) as Cursor?
-		return cursor?.getString(Database.SCANS_NAME)
-	}
-
 	// Dialogs don't have a parent layout.
 	@SuppressLint("InflateParams")
-	private fun askForName(context: Context, id: Long, text: String?) {
-		val view = LayoutInflater.from(context).inflate(
+	private fun Context.askForName(id: Long, text: String?, content: String?) {
+		val view = LayoutInflater.from(this).inflate(
 			R.layout.dialog_enter_name, null
 		)
 		val nameView = view.findViewById<EditText>(R.id.name)
 		nameView.setText(text)
-		AlertDialog.Builder(context)
+		AlertDialog.Builder(this)
+			.setTitle(content?.ellipsize(64))
 			.setView(view)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				val name = nameView.text.toString()
@@ -320,11 +321,17 @@ class HistoryFragment : Fragment() {
 			.show()
 	}
 
-	private fun askToRemoveScan(context: Context, id: Long) {
-		AlertDialog.Builder(context)
-			.setMessage(R.string.really_remove_scan)
+	private fun Context.askToRemoveScans(ids: List<Long>) {
+		AlertDialog.Builder(this)
+			.setMessage(
+				if (ids.size > 1) {
+					R.string.really_remove_selected_scans
+				} else {
+					R.string.really_remove_scan
+				}
+			)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
-				db.removeScan(id)
+				ids.forEach { db.removeScan(it) }
 				if (scansAdapter?.count == 1) {
 					updateAndClearFilter()
 				} else {
@@ -336,8 +343,8 @@ class HistoryFragment : Fragment() {
 			.show()
 	}
 
-	private fun askToRemoveScans(context: Context) {
-		AlertDialog.Builder(context)
+	private fun Context.askToRemoveScans() {
+		AlertDialog.Builder(this)
 			.setMessage(
 				if (filter == null) {
 					R.string.really_remove_all_scans
@@ -398,11 +405,11 @@ class HistoryFragment : Fragment() {
 		}
 	}
 
-	private fun pickListSeparatorAndShare(context: Context) {
-		val separators = context.resources.getStringArray(
+	private fun Context.pickListSeparatorAndShare() {
+		val separators = resources.getStringArray(
 			R.array.list_separators_values
 		)
-		AlertDialog.Builder(context)
+		AlertDialog.Builder(this)
 			.setTitle(R.string.pick_list_separator)
 			.setItems(R.array.list_separators_names) { _, which ->
 				shareScans(separators[which])

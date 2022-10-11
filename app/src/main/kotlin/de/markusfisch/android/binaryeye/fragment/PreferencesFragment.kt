@@ -52,28 +52,28 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 			pref.isVisible = false
 		} else {
 			pref.setOnPreferenceClickListener {
-				askToClearNetworkSuggestions(context)
+				context.askToClearNetworkSuggestions()
 				true
 			}
 		}
 	}
 
 	@RequiresApi(Build.VERSION_CODES.Q)
-	private fun askToClearNetworkSuggestions(context: Context) {
-		AlertDialog.Builder(context)
+	private fun Context.askToClearNetworkSuggestions() {
+		AlertDialog.Builder(this)
 			.setMessage(R.string.really_remove_all_networks)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
-				clearNetworkSuggestions(context)
+				clearNetworkSuggestions()
 			}
 			.setNegativeButton(android.R.string.cancel) { _, _ -> }
 			.show()
 	}
 
 	@RequiresApi(Build.VERSION_CODES.Q)
-	private fun clearNetworkSuggestions(context: Context) {
-		context.toast(
+	private fun Context.clearNetworkSuggestions() {
+		toast(
 			if (
-				removeNetworkSuggestions(context) == WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS
+				removeNetworkSuggestions(this) == WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS
 			) {
 				R.string.clear_network_suggestions_success
 			} else {
