@@ -3,7 +3,7 @@ package de.markusfisch.android.binaryeye.database
 import android.os.Parcel
 import android.os.Parcelable
 import android.text.format.DateFormat
-import de.markusfisch.android.binaryeye.app.hasNonPrintableCharacters
+import de.markusfisch.android.zxingcpp.ZxingCpp.ContentType
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
 
 data class Scan(
@@ -145,12 +145,15 @@ private fun Parcel.readSizedByteArray(): ByteArray? {
 fun Result.toScan(): Scan {
 	val content: String
 	val raw: ByteArray?
-	if (text.hasNonPrintableCharacters()) {
-		content = ""
-		raw = rawBytes
-	} else {
-		content = text
-		raw = null
+	when (contentType) {
+		ContentType.TEXT -> {
+			content = text
+			raw = null
+		}
+		else -> {
+			content = ""
+			raw = rawBytes
+		}
 	}
 	return Scan(
 		content,

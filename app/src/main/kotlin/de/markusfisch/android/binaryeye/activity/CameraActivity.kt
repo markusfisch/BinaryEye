@@ -621,6 +621,7 @@ fun Result.redact() = if (
 ) {
 	Result(
 		format,
+		contentType,
 		String(
 			text.toByteArray(Charset.forName("ISO-8859-1")),
 			Charset.forName("UTF-8")
