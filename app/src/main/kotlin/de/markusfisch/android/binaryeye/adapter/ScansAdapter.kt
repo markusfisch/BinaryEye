@@ -11,6 +11,7 @@ import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.database.Database
 import java.text.DateFormat
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -139,11 +140,15 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 fun prettifyFormatName(format: String) = format.replace("_", " ")
 
 private fun formatDateTime(rfc: String): String {
-	SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).parse(rfc)?.let {
-		return DateFormat.getDateTimeInstance(
-			DateFormat.LONG,
-			DateFormat.SHORT
-		).format(it)
+	try {
+		SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).parse(rfc)?.let {
+			return DateFormat.getDateTimeInstance(
+				DateFormat.LONG,
+				DateFormat.SHORT
+			).format(it)
+		}
+	} catch (e: ParseException) {
+		// Ignore and fall through.
 	}
 	return rfc
 }
