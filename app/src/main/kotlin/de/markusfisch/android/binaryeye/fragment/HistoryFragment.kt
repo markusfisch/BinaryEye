@@ -27,6 +27,7 @@ import de.markusfisch.android.binaryeye.database.Database
 import de.markusfisch.android.binaryeye.database.exportCsv
 import de.markusfisch.android.binaryeye.database.exportDatabase
 import de.markusfisch.android.binaryeye.database.exportJson
+import de.markusfisch.android.binaryeye.database.use
 import de.markusfisch.android.binaryeye.io.askForFileName
 import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.view.*
