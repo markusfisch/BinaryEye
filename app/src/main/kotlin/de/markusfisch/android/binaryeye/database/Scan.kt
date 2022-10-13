@@ -1,5 +1,6 @@
 package de.markusfisch.android.binaryeye.database
 
+import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
 import android.text.format.DateFormat
@@ -118,8 +119,16 @@ data class Scan(
 	}
 }
 
-private fun getDateTime(time: Long = System.currentTimeMillis()) = DateFormat.format(
-	"yyyy-MM-dd HH:mm:ss",
+private fun getDateTime(
+	time: Long = System.currentTimeMillis()
+) = DateFormat.format(
+	if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
+		// Up to API level 17, 'k' was interpreted as 'H', which wasn't
+		// implemented until API level 18.
+		"yyyy-MM-dd kk:mm:ss"
+	} else {
+		"yyyy-MM-dd HH:mm:ss"
+	},
 	time
 ).toString()
 
