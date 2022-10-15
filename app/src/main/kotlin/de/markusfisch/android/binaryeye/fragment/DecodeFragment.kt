@@ -324,16 +324,16 @@ class DecodeFragment : Fragment() {
 		if (ac is WifiAction) {
 			ac.password?.let { password ->
 				activity?.apply {
-					copyToClipboard(password)
+					copyToClipboard(password, isSensitive = true)
 					toast(R.string.copied_password_to_clipboard)
 				}
 			}
 		}
 	}
 
-	private fun copyToClipboard(text: String) {
+	private fun copyToClipboard(text: String, isSensitive: Boolean = false) {
 		activity?.apply {
-			copyToClipboard(text)
+			copyToClipboard(text, isSensitive)
 			toast(R.string.copied_to_clipboard)
 		}
 	}
