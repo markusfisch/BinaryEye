@@ -98,7 +98,7 @@ class EncodeFragment : Fragment() {
 		val barcodeFormat = args?.getString(FORMAT)
 		if (barcodeFormat != null) {
 			formatView.setSelection(
-				writers.indexOf(resolveFormat(barcodeFormat))
+				writers.indexOf(barcodeFormat.toFormat())
 			)
 		} else if (state == null) {
 			formatView.post {
@@ -185,8 +185,8 @@ class EncodeFragment : Fragment() {
 	}
 }
 
-private fun resolveFormat(name: String): Format = try {
-	Format.valueOf(name)
+private fun String.toFormat(default: Format = Format.QR_CODE): Format = try {
+	Format.valueOf(this)
 } catch (_: IllegalArgumentException) {
-	Format.QR_CODE
+	default
 }
