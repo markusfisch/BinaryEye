@@ -25,7 +25,7 @@
 	<string name="gtin_price">Предположительная цена</string>
 	<string name="gtin_add_on">Расширение UPC EAN</string>
 	<string name="barcode_version_number">Версия</string>
-	<string name="qr_version_and_modules">%1$d (%2$d modules)</string>
+	<string name="qr_version_and_modules">%1$d (модули: %2$d)</string>
 	<string name="toggle_flash">Включить вспышку</string>
 	<string name="error_flash">Ошибка при переключении вспышки</string>
 	<string name="share">Поделиться</string>
