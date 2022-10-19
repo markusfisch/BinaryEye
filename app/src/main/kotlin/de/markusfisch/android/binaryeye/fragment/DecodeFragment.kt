@@ -244,6 +244,10 @@ class DecodeFragment : Fragment() {
 		tableLayout: TableLayout,
 		items: LinkedHashMap<Int, String?>
 	) {
+		if (items.isEmpty()) {
+			tableLayout.visibility = View.GONE
+			return
+		}
 		val ctx = tableLayout.context
 		val spaceBetween = (16f * ctx.resources.displayMetrics.density).toInt()
 		items.forEach { item ->
@@ -259,9 +263,6 @@ class DecodeFragment : Fragment() {
 				tr.addView(valueView)
 				tableLayout.addView(tr)
 			}
-		}
-		if (tableLayout.childCount > 0) {
-			tableLayout.setPadding(0, 0, 0, spaceBetween)
 		}
 	}
 
