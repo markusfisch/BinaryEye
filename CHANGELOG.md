@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.53.0
+* Migrate to ZXing-C++ and add support for Micro QR Codes
+* Multi-select scans in history listing
+* Remove preset content for Encode shortcut
+* Always show QR Code version and remove setting
+* Fix PDF-417 UTF-8 text encoding
+* Hide sensitive content from clipboard
+* Remove setting a custom language on Android 13+
+* Condense text output of generated barcodes
+* Update Russian translation
+* Update Spanish translation
+* Add Persian translation
+
 ## 1.52.0
 * Fix parsing timezone in calendar dates
 * Update French translation
