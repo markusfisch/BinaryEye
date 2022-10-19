@@ -38,11 +38,7 @@ class BarcodeFragment : Fragment() {
 	private val parentJob = Job()
 	private val scope = CoroutineScope(Dispatchers.IO + parentJob)
 
-	private var barcodeBitmap: Bitmap? = null
-	private var barcodeSvg: String? = null
-	private var barcodeTxt: String? = null
-	private var content: String = ""
-	private var formatName: String = ""
+	private lateinit var barcode: Barcode
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -63,18 +59,13 @@ class BarcodeFragment : Fragment() {
 			false
 		)
 
-		val args = arguments ?: return view
-		content = args.getString(CONTENT) ?: return view
-		formatName = args.getString(FORMAT) ?: return view
-		val format = Format.valueOf(formatName)
-		val size = args.getInt(SIZE)
-		val ecLevel = args.getInt(EC_LEVEL)
+		val bitmap: Bitmap
 		try {
-			barcodeBitmap = ZxingCpp.encodeAsBitmap(
-				content, format, size, size, -1, ecLevel
+			barcode = arguments?.toProperties() ?: throw IllegalArgumentException(
+				"Illegal arguments"
 			)
-			barcodeSvg = ZxingCpp.encodeAsSvg(content, format, -1, ecLevel)
-			barcodeTxt = ZxingCpp.encodeAsText(content, format, -1, ecLevel)
+			// Catch exceptions from encoding.
+			bitmap = barcode.bitmap
 		} catch (e: Exception) {
 			var message = e.message
 			if (message == null || message.isEmpty()) {
@@ -90,7 +81,7 @@ class BarcodeFragment : Fragment() {
 		val imageView = view.findViewById<ConfinedScalingImageView>(
 			R.id.barcode
 		)
-		imageView.setImageBitmap(barcodeBitmap)
+		imageView.setImageBitmap(bitmap)
 		imageView.post {
 			// Make sure to invoke this after ScalingImageView.onLayout().
 			imageView.minWidth /= 2f
@@ -112,6 +103,19 @@ class BarcodeFragment : Fragment() {
 		return view
 	}
 
+	private fun Bundle.toProperties() = Barcode(
+		getString(CONTENT) ?: throw IllegalArgumentException(
+			"content cannot be null"
+		),
+		Format.valueOf(
+			getString(FORMAT) ?: throw IllegalArgumentException(
+				"format cannot be null"
+			)
+		),
+		getInt(SIZE),
+		getInt(EC_LEVEL)
+	)
+
 	override fun onDestroyView() {
 		super.onDestroyView()
 		parentJob.cancel()
@@ -124,9 +128,9 @@ class BarcodeFragment : Fragment() {
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return when (item.itemId) {
 			R.id.copy_to_clipboard -> {
-				barcodeTxt?.let {
-					context.copyToClipboard(it)
-					context.toast(R.string.copied_to_clipboard)
+				context.apply {
+					copyToClipboard(barcode.text)
+					toast(R.string.copied_to_clipboard)
 				}
 				true
 			}
@@ -165,7 +169,9 @@ class BarcodeFragment : Fragment() {
 		}
 		val view = ac.layoutInflater.inflate(R.layout.dialog_save_file, null)
 		val editText = view.findViewById<EditText>(R.id.file_name)
-		editText.setText(encodeFileName("${formatName}_$content"))
+		editText.setText(
+			encodeFileName("${barcode.format}_${barcode.content}")
+		)
 		AlertDialog.Builder(ac)
 			.setView(view)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
@@ -175,23 +181,19 @@ class BarcodeFragment : Fragment() {
 						addSuffixIfNotGiven(fileName, ".png"),
 						MIME_PNG
 					) {
-						barcodeBitmap?.saveAsPng(it)
+						barcode.bitmap.saveAsPng(it)
 					}
 					FileType.SVG -> saveAs(
 						addSuffixIfNotGiven(fileName, ".svg"),
 						MIME_SVG
 					) { outputStream ->
-						barcodeSvg?.let {
-							outputStream.write(it.toByteArray())
-						}
+						outputStream.write(barcode.svg.toByteArray())
 					}
 					FileType.TXT -> saveAs(
 						addSuffixIfNotGiven(fileName, ".txt"),
 						MIME_TXT
 					) { outputStream ->
-						barcodeTxt?.let {
-							outputStream.write(it.toByteArray())
-						}
+						outputStream.write(barcode.text.toByteArray())
 					}
 				}
 			}
@@ -216,9 +218,9 @@ class BarcodeFragment : Fragment() {
 
 	private fun Context.shareAs(fileType: FileType) {
 		when (fileType) {
-			FileType.PNG -> barcodeBitmap?.let { share(it) }
-			FileType.SVG -> barcodeSvg?.let { shareText(it, MIME_SVG) }
-			FileType.TXT -> barcodeTxt?.let { shareText(it) }
+			FileType.PNG -> share(barcode.bitmap)
+			FileType.SVG -> shareText(barcode.svg, MIME_SVG)
+			FileType.TXT -> shareText(barcode.text)
 		}
 	}
 
@@ -271,6 +273,26 @@ class BarcodeFragment : Fragment() {
 			return fragment
 		}
 	}
+}
+
+private data class Barcode(
+	val content: String,
+	val format: Format,
+	val size: Int,
+	val ecLevel: Int
+) {
+	val bitmap: Bitmap
+		get() = ZxingCpp.encodeAsBitmap(
+			content, format, size, size, -1, ecLevel
+		)
+	val svg: String
+		get() = ZxingCpp.encodeAsSvg(
+			content, format, -1, ecLevel
+		)
+	val text: String
+		get() = ZxingCpp.encodeAsText(
+			content, format, -1, ecLevel
+		)
 }
 
 private fun Bitmap.saveAsPng(outputStream: OutputStream, quality: Int = 90) =
