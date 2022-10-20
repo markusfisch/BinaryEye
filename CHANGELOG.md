@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.53.1
+* Fix proguard configuration
+
 ## 1.53.0
 * Migrate to ZXing-C++ and add support for Micro QR Codes
 * Multi-select scans in history listing
