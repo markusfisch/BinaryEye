@@ -1,0 +1,3 @@
+* Fix parsing timezone in calendar dates
+* Update French translation
+

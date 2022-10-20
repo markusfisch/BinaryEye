@@ -1,0 +1,7 @@
+* Add support for Deutsche Post Matrixcode stamp
+* Allow free image rotation for scanning from images
+* Fix setting TO field in MATMSG format
+* Update Italian translation
+* Update zh-rCN translation
+* Update pt-br translation
+
