@@ -4,4 +4,4 @@
 
 -keep class android.support.v7.widget.SearchView { *; }
 
--keep class com.kurzdigital.android.zxingcpp.** { *; }
+-keep class de.markusfisch.android.zxingcpp.** { *; }
