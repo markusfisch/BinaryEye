@@ -6,9 +6,12 @@
 		<item>Qwant</item>
 		<item>Bing</item>
 		<item>Yandex</item>
+		<item>ebay</item>
+		<item>Amazon</item>
 		<item>OpenFoodFacts.org</item>
 		<item>OpenBeautyFacts.org</item>
 		<item>OpenPetFoodFacts.org</item>
+		<item>Barcode Lookup</item>
 	</string-array>
 	<string-array name="search_engines_values">
 		<item></item>
@@ -17,8 +20,11 @@
 		<item>https://www.qwant.com/?q=</item>
 		<item>https://bing.com/?q=</item>
 		<item>https://yandex.com/?q=</item>
+		<item>https://www.ebay.com/sch/i.html?_nkw=</item>
+		<item>https://www.amazon.com/s?k=</item>
 		<item>https://world.openfoodfacts.org/cgi/search.pl?search_terms=</item>
 		<item>https://world.openbeautyfacts.org/cgi/search.pl?search_terms=</item>
 		<item>https://world.openpetfoodfacts.org/cgi/search.pl?search_terms=</item>
+		<item>https://www.barcodelookup.com/</item>
 	</string-array>
 </resources>
