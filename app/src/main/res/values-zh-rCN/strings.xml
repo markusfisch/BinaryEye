@@ -87,6 +87,8 @@
 	<string name="show_meta_data_summary">显示已扫描条码的额外数据</string>
 	<string name="show_hex_dump">显示16进制数据</string>
 	<string name="show_hex_dump_summary">显示已扫描条码的16进制数据</string>
+	<string name="show_recreation">Show recreated barcode</string>
+	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
 	<string name="close_automatically">复制/分享后自动返回</string>
 	<string name="close_automatically_summary">复制或分享读取的内容后自动返回扫描主界面。</string>
 	<string name="default_search_engine">打开未知数据方式</string>

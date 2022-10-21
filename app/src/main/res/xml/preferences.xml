@@ -94,6 +94,11 @@
 			android:summary="@string/show_hex_dump_summary"/>
 		<android.support.v7.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
+			android:key="show_recreation"
+			android:title="@string/show_recreation"
+			android:summary="@string/show_recreation_summary"/>
+		<android.support.v7.preference.SwitchPreferenceCompat
+			android:defaultValue="true"
 			android:key="close_automatically"
 			android:title="@string/close_automatically"
 			android:summary="@string/close_automatically_summary"/>

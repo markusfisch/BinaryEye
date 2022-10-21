@@ -88,6 +88,8 @@
 	<string name="show_meta_data_summary">Mostra dati aggiuntivi sul codice a barre scansionato.</string>
 	<string name="show_hex_dump">Mostra dump esadecimale</string>
 	<string name="show_hex_dump_summary">Mostra un dump esadecimale dei contenuti scansionati.</string>
+	<string name="show_recreation">Show recreated barcode</string>
+	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
 	<string name="close_automatically">Vai indietro dopo la Copia/Condivisione</string>
 	<string name="close_automatically_summary">Ritorna automaticamente alla schermata di scansione dopo aver copiato o condiviso i contenuti letti.</string>
 	<string name="default_search_engine">Apri dati sconosciuti in</string>

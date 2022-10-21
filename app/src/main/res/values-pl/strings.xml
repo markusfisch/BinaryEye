@@ -60,6 +60,8 @@
 	<string name="binary_data">(dane binarne)</string>
 	<string name="show_hex_dump">Pokazuj zrzut szesnastkowy</string>
 	<string name="show_hex_dump_summary">Pokaż zeskanowaną zawartośc w postaci szesnastkowej</string>
+	<string name="show_recreation">Show recreated barcode</string>
+	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
 	<string name="close_automatically">Wróć po skopiowaniu/udostępnieniu</string>
 	<string name="close_automatically_summary">Automatycznie powracaj do ekranu skanowania po skopiowaniu lub udostępnieniu przeczytanej zawartości.</string>
 	<string name="show_meta_data">Pokazuj metadane</string>

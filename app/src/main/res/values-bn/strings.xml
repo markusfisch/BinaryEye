@@ -88,6 +88,8 @@
 	<string name="show_meta_data_summary">সনাক্তকৃত বারকোড নিয়ে অতিরিক্ত তথ্য দেখাও।</string>
 	<string name="show_hex_dump">ষড়(hex) সংকেত দেখাও</string>
 	<string name="show_hex_dump_summary">পড়া তথ্যের ষড় সংকেত দেখাও</string>
+	<string name="show_recreation">Show recreated barcode</string>
+	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
 	<string name="close_automatically">অনুলিপি/ভাগ করার পরে পিছনে যাও</string>
 	<string name="close_automatically_summary">তথ্য অনুলিপি/ভাগ করার পরে স্বয়ংক্রিয়ভাবে পিছনে যাও।</string>
 	<string name="default_search_engine">Open unknown data in</string>

@@ -90,6 +90,8 @@
 	<string name="show_meta_data_summary">Zobrazí další data o naskenovaném čárovém kódu.</string>
 	<string name="show_hex_dump">Zobrazit hex dump</string>
 	<string name="show_hex_dump_summary">Zobrazí hex dump naskenovaného obsahu.</string>
+	<string name="show_recreation">Show recreated barcode</string>
+	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
 	<string name="close_automatically">Vrátit se po zkopírování/sdílení</string>
 	<string name="close_automatically_summary">Po zkopírovaní či sdílení se automaticky vrátí na skenovací obrazovku.</string>
 	<string name="default_search_engine">Nerozpoznaná data otevřít v</string>

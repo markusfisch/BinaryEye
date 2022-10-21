@@ -9,10 +9,7 @@ import android.text.Html
 import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
 import android.view.*
-import android.widget.EditText
-import android.widget.TableLayout
-import android.widget.TableRow
-import android.widget.TextView
+import android.widget.*
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
 import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
@@ -24,15 +21,14 @@ import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.shareText
 import de.markusfisch.android.binaryeye.content.toHexString
 import de.markusfisch.android.binaryeye.database.Scan
+import de.markusfisch.android.binaryeye.database.recreate
 import de.markusfisch.android.binaryeye.io.askForFileName
 import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.io.writeExternalFile
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.toast
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import kotlin.math.roundToInt
 
 class DecodeFragment : Fragment() {
 	private lateinit var contentView: EditText
@@ -46,6 +42,8 @@ class DecodeFragment : Fragment() {
 
 	private val parentJob = Job()
 	private val scope: CoroutineScope = CoroutineScope(Dispatchers.Main + parentJob)
+	private val dp: Float
+		get() = resources.displayMetrics.density
 	private val content: String
 		get() = contentView.text.toString()
 
@@ -157,6 +155,21 @@ class DecodeFragment : Fragment() {
 			fillMetaView(metaView, scan)
 		}
 
+		view.findViewById<ImageView>(R.id.recreation).apply {
+			scope.launch(Dispatchers.IO) {
+				val bitmap = if (prefs.showRecreation) {
+					scan.recreate((200f * dp).roundToInt())
+				} else null
+				withContext(Dispatchers.Main) {
+					if (bitmap != null) {
+						setImageBitmap(bitmap)
+					} else {
+						visibility = View.GONE
+					}
+				}
+			}
+		}
+
 		(view.findViewById(R.id.inset_layout) as View).setPaddingFromWindowInsets()
 		(view.findViewById(R.id.scroll_view) as View).setPaddingFromWindowInsets()
 
@@ -254,7 +267,7 @@ class DecodeFragment : Fragment() {
 			return
 		}
 		val ctx = tableLayout.context
-		val spaceBetween = (16f * ctx.resources.displayMetrics.density).toInt()
+		val spaceBetween = (16f * dp).roundToInt()
 		items.forEach { item ->
 			val text = item.value
 			if (!text.isNullOrBlank()) {
@@ -385,13 +398,17 @@ class DecodeFragment : Fragment() {
 		}
 		scope.launch(Dispatchers.Main) {
 			val name = ac.askForFileName() ?: return@launch
-			val message = ac.writeExternalFile(
-				name,
-				"application/octet-stream"
-			) {
-				it.write(raw)
-			}.toSaveResult()
-			ac.toast(message)
+			withContext(Dispatchers.IO) {
+				val message = ac.writeExternalFile(
+					name,
+					"application/octet-stream"
+				) {
+					it.write(raw)
+				}.toSaveResult()
+				withContext(Dispatchers.Main) {
+					ac.toast(message)
+				}
+			}
 		}
 	}
 

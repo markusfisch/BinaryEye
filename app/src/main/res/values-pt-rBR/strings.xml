@@ -88,6 +88,8 @@
 	<string name="show_meta_data_summary">Mostrar dados adicionais de código digitalizado.</string>
 	<string name="show_hex_dump">Mostrar impressão hexadecimal</string>
 	<string name="show_hex_dump_summary">Mostrar a impressão hexadecimal do conteúdo digitalizado.</string>
+	<string name="show_recreation">Show recreated barcode</string>
+	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
 	<string name="close_automatically">Voltar após copiar/compartilhar</string>
 	<string name="close_automatically_summary">Voltar automaticamente à tela de digitalização após copiar ou compartilhar o código examinado.</string>
 	<string name="default_search_engine">Abrir dados desconhecidos em</string>

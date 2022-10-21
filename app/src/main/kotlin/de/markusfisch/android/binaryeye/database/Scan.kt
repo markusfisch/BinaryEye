@@ -1,9 +1,11 @@
 package de.markusfisch.android.binaryeye.database
 
+import android.graphics.Bitmap
 import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
 import android.text.format.DateFormat
+import de.markusfisch.android.zxingcpp.ZxingCpp
 import de.markusfisch.android.zxingcpp.ZxingCpp.ContentType
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
 
@@ -119,6 +121,59 @@ data class Scan(
 	}
 }
 
+fun Result.toScan(): Scan {
+	val content: String
+	val raw: ByteArray?
+	when (contentType) {
+		ContentType.TEXT -> {
+			content = text
+			raw = null
+		}
+		else -> {
+			content = ""
+			raw = rawBytes
+		}
+	}
+	return Scan(
+		content,
+		raw,
+		format,
+		ecLevel,
+		versionNumber,
+		sequenceSize,
+		sequenceIndex,
+		sequenceId,
+		gtin?.country,
+		gtin?.addOn,
+		gtin?.price,
+		gtin?.issueNumber
+	)
+}
+
+fun Scan.recreate(
+	size: Int = 128,
+	margin: Int = -1
+): Bitmap? {
+	if (content.isEmpty()) {
+		return null
+	}
+	val ecLevel = when (errorCorrectionLevel) {
+		"L" -> 0
+		"M" -> 1
+		"Q" -> 2
+		"H" -> 3
+		else -> -1
+	}
+	return try {
+		val format = ZxingCpp.Format.valueOf(format)
+		ZxingCpp.encodeAsBitmap(
+			content, format, size, size, margin, ecLevel
+		)
+	} catch (_: RuntimeException) {
+		null
+	}
+}
+
 private fun getDateTime(
 	time: Long = System.currentTimeMillis()
 ) = DateFormat.format(
@@ -149,33 +204,4 @@ private fun Parcel.readSizedByteArray(): ByteArray? {
 	} else {
 		null
 	}
-}
-
-fun Result.toScan(): Scan {
-	val content: String
-	val raw: ByteArray?
-	when (contentType) {
-		ContentType.TEXT -> {
-			content = text
-			raw = null
-		}
-		else -> {
-			content = ""
-			raw = rawBytes
-		}
-	}
-	return Scan(
-		content,
-		raw,
-		format,
-		ecLevel,
-		versionNumber,
-		sequenceSize,
-		sequenceIndex,
-		sequenceId,
-		gtin?.country,
-		gtin?.addOn,
-		gtin?.price,
-		gtin?.issueNumber
-	)
 }

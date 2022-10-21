@@ -89,6 +89,8 @@
 	<string name="show_meta_data_summary">Показувати додаткові дані про відскановані штрих-коди.</string>
 	<string name="show_hex_dump">Показувати шістнадцятковий дамп</string>
 	<string name="show_hex_dump_summary">Показувати шістнадцятковий дамп відсканованого вмісту.</string>
+	<string name="show_recreation">Show recreated barcode</string>
+	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
 	<string name="close_automatically">Повернутися після копіювання/поширення</string>
 	<string name="close_automatically_summary">Автоматично повернутися на екран сканування після копіювання або поширення прочитаного вмісту.</string>
 	<string name="default_search_engine">Відкривати невідомі дані в</string>

@@ -129,6 +129,11 @@ class Preferences {
 			apply(SHOW_HEX_DUMP, value)
 			field = value
 		}
+	var showRecreation = true
+		set(value) {
+			apply(SHOW_RECREATION, value)
+			field = value
+		}
 	var closeAutomatically = false
 		set(value) {
 			apply(CLOSE_AUTOMATICALLY, value)
@@ -226,6 +231,7 @@ class Preferences {
 		)
 		showMetaData = preferences.getBoolean(SHOW_META_DATA, showMetaData)
 		showHexDump = preferences.getBoolean(SHOW_HEX_DUMP, showHexDump)
+		showRecreation = preferences.getBoolean(SHOW_RECREATION, showRecreation)
 		closeAutomatically = preferences.getBoolean(
 			CLOSE_AUTOMATICALLY,
 			closeAutomatically
@@ -306,6 +312,7 @@ class Preferences {
 		private const val COPY_IMMEDIATELY = "copy_immediately"
 		private const val SHOW_META_DATA = "show_meta_data"
 		private const val SHOW_HEX_DUMP = "show_hex_dump"
+		private const val SHOW_RECREATION = "show_recreation"
 		private const val CLOSE_AUTOMATICALLY = "close_automatically"
 		private const val DEFAULT_SEARCH_URL = "default_search_url"
 		private const val OPEN_WITH_URL = "open_with_url"

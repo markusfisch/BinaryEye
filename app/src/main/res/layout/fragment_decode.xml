@@ -56,6 +56,14 @@
 				android:layout_marginBottom="16dp"
 				android:textSize="12sp"
 				android:typeface="monospace"/>
+			<ImageView
+				android:id="@+id/recreation"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="16dp"
+				android:layout_gravity="center"
+				android:adjustViewBounds="true"
+				android:contentDescription="@string/view_barcode"/>
 		</LinearLayout>
 	</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>
 	<android.support.design.widget.CoordinatorLayout

@@ -88,6 +88,8 @@
 	<string name="show_meta_data_summary">Toon extra gegevens over de gescande barcode.</string>
 	<string name="show_hex_dump">Hex-dump tonen</string>
 	<string name="show_hex_dump_summary">Hex-dump van de gescande inhoud tonen.</string>
+	<string name="show_recreation">Show recreated barcode</string>
+	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
 	<string name="close_automatically">Teruggaan na kopiëren/delen</string>
 	<string name="close_automatically_summary">Automatisch terugkeren naar het scanscherm na het kopiëren of delen van de gelezen inhoud.</string>
 	<string name="default_search_engine">Onbekende data openen in</string>

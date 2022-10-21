@@ -88,6 +88,8 @@
 	<string name="show_meta_data_summary">Taranan barkod ile ilgili ek veriyi göster</string>
 	<string name="show_hex_dump">Hex yığınını göster</string>
 	<string name="show_hex_dump_summary">Taranan içeriklerin hex yığınını göster.</string>
+	<string name="show_recreation">Show recreated barcode</string>
+	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
 	<string name="close_automatically">Kopyala/Paylaş\'tan sonra geri dön</string>
 	<string name="close_automatically_summary">Okunan içeriği kopyaladıktan veya paylaştıktan sonra kendiliğinden tarama ekranına dön.</string>
 	<string name="default_search_engine">Bilinmeyen verileri şurada aç</string>

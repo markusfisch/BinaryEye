@@ -87,6 +87,8 @@
 	<string name="show_meta_data_summary">Hiện thêm thông tin về mã vạch quét được.</string>
 	<string name="show_hex_dump">Hiện mã thập lục phân</string>
 	<string name="show_hex_dump_summary">Hiện mã thập lục phân từ mã quét được.</string>
+	<string name="show_recreation">Show recreated barcode</string>
+	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
 	<string name="close_automatically">Quay lại sau khi Sao chép/Chia sẻ</string>
 	<string name="close_automatically_summary">Tự động quay trở về màn hình quét sao khi sao chép hoặc chia sẻ nội dung đọc được.</string>
 	<string name="default_search_engine">Mở dữ liệu không xác định bằng</string>

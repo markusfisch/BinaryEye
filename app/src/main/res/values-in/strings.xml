@@ -87,6 +87,8 @@
 	<string name="show_meta_data_summary">Tampilkan data tambahan tentang barcode yang dipindai.</string>
 	<string name="show_hex_dump">Tampilkan hex dump</string>
 	<string name="show_hex_dump_summary">Tampilkan hex dump dari konten hasil pemindaian.</string>
+	<string name="show_recreation">Show recreated barcode</string>
+	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
 	<string name="close_automatically">Go back after Copy/Share</string>
 	<string name="close_automatically_summary">Automatically return to the scan screen after copying or sharing the read contents.</string>
 	<string name="default_search_engine">Open unknown data in</string>
