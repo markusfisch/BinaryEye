@@ -14,15 +14,24 @@ fun Context.copyToClipboard(text: String, isSensitive: Boolean = false) {
 	} else {
 		(service as android.content.ClipboardManager).setPrimaryClip(
 			ClipData.newPlainText("plain text", text).apply {
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-					description.extras = PersistableBundle().apply {
-						putBoolean(
-							ClipDescription.EXTRA_IS_SENSITIVE,
-							isSensitive
-						)
-					}
-				}
+				setSensitive(isSensitive)
 			}
 		)
 	}
+}
+
+private fun ClipData.setSensitive(isSensitive: Boolean) {
+	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+		description.extras = PersistableBundle().apply {
+			putBoolean(EXTRA_IS_SENSITIVE, isSensitive)
+		}
+	}
+}
+
+private val EXTRA_IS_SENSITIVE = if (
+	Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+) {
+	ClipDescription.EXTRA_IS_SENSITIVE
+} else {
+	"android.content.extra.IS_SENSITIVE"
 }
