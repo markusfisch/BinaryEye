@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.54.0
+* Recreate and show barcode from read contents if possible
+* Add ebay, Amazon and barcodelookup.com to search engines
+
 ## 1.53.1
 * Fix proguard configuration
 
