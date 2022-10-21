@@ -134,7 +134,7 @@ class DecodeFragment : Fragment() {
 		val trackingLink = generateDpTrackingLink(raw, scan.format)
 		if (trackingLink != null) {
 			stampView.apply {
-				text = Html.fromHtml(trackingLink)
+				text = trackingLink.fromHtml()
 				isClickable = true
 				movementMethod = LinkMovementMethod.getInstance()
 			}
@@ -519,4 +519,13 @@ private fun crc4(input: ByteArray): Int {
 	}
 	crc = crc and 0xF
 	return crc
+}
+
+private fun String.fromHtml() = if (
+	Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
+) {
+	Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY)
+} else {
+	@Suppress("DEPRECATION")
+	Html.fromHtml(this)
 }
