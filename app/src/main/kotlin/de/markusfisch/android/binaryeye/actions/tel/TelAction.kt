@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.IntentAction
-import de.markusfisch.android.binaryeye.app.parseAndNormalizeUri
+import de.markusfisch.android.binaryeye.content.parseAndNormalizeUri
 
 object TelAction : IntentAction() {
 	private val telRegex = """^tel:(\+?[0-9]+)$""".toRegex(

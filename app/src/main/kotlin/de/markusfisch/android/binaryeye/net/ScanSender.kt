@@ -1,7 +1,6 @@
 package de.markusfisch.android.binaryeye.net
 
-import de.markusfisch.android.binaryeye.app.toHexString
-import de.markusfisch.android.binaryeye.app.urlEncode
+import de.markusfisch.android.binaryeye.content.toHexString
 import de.markusfisch.android.binaryeye.database.Scan
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

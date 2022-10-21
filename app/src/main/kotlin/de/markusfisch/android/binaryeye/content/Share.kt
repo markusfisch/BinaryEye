@@ -8,7 +8,6 @@ import android.os.Build
 import android.support.v4.content.FileProvider
 import de.markusfisch.android.binaryeye.BuildConfig
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.app.parseAndNormalizeUri
 import de.markusfisch.android.binaryeye.widget.toast
 import java.io.File
 
@@ -41,6 +40,14 @@ fun Context.openUrl(url: String): Boolean = openUri(url.parseAndNormalizeUri())
 fun Context.openUri(uri: Uri): Boolean = execShareIntent(
 	Intent(Intent.ACTION_VIEW, uri)
 )
+
+fun String.parseAndNormalizeUri(): Uri = Uri.parse(this).let {
+	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+		it.normalizeScheme()
+	} else {
+		it
+	}
+}
 
 fun Context.shareText(text: String, mimeType: String = "text/plain") {
 	execShareIntent(Intent(Intent.ACTION_SEND).apply {

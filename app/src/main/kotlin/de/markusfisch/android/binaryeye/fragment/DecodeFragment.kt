@@ -22,6 +22,7 @@ import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.shareText
+import de.markusfisch.android.binaryeye.content.toHexString
 import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.io.askForFileName
 import de.markusfisch.android.binaryeye.io.toSaveResult
@@ -404,6 +405,11 @@ class DecodeFragment : Fragment() {
 }
 
 private fun Int.positiveToString() = if (this > -1) this.toString() else ""
+
+private val nonAlNum = "[^a-zA-Z0-9]".toRegex()
+private val multipleDots = "[…]+".toRegex()
+private fun String.foldNonAlNum() = replace(nonAlNum, "…")
+	.replace(multipleDots, "…")
 
 private fun hexDump(bytes: ByteArray, charsPerLine: Int = 33): String {
 	if (charsPerLine < 4 || bytes.isEmpty()) {

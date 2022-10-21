@@ -2,7 +2,7 @@ package de.markusfisch.android.binaryeye.database
 
 import android.content.Context
 import android.database.Cursor
-import de.markusfisch.android.binaryeye.app.toHexString
+import de.markusfisch.android.binaryeye.content.toHexString
 import de.markusfisch.android.binaryeye.io.writeExternalFile
 import org.json.JSONArray
 import org.json.JSONException

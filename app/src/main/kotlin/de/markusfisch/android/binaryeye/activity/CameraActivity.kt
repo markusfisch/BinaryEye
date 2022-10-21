@@ -27,12 +27,14 @@ import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.execShareIntent
 import de.markusfisch.android.binaryeye.content.openUrl
+import de.markusfisch.android.binaryeye.content.toHexString
 import de.markusfisch.android.binaryeye.database.toScan
 import de.markusfisch.android.binaryeye.graphics.FrameMetrics
 import de.markusfisch.android.binaryeye.graphics.mapPosition
 import de.markusfisch.android.binaryeye.graphics.setFrameRoi
 import de.markusfisch.android.binaryeye.graphics.setFrameToView
 import de.markusfisch.android.binaryeye.net.sendAsync
+import de.markusfisch.android.binaryeye.net.urlEncode
 import de.markusfisch.android.binaryeye.os.error
 import de.markusfisch.android.binaryeye.os.getVibrator
 import de.markusfisch.android.binaryeye.os.vibrate

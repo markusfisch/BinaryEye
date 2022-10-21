@@ -23,11 +23,7 @@ import de.markusfisch.android.binaryeye.adapter.ScansAdapter
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.shareText
-import de.markusfisch.android.binaryeye.database.Database
-import de.markusfisch.android.binaryeye.database.exportCsv
-import de.markusfisch.android.binaryeye.database.exportDatabase
-import de.markusfisch.android.binaryeye.database.exportJson
-import de.markusfisch.android.binaryeye.database.use
+import de.markusfisch.android.binaryeye.database.*
 import de.markusfisch.android.binaryeye.io.askForFileName
 import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.view.*
@@ -314,7 +310,7 @@ class HistoryFragment : Fragment() {
 				if (content.isNullOrEmpty()) {
 					getString(R.string.binary_data)
 				} else {
-					content.ellipsize(64)
+					content
 				}
 			)
 			.setView(view)
