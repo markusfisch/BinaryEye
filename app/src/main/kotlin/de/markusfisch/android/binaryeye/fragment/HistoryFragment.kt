@@ -31,7 +31,6 @@ import de.markusfisch.android.binaryeye.database.use
 import de.markusfisch.android.binaryeye.io.askForFileName
 import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.view.*
-import de.markusfisch.android.binaryeye.widget.ellipsize
 import de.markusfisch.android.binaryeye.widget.toast
 import kotlinx.coroutines.*
 

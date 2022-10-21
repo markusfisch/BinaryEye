@@ -25,3 +25,9 @@ fun String.parseAndNormalizeUri(): Uri = Uri.parse(this).let {
 }
 
 fun ByteArray.toHexString() = joinToString("") { "%02X".format(it) }
+
+fun String.ellipsize(max: Int) = if (length < max) {
+	this
+} else {
+	"${take(max)}…"
+}
