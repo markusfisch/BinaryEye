@@ -76,8 +76,12 @@ class DecodeFragment : Fragment() {
 		closeAutomatically = prefs.closeAutomatically &&
 				activity?.intent?.hasExtra(MainActivity.DECODED) == true
 
-		val scan = arguments?.getParcelable(SCAN) as Scan?
-			?: throw IllegalArgumentException("DecodeFragment needs a Scan")
+		val scan = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+			arguments?.getParcelable(SCAN, Scan::class.java)
+		} else {
+			@Suppress("DEPRECATION")
+			arguments?.getParcelable(SCAN) as Scan?
+		} ?: throw IllegalArgumentException("DecodeFragment needs a Scan")
 		id = scan.id
 
 		val inputContent = scan.content
