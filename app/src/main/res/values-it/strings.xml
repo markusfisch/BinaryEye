@@ -15,15 +15,15 @@
 	<string name="error_correction_level_m" formatted="false">Medio (Correzione del ~15&#37;)</string>
 	<string name="error_correction_level_q" formatted="false">Quartile (Correzione del ~25&#37;)</string>
 	<string name="error_correction_level_h" formatted="false">Alto (Correzione del ~30&#37;)</string>
-	<string name="sequence_size">Sequence size</string>
-	<string name="sequence_index">Sequence index</string>
-	<string name="sequence_id">Sequence ID</string>
+	<string name="sequence_size">Dimensione della sequenza</string>
+	<string name="sequence_index">Indice della sequenza</string>
+	<string name="sequence_id">ID della sequenza</string>
 	<string name="gtin_issue_number">Numero di edizione</string>
 	<string name="gtin_country">Probabile Paese di fabbricazione</string>
 	<string name="gtin_price">Prezzo consigliato</string>
 	<string name="gtin_add_on">Estensione UPC EAN</string>
 	<string name="barcode_version_number">Versione</string>
-	<string name="qr_version_and_modules">%1$d (%2$d modules)</string>
+	<string name="qr_version_and_modules">%1$d (%2$d moduli)</string>
 	<string name="toggle_flash">Attiva/Disattiva flash</string>
 	<string name="error_flash">Errore durante l\'attivazione/disattivazione del flash</string>
 	<string name="share">Condividi</string>
@@ -88,8 +88,8 @@
 	<string name="show_meta_data_summary">Mostra dati aggiuntivi sul codice a barre scansionato.</string>
 	<string name="show_hex_dump">Mostra dump esadecimale</string>
 	<string name="show_hex_dump_summary">Mostra un dump esadecimale dei contenuti scansionati.</string>
-	<string name="show_recreation">Show recreated barcode</string>
-	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
+	<string name="show_recreation">Mostra il codice a barre ricreato</string>
+	<string name="show_recreation_summary">Ricrea e mostra il codice a barre dal contenuto letto, se possibile.</string>
 	<string name="close_automatically">Vai indietro dopo la Copia/Condivisione</string>
 	<string name="close_automatically_summary">Ritorna automaticamente alla schermata di scansione dopo aver copiato o condiviso i contenuti letti.</string>
 	<string name="default_search_engine">Apri dati sconosciuti in</string>
@@ -110,7 +110,7 @@
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">Apri nel browser esterno</string>
-	<string name="test_url">Test URL</string>
+	<string name="test_url">URL di test</string>
 	<string name="really_remove_scan">Vuoi veramente rimuovere la scansione?</string>
 	<string name="really_remove_all_scans">Vuoi veramente rimuovere tutte le scansioni?</string>
 	<string name="really_remove_selected_scans">Vuoi veramente rimuovere le scansioni selezionate?</string>
@@ -164,7 +164,7 @@
 	<string name="wifi_type">Tipo di autenticazione</string>
 	<string name="wifi_password">Password</string>
 	<string name="wifi_hidden">Rete nascosta</string>
-	<string name="wifi_eap">EAP method</string>
+	<string name="wifi_eap">Metodo EAP</string>
 	<string name="wifi_anonymous_identity">Identità anonima</string>
 	<string name="wifi_identity">Identità</string>
 	<string name="wifi_phase2">Metodo di fase 2</string>
