@@ -15,17 +15,17 @@
 	<string name="error_correction_level_m" formatted="false">Orta (~&#37;15 düzeltim)</string>
 	<string name="error_correction_level_q" formatted="false">Dörtte Bir (~&#37;25 düzeltim)</string>
 	<string name="error_correction_level_h" formatted="false">Yüksek (~&#37;30 düzeltim)</string>
-	<string name="sequence_size">Sequence size</string>
-	<string name="sequence_index">Sequence index</string>
-	<string name="sequence_id">Sequence ID</string>
+	<string name="sequence_size">Dizi boyutu</string>
+	<string name="sequence_index">Dizi indeksi</string>
+	<string name="sequence_id">Dizi kimliği</string>
 	<string name="gtin_issue_number">Basım sayısı</string>
 	<string name="gtin_country">Olası üretim yeri</string>
 	<string name="gtin_price">Önerilen fiyat</string>
 	<string name="gtin_add_on">UPC EAN eklentisi</string>
-	<string name="barcode_version_number">Version</string>
-	<string name="qr_version_and_modules">%1$d (%2$d modules)</string>
+	<string name="barcode_version_number">Sürüm</string>
+	<string name="qr_version_and_modules">%1$d (%2$d modül)</string>
 	<string name="toggle_flash">Flaşı aç</string>
-	<string name="error_flash">Error toggling flash</string>
+	<string name="error_flash">Flaş açılırken hata oluştu</string>
 	<string name="share">Paylaş</string>
 	<string name="share_as">Şöyle paylaş:</string>
 	<string name="copy_to_clipboard">Panoya kopyala</string>
@@ -48,9 +48,9 @@
 	<string name="bulk_mode">Sürekli tara</string>
 	<string name="bulk_mode_summary">Her zaman sürekli taramaya başla.</string>
 	<string name="bulk_mode_delay">Sürekli taramalar arasındaki gecikme</string>
-	<string name="restrict_format">Restrict format</string>
-	<string name="remove_restriction">Remove restriction</string>
-	<string name="scan_format">Scan %s</string>
+	<string name="restrict_format">Biçimi kısıtla</string>
+	<string name="remove_restriction">Kısıtlamayı kaldır</string>
+	<string name="scan_format">%s tara</string>
 	<string name="quarter_second">Çeyrek saniye</string>
 	<string name="half_second">Yarım saniye</string>
 	<string name="a_second">Bir saniye</string>
@@ -88,8 +88,8 @@
 	<string name="show_meta_data_summary">Taranan barkod ile ilgili ek veriyi göster</string>
 	<string name="show_hex_dump">Hex yığınını göster</string>
 	<string name="show_hex_dump_summary">Taranan içeriklerin hex yığınını göster.</string>
-	<string name="show_recreation">Show recreated barcode</string>
-	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
+	<string name="show_recreation">Yeniden oluşturulan barkodu göster</string>
+	<string name="show_recreation_summary">Mümkünse okunan içerikten barkodu yeniden oluştur ve göster.</string>
 	<string name="close_automatically">Kopyala/Paylaş\'tan sonra geri dön</string>
 	<string name="close_automatically_summary">Okunan içeriği kopyaladıktan veya paylaştıktan sonra kendiliğinden tarama ekranına dön.</string>
 	<string name="default_search_engine">Bilinmeyen verileri şurada aç</string>
@@ -101,8 +101,8 @@
 	<string name="clear_network_suggestions_success">Ağ önerileri temizlendi</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Kaldırılacak bir şey yok</string>
 	<string name="send_category">Yönlendirme</string>
-	<string name="send_scan_active">Forward scans</string>
-	<string name="send_scan_active_summary">Enable to forward scans to a the given URL</string>
+	<string name="send_scan_active">Taramaları gönder</string>
+	<string name="send_scan_active_summary">Taramaları belirtilen URL\'ye göndermeyi etkinleştir</string>
 	<string name="send_scan_url">Her taramayı URL\'ye gönder</string>
 	<string name="send_scan_type">Her tarama için isteğin türü</string>
 	<string name="send_type_get_add_content">GET ve basitçe içeriği ekle</string>
