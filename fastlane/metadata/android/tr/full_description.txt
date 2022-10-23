@@ -1,0 +1,10 @@
+Dikey ve yatay yönde çalışır, ters çevrilen kodları okuyabilir, Material
+Tasarıma sahiptir ve ayrıca barkod oluşturabilir.
+
+ZXing ("Zebra Crossing") barkod tarama kütüphanesini kullanır.
+Desteklenen barkod biçimleri: AZTEC, CODABAR, CODE 39, CODE 93, CODE 128,
+DATA MATRIX, EAN 8, EAN 13, ITF, PDF417, QR CODE, RSS 14, RSS EXPANDED,
+UPC A, UPC E ve UPC EAN UZANTISI.
+
+Açık kaynaktır:
+https://github.com/markusfisch/BinaryEye
