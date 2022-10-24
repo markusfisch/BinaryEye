@@ -59,7 +59,7 @@ class Preferences {
 			apply(ZOOM_BY_SWIPING, value)
 			field = value
 		}
-	var autoRotate = false
+	var autoRotate = true
 		set(value) {
 			// Immediately save this setting before it shouldn't change
 			// on the fly while scanning.
