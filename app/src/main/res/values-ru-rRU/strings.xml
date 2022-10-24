@@ -90,8 +90,8 @@
 	<string name="show_meta_data_summary">Показывать дополнительную информацию о считанных штрих-кодах.</string>
 	<string name="show_hex_dump">Показывать шестнадцатеричный дамп</string>
 	<string name="show_hex_dump_summary">Показывать шестнадцатеричный дамп содержимого считанного штрих-кода.</string>
-	<string name="show_recreation">Show recreated barcode</string>
-	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
+	<string name="show_recreation">Показывать восстановленный штрих-код</string>
+	<string name="show_recreation_summary">Показывать штрих-код, восстановленный из считанного содержимого.</string>
 	<string name="close_automatically">Возврат после копирования/обмена</string>
 	<string name="close_automatically_summary">Автоматически возвращаться к экрану сканирования после копирования или передачу через функцию «Поделиться» считанного содержимого.</string>
 	<string name="default_search_engine">Поиск неизвестных данных в</string>
