@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.os.VibratorManager
 import de.markusfisch.android.binaryeye.app.prefs
 
 private const val DURATION_IN_MS = 100L
@@ -17,7 +16,9 @@ private val errorPatternAmplitudes = intArrayOf(
 	255, 0, 255, 0, 255
 )
 
-fun Context.getVibrator(): Vibrator = if (
+// On SDK 31 and better, we should ask the `VIBRATOR_MANAGER_SERVICE`
+// for the default vibrator. This was implemented here before:
+/*fun Context.getVibrator(): Vibrator = if (
 	Build.VERSION.SDK_INT < Build.VERSION_CODES.S
 ) {
 	@Suppress("DEPRECATION")
@@ -26,7 +27,15 @@ fun Context.getVibrator(): Vibrator = if (
 	(getSystemService(
 		Context.VIBRATOR_MANAGER_SERVICE
 	) as VibratorManager).defaultVibrator
-}
+}*/
+// But for reasons beyond my interests, using `VIBRATOR_MANAGER_SERVICE`
+// leads to a very cryptic `java.lang.VerifyError: r0/b` on Android 4.
+// This is probably a Proguard/R8 issue, but I don't want to waste more
+// time just to get rid of the deprecation warning. So let's use the old
+// `VIBRATOR_SERVICE` and wait for Google to fix their stuff.
+fun Context.getVibrator(): Vibrator = getSystemService(
+	Context.VIBRATOR_SERVICE
+) as Vibrator
 
 fun Vibrator.vibrate() {
 	if (!prefs.vibrate) {
