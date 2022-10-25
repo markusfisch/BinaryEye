@@ -1,0 +1,6 @@
+* Update Russian translation
+* Update Turkish translation
+* Update Italian translation
+* Fix handling GS1 and ISO15434 content types
+* Fix VerifyError on Android 4
+
