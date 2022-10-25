@@ -125,6 +125,8 @@ fun Result.toScan(): Scan {
 	val content: String
 	val raw: ByteArray?
 	when (contentType) {
+		ContentType.GS1,
+		ContentType.ISO15434,
 		ContentType.TEXT -> {
 			content = text
 			raw = null
