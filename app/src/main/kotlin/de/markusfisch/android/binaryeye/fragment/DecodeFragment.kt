@@ -12,6 +12,7 @@ import android.view.*
 import android.widget.*
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
+import de.markusfisch.android.binaryeye.actions.IAction
 import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
 import de.markusfisch.android.binaryeye.actions.wifi.WifiConnector
 import de.markusfisch.android.binaryeye.activity.MainActivity
@@ -20,8 +21,9 @@ import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.shareText
 import de.markusfisch.android.binaryeye.content.toHexString
+import de.markusfisch.android.binaryeye.database.Recreation
 import de.markusfisch.android.binaryeye.database.Scan
-import de.markusfisch.android.binaryeye.database.recreate
+import de.markusfisch.android.binaryeye.database.toRecreation
 import de.markusfisch.android.binaryeye.io.askForFileName
 import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.io.writeExternalFile
@@ -36,9 +38,10 @@ class DecodeFragment : Fragment() {
 	private lateinit var dataView: TableLayout
 	private lateinit var metaView: TableLayout
 	private lateinit var hexView: TextView
-	private lateinit var format: String
 	private lateinit var stampView: TextView
+	private lateinit var recreationView: ImageView
 	private lateinit var fab: FloatingActionButton
+	private lateinit var format: String
 
 	private val parentJob = Job()
 	private val scope: CoroutineScope = CoroutineScope(Dispatchers.Main + parentJob)
@@ -50,8 +53,9 @@ class DecodeFragment : Fragment() {
 	private var closeAutomatically = false
 	private var action = ActionRegistry.DEFAULT_ACTION
 	private var isBinary = false
-	private var raw: ByteArray = ByteArray(0)
+	private var originalBytes: ByteArray = ByteArray(0)
 	private var id = 0L
+	private var recreation: Recreation? = null
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -80,95 +84,36 @@ class DecodeFragment : Fragment() {
 			@Suppress("DEPRECATION")
 			arguments?.getParcelable(SCAN) as Scan?
 		} ?: throw IllegalArgumentException("DecodeFragment needs a Scan")
+
+		val originalContent = scan.content
+		isBinary = scan.raw != null
+		originalBytes = scan.raw ?: originalContent.toByteArray()
+		format = scan.format
 		id = scan.id
 
-		val inputContent = scan.content
-		isBinary = scan.raw != null
-		raw = scan.raw ?: inputContent.toByteArray()
-		format = scan.format
-
 		contentView = view.findViewById(R.id.content)
-		stampView = view.findViewById(R.id.stamp)
-		fab = view.findViewById(R.id.open)
-
-		if (!isBinary) {
-			contentView.setText(inputContent)
-			contentView.addTextChangedListener(object : TextWatcher {
-				override fun afterTextChanged(s: Editable?) {
-					updateViewsAndAction(content.toByteArray())
-				}
-
-				override fun beforeTextChanged(
-					s: CharSequence?,
-					start: Int,
-					count: Int,
-					after: Int
-				) {
-				}
-
-				override fun onTextChanged(
-					s: CharSequence?,
-					start: Int,
-					before: Int,
-					count: Int
-				) {
-				}
-			})
-			fab.setOnClickListener {
-				executeAction(content.toByteArray())
-			}
-			if (prefs.openImmediately) {
-				executeAction(content.toByteArray())
-			}
-		} else {
-			contentView.setText(String(raw).foldNonAlNum())
-			contentView.isEnabled = false
-			fab.setImageResource(R.drawable.ic_action_save)
-			fab.setOnClickListener {
-				askForFileNameAndSave(raw)
-			}
-		}
-
-		val trackingLink = generateDpTrackingLink(raw, scan.format)
-		if (trackingLink != null) {
-			stampView.apply {
-				text = trackingLink.fromHtml()
-				isClickable = true
-				movementMethod = LinkMovementMethod.getInstance()
-			}
-		} else {
-			stampView.visibility = View.GONE
-		}
-
 		formatView = view.findViewById(R.id.format)
 		dataView = view.findViewById(R.id.data)
 		metaView = view.findViewById(R.id.meta)
 		hexView = view.findViewById(R.id.hex)
+		stampView = view.findViewById(R.id.stamp)
+		recreationView = view.findViewById(R.id.recreation)
+		fab = view.findViewById(R.id.open)
 
-		updateViewsAndAction(raw)
-
-		if (!isBinary) {
-			fillDataView(dataView, inputContent)
-		}
+		initContentAndFab(originalContent)
 
 		if (prefs.showMetaData) {
-			fillMetaView(metaView, scan)
+			metaView.fillMetaView(scan)
+		} else {
+			metaView.visibility = View.GONE
+		}
+		if (prefs.showRecreation) {
+			recreation = scan.toRecreation(
+				(200f * dp).roundToInt()
+			)
 		}
 
-		view.findViewById<ImageView>(R.id.recreation).apply {
-			scope.launch(Dispatchers.IO) {
-				val bitmap = if (prefs.showRecreation) {
-					scan.recreate((200f * dp).roundToInt())
-				} else null
-				withContext(Dispatchers.Main) {
-					if (bitmap != null) {
-						setImageBitmap(bitmap)
-					} else {
-						visibility = View.GONE
-					}
-				}
-			}
-		}
+		updateViewsAndFab(originalContent, originalBytes)
 
 		(view.findViewById(R.id.inset_layout) as View).setPaddingFromWindowInsets()
 		(view.findViewById(R.id.scroll_view) as View).setPaddingFromWindowInsets()
@@ -181,35 +126,104 @@ class DecodeFragment : Fragment() {
 		parentJob.cancel()
 	}
 
-	private fun updateViewsAndAction(bytes: ByteArray) {
+	private fun initContentAndFab(originalContent: String) {
+		if (isBinary) {
+			contentView.setText(String(originalBytes).foldNonAlNum())
+			contentView.isEnabled = false
+			fab.setImageResource(R.drawable.ic_action_save)
+			fab.setOnClickListener {
+				askForFileNameAndSave(originalBytes)
+			}
+		} else {
+			contentView.setText(originalContent)
+			contentView.addTextChangedListener(object : TextWatcher {
+				override fun afterTextChanged(s: Editable?) {
+					updateViewsAndFab(s?.toString() ?: "")
+				}
+
+				override fun beforeTextChanged(
+					s: CharSequence?,
+					start: Int,
+					count: Int,
+					after: Int
+				) = Unit
+
+				override fun onTextChanged(
+					s: CharSequence?,
+					start: Int,
+					before: Int,
+					count: Int
+				) = Unit
+			})
+			fab.setOnClickListener {
+				executeAction(content)
+			}
+			if (prefs.openImmediately) {
+				executeAction(content)
+			}
+		}
+	}
+
+	private fun updateViewsAndFab(text: String, bytes: ByteArray? = null) {
+		val b = bytes ?: text.toByteArray()
+		resolveActionAndUpdateFab(b)
+		updateViews(text, b)
+	}
+
+	private fun resolveActionAndUpdateFab(bytes: ByteArray) {
 		val prevAction = action
 		if (!prevAction.canExecuteOn(bytes)) {
 			action = ActionRegistry.getAction(bytes)
 		}
+		if (prevAction !== action) {
+			updateFab(action)
+		}
+	}
+
+	private fun updateFab(action: IAction) {
+		fab.setImageResource(action.iconResId)
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+			fab.setOnLongClickListener { v ->
+				v.context.toast(action.titleResId)
+				true
+			}
+		} else {
+			fab.tooltipText = getString(action.titleResId)
+		}
+	}
+
+	private fun updateViews(text: String, bytes: ByteArray) {
 		formatView.text = resources.getQuantityString(
 			R.plurals.barcode_info,
 			bytes.size,
 			prettifyFormatName(format),
 			bytes.size
 		)
-		hexView.text = if (prefs.showHexDump) hexDump(bytes) else ""
-		if (prevAction !== action) {
-			fab.setImageResource(action.iconResId)
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-				fab.setOnLongClickListener { v ->
-					v.context.toast(action.titleResId)
-					true
-				}
-			} else {
-				fab.tooltipText = getString(action.titleResId)
+		hexView.showIf(prefs.showHexDump) { v ->
+			v.text = hexDump(bytes)
+		}
+		recreationView.showIf(prefs.showRecreation) { v ->
+			val r = recreation ?: return@showIf
+			v.setImageBitmap(r.encode(text))
+			v.setOnClickListener {
+				fragmentManager?.addFragment(
+					BarcodeFragment.newInstance(
+						text,
+						r.format,
+						r.size,
+						r.ecLevel
+					)
+				)
 			}
 		}
+		dataView.fillDataView(text)
+		stampView.setTrackingLink(bytes, format)
 	}
 
-	private fun fillDataView(tableLayout: TableLayout, content: String) {
+	private fun TableLayout.fillDataView(text: String) {
 		val items = LinkedHashMap<Int, String?>()
 		if (action is WifiAction) {
-			WifiConnector.parseMap(content)?.let { wifiData ->
+			WifiConnector.parseMap(text)?.let { wifiData ->
 				items.putAll(
 					linkedMapOf(
 						R.string.entry_type to getString(R.string.wifi_network),
@@ -225,10 +239,10 @@ class DecodeFragment : Fragment() {
 				)
 			}
 		}
-		fillDataTable(tableLayout, items)
+		fill(items)
 	}
 
-	private fun fillMetaView(tableLayout: TableLayout, scan: Scan) {
+	private fun TableLayout.fillMetaView(scan: Scan) {
 		val items = linkedMapOf(
 			R.string.error_correction_level to scan.errorCorrectionLevel,
 			R.string.sequence_size to scan.sequenceSize.positiveToString(),
@@ -255,32 +269,31 @@ class DecodeFragment : Fragment() {
 				)
 			)
 		}
-		fillDataTable(tableLayout, items)
+		fill(items)
 	}
 
-	private fun fillDataTable(
-		tableLayout: TableLayout,
+	private fun TableLayout.fill(
 		items: LinkedHashMap<Int, String?>
 	) {
-		if (items.isEmpty()) {
-			tableLayout.visibility = View.GONE
-			return
-		}
-		val ctx = tableLayout.context
-		val spaceBetween = (16f * dp).roundToInt()
-		items.forEach { item ->
-			val text = item.value
-			if (!text.isNullOrBlank()) {
-				val tr = TableRow(ctx)
-				val keyView = TextView(ctx)
-				keyView.setText(item.key)
-				val valueView = TextView(ctx)
-				valueView.setPadding(spaceBetween, 0, 0, 0)
-				valueView.text = text
-				tr.addView(keyView)
-				tr.addView(valueView)
-				tableLayout.addView(tr)
+		removeAllViews()
+		visibility = if (items.isEmpty()) View.GONE else {
+			val ctx = context
+			val spaceBetween = (16f * dp).roundToInt()
+			items.forEach { item ->
+				val text = item.value
+				if (!text.isNullOrBlank()) {
+					val tr = TableRow(ctx)
+					val keyView = TextView(ctx)
+					keyView.setText(item.key)
+					val valueView = TextView(ctx)
+					valueView.setPadding(spaceBetween, 0, 0, 0)
+					valueView.text = text
+					tr.addView(keyView)
+					tr.addView(valueView)
+					addView(tr)
+				}
 			}
+			View.VISIBLE
 		}
 	}
 
@@ -333,7 +346,7 @@ class DecodeFragment : Fragment() {
 	}
 
 	private fun textOrHex() = if (isBinary) {
-		raw.toHexString()
+		originalBytes.toHexString()
 	} else {
 		content
 	}
@@ -372,7 +385,7 @@ class DecodeFragment : Fragment() {
 		}
 	}
 
-	private fun executeAction(content: ByteArray) {
+	private fun executeAction(content: String) {
 		val ac = activity ?: return
 		if (content.isNotEmpty()) {
 			if (action is WifiAction &&
@@ -382,7 +395,7 @@ class DecodeFragment : Fragment() {
 				return
 			}
 			scope.launch {
-				action.execute(ac, content)
+				action.execute(ac, content.toByteArray())
 				maybeBackOrFinish()
 			}
 		}
@@ -425,7 +438,17 @@ class DecodeFragment : Fragment() {
 	}
 }
 
-private fun Int.positiveToString() = if (this > -1) this.toString() else ""
+private inline fun <T : View> T.showIf(
+	visible: Boolean,
+	block: (T) -> Unit
+) {
+	visibility = if (visible) {
+		block.invoke(this)
+		View.VISIBLE
+	} else {
+		View.GONE
+	}
+}
 
 private val nonAlNum = "[^a-zA-Z0-9]".toRegex()
 private val multipleDots = "[…]+".toRegex()
@@ -471,18 +494,31 @@ private fun hexDump(bytes: ByteArray, charsPerLine: Int = 33): String {
 	return dump.toString()
 }
 
-private fun generateDpTrackingLink(raw: ByteArray, format: String): String? {
+private fun Int.positiveToString() = if (this > -1) this.toString() else ""
+
+private fun TextView.setTrackingLink(bytes: ByteArray, format: String) {
+	val trackingLink = generateDpTrackingLink(bytes, format)
+	if (trackingLink != null) {
+		text = trackingLink.fromHtml()
+		isClickable = true
+		movementMethod = LinkMovementMethod.getInstance()
+	} else {
+		visibility = View.GONE
+	}
+}
+
+private fun generateDpTrackingLink(bytes: ByteArray, format: String): String? {
 	// Check for Deutsche Post Matrixcode stamp.
 	var isStamp = false
-	var rawData = raw
+	var rawData = bytes
 	if (format == "DATA_MATRIX" &&
-		raw.toString(Charsets.ISO_8859_1).startsWith("DEA5")
+		bytes.toString(Charsets.ISO_8859_1).startsWith("DEA5")
 	) {
-		if (raw.size == 47) {
+		if (bytes.size == 47) {
 			isStamp = true
-		} else if (raw.size > 47) {
+		} else if (bytes.size > 47) {
 			// Transform back to original data.
-			rawData = raw.toString(Charsets.UTF_8).toByteArray(
+			rawData = bytes.toString(Charsets.UTF_8).toByteArray(
 				Charsets.ISO_8859_1
 			)
 			if (rawData.size == 47) {
