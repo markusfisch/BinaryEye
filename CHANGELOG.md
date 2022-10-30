@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.55.0
+* Make recreated barcode interactive
+* Update to latest ZXing C++
+* Update Italian translation
+
 ## 1.54.1
 * Update Russian translation
 * Update Turkish translation
