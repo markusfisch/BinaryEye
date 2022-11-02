@@ -158,6 +158,7 @@
 	<string name="export_database">Експортувати базу даних SQLite</string>
 	<string name="saved_in_downloads">Збережено в Завантаженнях</string>
 	<string name="rotate_image_cw">Повернути зображення за годинниковою стрілкою</string>
+	<string name="toggle_free_rotation">Toggle free rotation</string>
 	<string name="pick_file">Вибрати файл зображення</string>
 	<string name="pick_code_to_scan">Вибрати код для сканування</string>
 	<string name="shortcut_decode">Сканувати штрих-код</string>

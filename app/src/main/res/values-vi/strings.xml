@@ -156,6 +156,7 @@
 	<string name="export_database">Cơ sở dữ liệu SQLite</string>
 	<string name="saved_in_downloads">Lưu vào Downloads</string>
 	<string name="rotate_image_cw">Quay ảnh theo chiều kim đồng hồ</string>
+	<string name="toggle_free_rotation">Toggle free rotation</string>
 	<string name="pick_file">Chọn tệp ảnh</string>
 	<string name="pick_code_to_scan">Chọn mã để quét</string>
 	<string name="shortcut_decode">Quét mã vạch</string>

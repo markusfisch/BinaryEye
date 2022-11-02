@@ -2,6 +2,11 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:material="http://schemas.android.com/apk/res-auto">
 	<item
+		android:id="@+id/toggle_free"
+		android:title="@string/toggle_free_rotation"
+		android:icon="@drawable/ic_action_rotation_unlocked"
+		material:showAsAction="ifRoom"/>
+	<item
 		android:id="@+id/rotate"
 		android:title="@string/rotate_image_cw"
 		android:icon="@drawable/ic_action_rotate_clockwise"

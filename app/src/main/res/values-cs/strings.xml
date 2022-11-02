@@ -159,6 +159,7 @@
 	<string name="export_database">SQLite databáze</string>
 	<string name="saved_in_downloads">Uloženo do složky Stahování</string>
 	<string name="rotate_image_cw">Otočit obrázek po směru hodinových ručiček</string>
+	<string name="toggle_free_rotation">Toggle free rotation</string>
 	<string name="pick_file">Vybrat obrázek</string>
 	<string name="pick_code_to_scan">Vyberte kód k naskenování</string>
 	<string name="shortcut_decode">Skenovat čárový kód</string>

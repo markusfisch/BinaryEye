@@ -181,6 +181,11 @@ class Preferences {
 			commit(FORCE_COMPAT, value)
 			field = value
 		}
+	var freeRotation = true
+		set(value) {
+			apply(FREE_ROTATION, value)
+			field = value
+		}
 
 	fun init(context: Context) {
 		preferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -260,6 +265,7 @@ class Preferences {
 			indexOfLastSelectedFormat
 		)
 		forceCompat = preferences.getBoolean(FORCE_COMPAT, forceCompat)
+		freeRotation = preferences.getBoolean(FREE_ROTATION, freeRotation)
 	}
 
 	private fun put(label: String, value: Boolean) =
@@ -322,5 +328,6 @@ class Preferences {
 		private const val CUSTOM_LOCALE = "custom_locale"
 		private const val INDEX_OF_LAST_SELECTED_FORMAT = "index_of_last_selected_format"
 		private const val FORCE_COMPAT = "force_compat"
+		private const val FREE_ROTATION = "free_rotation"
 	}
 }
