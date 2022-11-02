@@ -67,7 +67,7 @@ class BarcodeFragment : Fragment() {
 				"Illegal arguments"
 			)
 			// Catch exceptions from encoding.
-			bitmap = barcode.bitmap
+			bitmap = barcode.bitmap()
 		} catch (e: Exception) {
 			var message = e.message
 			if (message == null || message.isEmpty()) {
@@ -132,7 +132,7 @@ class BarcodeFragment : Fragment() {
 		return when (item.itemId) {
 			R.id.copy_to_clipboard -> {
 				context.apply {
-					copyToClipboard(barcode.text)
+					copyToClipboard(barcode.text())
 					toast(R.string.copied_to_clipboard)
 				}
 				true
@@ -184,19 +184,19 @@ class BarcodeFragment : Fragment() {
 						addSuffixIfNotGiven(fileName, ".png"),
 						MIME_PNG
 					) {
-						barcode.bitmap.saveAsPng(it)
+						barcode.bitmap().saveAsPng(it)
 					}
 					FileType.SVG -> saveAs(
 						addSuffixIfNotGiven(fileName, ".svg"),
 						MIME_SVG
 					) { outputStream ->
-						outputStream.write(barcode.svg.toByteArray())
+						outputStream.write(barcode.svg().toByteArray())
 					}
 					FileType.TXT -> saveAs(
 						addSuffixIfNotGiven(fileName, ".txt"),
 						MIME_TXT
 					) { outputStream ->
-						outputStream.write(barcode.text.toByteArray())
+						outputStream.write(barcode.text().toByteArray())
 					}
 				}
 			}
@@ -221,9 +221,9 @@ class BarcodeFragment : Fragment() {
 
 	private fun Context.shareAs(fileType: FileType) {
 		when (fileType) {
-			FileType.PNG -> share(barcode.bitmap)
-			FileType.SVG -> shareText(barcode.svg, MIME_SVG)
-			FileType.TXT -> shareText(barcode.text)
+			FileType.PNG -> share(barcode.bitmap())
+			FileType.SVG -> shareText(barcode.svg(), MIME_SVG)
+			FileType.TXT -> shareText(barcode.text())
 		}
 	}
 
@@ -288,21 +288,35 @@ private data class Barcode(
 	val ecLevel: Int,
 	val colors: Colors
 ) {
-	val bitmap: Bitmap
-		get() = ZxingCpp.encodeAsBitmap(
+	private var _bitmap: Bitmap? = null
+	fun bitmap(): Bitmap {
+		val b = _bitmap ?: ZxingCpp.encodeAsBitmap(
 			content, format, size, size, -1, ecLevel,
 			setColor = colors.foregroundColor(),
 			unsetColor = colors.backgroundColor()
 		)
-	val svg: String
-		get() = ZxingCpp.encodeAsSvg(
+		_bitmap = b
+		return b
+	}
+
+	private var _svg: String? = null
+	fun svg(): String {
+		val s = _svg ?: ZxingCpp.encodeAsSvg(
 			content, format, -1, ecLevel
 		)
-	val text: String
-		get() = ZxingCpp.encodeAsText(
+		_svg = s
+		return s
+	}
+
+	private var _text: String? = null
+	fun text(): String {
+		val t = _text ?: ZxingCpp.encodeAsText(
 			content, format, -1, ecLevel,
 			inverted = colors == Colors.BLACK_ON_WHITE
 		)
+		_text = t
+		return t
+	}
 }
 
 private enum class Colors {
