@@ -15,6 +15,11 @@
 	<string name="error_correction_level_m" formatted="false">Orta (~&#37;15 düzeltim)</string>
 	<string name="error_correction_level_q" formatted="false">Dörtte Bir (~&#37;25 düzeltim)</string>
 	<string name="error_correction_level_h" formatted="false">Yüksek (~&#37;30 düzeltim)</string>
+	<string name="colors">Fore and background</string>
+	<string name="colors_black_on_white">Black on white</string>
+	<string name="colors_white_on_black">White on black</string>
+	<string name="colors_black_on_transparent">Black on transparent</string>
+	<string name="colors_white_on_transparent">White on transparent</string>
 	<string name="sequence_size">Dizi boyutu</string>
 	<string name="sequence_index">Dizi indeksi</string>
 	<string name="sequence_id">Dizi kimliği</string>

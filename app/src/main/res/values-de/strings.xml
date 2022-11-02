@@ -15,6 +15,11 @@
 	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; wiederherstellbar)</string>
 	<string name="error_correction_level_q" formatted="false">Quartile (~25&#37; wiederherstellbar)</string>
 	<string name="error_correction_level_h" formatted="false">High (~30&#37; wiederherstellbar)</string>
+	<string name="colors">Vor und Hintergrund</string>
+	<string name="colors_black_on_white">Schwarz auf Weiss</string>
+	<string name="colors_white_on_black">Weiss auf Schwarz</string>
+	<string name="colors_black_on_transparent">Schwarz auf Transparent</string>
+	<string name="colors_white_on_transparent">Weiss auf Transparent</string>
 	<string name="sequence_size">Sequence size</string>
 	<string name="sequence_index">Sequence index</string>
 	<string name="sequence_id">Sequence ID</string>

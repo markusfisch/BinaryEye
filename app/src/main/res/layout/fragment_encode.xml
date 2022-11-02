@@ -36,6 +36,18 @@
 				android:layout_marginBottom="16dp"
 				android:entries="@array/error_correction_levels"/>
 			<TextView
+				android:id="@+id/colors_label"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="8dp"
+				android:text="@string/colors"/>
+			<Spinner
+				android:id="@+id/colors"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="16dp"
+				android:entries="@array/colors"/>
+			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="8dp"

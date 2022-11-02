@@ -44,9 +44,9 @@ private fun Bitmap.analyzeTransparency(): Result {
 	return Result(
 		transparent > 0,
 		if (bright > 0 && visible / bright < 2) {
-			0xff000000.toInt()
+			COLOR_BLACK
 		} else {
-			0xffffffff.toInt()
+			COLOR_WHITE
 		}
 	)
 }

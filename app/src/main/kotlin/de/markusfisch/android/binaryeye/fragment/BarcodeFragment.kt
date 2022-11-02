@@ -14,6 +14,8 @@ import de.markusfisch.android.binaryeye.app.hasWritePermission
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.shareFile
 import de.markusfisch.android.binaryeye.content.shareText
+import de.markusfisch.android.binaryeye.graphics.COLOR_BLACK
+import de.markusfisch.android.binaryeye.graphics.COLOR_WHITE
 import de.markusfisch.android.binaryeye.io.addSuffixIfNotGiven
 import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.io.writeExternalFile
@@ -61,7 +63,7 @@ class BarcodeFragment : Fragment() {
 
 		val bitmap: Bitmap
 		try {
-			barcode = arguments?.toProperties() ?: throw IllegalArgumentException(
+			barcode = arguments?.toBarcode() ?: throw IllegalArgumentException(
 				"Illegal arguments"
 			)
 			// Catch exceptions from encoding.
@@ -103,7 +105,7 @@ class BarcodeFragment : Fragment() {
 		return view
 	}
 
-	private fun Bundle.toProperties() = Barcode(
+	private fun Bundle.toBarcode() = Barcode(
 		getString(CONTENT) ?: throw IllegalArgumentException(
 			"content cannot be null"
 		),
@@ -113,7 +115,8 @@ class BarcodeFragment : Fragment() {
 			)
 		),
 		getInt(SIZE),
-		getInt(EC_LEVEL)
+		getInt(EC_LEVEL),
+		Colors.values()[getInt(COLORS)]
 	)
 
 	override fun onDestroyView() {
@@ -253,6 +256,7 @@ class BarcodeFragment : Fragment() {
 		private const val FORMAT = "format"
 		private const val SIZE = "size"
 		private const val EC_LEVEL = "ec_level"
+		private const val COLORS = "colors"
 		private const val MIME_PNG = "image/png"
 		private const val MIME_SVG = "image/svg+xmg"
 		private const val MIME_TXT = "text/plain"
@@ -261,13 +265,15 @@ class BarcodeFragment : Fragment() {
 			content: String,
 			format: Format,
 			size: Int,
-			ecLevel: Int = -1
+			ecLevel: Int = -1,
+			colors: Int = 0
 		): Fragment {
 			val args = Bundle()
 			args.putString(CONTENT, content)
 			args.putString(FORMAT, format.name)
 			args.putInt(SIZE, size)
 			args.putInt(EC_LEVEL, ecLevel)
+			args.putInt(COLORS, colors)
 			val fragment = BarcodeFragment()
 			fragment.arguments = args
 			return fragment
@@ -279,11 +285,14 @@ private data class Barcode(
 	val content: String,
 	val format: Format,
 	val size: Int,
-	val ecLevel: Int
+	val ecLevel: Int,
+	val colors: Colors
 ) {
 	val bitmap: Bitmap
 		get() = ZxingCpp.encodeAsBitmap(
-			content, format, size, size, -1, ecLevel
+			content, format, size, size, -1, ecLevel,
+			setColor = colors.foregroundColor(),
+			unsetColor = colors.backgroundColor()
 		)
 	val svg: String
 		get() = ZxingCpp.encodeAsSvg(
@@ -291,8 +300,30 @@ private data class Barcode(
 		)
 	val text: String
 		get() = ZxingCpp.encodeAsText(
-			content, format, -1, ecLevel
+			content, format, -1, ecLevel,
+			inverted = colors == Colors.BLACK_ON_WHITE
 		)
+}
+
+private enum class Colors {
+	BLACK_ON_WHITE,
+	WHITE_ON_BLACK,
+	BLACK_ON_TRANSPARENT,
+	WHITE_ON_TRANSPARENT;
+
+	fun foregroundColor(): Int = when (this) {
+		BLACK_ON_WHITE,
+		BLACK_ON_TRANSPARENT -> COLOR_BLACK
+		WHITE_ON_BLACK,
+		WHITE_ON_TRANSPARENT -> COLOR_WHITE
+	}
+
+	fun backgroundColor(): Int = when (this) {
+		BLACK_ON_WHITE -> COLOR_WHITE
+		WHITE_ON_BLACK -> COLOR_BLACK
+		BLACK_ON_TRANSPARENT,
+		WHITE_ON_TRANSPARENT -> 0
+	}
 }
 
 private fun Bitmap.saveAsPng(outputStream: OutputStream, quality: Int = 90) =

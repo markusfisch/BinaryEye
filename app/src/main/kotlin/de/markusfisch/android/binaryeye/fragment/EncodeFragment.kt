@@ -1,5 +1,6 @@
 package de.markusfisch.android.binaryeye.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -12,12 +13,15 @@ import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.view.hideSoftKeyboard
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
+import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.zxingcpp.ZxingCpp.Format
 
 class EncodeFragment : Fragment() {
 	private lateinit var formatView: Spinner
-	private lateinit var errorCorrectionLabel: TextView
-	private lateinit var errorCorrectionLevel: Spinner
+	private lateinit var ecLabel: TextView
+	private lateinit var ecSpinner: Spinner
+	private lateinit var colorsLabel: TextView
+	private lateinit var colorsSpinner: Spinner
 	private lateinit var sizeView: TextView
 	private lateinit var sizeBarView: SeekBar
 	private lateinit var contentView: EditText
@@ -67,22 +71,26 @@ class EncodeFragment : Fragment() {
 				position: Int,
 				id: Long
 			) {
-				val visibility = if (
+				val ecVisibility = if (
 					writers[position] == Format.QR_CODE
-				) {
-					View.VISIBLE
-				} else {
-					View.GONE
-				}
-				errorCorrectionLabel.visibility = visibility
-				errorCorrectionLevel.visibility = visibility
+				) View.VISIBLE else View.GONE
+				ecLabel.visibility = ecVisibility
+				ecSpinner.visibility = ecVisibility
+				val colorsVisibility = if (
+					writers[position].canBeInverted()
+				) View.VISIBLE else View.GONE
+				colorsLabel.visibility = colorsVisibility
+				colorsSpinner.visibility = colorsVisibility
 			}
 
 			override fun onNothingSelected(parentView: AdapterView<*>?) {}
 		}
 
-		errorCorrectionLabel = view.findViewById(R.id.error_correction_label)
-		errorCorrectionLevel = view.findViewById(R.id.error_correction_level)
+		ecLabel = view.findViewById(R.id.error_correction_label)
+		ecSpinner = view.findViewById(R.id.error_correction_level)
+
+		colorsLabel = view.findViewById(R.id.colors_label)
+		colorsSpinner = view.findViewById(R.id.colors)
 
 		sizeView = view.findViewById(R.id.size_display)
 		sizeBarView = view.findViewById(R.id.size_bar)
@@ -107,7 +115,7 @@ class EncodeFragment : Fragment() {
 		}
 
 		view.findViewById<View>(R.id.encode).setOnClickListener {
-			encode()
+			it.context.encode()
 		}
 
 		(view.findViewById(R.id.inset_layout) as View).setPaddingFromWindowInsets()
@@ -121,25 +129,25 @@ class EncodeFragment : Fragment() {
 		prefs.indexOfLastSelectedFormat = formatView.selectedItemPosition
 	}
 
-	private fun encode() {
+	private fun Context.encode() {
 		val content = contentView.text.toString()
 		if (content.isEmpty()) {
-			Toast.makeText(
-				context,
-				R.string.error_no_content,
-				Toast.LENGTH_SHORT
-			).show()
-		} else {
-			activity?.hideSoftKeyboard(contentView)
-			fragmentManager?.addFragment(
-				BarcodeFragment.newInstance(
-					content,
-					writers[formatView.selectedItemPosition],
-					getSize(sizeBarView.progress),
-					errorCorrectionLevel.selectedItemPosition
-				)
-			)
+			toast(R.string.error_no_content)
+			return
 		}
+		hideSoftKeyboard(contentView)
+		val writer = writers[formatView.selectedItemPosition]
+		fragmentManager?.addFragment(
+			BarcodeFragment.newInstance(
+				content,
+				writer,
+				getSize(sizeBarView.progress),
+				ecSpinner.selectedItemPosition,
+				if (writer.canBeInverted()) {
+					colorsSpinner.selectedItemPosition
+				} else 0
+			)
+		)
 	}
 
 	private fun initSizeBar() {
@@ -183,6 +191,13 @@ class EncodeFragment : Fragment() {
 			return fragment
 		}
 	}
+}
+
+private fun Format.canBeInverted() = when (this) {
+	Format.AZTEC,
+	Format.DATA_MATRIX,
+	Format.QR_CODE -> true
+	else -> false
 }
 
 private fun String.toFormat(default: Format = Format.QR_CODE): Format = try {

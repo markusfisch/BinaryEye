@@ -15,6 +15,11 @@
 	<string name="error_correction_level_m" formatted="false">Médio (~15&#37; correção)</string>
 	<string name="error_correction_level_q" formatted="false">Quartil (~25&#37; correção)</string>
 	<string name="error_correction_level_h" formatted="false">Alto (~30&#37; correção)</string>
+	<string name="colors">Fore and background</string>
+	<string name="colors_black_on_white">Black on white</string>
+	<string name="colors_white_on_black">White on black</string>
+	<string name="colors_black_on_transparent">Black on transparent</string>
+	<string name="colors_white_on_transparent">White on transparent</string>
 	<string name="sequence_size">Sequence size</string>
 	<string name="sequence_index">Sequence index</string>
 	<string name="sequence_id">Sequence ID</string>
