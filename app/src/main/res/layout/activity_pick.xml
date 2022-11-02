@@ -17,6 +17,6 @@
 			style="@style/FAB"
 			android:id="@+id/scan"
 			android:contentDescription="@string/scan_code"
-			android:src="@drawable/ic_action_search"/>
+			android:src="@drawable/ic_action_forward"/>
 	</android.support.design.widget.CoordinatorLayout>
 </merge>
