@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.56.0
+* Add an action item to lock/unlock free rotation
+* Support setting fore and background colors when creating barcodes
+* Fix creating barcodes with UTF-8 content
+
 ## 1.55.0
 * Make recreated barcode interactive
 * Update to latest ZXing C++
