@@ -7,6 +7,7 @@ import android.os.Parcelable
 import android.text.format.DateFormat
 import de.markusfisch.android.zxingcpp.ZxingCpp
 import de.markusfisch.android.zxingcpp.ZxingCpp.ContentType
+import de.markusfisch.android.zxingcpp.ZxingCpp.Format
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
 
 data class Scan(
@@ -125,6 +126,8 @@ fun Result.toScan(): Scan {
 	val content: String
 	val raw: ByteArray?
 	when (contentType) {
+		ContentType.GS1,
+		ContentType.ISO15434,
 		ContentType.TEXT -> {
 			content = text
 			raw = null
@@ -150,28 +153,39 @@ fun Result.toScan(): Scan {
 	)
 }
 
-fun Scan.recreate(
-	size: Int = 128,
-	margin: Int = -1
-): Bitmap? {
-	if (content.isEmpty()) {
-		return null
-	}
-	val ecLevel = when (errorCorrectionLevel) {
-		"L" -> 0
-		"M" -> 1
-		"Q" -> 2
-		"H" -> 3
-		else -> -1
-	}
-	return try {
-		val format = ZxingCpp.Format.valueOf(format)
+data class Recreation(
+	val format: Format,
+	val ecLevel: Int,
+	val size: Int,
+	val margin: Int
+) {
+	fun encode(content: String): Bitmap? = try {
 		ZxingCpp.encodeAsBitmap(
 			content, format, size, size, margin, ecLevel
 		)
 	} catch (_: RuntimeException) {
 		null
 	}
+}
+
+fun Scan.toRecreation(
+	size: Int = 128,
+	margin: Int = -1
+) = if (content.isEmpty()) {
+	null
+} else {
+	Recreation(
+		Format.valueOf(format),
+		when (errorCorrectionLevel) {
+			"L" -> 0
+			"M" -> 1
+			"Q" -> 2
+			"H" -> 3
+			else -> -1
+		},
+		size,
+		margin
+	)
 }
 
 private fun getDateTime(

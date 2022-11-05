@@ -1,5 +1,22 @@
 # Change Log
 
+## 1.56.0
+* Add an action item to lock/unlock free rotation
+* Support setting fore and background colors when creating barcodes
+* Fix creating barcodes with UTF-8 content
+
+## 1.55.0
+* Make recreated barcode interactive
+* Update to latest ZXing C++
+* Update Italian translation
+
+## 1.54.1
+* Update Russian translation
+* Update Turkish translation
+* Update Italian translation
+* Fix handling GS1 and ISO15434 content types
+* Fix VerifyError on Android 4
+
 ## 1.54.0
 * Recreate and show barcode from read contents if possible
 * Add ebay, Amazon and barcodelookup.com to search engines

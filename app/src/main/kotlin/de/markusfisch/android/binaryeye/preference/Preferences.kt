@@ -59,7 +59,7 @@ class Preferences {
 			apply(ZOOM_BY_SWIPING, value)
 			field = value
 		}
-	var autoRotate = false
+	var autoRotate = true
 		set(value) {
 			// Immediately save this setting before it shouldn't change
 			// on the fly while scanning.
@@ -174,11 +174,9 @@ class Preferences {
 			apply(INDEX_OF_LAST_SELECTED_FORMAT, value)
 			field = value
 		}
-	var forceCompat = false
+	var freeRotation = true
 		set(value) {
-			// Since the app may be about to crash when forceCompat is set,
-			// it's necessary to `commit()` this synchronously.
-			commit(FORCE_COMPAT, value)
+			apply(FREE_ROTATION, value)
 			field = value
 		}
 
@@ -259,7 +257,7 @@ class Preferences {
 			INDEX_OF_LAST_SELECTED_FORMAT,
 			indexOfLastSelectedFormat
 		)
-		forceCompat = preferences.getBoolean(FORCE_COMPAT, forceCompat)
+		freeRotation = preferences.getBoolean(FREE_ROTATION, freeRotation)
 	}
 
 	private fun put(label: String, value: Boolean) =
@@ -321,6 +319,6 @@ class Preferences {
 		private const val SEND_SCAN_TYPE = "send_scan_type"
 		private const val CUSTOM_LOCALE = "custom_locale"
 		private const val INDEX_OF_LAST_SELECTED_FORMAT = "index_of_last_selected_format"
-		private const val FORCE_COMPAT = "force_compat"
+		private const val FREE_ROTATION = "free_rotation"
 	}
 }

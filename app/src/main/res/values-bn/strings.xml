@@ -15,6 +15,11 @@
 	<string name="error_correction_level_m" formatted="false">মধ্যম (~১৫&#37; ঠিককরণ)</string>
 	<string name="error_correction_level_q" formatted="false">বেশি (~২৫&#37; ঠিককরণ)</string>
 	<string name="error_correction_level_h" formatted="false">অনেক বেশি (~৩০&#37; ঠিককরণ)</string>
+	<string name="colors">Fore and background</string>
+	<string name="colors_black_on_white">Black on white</string>
+	<string name="colors_white_on_black">White on black</string>
+	<string name="colors_black_on_transparent">Black on transparent</string>
+	<string name="colors_white_on_transparent">White on transparent</string>
 	<string name="sequence_size">Sequence size</string>
 	<string name="sequence_index">Sequence index</string>
 	<string name="sequence_id">Sequence ID</string>
@@ -152,6 +157,7 @@
 	<string name="export_database">এসকিউলাইট তথ্যভিত্তি</string>
 	<string name="saved_in_downloads">ডাউনলোডে সংরক্ষিত</string>
 	<string name="rotate_image_cw">ছবি ঘড়ির দিকে ঘুরাও</string>
+	<string name="toggle_free_rotation">Toggle free rotation</string>
 	<string name="pick_file">ছবি নাও</string>
 	<string name="pick_code_to_scan">খুঁজার জন্য কোড নাও</string>
 	<string name="shortcut_decode">বারকোড খুজো</string>

@@ -1,0 +1,4 @@
+* Make recreated barcode interactive
+* Update to latest ZXing C++
+* Update Italian translation
+

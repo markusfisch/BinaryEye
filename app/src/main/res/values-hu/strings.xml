@@ -15,6 +15,11 @@
 	<string name="error_correction_level_m" formatted="false">Közepes (~15&#37; javítás)</string>
 	<string name="error_correction_level_q" formatted="false">Kvartilis (~25&#37; javítás)</string>
 	<string name="error_correction_level_h" formatted="false">Magas (~30&#37; javítás)</string>
+	<string name="colors">Fore and background</string>
+	<string name="colors_black_on_white">Black on white</string>
+	<string name="colors_white_on_black">White on black</string>
+	<string name="colors_black_on_transparent">Black on transparent</string>
+	<string name="colors_white_on_transparent">White on transparent</string>
 	<string name="sequence_size">Sequence size</string>
 	<string name="sequence_index">Sequence index</string>
 	<string name="sequence_id">Sequence ID</string>
@@ -152,6 +157,7 @@
 	<string name="export_database">SQLite adatbázis</string>
 	<string name="saved_in_downloads">Elmentve a letöltésekbe</string>
 	<string name="rotate_image_cw">Kép forgatása jobbra</string>
+	<string name="toggle_free_rotation">Toggle free rotation</string>
 	<string name="pick_file">Képfájl kiválasztása</string>
 	<string name="pick_code_to_scan">Kód kiválasztása a beolvasáshoz</string>
 	<string name="shortcut_decode">Vonalkód beolvasása</string>

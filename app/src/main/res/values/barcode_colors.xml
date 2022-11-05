@@ -1,0 +1,8 @@
+<resources>
+	<string-array name="colors">
+		<item>@string/colors_black_on_white</item>
+		<item>@string/colors_white_on_black</item>
+		<item>@string/colors_black_on_transparent</item>
+		<item>@string/colors_white_on_transparent</item>
+	</string-array>
+</resources>

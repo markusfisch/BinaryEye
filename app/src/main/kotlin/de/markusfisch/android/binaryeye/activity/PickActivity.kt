@@ -45,6 +45,7 @@ class PickActivity : AppCompatActivity() {
 	private lateinit var vibrator: Vibrator
 	private lateinit var cropImageView: CropImageView
 	private lateinit var detectorView: DetectorView
+	private lateinit var freeRotationItem: MenuItem
 
 	private var result: Result? = null
 
@@ -81,7 +82,7 @@ class PickActivity : AppCompatActivity() {
 
 		cropImageView = findViewById(R.id.image) as CropImageView
 		cropImageView.restrictTranslation = false
-		cropImageView.freeRotation = true
+		cropImageView.freeRotation = prefs.freeRotation
 		cropImageView.setImageBitmap(bitmap)
 		cropImageView.onScan = {
 			scanWithinBounds(bitmap)
@@ -179,6 +180,9 @@ class PickActivity : AppCompatActivity() {
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
 		menuInflater.inflate(R.menu.activity_pick, menu)
+		freeRotationItem = menu.findItem(R.id.toggle_free).apply {
+			updateFreeRotationIcon()
+		}
 		return true
 	}
 
@@ -188,8 +192,24 @@ class PickActivity : AppCompatActivity() {
 				rotateClockwise()
 				true
 			}
+			R.id.toggle_free -> {
+				prefs.freeRotation = prefs.freeRotation xor true
+				cropImageView.freeRotation = prefs.freeRotation
+				freeRotationItem.updateFreeRotationIcon()
+				true
+			}
 			else -> super.onOptionsItemSelected(item)
 		}
+	}
+
+	private fun MenuItem.updateFreeRotationIcon() {
+		setIcon(
+			if (prefs.freeRotation) {
+				R.drawable.ic_action_rotation_unlocked
+			} else {
+				R.drawable.ic_action_rotation_locked
+			}
+		)
 	}
 
 	private fun rotateClockwise() {
