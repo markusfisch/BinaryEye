@@ -19,10 +19,10 @@ fun Rect.setFrameRoi(
 ) {
 	Matrix().apply {
 		// Map ROI from view coordinates to frame coordinates.
-		setScale(1f / viewRect.width(), 1f / viewRect.height())
+		setTranslate(-viewRect.left.toFloat(), -viewRect.top.toFloat())
+		postScale(1f / viewRect.width(), 1f / viewRect.height())
 		postRotate(-frameMetrics.orientation.toFloat(), .5f, .5f)
 		postScale(frameMetrics.width.toFloat(), frameMetrics.height.toFloat())
-		postTranslate(-viewRect.left.toFloat(), -viewRect.top.toFloat())
 		val frameRoiF = RectF()
 		val viewRoiF = RectF(
 			viewRoi.left.toFloat(),
