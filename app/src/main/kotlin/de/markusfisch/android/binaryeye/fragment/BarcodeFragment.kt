@@ -25,6 +25,7 @@ import de.markusfisch.android.binaryeye.widget.ConfinedScalingImageView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.zxingcpp.ZxingCpp
 import de.markusfisch.android.zxingcpp.ZxingCpp.Format
+import kotlin.math.min
 import kotlinx.coroutines.*
 import java.io.File
 import java.io.FileOutputStream
@@ -86,7 +87,10 @@ class BarcodeFragment : Fragment() {
 		imageView.setImageBitmap(bitmap)
 		imageView.post {
 			// Make sure to invoke this after ScalingImageView.onLayout().
-			imageView.minWidth /= 2f
+			imageView.minWidth = min(
+				imageView.minWidth / 2f,
+				barcode.size.toFloat()
+			)
 		}
 
 		view.findViewById<View>(R.id.share).setOnClickListener {
