@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.56.1
+* Allow pinching a barcode to its generated size
+* Fix view/frame transformation matrix
+* Fix handling of tab characters
+* Update Indonesian translation
+* Update Russian translation
+
 ## 1.56.0
 * Add an action item to lock/unlock free rotation
 * Support setting fore and background colors when creating barcodes
