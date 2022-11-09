@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.56.2
+* Fix generating 1D barcode text output
+
 ## 1.56.1
 * Allow pinching a barcode to its generated size
 * Fix view/frame transformation matrix
