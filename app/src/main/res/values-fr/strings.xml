@@ -16,14 +16,14 @@
 	<string name="error_correction_level_m" formatted="false">Moyen (~15% de correction)</string>
 	<string name="error_correction_level_q" formatted="false">Quartile (~25% de correction)</string>
 	<string name="error_correction_level_h" formatted="false">Élevé (~30% de correction)</string>
-	<string name="colors">Fore and background</string>
-	<string name="colors_black_on_white">Black on white</string>
-	<string name="colors_white_on_black">White on black</string>
-	<string name="colors_black_on_transparent">Black on transparent</string>
-	<string name="colors_white_on_transparent">White on transparent</string>
-	<string name="sequence_size">Sequence size</string>
-	<string name="sequence_index">Sequence index</string>
-	<string name="sequence_id">Sequence ID</string>
+	<string name="colors">Premier plan et arrière-plan</string>
+	<string name="colors_black_on_white">Noir sur blanc</string>
+	<string name="colors_white_on_black">Blanc sur noir</string>
+	<string name="colors_black_on_transparent">Noir sur transparent</string>
+	<string name="colors_white_on_transparent">Blanc sur transparent</string>
+	<string name="sequence_size">Taille de la séquence</string>
+	<string name="sequence_index">Index de la séquence</string>
+	<string name="sequence_id">ID de la séquence</string>
 	<string name="gtin_issue_number">Numéro du problème</string>
 	<string name="gtin_country">Pays de fabrication possible</string>
 	<string name="gtin_price">Prix suggéré</string>
@@ -94,8 +94,8 @@
 	<string name="show_meta_data_summary">Affiche les données supplémentaires sur le code-barres scanné.</string>
 	<string name="show_hex_dump">Afficher le dump hexa</string>
 	<string name="show_hex_dump_summary">Affiche le dump hexadécimal du contenu scanné.</string>
-	<string name="show_recreation">Show recreated barcode</string>
-	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
+	<string name="show_recreation">Afficher le code-barres recréé</string>
+	<string name="show_recreation_summary">Recrée et affiche, si possible, le code-barres à partir du contenu lu.</string>
 	<string name="close_automatically">Revenir après une copie/partage</string>
 	<string name="close_automatically_summary">Revient automatiquement sur l\'écran de scan après avoir copié ou partagé le contenu lu.</string>
 	<string name="default_search_engine">Ouvrir les données inconnues dans</string>
@@ -158,7 +158,7 @@
 	<string name="export_database">Exporter la base de données SQLite</string>
 	<string name="saved_in_downloads">Sauvegardé dans les Téléchargements</string>
 	<string name="rotate_image_cw">Tourner l\'image dans le sens horaire</string>
-	<string name="toggle_free_rotation">Toggle free rotation</string>
+	<string name="toggle_free_rotation">Activer la rotation libre</string>
 	<string name="pick_file">Choisir un fichier image</string>
 	<string name="pick_code_to_scan">Choisissez le code à scanner</string>
 	<string name="shortcut_decode">Scanner un code-barres</string>
