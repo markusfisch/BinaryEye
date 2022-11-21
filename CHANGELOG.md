@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.56.3
+* Fix parsing URLs in barcodes
+* Update French, Portuguese, Turkish and Taiwan translation
+
 ## 1.56.2
 * Fix generating 1D barcode text output
 
