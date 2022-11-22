@@ -10,18 +10,18 @@
 		<item quantity="other">%2$d 字符， %1$s</item>
 	</plurals>
 	<string name="error_correction_level">纠错级别</string>
-	<string name="error_correction_level_l" formatted="false">Low (~7&#37; 准确度)</string>
-	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; 准确度)</string>
-	<string name="error_correction_level_q" formatted="false">Quartile (~25&#37; 准确度)</string>
-	<string name="error_correction_level_h" formatted="false">High (~30&#37; 准确度)</string>
-	<string name="colors">Fore and background</string>
-	<string name="colors_black_on_white">Black on white</string>
-	<string name="colors_white_on_black">White on black</string>
-	<string name="colors_black_on_transparent">Black on transparent</string>
-	<string name="colors_white_on_transparent">White on transparent</string>
-	<string name="sequence_size">Sequence size</string>
-	<string name="sequence_index">Sequence index</string>
-	<string name="sequence_id">Sequence ID</string>
+	<string name="error_correction_level_l" formatted="false">低 (~7&#37; 准确度)</string>
+	<string name="error_correction_level_m" formatted="false">中 (~15&#37; 准确度)</string>
+	<string name="error_correction_level_q" formatted="false">较高 (~25&#37; 准确度)</string>
+	<string name="error_correction_level_h" formatted="false">高 (~30&#37; 准确度)</string>
+	<string name="colors">前景和背景</string>
+	<string name="colors_black_on_white">白底黑字</string>
+	<string name="colors_white_on_black">黑底白字</string>
+	<string name="colors_black_on_transparent">透明底黑字</string>
+	<string name="colors_white_on_transparent">透明底白字</string>
+	<string name="sequence_size">序列大小</string>
+	<string name="sequence_index">序列索引</string>
+	<string name="sequence_id">序列 ID</string>
 	<string name="gtin_issue_number">发行编号</string>
 	<string name="gtin_country">可能产地</string>
 	<string name="gtin_price">建议价格</string>
@@ -92,8 +92,8 @@
 	<string name="show_meta_data_summary">显示已扫描条码的额外数据</string>
 	<string name="show_hex_dump">显示16进制数据</string>
 	<string name="show_hex_dump_summary">显示已扫描条码的16进制数据</string>
-	<string name="show_recreation">Show recreated barcode</string>
-	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
+	<string name="show_recreation">显示重新创建的条码</string>
+	<string name="show_recreation_summary">如果可以，就从读取内容中重新创建并显示条码。</string>
 	<string name="close_automatically">复制/分享后自动返回</string>
 	<string name="close_automatically_summary">复制或分享读取的内容后自动返回扫描主界面。</string>
 	<string name="default_search_engine">打开未知数据方式</string>
@@ -155,8 +155,8 @@
 	<string name="export_json">JSON</string>
 	<string name="export_database">导出 SQLite 数据库</string>
 	<string name="saved_in_downloads">已保存到下载目录</string>
-	<string name="rotate_image_cw">旋转图片</string>
-	<string name="toggle_free_rotation">Toggle free rotation</string>
+	<string name="rotate_image_cw">顺时针旋转图片</string>
+	<string name="toggle_free_rotation">切换自由旋转</string>
 	<string name="pick_file">选择图片文件</string>
 	<string name="pick_code_to_scan">选择扫描编码</string>
 	<string name="shortcut_decode">扫描条码</string>

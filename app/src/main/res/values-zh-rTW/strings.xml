@@ -12,7 +12,7 @@
 	<string name="error_correction_level">糾錯等級</string>
 	<string name="error_correction_level_l" formatted="false">低 (~7&#37; 準確度)</string>
 	<string name="error_correction_level_m" formatted="false">中 (~15&#37; 準確度)</string>
-	<string name="error_correction_level_q" formatted="false">Quartile (~25&#37; 準確度)</string>
+	<string name="error_correction_level_q" formatted="false">較高 (~25&#37; 準確度)</string>
 	<string name="error_correction_level_h" formatted="false">高 (~30&#37; 準確度)</string>
 	<string name="colors">前景和背景</string>
 	<string name="colors_black_on_white">白底黑字</string>
@@ -153,7 +153,7 @@
 	<string name="export_csv_comma">逗號分隔的 CSV 檔案</string>
 	<string name="export_csv_semicolon">分號分隔的 CSV 檔案</string>
 	<string name="export_json">JSON 檔案</string>
-	<string name="export_database">SQLite 資料庫</string>
+	<string name="export_database">導出 SQLite 資料庫</string>
 	<string name="saved_in_downloads">已儲存到下載目錄</string>
 	<string name="rotate_image_cw">順時針旋轉圖片</string>
 	<string name="toggle_free_rotation">切換自由旋轉</string>
