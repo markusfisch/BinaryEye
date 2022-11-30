@@ -126,7 +126,7 @@ object WifiConnector {
 				requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) {
 					WifiEnterpriseConfig.Eap.NONE
 				}
-			} else when (inputMap["E"]) {
+			} else when (inputMap["E"]?.uppercase()) {
 				"AKA" -> requireSdk(Build.VERSION_CODES.LOLLIPOP) { WifiEnterpriseConfig.Eap.AKA }
 				"AKA_PRIME" -> requireSdk(Build.VERSION_CODES.M) { WifiEnterpriseConfig.Eap.AKA_PRIME }
 				"NONE" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.NONE }
@@ -143,7 +143,7 @@ object WifiConnector {
 				requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) {
 					WifiEnterpriseConfig.Phase2.NONE
 				}
-			} else when (inputMap["PH2"]) {
+			} else when (inputMap["PH2"]?.uppercase()) {
 				"AKA" -> requireSdk(Build.VERSION_CODES.O) { WifiEnterpriseConfig.Phase2.AKA }
 				"AKA_PRIME" -> requireSdk(Build.VERSION_CODES.O) { WifiEnterpriseConfig.Phase2.AKA_PRIME }
 				"GTC" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.GTC }
@@ -179,7 +179,7 @@ object WifiConnector {
 			data: SimpleDataAccessor
 		): WifiNetworkSuggestion.Builder? {
 			try {
-				when (data.securityType) {
+				when (data.securityType.uppercase()) {
 					"WPA", "WPA2" -> {
 						data.password?.let { setWpa2Passphrase(it) }
 					}
@@ -240,8 +240,8 @@ object WifiConnector {
 		fun WifiConfiguration.applySecurity(
 			data: SimpleDataAccessor
 		): WifiConfiguration? {
-			when (data.securityType) {
-				"", "nopass" -> allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE)
+			when (data.securityType.uppercase()) {
+				"", "NOPASS" -> allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE)
 				"WEP" -> @Suppress("DEPRECATION") /* WEP as insecure */ {
 					passwordWithQuotes?.let {
 						wepKeys[0] = it
