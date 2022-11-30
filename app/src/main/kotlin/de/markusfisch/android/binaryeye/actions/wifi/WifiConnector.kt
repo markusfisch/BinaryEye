@@ -63,7 +63,7 @@ object WifiConnector {
 		val wifiManager = context.applicationContext.getSystemService(
 			Context.WIFI_SERVICE
 		) as WifiManager
-		return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+		return if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
 			// WifiConfiguration is deprecated in Android Q.
 			@Suppress("DEPRECATION")
 			val wifiConfig = config as WifiConfiguration
