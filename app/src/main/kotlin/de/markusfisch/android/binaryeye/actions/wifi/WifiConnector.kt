@@ -50,8 +50,10 @@ object WifiConnector {
 		passwordBlock?.apply {
 			invoke(parsedData.password)
 		}
-		return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-			// WifiConfiguration is deprecated in Android Q.
+		return if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+			// WifiConfiguration is deprecated in Android Q but
+			// because it's only possible in R to query network
+			// suggestions, we still use the deprecated API on Q.
 			@Suppress("DEPRECATION")
 			WifiConfiguration().apply(parsedData)
 		} else {
@@ -63,29 +65,19 @@ object WifiConnector {
 		val wifiManager = context.applicationContext.getSystemService(
 			Context.WIFI_SERVICE
 		) as WifiManager
-		return if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
-			// WifiConfiguration is deprecated in Android Q.
-			@Suppress("DEPRECATION")
-			val wifiConfig = config as WifiConfiguration
-			if (wifiManager.enableWifi() &&
-				wifiManager.removeOldNetwork(wifiConfig) &&
-				wifiManager.enableNewNetwork(wifiConfig)
-			) {
-				R.string.wifi_added
-			} else {
-				R.string.wifi_config_failed
-			}
+		// WifiConfiguration is deprecated in Android Q.
+		@Suppress("DEPRECATION")
+		return if ((config is WifiConfiguration &&
+					wifiManager.enableWifi() &&
+					wifiManager.removeOldNetwork(config) &&
+					wifiManager.enableNewNetwork(config)) ||
+			(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
+					config is WifiNetworkSuggestion.Builder &&
+					wifiManager.addNetworkFromBuilder(config))
+		) {
+			R.string.wifi_added
 		} else {
-			val suggestion = (config as WifiNetworkSuggestion.Builder).build()
-			val suggestions = listOf(suggestion)
-			// Remove previous conflicting network suggestion.
-			wifiManager.removeNetworkSuggestions(suggestions)
-			val result = wifiManager.addNetworkSuggestions(suggestions)
-			if (result == WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS) {
-				R.string.wifi_added
-			} else {
-				R.string.wifi_config_failed
-			}
+			R.string.wifi_config_failed
 		}
 	}
 
@@ -301,6 +293,17 @@ object WifiConnector {
 	private inline fun <T> requireSdk(version: Int, block: () -> T): T? {
 		return if (Build.VERSION.SDK_INT >= version) return block() else null
 	}
+}
+
+private fun WifiManager.addNetworkFromBuilder(
+	builder: WifiNetworkSuggestion.Builder
+): Boolean {
+	val suggestion = builder.build()
+	val suggestions = listOf(suggestion)
+	// Remove previous conflicting network suggestion.
+	removeNetworkSuggestions(suggestions)
+	val result = addNetworkSuggestions(suggestions)
+	return result == WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS
 }
 
 // Keep possibility of wrongly unescaped \ by explicitly searching
