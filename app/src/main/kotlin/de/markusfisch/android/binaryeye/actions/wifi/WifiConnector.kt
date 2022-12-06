@@ -295,6 +295,7 @@ object WifiConnector {
 	}
 }
 
+@RequiresApi(Build.VERSION_CODES.Q)
 private fun WifiManager.addNetworkFromBuilder(
 	builder: WifiNetworkSuggestion.Builder
 ): Boolean {
