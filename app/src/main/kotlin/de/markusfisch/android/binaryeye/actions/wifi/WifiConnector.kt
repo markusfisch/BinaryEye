@@ -81,7 +81,7 @@ object WifiConnector {
 		}
 	}
 
-	internal fun parseMap(string: String): Map<String, String>? {
+	internal fun parseMap(input: String): Map<String, String>? {
 		// Normally those codes should have the last semicolon, but many
 		// generators don't add it.
 		val wifiRegex = """^WIFI:((?:.+?:(?:[^\\;]|\\.)*;)+);?$""".toRegex()
@@ -89,7 +89,7 @@ object WifiConnector {
 		// and : because many QR Code creators don't escape properly.
 		val pairRegex = """(.+?):((?:[^\\;]|\\.)*);""".toRegex()
 		return wifiRegex.matchEntire(
-			string
+			input.trimAndTerminate()
 		)?.groupValues?.get(1)?.let { pairs ->
 			pairRegex.findAll(pairs).map { pair ->
 				pair.groupValues[1].uppercase(Locale.US) to pair.groupValues[2]
@@ -305,6 +305,15 @@ private fun WifiManager.addNetworkFromBuilder(
 	removeNetworkSuggestions(suggestions)
 	val result = addNetworkSuggestions(suggestions)
 	return result == WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS
+}
+
+// Make sure the string ends with a semicolon.
+private fun String.trimAndTerminate(): String {
+	var trimmed = trim()
+	if (trimmed.last() != ';') {
+		trimmed += ";"
+	}
+	return trimmed
 }
 
 // Keep possibility of wrongly unescaped \ by explicitly searching
