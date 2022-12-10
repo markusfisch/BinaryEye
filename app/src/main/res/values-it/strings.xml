@@ -81,6 +81,15 @@
 	<string name="show_toast_in_bulk_mode_summary">Mostra brevemente i dati scansionati durante la scansione continua.</string>
 	<string name="vibrate">Vibra quando rilevato</string>
 	<string name="vibrate_summary">Attivalo se vuoi che il dispositivo vibri quando viene riconosciuto un codice.</string>
+	<string name="beep">Beep on detection</string>
+	<string name="beep_summary">Enable this if you want your device to beep when a code is recognized.</string>
+	<string name="beep_tone">Beep tone</string>
+	<string name="tone_cdma_confirm">CDMA confirm</string>
+	<string name="tone_sup_confirm">Call supervisory confirm</string>
+	<string name="tone_sup_radio_ack">Call supervisory radio path acknowledgment</string>
+	<string name="tone_prop_ack">Positive acknowledgment</string>
+	<string name="tone_prop_beep">General beep</string>
+	<string name="tone_prop_beep2">General double beep</string>
 	<string name="use_history">Salva cronologia delle scansioni</string>
 	<string name="use_history_summary">Salva i codici riconosciuti sul dispositivo.</string>
 	<string name="ignore_consecutive_duplicates">Ignora i duplicati</string>

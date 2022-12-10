@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
-import de.markusfisch.android.binaryeye.app.prefs
 
 private const val DURATION_IN_MS = 100L
 
@@ -38,9 +37,7 @@ fun Context.getVibrator(): Vibrator = getSystemService(
 ) as Vibrator
 
 fun Vibrator.vibrate() {
-	if (!prefs.vibrate) {
-		return
-	} else if (beforeO) {
+	if (beforeO) {
 		@Suppress("DEPRECATION")
 		vibrate(DURATION_IN_MS)
 	} else {
@@ -54,9 +51,7 @@ fun Vibrator.vibrate() {
 }
 
 fun Vibrator.error() {
-	if (!prefs.vibrate) {
-		return
-	} else if (beforeO) {
+	if (beforeO) {
 		@Suppress("DEPRECATION")
 		vibrate(errorPatternTimings, -1)
 	} else {

@@ -80,6 +80,15 @@
 	<string name="show_toast_in_bulk_mode_summary">「まとめてスキャンする」オプションが有効の際、スキャンしたデータを簡潔に表示するようにします。</string>
 	<string name="vibrate">認識時に振動する</string>
 	<string name="vibrate_summary">バーコードが認識されたときにバイブレーションを行います。</string>
+	<string name="beep">Beep on detection</string>
+	<string name="beep_summary">Enable this if you want your device to beep when a code is recognized.</string>
+	<string name="beep_tone">Beep tone</string>
+	<string name="tone_cdma_confirm">CDMA confirm</string>
+	<string name="tone_sup_confirm">Call supervisory confirm</string>
+	<string name="tone_sup_radio_ack">Call supervisory radio path acknowledgment</string>
+	<string name="tone_prop_ack">Positive acknowledgment</string>
+	<string name="tone_prop_beep">General beep</string>
+	<string name="tone_prop_beep2">General double beep</string>
 	<string name="use_history">スキャン履歴を保存する</string>
 	<string name="use_history_summary">認識されたバーコードを端末に保存しておきます。</string>
 	<string name="ignore_consecutive_duplicates">重複を破棄する</string>

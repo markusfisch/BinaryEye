@@ -80,6 +80,15 @@
 	<string name="show_toast_in_bulk_mode_summary">連續掃描時簡要顯示掃描資料。</string>
 	<string name="vibrate">振動提示</string>
 	<string name="vibrate_summary">識別條碼時振動提示。</string>
+	<string name="beep">Beep on detection</string>
+	<string name="beep_summary">Enable this if you want your device to beep when a code is recognized.</string>
+	<string name="beep_tone">Beep tone</string>
+	<string name="tone_cdma_confirm">CDMA confirm</string>
+	<string name="tone_sup_confirm">Call supervisory confirm</string>
+	<string name="tone_sup_radio_ack">Call supervisory radio path acknowledgment</string>
+	<string name="tone_prop_ack">Positive acknowledgment</string>
+	<string name="tone_prop_beep">General beep</string>
+	<string name="tone_prop_beep2">General double beep</string>
 	<string name="use_history">儲存掃描記錄</string>
 	<string name="use_history_summary">在本機儲存掃描記錄。</string>
 	<string name="ignore_consecutive_duplicates">不儲存重複歷史記錄</string>

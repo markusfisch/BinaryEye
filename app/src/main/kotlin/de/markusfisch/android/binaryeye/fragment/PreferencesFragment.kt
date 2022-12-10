@@ -19,6 +19,7 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.wifi.removeNetworkSuggestions
 import de.markusfisch.android.binaryeye.activity.SplashActivity
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.media.beepConfirm
 import de.markusfisch.android.binaryeye.preference.UrlPreference
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.systemBarRecyclerViewScrollListener
@@ -32,10 +33,13 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		) {
 			val preference = findPreference(key) ?: return
 			prefs.update()
-			if (preference.key == "custom_locale") {
-				activity?.restartApp()
-			} else {
-				setSummary(preference)
+			when (preference.key) {
+				"custom_locale" -> activity?.restartApp()
+				"beep_tone_name" -> {
+					beepConfirm()
+					setSummary(preference)
+				}
+				else -> setSummary(preference)
 			}
 		}
 	}
