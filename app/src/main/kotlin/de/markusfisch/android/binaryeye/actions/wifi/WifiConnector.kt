@@ -50,8 +50,10 @@ object WifiConnector {
 		passwordBlock?.apply {
 			invoke(parsedData.password)
 		}
-		return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-			// WifiConfiguration is deprecated in Android Q.
+		return if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+			// WifiConfiguration is deprecated in Android Q but
+			// because it's only possible in R to query network
+			// suggestions, we still use the deprecated API on Q.
 			@Suppress("DEPRECATION")
 			WifiConfiguration().apply(parsedData)
 		} else {
@@ -63,33 +65,23 @@ object WifiConnector {
 		val wifiManager = context.applicationContext.getSystemService(
 			Context.WIFI_SERVICE
 		) as WifiManager
-		return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-			// WifiConfiguration is deprecated in Android Q.
-			@Suppress("DEPRECATION")
-			val wifiConfig = config as WifiConfiguration
-			if (wifiManager.enableWifi() &&
-				wifiManager.removeOldNetwork(wifiConfig) &&
-				wifiManager.enableNewNetwork(wifiConfig)
-			) {
-				R.string.wifi_added
-			} else {
-				R.string.wifi_config_failed
-			}
+		// WifiConfiguration is deprecated in Android Q.
+		@Suppress("DEPRECATION")
+		return if ((config is WifiConfiguration &&
+					wifiManager.enableWifi() &&
+					wifiManager.removeOldNetwork(config) &&
+					wifiManager.enableNewNetwork(config)) ||
+			(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
+					config is WifiNetworkSuggestion.Builder &&
+					wifiManager.addNetworkFromBuilder(config))
+		) {
+			R.string.wifi_added
 		} else {
-			val suggestion = (config as WifiNetworkSuggestion.Builder).build()
-			val suggestions = listOf(suggestion)
-			// Remove previous conflicting network suggestion.
-			wifiManager.removeNetworkSuggestions(suggestions)
-			val result = wifiManager.addNetworkSuggestions(suggestions)
-			if (result == WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS) {
-				R.string.wifi_added
-			} else {
-				R.string.wifi_config_failed
-			}
+			R.string.wifi_config_failed
 		}
 	}
 
-	internal fun parseMap(string: String): Map<String, String>? {
+	internal fun parseMap(input: String): Map<String, String>? {
 		// Normally those codes should have the last semicolon, but many
 		// generators don't add it.
 		val wifiRegex = """^WIFI:((?:.+?:(?:[^\\;]|\\.)*;)+);?$""".toRegex()
@@ -97,7 +89,7 @@ object WifiConnector {
 		// and : because many QR Code creators don't escape properly.
 		val pairRegex = """(.+?):((?:[^\\;]|\\.)*);""".toRegex()
 		return wifiRegex.matchEntire(
-			string
+			input.trimAndTerminate()
 		)?.groupValues?.get(1)?.let { pairs ->
 			pairRegex.findAll(pairs).map { pair ->
 				pair.groupValues[1].uppercase(Locale.US) to pair.groupValues[2]
@@ -126,7 +118,7 @@ object WifiConnector {
 				requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) {
 					WifiEnterpriseConfig.Eap.NONE
 				}
-			} else when (inputMap["E"]) {
+			} else when (inputMap["E"]?.uppercase()) {
 				"AKA" -> requireSdk(Build.VERSION_CODES.LOLLIPOP) { WifiEnterpriseConfig.Eap.AKA }
 				"AKA_PRIME" -> requireSdk(Build.VERSION_CODES.M) { WifiEnterpriseConfig.Eap.AKA_PRIME }
 				"NONE" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.NONE }
@@ -143,7 +135,7 @@ object WifiConnector {
 				requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) {
 					WifiEnterpriseConfig.Phase2.NONE
 				}
-			} else when (inputMap["PH2"]) {
+			} else when (inputMap["PH2"]?.uppercase()) {
 				"AKA" -> requireSdk(Build.VERSION_CODES.O) { WifiEnterpriseConfig.Phase2.AKA }
 				"AKA_PRIME" -> requireSdk(Build.VERSION_CODES.O) { WifiEnterpriseConfig.Phase2.AKA_PRIME }
 				"GTC" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.GTC }
@@ -179,7 +171,7 @@ object WifiConnector {
 			data: SimpleDataAccessor
 		): WifiNetworkSuggestion.Builder? {
 			try {
-				when (data.securityType) {
+				when (data.securityType.uppercase()) {
 					"WPA", "WPA2" -> {
 						data.password?.let { setWpa2Passphrase(it) }
 					}
@@ -240,8 +232,8 @@ object WifiConnector {
 		fun WifiConfiguration.applySecurity(
 			data: SimpleDataAccessor
 		): WifiConfiguration? {
-			when (data.securityType) {
-				"", "nopass" -> allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE)
+			when (data.securityType.uppercase()) {
+				"", "NOPASS" -> allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE)
 				"WEP" -> @Suppress("DEPRECATION") /* WEP as insecure */ {
 					passwordWithQuotes?.let {
 						wepKeys[0] = it
@@ -301,6 +293,27 @@ object WifiConnector {
 	private inline fun <T> requireSdk(version: Int, block: () -> T): T? {
 		return if (Build.VERSION.SDK_INT >= version) return block() else null
 	}
+}
+
+@RequiresApi(Build.VERSION_CODES.Q)
+private fun WifiManager.addNetworkFromBuilder(
+	builder: WifiNetworkSuggestion.Builder
+): Boolean {
+	val suggestion = builder.build()
+	val suggestions = listOf(suggestion)
+	// Remove previous conflicting network suggestion.
+	removeNetworkSuggestions(suggestions)
+	val result = addNetworkSuggestions(suggestions)
+	return result == WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS
+}
+
+// Make sure the string ends with a semicolon.
+private fun String.trimAndTerminate(): String {
+	var trimmed = trim()
+	if (trimmed.last() != ';') {
+		trimmed += ";"
+	}
+	return trimmed
 }
 
 // Keep possibility of wrongly unescaped \ by explicitly searching

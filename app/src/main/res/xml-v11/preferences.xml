@@ -50,6 +50,17 @@
 			android:title="@string/vibrate"
 			android:summary="@string/vibrate_summary"/>
 		<android.support.v7.preference.SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="beep"
+			android:title="@string/beep"
+			android:summary="@string/beep_summary"/>
+		<ListPreference
+			android:key="beep_tone_name"
+			android:title="@string/beep_tone"
+			android:entries="@array/beep_tones_names"
+			android:entryValues="@array/beep_tones_values"
+			android:defaultValue="tone_prop_beep"/>
+		<android.support.v7.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="use_history"
 			android:title="@string/use_history"

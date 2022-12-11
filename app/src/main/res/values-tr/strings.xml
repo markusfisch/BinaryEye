@@ -15,11 +15,11 @@
 	<string name="error_correction_level_m" formatted="false">Orta (~&#37;15 düzeltim)</string>
 	<string name="error_correction_level_q" formatted="false">Dörtte Bir (~&#37;25 düzeltim)</string>
 	<string name="error_correction_level_h" formatted="false">Yüksek (~&#37;30 düzeltim)</string>
-	<string name="colors">Fore and background</string>
-	<string name="colors_black_on_white">Black on white</string>
-	<string name="colors_white_on_black">White on black</string>
-	<string name="colors_black_on_transparent">Black on transparent</string>
-	<string name="colors_white_on_transparent">White on transparent</string>
+	<string name="colors">Ön ve arka plan</string>
+	<string name="colors_black_on_white">Beyaz üzerine siyah</string>
+	<string name="colors_white_on_black">Siyah üzerine beyaz</string>
+	<string name="colors_black_on_transparent">Şeffaf üzerine siyah</string>
+	<string name="colors_white_on_transparent">Şeffaf üzerine beyaz</string>
 	<string name="sequence_size">Dizi boyutu</string>
 	<string name="sequence_index">Dizi indeksi</string>
 	<string name="sequence_id">Dizi kimliği</string>
@@ -81,6 +81,15 @@
 	<string name="show_toast_in_bulk_mode_summary">Sürekli tarama yaparken taranan verileri kısaca göster.</string>
 	<string name="vibrate">Tanıyınca titre</string>
 	<string name="vibrate_summary">Kod tanındığında aygıtınızın titremesini istiyorsanız bunu etkinleştirin.</string>
+	<string name="beep">Beep on detection</string>
+	<string name="beep_summary">Enable this if you want your device to beep when a code is recognized.</string>
+	<string name="beep_tone">Beep tone</string>
+	<string name="tone_cdma_confirm">CDMA confirm</string>
+	<string name="tone_sup_confirm">Call supervisory confirm</string>
+	<string name="tone_sup_radio_ack">Call supervisory radio path acknowledgment</string>
+	<string name="tone_prop_ack">Positive acknowledgment</string>
+	<string name="tone_prop_beep">General beep</string>
+	<string name="tone_prop_beep2">General double beep</string>
 	<string name="use_history">Tarama geçmişini kaydet</string>
 	<string name="use_history_summary">Tanınan kodları aygıtınızda saklayın.</string>
 	<string name="ignore_consecutive_duplicates">Yinelemeleri göz ardı et</string>
@@ -157,7 +166,7 @@
 	<string name="export_database">SQLite veri tabanı olarak dışa aktar</string>
 	<string name="saved_in_downloads">İndirilenlere kaydedildi</string>
 	<string name="rotate_image_cw">Görüntüyü saat yönünde döndür</string>
-	<string name="toggle_free_rotation">Toggle free rotation</string>
+	<string name="toggle_free_rotation">Serbest dönüşü değiştir</string>
 	<string name="pick_file">Görüntü dosyası seç</string>
 	<string name="pick_code_to_scan">Taranacak kod seç</string>
 	<string name="shortcut_decode">Barkod tara</string>

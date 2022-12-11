@@ -16,10 +16,10 @@
 	<string name="error_correction_level_q" formatted="false">Quartile (~25&#37; wiederherstellbar)</string>
 	<string name="error_correction_level_h" formatted="false">High (~30&#37; wiederherstellbar)</string>
 	<string name="colors">Vor und Hintergrund</string>
-	<string name="colors_black_on_white">Schwarz auf Weiss</string>
-	<string name="colors_white_on_black">Weiss auf Schwarz</string>
+	<string name="colors_black_on_white">Schwarz auf Weiß</string>
+	<string name="colors_white_on_black">Weiß auf Schwarz</string>
 	<string name="colors_black_on_transparent">Schwarz auf Transparent</string>
-	<string name="colors_white_on_transparent">Weiss auf Transparent</string>
+	<string name="colors_white_on_transparent">Weiß auf Transparent</string>
 	<string name="sequence_size">Sequence size</string>
 	<string name="sequence_index">Sequence index</string>
 	<string name="sequence_id">Sequence ID</string>
@@ -79,8 +79,17 @@
 	<string name="try_harder_summary">Aktivieren Sie diese Option für sehr schwer lesbare Codes. Beeinträchtigt die Leistung.</string>
 	<string name="show_toast_in_bulk_mode">Daten einblenden</string>
 	<string name="show_toast_in_bulk_mode_summary">Die gescannten Daten werden kurz eingeblendet, wenn fortlaufend gescannt wird.</string>
-	<string name="vibrate">Bei Erkennung vibrieren</string>
-	<string name="vibrate_summary">Das Gerät soll vibrieren wenn ein Code erkannt wird.</string>
+	<string name="vibrate">Vibration bei Erkennung</string>
+	<string name="vibrate_summary">Bei Erkennung eines Codes soll das Gerät vibrieren.</string>
+	<string name="beep">Signalton bei Erkennung</string>
+	<string name="beep_summary">Bei Erkennung eines Codes soll ein Signalton abgespielt werden.</string>
+	<string name="beep_tone">Signalton</string>
+	<string name="tone_cdma_confirm">CDMA confirm</string>
+	<string name="tone_sup_confirm">Call supervisory confirm</string>
+	<string name="tone_sup_radio_ack">Call supervisory radio path acknowledgment</string>
+	<string name="tone_prop_ack">Positive acknowledgment</string>
+	<string name="tone_prop_beep">General beep</string>
+	<string name="tone_prop_beep2">General double beep</string>
 	<string name="use_history">Codes speichern</string>
 	<string name="use_history_summary">Eingelesene Barcodes auf dem Gerät speichern.</string>
 	<string name="ignore_consecutive_duplicates">Duplikate ignorieren</string>

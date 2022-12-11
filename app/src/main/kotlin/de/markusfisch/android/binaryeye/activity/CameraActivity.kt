@@ -8,11 +8,8 @@ import android.content.pm.PackageManager
 import android.graphics.Matrix
 import android.graphics.Rect
 import android.hardware.Camera
-import android.media.AudioManager
-import android.media.ToneGenerator
 import android.net.Uri
 import android.os.Bundle
-import android.os.Vibrator
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
@@ -33,12 +30,12 @@ import de.markusfisch.android.binaryeye.graphics.FrameMetrics
 import de.markusfisch.android.binaryeye.graphics.mapPosition
 import de.markusfisch.android.binaryeye.graphics.setFrameRoi
 import de.markusfisch.android.binaryeye.graphics.setFrameToView
+import de.markusfisch.android.binaryeye.media.releaseToneGenerators
 import de.markusfisch.android.binaryeye.net.sendAsync
 import de.markusfisch.android.binaryeye.net.urlEncode
-import de.markusfisch.android.binaryeye.os.error
-import de.markusfisch.android.binaryeye.os.getVibrator
-import de.markusfisch.android.binaryeye.os.vibrate
+import de.markusfisch.android.binaryeye.view.errorFeedback
 import de.markusfisch.android.binaryeye.view.initSystemBars
+import de.markusfisch.android.binaryeye.view.scanFeedback
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
@@ -55,7 +52,6 @@ class CameraActivity : AppCompatActivity() {
 	private val frameRoi = Rect()
 	private val matrix = Matrix()
 
-	private lateinit var vibrator: Vibrator
 	private lateinit var cameraView: CameraView
 	private lateinit var detectorView: DetectorView
 	private lateinit var zoomBar: SeekBar
@@ -118,8 +114,6 @@ class CameraActivity : AppCompatActivity() {
 		// custom locale.
 		setTitle(R.string.scan_code)
 
-		vibrator = getVibrator()
-
 		initSystemBars(this)
 		setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
 
@@ -144,6 +138,7 @@ class CameraActivity : AppCompatActivity() {
 		fallbackBuffer = null
 		saveZoom()
 		detectorView.saveCropHandlePos()
+		releaseToneGenerators()
 	}
 
 	override fun onResume() {
@@ -561,7 +556,7 @@ class CameraActivity : AppCompatActivity() {
 					detectorView.coordinates
 				)
 			)
-			vibrator.vibrate()
+			scanFeedback()
 			val returnUri = returnUrlTemplate?.let {
 				try {
 					completeUrl(it, result)
@@ -584,7 +579,6 @@ class CameraActivity : AppCompatActivity() {
 					showResult(
 						this@CameraActivity,
 						result,
-						vibrator,
 						bulkMode
 					)
 					// If this app was invoked via a deep link but without
@@ -648,7 +642,6 @@ fun Result.redact() = if (
 fun showResult(
 	activity: Activity,
 	result: Result,
-	vibrator: Vibrator,
 	bulkMode: Boolean = false,
 ) {
 	if (prefs.copyImmediately) {
@@ -670,10 +663,7 @@ fun showResult(
 			prefs.sendScanType
 		) { code, body ->
 			if (code == null || code < 200 || code > 299) {
-				vibrator.error()
-				if (!activity.isSilent()) {
-					beepBeepBeep()
-				}
+				activity.errorFeedback()
 			}
 			if (body != null && body.isNotEmpty()) {
 				activity.toast(body)
@@ -715,19 +705,3 @@ private fun completeUrl(urlTemplate: String, result: Result) = Uri.parse(
 		// And support {CODE} from the old ZXing app, too.
 		.replace("{CODE}", result.text.urlEncode())
 )
-
-private fun Context.isSilent(): Boolean {
-	val am = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-	return when (am.ringerMode) {
-		AudioManager.RINGER_MODE_SILENT,
-		AudioManager.RINGER_MODE_VIBRATE -> true
-		else -> false
-	}
-}
-
-private fun beepBeepBeep() {
-	ToneGenerator(AudioManager.STREAM_ALARM, 100).startTone(
-		ToneGenerator.TONE_CDMA_CONFIRM,
-		1000
-	)
-}

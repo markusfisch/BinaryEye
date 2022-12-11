@@ -99,6 +99,15 @@
 	<string name="use_history_summary">Zapisz rozpoznane kody na swoim urządzeniu.</string>
 	<string name="vibrate">Wibruj po wykryciu</string>
 	<string name="vibrate_summary">Włącz tę opcję, jeśli chcesz, aby urządzenie wibrowało po rozpoznaniu kodu.</string>
+	<string name="beep">Beep on detection</string>
+	<string name="beep_summary">Enable this if you want your device to beep when a code is recognized.</string>
+	<string name="beep_tone">Beep tone</string>
+	<string name="tone_cdma_confirm">CDMA confirm</string>
+	<string name="tone_sup_confirm">Call supervisory confirm</string>
+	<string name="tone_sup_radio_ack">Call supervisory radio path acknowledgment</string>
+	<string name="tone_prop_ack">Positive acknowledgment</string>
+	<string name="tone_prop_beep">General beep</string>
+	<string name="tone_prop_beep2">General double beep</string>
 	<string name="open_immediately">Pomiń kontrolę i natychmiast otwórz zawartość</string>
 	<string name="open_immediately_summary">Pomiń kontrolę i natychmiast otwórz zawartość. Może otwierać szkodliwą zawartość, jeśli jest włączona.</string>
 	<string name="copy_immediately">Automatycznie skopiuj zawartość do schowka</string>

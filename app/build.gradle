@@ -9,8 +9,8 @@ android {
 		minSdkVersion 9
 		targetSdkVersion sdk_version
 
-		versionCode 106
-		versionName '1.56.0'
+		versionCode 111
+		versionName '1.56.3'
 	}
 
 	signingConfigs {
@@ -65,6 +65,6 @@ dependencies {
 	implementation "com.android.support:preference-v7:$support_version"
 	implementation "com.android.support:preference-v14:$support_version"
 	implementation 'com.github.markusfisch:CameraView:1.9.1'
-	implementation 'com.github.markusfisch:ScalingImageView:1.4.0'
-	implementation 'com.github.markusfisch:zxing-cpp:v1.4.0.7'
+	implementation 'com.github.markusfisch:ScalingImageView:1.4.1'
+	implementation 'com.github.markusfisch:zxing-cpp:v1.4.0.9'
 }

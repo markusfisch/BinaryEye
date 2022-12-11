@@ -1,0 +1,16 @@
+<resources>
+	<string-array name="beep_tones_names">
+		<item>@string/tone_cdma_confirm</item>
+		<item>@string/tone_sup_radio_ack</item>
+		<item>@string/tone_prop_ack</item>
+		<item>@string/tone_prop_beep</item>
+		<item>@string/tone_prop_beep2</item>
+	</string-array>
+	<string-array name="beep_tones_values">
+		<item>tone_cdma_confirm</item>
+		<item>tone_sup_radio_ack</item>
+		<item>tone_prop_ack</item>
+		<item>tone_prop_beep</item>
+		<item>tone_prop_beep2</item>
+	</string-array>
+</resources>

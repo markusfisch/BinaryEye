@@ -2,6 +2,7 @@ package de.markusfisch.android.binaryeye.preference
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.media.ToneGenerator
 import android.os.Build
 import android.preference.PreferenceManager
 import android.support.annotation.RequiresApi
@@ -97,6 +98,16 @@ class Preferences {
 	var vibrate = true
 		set(value) {
 			apply(VIBRATE, value)
+			field = value
+		}
+	var beep = false
+		set(value) {
+			apply(BEEP, value)
+			field = value
+		}
+	var beepToneName = "tone_prop_beep"
+		set(value) {
+			apply(BEEP_TONE_NAME, value)
 			field = value
 		}
 	var useHistory = false
@@ -214,6 +225,10 @@ class Preferences {
 			showToastInBulkMode
 		)
 		vibrate = preferences.getBoolean(VIBRATE, vibrate)
+		beep = preferences.getBoolean(BEEP, beep)
+		preferences.getString(BEEP_TONE_NAME, beepToneName)?.also {
+			beepToneName = it
+		}
 		useHistory = preferences.getBoolean(USE_HISTORY, useHistory)
 		ignoreConsecutiveDuplicates = preferences.getBoolean(
 			IGNORE_CONSECUTIVE_DUPLICATES,
@@ -260,6 +275,15 @@ class Preferences {
 		freeRotation = preferences.getBoolean(FREE_ROTATION, freeRotation)
 	}
 
+	fun beepTone() = when (beepToneName) {
+		"tone_cdma_confirm" -> ToneGenerator.TONE_CDMA_CONFIRM
+		"tone_sup_radio_ack" -> ToneGenerator.TONE_SUP_RADIO_ACK
+		"tone_prop_ack" -> ToneGenerator.TONE_PROP_ACK
+		"tone_prop_beep" -> ToneGenerator.TONE_PROP_BEEP
+		"tone_prop_beep2" -> ToneGenerator.TONE_PROP_BEEP2
+		else -> ToneGenerator.TONE_PROP_BEEP
+	}
+
 	private fun put(label: String, value: Boolean) =
 		preferences.edit().putBoolean(label, value)
 
@@ -304,6 +328,8 @@ class Preferences {
 		private const val BULK_MODE_DELAY = "bulk_mode_delay"
 		private const val SHOW_TOAST_IN_BULK_MODE = "show_toast_in_bulk_mode"
 		private const val VIBRATE = "vibrate"
+		private const val BEEP = "beep"
+		private const val BEEP_TONE_NAME = "beep_tone_name"
 		private const val USE_HISTORY = "use_history"
 		private const val IGNORE_CONSECUTIVE_DUPLICATES = "ignore_consecutive_duplicates"
 		private const val OPEN_IMMEDIATELY = "open_immediately"

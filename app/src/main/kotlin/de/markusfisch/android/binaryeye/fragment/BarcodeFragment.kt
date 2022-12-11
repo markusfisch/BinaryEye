@@ -31,6 +31,7 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
 import java.util.*
+import kotlin.math.min
 
 class BarcodeFragment : Fragment() {
 	private enum class FileType {
@@ -86,7 +87,10 @@ class BarcodeFragment : Fragment() {
 		imageView.setImageBitmap(bitmap)
 		imageView.post {
 			// Make sure to invoke this after ScalingImageView.onLayout().
-			imageView.minWidth /= 2f
+			imageView.minWidth = min(
+				imageView.minWidth / 2f,
+				barcode.size.toFloat()
+			)
 		}
 
 		view.findViewById<View>(R.id.share).setOnClickListener {

@@ -9,7 +9,6 @@ import android.graphics.RectF
 import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
-import android.os.Vibrator
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
@@ -21,12 +20,8 @@ import de.markusfisch.android.binaryeye.graphics.crop
 import de.markusfisch.android.binaryeye.graphics.fixTransparency
 import de.markusfisch.android.binaryeye.graphics.loadImageUri
 import de.markusfisch.android.binaryeye.graphics.mapPosition
-import de.markusfisch.android.binaryeye.os.getVibrator
-import de.markusfisch.android.binaryeye.os.vibrate
-import de.markusfisch.android.binaryeye.view.colorSystemAndToolBars
-import de.markusfisch.android.binaryeye.view.initSystemBars
-import de.markusfisch.android.binaryeye.view.recordToolbarHeight
-import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
+import de.markusfisch.android.binaryeye.media.releaseToneGenerators
+import de.markusfisch.android.binaryeye.view.*
 import de.markusfisch.android.binaryeye.widget.CropImageView
 import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
@@ -42,7 +37,6 @@ class PickActivity : AppCompatActivity() {
 	private val parentJob = Job()
 	private val scope = CoroutineScope(Dispatchers.IO + parentJob)
 
-	private lateinit var vibrator: Vibrator
 	private lateinit var cropImageView: CropImageView
 	private lateinit var detectorView: DetectorView
 	private lateinit var freeRotationItem: MenuItem
@@ -61,8 +55,6 @@ class PickActivity : AppCompatActivity() {
 		// Necessary to get the right translation after setting a custom
 		// locale.
 		setTitle(R.string.pick_code_to_scan)
-
-		vibrator = getVibrator()
 
 		initSystemBars(this)
 		val toolbar = findViewById(R.id.toolbar) as Toolbar
@@ -160,7 +152,7 @@ class PickActivity : AppCompatActivity() {
 						return@withContext
 					}
 					result = it
-					vibrator.vibrate()
+					scanFeedback()
 					detectorView.update(
 						matrix.mapPosition(
 							it.position,
@@ -176,6 +168,7 @@ class PickActivity : AppCompatActivity() {
 		super.onDestroy()
 		detectorView.saveCropHandlePos()
 		parentJob.cancel()
+		releaseToneGenerators()
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -231,7 +224,7 @@ class PickActivity : AppCompatActivity() {
 	private fun showResult() {
 		val r = result
 		if (r != null) {
-			showResult(this, r.redact(), vibrator)
+			showResult(this, r.redact())
 			finish()
 		} else {
 			applicationContext.toast(R.string.no_barcode_found)

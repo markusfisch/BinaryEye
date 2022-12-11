@@ -81,6 +81,15 @@
 	<string name="show_toast_in_bulk_mode_summary">Briefly show the scanned data when scanning continuously.</string>
 	<string name="vibrate">ვიბრირება პოვნისას</string>
 	<string name="vibrate_summary">ჩართეთ ეს პარამეტრი, თუ გსურთ მოწყობილობის ვიბრირება,როდესაც შტრიხ-კოდი ამოცნობილი იქნება.</string>
+	<string name="beep">Beep on detection</string>
+	<string name="beep_summary">Enable this if you want your device to beep when a code is recognized.</string>
+	<string name="beep_tone">Beep tone</string>
+	<string name="tone_cdma_confirm">CDMA confirm</string>
+	<string name="tone_sup_confirm">Call supervisory confirm</string>
+	<string name="tone_sup_radio_ack">Call supervisory radio path acknowledgment</string>
+	<string name="tone_prop_ack">Positive acknowledgment</string>
+	<string name="tone_prop_beep">General beep</string>
+	<string name="tone_prop_beep2">General double beep</string>
 	<string name="use_history">სკანირების ისტორიის შენახვა</string>
 	<string name="use_history_summary">ამოცნობილი შტრიხ-კოდების მოწყობილობაზე შენახვა.</string>
 	<string name="ignore_consecutive_duplicates">არ შევინახოთ შემდგომი ასლები</string>
