@@ -66,5 +66,5 @@ dependencies {
 	implementation "com.android.support:preference-v14:$support_version"
 	implementation 'com.github.markusfisch:CameraView:1.9.1'
 	implementation 'com.github.markusfisch:ScalingImageView:1.4.1'
-	implementation 'com.github.markusfisch:zxing-cpp:v1.4.0.9'
+	implementation 'com.github.markusfisch:zxing-cpp:v1.4.0.10'
 }
