@@ -1,7 +1,7 @@
 <resources>
 	<string name="no_camera_no_fun">Infelizmente você não poderá usar este app sem conceder acesso à câmera.</string>
 	<string name="camera_error">Não foi possível acessar a câmera, por favor tente novamente</string>
-	<string name="scan_code">Escaneie código</string>
+	<string name="scan_code">Aponte ao código</string>
 	<string name="compose_barcode">Criar código</string>
 	<string name="decode_barcode">Reconhecer código</string>
 	<string name="content">Conteúdo</string>
@@ -29,7 +29,7 @@
 	<string name="gtin_add_on">Extensão UPC EAN</string>
 	<string name="barcode_version_number">Versão</string>
 	<string name="qr_version_and_modules">%1$d (%2$d modules)</string>
-	<string name="toggle_flash">Ativar lanterna</string>
+	<string name="toggle_flash">Ligar lanterna</string>
 	<string name="error_flash">Falha ao ligar a lanterna</string>
 	<string name="share">Compartilhe</string>
 	<string name="share_as">Compartilhar em qual formato?</string>
@@ -70,7 +70,7 @@
 	<string name="follow_system_settings">Adaptar do sistema</string>
 	<string name="show_crop_handle">Mostrar limitador customizável</string>
 	<string name="show_crop_handle_summary">Permite limitar a uma área específica.</string>
-	<string name="barcode_formats">Tipos de código</string>
+	<string name="barcode_formats">Tipo de código</string>
 	<string name="zoom_by_swiping">Deslize para ajustar zoom</string>
 	<string name="zoom_by_swiping_summary">Deslize para baixo/cima na tela para ajustar zoom da câmera.</string>
 	<string name="auto_rotate">Reconhecer códigos 1D verticais</string>
@@ -80,17 +80,17 @@
 	<string name="show_toast_in_bulk_mode">Mostrar dados em modo contínuo</string>
 	<string name="show_toast_in_bulk_mode_summary">Mostrar brevemente os dados durante digitalização contínua.</string>
 	<string name="vibrate">Vibrar ao reconhecer</string>
-	<string name="vibrate_summary">Ative esta opção se quiser que seu dispositivo vibre quando um código for reconhecido.</string>
-	<string name="beep">Beep on detection</string>
-	<string name="beep_summary">Enable this if you want your device to beep when a code is recognized.</string>
-	<string name="beep_tone">Beep tone</string>
-	<string name="tone_cdma_confirm">CDMA confirm</string>
-	<string name="tone_sup_confirm">Call supervisory confirm</string>
-	<string name="tone_sup_radio_ack">Call supervisory radio path acknowledgment</string>
-	<string name="tone_prop_ack">Positive acknowledgment</string>
-	<string name="tone_prop_beep">General beep</string>
-	<string name="tone_prop_beep2">General double beep</string>
-	<string name="use_history">Salvar histórico de digitalizações</string>
+	<string name="vibrate_summary">Ative esta opção se quiser que seu dispositivo vibre ao reconhecer um código.</string>
+	<string name="beep">Bipar ao reconhecer</string>
+	<string name="beep_summary">Ative esta opção se quiser ouvir um bip ao reconhecer um código.</string>
+	<string name="beep_tone">Sinal sonoro</string>
+	<string name="tone_cdma_confirm">Confirmação do CDMA</string>
+	<string name="tone_sup_confirm">Solicitar confirmação de controle</string>
+	<string name="tone_sup_radio_ack">Solicitar confirmação do caminho de rádio</string>
+	<string name="tone_prop_ack">Reconhecimento positivo</string>
+	<string name="tone_prop_beep">Bip geral</string>
+	<string name="tone_prop_beep2">Bip duplo geral</string>
+	<string name="use_history">Ativar histórico de digitalizações</string>
 	<string name="use_history_summary">Salve códigos reconhecidos no seu dispositivo.</string>
 	<string name="ignore_consecutive_duplicates">Ignorar duplicações</string>
 	<string name="ignore_consecutive_duplicates_summary">Não salvar duplicações consecutivas no histórico de digitalizações.</string>
@@ -111,7 +111,7 @@
 	<string name="open_with_url">Abrir dados desconhecidos via URL</string>
 	<string name="clear_network_suggestions">Remover sugestões da rede</string>
 	<string name="clear_network_suggestions_summary">Remover todas as sugestões da rede que foram anteriormente fornecidas pelo app.</string>
-	<string name="really_remove_all_networks">Realmente remover todas as redes?</string>
+	<string name="really_remove_all_networks">Deseja remover todas as redes?</string>
 	<string name="clear_network_suggestions_success">Sugestões da rede foram removidas</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Nada para remover</string>
 	<string name="send_category">Encaminhamento</string>
@@ -125,9 +125,9 @@
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">Abrir em navegador externo</string>
 	<string name="test_url">Testar a URL</string>
-	<string name="really_remove_scan">Realmente quer remover esta digitalização?</string>
-	<string name="really_remove_all_scans">Realmente quer remover todas as digitalizações?</string>
-	<string name="really_remove_selected_scans">Realmente remover digitalizações selecionados?</string>
+	<string name="really_remove_scan">Deseja remover esta digitalização?</string>
+	<string name="really_remove_all_scans">Deseja remover todas as digitalizações?</string>
+	<string name="really_remove_selected_scans">Deseja remover digitalizações selecionados?</string>
 	<string name="clear_history">Limpar histórico</string>
 	<string name="copy_scan">Copiar digitalização</string>
 	<string name="edit_scan">Editar identificação</string>
@@ -142,7 +142,7 @@
 	<string name="file_name">Nome do arquivo</string>
 	<string name="error_saving_file">Não foi possível salvar este arquivo</string>
 	<string name="error_file_exists">Arquivo já existe</string>
-	<string name="connect_to_wifi">Conectar via WiFi</string>
+	<string name="connect_to_wifi">Conectar a WiFi</string>
 	<string name="wifi_config_failed">Não foi possível configurar WiFi</string>
 	<string name="wifi_added">WiFi adicionado</string>
 	<string name="sms_send">Envie SMS</string>
