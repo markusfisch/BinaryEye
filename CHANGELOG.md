@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.57.0
+* Add optional audio feedback for scanning
+* Allow removing individual WiFi network suggestions
+* Recognize incomplete and malformed WiFi barcodes
+* Fix using shared text for encoding
+* Add Korean language
+* Update Chinese translation
+* Update Português/Brasil translation
+* Update Russian translation
+
 ## 1.56.3
 * Fix parsing URLs in barcodes
 * Update French, Portuguese, Turkish and Taiwan translation
