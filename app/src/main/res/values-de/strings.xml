@@ -110,7 +110,7 @@
 	<string name="always_ask">Immer fragen</string>
 	<string name="open_with_url">URL zum Öffnen unbekannter Daten</string>
 	<string name="clear_network_suggestions">WiFi Netzwerkvorschläge entfernen</string>
-	<string name="clear_network_suggestions_summary">Betrifft alle WiFi Netzwerke, die zuvor mit dieser App bereitgestellt wurden.</string>
+	<string name="clear_network_suggestions_summary">Betrifft nur Netzwerke, die zuvor mit dieser App bereitgestellt wurden.</string>
 	<string name="really_remove_all_networks">Alle Netzwerkvorschläge entfernen?</string>
 	<string name="clear_network_suggestions_success">Netzwerkvorschläge entfernt</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Nichts zu entfernen</string>
@@ -183,4 +183,6 @@
 	<string name="wifi_anonymous_identity">Anonyme Identität</string>
 	<string name="wifi_identity">Identität</string>
 	<string name="wifi_phase2">Phase 2 Methode</string>
+	<string name="network_suggestions">WiFi Netzwerkvorschläge</string>
+	<string name="remove_suggestion">Vorschlag entfernen</string>
 </resources>

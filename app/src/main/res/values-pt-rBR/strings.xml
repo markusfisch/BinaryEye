@@ -183,4 +183,6 @@
 	<string name="wifi_anonymous_identity">Identidade anônima</string>
 	<string name="wifi_identity">Identidade</string>
 	<string name="wifi_phase2">Método Phase 2</string>
+	<string name="network_suggestions">Network suggestions</string>
+	<string name="remove_suggestion">Remove suggestion</string>
 </resources>

@@ -16,8 +16,8 @@ import android.support.v7.preference.Preference
 import android.support.v7.preference.PreferenceFragmentCompat
 import android.support.v7.preference.PreferenceGroup
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.wifi.removeNetworkSuggestions
 import de.markusfisch.android.binaryeye.activity.SplashActivity
+import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.media.beepConfirm
 import de.markusfisch.android.binaryeye.preference.UrlPreference
@@ -46,18 +46,30 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 
 	override fun onCreatePreferences(state: Bundle?, rootKey: String?) {
 		addPreferencesFromResource(R.xml.preferences)
-		activity?.setTitle(R.string.preferences)
 		wireClearNetworkPreferences()
 	}
 
 	private fun wireClearNetworkPreferences() {
-		val pref = findPreference("clear_network_suggestions") ?: return
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-			pref.isVisible = false
-		} else {
-			pref.setOnPreferenceClickListener {
-				context.askToClearNetworkSuggestions()
-				true
+		findPreference("clear_network_suggestions").apply {
+			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
+				// From R+ we can query past network suggestions and
+				// make them editable.
+				setOnPreferenceClickListener {
+					fragmentManager.addFragment(NetworkSuggestionsFragment())
+					true
+				}
+			} else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
+				// On Q, we can only clear *all* suggestions.
+				// Note that previous versions of this app allowed
+				// adding network suggestions on Q as well, so we
+				// need to keep this option.
+				setOnPreferenceClickListener {
+					context.askToClearNetworkSuggestions()
+					true
+				}
+			} else {
+				// There are no network suggestions below Q.
+				isVisible = false
 			}
 		}
 	}
@@ -76,8 +88,8 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 	@RequiresApi(Build.VERSION_CODES.Q)
 	private fun Context.clearNetworkSuggestions() {
 		toast(
-			if (
-				removeNetworkSuggestions(this) == WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS
+			if (removeAllNetworkSuggestions() ==
+				WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS
 			) {
 				R.string.clear_network_suggestions_success
 			} else {
@@ -88,6 +100,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 
 	override fun onResume() {
 		super.onResume()
+		activity?.setTitle(R.string.preferences)
 		listView.setPaddingFromWindowInsets()
 		listView.removeOnScrollListener(systemBarRecyclerViewScrollListener)
 		listView.addOnScrollListener(systemBarRecyclerViewScrollListener)
@@ -156,3 +169,9 @@ private fun Activity.restartApp() {
 	// Restart to begin with an unmodified Locale to follow system settings.
 	Runtime.getRuntime().exit(0)
 }
+
+@RequiresApi(Build.VERSION_CODES.Q)
+private fun Context.removeAllNetworkSuggestions(): Int =
+	(applicationContext.getSystemService(
+		Context.WIFI_SERVICE
+	) as WifiManager).removeNetworkSuggestions(listOf())

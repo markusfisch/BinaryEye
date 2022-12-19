@@ -184,4 +184,6 @@
 	<string name="wifi_anonymous_identity">Анонімна особа</string>
 	<string name="wifi_identity">Користувач</string>
 	<string name="wifi_phase2">Phase 2 метод</string>
+	<string name="network_suggestions">Network suggestions</string>
+	<string name="remove_suggestion">Remove suggestion</string>
 </resources>

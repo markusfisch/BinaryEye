@@ -12,7 +12,7 @@ hesitate to contact me.
 Required to add a WiFi network from a barcode (usually a QR Code).
 
 Before Android Q, this feature requires using
-[WifiManager.getConfiguredNetworks][configuredNetworks]
+[WifiManager.getConfiguredNetworks][getConfiguredNetworks]
 which requires `ACCESS_FINE_LOCATION`.
 
 On Android Q an better, this permission is not requested nor required.
@@ -46,8 +46,12 @@ which requires `CHANGE_WIFI_STATE`.
 Required to add a WiFi network from a barcode (usually a QR Code).
 
 Before Android Q, this feature requires using
-[WifiManager.getConfiguredNetworks][configuredNetworks]
+[WifiManager.getConfiguredNetworks][getConfiguredNetworks]
 which requires `ACCESS_WIFI_STATE`.
+
+From Android R, `ACCESS_WIFI_STATE` is required for
+[WifiManager.getNetworkSuggestions][getNetworkSuggestions]
+which is used to remove individual network suggestions.
 
 [ACCESS_FINE_LOCATION]: https://developer.android.com/reference/android/Manifest.permission#ACCESS_FINE_LOCATION
 [CAMERA]: https://developer.android.com/reference/android/Manifest.permission#CAMERA
@@ -56,5 +60,6 @@ which requires `ACCESS_WIFI_STATE`.
 [WRITE_EXTERNAL_STORAGE]: https://developer.android.com/reference/android/Manifest.permission#WRITE_EXTERNAL_STORAGE
 [CHANGE_WIFI_STATE]: https://developer.android.com/reference/android/Manifest.permission#CHANGE_WIFI_STATE
 [ACCESS_WIFI_STATE]: https://developer.android.com/reference/android/Manifest.permission#ACCESS_FINE_LOCATION
-[configuredNetworks]: https://developer.android.com/reference/android/net/wifi/WifiManager#getConfiguredNetworks()
+[getConfiguredNetworks]: https://developer.android.com/reference/android/net/wifi/WifiManager#getConfiguredNetworks()
 [addNetworkSuggestions]: https://developer.android.com/reference/android/net/wifi/WifiManager#addNetworkSuggestions(java.util.List%3Candroid.net.wifi.WifiNetworkSuggestion%3E)
+[getNetworkSuggestions]: https://developer.android.com/reference/android/net/wifi/WifiManager#getNetworkSuggestions()

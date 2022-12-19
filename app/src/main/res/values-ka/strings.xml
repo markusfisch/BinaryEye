@@ -109,8 +109,8 @@
 	<string name="default_search_engine">Open unknown data in</string>
 	<string name="always_ask">Always ask</string>
 	<string name="open_with_url">უცნობი მონაცემების ამ ბმულის საშუალებით გახსნა</string>
-	<string name="clear_network_suggestions">Clear network suggestions</string>
-	<string name="clear_network_suggestions_summary">Remove all of the network suggestions that were previously provided by this app.</string>
+	<string name="clear_network_suggestions">Remove network suggestions</string>
+	<string name="clear_network_suggestions_summary">Remove network suggestions that were previously added with this app.</string>
 	<string name="really_remove_all_networks">Really remove all networks?</string>
 	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Nothing to remove</string>
@@ -183,4 +183,6 @@
 	<string name="wifi_anonymous_identity">Anonymous identity</string>
 	<string name="wifi_identity">Identity</string>
 	<string name="wifi_phase2">Phase 2 method</string>
+	<string name="network_suggestions">Network suggestions</string>
+	<string name="remove_suggestion">Remove suggestion</string>
 </resources>

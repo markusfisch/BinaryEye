@@ -185,4 +185,6 @@
 	<string name="wifi_anonymous_identity">Аноним</string>
 	<string name="wifi_identity">Пользователь</string>
 	<string name="wifi_phase2">Двухэтапный метод</string>
+	<string name="network_suggestions">Network suggestions</string>
+	<string name="remove_suggestion">Remove suggestion</string>
 </resources>

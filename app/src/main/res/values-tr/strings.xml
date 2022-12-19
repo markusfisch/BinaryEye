@@ -183,4 +183,6 @@
 	<string name="wifi_anonymous_identity">Anonim kimlik</string>
 	<string name="wifi_identity">Kimlik</string>
 	<string name="wifi_phase2">2. aşama yöntemi</string>
+	<string name="network_suggestions">Network suggestions</string>
+	<string name="remove_suggestion">Remove suggestion</string>
 </resources>

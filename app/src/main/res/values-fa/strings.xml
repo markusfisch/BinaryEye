@@ -183,4 +183,6 @@
 	<string name="wifi_anonymous_identity">هویت ناشناس</string>
 	<string name="wifi_identity">هویت</string>
 	<string name="wifi_phase2">روش دو مرحله‌ای</string>
+	<string name="network_suggestions">Network suggestions</string>
+	<string name="remove_suggestion">Remove suggestion</string>
 </resources>
