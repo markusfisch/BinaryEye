@@ -111,8 +111,8 @@
 	<string name="default_search_engine">Поиск неизвестных данных в</string>
 	<string name="always_ask">Всегда спрашивать</string>
 	<string name="open_with_url">Открывать неизвестные данные по URL</string>
-	<string name="clear_network_suggestions">Очистить сетевые предложения</string>
-	<string name="clear_network_suggestions_summary">Удалить все сетевые предложения, ранее предложенные этим приложением.</string>
+	<string name="clear_network_suggestions">Удалить сетевые предложения</string>
+	<string name="clear_network_suggestions_summary">Удалить все сетевые предложения, ранее добавленные этим приложением.</string>
 	<string name="really_remove_all_networks">Удалить все сетевые предложения?</string>
 	<string name="clear_network_suggestions_success">Сетевые предложения удалены</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Нечего удалять</string>
@@ -185,6 +185,6 @@
 	<string name="wifi_anonymous_identity">Аноним</string>
 	<string name="wifi_identity">Пользователь</string>
 	<string name="wifi_phase2">Двухэтапный метод</string>
-	<string name="network_suggestions">Network suggestions</string>
-	<string name="remove_suggestion">Remove suggestion</string>
+	<string name="network_suggestions">Сетевые предложения</string>
+	<string name="remove_suggestion">Удалить предложение</string>
 </resources>
