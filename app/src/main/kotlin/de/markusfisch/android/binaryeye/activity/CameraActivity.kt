@@ -590,7 +590,9 @@ class CameraActivity : AppCompatActivity() {
 				}
 			}
 			if (bulkMode) {
-				ignoreNext = result.text
+				if (prefs.ignoreConsecutiveDuplicates) {
+					ignoreNext = result.text
+				}
 				if (prefs.showToastInBulkMode) {
 					toast(result.text)
 				}
