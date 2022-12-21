@@ -17,4 +17,4 @@ Then write a [good commit message][commit_messages] to keep the history
 meaningful and useful. One feature, one commit.
 
 [android_best_practices]: https://developer.android.com/distribute/best-practices/develop/
-[commit_messages]: https://juffalow.com/other/write-good-git-commit-message
+[commit_messages]: https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project#_commit_guidelines
