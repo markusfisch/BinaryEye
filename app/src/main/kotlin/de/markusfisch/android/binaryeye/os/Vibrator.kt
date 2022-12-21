@@ -5,7 +5,7 @@ import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 
-private const val DURATION_IN_MS = 100L
+private const val DURATION_IN_MS = 250L
 
 private val beforeO = Build.VERSION.SDK_INT < Build.VERSION_CODES.O
 private val errorPatternTimings = longArrayOf(
