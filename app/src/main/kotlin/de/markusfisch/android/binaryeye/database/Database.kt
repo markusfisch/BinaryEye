@@ -36,7 +36,7 @@ class Database {
 			$SCANS_RAW,
 			$SCANS_FORMAT,
 			$SCANS_ERROR_CORRECTION_LEVEL,
-			$SCANS_VERSION_NUMBER,
+			$SCANS_VERSION,
 			$SCANS_SEQUENCE_SIZE,
 			$SCANS_SEQUENCE_INDEX,
 			$SCANS_SEQUENCE_ID,
@@ -78,7 +78,7 @@ class Database {
 			$SCANS_RAW,
 			$SCANS_FORMAT,
 			$SCANS_ERROR_CORRECTION_LEVEL,
-			$SCANS_VERSION_NUMBER,
+			$SCANS_VERSION,
 			$SCANS_SEQUENCE_SIZE,
 			$SCANS_SEQUENCE_INDEX,
 			$SCANS_SEQUENCE_ID,
@@ -96,7 +96,7 @@ class Database {
 				it.getBlob(SCANS_RAW),
 				it.getString(SCANS_FORMAT),
 				it.getString(SCANS_ERROR_CORRECTION_LEVEL),
-				it.getInt(SCANS_VERSION_NUMBER),
+				it.getString(SCANS_VERSION),
 				it.getInt(SCANS_SEQUENCE_SIZE),
 				it.getInt(SCANS_SEQUENCE_INDEX),
 				it.getString(SCANS_SEQUENCE_ID),
@@ -128,7 +128,7 @@ class Database {
 			scan.errorCorrectionLevel?.let {
 				put(SCANS_ERROR_CORRECTION_LEVEL, it)
 			}
-			put(SCANS_VERSION_NUMBER, scan.versionNumber)
+			put(SCANS_VERSION, scan.version)
 			put(SCANS_SEQUENCE_SIZE, scan.sequenceSize)
 			put(SCANS_SEQUENCE_INDEX, scan.sequenceIndex)
 			put(SCANS_SEQUENCE_ID, scan.sequenceId)
@@ -192,7 +192,7 @@ class Database {
 	}
 
 	private class OpenHelper(context: Context) :
-		SQLiteOpenHelper(context, FILE_NAME, null, 5) {
+		SQLiteOpenHelper(context, FILE_NAME, null, 6) {
 		override fun onCreate(db: SQLiteDatabase) {
 			createScans(db)
 		}
@@ -214,6 +214,9 @@ class Database {
 			if (oldVersion < 5) {
 				migrateToZxingCpp(db)
 			}
+			if (oldVersion < 6) {
+				migrateToVersionString(db)
+			}
 		}
 	}
 
@@ -228,6 +231,7 @@ class Database {
 		const val SCANS_FORMAT = "format"
 		const val SCANS_ERROR_CORRECTION_LEVEL = "error_correction_level"
 		const val SCANS_VERSION_NUMBER = "version_number"
+		const val SCANS_VERSION = "version"
 		const val SCANS_ISSUE_NUMBER = "issue_number"
 		const val SCANS_ORIENTATION = "orientation"
 		const val SCANS_OTHER_META_DATA = "other_meta_data"
@@ -254,7 +258,7 @@ class Database {
 					$SCANS_RAW BLOB,
 					$SCANS_FORMAT TEXT NOT NULL,
 					$SCANS_ERROR_CORRECTION_LEVEL TEXT,
-					$SCANS_VERSION_NUMBER INTEGER,
+					$SCANS_VERSION TEXT,
 					$SCANS_SEQUENCE_SIZE INTEGER,
 					$SCANS_SEQUENCE_INDEX INTEGER,
 					$SCANS_SEQUENCE_ID TEXT,
@@ -303,6 +307,13 @@ class Database {
 				execSQL("UPDATE $SCANS SET $SCANS_GTIN_ADD_ON = $SCANS_UPC_EAN_EXTENSION")
 				execSQL("UPDATE $SCANS SET $SCANS_GTIN_PRICE = $SCANS_SUGGESTED_PRICE")
 				execSQL("UPDATE $SCANS SET $SCANS_GTIN_ISSUE_NUMBER = $SCANS_ISSUE_NUMBER")
+			}
+		}
+
+		private fun migrateToVersionString(db: SQLiteDatabase) {
+			db.apply {
+				execSQL("ALTER TABLE $SCANS ADD $SCANS_VERSION TEXT")
+				execSQL("UPDATE $SCANS SET $SCANS_VERSION = $SCANS_VERSION_NUMBER")
 			}
 		}
 	}

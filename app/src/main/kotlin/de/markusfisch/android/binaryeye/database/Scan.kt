@@ -15,7 +15,7 @@ data class Scan(
 	val raw: ByteArray?,
 	val format: String,
 	val errorCorrectionLevel: String? = null,
-	val versionNumber: Int = 0,
+	val version: String? = null,
 	val sequenceSize: Int = -1,
 	val sequenceIndex: Int = -1,
 	val sequenceId: String = "",
@@ -45,7 +45,7 @@ data class Scan(
 						(raw != null && other.raw != null && raw.contentEquals(other.raw))) &&
 				format == other.format &&
 				errorCorrectionLevel == other.errorCorrectionLevel &&
-				versionNumber == other.versionNumber &&
+				version == other.version &&
 				sequenceSize == other.sequenceSize &&
 				sequenceIndex == other.sequenceIndex &&
 				sequenceId == other.sequenceId &&
@@ -64,7 +64,7 @@ data class Scan(
 		result = 31 * result + (raw?.contentHashCode() ?: 0)
 		result = 31 * result + format.hashCode()
 		result = 31 * result + (errorCorrectionLevel?.hashCode() ?: 0)
-		result = 31 * result + versionNumber
+		result = 31 * result + version.hashCode()
 		result = 31 * result + sequenceSize
 		result = 31 * result + sequenceIndex
 		result = 31 * result + sequenceId.hashCode()
@@ -80,7 +80,7 @@ data class Scan(
 		raw = parcel.readSizedByteArray(),
 		format = parcel.readString() ?: "",
 		errorCorrectionLevel = parcel.readString(),
-		versionNumber = parcel.readInt(),
+		version = parcel.readString(),
 		sequenceSize = parcel.readInt(),
 		sequenceIndex = parcel.readInt(),
 		sequenceId = parcel.readString() ?: "",
@@ -98,7 +98,7 @@ data class Scan(
 			writeSizedByteArray(raw)
 			writeString(format)
 			writeString(errorCorrectionLevel)
-			writeInt(versionNumber)
+			writeString(version)
 			writeInt(sequenceSize)
 			writeInt(sequenceIndex)
 			writeString(sequenceId)
@@ -142,7 +142,7 @@ fun Result.toScan(): Scan {
 		raw,
 		format,
 		ecLevel,
-		versionNumber,
+		version,
 		sequenceSize,
 		sequenceIndex,
 		sequenceId,

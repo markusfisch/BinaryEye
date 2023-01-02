@@ -26,7 +26,7 @@ fun Cursor.exportJson(): String? {
 		Database.SCANS_FORMAT,
 		Database.SCANS_CONTENT,
 		Database.SCANS_ERROR_CORRECTION_LEVEL,
-		Database.SCANS_VERSION_NUMBER,
+		Database.SCANS_VERSION,
 		Database.SCANS_SEQUENCE_SIZE,
 		Database.SCANS_SEQUENCE_INDEX,
 		Database.SCANS_SEQUENCE_ID,
