@@ -36,7 +36,7 @@ class Database {
 			$SCANS_RAW,
 			$SCANS_FORMAT,
 			$SCANS_ERROR_CORRECTION_LEVEL,
-			$SCANS_VERSION_NUMBER,
+			$SCANS_VERSION,
 			$SCANS_SEQUENCE_SIZE,
 			$SCANS_SEQUENCE_INDEX,
 			$SCANS_SEQUENCE_ID,
@@ -78,7 +78,7 @@ class Database {
 			$SCANS_RAW,
 			$SCANS_FORMAT,
 			$SCANS_ERROR_CORRECTION_LEVEL,
-			$SCANS_VERSION_NUMBER,
+			$SCANS_VERSION,
 			$SCANS_SEQUENCE_SIZE,
 			$SCANS_SEQUENCE_INDEX,
 			$SCANS_SEQUENCE_ID,
@@ -96,7 +96,7 @@ class Database {
 				it.getBlob(SCANS_RAW),
 				it.getString(SCANS_FORMAT),
 				it.getString(SCANS_ERROR_CORRECTION_LEVEL),
-				it.getInt(SCANS_VERSION_NUMBER),
+				it.getString(SCANS_VERSION),
 				it.getInt(SCANS_SEQUENCE_SIZE),
 				it.getInt(SCANS_SEQUENCE_INDEX),
 				it.getString(SCANS_SEQUENCE_ID),
@@ -128,7 +128,7 @@ class Database {
 			scan.errorCorrectionLevel?.let {
 				put(SCANS_ERROR_CORRECTION_LEVEL, it)
 			}
-			put(SCANS_VERSION_NUMBER, scan.versionNumber)
+			put(SCANS_VERSION, scan.version)
 			put(SCANS_SEQUENCE_SIZE, scan.sequenceSize)
 			put(SCANS_SEQUENCE_INDEX, scan.sequenceIndex)
 			put(SCANS_SEQUENCE_ID, scan.sequenceId)
@@ -192,9 +192,9 @@ class Database {
 	}
 
 	private class OpenHelper(context: Context) :
-		SQLiteOpenHelper(context, FILE_NAME, null, 5) {
+		SQLiteOpenHelper(context, FILE_NAME, null, 6) {
 		override fun onCreate(db: SQLiteDatabase) {
-			createScans(db)
+			db.createScans()
 		}
 
 		override fun onUpgrade(
@@ -203,16 +203,19 @@ class Database {
 			newVersion: Int
 		) {
 			if (oldVersion < 2) {
-				addRawColumn(db)
+				db.addRawColumn()
 			}
 			if (oldVersion < 3) {
-				addMetaDataColumns(db)
+				db.addMetaDataColumns()
 			}
 			if (oldVersion < 4) {
-				addNameColumn(db)
+				db.addNameColumn()
 			}
 			if (oldVersion < 5) {
-				migrateToZxingCpp(db)
+				db.migrateToZxingCpp()
+			}
+			if (oldVersion < 6) {
+				db.migrateToVersionString()
 			}
 		}
 	}
@@ -228,6 +231,7 @@ class Database {
 		const val SCANS_FORMAT = "format"
 		const val SCANS_ERROR_CORRECTION_LEVEL = "error_correction_level"
 		const val SCANS_VERSION_NUMBER = "version_number"
+		const val SCANS_VERSION = "version"
 		const val SCANS_ISSUE_NUMBER = "issue_number"
 		const val SCANS_ORIENTATION = "orientation"
 		const val SCANS_OTHER_META_DATA = "other_meta_data"
@@ -243,9 +247,9 @@ class Database {
 		const val SCANS_GTIN_PRICE = "gtin_price"
 		const val SCANS_GTIN_ISSUE_NUMBER = "gtin_issue_number"
 
-		private fun createScans(db: SQLiteDatabase) {
-			db.execSQL("DROP TABLE IF EXISTS $SCANS".trimMargin())
-			db.execSQL(
+		private fun SQLiteDatabase.createScans() {
+			execSQL("DROP TABLE IF EXISTS $SCANS".trimMargin())
+			execSQL(
 				"""CREATE TABLE $SCANS (
 					$SCANS_ID INTEGER PRIMARY KEY AUTOINCREMENT,
 					$SCANS_DATETIME DATETIME NOT NULL,
@@ -254,7 +258,7 @@ class Database {
 					$SCANS_RAW BLOB,
 					$SCANS_FORMAT TEXT NOT NULL,
 					$SCANS_ERROR_CORRECTION_LEVEL TEXT,
-					$SCANS_VERSION_NUMBER INTEGER,
+					$SCANS_VERSION TEXT,
 					$SCANS_SEQUENCE_SIZE INTEGER,
 					$SCANS_SEQUENCE_INDEX INTEGER,
 					$SCANS_SEQUENCE_ID TEXT,
@@ -266,44 +270,45 @@ class Database {
 			)
 		}
 
-		private fun addRawColumn(db: SQLiteDatabase) {
-			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_RAW BLOB".trimMargin())
+		private fun SQLiteDatabase.addRawColumn() {
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_RAW BLOB".trimMargin())
 		}
 
-		private fun addMetaDataColumns(db: SQLiteDatabase) {
-			db.apply {
-				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_ERROR_CORRECTION_LEVEL TEXT".trimMargin())
-				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_ISSUE_NUMBER INT".trimMargin())
-				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_ORIENTATION INT".trimMargin())
-				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_OTHER_META_DATA TEXT".trimMargin())
-				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_PDF417_EXTRA_METADATA TEXT".trimMargin())
-				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_POSSIBLE_COUNTRY TEXT".trimMargin())
-				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_SUGGESTED_PRICE TEXT".trimMargin())
-				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_UPC_EAN_EXTENSION TEXT".trimMargin())
-			}
+		private fun SQLiteDatabase.addMetaDataColumns() {
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_ERROR_CORRECTION_LEVEL TEXT".trimMargin())
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_ISSUE_NUMBER INT".trimMargin())
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_ORIENTATION INT".trimMargin())
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_OTHER_META_DATA TEXT".trimMargin())
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_PDF417_EXTRA_METADATA TEXT".trimMargin())
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_POSSIBLE_COUNTRY TEXT".trimMargin())
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_SUGGESTED_PRICE TEXT".trimMargin())
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_UPC_EAN_EXTENSION TEXT".trimMargin())
 		}
 
-		private fun addNameColumn(db: SQLiteDatabase) {
-			db.execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_NAME TEXT".trimMargin())
+		private fun SQLiteDatabase.addNameColumn() {
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_NAME TEXT".trimMargin())
 		}
 
-		private fun migrateToZxingCpp(db: SQLiteDatabase) {
-			db.apply {
-				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_VERSION_NUMBER INTEGER".trimMargin())
-				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_SEQUENCE_SIZE INTEGER".trimMargin())
-				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_SEQUENCE_INDEX INTEGER".trimMargin())
-				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_SEQUENCE_ID TEXT".trimMargin())
-				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_GTIN_COUNTRY TEXT".trimMargin())
-				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_GTIN_ADD_ON TEXT".trimMargin())
-				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_GTIN_PRICE TEXT".trimMargin())
-				execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_GTIN_ISSUE_NUMBER TEXT".trimMargin())
-				execSQL("UPDATE $SCANS SET $SCANS_SEQUENCE_SIZE = -1")
-				execSQL("UPDATE $SCANS SET $SCANS_SEQUENCE_INDEX = -1")
-				execSQL("UPDATE $SCANS SET $SCANS_GTIN_COUNTRY = $SCANS_POSSIBLE_COUNTRY")
-				execSQL("UPDATE $SCANS SET $SCANS_GTIN_ADD_ON = $SCANS_UPC_EAN_EXTENSION")
-				execSQL("UPDATE $SCANS SET $SCANS_GTIN_PRICE = $SCANS_SUGGESTED_PRICE")
-				execSQL("UPDATE $SCANS SET $SCANS_GTIN_ISSUE_NUMBER = $SCANS_ISSUE_NUMBER")
-			}
+		private fun SQLiteDatabase.migrateToZxingCpp() {
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_VERSION_NUMBER INTEGER".trimMargin())
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_SEQUENCE_SIZE INTEGER".trimMargin())
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_SEQUENCE_INDEX INTEGER".trimMargin())
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_SEQUENCE_ID TEXT".trimMargin())
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_GTIN_COUNTRY TEXT".trimMargin())
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_GTIN_ADD_ON TEXT".trimMargin())
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_GTIN_PRICE TEXT".trimMargin())
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_GTIN_ISSUE_NUMBER TEXT".trimMargin())
+			execSQL("UPDATE $SCANS SET $SCANS_SEQUENCE_SIZE = -1")
+			execSQL("UPDATE $SCANS SET $SCANS_SEQUENCE_INDEX = -1")
+			execSQL("UPDATE $SCANS SET $SCANS_GTIN_COUNTRY = $SCANS_POSSIBLE_COUNTRY")
+			execSQL("UPDATE $SCANS SET $SCANS_GTIN_ADD_ON = $SCANS_UPC_EAN_EXTENSION")
+			execSQL("UPDATE $SCANS SET $SCANS_GTIN_PRICE = $SCANS_SUGGESTED_PRICE")
+			execSQL("UPDATE $SCANS SET $SCANS_GTIN_ISSUE_NUMBER = $SCANS_ISSUE_NUMBER")
+		}
+
+		private fun SQLiteDatabase.migrateToVersionString() {
+			execSQL("ALTER TABLE $SCANS ADD $SCANS_VERSION TEXT")
+			execSQL("UPDATE $SCANS SET $SCANS_VERSION = $SCANS_VERSION_NUMBER")
 		}
 	}
 }

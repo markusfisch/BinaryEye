@@ -68,7 +68,7 @@ private fun Scan.getMap(): Map<String, String> = mapOf(
 	"raw" to raw?.toHexString(),
 	"format" to format,
 	"errorCorrectionLevel" to errorCorrectionLevel,
-	"versionNumber" to versionNumber.toString(),
+	"version" to version,
 	"sequenceSize" to sequenceSize.toString(),
 	"sequenceIndex" to sequenceIndex.toString(),
 	"sequenceId" to sequenceId,

@@ -634,7 +634,7 @@ fun Result.redact() = if (
 		sequenceId,
 		readerInit,
 		lineCount,
-		versionNumber,
+		version,
 		gtin
 	)
 } else {

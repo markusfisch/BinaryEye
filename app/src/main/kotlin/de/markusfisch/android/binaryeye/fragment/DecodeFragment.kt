@@ -253,15 +253,15 @@ class DecodeFragment : Fragment() {
 			R.string.gtin_price to scan.price,
 			R.string.gtin_issue_number to scan.issueNumber,
 		)
-		if (scan.versionNumber > 0) {
+		if (!scan.version.isNullOrBlank()) {
 			val versionString = if (scan.format == "QR_CODE") {
 				getString(
 					R.string.qr_version_and_modules,
-					scan.versionNumber,
-					scan.versionNumber * 4 + 17
+					scan.version,
+					(scan.version.toIntOrNull() ?: 0) * 4 + 17
 				)
 			} else {
-				scan.versionNumber.toString()
+				scan.version
 			}
 			items.putAll(
 				linkedMapOf(
