@@ -26,7 +26,7 @@
 	<string name="gtin_country">製造国</string>
 	<string name="gtin_price">価格</string>
 	<string name="gtin_add_on">UPC/EAN 拡張型</string>
-	<string name="barcode_version_number">Version</string>
+	<string name="barcode_version_number">バージョン</string>
 	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
 	<string name="toggle_flash">フラッシュの切り替え</string>
 	<string name="error_flash">フラッシュの切り替えエラー</string>
@@ -82,13 +82,13 @@
 	<string name="vibrate_summary">バーコードが認識されたときにバイブレーションを行います。</string>
 	<string name="beep">検出時にビープ音を鳴らす</string>
 	<string name="beep_summary">Enable this if you want your device to beep when a code is recognized.</string>
-	<string name="beep_tone">Beep tone</string>
+	<string name="beep_tone">ビープ音</string>
 	<string name="tone_cdma_confirm">CDMA confirm</string>
 	<string name="tone_sup_confirm">Call supervisory confirm</string>
 	<string name="tone_sup_radio_ack">Call supervisory radio path acknowledgment</string>
 	<string name="tone_prop_ack">Positive acknowledgment</string>
-	<string name="tone_prop_beep">General beep</string>
-	<string name="tone_prop_beep2">General double beep</string>
+	<string name="tone_prop_beep">一般的なビープ音</string>
+	<string name="tone_prop_beep2">一般的なダブルビープ音</string>
 	<string name="use_history">スキャン履歴を保存する</string>
 	<string name="use_history_summary">認識されたバーコードを端末に保存しておきます。</string>
 	<string name="ignore_consecutive_duplicates">重複を破棄する</string>
@@ -178,10 +178,10 @@
 	<string name="wifi_type">認証方式</string>
 	<string name="wifi_password">パスワード</string>
 	<string name="wifi_hidden">非表示のネットワーク</string>
-	<string name="wifi_eap">EAP method</string>
+	<string name="wifi_eap">EAP方式</string>
 	<string name="wifi_anonymous_identity">Anonymous identity</string>
 	<string name="wifi_identity">Identity</string>
-	<string name="wifi_phase2">Phase 2 method</string>
-	<string name="network_suggestions">Network suggestions</string>
-	<string name="remove_suggestion">Remove suggestion</string>
+	<string name="wifi_phase2">フェーズ2方式</string>
+	<string name="network_suggestions">ネットワークに関する提案</string>
+	<string name="remove_suggestion">提案の削除</string>
 </resources>
