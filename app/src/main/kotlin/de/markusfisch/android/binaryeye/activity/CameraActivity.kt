@@ -436,7 +436,7 @@ class CameraActivity : AppCompatActivity() {
 							tryDownscale = true
 						)?.let { result ->
 							if (result.text != ignoreNext) {
-								postResult(result.redact())
+								postResult(result)
 								decoding = false
 							}
 						}
@@ -611,34 +611,6 @@ class CameraActivity : AppCompatActivity() {
 		private const val BULK_MODE = "bulk_mode"
 		private const val RESTRICT_FORMAT = "restrict_format"
 	}
-}
-
-fun Result.redact() = if (
-	format == Format.PDF_417.name &&
-	text.isNotEmpty()
-) {
-	Result(
-		format,
-		contentType,
-		String(
-			text.toByteArray(Charset.forName("ISO-8859-1")),
-			Charset.forName("UTF-8")
-		),
-		position,
-		orientation,
-		rawBytes,
-		ecLevel,
-		symbologyIdentifier,
-		sequenceSize,
-		sequenceIndex,
-		sequenceId,
-		readerInit,
-		lineCount,
-		version,
-		gtin
-	)
-} else {
-	this
 }
 
 fun showResult(
