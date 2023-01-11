@@ -35,11 +35,14 @@ fun Context.startIntent(intent: Intent): Boolean = try {
 	false
 }
 
-fun Context.openUrl(url: String): Boolean = openUri(url.parseAndNormalizeUri())
-
-fun Context.openUri(uri: Uri): Boolean = execShareIntent(
-	Intent(Intent.ACTION_VIEW, uri)
-)
+fun Context.openUrl(url: String, silent: Boolean = false): Boolean {
+	val intent = Intent(Intent.ACTION_VIEW, url.parseAndNormalizeUri())
+	return if (silent) {
+		startIntent(intent)
+	} else {
+		execShareIntent(intent)
+	}
+}
 
 fun String.parseAndNormalizeUri(): Uri = Uri.parse(this).let {
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {

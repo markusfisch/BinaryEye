@@ -23,7 +23,7 @@ object OpenOrSearchAction : IAction {
 		url: String,
 		search: Boolean
 	) {
-		if (!context.openUrl(url) && search) {
+		if (!context.openUrl(url, silent = true) && search) {
 			openSearch(context, url)
 		}
 	}
