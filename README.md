@@ -84,7 +84,6 @@ Supported symbols are:
 * `RESULT` - scanned content
 * `RESULT_BYTES` - raw result as a hex string
 * `FORMAT` - barcode format
-* `META` - the meta data, if available
 
 ### SCAN Intent
 
