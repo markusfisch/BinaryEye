@@ -430,8 +430,10 @@ class CameraActivity : AppCompatActivity() {
 					tryInvert = true,
 					tryDownscale = true
 				)
+				var useLocalAverage = false
 				camera.setPreviewCallback { frameData, _ ->
 					if (decoding) {
+						useLocalAverage = useLocalAverage xor true
 						ZxingCpp.readByteArray(
 							frameData,
 							frameMetrics.width,
@@ -439,6 +441,14 @@ class CameraActivity : AppCompatActivity() {
 							frameRoi.width(), frameRoi.height(),
 							frameMetrics.orientation,
 							decodeHints.apply {
+								// By default, ZXing uses LOCAL_AVERAGE, but
+								// this does not work well with inverted
+								// barcodes on low-contrast backgrounds.
+								binarizer = if (useLocalAverage) {
+									Binarizer.LOCAL_AVERAGE
+								} else {
+									Binarizer.GLOBAL_HISTOGRAM
+								}
 								formats = formatsToRead.joinToString()
 							}
 						)?.let { result ->

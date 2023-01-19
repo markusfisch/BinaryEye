@@ -145,13 +145,7 @@ class PickActivity : AppCompatActivity() {
 			)
 		}
 		scope.launch {
-			ZxingCpp.readBitmap(
-				cropped,
-				0, 0,
-				cropped.width, cropped.height,
-				0,
-				decodeHints
-			)?.let {
+			cropped.decode()?.let {
 				withContext(Dispatchers.Main) {
 					if (isFinishing) {
 						return@withContext
@@ -168,6 +162,26 @@ class PickActivity : AppCompatActivity() {
 			}
 		}
 	}
+
+	// By default, ZXing uses LOCAL_AVERAGE, but this does not work
+	// well with inverted barcodes on low-contrast backgrounds.
+	private fun Bitmap.decode() = ZxingCpp.readBitmap(
+		this,
+		0, 0,
+		width, height,
+		0,
+		decodeHints.apply {
+			binarizer = Binarizer.LOCAL_AVERAGE
+		}
+	) ?: ZxingCpp.readBitmap(
+		this,
+		0, 0,
+		width, height,
+		0,
+		decodeHints.apply {
+			binarizer = Binarizer.GLOBAL_HISTOGRAM
+		}
+	)
 
 	override fun onDestroy() {
 		super.onDestroy()
