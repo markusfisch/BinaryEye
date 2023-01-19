@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.58.0
+* Improve detection of inverted barcodes
+* Optionally allow duplicates in bulk scan
+* Add Danish translation
+* Update Italian translation
+* Update Japanese translation
+* Update Russian translation
+* Fix charset decoding for PDF 417
+* Fix monochrome icon
+
 ## 1.57.0
 * Add optional audio feedback for scanning
 * Allow removing individual WiFi network suggestions
