@@ -41,6 +41,8 @@ import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.cameraview.widget.CameraView
 import de.markusfisch.android.zxingcpp.ZxingCpp
+import de.markusfisch.android.zxingcpp.ZxingCpp.Binarizer
+import de.markusfisch.android.zxingcpp.ZxingCpp.DecodeHints
 import de.markusfisch.android.zxingcpp.ZxingCpp.Format
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
 import java.nio.charset.Charset
@@ -57,7 +59,7 @@ class CameraActivity : AppCompatActivity() {
 	private lateinit var zoomBar: SeekBar
 	private lateinit var flashFab: FloatingActionButton
 
-	private var formats = setOf<String>()
+	private var formatsToRead = setOf<String>()
 	private var frameMetrics = FrameMetrics()
 	private var decoding = true
 	private var returnResult = false
@@ -158,7 +160,7 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun updateHints() {
 		val restriction = restrictFormat
-		formats = if (restriction != null) {
+		formatsToRead = if (restriction != null) {
 			title = getString(
 				R.string.scan_format,
 				prettifyFormatName(restriction)
@@ -421,6 +423,13 @@ class CameraActivity : AppCompatActivity() {
 				updateFrameRoiAndMappingMatrix()
 				ignoreNext = null
 				decoding = true
+				// These settings can't change while the camera is open.
+				val decodeHints = DecodeHints(
+					tryHarder = prefs.tryHarder,
+					tryRotate = prefs.autoRotate,
+					tryInvert = true,
+					tryDownscale = true
+				)
 				camera.setPreviewCallback { frameData, _ ->
 					if (decoding) {
 						ZxingCpp.readByteArray(
@@ -429,11 +438,9 @@ class CameraActivity : AppCompatActivity() {
 							frameRoi.left, frameRoi.top,
 							frameRoi.width(), frameRoi.height(),
 							frameMetrics.orientation,
-							formats.joinToString(),
-							prefs.tryHarder,
-							prefs.autoRotate,
-							tryInvert = true,
-							tryDownscale = true
+							decodeHints.apply {
+								formats = formatsToRead.joinToString()
+							}
 						)?.let { result ->
 							if (result.text != ignoreNext) {
 								postResult(result)

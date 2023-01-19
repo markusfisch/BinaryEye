@@ -26,6 +26,8 @@ import de.markusfisch.android.binaryeye.widget.CropImageView
 import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.zxingcpp.ZxingCpp
+import de.markusfisch.android.zxingcpp.ZxingCpp.Binarizer
+import de.markusfisch.android.zxingcpp.ZxingCpp.DecodeHints
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
 import kotlinx.coroutines.*
 import kotlin.math.max
@@ -36,6 +38,13 @@ class PickActivity : AppCompatActivity() {
 	private val matrix = Matrix()
 	private val parentJob = Job()
 	private val scope = CoroutineScope(Dispatchers.IO + parentJob)
+	private val decodeHints = DecodeHints(
+		tryHarder = true,
+		tryRotate = true,
+		tryInvert = true,
+		tryDownscale = true,
+		formats = prefs.barcodeFormats.joinToString()
+	)
 
 	private lateinit var cropImageView: CropImageView
 	private lateinit var detectorView: DetectorView
@@ -141,11 +150,7 @@ class PickActivity : AppCompatActivity() {
 				0, 0,
 				cropped.width, cropped.height,
 				0,
-				prefs.barcodeFormats.joinToString(),
-				tryHarder = true,
-				tryRotate = true,
-				tryInvert = true,
-				tryDownscale = true
+				decodeHints
 			)?.let {
 				withContext(Dispatchers.Main) {
 					if (isFinishing) {
