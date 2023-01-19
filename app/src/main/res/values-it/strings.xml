@@ -19,7 +19,7 @@
 	<string name="colors_black_on_white">Nero su bianco</string>
 	<string name="colors_white_on_black">Bianco su nero</string>
 	<string name="colors_black_on_transparent">Nero su trasparente</string>
-	<string name="colors_white_on_transparent">Bianco su trasparente/string>
+	<string name="colors_white_on_transparent">Bianco su trasparente</string>
 	<string name="sequence_size">Dimensione sequenza</string>
 	<string name="sequence_index">Indice sequenza</string>
 	<string name="sequence_id">ID sequenza</string>
