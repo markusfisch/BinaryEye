@@ -80,9 +80,9 @@
 	<string name="show_toast_in_bulk_mode_summary">连续扫描时简要显示扫描数据。</string>
 	<string name="vibrate">识别时震动</string>
 	<string name="vibrate_summary">如果你希望在识别到条码后震动设备，请启用该选项。</string>
-	<string name="beep">Beep on detection</string>
-	<string name="beep_summary">Enable this if you want your device to beep when a code is recognized.</string>
-	<string name="beep_tone">Beep tone</string>
+	<string name="beep">识别时提示音</string>
+	<string name="beep_summary">如果你希望在识别到条码后发出提示音，请启用该选项。</string>
+	<string name="beep_tone">选择提示音</string>
 	<string name="tone_cdma_confirm">CDMA confirm</string>
 	<string name="tone_sup_confirm">Call supervisory confirm</string>
 	<string name="tone_sup_radio_ack">Call supervisory radio path acknowledgment</string>
@@ -182,6 +182,6 @@
 	<string name="wifi_anonymous_identity">匿名身份</string>
 	<string name="wifi_identity">身份</string>
 	<string name="wifi_phase2">阶段 2 方法</string>
-	<string name="network_suggestions">Network suggestions</string>
-	<string name="remove_suggestion">Remove suggestion</string>
+	<string name="network_suggestions">网络建议</string>
+	<string name="remove_suggestion">删除建议</string>
 </resources>
