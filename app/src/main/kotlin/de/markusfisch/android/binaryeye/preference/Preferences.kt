@@ -62,37 +62,27 @@ class Preferences {
 		}
 	var autoRotate = true
 		set(value) {
-			// Immediately save this setting before it shouldn't change
-			// on the fly while scanning.
-			commit(AUTO_ROTATE, value)
+			apply(AUTO_ROTATE, value)
 			field = value
 		}
 	var tryHarder = false
 		set(value) {
-			// Immediately save this setting because it's only ever read
-			// before the camera is opened.
-			commit(TRY_HARDER, value)
+			apply(TRY_HARDER, value)
 			field = value
 		}
 	var bulkMode = false
 		set(value) {
-			// Immediately save this setting because it's only ever read
-			// before the camera is opened.
-			commit(BULK_MODE, value)
+			apply(BULK_MODE, value)
 			field = value
 		}
 	var bulkModeDelay = "500"
 		set(value) {
-			// Immediately save this setting because it's only ever read
-			// before the camera is opened.
-			commit(BULK_MODE_DELAY, value)
+			apply(BULK_MODE_DELAY, value)
 			field = value
 		}
 	var showToastInBulkMode = true
 		set(value) {
-			// Immediately save this setting because it's only ever read
-			// before the camera is opened.
-			commit(SHOW_TOAST_IN_BULK_MODE, value)
+			apply(SHOW_TOAST_IN_BULK_MODE, value)
 			field = value
 		}
 	var vibrate = true
@@ -289,14 +279,6 @@ class Preferences {
 
 	private fun put(label: String, value: String) =
 		preferences.edit().putString(label, value)
-
-	private fun commit(label: String, value: Boolean) {
-		put(label, value).commit()
-	}
-
-	private fun commit(label: String, value: String) {
-		put(label, value).commit()
-	}
 
 	private fun apply(label: String, value: Boolean) {
 		put(label, value).apply()
