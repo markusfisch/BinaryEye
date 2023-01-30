@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.58.1
+* Update zh-rCn translation
+* Fix monochrome launcher icon
+
 ## 1.58.0
 * Improve detection of inverted barcodes
 * Optionally allow duplicates in bulk scan
