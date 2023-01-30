@@ -304,7 +304,7 @@ private fun WifiManager.addNetworkFromBuilder(
 // Make sure the string ends with a semicolon.
 private fun String.trimAndTerminate(): String {
 	var trimmed = trim()
-	if (trimmed.last() != ';') {
+	if (trimmed.isNotEmpty() && trimmed.last() != ';') {
 		trimmed += ";"
 	}
 	return trimmed
