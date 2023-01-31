@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.58.2
+* Fix parsing WiFi network suggestions
+
 ## 1.58.1
 * Update zh-rCn translation
 * Fix monochrome launcher icon
