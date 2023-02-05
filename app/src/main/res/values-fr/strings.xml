@@ -1,5 +1,4 @@
 <resources>
-	<string name="no_camera_no_fun">Cette application ne peut pas fonctionner sans accès à la caméra. Au revoir.</string>
 	<string name="camera_error">Impossible d\'accéder à la caméra, veuillez réessayer</string>
 	<string name="scan_code">Scanner le code</string>
 	<string name="compose_barcode">Créer un code-barres</string>

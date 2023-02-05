@@ -1,5 +1,4 @@
 <resources>
-	<string name="no_camera_no_fun">没有相机权限的话，该应用没有任何意义。再见！</string>
 	<string name="camera_error">无法访问相机，请重试。</string>
 	<string name="scan_code">扫码</string>
 	<string name="compose_barcode">生成条码</string>

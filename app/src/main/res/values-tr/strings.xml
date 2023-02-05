@@ -1,5 +1,4 @@
 <resources>
-	<string name="no_camera_no_fun">Bu uygulama kamera izni olmadan anlamsızdır. Güle güle.</string>
 	<string name="camera_error">Kameraya erişilemiyor, lütfen yeniden deneyin</string>
 	<string name="scan_code">Kod tara</string>
 	<string name="compose_barcode">Barkod yarat</string>

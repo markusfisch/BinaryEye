@@ -1,5 +1,4 @@
 <resources>
-	<string name="no_camera_no_fun">Quest\'app non ha alcun senso senza l\'accesso alla fotocamera. Ciao.</string>
 	<string name="camera_error">Impossibile accedere alla fotocamera. Riprova</string>
 	<string name="scan_code">Scansiona codice</string>
 	<string name="compose_barcode">Crea codice a barre</string>

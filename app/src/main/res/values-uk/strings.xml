@@ -1,5 +1,4 @@
 <resources>
-	<string name="no_camera_no_fun">Ця програма немає сенсу без доступу до камери. До побачення.</string>
 	<string name="camera_error">Неможливо отримати доступ до камери, будь ласка, спробуйте ще раз</string>
 	<string name="scan_code">Сканування коду</string>
 	<string name="compose_barcode">Створити штрих-код</string>

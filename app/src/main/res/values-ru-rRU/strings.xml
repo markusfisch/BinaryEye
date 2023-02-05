@@ -1,5 +1,4 @@
 <resources>
-	<string name="no_camera_no_fun">Это приложение не имеет никакого смысла без доступа к камере</string>
 	<string name="camera_error">Невозможно получить доступ к камере, попробуйте ещё раз</string>
 	<string name="scan_code">Сканировать штрих-код</string>
 	<string name="compose_barcode">Создать штрих-код</string>

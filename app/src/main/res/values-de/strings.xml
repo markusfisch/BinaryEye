@@ -1,5 +1,4 @@
 <resources>
-	<string name="no_camera_no_fun">Diese App kann ohne Kamerazugriff nicht funktionieren. Tschüss!</string>
 	<string name="camera_error">Auf die Kamera kann nicht zugegriffen werden, bitte versuche es nochmal</string>
 	<string name="scan_code">Code scannen</string>
 	<string name="compose_barcode">Barcode erstellen</string>

@@ -1,5 +1,4 @@
 <resources>
-	<string name="no_camera_no_fun">Denne app giver ingen mening uden adgang til kameraet. Farvel.</string>
 	<string name="camera_error">Kan ikke få adgang til kamera, prøv igen</string>
 	<string name="scan_code">Scan kode</string>
 	<string name="compose_barcode">Opret stregkode</string>

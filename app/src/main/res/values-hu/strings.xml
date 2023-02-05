@@ -1,5 +1,4 @@
 <resources>
-	<string name="no_camera_no_fun">Ennek az alkalmazásnak nincs semmi értelme kamera-hozzáférés nélkül. Viszlát!</string>
 	<string name="camera_error">Nem lehet hozzáférni a kamerához, próbálja meg újra</string>
 	<string name="scan_code">Kód beolvasása</string>
 	<string name="compose_barcode">Vonalkód létrehozása</string>

@@ -1,5 +1,4 @@
 <resources>
-	<string name="no_camera_no_fun">Aplikasi tidak akan bisa bekerja tanpa akses kamera. Selamat tinggal.</string>
 	<string name="camera_error">Tidak bisa mengakses kamera, silakan coba lagi</string>
 	<string name="scan_code">Pindai kode</string>
 	<string name="compose_barcode">Buat barcode</string>

@@ -1,5 +1,4 @@
 <resources>
-	<string name="no_camera_no_fun">This app does not make any sense without camera access. Good bye.</string>
 	<string name="camera_error">카메라를 접근할 수 없습니다. 다시 시도하세요</string>
 	<string name="scan_code">Scan code</string>
 	<string name="compose_barcode">Compose barcode</string>

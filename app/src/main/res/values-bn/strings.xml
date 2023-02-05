@@ -1,5 +1,4 @@
 <resources>
-	<string name="no_camera_no_fun">এই অ্যাপ ক্যামেরা অনুমতি ছাড়া কোনো কাজের না। বিদায়।</string>
 	<string name="camera_error">ক্যামেরা পাওয়া যাচ্ছে না, পরে চেষ্টা করো</string>
 	<string name="scan_code">সংকেতের পাঠোদ্ধার</string>
 	<string name="compose_barcode">বারকোড বানাও</string>

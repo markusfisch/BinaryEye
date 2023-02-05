@@ -1,5 +1,4 @@
 <resources>
-	<string name="no_camera_no_fun">Ứng dụng này không hoạt động nếu không có camera. Tạm biệt.</string>
 	<string name="camera_error">Không thể mở camera, hãy thử lại</string>
 	<string name="scan_code">Quét mã</string>
 	<string name="compose_barcode">Tạo mã vạch</string>

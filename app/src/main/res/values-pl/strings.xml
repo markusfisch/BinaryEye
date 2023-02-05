@@ -43,7 +43,6 @@
 	<string name="shortcut_encode">Stwórz kod kreskowy</string>
 	<string name="error_file_exists">Plik już istnieje</string>
 	<string name="no_barcode_found">Nie znaleziono kodu kreskowego</string>
-	<string name="no_camera_no_fun">Ta aplikacja nie ma żadnego sensu bez dostępu do kamery. Do widzenia.</string>
 	<string name="tel_dial">Wybierz numer</string>
 	<string name="connect_to_wifi">Połącz z Wi-Fi</string>
 	<string name="vcard_failed">Nie można dodać do kontaktów</string>

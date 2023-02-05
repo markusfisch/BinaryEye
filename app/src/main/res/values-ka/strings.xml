@@ -1,5 +1,4 @@
 <resources>
-	<string name="no_camera_no_fun">ამ აპლიკაციის გამოყენება შეუძლებელია კამერაზე ნებართვის მინიჭების გარეშე</string>
 	<string name="camera_error">კამერაზე წვდომის მოპოვება ვერ ხერხდება, გთხოვთ, კიდევ სცადეთ</string>
 	<string name="scan_code">შტრიხ-კოდის სკანირება</string>
 	<string name="compose_barcode">შტრიხ-კოდის შექმნა</string>

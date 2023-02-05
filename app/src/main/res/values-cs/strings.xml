@@ -1,5 +1,4 @@
 <resources>
-	<string name="no_camera_no_fun">Bez oprávnění k fotoaparátu tato aplikace nemá smysl. Na viděnou.</string>
 	<string name="camera_error">Nepodařilo se otevřít fotoaparát, prosím zkuste to znovu</string>
 	<string name="scan_code">Naskenovat kód</string>
 	<string name="compose_barcode">Vytvořit čárový kód</string>

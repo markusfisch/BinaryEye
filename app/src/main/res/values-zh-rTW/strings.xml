@@ -1,5 +1,4 @@
 <resources>
-	<string name="no_camera_no_fun">沒有相機權限的話，這個程式根本什麽都做不了。再見!</string>
 	<string name="camera_error">不能開啓相機，請重試</string>
 	<string name="scan_code">掃描條碼</string>
 	<string name="compose_barcode">製作條碼</string>

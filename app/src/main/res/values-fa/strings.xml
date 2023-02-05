@@ -1,5 +1,4 @@
 <resources>
-	<string name="no_camera_no_fun">این برنامه بدون دسترسی به دوربین هیچ کارایی ندارد. خدانگهدار.</string>
 	<string name="camera_error">نمی‌توان به دوربین دسترسی داشت، لطفاً دوباره تلاش کنید</string>
 	<string name="scan_code">پویش کد</string>
 	<string name="compose_barcode">ایجاد بارکد</string>

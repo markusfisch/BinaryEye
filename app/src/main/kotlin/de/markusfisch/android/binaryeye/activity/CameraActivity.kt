@@ -80,7 +80,7 @@ class CameraActivity : AppCompatActivity() {
 			PERMISSION_CAMERA -> if (grantResults.isNotEmpty() &&
 				grantResults[0] != PackageManager.PERMISSION_GRANTED
 			) {
-				toast(R.string.no_camera_no_fun)
+				toast(R.string.camera_error)
 			}
 		}
 	}

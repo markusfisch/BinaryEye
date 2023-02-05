@@ -1,5 +1,4 @@
 <resources>
-	<string name="no_camera_no_fun">このアプリはカメラへのアクセス許可なしでは動作しません。終了します。</string>
 	<string name="camera_error">カメラに接続できませんでした。再試行してください。</string>
 	<string name="scan_code">バーコードをスキャン</string>
 	<string name="compose_barcode">バーコードを作成</string>
