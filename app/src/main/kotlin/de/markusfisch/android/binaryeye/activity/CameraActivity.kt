@@ -81,7 +81,6 @@ class CameraActivity : AppCompatActivity() {
 				grantResults[0] != PackageManager.PERMISSION_GRANTED
 			) {
 				toast(R.string.no_camera_no_fun)
-				finish()
 			}
 		}
 	}
@@ -411,7 +410,6 @@ class CameraActivity : AppCompatActivity() {
 
 			override fun onCameraError() {
 				this@CameraActivity.toast(R.string.camera_error)
-				finish()
 			}
 
 			override fun onCameraReady(camera: Camera) {
