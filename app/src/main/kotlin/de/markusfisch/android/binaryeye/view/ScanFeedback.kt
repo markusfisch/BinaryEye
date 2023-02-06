@@ -22,7 +22,7 @@ fun Context.errorFeedback() {
 	if (prefs.vibrate) {
 		getVibrator().error()
 	}
-	if (!isSilent()) {
+	if (prefs.beep && !isSilent()) {
 		beepError()
 	}
 }
