@@ -142,7 +142,7 @@ class EncodeFragment : Fragment() {
 				content,
 				writer,
 				getSize(sizeBarView.progress),
-				ecSpinner.selectedItemPosition,
+				(ecSpinner.selectedItemPosition + 1) * 2,
 				if (writer.canBeInverted()) {
 					colorsSpinner.selectedItemPosition
 				} else 0
