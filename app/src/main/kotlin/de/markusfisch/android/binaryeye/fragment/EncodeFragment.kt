@@ -26,7 +26,7 @@ class EncodeFragment : Fragment() {
 	private lateinit var sizeBarView: SeekBar
 	private lateinit var contentView: EditText
 
-	private val writers = arrayListOf(
+	private val formats = arrayListOf(
 		Format.AZTEC,
 		Format.CODABAR,
 		Format.CODE_39,
@@ -58,7 +58,7 @@ class EncodeFragment : Fragment() {
 		val formatAdapter = ArrayAdapter(
 			ac,
 			android.R.layout.simple_spinner_item,
-			writers.map { prettifyFormatName(it.name) }
+			formats.map { prettifyFormatName(it.name) }
 		)
 		formatAdapter.setDropDownViewResource(
 			android.R.layout.simple_spinner_dropdown_item
@@ -71,16 +71,28 @@ class EncodeFragment : Fragment() {
 				position: Int,
 				id: Long
 			) {
-				val ecVisibility = if (
-					writers[position] == Format.QR_CODE
-				) View.VISIBLE else View.GONE
-				ecLabel.visibility = ecVisibility
-				ecSpinner.visibility = ecVisibility
-				val colorsVisibility = if (
-					writers[position].canBeInverted()
-				) View.VISIBLE else View.GONE
-				colorsLabel.visibility = colorsVisibility
-				colorsSpinner.visibility = colorsVisibility
+				val format = formats[position]
+				val arrayId = when (format) {
+					Format.AZTEC -> R.array.aztec_error_correction_levels
+					Format.QR_CODE -> R.array.qr_error_correction_levels
+					Format.PDF_417 -> R.array.pdf417_error_correction_levels
+					else -> 0
+				}
+				if (arrayId > 0) {
+					ecSpinner.setEntries(arrayId)
+					val idx = format.unpackEcLevel(
+						prefs.indexOfLastSelectedEcLevel
+					)
+					if (idx < ecSpinner.adapter.count) {
+						ecSpinner.setSelection(idx)
+					}
+					true
+				} else {
+					false
+				}.setVisibility(ecLabel, ecSpinner)
+				format.canBeInverted().setVisibility(
+					colorsLabel, colorsSpinner
+				)
 			}
 
 			override fun onNothingSelected(parentView: AdapterView<*>?) {}
@@ -88,6 +100,22 @@ class EncodeFragment : Fragment() {
 
 		ecLabel = view.findViewById(R.id.error_correction_label)
 		ecSpinner = view.findViewById(R.id.error_correction_level)
+		ecSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+			override fun onItemSelected(
+				parentView: AdapterView<*>?,
+				selectedItemView: View?,
+				position: Int,
+				id: Long
+			) {
+				val format = formats[formatView.selectedItemPosition]
+				prefs.indexOfLastSelectedEcLevel = format.packEcLevel(
+					prefs.indexOfLastSelectedEcLevel,
+					position
+				)
+			}
+
+			override fun onNothingSelected(parentView: AdapterView<*>?) {}
+		}
 
 		colorsLabel = view.findViewById(R.id.colors_label)
 		colorsSpinner = view.findViewById(R.id.colors)
@@ -106,7 +134,7 @@ class EncodeFragment : Fragment() {
 		val barcodeFormat = args?.getString(FORMAT)
 		if (barcodeFormat != null) {
 			formatView.setSelection(
-				writers.indexOf(barcodeFormat.toFormat())
+				formats.indexOf(barcodeFormat.toFormat())
 			)
 		} else if (state == null) {
 			formatView.post {
@@ -136,14 +164,14 @@ class EncodeFragment : Fragment() {
 			return
 		}
 		hideSoftKeyboard(contentView)
-		val writer = writers[formatView.selectedItemPosition]
+		val format = formats[formatView.selectedItemPosition]
 		fragmentManager?.addFragment(
 			BarcodeFragment.newInstance(
 				content,
-				writer,
+				format,
 				getSize(sizeBarView.progress),
-				(ecSpinner.selectedItemPosition + 1) * 2,
-				if (writer.canBeInverted()) {
+				format.getErrorCorrectionLevel(ecSpinner.selectedItemPosition),
+				if (format.canBeInverted()) {
 					colorsSpinner.selectedItemPosition
 				} else 0
 			)
@@ -173,8 +201,6 @@ class EncodeFragment : Fragment() {
 		sizeView.text = getString(R.string.width_by_height, size, size)
 	}
 
-	private fun getSize(power: Int) = 128 * (power + 1)
-
 	companion object {
 		private const val CONTENT = "content"
 		private const val FORMAT = "format"
@@ -193,6 +219,28 @@ class EncodeFragment : Fragment() {
 	}
 }
 
+private fun Boolean.setVisibility(vararg views: View) {
+	val visibility = if (this) View.VISIBLE else View.GONE
+	for (view in views) {
+		view.visibility = visibility
+	}
+}
+
+private fun Format.packEcLevel(packed: Int, level: Int): Int {
+	val s = ecLevelShift()
+	return (level shl s) or (packed and (15 shl s).inv())
+}
+
+private fun Format.unpackEcLevel(packed: Int) =
+	(packed shr ecLevelShift()) and 15
+
+private fun Format.ecLevelShift() = when (this) {
+	Format.AZTEC -> 0
+	Format.QR_CODE -> 4
+	Format.PDF_417 -> 8
+	else -> throw IllegalArgumentException("$this does not have error levels")
+}
+
 private fun Format.canBeInverted() = when (this) {
 	Format.AZTEC,
 	Format.DATA_MATRIX,
@@ -205,3 +253,23 @@ private fun String.toFormat(default: Format = Format.QR_CODE): Format = try {
 } catch (_: IllegalArgumentException) {
 	default
 }
+
+private fun Format.getErrorCorrectionLevel(position: Int) = when (this) {
+	Format.AZTEC -> position
+	Format.QR_CODE -> (position + 1) * 2
+	Format.PDF_417 -> position
+	else -> 0
+}.coerceIn(0, 8)
+
+private fun Spinner.setEntries(resId: Int) = ArrayAdapter.createFromResource(
+	this.context,
+	resId,
+	android.R.layout.simple_spinner_item
+).also { aa ->
+	aa.setDropDownViewResource(
+		android.R.layout.simple_spinner_dropdown_item
+	)
+	adapter = aa
+}
+
+private fun getSize(power: Int) = 128 * (power + 1)

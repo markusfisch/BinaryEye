@@ -175,6 +175,11 @@ class Preferences {
 			apply(INDEX_OF_LAST_SELECTED_FORMAT, value)
 			field = value
 		}
+	var indexOfLastSelectedEcLevel: Int = 0
+		set(value) {
+			apply(INDEX_OF_LAST_SELECTED_EC_LEVEL, value)
+			field = value
+		}
 	var freeRotation = true
 		set(value) {
 			apply(FREE_ROTATION, value)
@@ -262,6 +267,10 @@ class Preferences {
 			INDEX_OF_LAST_SELECTED_FORMAT,
 			indexOfLastSelectedFormat
 		)
+		indexOfLastSelectedEcLevel = preferences.getInt(
+			INDEX_OF_LAST_SELECTED_EC_LEVEL,
+			indexOfLastSelectedEcLevel
+		)
 		freeRotation = preferences.getBoolean(FREE_ROTATION, freeRotation)
 	}
 
@@ -327,6 +336,7 @@ class Preferences {
 		private const val SEND_SCAN_TYPE = "send_scan_type"
 		private const val CUSTOM_LOCALE = "custom_locale"
 		private const val INDEX_OF_LAST_SELECTED_FORMAT = "index_of_last_selected_format"
+		private const val INDEX_OF_LAST_SELECTED_EC_LEVEL = "index_of_last_selected_ec_level"
 		private const val FREE_ROTATION = "free_rotation"
 	}
 }
