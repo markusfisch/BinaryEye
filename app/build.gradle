@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android'
 android {
 	namespace 'de.markusfisch.android.binaryeye'
 	compileSdkVersion sdk_version
-
 	defaultConfig {
 		minSdkVersion 9
 		targetSdkVersion sdk_version
@@ -66,5 +65,5 @@ dependencies {
 	implementation "com.android.support:preference-v14:$support_version"
 	implementation 'com.github.markusfisch:CameraView:1.9.1'
 	implementation 'com.github.markusfisch:ScalingImageView:1.4.1'
-	implementation 'com.github.markusfisch:zxing-cpp:v2.0.0.0'
+	implementation 'com.github.markusfisch:zxing-cpp:v2.0.0.1'
 }

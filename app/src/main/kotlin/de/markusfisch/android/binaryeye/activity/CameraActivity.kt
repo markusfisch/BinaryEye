@@ -426,7 +426,8 @@ class CameraActivity : AppCompatActivity() {
 					tryHarder = prefs.tryHarder,
 					tryRotate = prefs.autoRotate,
 					tryInvert = true,
-					tryDownscale = true
+					tryDownscale = true,
+					maxNumberOfSymbols = 1
 				)
 				var useLocalAverage = false
 				camera.setPreviewCallback { frameData, _ ->
@@ -449,7 +450,8 @@ class CameraActivity : AppCompatActivity() {
 								}
 								formats = formatsToRead.joinToString()
 							}
-						)?.let { result ->
+						)?.let { results ->
+							val result = results.first()
 							if (result.text != ignoreNext) {
 								postResult(result)
 								decoding = false
