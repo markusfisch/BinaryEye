@@ -1,0 +1,9 @@
+* Improve detection of inverted barcodes
+* Optionally allow duplicates in bulk scan
+* Add Danish translation
+* Update Italian translation
+* Update Japanese translation
+* Update Russian translation
+* Fix charset decoding for PDF 417
+* Fix monochrome icon
+

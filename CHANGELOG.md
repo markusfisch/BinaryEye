@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.59.0
+* Add setting error correction for AZTEC/PDF417
+* Fix setting error correction level for QR Codes
+* Make error beeps follow beep settings too
+* Don't close the app when cameras is unavailable
+
 ## 1.58.2
 * Fix parsing WiFi network suggestions
 

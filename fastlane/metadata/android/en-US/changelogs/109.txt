@@ -1,0 +1,6 @@
+* Allow pinching a barcode to its generated size
+* Fix view/frame transformation matrix
+* Fix handling of tab characters
+* Update Indonesian translation
+* Update Russian translation
+

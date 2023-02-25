@@ -1,0 +1,9 @@
+* Add optional audio feedback for scanning
+* Allow removing individual WiFi network suggestions
+* Recognize incomplete and malformed WiFi barcodes
+* Fix using shared text for encoding
+* Add Korean language
+* Update Chinese translation
+* Update Português/Brasil translation
+* Update Russian translation
+

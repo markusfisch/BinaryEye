@@ -43,6 +43,7 @@ class PickActivity : AppCompatActivity() {
 		tryRotate = true,
 		tryInvert = true,
 		tryDownscale = true,
+		maxNumberOfSymbols = 1,
 		formats = prefs.barcodeFormats.joinToString()
 	)
 
@@ -145,7 +146,7 @@ class PickActivity : AppCompatActivity() {
 			)
 		}
 		scope.launch {
-			cropped.decode()?.let {
+			cropped.decode()?.first()?.let {
 				withContext(Dispatchers.Main) {
 					if (isFinishing) {
 						return@withContext
