@@ -63,6 +63,12 @@
 	<string name="really_remove_scan">Czy naprawdę usunąć skan?</string>
 	<string name="really_remove_selected_scans">Czy naprawdę usunąć wybrane skany?</string>
 	<string name="binary_data">(dane binarne)</string>
+	<plurals name="barcode_info">
+		<item quantity="one">%2$d character, %1$s</item>
+		<item quantity="few">%2$d characters, %1$s</item>
+		<item quantity="many">%2$d characters, %1$s</item>
+		<item quantity="other">%2$d characters, %1$s</item>
+	</plurals>
 	<string name="show_hex_dump">Pokazuj zrzut szesnastkowy</string>
 	<string name="show_hex_dump_summary">Pokaż zeskanowaną zawartośc w postaci szesnastkowej</string>
 	<string name="show_recreation">Show recreated barcode</string>
