@@ -2,6 +2,7 @@ package de.markusfisch.android.binaryeye.fragment
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.bluetooth.BluetoothAdapter
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -18,6 +19,7 @@ import android.support.v7.preference.PreferenceGroup
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.activity.SplashActivity
 import de.markusfisch.android.binaryeye.app.addFragment
+import de.markusfisch.android.binaryeye.app.hasBluetoothPermission
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.media.beepConfirm
 import de.markusfisch.android.binaryeye.preference.UrlPreference
@@ -38,6 +40,17 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 				"beep_tone_name" -> {
 					beepConfirm()
 					setSummary(preference)
+				}
+				"send_scan_bluetooth" -> {
+					val ac = activity ?: return
+					if (ac.hasBluetoothPermission()) {
+						setSummary(preference)
+					}
+					else {
+						//TODO doesnt work as expected by denying the option from being true...
+						//or it does but just isnt visible?
+						prefs.sendScanBluetooth = false
+					}
 				}
 				else -> setSummary(preference)
 			}
@@ -122,9 +135,28 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 				setTargetFragment(this@PreferencesFragment, 0)
 				show(fm, null)
 			}
-		} else {
+		} else if (preference.key == "send_scan_bluetooth_host") {
+			val ac = activity ?: return
+			if(ac.hasBluetoothPermission()) {
+				setBluetoothHosts(preference as ListPreference)
+			}
 			super.onDisplayPreferenceDialog(preference)
 		}
+		else {
+			super.onDisplayPreferenceDialog(preference)
+		}
+	}
+
+	private fun setBluetoothHosts(listPref: ListPreference) {
+		//TODO host remembers the bluetooth device, but doesn't display it properly 
+		val devices = BluetoothAdapter.getDefaultAdapter().bondedDevices
+
+		val (entries, entryValues) = Pair(devices.map { it.name }, devices.map {it.address})
+
+		listPref.entries = entries.toTypedArray()
+		listPref.entryValues = entryValues.toTypedArray()
+
+		listPref.callChangeListener(listPref.value)
 	}
 
 	private fun setSummaries(screen: PreferenceGroup) {
