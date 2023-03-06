@@ -178,9 +178,9 @@ fun Scan.toRecreation(
 		Format.valueOf(format),
 		when (errorCorrectionLevel) {
 			"L" -> 0
-			"M" -> 1
-			"Q" -> 2
-			"H" -> 3
+			"M" -> 4
+			"Q" -> 6
+			"H" -> 8
 			else -> -1
 		},
 		size,
