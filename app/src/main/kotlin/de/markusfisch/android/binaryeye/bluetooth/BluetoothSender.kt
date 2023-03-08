@@ -65,9 +65,8 @@ private class BluetoothSender
         fun send(message: String) : Boolean {
             return try {
                 writer.write(message)
+                writer.write("\n")
                 writer.flush()
-                //TODO not a fan of this constant disconnect, but it works. maybe try newline or EOF?
-                close()
                 true
             } catch(e: Exception) {
                 close()
