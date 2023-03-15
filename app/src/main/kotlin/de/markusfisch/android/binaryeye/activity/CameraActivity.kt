@@ -594,11 +594,7 @@ class CameraActivity : AppCompatActivity() {
 					Intent(Intent.ACTION_VIEW, returnUri)
 				)
 				else -> {
-					showResult(
-						this@CameraActivity,
-						result,
-						bulkMode
-					)
+					showResult(result, bulkMode)
 					// If this app was invoked via a deep link but without
 					// a return URI, we probably don't want to return to
 					// the camera screen after scanning, but to the caller.
@@ -631,13 +627,12 @@ class CameraActivity : AppCompatActivity() {
 	}
 }
 
-fun showResult(
-	activity: Activity,
+fun Activity.showResult(
 	result: Result,
 	bulkMode: Boolean = false,
 ) {
 	if (prefs.copyImmediately) {
-		activity.copyToClipboard(result.text)
+		copyToClipboard(result.text)
 	}
 	val scan = result.toScan()
 	if (prefs.useHistory) {
@@ -645,7 +640,7 @@ fun showResult(
 	}
 	if (prefs.sendScanActive && prefs.sendScanUrl.isNotEmpty()) {
 		if (prefs.sendScanType == "4") {
-			activity.openUrl(
+			openUrl(
 				prefs.sendScanUrl + scan.content.urlEncode()
 			)
 			return
@@ -655,36 +650,36 @@ fun showResult(
 			prefs.sendScanType
 		) { code, body ->
 			if (code == null || code < 200 || code > 299) {
-				activity.errorFeedback()
+				errorFeedback()
 			}
 			if (body != null && body.isNotEmpty()) {
-				activity.toast(body)
+				toast(body)
 			} else if (code == null || code > 299) {
-				activity.toast(R.string.background_request_failed)
+				toast(R.string.background_request_failed)
 			}
 		}
 	}
 	if (prefs.sendScanBluetooth &&
 		prefs.sendScanBluetoothHost.isNotEmpty() &&
-		activity.hasBluetoothPermission()
+		hasBluetoothPermission()
 	) {
 		scan.sendBluetoothAsync(
 			prefs.sendScanBluetoothHost
 		) { con, send ->
 			if (!con) {
-				activity.toast(R.string.bluetooth_connect_fail)
-				activity.errorFeedback()
+				toast(R.string.bluetooth_connect_fail)
+				errorFeedback()
 			} else if (!send) {
-				activity.toast(R.string.bluetooth_send_fail)
-				activity.errorFeedback()
+				toast(R.string.bluetooth_send_fail)
+				errorFeedback()
 			} else {
-				activity.toast(R.string.bluetooth_send_success)
+				toast(R.string.bluetooth_send_success)
 			}
 		}
 	}
 	if (!bulkMode) {
-		activity.startActivity(
-			MainActivity.getDecodeIntent(activity, scan)
+		startActivity(
+			MainActivity.getDecodeIntent(this, scan)
 		)
 	}
 }
