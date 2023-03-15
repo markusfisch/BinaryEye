@@ -21,6 +21,7 @@ import android.widget.SeekBar
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
 import de.markusfisch.android.binaryeye.app.*
+import de.markusfisch.android.binaryeye.bluetooth.sendBluetoothAsync
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.execShareIntent
 import de.markusfisch.android.binaryeye.content.openUrl
@@ -660,6 +661,21 @@ fun showResult(
 				activity.toast(body)
 			} else if (code == null || code > 299) {
 				activity.toast(R.string.background_request_failed)
+			}
+		}
+	}
+	if (prefs.sendScanBluetooth && prefs.sendScanBluetoothHost.isNotEmpty() && activity.hasBluetoothPermission()) {
+		scan.sendBluetoothAsync(
+			prefs.sendScanBluetoothHost
+		) { con, send ->
+			if (!con) {
+				activity.toast(R.string.bluetooth_connect_fail)
+				activity.errorFeedback()
+			} else if (!send) {
+				activity.toast(R.string.bluetooth_send_fail)
+				activity.errorFeedback()
+			} else {
+				activity.toast(R.string.bluetooth_send_success)
 			}
 		}
 	}

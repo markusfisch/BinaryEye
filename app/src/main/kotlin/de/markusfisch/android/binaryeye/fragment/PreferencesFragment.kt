@@ -18,12 +18,14 @@ import android.support.v7.preference.PreferenceGroup
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.activity.SplashActivity
 import de.markusfisch.android.binaryeye.app.addFragment
+import de.markusfisch.android.binaryeye.app.hasBluetoothPermission
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.media.beepConfirm
 import de.markusfisch.android.binaryeye.preference.UrlPreference
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.systemBarRecyclerViewScrollListener
 import de.markusfisch.android.binaryeye.widget.toast
+import de.markusfisch.android.binaryeye.bluetooth.setBluetoothHosts
 
 class PreferencesFragment : PreferenceFragmentCompat() {
 	private val changeListener = object : OnSharedPreferenceChangeListener {
@@ -39,6 +41,16 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 					beepConfirm()
 					setSummary(preference)
 				}
+				"send_scan_bluetooth" -> {
+					val ac = activity ?: return
+					if (ac.hasBluetoothPermission()) {
+						setSummary(preference)
+					}
+					else {
+						prefs.sendScanBluetooth = false
+						setSummary(preference)
+					}
+				}
 				else -> setSummary(preference)
 			}
 		}
@@ -46,7 +58,12 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 
 	override fun onCreatePreferences(state: Bundle?, rootKey: String?) {
 		addPreferencesFromResource(R.xml.preferences)
+		setBluetoothResources()
 		wireClearNetworkPreferences()
+	}
+
+	private fun setBluetoothResources() {
+		setBluetoothHosts(findPreference("send_scan_bluetooth_host") as ListPreference)
 	}
 
 	private fun wireClearNetworkPreferences() {
@@ -122,7 +139,14 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 				setTargetFragment(this@PreferencesFragment, 0)
 				show(fm, null)
 			}
-		} else {
+		} else if (preference.key == "send_scan_bluetooth_host") {
+			val ac = activity ?: return
+			if(ac.hasBluetoothPermission()) {
+				setBluetoothHosts(preference as ListPreference)
+			}
+			super.onDisplayPreferenceDialog(preference)
+		}
+		else {
 			super.onDisplayPreferenceDialog(preference)
 		}
 	}

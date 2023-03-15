@@ -91,6 +91,17 @@
 			android:entries="@array/send_type_names"
 			android:entryValues="@array/send_type_values"
 			android:defaultValue="0"/>
+		<android.support.v7.preference.SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:key="send_scan_bluetooth"
+			android:title="@string/send_scan_bluetooth"
+			android:summary="@string/send_scan_bluetooth_summary"/>
+		<ListPreference
+			android:key="send_scan_bluetooth_host"
+			android:title="@string/send_scan_bluetooth_host"
+			android:entries="@array/bluetooth_host_names"
+			android:entryValues="@array/bluetooth_host_values"
+			android:defaultValue="@string/no_bluetooth_hosts_paired_value"/>
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/content_category">
 		<android.support.v7.preference.SwitchPreferenceCompat

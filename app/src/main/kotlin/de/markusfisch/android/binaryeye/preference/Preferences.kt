@@ -165,6 +165,16 @@ class Preferences {
 			apply(SEND_SCAN_TYPE, value)
 			field = value
 		}
+	var sendScanBluetooth = true
+		set(value) {
+			apply(SEND_SCAN_BLUETOOTH, value)
+			field = value
+		}
+	var sendScanBluetoothHost: String = ""
+		set(value) {
+			apply(SEND_SCAN_BLUETOOTH_HOST, value)
+			field = value
+		}
 	var customLocale: String = ""
 		set(value) {
 			apply(CUSTOM_LOCALE, value)
@@ -260,6 +270,13 @@ class Preferences {
 		preferences.getString(SEND_SCAN_TYPE, sendScanType)?.also {
 			sendScanType = it
 		}
+		preferences.getBoolean(
+			SEND_SCAN_BLUETOOTH,
+			sendScanBluetooth
+		)
+		preferences.getString(SEND_SCAN_BLUETOOTH_HOST, sendScanBluetoothHost)?.also {
+			sendScanBluetoothHost = it
+		}
 		preferences.getString(CUSTOM_LOCALE, customLocale)?.also {
 			customLocale = it
 		}
@@ -334,6 +351,8 @@ class Preferences {
 		private const val SEND_SCAN_ACTIVE = "send_scan_active"
 		private const val SEND_SCAN_URL = "send_scan_url"
 		private const val SEND_SCAN_TYPE = "send_scan_type"
+		private const val SEND_SCAN_BLUETOOTH = "send_scan_bluetooth"
+		private const val SEND_SCAN_BLUETOOTH_HOST = "send_scan_bluetooth_host"
 		private const val CUSTOM_LOCALE = "custom_locale"
 		private const val INDEX_OF_LAST_SELECTED_FORMAT = "index_of_last_selected_format"
 		private const val INDEX_OF_LAST_SELECTED_EC_LEVEL = "index_of_last_selected_ec_level"
