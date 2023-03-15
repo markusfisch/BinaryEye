@@ -123,6 +123,13 @@
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">Buka di peramban eksternal</string>
 	<string name="test_url">URL Tes</string>
+	<string name="send_scan_bluetooth">Forward scans with Bluetooth</string>
+	<string name="send_scan_bluetooth_summary">Enable to forwards scans to a given Bluetooth host.</string>
+	<string name="send_scan_bluetooth_host">Host</string>
+	<string name="no_bluetooth_hosts_paired">No Hosts Paired</string>
+	<string name="bluetooth_connect_fail">Could not connect to bluetooth device.</string>
+	<string name="bluetooth_send_fail">Could not send to bluetooth device.</string>
+	<string name="bluetooth_send_success">Successful bluetooth send.</string>
 	<string name="really_remove_scan">Yakin menghapus pindaian?</string>
 	<string name="really_remove_all_scans">Yakin menghapus semua pindaian?</string>
 	<string name="really_remove_selected_scans">Yakin menghapus pindaian yang dipilih?</string>

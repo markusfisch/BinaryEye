@@ -124,11 +124,10 @@
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">Open in external browser</string>
 	<string name="test_url">Test URL</string>
-	<string name="send_scan_bluetooth">"Forward scans with Bluetooth"</string>
+	<string name="send_scan_bluetooth">Forward scans with Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Enable to forwards scans to a given Bluetooth host.</string>
 	<string name="send_scan_bluetooth_host">Host</string>
 	<string name="no_bluetooth_hosts_paired">No Hosts Paired</string>
-	<string name="no_bluetooth_hosts_paired_value" translatable="false" />
 	<string name="bluetooth_connect_fail">Could not connect to bluetooth device.</string>
 	<string name="bluetooth_send_fail">Could not send to bluetooth device.</string>
 	<string name="bluetooth_send_success">Successful bluetooth send.</string>

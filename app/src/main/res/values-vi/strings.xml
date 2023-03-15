@@ -123,6 +123,13 @@
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">Open in external browser</string>
 	<string name="test_url">URL thử</string>
+	<string name="send_scan_bluetooth">Forward scans with Bluetooth</string>
+	<string name="send_scan_bluetooth_summary">Enable to forwards scans to a given Bluetooth host.</string>
+	<string name="send_scan_bluetooth_host">Host</string>
+	<string name="no_bluetooth_hosts_paired">No Hosts Paired</string>
+	<string name="bluetooth_connect_fail">Could not connect to bluetooth device.</string>
+	<string name="bluetooth_send_fail">Could not send to bluetooth device.</string>
+	<string name="bluetooth_send_success">Successful bluetooth send.</string>
 	<string name="really_remove_scan">Thật sự xoá lần quét này?</string>
 	<string name="really_remove_all_scans">Thật sự xoá tất cả các lần quét?</string>
 	<string name="really_remove_selected_scans">Thật sự xoá các lần quét được chọn?</string>

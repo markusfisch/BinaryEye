@@ -123,6 +123,13 @@
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">外部ブラウザで開く</string>
 	<string name="test_url">URLをテスト</string>
+	<string name="send_scan_bluetooth">Forward scans with Bluetooth</string>
+	<string name="send_scan_bluetooth_summary">Enable to forwards scans to a given Bluetooth host.</string>
+	<string name="send_scan_bluetooth_host">Host</string>
+	<string name="no_bluetooth_hosts_paired">No Hosts Paired</string>
+	<string name="bluetooth_connect_fail">Could not connect to bluetooth device.</string>
+	<string name="bluetooth_send_fail">Could not send to bluetooth device.</string>
+	<string name="bluetooth_send_success">Successful bluetooth send.</string>
 	<string name="really_remove_scan">このスキャン履歴を削除しても宜しいですか？</string>
 	<string name="really_remove_all_scans">全てのスキャン履歴を削除しても宜しいですか？</string>
 	<string name="really_remove_selected_scans">選択されたスキャン履歴を削除しても宜しいですか？</string>

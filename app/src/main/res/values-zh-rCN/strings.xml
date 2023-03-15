@@ -123,6 +123,13 @@
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">在外部浏览器中打开</string>
 	<string name="test_url">测试 URL</string>
+	<string name="send_scan_bluetooth">Forward scans with Bluetooth</string>
+	<string name="send_scan_bluetooth_summary">Enable to forwards scans to a given Bluetooth host.</string>
+	<string name="send_scan_bluetooth_host">Host</string>
+	<string name="no_bluetooth_hosts_paired">No Hosts Paired</string>
+	<string name="bluetooth_connect_fail">Could not connect to bluetooth device.</string>
+	<string name="bluetooth_send_fail">Could not send to bluetooth device.</string>
+	<string name="bluetooth_send_success">Successful bluetooth send.</string>
 	<string name="really_remove_scan">确定删除记录？</string>
 	<string name="really_remove_all_scans">确定删除全部记录？</string>
 	<string name="really_remove_selected_scans">确定删除所选记录？</string>

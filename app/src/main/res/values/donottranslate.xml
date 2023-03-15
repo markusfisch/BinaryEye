@@ -3,4 +3,5 @@
 	<string name="url_hint" translatable="false">http://example.com/</string>
 	<string name="url_hint_add_content" translatable="false">http://example.com/?content=</string>
 	<string name="project_url" translatable="false">https://github.com/markusfisch/BinaryEye</string>
+	<string name="no_bluetooth_hosts_paired_value" translatable="false" />
 </resources>
