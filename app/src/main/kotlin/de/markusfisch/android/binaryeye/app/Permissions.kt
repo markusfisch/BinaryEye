@@ -33,13 +33,12 @@ fun Activity.hasLocationPermission(callback: () -> Any): Boolean {
 }
 
 const val PERMISSION_BLUETOOTH = 4
-fun Activity.hasBluetoothPermission() :Boolean {
+fun Activity.hasBluetoothPermission(): Boolean {
 	return hasPermission(
 		Manifest.permission.BLUETOOTH_CONNECT,
 		PERMISSION_BLUETOOTH
 	)
 }
-
 
 private fun Activity.hasPermission(
 	permission: String,

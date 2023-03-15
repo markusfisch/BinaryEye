@@ -45,8 +45,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 					val ac = activity ?: return
 					if (ac.hasBluetoothPermission()) {
 						setSummary(preference)
-					}
-					else {
+					} else {
 						prefs.sendScanBluetooth = false
 						setSummary(preference)
 					}
@@ -63,7 +62,9 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 	}
 
 	private fun setBluetoothResources() {
-		setBluetoothHosts(findPreference("send_scan_bluetooth_host") as ListPreference)
+		setBluetoothHosts(
+			findPreference("send_scan_bluetooth_host") as ListPreference
+		)
 	}
 
 	private fun wireClearNetworkPreferences() {
@@ -141,12 +142,11 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 			}
 		} else if (preference.key == "send_scan_bluetooth_host") {
 			val ac = activity ?: return
-			if(ac.hasBluetoothPermission()) {
+			if (ac.hasBluetoothPermission()) {
 				setBluetoothHosts(preference as ListPreference)
 			}
 			super.onDisplayPreferenceDialog(preference)
-		}
-		else {
+		} else {
 			super.onDisplayPreferenceDialog(preference)
 		}
 	}
