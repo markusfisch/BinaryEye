@@ -664,7 +664,7 @@ fun showResult(
 			}
 		}
 	}
-	if (prefs.sendScanBluetooth && prefs.sendScanBluetoothHost.isNotEmpty()) {
+	if (prefs.sendScanBluetooth && prefs.sendScanBluetoothHost.isNotEmpty() && activity.hasBluetoothPermission()) {
 		scan.sendBluetoothAsync(
 			prefs.sendScanBluetoothHost
 		) { con, send ->

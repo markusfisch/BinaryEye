@@ -3,7 +3,9 @@ package de.markusfisch.android.binaryeye.bluetooth
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
+import android.support.v7.preference.ListPreference
 import de.markusfisch.android.binaryeye.database.Scan
+import de.markusfisch.android.binaryeye.fragment.PreferencesFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,7 +19,6 @@ fun Scan.sendBluetoothAsync(
 ) {
     CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO)
     {
-        //TODO needs to be standardized differently
         var connectResponse = true
         var sendResponse = false
 
@@ -32,6 +33,18 @@ fun Scan.sendBluetoothAsync(
             callback(connectResponse, sendResponse)
         }
     }
+}
+
+fun PreferencesFragment.setBluetoothHosts(listPref: ListPreference) {
+    //TODO host remembers the bluetooth device, but doesn't display it properly
+    val devices = BluetoothAdapter.getDefaultAdapter().bondedDevices
+
+    val (entries, entryValues) = Pair(devices.map { it.name }, devices.map {it.address})
+
+    listPref.entries = entries.toTypedArray()
+    listPref.entryValues = entryValues.toTypedArray()
+
+    listPref.callChangeListener(listPref.value)
 }
 
 

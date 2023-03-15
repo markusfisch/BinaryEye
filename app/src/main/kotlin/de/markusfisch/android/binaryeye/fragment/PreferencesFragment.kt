@@ -2,7 +2,6 @@ package de.markusfisch.android.binaryeye.fragment
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.bluetooth.BluetoothAdapter
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -26,6 +25,7 @@ import de.markusfisch.android.binaryeye.preference.UrlPreference
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.systemBarRecyclerViewScrollListener
 import de.markusfisch.android.binaryeye.widget.toast
+import de.markusfisch.android.binaryeye.bluetooth.setBluetoothHosts
 
 class PreferencesFragment : PreferenceFragmentCompat() {
 	private val changeListener = object : OnSharedPreferenceChangeListener {
@@ -47,9 +47,8 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 						setSummary(preference)
 					}
 					else {
-						//TODO doesnt work as expected by denying the option from being true...
-						//or it does but just isnt visible?
 						prefs.sendScanBluetooth = false
+						setSummary(preference)
 					}
 				}
 				else -> setSummary(preference)
@@ -145,18 +144,6 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		else {
 			super.onDisplayPreferenceDialog(preference)
 		}
-	}
-
-	private fun setBluetoothHosts(listPref: ListPreference) {
-		//TODO host remembers the bluetooth device, but doesn't display it properly 
-		val devices = BluetoothAdapter.getDefaultAdapter().bondedDevices
-
-		val (entries, entryValues) = Pair(devices.map { it.name }, devices.map {it.address})
-
-		listPref.entries = entries.toTypedArray()
-		listPref.entryValues = entryValues.toTypedArray()
-
-		listPref.callChangeListener(listPref.value)
 	}
 
 	private fun setSummaries(screen: PreferenceGroup) {
