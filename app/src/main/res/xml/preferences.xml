@@ -96,7 +96,7 @@
 			android:title="@string/send_scan_bluetooth_host"
 			android:entries="@array/bluetooth_host_names"
 			android:entryValues="@array/bluetooth_host_values"
-			android:defaultValue="0@string/no_bluetooth_hosts_paired_value"/>
+			android:defaultValue="@string/no_bluetooth_hosts_paired_value"/>
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/content_category">
 		<android.support.v7.preference.SwitchPreferenceCompat

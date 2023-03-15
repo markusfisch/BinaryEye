@@ -58,7 +58,12 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 
 	override fun onCreatePreferences(state: Bundle?, rootKey: String?) {
 		addPreferencesFromResource(R.xml.preferences)
+		setBluetoothResources()
 		wireClearNetworkPreferences()
+	}
+
+	private fun setBluetoothResources() {
+		setBluetoothHosts(findPreference("send_scan_bluetooth_host") as ListPreference)
 	}
 
 	private fun wireClearNetworkPreferences() {

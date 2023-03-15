@@ -5,7 +5,6 @@ import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
 import android.support.v7.preference.ListPreference
 import de.markusfisch.android.binaryeye.database.Scan
-import de.markusfisch.android.binaryeye.fragment.PreferencesFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -35,8 +34,7 @@ fun Scan.sendBluetoothAsync(
     }
 }
 
-fun PreferencesFragment.setBluetoothHosts(listPref: ListPreference) {
-    //TODO host remembers the bluetooth device, but doesn't display it properly
+fun setBluetoothHosts(listPref: ListPreference) {
     val devices = BluetoothAdapter.getDefaultAdapter().bondedDevices
 
     val (entries, entryValues) = Pair(devices.map { it.name }, devices.map {it.address})
