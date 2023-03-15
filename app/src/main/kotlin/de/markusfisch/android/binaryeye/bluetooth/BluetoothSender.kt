@@ -20,12 +20,12 @@ fun Scan.sendBluetoothAsync(
 		var connectResponse = true
 		var sendResponse = false
 
-		if (!BluetoothSender.isConnected()) {
-			connectResponse = BluetoothSender.connect(host)
+		if (!isConnected) {
+			connectResponse = connect(host)
 		}
 
 		if (connectResponse) {
-			sendResponse = BluetoothSender.send(content)
+			sendResponse = send(content)
 		}
 
 		withContext(Dispatchers.Main) {
@@ -36,74 +36,63 @@ fun Scan.sendBluetoothAsync(
 
 fun setBluetoothHosts(listPref: ListPreference) {
 	val devices = BluetoothAdapter.getDefaultAdapter().bondedDevices
-	val (entries, entryValues) = Pair(
-		devices.map { it.name },
-		devices.map { it.address }
-	)
-
-	listPref.entries = entries.toTypedArray()
-	listPref.entryValues = entryValues.toTypedArray()
-
+	listPref.entries = devices.map {
+		it.name
+	}.toTypedArray()
+	listPref.entryValues = devices.map {
+		it.address
+	}.toTypedArray()
 	listPref.callChangeListener(listPref.value)
 }
 
-private class BluetoothSender {
-	companion object {
-		lateinit private var socket: BluetoothSocket
-		lateinit private var writer: OutputStreamWriter
+private lateinit var socket: BluetoothSocket
+private lateinit var writer: OutputStreamWriter
 
-		private val blue = BluetoothAdapter.getDefaultAdapter()
-		private val uuid = UUID.fromString(
-			"8a8478c9-2ca8-404b-a0de-101f34ab71ae"
-		)
+private val blue = BluetoothAdapter.getDefaultAdapter()
+private val uuid = UUID.fromString(
+	"8a8478c9-2ca8-404b-a0de-101f34ab71ae"
+)
 
-		private var isConnected = false
+private var isConnected = false
 
-		fun connect(deviceName: String): Boolean {
-			try {
-				val device = findByName(deviceName)
-				socket = device!!.createRfcommSocketToServiceRecord(uuid)
-				socket.connect()
-				isConnected = true
-				writer = socket.outputStream.writer()
-			} catch (e: Exception) {
-				close()
-				return false
-			}
+private fun connect(deviceName: String): Boolean = try {
+	val device = findByName(deviceName) ?: throw RuntimeException(
+		"Bluetooth device not found"
+	)
+	socket = device.createRfcommSocketToServiceRecord(uuid)
+	socket.connect()
+	isConnected = true
+	writer = socket.outputStream.writer()
+	true
+} catch (e: Exception) {
+	close()
+	false
+}
 
-			return true
-		}
+private fun send(message: String): Boolean = try {
+	writer.apply {
+		write(message)
+		write("\n")
+		flush()
+	}
+	true
+} catch (e: Exception) {
+	close()
+	false
+}
 
-		fun send(message: String): Boolean {
-			return try {
-				writer.write(message)
-				writer.write("\n")
-				writer.flush()
-				true
-			} catch (e: Exception) {
-				close()
-				false
-			}
-		}
+private fun close() {
+	writer.close()
+	socket.close()
+	isConnected = false
+}
 
-		fun close() {
-			writer.close()
-			socket.close()
-			isConnected = false
-		}
-
-		fun isConnected(): Boolean {
-			return isConnected
-		}
-
-		private fun findByName(findableName: String): BluetoothDevice? {
-			val deviceList = blue.bondedDevices
-			for (device in deviceList) {
-				if (device.address == findableName) {
-					return device
-				}
-			}
-			return null
+private fun findByName(findableName: String): BluetoothDevice? {
+	val deviceList = blue.bondedDevices
+	for (device in deviceList) {
+		if (device.address == findableName) {
+			return device
 		}
 	}
+	return null
 }
