@@ -3,6 +3,7 @@ package de.markusfisch.android.binaryeye.app
 import android.Manifest
 import android.app.Activity
 import android.content.pm.PackageManager
+import android.os.Build
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 
@@ -33,11 +34,15 @@ fun Activity.hasLocationPermission(callback: () -> Any): Boolean {
 }
 
 const val PERMISSION_BLUETOOTH = 4
-fun Activity.hasBluetoothPermission(): Boolean {
-	return hasPermission(
+fun Activity.hasBluetoothPermission() = if (
+	Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+) {
+	hasPermission(
 		Manifest.permission.BLUETOOTH_CONNECT,
 		PERMISSION_BLUETOOTH
 	)
+} else {
+	false
 }
 
 private fun Activity.hasPermission(
