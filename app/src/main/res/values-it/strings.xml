@@ -124,18 +124,11 @@
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">Apri nel browser esterno</string>
 	<string name="test_url">Prova URL</string>
-	<string name="send_scan_bluetooth">"Inoltra scansioni con Bluetooth"</string>
+	<string name="send_scan_bluetooth">Inoltra scansioni con Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Abilita per inoltrare le scansioni ad un determinato host Bluetooth.</string>
 	<string name="send_scan_bluetooth_host">Host</string>
 	<string name="no_bluetooth_hosts_paired">Nessun host accoppiato</string>
-	<string name="no_bluetooth_hosts_paired_value" translatable="false" />
-	<string-array name="bluetooth_host_names">
-		<item>@string/no_bluetooth_hosts_paired</item>
-	</string-array>
-	<string-array name="bluetooth_host_values">
-		<item>@string/no_bluetooth_hosts_paired_value</item>
-	</string-array>
-	<string name="bluetooth_connect_fail">Impossibile connettersi al dispositivo Bluetooth.</string>
+\	<string name="bluetooth_connect_fail">Impossibile connettersi al dispositivo Bluetooth.</string>
 	<string name="bluetooth_send_fail">Impossibile inviare al dispositivo Bluetooth.</string>
 	<string name="bluetooth_send_success">Invio via Bluetooth riuscito.</string>
 	<string name="really_remove_scan">Vuoi rimuovere la scansione?</string>
