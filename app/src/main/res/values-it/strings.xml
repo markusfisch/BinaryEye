@@ -128,7 +128,7 @@
 	<string name="send_scan_bluetooth_summary">Abilita per inoltrare le scansioni ad un determinato host Bluetooth.</string>
 	<string name="send_scan_bluetooth_host">Host</string>
 	<string name="no_bluetooth_hosts_paired">Nessun host accoppiato</string>
-\	<string name="bluetooth_connect_fail">Impossibile connettersi al dispositivo Bluetooth.</string>
+	<string name="bluetooth_connect_fail">Impossibile connettersi al dispositivo Bluetooth.</string>
 	<string name="bluetooth_send_fail">Impossibile inviare al dispositivo Bluetooth.</string>
 	<string name="bluetooth_send_success">Invio via Bluetooth riuscito.</string>
 	<string name="really_remove_scan">Vuoi rimuovere la scansione?</string>
