@@ -62,9 +62,13 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 	}
 
 	private fun setBluetoothResources() {
-		setBluetoothHosts(
-			findPreference("send_scan_bluetooth_host") as ListPreference
-		)
+		if (prefs.sendScanBluetooth &&
+			activity?.hasBluetoothPermission() == true
+		) {
+			setBluetoothHosts(
+				findPreference("send_scan_bluetooth_host") as ListPreference
+			)
+		}
 	}
 
 	private fun wireClearNetworkPreferences() {
