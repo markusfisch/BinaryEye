@@ -1,0 +1,7 @@
+* Support sending scans via bluetooth
+* Fix resolving error correction level for recreation
+* Improve asset image compression
+* Update ZXing C++
+* Update Italian translation
+* Update Russian translation
+

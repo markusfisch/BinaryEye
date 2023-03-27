@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.60.1
+* Support sending scans via bluetooth
+* Fix resolving error correction level for recreation
+* Improve asset image compression
+* Update ZXing C++
+* Update Italian translation
+* Update Russian translation
+
 ## 1.59.0
 * Add setting error correction for AZTEC/PDF417
 * Fix setting error correction level for QR Codes
