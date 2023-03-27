@@ -165,7 +165,7 @@ class Preferences {
 			apply(SEND_SCAN_TYPE, value)
 			field = value
 		}
-	var sendScanBluetooth = true
+	var sendScanBluetooth = false
 		set(value) {
 			apply(SEND_SCAN_BLUETOOTH, value)
 			field = value

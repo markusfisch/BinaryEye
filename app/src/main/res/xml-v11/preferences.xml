@@ -92,7 +92,7 @@
 			android:entryValues="@array/send_type_values"
 			android:defaultValue="0"/>
 		<android.support.v7.preference.SwitchPreferenceCompat
-			android:defaultValue="true"
+			android:defaultValue="false"
 			android:key="send_scan_bluetooth"
 			android:title="@string/send_scan_bluetooth"
 			android:summary="@string/send_scan_bluetooth_summary"/>
