@@ -270,7 +270,10 @@ class Preferences {
 		preferences.getString(SEND_SCAN_TYPE, sendScanType)?.also {
 			sendScanType = it
 		}
-		preferences.getBoolean(SEND_SCAN_BLUETOOTH, sendScanBluetooth)
+		sendScanBluetooth = preferences.getBoolean(
+			SEND_SCAN_BLUETOOTH,
+			sendScanBluetooth
+		)
 		preferences.getString(
 			SEND_SCAN_BLUETOOTH_HOST,
 			sendScanBluetoothHost
