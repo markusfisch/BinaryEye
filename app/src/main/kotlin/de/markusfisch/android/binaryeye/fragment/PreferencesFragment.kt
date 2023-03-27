@@ -42,13 +42,12 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 					setSummary(preference)
 				}
 				"send_scan_bluetooth" -> {
-					val ac = activity ?: return
-					if (ac.hasBluetoothPermission()) {
-						setSummary(preference)
-					} else {
+					if (prefs.sendScanBluetooth &&
+						activity?.hasBluetoothPermission() == false
+					) {
 						prefs.sendScanBluetooth = false
-						setSummary(preference)
 					}
+					setSummary(preference)
 				}
 				else -> setSummary(preference)
 			}
