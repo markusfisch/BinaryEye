@@ -17,6 +17,13 @@ which requires `ACCESS_FINE_LOCATION`.
 
 On Android Q an better, this permission is not requested nor required.
 
+### [BLUETOOTH][BLUETOOTH], [BLUETOOTH_ADMIN][BLUETOOTH_ADMIN] and [BLUETOOTH_CONNECT][BLUETOOTH_CONNECT]
+
+Required to optionally forward scans to a Bluetooth device.
+
+[BLUETOOTH][BLUETOOTH] and [BLUETOOTH_ADMIN][BLUETOOTH_ADMIN] are required
+before Android S. [BLUETOOTH_CONNECT][BLUETOOTH_CONNECT] from Android S on.
+
 ### [CAMERA][CAMERA]
 
 Required to read a barcode from the camera image.
@@ -54,6 +61,9 @@ From Android R, `ACCESS_WIFI_STATE` is required for
 which is used to remove individual network suggestions.
 
 [ACCESS_FINE_LOCATION]: https://developer.android.com/reference/android/Manifest.permission#ACCESS_FINE_LOCATION
+[BLUETOOTH]: https://developer.android.com/reference/android/Manifest.permission#BLUETOOTH
+[BLUETOOTH_ADMIN]: https://developer.android.com/reference/android/Manifest.permission#BLUETOOTH_ADMIN
+[BLUETOOTH_CONNECT]: https://developer.android.com/reference/android/Manifest.permission#BLUETOOTH_CONNECT
 [CAMERA]: https://developer.android.com/reference/android/Manifest.permission#CAMERA
 [INTERNET]: https://developer.android.com/reference/android/Manifest.permission#INTERNET
 [VIBRATE]: https://developer.android.com/reference/android/Manifest.permission#VIBRATE
