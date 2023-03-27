@@ -35,7 +35,14 @@ fun Scan.sendBluetoothAsync(
 }
 
 fun setBluetoothHosts(listPref: ListPreference) {
-	val devices = BluetoothAdapter.getDefaultAdapter().bondedDevices
+	val devices = try {
+		BluetoothAdapter.getDefaultAdapter().bondedDevices
+	} catch (e: SecurityException) {
+		// Do nothing, either the user has denied Bluetooth access
+		// or the permission was removed by the system. We're catching
+		// the exception to keep the app from crashing.
+		null
+	} ?: return
 	listPref.entries = devices.map {
 		it.name
 	}.toTypedArray()
