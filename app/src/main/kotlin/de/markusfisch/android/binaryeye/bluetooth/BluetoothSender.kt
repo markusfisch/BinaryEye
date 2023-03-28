@@ -17,19 +17,18 @@ fun Scan.sendBluetoothAsync(
 	callback: (Boolean, Boolean) -> Unit
 ) {
 	CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
-		var connectResponse = true
-		var sendResponse = false
-
-		if (!isConnected) {
-			connectResponse = connect(host)
+		val connected = if (isConnected) {
+			true
+		} else {
+			connect(host)
 		}
-
-		if (connectResponse) {
-			sendResponse = send(content)
+		val sent = if (connected) {
+			send(content)
+		} else {
+			false
 		}
-
 		withContext(Dispatchers.Main) {
-			callback(connectResponse, sendResponse)
+			callback(connected, sent)
 		}
 	}
 }
