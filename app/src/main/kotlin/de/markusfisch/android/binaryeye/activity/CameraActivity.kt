@@ -665,16 +665,20 @@ fun Activity.showResult(
 	) {
 		scan.sendBluetoothAsync(
 			prefs.sendScanBluetoothHost
-		) { con, send ->
-			if (!con) {
-				toast(R.string.bluetooth_connect_fail)
-				errorFeedback()
-			} else if (!send) {
-				toast(R.string.bluetooth_send_fail)
-				errorFeedback()
-			} else {
-				toast(R.string.bluetooth_send_success)
-			}
+		) { connected, sent ->
+			toast(
+				when {
+					!connected -> {
+						errorFeedback()
+						R.string.bluetooth_connect_fail
+					}
+					!sent -> {
+						errorFeedback()
+						R.string.bluetooth_send_fail
+					}
+					else -> R.string.bluetooth_send_success
+				}
+			)
 		}
 	}
 	if (!bulkMode) {
