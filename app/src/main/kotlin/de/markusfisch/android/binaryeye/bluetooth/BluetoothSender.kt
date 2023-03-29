@@ -2,6 +2,7 @@ package de.markusfisch.android.binaryeye.bluetooth
 
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothProfile
 import android.bluetooth.BluetoothSocket
 import android.support.v7.preference.ListPreference
 import de.markusfisch.android.binaryeye.database.Scan
@@ -71,7 +72,11 @@ private fun connect(deviceName: String): Boolean = try {
 	writer = socket.outputStream.writer()
 	true
 } catch (e: Exception) {
-	close()
+	try {
+		close()
+	} catch (e: Exception) {
+		//Catch case when lateinit not initialized i.e. server not connected to before.
+	}
 	false
 }
 
