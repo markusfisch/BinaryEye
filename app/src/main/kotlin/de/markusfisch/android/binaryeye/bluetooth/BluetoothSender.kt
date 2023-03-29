@@ -71,7 +71,11 @@ private fun connect(deviceName: String): Boolean = try {
 	writer = socket.outputStream.writer()
 	true
 } catch (e: Exception) {
-	close()
+	try {
+		close()
+	} catch (e: Exception) {
+		//Catch case when lateinit not initialized i.e. server not connected to before.
+	}
 	false
 }
 
