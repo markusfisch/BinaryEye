@@ -1,0 +1,25 @@
+<resources>
+	<string-array name="locale_names">
+		<item>@string/follow_system_settings</item>
+		<item>英文</item>
+		<item>德文</item>
+		<item>西班牙</item>
+		<item>法文</item>
+		<item>匈牙利</item>
+		<item>印尼</item>
+		<item>義大利</item>
+		<item>喬治亞</item>
+		<item>荷蘭</item>
+		<item>波斯</item>
+		<item>波蘭</item>
+		<item>巴西 (葡萄牙)</item>
+		<item>俄羅斯</item>
+		<item>土耳其</item>
+		<item>烏克蘭</item>
+		<item>中文</item>
+		<item>繁體中文</item>
+		<item>簡體中文</item>
+		<item>日文</item>
+		<item>捷克</item>
+	</string-array>
+</resources>
