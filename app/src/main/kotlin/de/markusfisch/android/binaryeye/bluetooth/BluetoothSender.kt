@@ -9,6 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.IOException
 import java.io.OutputStreamWriter
 import java.util.*
 
@@ -51,8 +52,8 @@ fun setBluetoothHosts(listPref: ListPreference) {
 	listPref.callChangeListener(listPref.value)
 }
 
-private lateinit var socket: BluetoothSocket
-private lateinit var writer: OutputStreamWriter
+private var socket: BluetoothSocket? = null
+private var writer: OutputStreamWriter? = null
 
 private val blue = BluetoothAdapter.getDefaultAdapter()
 private val uuid = UUID.fromString(
@@ -66,21 +67,17 @@ private fun connect(deviceName: String): Boolean = try {
 		"Bluetooth device not found"
 	)
 	socket = device.createRfcommSocketToServiceRecord(uuid)
-	socket.connect()
+	socket?.connect()
+	writer = socket?.outputStream?.writer()
 	isConnected = true
-	writer = socket.outputStream.writer()
 	true
 } catch (e: Exception) {
-	try {
-		close()
-	} catch (e: Exception) {
-		//Catch case when lateinit not initialized i.e. server not connected to before.
-	}
+	close()
 	false
 }
 
 private fun send(message: String): Boolean = try {
-	writer.apply {
+	writer?.apply {
 		write(message)
 		write("\n")
 		flush()
@@ -92,8 +89,19 @@ private fun send(message: String): Boolean = try {
 }
 
 private fun close() {
-	writer.close()
-	socket.close()
+	try {
+		writer?.close()
+	} catch (e: IOException) {
+		// Catch exception if writer wasn't initialized.
+	}
+	try {
+		socket?.close()
+	} catch (e: IOException) {
+		// Nothing we can do about this but keep
+		// the app from crashing.
+	}
+	writer = null
+	socket = null
 	isConnected = false
 }
 
