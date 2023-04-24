@@ -43,6 +43,7 @@
 	<string name="size">Tamanho em píxeis</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">Digite algum conteúdo aqui</string>
+	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">CODIFICAR</string>
 	<string name="error_no_content">Digite algum conteúdo acima</string>
 	<string name="error_encoding_barcode">Não foi possível gerar este código</string>

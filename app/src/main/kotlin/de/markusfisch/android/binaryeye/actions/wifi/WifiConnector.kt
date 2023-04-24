@@ -314,7 +314,7 @@ private fun String.trimAndTerminate(): String {
 // for special chars.
 private val escapedRegex = """\\([\\;,":])""".toRegex()
 private val String.unescape: String
-	get() = this.replace(escapedRegex) { escaped ->
+	get() = replace(escapedRegex) { escaped ->
 		escaped.groupValues[1]
 	}
 

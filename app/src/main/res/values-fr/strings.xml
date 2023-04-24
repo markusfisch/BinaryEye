@@ -44,6 +44,7 @@
 	<string name="size">Taille en pixels</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">Votre contenu ici</string>
+	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">ENCODER</string>
 	<string name="error_no_content">Contenu manquant</string>
 	<string name="error_encoding_barcode">Le code-barres ne peut pas être généré</string>

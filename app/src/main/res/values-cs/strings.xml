@@ -45,6 +45,7 @@
 	<string name="size">Velikost v pixelech</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">Sem vložte obsah</string>
+	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">ZAKÓDOVAT</string>
 	<string name="error_no_content">Chybí obsah</string>
 	<string name="error_encoding_barcode">Nepodařilo se vygenerovat čárový kód</string>

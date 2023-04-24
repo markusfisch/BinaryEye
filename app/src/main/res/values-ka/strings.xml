@@ -43,6 +43,7 @@
 	<string name="size">ზომა პიქსელებში</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">შეიყვანეთ ტექსტი აქ</string>
+	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">შექმნა"</string>
 	<string name="error_no_content">მონაცემები არაა</string>
 	<string name="error_encoding_barcode">შტრიხ-კოდის შექმნა შეუძლებელია</string>

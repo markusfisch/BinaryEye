@@ -42,6 +42,7 @@
 	<string name="size">大きさ（ピクセル)</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">ここに内容を入力</string>
+	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">エンコード</string>
 	<string name="error_no_content">内容が指定されていません</string>
 	<string name="error_encoding_barcode">バーコードを作成できませんでした</string>

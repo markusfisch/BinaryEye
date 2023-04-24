@@ -43,6 +43,7 @@
 	<string name="size">পিক্সেলে আকার</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">এখানে তথ্য দাও</string>
+	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">সংকেতকরণ</string>
 	<string name="error_no_content">তথ্য নেই</string>
 	<string name="error_encoding_barcode">বারকোড বানানো যায়নি</string>

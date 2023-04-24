@@ -11,6 +11,7 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
 import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.text.unescape
 import de.markusfisch.android.binaryeye.view.hideSoftKeyboard
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.toast
@@ -25,6 +26,7 @@ class EncodeFragment : Fragment() {
 	private lateinit var sizeView: TextView
 	private lateinit var sizeBarView: SeekBar
 	private lateinit var contentView: EditText
+	private lateinit var unescapeCheckBox: CheckBox
 
 	private val formats = arrayListOf(
 		Format.AZTEC,
@@ -125,6 +127,7 @@ class EncodeFragment : Fragment() {
 		initSizeBar()
 
 		contentView = view.findViewById(R.id.content)
+		unescapeCheckBox = view.findViewById(R.id.unescape)
 
 		val args = arguments
 		args?.getString(CONTENT)?.let {
@@ -158,7 +161,15 @@ class EncodeFragment : Fragment() {
 	}
 
 	private fun Context.encode() {
-		val content = contentView.text.toString()
+		var content = contentView.text.toString()
+		if (unescapeCheckBox.isChecked) {
+			try {
+				content = content.unescape()
+			} catch (e: IllegalArgumentException) {
+				toast(e.message ?: "Invalid escape sequence")
+				return
+			}
+		}
 		if (content.isEmpty()) {
 			toast(R.string.error_no_content)
 			return

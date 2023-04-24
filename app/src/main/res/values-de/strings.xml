@@ -43,6 +43,7 @@
 	<string name="size">Größe in Pixel</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">Gib den Inhalt hier ein</string>
+	<string name="unescape">Escape-Sequenzen interpretieren</string>
 	<string name="encode">KODIEREN</string>
 	<string name="error_no_content">Fehlender Inhalt</string>
 	<string name="error_encoding_barcode">Barcode kann nicht generiert werden</string>

@@ -43,6 +43,7 @@
 	<string name="size">Méret képpontban</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">Itt adja meg a tartalmat</string>
+	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">KÓDOLÁS</string>
 	<string name="error_no_content">Hiányzó tartalom</string>
 	<string name="error_encoding_barcode">A vonalkódot nem lehet előállítani</string>

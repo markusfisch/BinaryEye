@@ -45,6 +45,7 @@
 	<string name="size">Размер в пикселях</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">Введите текст здесь</string>
+	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">Создать</string>
 	<string name="error_no_content">Нет данных</string>
 	<string name="error_encoding_barcode">Штрих-код не может быть создан</string>

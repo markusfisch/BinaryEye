@@ -42,6 +42,7 @@
 	<string name="size">圖片尺寸</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">請在這裡輸入內容</string>
+	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">編碼</string>
 	<string name="error_no_content">缺少內容</string>
 	<string name="error_encoding_barcode">無法產生條碼</string>

@@ -43,6 +43,7 @@
 	<string name="size">Piksel türünde boyut</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">İçeriği buraya gir</string>
+	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">KODLA</string>
 	<string name="error_no_content">İçerik eksik</string>
 	<string name="error_encoding_barcode">Barkod yaratılamadı</string>

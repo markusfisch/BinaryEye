@@ -43,6 +43,7 @@
 	<string name="size">Dimensioni (pixel)</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">Inserisci qui il contenuto</string>
+	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">CODIFICA</string>
 	<string name="error_no_content">Contenuto mancante</string>
 	<string name="error_encoding_barcode">Il codice a barre non può essere generato</string>

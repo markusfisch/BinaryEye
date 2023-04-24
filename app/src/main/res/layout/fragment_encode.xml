@@ -82,6 +82,13 @@
 				android:inputType="textMultiLine"
 				android:hint="@string/input_content_here"
 				android:importantForAutofill="no"/>
+			<CheckBox
+				android:id="@+id/unescape"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="16dp"
+				android:checked="true"
+				android:text="@string/unescape"/>
 		</LinearLayout>
 	</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>
 	<android.support.design.widget.CoordinatorLayout

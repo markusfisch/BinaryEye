@@ -44,6 +44,7 @@
 	<string name="size">Розмір у пікселях</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">Введіть вміст сюди</string>
+	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">КОДУВАТИ</string>
 	<string name="error_no_content">Відсутній вміст</string>
 	<string name="error_encoding_barcode">Неможливо створити штрих-код</string>

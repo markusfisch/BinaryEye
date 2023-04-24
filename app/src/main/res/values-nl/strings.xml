@@ -43,6 +43,7 @@
 	<string name="size">Afmeting in pixels</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">Voer hier de inhoud in</string>
+	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">Coderen</string>
 	<string name="error_no_content">Inhoud ontbreekt</string>
 	<string name="error_encoding_barcode">Kan geen barcode aanmaken</string>
