@@ -128,6 +128,7 @@ class EncodeFragment : Fragment() {
 
 		contentView = view.findViewById(R.id.content)
 		unescapeCheckBox = view.findViewById(R.id.unescape)
+		unescapeCheckBox.isChecked = prefs.expandEscapeSequences
 
 		val args = arguments
 		args?.getString(CONTENT)?.let {
@@ -158,6 +159,7 @@ class EncodeFragment : Fragment() {
 	override fun onPause() {
 		super.onPause()
 		prefs.indexOfLastSelectedFormat = formatView.selectedItemPosition
+		prefs.expandEscapeSequences = unescapeCheckBox.isChecked
 	}
 
 	private fun Context.encode() {

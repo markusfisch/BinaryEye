@@ -195,6 +195,11 @@ class Preferences {
 			apply(FREE_ROTATION, value)
 			field = value
 		}
+	var expandEscapeSequences = true
+		set(value) {
+			apply(EXPAND_ESCAPE_SEQUENCES, value)
+			field = value
+		}
 
 	fun init(context: Context) {
 		preferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -292,6 +297,10 @@ class Preferences {
 			indexOfLastSelectedEcLevel
 		)
 		freeRotation = preferences.getBoolean(FREE_ROTATION, freeRotation)
+		expandEscapeSequences = preferences.getBoolean(
+			EXPAND_ESCAPE_SEQUENCES,
+			expandEscapeSequences
+		)
 	}
 
 	fun beepTone() = when (beepToneName) {
@@ -360,5 +369,6 @@ class Preferences {
 		private const val INDEX_OF_LAST_SELECTED_FORMAT = "index_of_last_selected_format"
 		private const val INDEX_OF_LAST_SELECTED_EC_LEVEL = "index_of_last_selected_ec_level"
 		private const val FREE_ROTATION = "free_rotation"
+		private const val EXPAND_ESCAPE_SEQUENCES = "expand_escape_sequences"
 	}
 }
