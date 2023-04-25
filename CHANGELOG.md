@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.60.2
+* Expand escape sequences in encoding input
+* Update Taiwan translation
+
 ## 1.60.1
 * Support sending scans via bluetooth
 * Fix resolving error correction level for recreation
