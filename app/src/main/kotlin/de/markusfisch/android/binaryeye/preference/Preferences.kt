@@ -177,7 +177,9 @@ class Preferences {
 		}
 	var customLocale: String = ""
 		set(value) {
-			apply(CUSTOM_LOCALE, value)
+			// Make sure this setting is written immediately because
+			// the app is about to restart.
+			commit(CUSTOM_LOCALE, value)
 			field = value
 		}
 	var indexOfLastSelectedFormat: Int = 0
@@ -328,6 +330,10 @@ class Preferences {
 
 	private fun apply(label: String, value: Int) {
 		preferences.edit().putInt(label, value).apply()
+	}
+
+	private fun commit(label: String, value: String) {
+		preferences.edit().putString(label, value).commit()
 	}
 
 	@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
