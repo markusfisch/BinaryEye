@@ -42,7 +42,7 @@
 	<string name="size">圖片尺寸</string>
 	<string name="width_by_height">%1$d×%2$d</string>
 	<string name="input_content_here">請在這裡輸入內容</string>
-	<string name="unescape">Expand escape sequences</string>
+	<string name="unescape">展開逸出序列</string>
 	<string name="encode">編碼</string>
 	<string name="error_no_content">缺少內容</string>
 	<string name="error_encoding_barcode">無法產生條碼</string>
@@ -172,7 +172,7 @@
 	<string name="export_database">匯出 SQLite 資料庫</string>
 	<string name="saved_in_downloads">已儲存至下載資料夾</string>
 	<string name="rotate_image_cw">順時針旋轉圖片</string>
-	<string name="toggle_free_rotation">切換自動旋轉</string>
+	<string name="toggle_free_rotation">切換自由旋轉</string>
 	<string name="pick_file">選擇圖片檔案</string>
 	<string name="pick_code_to_scan">選擇要掃描的條碼</string>
 	<string name="shortcut_decode">掃描條碼</string>
