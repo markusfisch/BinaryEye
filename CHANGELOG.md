@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.60.3
+* Fix saving custom language
+* Update Brazilian Portuguese translation
+* Update Chinese translation
+* Update Czech localisation
+* Update Russian translation
+* Update Italian language
+
 ## 1.60.2
 * Expand escape sequences in encoding input
 * Update Taiwan translation
