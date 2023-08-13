@@ -1,6 +1,6 @@
-横竖翻转都能扫，MD风格，可创建条形码。
+横竖翻转都能扫的多功能 MD 风格条码扫描器，同时也是条码生成器。
 
-使用ZXing ("Zebra Crossing") 条形码扫描库。
+使用 ZXing-C++ ("Zebra Crossing") 条形码扫描库。
 支持的条形码格式：AZTEC，CODABAR，CODE 39，CODE 93，CODE 128，
 DATA MATRIX，EAN 8，EAN 13，ITF，PDF417，QR CODE，RSS 14，RSS EXPANDED，
 UPC A，UPC E 和 UPC EAN 扩展。
