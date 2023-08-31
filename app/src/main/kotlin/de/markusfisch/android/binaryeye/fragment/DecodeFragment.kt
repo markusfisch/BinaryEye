@@ -300,7 +300,6 @@ class DecodeFragment : Fragment() {
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 		inflater.inflate(R.menu.fragment_decode, menu)
 		if (isBinary) {
-			menu.findItem(R.id.copy_to_clipboard).isVisible = false
 			menu.findItem(R.id.create).isVisible = false
 		}
 		if (id > 0L) {
