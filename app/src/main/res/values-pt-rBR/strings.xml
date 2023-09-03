@@ -9,7 +9,7 @@
 		<item quantity="one">%2$d caractere, %1$s</item>
 		<item quantity="other">%2$d caracteres, %1$s</item>
 	</plurals>
-	<string name="error_correction_level">Nível de correção de erros</string>
+	<string name="error_correction_level">Nível de correção de erro</string>
 	<string name="error_correction_level_l" formatted="false">Baixo (~7&#37; correção)</string>
 	<string name="error_correction_level_m" formatted="false">Médio (~15&#37; correção)</string>
 	<string name="error_correction_level_q" formatted="false">Quartil (~25&#37; correção)</string>
@@ -27,7 +27,7 @@
 	<string name="gtin_price">Preço sugerido</string>
 	<string name="gtin_add_on">Extensão UPC EAN</string>
 	<string name="barcode_version_number">Versão</string>
-	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
+	<string name="qr_version_and_modules">%1$s (%2$d módulos)</string>
 	<string name="toggle_flash">Ligar lanterna</string>
 	<string name="error_flash">Falha ao ligar a lanterna</string>
 	<string name="share">Compartilhe</string>
@@ -51,7 +51,7 @@
 	<string name="info">Detalhes</string>
 	<string name="switch_camera">Alterar câmera</string>
 	<string name="bulk_mode">Digitalização contínua</string>
-	<string name="bulk_mode_summary">Sempre executar em modo contínuo.</string>
+	<string name="bulk_mode_summary">Sempre iniciar em modo contínuo.</string>
 	<string name="bulk_mode_delay">Adiar durante digitalização contínua</string>
 	<string name="restrict_format">Limitar formato</string>
 	<string name="remove_restriction">Remover limitação</string>
@@ -62,7 +62,7 @@
 	<string name="two_seconds">2 segundos</string>
 	<string name="five_seconds">5 segundos</string>
 	<string name="history">Histórico</string>
-	<string name="preferences">Preferências</string>
+	<string name="preferences">Configurações</string>
 	<string name="scan_category">Digitalização</string>
 	<string name="content_category">Conteúdo</string>
 	<string name="locale_category">Idioma</string>
@@ -82,7 +82,7 @@
 	<string name="vibrate">Vibrar ao reconhecer</string>
 	<string name="vibrate_summary">Ative esta opção se quiser que seu dispositivo vibre ao reconhecer um código.</string>
 	<string name="beep">Bipar ao reconhecer</string>
-	<string name="beep_summary">Ative esta opção se quiser ouvir um bip ao reconhecer um código.</string>
+	<string name="beep_summary">Ative esta opção se quiser ouvir um bipe ao reconhecer um código.</string>
 	<string name="beep_tone">Tipo do bipe</string>
 	<string name="tone_cdma_confirm">Confirmação CDMA</string>
 	<string name="tone_sup_confirm">Confirmação de controle</string>
@@ -97,27 +97,27 @@
 	<string name="open_immediately">Abrir imediatamente</string>
 	<string name="open_immediately_summary">Pular a inspeção e abrir um conteúdo no mesmo instante. Quando ativado, pode abrir conteúdo perigoso.</string>
 	<string name="copy_immediately">Copiar ao clipboard</string>
-	<string name="copy_immediately_summary">Copiar automaticamente um conteúdo digitalizado ao clipboard. Tem cuidado porque outros apps podem examinar seu clipboard em segundo plano.</string>
+	<string name="copy_immediately_summary">Copiar automaticamente ao clipboard um conteúdo digitalizado. Tem cuidado porque outros apps podem examinar seu clipboard em segundo plano.</string>
 	<string name="show_meta_data">Mostrar metadados</string>
 	<string name="show_meta_data_summary">Mostrar dados adicionais de código digitalizado.</string>
 	<string name="show_hex_dump">Mostrar impressão hexadecimal</string>
 	<string name="show_hex_dump_summary">Mostrar impressão hexadecimal de conteúdo digitalizado.</string>
-	<string name="show_recreation">Mostrar código recriado</string>
-	<string name="show_recreation_summary">Se possível, recriar e mostrar código do conteúdo lido.</string>
+	<string name="show_recreation">Mostrar código recuperado</string>
+	<string name="show_recreation_summary">Se possível, recupere e mostre código do conteúdo lido.</string>
 	<string name="close_automatically">Voltar após copiar/compartilhar</string>
 	<string name="close_automatically_summary">Voltar automaticamente à tela de digitalização após copiar ou compartilhar um código examinado.</string>
 	<string name="default_search_engine">Abrir dados desconhecidos em</string>
 	<string name="always_ask">Sempre perguntar</string>
 	<string name="open_with_url">Abrir dados desconhecidos via URL</string>
-	<string name="clear_network_suggestions">Remover sugestões da rede</string>
-	<string name="clear_network_suggestions_summary">Remover todas as sugestões da rede que foram anteriormente fornecidas pelo app.</string>
-	<string name="really_remove_all_networks">Deseja remover todas as redes?</string>
-	<string name="clear_network_suggestions_success">Sugestões da rede foram removidas</string>
-	<string name="clear_network_suggestions_nothing_to_remove">Nada para remover</string>
+	<string name="clear_network_suggestions">Excluir sugestões de redes</string>
+	<string name="clear_network_suggestions_summary">Excluir todas as sugestões de redes que foram anteriormente adicionadas ao app.</string>
+	<string name="really_remove_all_networks">Deseja excluir todas as redes?</string>
+	<string name="clear_network_suggestions_success">Sugestões de redes foram excluidas</string>
+	<string name="clear_network_suggestions_nothing_to_remove">Nada para excluir</string>
 	<string name="send_category">Encaminhamento</string>
 	<string name="send_scan_active">Encaminhar conteúdo digitalizado</string>
 	<string name="send_scan_active_summary">Ative para encaminhar conteúdo digitalizado à URL definida</string>
-	<string name="send_scan_url">URL à qual encaminhar</string>
+	<string name="send_scan_url">Defina a URL para qual encaminhar</string>
 	<string name="send_scan_type">Tipo de solicitação</string>
 	<string name="send_type_get_add_content">GET e somente adicionar um conteúdo</string>
 	<string name="send_type_get_query_string">GET com sequência completa de consulta</string>
@@ -125,32 +125,32 @@
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">Abrir em navegador externo</string>
 	<string name="test_url">Testar a URL</string>
-	<string name="send_scan_bluetooth">Encaminhar as digitalizações ao Bluetooth</string>
-	<string name="send_scan_bluetooth_summary">Ativar o encaminhamento de digitalizações ao determinado host de Bluetooth.</string>
+	<string name="send_scan_bluetooth">Encaminhar para Bluetooth</string>
+	<string name="send_scan_bluetooth_summary">Ativar isto para encaminhar digitalizações ao determinado host de Bluetooth.</string>
 	<string name="send_scan_bluetooth_host">Host</string>
-	<string name="no_bluetooth_hosts_paired">Nenhum host emparelhado</string>
-	<string name="bluetooth_connect_fail">Não foi possível conectar ao dispositivo de bluetooth.</string>
-	<string name="bluetooth_send_fail">Não foi possível encaminhar para dispositivo de bluetooth.</string>
-	<string name="bluetooth_send_success">Envio ao bluetooth concluído com sucesso.</string>
-	<string name="really_remove_scan">Deseja remover esta digitalização?</string>
-	<string name="really_remove_all_scans">Deseja remover todas as digitalizações?</string>
-	<string name="really_remove_selected_scans">Deseja remover digitalizações selecionados?</string>
-	<string name="clear_history">Limpar histórico</string>
+	<string name="no_bluetooth_hosts_paired">Não emparelhado com host</string>
+	<string name="bluetooth_connect_fail">Não foi possível conectar com dispositivo Bluetooth.</string>
+	<string name="bluetooth_send_fail">Não foi possível encaminhar para dispositivo Bluetooth.</string>
+	<string name="bluetooth_send_success">Envio ao Bluetooth concluído com sucesso.</string>
+	<string name="really_remove_scan">Deseja excluir esta digitalização?</string>
+	<string name="really_remove_all_scans">Deseja excluir todas as digitalizações?</string>
+	<string name="really_remove_selected_scans">Deseja excluir as digitalizações selecionadas?</string>
+	<string name="clear_history">Apagar histórico</string>
 	<string name="copy_scan">Copiar digitalização</string>
 	<string name="edit_scan">Editar identificação</string>
-	<string name="remove_scan">Remover digitalização</string>
+	<string name="remove_scan">Excluir digitalização</string>
 	<string name="enter_name">Digite um nome para identificar esta digitalização</string>
-	<string name="enter_name_hint">Nome da digitalização</string>
+	<string name="enter_name_hint">Nome de digitalização</string>
 	<string name="no_barcode_found">Nenhum código encontrado</string>
 	<string name="pick_list_separator">Como separar itens da lista?</string>
 	<string name="separator_line_break">Quebra de linha</string>
 	<string name="separator_ruler">Hífen</string>
-	<string name="save_as_file_name">Salvar para Downloads?</string>
+	<string name="save_as_file_name">Salvar na pasta de Downloads?</string>
 	<string name="file_name">Nome do arquivo</string>
 	<string name="error_saving_file">Não foi possível salvar este arquivo</string>
 	<string name="error_file_exists">Arquivo já existe</string>
 	<string name="connect_to_wifi">Conectar a WiFi</string>
-	<string name="wifi_config_failed">Não foi possível configurar WiFi</string>
+	<string name="wifi_config_failed">Não foi possível configurar a WiFi</string>
 	<string name="wifi_added">WiFi adicionado</string>
 	<string name="sms_send">Envie SMS</string>
 	<string name="sms_error">Não foi possível enviar SMS</string>
@@ -168,7 +168,7 @@
 	<string name="export_to_file">Exportar para arquivo</string>
 	<string name="export_as">Exportar em qual formato?</string>
 	<string name="export_csv_comma">Arquivo CSV com vírgulas</string>
-	<string name="export_csv_semicolon">Arquivo CSV com ponto-e-vírgula</string>
+	<string name="export_csv_semicolon">Arquivo CSV com ponto e vírgula</string>
 	<string name="export_json">Arquivo JSON</string>
 	<string name="export_database">Base de dados SQLite</string>
 	<string name="saved_in_downloads">Salvo em Downloads</string>
@@ -181,7 +181,7 @@
 	<string name="shortcut_preferences">Configurações</string>
 	<string name="background_request_failed">A solicitação em segundo plano falhou</string>
 	<string name="entry_type">Tipo</string>
-	<string name="wifi_network">Rede Wi-Fi</string>
+	<string name="wifi_network">Rede de Wi-Fi</string>
 	<string name="wifi_ssid">Nome</string>
 	<string name="wifi_type">Tipo de autenticação</string>
 	<string name="wifi_password">Senha</string>
@@ -190,6 +190,6 @@
 	<string name="wifi_anonymous_identity">Identidade anônima</string>
 	<string name="wifi_identity">Identidade</string>
 	<string name="wifi_phase2">Método Phase 2</string>
-	<string name="network_suggestions">Network suggestions</string>
-	<string name="remove_suggestion">Remove suggestion</string>
+	<string name="network_suggestions">Sugestões de redes</string>
+	<string name="remove_suggestion">Apagar sugestão</string>
 </resources>
