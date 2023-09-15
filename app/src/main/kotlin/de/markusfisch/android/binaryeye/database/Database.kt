@@ -117,12 +117,9 @@ class Database {
 		null,
 		ContentValues().apply {
 			put(SCANS_DATETIME, scan.dateTime)
-			val isRaw = scan.raw != null
-			if (isRaw) {
-				put(SCANS_CONTENT, "")
+			put(SCANS_CONTENT, scan.content)
+			if (scan.raw != null) {
 				put(SCANS_RAW, scan.raw)
-			} else {
-				put(SCANS_CONTENT, scan.content)
 			}
 			put(SCANS_FORMAT, scan.format)
 			scan.errorCorrectionLevel?.let {
@@ -139,7 +136,7 @@ class Database {
 			if (prefs.ignoreConsecutiveDuplicates) {
 				val id = getIdOfLastScan(
 					get(SCANS_CONTENT) as String,
-					if (isRaw) get(SCANS_RAW) as ByteArray else null,
+					get(SCANS_RAW) as ByteArray?,
 					scan.format
 				)
 				if (id > 0L) {

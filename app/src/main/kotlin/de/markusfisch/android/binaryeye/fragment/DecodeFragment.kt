@@ -86,7 +86,7 @@ class DecodeFragment : Fragment() {
 		} ?: throw IllegalArgumentException("DecodeFragment needs a Scan")
 
 		val originalContent = scan.content
-		isBinary = scan.raw != null
+		isBinary = scan.content.isEmpty()
 		originalBytes = scan.raw ?: originalContent.toByteArray()
 		format = scan.format
 		id = scan.id

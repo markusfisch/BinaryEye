@@ -123,23 +123,14 @@ data class Scan(
 }
 
 fun Result.toScan(): Scan {
-	val content: String
-	val raw: ByteArray?
-	when (contentType) {
-		ContentType.GS1,
-		ContentType.ISO15434,
-		ContentType.TEXT -> {
-			content = text
-			raw = null
-		}
-		else -> {
-			content = ""
-			raw = rawBytes
-		}
-	}
 	return Scan(
-		content,
-		raw,
+		when (contentType) {
+			ContentType.GS1,
+			ContentType.ISO15434,
+			ContentType.TEXT -> text
+			else -> ""
+		},
+		rawBytes,
 		format,
 		ecLevel,
 		version,

@@ -99,7 +99,7 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 					icon = R.drawable.ic_label
 					name
 				}
-				content?.isEmpty() == true -> context.getString(
+				content.isNullOrEmpty() -> context.getString(
 					R.string.binary_data
 				)
 				else -> content
