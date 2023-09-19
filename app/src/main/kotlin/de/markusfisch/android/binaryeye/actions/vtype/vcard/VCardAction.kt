@@ -184,7 +184,7 @@ object VCardAction : IntentAction() {
 		}
 
 	private val String.addressType: Int?
-		get() = when (this.toUpperCase(Locale.US)) {
+		get() = when (this.uppercase()) {
 			"HOME" -> ContactsContract.CommonDataKinds.StructuredPostal.TYPE_HOME
 			"WORK" -> ContactsContract.CommonDataKinds.StructuredPostal.TYPE_WORK
 			"OTHER" -> ContactsContract.CommonDataKinds.StructuredPostal.TYPE_OTHER
