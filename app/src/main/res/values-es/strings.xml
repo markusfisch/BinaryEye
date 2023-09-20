@@ -40,8 +40,8 @@
 	<string name="cannot_resolve_action">Ninguna aplicación puede abrir eso</string>
 	<string name="pick_search_engine">Elija un motor de búsqueda</string>
 	<string name="format">Formato</string>
-	<string name="size">Tamaño en píxeles</string>
-	<string name="width_by_height">%1$d×%2$d</string>
+	<string name="size_width_by_height">Tamaño en píxeles: %1$d×%2$d</string>
+	<string name="margin_size">Margin in pixels: %1$d</string>
 	<string name="input_content_here">Introduzca el contenido aquí</string>
 	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">CODIFICAR</string>

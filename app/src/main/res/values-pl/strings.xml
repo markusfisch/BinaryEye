@@ -57,7 +57,6 @@
 	<string name="copy_scan">Skopiuj skan</string>
 	<string name="vevent_failed">Nie można dodać do kalendarza</string>
 	<string name="wifi_config_failed">Nie można skonfigurować Wi-Fi</string>
-	<string name="size">Rozmiar w pikselach</string>
 	<string name="export_as">Eksportuj jako?</string>
 	<string name="really_remove_all_scans">Czy naprawdę usunąć wszystkie skany?</string>
 	<string name="really_remove_scan">Czy naprawdę usunąć skan?</string>
@@ -172,7 +171,8 @@
 	<string name="show_toast_in_bulk_mode">Pokaż dane w trybie ciągłym</string>
 	<string name="show_toast_in_bulk_mode_summary">Zwięźle pokazuje zeskanowane dane podczas skanowania ciągłego.</string>
 	<string name="cannot_resolve_action">Żadna aplikacja nie może tego otworzyć</string>
-	<string name="width_by_height">%1$d×%2$d</string>
+	<string name="size_width_by_height">Rozmiar w pikselach: %1$d×%2$d</string>
+	<string name="margin_size">Margin in pixels: %1$d</string>
 	<string name="input_content_here">Wprowadź zawartość tutaj</string>
 	<string name="unescape">Expand escape sequences</string>
 	<string name="pick_list_separator">Jak oddzielić elementy listy?</string>

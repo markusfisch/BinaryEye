@@ -1,6 +1,7 @@
 package de.markusfisch.android.binaryeye.fragment
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -25,6 +26,9 @@ class EncodeFragment : Fragment() {
 	private lateinit var colorsSpinner: Spinner
 	private lateinit var sizeView: TextView
 	private lateinit var sizeBarView: SeekBar
+	private lateinit var marginLayout: View
+	private lateinit var marginView: TextView
+	private lateinit var marginBarView: SeekBar
 	private lateinit var contentView: EditText
 	private lateinit var unescapeCheckBox: CheckBox
 
@@ -41,6 +45,8 @@ class EncodeFragment : Fragment() {
 		Format.QR_CODE,
 		Format.UPC_A
 	)
+
+	private var minMargin = 0
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -91,10 +97,17 @@ class EncodeFragment : Fragment() {
 					true
 				} else {
 					false
-				}.setVisibility(ecLabel, ecSpinner)
-				format.canBeInverted().setVisibility(
+				}.setVisibilityFor(ecLabel, ecSpinner)
+				format.canBeInverted().setVisibilityFor(
 					colorsLabel, colorsSpinner
 				)
+				when (format) {
+					Format.AZTEC -> setMarginBar(4, 4)
+					Format.DATA_MATRIX -> setMarginBar(1, 1)
+					Format.QR_CODE -> setMarginBar(4, 4)
+					Format.PDF_417 -> setMarginBar(0, 30)
+					else -> false
+				}.setVisibilityFor(marginLayout)
 			}
 
 			override fun onNothingSelected(parentView: AdapterView<*>?) {}
@@ -125,6 +138,11 @@ class EncodeFragment : Fragment() {
 		sizeView = view.findViewById(R.id.size_display)
 		sizeBarView = view.findViewById(R.id.size_bar)
 		initSizeBar()
+
+		marginLayout = view.findViewById(R.id.margin)
+		marginView = view.findViewById(R.id.margin_display)
+		marginBarView = view.findViewById(R.id.margin_bar)
+		initMarginBar()
 
 		contentView = view.findViewById(R.id.content)
 		unescapeCheckBox = view.findViewById(R.id.unescape)
@@ -183,6 +201,13 @@ class EncodeFragment : Fragment() {
 				content,
 				format,
 				getSize(sizeBarView.progress),
+				when (format) {
+					Format.AZTEC,
+					Format.DATA_MATRIX,
+					Format.QR_CODE,
+					Format.PDF_417 -> marginBarView.progress
+					else -> -1
+				},
 				format.getErrorCorrectionLevel(ecSpinner.selectedItemPosition),
 				if (format.canBeInverted()) {
 					colorsSpinner.selectedItemPosition
@@ -211,7 +236,42 @@ class EncodeFragment : Fragment() {
 
 	private fun updateSize(power: Int) {
 		val size = getSize(power)
-		sizeView.text = getString(R.string.width_by_height, size, size)
+		sizeView.text = getString(R.string.size_width_by_height, size, size)
+	}
+
+	private fun initMarginBar() {
+		updateMargin(marginBarView.progress)
+		marginBarView.setOnSeekBarChangeListener(
+			object : SeekBar.OnSeekBarChangeListener {
+				override fun onProgressChanged(
+					seekBar: SeekBar,
+					progressValue: Int,
+					fromUser: Boolean
+				) {
+					if (progressValue >= minMargin) {
+						updateMargin(progressValue)
+					}
+				}
+
+				override fun onStartTrackingTouch(seekBar: SeekBar) {}
+
+				override fun onStopTrackingTouch(seekBar: SeekBar) {}
+			})
+	}
+
+	private fun updateMargin(margin: Int) {
+		marginView.text = getString(R.string.margin_size, margin)
+	}
+
+	private fun setMarginBar(minimum: Int, value: Int): Boolean {
+		minMargin = minimum
+		marginBarView.apply {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+				min = minimum
+			}
+			progress = value
+		}
+		return true
 	}
 
 	companion object {
@@ -232,7 +292,7 @@ class EncodeFragment : Fragment() {
 	}
 }
 
-private fun Boolean.setVisibility(vararg views: View) {
+private fun Boolean.setVisibilityFor(vararg views: View) {
 	val visibility = if (this) View.VISIBLE else View.GONE
 	for (view in views) {
 		view.visibility = visibility

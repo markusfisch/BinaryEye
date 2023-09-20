@@ -40,8 +40,8 @@
 	<string name="cannot_resolve_action">Bunu açacak uygulama yok</string>
 	<string name="pick_search_engine">Arama motoru seç</string>
 	<string name="format">Biçim</string>
-	<string name="size">Piksel türünde boyut</string>
-	<string name="width_by_height">%1$d×%2$d</string>
+	<string name="size_width_by_height">Piksel türünde boyut: %1$d×%2$d</string>
+	<string name="margin_size">Margin in pixels: %1$d</string>
 	<string name="input_content_here">İçeriği buraya gir</string>
 	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">KODLA</string>

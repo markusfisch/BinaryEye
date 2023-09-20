@@ -41,8 +41,8 @@
 	<string name="cannot_resolve_action">Aucune application ne peut ouvrir cela</string>
 	<string name="pick_search_engine">Choisir un moteur de recherche</string>
 	<string name="format">Format</string>
-	<string name="size">Taille en pixels</string>
-	<string name="width_by_height">%1$d×%2$d</string>
+	<string name="size_width_by_height">Taille en pixels: %1$d×%2$d</string>
+	<string name="margin_size">Margin in pixels: %1$d</string>
 	<string name="input_content_here">Votre contenu ici</string>
 	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">ENCODER</string>

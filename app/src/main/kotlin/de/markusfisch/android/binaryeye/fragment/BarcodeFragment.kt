@@ -119,6 +119,7 @@ class BarcodeFragment : Fragment() {
 			)
 		),
 		getInt(SIZE),
+		getInt(MARGIN),
 		getInt(EC_LEVEL),
 		Colors.values()[getInt(COLORS)]
 	)
@@ -259,6 +260,7 @@ class BarcodeFragment : Fragment() {
 		private const val CONTENT = "content"
 		private const val FORMAT = "format"
 		private const val SIZE = "size"
+		private const val MARGIN = "margin"
 		private const val EC_LEVEL = "ec_level"
 		private const val COLORS = "colors"
 		private const val MIME_PNG = "image/png"
@@ -269,6 +271,7 @@ class BarcodeFragment : Fragment() {
 			content: String,
 			format: Format,
 			size: Int,
+			margin: Int,
 			ecLevel: Int = -1,
 			colors: Int = 0
 		): Fragment {
@@ -276,6 +279,7 @@ class BarcodeFragment : Fragment() {
 			args.putString(CONTENT, content)
 			args.putString(FORMAT, format.name)
 			args.putInt(SIZE, size)
+			args.putInt(MARGIN, margin)
 			args.putInt(EC_LEVEL, ecLevel)
 			args.putInt(COLORS, colors)
 			val fragment = BarcodeFragment()
@@ -289,13 +293,14 @@ private data class Barcode(
 	val content: String,
 	val format: Format,
 	val size: Int,
+	val margin: Int,
 	val ecLevel: Int,
 	val colors: Colors
 ) {
 	private var _bitmap: Bitmap? = null
 	fun bitmap(): Bitmap {
 		val b = _bitmap ?: ZxingCpp.encodeAsBitmap(
-			content, format, size, size, -1, ecLevel,
+			content, format, size, size, margin, ecLevel,
 			setColor = colors.foregroundColor(),
 			unsetColor = colors.backgroundColor()
 		)
@@ -306,7 +311,7 @@ private data class Barcode(
 	private var _svg: String? = null
 	fun svg(): String {
 		val s = _svg ?: ZxingCpp.encodeAsSvg(
-			content, format, -1, ecLevel
+			content, format, margin, ecLevel
 		)
 		_svg = s
 		return s
@@ -315,7 +320,7 @@ private data class Barcode(
 	private var _text: String? = null
 	fun text(): String {
 		val t = _text ?: ZxingCpp.encodeAsText(
-			content, format, -1, ecLevel,
+			content, format, margin, ecLevel,
 			inverted = colors == Colors.BLACK_ON_WHITE
 		)
 		_text = t

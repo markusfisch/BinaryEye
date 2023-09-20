@@ -39,8 +39,8 @@
 	<string name="cannot_resolve_action">Tidak ada aplikasi yang bisa membukanya</string>
 	<string name="pick_search_engine">Pilih mesin pencari</string>
 	<string name="format">Format</string>
-	<string name="size">Ukuran dalam piksel</string>
-	<string name="width_by_height">%1$d×%2$d</string>
+	<string name="size_width_by_height">Ukuran dalam piksel: %1$d×%2$d</string>
+	<string name="margin_size">Margin in pixels: %1$d</string>
 	<string name="input_content_here">Masukkan konten di sini</string>
 	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">ENKODE</string>

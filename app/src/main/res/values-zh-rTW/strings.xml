@@ -39,8 +39,8 @@
 	<string name="cannot_resolve_action">沒有可開啟這個項目的應用程式</string>
 	<string name="pick_search_engine">選擇一個搜尋引擎</string>
 	<string name="format">格式</string>
-	<string name="size">圖片尺寸</string>
-	<string name="width_by_height">%1$d×%2$d</string>
+	<string name="size_width_by_height">圖片尺寸: %1$d×%2$d</string>
+	<string name="margin_size">Margin in pixels: %1$d</string>
 	<string name="input_content_here">請在這裡輸入內容</string>
 	<string name="unescape">展開逸出序列</string>
 	<string name="encode">編碼</string>

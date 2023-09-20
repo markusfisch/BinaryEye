@@ -40,8 +40,8 @@
 	<string name="cannot_resolve_action">ამ მოქმედებისთვის აპლიკაცია ნაპოვნი არაა</string>
 	<string name="pick_search_engine">აირჩიეთ საძიებო სისტემა</string>
 	<string name="format">ფორმატი</string>
-	<string name="size">ზომა პიქსელებში</string>
-	<string name="width_by_height">%1$d×%2$d</string>
+	<string name="size_width_by_height">ზომა პიქსელებში: %1$d×%2$d</string>
+	<string name="margin_size">Margin in pixels: %1$d</string>
 	<string name="input_content_here">შეიყვანეთ ტექსტი აქ</string>
 	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">შექმნა"</string>

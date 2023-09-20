@@ -42,8 +42,8 @@
 	<string name="cannot_resolve_action">Не найдено приложение для этого действия</string>
 	<string name="pick_search_engine">Выберите поисковую систему</string>
 	<string name="format">Формат</string>
-	<string name="size">Размер в пикселях</string>
-	<string name="width_by_height">%1$d×%2$d</string>
+	<string name="size_width_by_height">Размер в пикселях: %1$d×%2$d</string>
+	<string name="margin_size">Margin in pixels: %1$d</string>
 	<string name="input_content_here">Введите текст здесь</string>
 	<string name="unescape">Раскрывать управляющие последовательности</string>
 	<string name="encode">Создать</string>

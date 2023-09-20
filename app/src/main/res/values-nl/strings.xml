@@ -40,8 +40,8 @@
 	<string name="cannot_resolve_action">Geen enkele toepassing kan dat openen</string>
 	<string name="pick_search_engine">Zoekmachine kiezen</string>
 	<string name="format">Format</string>
-	<string name="size">Afmeting in pixels</string>
-	<string name="width_by_height">%1$d×%2$d</string>
+	<string name="size_width_by_height">Afmeting in pixels: %1$d×%2$d</string>
+	<string name="margin_size">Margin in pixels: %1$d</string>
 	<string name="input_content_here">Voer hier de inhoud in</string>
 	<string name="unescape">Expand escape sequences</string>
 	<string name="encode">Coderen</string>

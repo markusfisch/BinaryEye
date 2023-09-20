@@ -40,8 +40,8 @@
 	<string name="cannot_resolve_action">Nessuna app può aprirlo</string>
 	<string name="pick_search_engine">Scegli motore di ricerca</string>
 	<string name="format">Formato</string>
-	<string name="size">Dimensioni (pixel)</string>
-	<string name="width_by_height">%1$d×%2$d</string>
+	<string name="size_width_by_height">Dimensioni (pixel): %1$d×%2$d</string>
+	<string name="margin_size">Margin in pixels: %1$d</string>
 	<string name="input_content_here">Inserisci qui il contenuto</string>
 	<string name="unescape">Espandi sequenze escape</string>
 	<string name="encode">CODIFICA</string>
