@@ -1,10 +1,15 @@
 package de.markusfisch.android.binaryeye.fragment
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -54,6 +59,35 @@ class EncodeFragment : Fragment() {
 	)
 
 	private var minMargin = 0
+	private var bytes: ByteArray? = null
+
+	override fun onActivityResult(
+		requestCode: Int,
+		resultCode: Int,
+		resultData: Intent?
+	) {
+		when (requestCode) {
+			PICK_FILE_RESULT_CODE -> {
+				if (resultCode == Activity.RESULT_OK &&
+					resultData != null &&
+					resultData.data != null
+				) {
+					val ac = activity ?: return
+					ac.hideSoftKeyboard(contentView)
+					val uri = resultData.data ?: return
+					bytes = ac.contentResolver?.openInputStream(uri)?.use {
+						it.readBytes()
+					} ?: return
+					setEncodeByteArray()
+				}
+			}
+		}
+	}
+
+	override fun onCreate(state: Bundle?) {
+		super.onCreate(state)
+		setHasOptionsMenu(true)
+	}
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -156,8 +190,12 @@ class EncodeFragment : Fragment() {
 		unescapeCheckBox.isChecked = prefs.expandEscapeSequences
 
 		val args = arguments
-		args?.getString(CONTENT)?.let {
+		args?.getString(CONTENT_TEXT)?.let {
 			contentView.setText(it)
+		}
+		args?.getByteArray(CONTENT_RAW)?.let {
+			bytes = it
+			setEncodeByteArray()
 		}
 
 		val barcodeFormat = args?.getString(FORMAT)
@@ -181,6 +219,29 @@ class EncodeFragment : Fragment() {
 		return view
 	}
 
+	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+		inflater.inflate(R.menu.fragment_encode, menu)
+	}
+
+	override fun onOptionsItemSelected(item: MenuItem): Boolean {
+		return when (item.itemId) {
+			R.id.pick_file -> {
+				startActivityForResult(
+					Intent.createChooser(
+						Intent(Intent.ACTION_GET_CONTENT).apply {
+							type = "*/*"
+						},
+						getString(R.string.pick_file)
+					),
+					PICK_FILE_RESULT_CODE
+				)
+				true
+			}
+
+			else -> super.onOptionsItemSelected(item)
+		}
+	}
+
 	override fun onPause() {
 		super.onPause()
 		prefs.indexOfLastSelectedFormat = formatView.selectedItemPosition
@@ -189,20 +250,25 @@ class EncodeFragment : Fragment() {
 	}
 
 	private fun Context.encode() {
-		var content = contentView.text.toString()
-		if (unescapeCheckBox.isChecked) {
-			try {
-				content = content.unescape()
-			} catch (e: IllegalArgumentException) {
-				toast(e.message ?: "Invalid escape sequence")
+		hideSoftKeyboard(contentView)
+		val content = if (bytes != null) {
+			bytes
+		} else {
+			var text = contentView.text.toString()
+			if (unescapeCheckBox.isChecked) {
+				try {
+					text = text.unescape()
+				} catch (e: IllegalArgumentException) {
+					toast(e.message ?: "Invalid escape sequence")
+					return
+				}
+			}
+			if (text.isEmpty()) {
+				toast(R.string.error_no_content)
 				return
 			}
+			text
 		}
-		if (content.isEmpty()) {
-			toast(R.string.error_no_content)
-			return
-		}
-		hideSoftKeyboard(contentView)
 		val format = formats[formatView.selectedItemPosition]
 		fragmentManager?.addFragment(
 			BarcodeFragment.newInstance(
@@ -289,16 +355,33 @@ class EncodeFragment : Fragment() {
 		return true
 	}
 
-	companion object {
-		private const val CONTENT = "content"
-		private const val FORMAT = "format"
+	private fun setEncodeByteArray() {
+		contentView.text = null
+		contentView.hint = getString(R.string.binary_data)
+		contentView.isEnabled = false
+		unescapeCheckBox.isEnabled = false
+	}
 
-		fun newInstance(
-			content: String? = null,
+	companion object {
+		private const val CONTENT_TEXT = "content_text"
+		private const val CONTENT_RAW = "content_raw"
+		private const val FORMAT = "format"
+		private const val PICK_FILE_RESULT_CODE = 1
+
+		fun <T> newInstance(
+			content: T? = null,
 			format: String? = null
 		): Fragment {
 			val args = Bundle()
-			content?.let { args.putString(CONTENT, content) }
+			content?.let {
+				when (content) {
+					is String -> args.putString(CONTENT_TEXT, content)
+					is ByteArray -> args.putByteArray(CONTENT_RAW, content)
+					else -> throw IllegalArgumentException(
+						"content must be a String or a ByteArray"
+					)
+				}
+			}
 			format?.let { args.putString(FORMAT, it) }
 			val fragment = EncodeFragment()
 			fragment.arguments = args

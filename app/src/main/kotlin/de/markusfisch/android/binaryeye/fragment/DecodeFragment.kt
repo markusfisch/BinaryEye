@@ -299,9 +299,6 @@ class DecodeFragment : Fragment() {
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 		inflater.inflate(R.menu.fragment_decode, menu)
-		if (isBinary) {
-			menu.findItem(R.id.create).isVisible = false
-		}
 		if (id > 0L) {
 			menu.findItem(R.id.remove).isVisible = true
 		}
@@ -334,7 +331,10 @@ class DecodeFragment : Fragment() {
 
 			R.id.create -> {
 				fragmentManager?.addFragment(
-					EncodeFragment.newInstance(content, format)
+					EncodeFragment.newInstance(
+						if (isBinary) originalBytes else content,
+						format
+					)
 				)
 				true
 			}

@@ -41,7 +41,7 @@ class BarcodeFragment : Fragment() {
 	private val parentJob = Job()
 	private val scope = CoroutineScope(Dispatchers.IO + parentJob)
 
-	private lateinit var barcode: Barcode
+	private lateinit var barcode: Barcode<*>
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -71,7 +71,7 @@ class BarcodeFragment : Fragment() {
 			bitmap = barcode.bitmap()
 		} catch (e: Exception) {
 			var message = e.message
-			if (message == null || message.isEmpty()) {
+			if (message.isNullOrEmpty()) {
 				message = getString(R.string.error_encoding_barcode)
 			}
 			message?.let {
@@ -110,7 +110,7 @@ class BarcodeFragment : Fragment() {
 	}
 
 	private fun Bundle.toBarcode() = Barcode(
-		getString(CONTENT) ?: throw IllegalArgumentException(
+		getString(CONTENT_TEXT) ?: getByteArray(CONTENT_RAW) ?: throw IllegalArgumentException(
 			"content cannot be null"
 		),
 		Format.valueOf(
@@ -261,7 +261,8 @@ class BarcodeFragment : Fragment() {
 	}
 
 	companion object {
-		private const val CONTENT = "content"
+		private const val CONTENT_TEXT = "content_text"
+		private const val CONTENT_RAW = "content_raw"
 		private const val FORMAT = "format"
 		private const val SIZE = "size"
 		private const val MARGIN = "margin"
@@ -271,8 +272,8 @@ class BarcodeFragment : Fragment() {
 		private const val MIME_SVG = "image/svg+xmg"
 		private const val MIME_TXT = "text/plain"
 
-		fun newInstance(
-			content: String,
+		fun <T> newInstance(
+			content: T,
 			format: Format,
 			size: Int,
 			margin: Int,
@@ -280,7 +281,21 @@ class BarcodeFragment : Fragment() {
 			colors: Int = 0
 		): Fragment {
 			val args = Bundle()
-			args.putString(CONTENT, content)
+			when (content) {
+				is String -> {
+					args.putString(CONTENT_TEXT, content)
+				}
+
+				is ByteArray -> {
+					args.putByteArray(CONTENT_RAW, content)
+				}
+
+				else -> {
+					throw IllegalArgumentException(
+						"content must be a String of a ByteArray"
+					)
+				}
+			}
 			args.putString(FORMAT, format.name)
 			args.putInt(SIZE, size)
 			args.putInt(MARGIN, margin)
@@ -293,8 +308,8 @@ class BarcodeFragment : Fragment() {
 	}
 }
 
-private data class Barcode(
-	val content: String,
+private data class Barcode<T>(
+	val content: T,
 	val format: Format,
 	val size: Int,
 	val margin: Int,
