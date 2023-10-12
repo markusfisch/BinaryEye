@@ -175,7 +175,8 @@
 	<string name="saved_in_downloads">Sauvegardé dans les Téléchargements</string>
 	<string name="rotate_image_cw">Tourner l\'image dans le sens horaire</string>
 	<string name="toggle_free_rotation">Activer la rotation libre</string>
-	<string name="pick_file">Choisir un fichier image</string>
+	<string name="pick_file">Pick a file</string>
+	<string name="pick_image_file">Choisir un fichier image</string>
 	<string name="pick_code_to_scan">Choisissez le code à scanner</string>
 	<string name="shortcut_decode">Scanner un code-barres</string>
 	<string name="shortcut_encode">Créer un code-barres</string>

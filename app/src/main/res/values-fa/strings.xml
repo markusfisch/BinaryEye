@@ -174,7 +174,8 @@
 	<string name="saved_in_downloads">در بارگیری‌ها ذخیره شد</string>
 	<string name="rotate_image_cw">تصویر را در جهت ساعتگرد بچرخانید</string>
 	<string name="toggle_free_rotation">Toggle free rotation</string>
-	<string name="pick_file">پروندهٔ تصویری را برگزینید</string>
+	<string name="pick_file">Pick a file</string>
+	<string name="pick_image_file">پروندهٔ تصویری را برگزینید</string>
 	<string name="pick_code_to_scan">کدی را برای پویش برگزینید</string>
 	<string name="shortcut_decode">پویش یک بارکد</string>
 	<string name="shortcut_encode">ایجاد یک بارکد</string>

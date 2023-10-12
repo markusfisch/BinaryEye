@@ -256,7 +256,7 @@ class CameraActivity : AppCompatActivity() {
 						Intent(Intent.ACTION_GET_CONTENT).apply {
 							type = "image/*"
 						},
-						getString(R.string.pick_file)
+						getString(R.string.pick_image_file)
 					),
 					PICK_FILE_RESULT_CODE
 				)

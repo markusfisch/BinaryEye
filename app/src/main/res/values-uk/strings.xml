@@ -175,7 +175,8 @@
 	<string name="saved_in_downloads">Збережено в Завантаженнях</string>
 	<string name="rotate_image_cw">Повернути зображення за годинниковою стрілкою</string>
 	<string name="toggle_free_rotation">Увімкнути вільне обертання</string>
-	<string name="pick_file">Вибрати файл зображення</string>
+	<string name="pick_file">Pick a file</string>
+	<string name="pick_image_file">Вибрати файл зображення</string>
 	<string name="pick_code_to_scan">Вибрати код для сканування</string>
 	<string name="shortcut_decode">Сканувати штрих-код</string>
 	<string name="shortcut_encode">Створити штрих-код</string>

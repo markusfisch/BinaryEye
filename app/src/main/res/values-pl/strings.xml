@@ -18,7 +18,8 @@
 	<string name="file_name">Nazwa pliku</string>
 	<string name="export_json">Eksportuj jako JSON</string>
 	<string name="pick_search_engine">Wybierz wyszukiwarkę</string>
-	<string name="pick_file">Wybierz plik obrazu</string>
+	<string name="pick_file">Pick a file</string>
+	<string name="pick_image_file">Wybierz plik obrazu</string>
 	<string name="pick_code_to_scan">Wybierz kod do zeskanowania</string>
 	<string name="sms_send">Wyślij SMS</string>
 	<string name="mail_send">Wyślij e-mail</string>

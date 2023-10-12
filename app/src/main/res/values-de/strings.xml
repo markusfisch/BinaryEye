@@ -174,7 +174,8 @@
 	<string name="saved_in_downloads">In den Downloads gespeichert</string>
 	<string name="rotate_image_cw">Bild im Uhrzeigersinn rotieren</string>
 	<string name="toggle_free_rotation">Freie Rotation ein/ausschalten</string>
-	<string name="pick_file">Bilddatei auswählen</string>
+	<string name="pick_file">Datei auswählen</string>
+	<string name="pick_image_file">Bilddatei auswählen</string>
 	<string name="pick_code_to_scan">Code im Bild auswählen</string>
 	<string name="shortcut_decode">Barcode lesen</string>
 	<string name="shortcut_encode">Barcode erstellen</string>

@@ -174,7 +174,8 @@
 	<string name="saved_in_downloads">İndirilenlere kaydedildi</string>
 	<string name="rotate_image_cw">Görüntüyü saat yönünde döndür</string>
 	<string name="toggle_free_rotation">Serbest dönüşü değiştir</string>
-	<string name="pick_file">Görüntü dosyası seç</string>
+	<string name="pick_file">Pick a file</string>
+	<string name="pick_image_file">Görüntü dosyası seç</string>
 	<string name="pick_code_to_scan">Taranacak kod seç</string>
 	<string name="shortcut_decode">Barkod tara</string>
 	<string name="shortcut_encode">Barkod yarat</string>

@@ -174,7 +174,8 @@
 	<string name="saved_in_downloads">Gemt i downloads</string>
 	<string name="rotate_image_cw">Roter billedet med uret</string>
 	<string name="toggle_free_rotation">Slå fri rotation til/fra</string>
-	<string name="pick_file">Vælg billedfil</string>
+	<string name="pick_file">Pick a file</string>
+	<string name="pick_image_file">Vælg billedfil</string>
 	<string name="pick_code_to_scan">Vælg kode til at scanne</string>
 	<string name="shortcut_decode">Scan en stregkode</string>
 	<string name="shortcut_encode">Opret en stregkode</string>

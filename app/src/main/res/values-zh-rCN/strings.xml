@@ -173,7 +173,8 @@
 	<string name="saved_in_downloads">已保存到下载目录</string>
 	<string name="rotate_image_cw">顺时针旋转图片</string>
 	<string name="toggle_free_rotation">切换自由旋转</string>
-	<string name="pick_file">选择图片文件</string>
+	<string name="pick_file">Pick a file</string>
+	<string name="pick_image_file">选择图片文件</string>
 	<string name="pick_code_to_scan">选择扫描编码</string>
 	<string name="shortcut_decode">扫描条码</string>
 	<string name="shortcut_encode">创建条码</string>

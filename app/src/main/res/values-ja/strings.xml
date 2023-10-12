@@ -173,7 +173,8 @@
 	<string name="saved_in_downloads">ダウンロードフォルダに保存されました</string>
 	<string name="rotate_image_cw">時計回りに回転</string>
 	<string name="toggle_free_rotation">Toggle free rotation</string>
-	<string name="pick_file">画像を選択して読み込み</string>
+	<string name="pick_file">Pick a file</string>
+	<string name="pick_image_file">画像を選択して読み込み</string>
 	<string name="pick_code_to_scan">スキャンするバーコードを選択</string>
 	<string name="shortcut_decode">バーコードをスキャン</string>
 	<string name="shortcut_encode">バーコードを作成</string>

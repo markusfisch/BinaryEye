@@ -174,7 +174,8 @@
 	<string name="saved_in_downloads">შენახულია გადმოწერებში</string>
 	<string name="rotate_image_cw">გამოსახულების შემობრუნება საათის ისრის მიხედვით</string>
 	<string name="toggle_free_rotation">Toggle free rotation</string>
-	<string name="pick_file">აირჩიეთ ფაილი გამოსახულებით</string>
+	<string name="pick_file">Pick a file</string>
+	<string name="pick_image_file">აირჩიეთ ფაილი გამოსახულებით</string>
 	<string name="pick_code_to_scan">აირჩიეთ შტრიხ-კოდი სკანირებისთვის</string>
 	<string name="shortcut_decode">შტრიხ-კოდის სკანირება</string>
 	<string name="shortcut_encode">შტრიხ-კოდის შექმნა</string>

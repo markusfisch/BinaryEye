@@ -13,7 +13,7 @@
 		material:showAsAction="ifRoom"/>
 	<item
 		android:id="@+id/pick_file"
-		android:title="@string/pick_file"
+		android:title="@string/pick_image_file"
 		android:icon="@drawable/ic_action_pick_file"
 		material:showAsAction="ifRoom"/>
 	<item

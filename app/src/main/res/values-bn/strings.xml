@@ -174,7 +174,8 @@
 	<string name="saved_in_downloads">ডাউনলোডে সংরক্ষিত</string>
 	<string name="rotate_image_cw">ছবি ঘড়ির দিকে ঘুরাও</string>
 	<string name="toggle_free_rotation">Toggle free rotation</string>
-	<string name="pick_file">ছবি নাও</string>
+	<string name="pick_file">Pick a file</string>
+	<string name="pick_image_file">ছবি নাও</string>
 	<string name="pick_code_to_scan">খুঁজার জন্য কোড নাও</string>
 	<string name="shortcut_decode">বারকোড খুজো</string>
 	<string name="shortcut_encode">বারকোড বানাও</string>
