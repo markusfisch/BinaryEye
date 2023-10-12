@@ -17,6 +17,7 @@ import de.markusfisch.android.binaryeye.view.hideSoftKeyboard
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.zxingcpp.ZxingCpp.Format
+import kotlin.math.max
 
 class EncodeFragment : Fragment() {
 	private lateinit var formatView: Spinner
@@ -178,6 +179,7 @@ class EncodeFragment : Fragment() {
 		super.onPause()
 		prefs.indexOfLastSelectedFormat = formatView.selectedItemPosition
 		prefs.expandEscapeSequences = unescapeCheckBox.isChecked
+		prefs.lastMargin = marginBarView.progress
 	}
 
 	private fun Context.encode() {
@@ -269,7 +271,13 @@ class EncodeFragment : Fragment() {
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 				min = minimum
 			}
-			progress = value
+			progress = max(
+				minimum, if (prefs.lastMargin > -1) {
+					prefs.lastMargin
+				} else {
+					value
+				}
+			)
 		}
 		return true
 	}
