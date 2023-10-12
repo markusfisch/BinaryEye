@@ -28,7 +28,9 @@ import de.markusfisch.android.binaryeye.view.hideSoftKeyboard
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.zxingcpp.ZxingCpp.Format
+import java.io.InputStream
 import kotlin.math.max
+import kotlin.math.min
 
 class EncodeFragment : Fragment() {
 	private lateinit var formatView: Spinner
@@ -76,7 +78,7 @@ class EncodeFragment : Fragment() {
 					ac.hideSoftKeyboard(contentView)
 					val uri = resultData.data ?: return
 					bytes = ac.contentResolver?.openInputStream(uri)?.use {
-						it.readBytes()
+						it.readBytesMax(4096)
 					} ?: return
 					setEncodeByteArray()
 				}
@@ -445,3 +447,18 @@ private fun Spinner.setEntries(resId: Int) = ArrayAdapter.createFromResource(
 }
 
 private fun getSize(power: Int) = 128 * (power + 1)
+
+private fun InputStream.readBytesMax(max: Int): ByteArray {
+	var offset = 0
+	var remaining = min(available(), max)
+	val result = ByteArray(remaining)
+	while (remaining > 0) {
+		val read = read(result, offset, remaining)
+		if (read < 0) {
+			break
+		}
+		remaining -= read
+		offset += read
+	}
+	return result
+}
