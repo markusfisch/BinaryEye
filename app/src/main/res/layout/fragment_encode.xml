@@ -17,6 +17,28 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="8dp"
+				android:text="@string/content"/>
+			<EditText
+				tools:targetApi="o"
+				android:id="@+id/content"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="start|top"
+				android:typeface="monospace"
+				android:imeOptions="flagNoExtractUi"
+				android:inputType="textMultiLine"
+				android:hint="@string/input_content_here"
+				android:importantForAutofill="no"/>
+			<CheckBox
+				android:id="@+id/unescape"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="16dp"
+				android:text="@string/unescape"/>
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="8dp"
 				android:text="@string/format"/>
 			<Spinner
 				android:id="@+id/format"
@@ -82,29 +104,6 @@
 					android:paddingBottom="16dp"
 					android:max="32"/>
 			</LinearLayout>
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="8dp"
-				android:text="@string/content"/>
-			<EditText
-				tools:targetApi="o"
-				android:id="@+id/content"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="16dp"
-				android:gravity="start|top"
-				android:typeface="monospace"
-				android:imeOptions="flagNoExtractUi"
-				android:inputType="textMultiLine"
-				android:hint="@string/input_content_here"
-				android:importantForAutofill="no"/>
-			<CheckBox
-				android:id="@+id/unescape"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="16dp"
-				android:text="@string/unescape"/>
 		</LinearLayout>
 	</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>
 	<android.support.design.widget.CoordinatorLayout
