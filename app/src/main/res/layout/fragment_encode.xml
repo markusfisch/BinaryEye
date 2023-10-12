@@ -41,9 +41,8 @@
 				android:layout_marginBottom="8dp"
 				android:text="@string/format"/>
 			<Spinner
+				style="@style/Spinner"
 				android:id="@+id/format"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
 				android:layout_marginBottom="16dp"/>
 			<TextView
 				android:id="@+id/error_correction_label"
@@ -52,9 +51,8 @@
 				android:layout_marginBottom="8dp"
 				android:text="@string/error_correction_level"/>
 			<Spinner
+				style="@style/Spinner"
 				android:id="@+id/error_correction_level"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
 				android:layout_marginBottom="16dp"/>
 			<TextView
 				android:id="@+id/colors_label"
@@ -63,9 +61,8 @@
 				android:layout_marginBottom="8dp"
 				android:text="@string/colors"/>
 			<Spinner
+				style="@style/Spinner"
 				android:id="@+id/colors"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
 				android:layout_marginBottom="16dp"
 				android:entries="@array/colors"/>
 			<TextView
