@@ -20,12 +20,12 @@ import de.markusfisch.android.binaryeye.activity.SplashActivity
 import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.hasBluetoothPermission
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.bluetooth.setBluetoothHosts
 import de.markusfisch.android.binaryeye.media.beepConfirm
 import de.markusfisch.android.binaryeye.preference.UrlPreference
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.systemBarRecyclerViewScrollListener
 import de.markusfisch.android.binaryeye.widget.toast
-import de.markusfisch.android.binaryeye.bluetooth.setBluetoothHosts
 
 class PreferencesFragment : PreferenceFragmentCompat() {
 	private val changeListener = object : OnSharedPreferenceChangeListener {
@@ -41,6 +41,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 					beepConfirm()
 					setSummary(preference)
 				}
+
 				"send_scan_bluetooth" -> {
 					if (prefs.sendScanBluetooth &&
 						activity?.hasBluetoothPermission() == false
@@ -49,6 +50,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 					}
 					setSummary(preference)
 				}
+
 				else -> setSummary(preference)
 			}
 		}
@@ -166,9 +168,11 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 			is UrlPreference -> {
 				preference.setSummary(preference.getUrl())
 			}
+
 			is ListPreference -> {
 				preference.setSummary(preference.entry)
 			}
+
 			is MultiSelectListPreference -> {
 				preference.setSummary(
 					preference.values.joinToString(", ") {
@@ -176,6 +180,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 					}
 				)
 			}
+
 			is PreferenceGroup -> {
 				setSummaries(preference)
 			}

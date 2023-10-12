@@ -54,6 +54,7 @@ fun Matrix.setFrameToView(
 			uprightWidth = frameMetrics.height
 			uprightHeight = frameMetrics.width
 		}
+
 		else -> {
 			uprightWidth = frameMetrics.width
 			uprightHeight = frameMetrics.height

@@ -162,6 +162,7 @@ class DetectorView : View {
 					false
 				}
 			}
+
 			MotionEvent.ACTION_MOVE -> {
 				if (handleGrabbed) {
 					handlePos.set(x, y)
@@ -176,6 +177,7 @@ class DetectorView : View {
 					false
 				}
 			}
+
 			MotionEvent.ACTION_CANCEL -> {
 				if (handleGrabbed) {
 					snap(x, y)
@@ -183,6 +185,7 @@ class DetectorView : View {
 				}
 				false
 			}
+
 			MotionEvent.ACTION_UP -> {
 				if (handleGrabbed) {
 					if (!handleActive) {
@@ -199,6 +202,7 @@ class DetectorView : View {
 				}
 				false
 			}
+
 			else -> super.onTouchEvent(event)
 		}
 	}

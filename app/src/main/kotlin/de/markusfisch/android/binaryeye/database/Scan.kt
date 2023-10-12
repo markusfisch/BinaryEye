@@ -128,6 +128,7 @@ fun Result.toScan(): Scan {
 			ContentType.GS1,
 			ContentType.ISO15434,
 			ContentType.TEXT -> text
+
 			else -> ""
 		},
 		rawBytes,

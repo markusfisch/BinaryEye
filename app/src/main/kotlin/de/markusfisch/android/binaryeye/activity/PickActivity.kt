@@ -21,7 +21,11 @@ import de.markusfisch.android.binaryeye.graphics.fixTransparency
 import de.markusfisch.android.binaryeye.graphics.loadImageUri
 import de.markusfisch.android.binaryeye.graphics.mapPosition
 import de.markusfisch.android.binaryeye.media.releaseToneGenerators
-import de.markusfisch.android.binaryeye.view.*
+import de.markusfisch.android.binaryeye.view.colorSystemAndToolBars
+import de.markusfisch.android.binaryeye.view.initSystemBars
+import de.markusfisch.android.binaryeye.view.recordToolbarHeight
+import de.markusfisch.android.binaryeye.view.scanFeedback
+import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.CropImageView
 import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
@@ -29,7 +33,11 @@ import de.markusfisch.android.zxingcpp.ZxingCpp
 import de.markusfisch.android.zxingcpp.ZxingCpp.Binarizer
 import de.markusfisch.android.zxingcpp.ZxingCpp.DecodeHints
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -205,12 +213,14 @@ class PickActivity : AppCompatActivity() {
 				rotateClockwise()
 				true
 			}
+
 			R.id.toggle_free -> {
 				prefs.freeRotation = prefs.freeRotation xor true
 				cropImageView.freeRotation = prefs.freeRotation
 				freeRotationItem.updateFreeRotationIcon()
 				true
 			}
+
 			else -> super.onOptionsItemSelected(item)
 		}
 	}

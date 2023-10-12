@@ -79,6 +79,7 @@ class HistoryFragment : Fragment() {
 					closeActionMode()
 					true
 				}
+
 				R.id.edit_scan -> {
 					scansAdapter?.forSelection { id, position ->
 						ac.askForName(
@@ -90,6 +91,7 @@ class HistoryFragment : Fragment() {
 					closeActionMode()
 					true
 				}
+
 				R.id.remove_scan -> {
 					scansAdapter?.getSelectedIds()?.let {
 						if (it.isNotEmpty()) {
@@ -99,6 +101,7 @@ class HistoryFragment : Fragment() {
 					closeActionMode()
 					true
 				}
+
 				else -> false
 			}
 		}
@@ -221,10 +224,12 @@ class HistoryFragment : Fragment() {
 				context.askToRemoveScans()
 				true
 			}
+
 			R.id.export_history -> {
 				askToExportToFile()
 				true
 			}
+
 			else -> super.onOptionsItemSelected(item)
 		}
 	}

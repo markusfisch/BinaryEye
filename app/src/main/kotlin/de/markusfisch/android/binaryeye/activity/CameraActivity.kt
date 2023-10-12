@@ -44,9 +44,7 @@ import de.markusfisch.android.cameraview.widget.CameraView
 import de.markusfisch.android.zxingcpp.ZxingCpp
 import de.markusfisch.android.zxingcpp.ZxingCpp.Binarizer
 import de.markusfisch.android.zxingcpp.ZxingCpp.DecodeHints
-import de.markusfisch.android.zxingcpp.ZxingCpp.Format
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
-import java.nio.charset.Charset
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -177,6 +175,7 @@ class CameraActivity : AppCompatActivity() {
 			intent?.action == "com.google.zxing.client.android.SCAN" -> {
 				returnResult = true
 			}
+
 			intent?.dataString?.isReturnUrl() == true -> {
 				finishAfterShowingResult = true
 				returnUrlTemplate = intent.data?.getQueryParameter("ret")
@@ -245,10 +244,12 @@ class CameraActivity : AppCompatActivity() {
 				createBarcode()
 				true
 			}
+
 			R.id.history -> {
 				startActivity(MainActivity.getHistoryIntent(this))
 				true
 			}
+
 			R.id.pick_file -> {
 				startActivityForResult(
 					Intent.createChooser(
@@ -261,28 +262,34 @@ class CameraActivity : AppCompatActivity() {
 				)
 				true
 			}
+
 			R.id.switch_camera -> {
 				switchCamera()
 				true
 			}
+
 			R.id.bulk_mode -> {
 				bulkMode = bulkMode xor true
 				item.isChecked = bulkMode
 				ignoreNext = null
 				true
 			}
+
 			R.id.restrict_format -> {
 				showRestrictionDialog()
 				true
 			}
+
 			R.id.preferences -> {
 				startActivity(MainActivity.getPreferencesIntent(this))
 				true
 			}
+
 			R.id.info -> {
 				openReadme()
 				true
 			}
+
 			else -> super.onOptionsItemSelected(item)
 		}
 	}
@@ -351,6 +358,7 @@ class CameraActivity : AppCompatActivity() {
 						progress = zoomBar.progress
 						return true
 					}
+
 					MotionEvent.ACTION_MOVE -> {
 						if (prefs.zoomBySwiping) {
 							v ?: return false
@@ -364,6 +372,7 @@ class CameraActivity : AppCompatActivity() {
 							return true
 						}
 					}
+
 					MotionEvent.ACTION_UP -> {
 						// Stop calling focusTo() as soon as it returns false
 						// to avoid throwing and catching future exceptions.
@@ -590,9 +599,11 @@ class CameraActivity : AppCompatActivity() {
 					setResult(Activity.RESULT_OK, getReturnIntent(result))
 					finish()
 				}
+
 				returnUri != null -> execShareIntent(
 					Intent(Intent.ACTION_VIEW, returnUri)
 				)
+
 				else -> {
 					showResult(result, bulkMode)
 					// If this app was invoked via a deep link but without
@@ -672,10 +683,12 @@ fun Activity.showResult(
 						errorFeedback()
 						R.string.bluetooth_connect_fail
 					}
+
 					!sent -> {
 						errorFeedback()
 						R.string.bluetooth_send_fail
 					}
+
 					else -> R.string.bluetooth_send_success
 				}
 			)

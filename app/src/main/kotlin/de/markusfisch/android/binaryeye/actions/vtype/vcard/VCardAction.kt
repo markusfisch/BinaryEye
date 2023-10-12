@@ -8,7 +8,7 @@ import android.provider.ContactsContract
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.IntentAction
 import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
-import java.util.*
+import java.util.Locale
 
 object VCardAction : IntentAction() {
 	override val iconResId: Int
@@ -45,10 +45,13 @@ object VCardAction : IntentAction() {
 				val (extraPhoneType, extraPhone) = when (index) {
 					0 -> ContactsContract.Intents.Insert.PHONE_TYPE to
 							ContactsContract.Intents.Insert.PHONE
+
 					1 -> ContactsContract.Intents.Insert.SECONDARY_PHONE_TYPE to
 							ContactsContract.Intents.Insert.SECONDARY_PHONE
+
 					2 -> ContactsContract.Intents.Insert.TERTIARY_PHONE_TYPE to
 							ContactsContract.Intents.Insert.TERTIARY_PHONE_TYPE
+
 					else -> return@forEachIndexed
 				}
 				phoneProperty.firstTypeOrFirstInfo?.also {
@@ -65,10 +68,13 @@ object VCardAction : IntentAction() {
 				val (extraMailType, extraMail) = when (index) {
 					0 -> ContactsContract.Intents.Insert.EMAIL_TYPE to
 							ContactsContract.Intents.Insert.EMAIL
+
 					1 -> ContactsContract.Intents.Insert.SECONDARY_EMAIL_TYPE to
 							ContactsContract.Intents.Insert.SECONDARY_EMAIL
+
 					2 -> ContactsContract.Intents.Insert.TERTIARY_EMAIL_TYPE to
 							ContactsContract.Intents.Insert.TERTIARY_EMAIL
+
 					else -> return@forEachIndexed
 				}
 				mailProperty.firstTypeOrFirstInfo?.also {

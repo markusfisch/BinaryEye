@@ -41,6 +41,7 @@ fun String.unescape(): String {
 			i += l
 			substring(from, i).toInt(8).toChar()
 		}
+
 		'x', 'u' -> {
 			val l = if (ec == 'u') 4 else 2
 			val hexCode = try {
@@ -60,6 +61,7 @@ fun String.unescape(): String {
 			i += l
 			unicodeValue.toChar()
 		}
+
 		else -> throw IllegalArgumentException(
 			"Unknown escape code [$ec] at index $i"
 		)

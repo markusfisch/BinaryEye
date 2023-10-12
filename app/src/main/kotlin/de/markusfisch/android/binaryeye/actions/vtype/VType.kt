@@ -1,6 +1,6 @@
 package de.markusfisch.android.binaryeye.actions.vtype
 
-import java.util.*
+import java.util.Locale
 
 object VTypeParser {
 	private const val BACKSLASH_R_LEGACY =

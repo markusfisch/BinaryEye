@@ -1,7 +1,10 @@
 package de.markusfisch.android.binaryeye.actions.wifi
 
 import de.markusfisch.android.binaryeye.simpleFail
-import junit.framework.TestCase.*
+import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertFalse
+import junit.framework.TestCase.assertNull
+import junit.framework.TestCase.assertTrue
 import org.junit.Test
 
 class WifiConnectorTest {

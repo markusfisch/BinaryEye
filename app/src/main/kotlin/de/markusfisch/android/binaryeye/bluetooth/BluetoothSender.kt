@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.IOException
 import java.io.OutputStreamWriter
-import java.util.*
+import java.util.UUID
 
 fun Scan.sendBluetoothAsync(
 	host: String,

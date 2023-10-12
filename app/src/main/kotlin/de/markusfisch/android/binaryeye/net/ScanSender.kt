@@ -33,6 +33,7 @@ private fun Scan.send(url: String, type: String): Response {
 		"1" -> request(
 			url + "?" + asUrlArguments()
 		)
+
 		"2" -> request(url) { con ->
 			con.requestMethod = "POST"
 			con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
@@ -41,6 +42,7 @@ private fun Scan.send(url: String, type: String): Response {
 				close()
 			}
 		}
+
 		"3" -> request(url) { con ->
 			con.requestMethod = "POST"
 			con.setRequestProperty("Content-Type", "application/json")
@@ -49,6 +51,7 @@ private fun Scan.send(url: String, type: String): Response {
 				close()
 			}
 		}
+
 		else -> request(
 			url + content.urlEncode()
 		)

@@ -32,6 +32,7 @@ private fun Context.isSilent(): Boolean {
 	return when (am.ringerMode) {
 		AudioManager.RINGER_MODE_SILENT,
 		AudioManager.RINGER_MODE_VIBRATE -> true
+
 		else -> false
 	}
 }

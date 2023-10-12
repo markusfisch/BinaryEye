@@ -169,6 +169,7 @@ object WifiConnector {
 					"WPA", "WPA2" -> {
 						data.password?.let { setWpa2Passphrase(it) }
 					}
+
 					"WPA2-EAP" -> {
 						setWpa2EnterpriseConfig(WifiEnterpriseConfig().apply {
 							identity = data.identity
@@ -178,9 +179,11 @@ object WifiConnector {
 							data.phase2Method?.let { phase2Method = it }
 						})
 					}
+
 					"WPA3" -> {
 						data.password?.let { setWpa3Passphrase(it) }
 					}
+
 					"WPA3-EAP" -> {
 						setWpa3EnterpriseConfig(WifiEnterpriseConfig().apply {
 							identity = data.identity
@@ -240,6 +243,7 @@ object WifiConnector {
 					allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP40)
 					allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP104)
 				}
+
 				"WPA" -> {
 					passwordWithQuotes?.let {
 						preSharedKey = it
@@ -256,6 +260,7 @@ object WifiConnector {
 					allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP)
 					allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP)
 				}
+
 				"WPA2-EAP" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) {
 					passwordWithQuotes?.let {
 						preSharedKey = it

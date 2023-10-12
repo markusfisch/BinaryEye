@@ -13,7 +13,7 @@ import de.markusfisch.android.binaryeye.database.Database
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 class ScansAdapter(context: Context, cursor: Cursor) :
 	CursorAdapter(context, cursor, false) {
@@ -99,9 +99,11 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 					icon = R.drawable.ic_label
 					name
 				}
+
 				content.isNullOrEmpty() -> context.getString(
 					R.string.binary_data
 				)
+
 				else -> content
 			}
 			contentView.setCompoundDrawablesWithIntrinsicBounds(

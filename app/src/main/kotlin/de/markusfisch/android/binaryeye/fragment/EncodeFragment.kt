@@ -7,7 +7,13 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.SeekBar
+import android.widget.Spinner
+import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
 import de.markusfisch.android.binaryeye.app.addFragment
@@ -208,6 +214,7 @@ class EncodeFragment : Fragment() {
 					Format.DATA_MATRIX,
 					Format.QR_CODE,
 					Format.PDF_417 -> marginBarView.progress
+
 					else -> -1
 				},
 				format.getErrorCorrectionLevel(ecSpinner.selectedItemPosition),
@@ -326,6 +333,7 @@ private fun Format.canBeInverted() = when (this) {
 	Format.AZTEC,
 	Format.DATA_MATRIX,
 	Format.QR_CODE -> true
+
 	else -> false
 }
 

@@ -317,11 +317,13 @@ class DecodeFragment : Fragment() {
 				maybeBackOrFinish()
 				true
 			}
+
 			R.id.copy_to_clipboard -> {
 				copyToClipboard(textOrHex())
 				maybeBackOrFinish()
 				true
 			}
+
 			R.id.share -> {
 				context?.apply {
 					shareText(textOrHex())
@@ -329,17 +331,20 @@ class DecodeFragment : Fragment() {
 				}
 				true
 			}
+
 			R.id.create -> {
 				fragmentManager?.addFragment(
 					EncodeFragment.newInstance(content, format)
 				)
 				true
 			}
+
 			R.id.remove -> {
 				db.removeScan(id)
 				backOrFinish()
 				true
 			}
+
 			else -> super.onOptionsItemSelected(item)
 		}
 	}

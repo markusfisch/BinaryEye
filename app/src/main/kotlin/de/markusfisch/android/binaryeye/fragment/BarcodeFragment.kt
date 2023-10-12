@@ -142,12 +142,14 @@ class BarcodeFragment : Fragment() {
 				}
 				true
 			}
+
 			R.id.export_to_file -> {
 				context.pickFileType(R.string.export_as) {
 					askForFileNameAndSave(it)
 				}
 				true
 			}
+
 			else -> super.onOptionsItemSelected(item)
 		}
 	}
@@ -191,12 +193,14 @@ class BarcodeFragment : Fragment() {
 					) {
 						barcode.bitmap().saveAsPng(it)
 					}
+
 					FileType.SVG -> saveAs(
 						addSuffixIfNotGiven(fileName, ".svg"),
 						MIME_SVG
 					) { outputStream ->
 						outputStream.write(barcode.svg().toByteArray())
 					}
+
 					FileType.TXT -> saveAs(
 						addSuffixIfNotGiven(fileName, ".txt"),
 						MIME_TXT
@@ -337,6 +341,7 @@ private enum class Colors {
 	fun foregroundColor(): Int = when (this) {
 		BLACK_ON_WHITE,
 		BLACK_ON_TRANSPARENT -> COLOR_BLACK
+
 		WHITE_ON_BLACK,
 		WHITE_ON_TRANSPARENT -> COLOR_WHITE
 	}

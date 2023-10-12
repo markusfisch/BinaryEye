@@ -9,7 +9,12 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.app.*
+import de.markusfisch.android.binaryeye.app.PERMISSION_LOCATION
+import de.markusfisch.android.binaryeye.app.PERMISSION_WRITE
+import de.markusfisch.android.binaryeye.app.applyLocale
+import de.markusfisch.android.binaryeye.app.permissionGrantedCallback
+import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.app.setFragment
 import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.fragment.DecodeFragment
 import de.markusfisch.android.binaryeye.fragment.EncodeFragment
@@ -83,9 +88,11 @@ class MainActivity : AppCompatActivity() {
 				intent.hasExtra(ENCODE) -> EncodeFragment.newInstance(
 					intent.getStringExtra(ENCODE)
 				)
+
 				intent.hasExtra(DECODED) -> DecodeFragment.newInstance(
 					intent.getParcelableExtra(DECODED)!!
 				)
+
 				else -> PreferencesFragment()
 			}
 		}
