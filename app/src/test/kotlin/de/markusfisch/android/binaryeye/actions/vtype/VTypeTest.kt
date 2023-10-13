@@ -8,15 +8,36 @@ class VTypeTest {
 	fun vcard() {
 		val content = """BEGIN:VCARD
 N:Doe;John
+TEL:511
 END:VCARD"""
 
 		assertEquals("VCARD", VTypeParser.parseVType(content))
 
 		val info = VTypeParser.parseMap(content)
 
-		info["N"]?.singleOrNull()?.also {
-			assertEquals("Doe;John", it.value)
-		}
+		assertEquals("Doe;John", info["N"]?.singleOrNull()?.value)
+		assertEquals("511", info["TEL"]?.singleOrNull()?.value)
+	}
+
+	@Test
+	fun vcardWithExplicitTelType() {
+		val content = """BEGIN:VCARD
+N:Doe;John
+TEL;TYPE=WORK:511
+TEL;HOME:311
+END:VCARD"""
+
+		assertEquals("VCARD", VTypeParser.parseVType(content))
+
+		val info = VTypeParser.parseMap(content)
+
+		assertEquals("Doe;John", info["N"]?.singleOrNull()?.value)
+		val work = info["TEL"]?.get(0)
+		assertEquals("511", work?.value)
+		assertEquals("WORK", work?.firstTypeOrFirstInfo)
+		val home = info["TEL"]?.get(1)
+		assertEquals("311", home?.value)
+		assertEquals("HOME", home?.firstTypeOrFirstInfo)
 	}
 
 	@Test
@@ -33,15 +54,18 @@ END:VCALENDAR"""
 
 		val info = VTypeParser.parseMap(content)
 
-		info["SUMMARY"]?.singleOrNull()?.also {
-			assertEquals("foo", it.value)
-		}
-		info["DTSTART"]?.singleOrNull()?.also {
-			assertEquals("20080504T123456Z", it.value)
-		}
-		info["DTEND"]?.singleOrNull()?.also {
-			assertEquals("20080505T234555Z", it.value)
-		}
+		assertEquals(
+			"foo",
+			info["SUMMARY"]?.singleOrNull()?.value
+		)
+		assertEquals(
+			"20080504T123456Z",
+			info["DTSTART"]?.singleOrNull()?.value
+		)
+		assertEquals(
+			"20080505T234555Z",
+			info["DTEND"]?.singleOrNull()?.value
+		)
 	}
 
 	@Test
@@ -56,15 +80,18 @@ END:VEVENT"""
 
 		val info = VTypeParser.parseMap(content)
 
-		info["SUMMARY"]?.singleOrNull()?.also {
-			assertEquals("foo", it.value)
-		}
-		info["DTSTART"]?.singleOrNull()?.also {
-			assertEquals("20080504T123456Z", it.value)
-		}
-		info["DTEND"]?.singleOrNull()?.also {
-			assertEquals("20080505T234555Z", it.value)
-		}
+		assertEquals(
+			"foo",
+			info["SUMMARY"]?.singleOrNull()?.value
+		)
+		assertEquals(
+			"20080504T123456Z",
+			info["DTSTART"]?.singleOrNull()?.value
+		)
+		assertEquals(
+			"20080505T234555Z",
+			info["DTEND"]?.singleOrNull()?.value
+		)
 	}
 
 	@Test
@@ -79,14 +106,17 @@ END:VEVENT"""
 
 		val info = VTypeParser.parseMap(content)
 
-		info["SUMMARY"]?.singleOrNull()?.also {
-			assertEquals("foo", it.value)
-		}
-		info["DTSTART"]?.singleOrNull()?.also {
-			assertEquals("20080504T123456Z", it.value)
-		}
-		info["DTEND"]?.singleOrNull()?.also {
-			assertEquals("20080505T234555Z", it.value)
-		}
+		assertEquals(
+			"foo",
+			info["SUMMARY"]?.singleOrNull()?.value
+		)
+		assertEquals(
+			"20080504T123456Z",
+			info["DTSTART"]?.singleOrNull()?.value
+		)
+		assertEquals(
+			"20080505T234555Z",
+			info["DTEND"]?.singleOrNull()?.value
+		)
 	}
 }
