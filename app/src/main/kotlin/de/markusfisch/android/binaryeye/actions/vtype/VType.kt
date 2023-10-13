@@ -39,6 +39,6 @@ data class VTypeProperty(
 		} ?: this.info.firstOrNull()
 
 	companion object {
-		private val typeRegex = """^(?:TYPE=)(.+?)[:;]?.*$""".toRegex(RegexOption.IGNORE_CASE)
+		private val typeRegex = """^TYPE=([A-Z_]+)[:;]?.*$""".toRegex(RegexOption.IGNORE_CASE)
 	}
 }
