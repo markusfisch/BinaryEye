@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.61.0
+* Support encoding binary data
+* Add margin parameter for encoding
+* Add copying binary data as hex dump
+* Fix parsing TYPE argument in VCARDs
+* Update Russian translation
+* Update Brazilian Portuguese translation
+* Update Ukrainian translation
+* Update Chinese translation
+
 ## 1.60.3
 * Fix saving custom language
 * Update Brazilian Portuguese translation
