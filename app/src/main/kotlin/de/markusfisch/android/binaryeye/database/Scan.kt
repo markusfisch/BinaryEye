@@ -151,7 +151,7 @@ data class Recreation(
 	val size: Int,
 	val margin: Int
 ) {
-	fun encode(content: String): Bitmap? = try {
+	fun <T> encode(content: T): Bitmap? = try {
 		ZxingCpp.encodeAsBitmap(
 			content, format, size, size, margin, ecLevel
 		)
@@ -163,22 +163,18 @@ data class Recreation(
 fun Scan.toRecreation(
 	size: Int = 128,
 	margin: Int = -1
-) = if (content.isEmpty()) {
-	null
-} else {
-	Recreation(
-		Format.valueOf(format),
-		when (errorCorrectionLevel) {
-			"L" -> 0
-			"M" -> 4
-			"Q" -> 6
-			"H" -> 8
-			else -> -1
-		},
-		size,
-		margin
-	)
-}
+) = Recreation(
+	Format.valueOf(format),
+	when (errorCorrectionLevel) {
+		"L" -> 0
+		"M" -> 4
+		"Q" -> 6
+		"H" -> 8
+		else -> -1
+	},
+	size,
+	margin
+)
 
 private fun getDateTime(
 	time: Long = System.currentTimeMillis()
