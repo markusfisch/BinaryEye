@@ -176,7 +176,7 @@
 	<string name="saved_in_downloads">Сохранено в загрузках</string>
 	<string name="rotate_image_cw">Повернуть изображение по часовой стрелке</string>
 	<string name="toggle_free_rotation">Переключить свободный поворот</string>
-	<string name="pick_file">Pick a file</string>
+	<string name="pick_file">Открыть файл</string>
 	<string name="pick_image_file">Открыть файл с изображением</string>
 	<string name="pick_code_to_scan">Выберите штрих-код для сканирования</string>
 	<string name="shortcut_decode">Сканировать штрих-код</string>
@@ -190,7 +190,7 @@
 	<string name="wifi_password">Пароль</string>
 	<string name="wifi_hidden">Скрытая сеть</string>
 	<string name="wifi_eap">Тип EAP</string>
-	<string name="wifi_anonymous_identity">Аноним</string>
+	<string name="wifi_anonymous_identity">Анонимно</string>
 	<string name="wifi_identity">Пользователь</string>
 	<string name="wifi_phase2">Двухэтапный метод</string>
 	<string name="network_suggestions">Сетевые предложения</string>
