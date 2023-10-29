@@ -44,14 +44,21 @@ object WifiConnector {
 		passwordBlock?.apply {
 			invoke(parsedData.password)
 		}
-		return if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
-			// WifiConfiguration is deprecated in Android Q but
-			// because it's only possible in R to query network
-			// suggestions, we still use the deprecated API on Q.
-			@Suppress("DEPRECATION")
-			WifiConfiguration().apply(parsedData)
-		} else {
-			WifiNetworkSuggestion.Builder().apply(parsedData)
+		return try {
+			if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+				// WifiConfiguration is deprecated in Android Q but
+				// because it's only possible in R to query network
+				// suggestions, we still use the deprecated API on Q.
+				@Suppress("DEPRECATION")
+				WifiConfiguration().apply(parsedData)
+			} else {
+				WifiNetworkSuggestion.Builder().apply(parsedData)
+			}
+		} catch (e: IllegalArgumentException) {
+			// Some arguments may be out of range, e.g. SSIDs cannot
+			// be longer than 32 characters in some versions of Android.
+			// See: https://github.com/markusfisch/BinaryEye/issues/402
+			null
 		}
 	}
 

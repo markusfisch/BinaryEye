@@ -22,10 +22,9 @@ object WifiAction : IAction {
 		context: Context,
 		data: ByteArray
 	) = withContext(Dispatchers.IO) {
-		val wifiConfig = WifiConnector.parse(
-			String(data)
-		) ?: return@withContext
-		val message = WifiConnector.addNetwork(context, wifiConfig)
+		val message = WifiConnector.parse(String(data))?.let {
+			WifiConnector.addNetwork(context, it)
+		} ?: R.string.wifi_config_failed
 		withContext(Dispatchers.Main) {
 			context.toast(message)
 		}
