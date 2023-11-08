@@ -4,7 +4,7 @@
 	android:key="preferences">
 	<PreferenceCategory android:title="@string/scan_category">
 		<MultiSelectListPreference
-			android:key="barcode_formats"
+			android:key="formats"
 			android:title="@string/barcode_formats"
 			android:entries="@array/barcode_formats_names"
 			android:entryValues="@array/barcode_formats_values"/>
