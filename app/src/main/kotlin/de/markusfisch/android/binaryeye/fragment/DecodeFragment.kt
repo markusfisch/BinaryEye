@@ -204,11 +204,12 @@ class DecodeFragment : Fragment() {
 		}
 		recreationView.showIf(prefs.showRecreation) { v ->
 			val r = recreation ?: return@showIf
-			v.setImageBitmap(r.encode(if (isBinary) bytes else text))
+			val content = if (isBinary) bytes else text
+			v.setImageBitmap(r.encode(content))
 			v.setOnClickListener {
 				fragmentManager?.addFragment(
 					BarcodeFragment.newInstance(
-						text,
+						content,
 						r.format,
 						r.size,
 						r.ecLevel
