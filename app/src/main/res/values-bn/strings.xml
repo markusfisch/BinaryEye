@@ -31,6 +31,7 @@
 	<string name="toggle_flash">আলো</string>
 	<string name="error_flash">Error toggling flash</string>
 	<string name="share">ভাগ করো</string>
+	<string name="share_file">Share as file</string>
 	<string name="share_as">ভাগ করার মাধ্যম</string>
 	<string name="copy_to_clipboard">ক্লিপবোর্ডে অনুলিপি</string>
 	<string name="copied_to_clipboard">ক্লিপবোর্ডে অনুলিপিত</string>

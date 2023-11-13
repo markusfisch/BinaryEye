@@ -31,6 +31,7 @@
 	<string name="toggle_flash">Licht an/ausschalten</string>
 	<string name="error_flash">Fehler beim ein/ausschalten des Lichts</string>
 	<string name="share">Teilen</string>
+	<string name="share_file">Als Datei teilen</string>
 	<string name="share_as">Teilen als?</string>
 	<string name="copy_to_clipboard">In die Zwischenablage kopieren</string>
 	<string name="copied_to_clipboard">Inhalt wurde in die Zwischenablage kopiert</string>

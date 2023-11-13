@@ -31,6 +31,7 @@
 	<string name="toggle_flash">Превключване на светкавицата</string>
 	<string name="error_flash">Грешка при превключването на светкавицата</string>
 	<string name="share">Сподели</string>
+	<string name="share_file">Share as file</string>
 	<string name="share_as">Сподели като?</string>
 	<string name="copy_to_clipboard">Копиране в клипборда</string>
 	<string name="copied_to_clipboard">Копирано в клипборда</string>

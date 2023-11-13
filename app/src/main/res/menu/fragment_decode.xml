@@ -24,6 +24,11 @@
 		android:icon="@drawable/ic_action_share"
 		material:showAsAction="ifRoom"/>
 	<item
+		android:id="@+id/share_file"
+		android:title="@string/share_file"
+		android:icon="@drawable/ic_action_share"
+		material:showAsAction="ifRoom"/>
+	<item
 		android:id="@+id/create"
 		android:title="@string/compose_barcode"
 		android:icon="@drawable/ic_action_create"

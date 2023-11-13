@@ -30,6 +30,7 @@
 	<string name="toggle_flash">开关闪光灯</string>
 	<string name="error_flash">开关闪光灯出错</string>
 	<string name="share">分享</string>
+	<string name="share_file">Share as file</string>
 	<string name="share_as">以何种方式分享？</string>
 	<string name="copy_to_clipboard">复制到剪贴板</string>
 	<string name="copied_to_clipboard">已复制到剪贴板</string>

@@ -10,6 +10,8 @@ import de.markusfisch.android.binaryeye.BuildConfig
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.widget.toast
 import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 fun Context.execShareIntent(intent: Intent): Boolean = if (
 	!startIntent(intent)
@@ -57,6 +59,39 @@ fun Context.shareText(text: String, mimeType: String = "text/plain") {
 		putExtra(Intent.EXTRA_TEXT, text)
 		type = mimeType
 	})
+}
+
+private const val SHARE_AS_TEXT_FILE_NAME = "barcode_content"
+fun Context.wipeShareFile() {
+	File(externalCacheDir, SHARE_AS_TEXT_FILE_NAME).delete()
+}
+
+fun <T> Context.shareAsFile(content: T) {
+	val (bytes, mimeType) = when (content) {
+		is ByteArray -> Pair(
+			content,
+			"text/plain"
+		)
+
+		is String -> Pair(
+			content.toByteArray(),
+			"application/octet-stream"
+		)
+
+		else -> throw IllegalArgumentException(
+			"Unsupported content text for shareAsFile()"
+		)
+	}
+	val file = File(externalCacheDir, SHARE_AS_TEXT_FILE_NAME)
+	try {
+		FileOutputStream(file).use {
+			it.write(bytes)
+		}
+	} catch (e: IOException) {
+		toast(R.string.error_saving_file)
+		return
+	}
+	shareFile(file, mimeType)
 }
 
 fun Context.shareFile(file: File, mimeType: String) {

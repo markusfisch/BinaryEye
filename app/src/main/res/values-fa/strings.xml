@@ -31,6 +31,7 @@
 	<string name="toggle_flash">روشن/خاموش کردن چراغ</string>
 	<string name="error_flash">خطا هنگام روشن/خاموش کردن چراغ</string>
 	<string name="share">هم‌رسانی</string>
+	<string name="share_file">Share as file</string>
 	<string name="share_as">هم‌رسانی به عنوان؟</string>
 	<string name="copy_to_clipboard">رونوشت به تخه‌گیره</string>
 	<string name="copied_to_clipboard">به تخته‌گیره رونوشت شد</string>

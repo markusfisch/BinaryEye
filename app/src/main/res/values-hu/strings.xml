@@ -31,6 +31,7 @@
 	<string name="toggle_flash">Vaku be- vagy kikapcsolása</string>
 	<string name="error_flash">Hiba a vaku be- vagy kikapcsolásakor</string>
 	<string name="share">Megosztás</string>
+	<string name="share_file">Share as file</string>
 	<string name="share_as">Megosztja másként?</string>
 	<string name="copy_to_clipboard">Másolás a vágólapra</string>
 	<string name="copied_to_clipboard">Vágólapra helyezés</string>

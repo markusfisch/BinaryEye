@@ -31,6 +31,7 @@
 	<string name="toggle_flash">Flaşı aç</string>
 	<string name="error_flash">Flaş açılırken hata oluştu</string>
 	<string name="share">Paylaş</string>
+	<string name="share_file">Share as file</string>
 	<string name="share_as">Şöyle paylaş:</string>
 	<string name="copy_to_clipboard">Panoya kopyala</string>
 	<string name="copied_to_clipboard">Panoya kopyalandı</string>

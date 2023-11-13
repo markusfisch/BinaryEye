@@ -30,6 +30,7 @@
 	<string name="toggle_flash">Nyala/matikan blitz</string>
 	<string name="error_flash">Galat nyala/matikan blitz</string>
 	<string name="share">Bagikan</string>
+	<string name="share_file">Share as file</string>
 	<string name="share_as">Bagikan sebagai?</string>
 	<string name="copy_to_clipboard">Salin ke clipboard</string>
 	<string name="copied_to_clipboard">Disalin ke clipboard</string>

@@ -32,6 +32,7 @@
 	<string name="toggle_flash">Activer le flash</string>
 	<string name="error_flash">Erreur de basculement du flash</string>
 	<string name="share">Partager</string>
+	<string name="share_file">Share as file</string>
 	<string name="share_as">Partager comme ?</string>
 	<string name="copy_to_clipboard">Copier dans le presse-papiers</string>
 	<string name="copied_to_clipboard">Copié dans le presse-papiers</string>

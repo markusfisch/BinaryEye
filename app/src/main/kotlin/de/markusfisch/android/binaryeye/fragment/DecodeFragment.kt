@@ -19,8 +19,10 @@ import de.markusfisch.android.binaryeye.activity.MainActivity
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.content.copyToClipboard
+import de.markusfisch.android.binaryeye.content.shareAsFile
 import de.markusfisch.android.binaryeye.content.shareText
 import de.markusfisch.android.binaryeye.content.toHexString
+import de.markusfisch.android.binaryeye.content.wipeShareFile
 import de.markusfisch.android.binaryeye.database.Recreation
 import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.database.toRecreation
@@ -124,6 +126,7 @@ class DecodeFragment : Fragment() {
 	override fun onDestroy() {
 		super.onDestroy()
 		parentJob.cancel()
+		activity?.wipeShareFile()
 	}
 
 	private fun initContentAndFab(originalContent: String) {
@@ -325,6 +328,14 @@ class DecodeFragment : Fragment() {
 			R.id.share -> {
 				context?.apply {
 					shareText(textOrHex())
+					maybeBackOrFinish()
+				}
+				true
+			}
+
+			R.id.share_file -> {
+				context?.apply {
+					shareAsFile(if (isBinary) originalBytes else content)
 					maybeBackOrFinish()
 				}
 				true

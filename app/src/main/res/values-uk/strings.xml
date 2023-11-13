@@ -32,6 +32,7 @@
 	<string name="toggle_flash">Увімкнути спалах</string>
 	<string name="error_flash">Помилка під час увімкнення спалаху</string>
 	<string name="share">Поділитися</string>
+	<string name="share_file">Share as file</string>
 	<string name="share_as">Поділитися як?</string>
 	<string name="copy_to_clipboard">Копіювати у буфер обміну</string>
 	<string name="copied_to_clipboard">Скопійовано у буфер обміну</string>

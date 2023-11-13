@@ -31,6 +31,7 @@
 	<string name="toggle_flash">Ligar lanterna</string>
 	<string name="error_flash">Falha ao ligar a lanterna</string>
 	<string name="share">Compartilhe</string>
+	<string name="share_file">Share as file</string>
 	<string name="share_as">Compartilhar em qual formato?</string>
 	<string name="copy_to_clipboard">Copiar ao clipboard</string>
 	<string name="copied_to_clipboard">Copiado ao clipboard</string>

@@ -8,6 +8,7 @@
 	<string name="vevent_add">Dodaj do kalendarza</string>
 	<string name="shortcut_preferences">Ustawienia</string>
 	<string name="share">Udostępnij</string>
+	<string name="share_file">Share as file</string>
 	<string name="share_as">Udostępnij jako?</string>
 	<string name="error_saving_file">Nie można zapisać pliku</string>
 	<string name="clear_history">Wyczyść historię</string>

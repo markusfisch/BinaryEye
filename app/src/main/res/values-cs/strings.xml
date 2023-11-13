@@ -33,6 +33,7 @@
 	<string name="toggle_flash">Přepnout blesk</string>
 	<string name="error_flash">Zapnutí/vypnutí blesku selhalo</string>
 	<string name="share">Sdílet</string>
+	<string name="share_file">Share as file</string>
 	<string name="share_as">Sdílet jako</string>
 	<string name="copy_to_clipboard">Zkopírovat do schránky</string>
 	<string name="copied_to_clipboard">Zkopírováno do schránky</string>

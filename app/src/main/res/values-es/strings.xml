@@ -31,6 +31,7 @@
 	<string name="toggle_flash">Activar el flash</string>
 	<string name="error_flash">Error toggling flash</string>
 	<string name="share">Compartir</string>
+	<string name="share_file">Share as file</string>
 	<string name="share_as">¿Compartir como?</string>
 	<string name="copy_to_clipboard">Copiar al portapapeles</string>
 	<string name="copied_to_clipboard">Copiado al portapapeles</string>

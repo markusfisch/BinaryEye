@@ -31,6 +31,7 @@
 	<string name="toggle_flash">Slå blitz til/fra</string>
 	<string name="error_flash">Der opstod en fejl ved at slå blitz til/fra</string>
 	<string name="share">Del</string>
+	<string name="share_file">Share as file</string>
 	<string name="share_as">Del som?</string>
 	<string name="copy_to_clipboard">Kopier til udklipsholder</string>
 	<string name="copied_to_clipboard">Kopieret til udklipsholder</string>

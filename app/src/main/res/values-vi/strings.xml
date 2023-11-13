@@ -30,6 +30,7 @@
 	<string name="toggle_flash">Bật/tắt đèn</string>
 	<string name="error_flash">Error toggling flash</string>
 	<string name="share">Chia sẻ</string>
+	<string name="share_file">Share as file</string>
 	<string name="share_as">Chia sẻ dưới định dạng?</string>
 	<string name="copy_to_clipboard">Sao chép</string>
 	<string name="copied_to_clipboard">Đã sao chép</string>
