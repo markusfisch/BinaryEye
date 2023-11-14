@@ -1,0 +1,6 @@
+* Share scanned contents as a file
+* Recreate binary barcodes too
+* Add Bulgarian translation and Brave search engine
+* Update Russian translation
+* Fix general format restriction from preferences
+

@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.61.1
+* Share scanned contents as a file
+* Recreate binary barcodes too
+* Add Bulgarian translation and Brave search engine
+* Update Russian translation
+* Fix general format restriction from preferences
+
 ## 1.61.0
 * Support encoding binary data
 * Add margin parameter for encoding
