@@ -69,9 +69,11 @@
 				<category android:name="android.intent.category.DEFAULT"/>
 			</intent-filter>
 			<intent-filter>
-				<action android:name="com.xiaomi.scanner"/>
+				<action android:name="android.intent.action.VIEW"/>
 				<category android:name="android.intent.category.DEFAULT"/>
-				<data android:scheme="market"/>
+				<category android:name="android.intent.category.BROWSABLE"/>
+				<data android:host="details" android:scheme="market"
+					android:pathSuffix="id=com.xiaomi.scanner"/>
 			</intent-filter>
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW"/>
