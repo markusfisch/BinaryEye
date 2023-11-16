@@ -33,7 +33,7 @@
 	<string name="toggle_flash">Přepnout blesk</string>
 	<string name="error_flash">Zapnutí/vypnutí blesku selhalo</string>
 	<string name="share">Sdílet</string>
-	<string name="share_file">Share as file</string>
+	<string name="share_file">Sdílet jako soubor</string>
 	<string name="share_as">Sdílet jako</string>
 	<string name="copy_to_clipboard">Zkopírovat do schránky</string>
 	<string name="copied_to_clipboard">Zkopírováno do schránky</string>
@@ -44,7 +44,7 @@
 	<string name="pick_search_engine">Zvolte vyhledávač</string>
 	<string name="format">Formát</string>
 	<string name="size_width_by_height">Velikost v pixelech: %1$d×%2$d</string>
-	<string name="margin_size">Margin in pixels: %1$d</string>
+	<string name="margin_size">Okraje v pixelech: %1$d</string>
 	<string name="input_content_here">Sem vložte obsah</string>
 	<string name="unescape">Rozšířit escape sekvence</string>
 	<string name="encode">ZAKÓDOVAT</string>
@@ -116,7 +116,7 @@
 	<string name="clear_network_suggestions_summary">Smazat všechny sítě, které byly navrženy touto aplikací.</string>
 	<string name="really_remove_all_networks">Opravdu smazat všechny sítě?</string>
 	<string name="clear_network_suggestions_success">Navrhované sítě smazány</string>
-	<string name="clear_network_suggestions_nothing_to_remove">Nic k smazání</string>
+	<string name="clear_network_suggestions_nothing_to_remove">Nic ke smazání</string>
 	<string name="send_category">Předávání</string>
 	<string name="send_scan_active">Předávat skeny</string>
 	<string name="send_scan_active_summary">Zapnout předávání skenů na danou URL</string>
@@ -177,7 +177,7 @@
 	<string name="saved_in_downloads">Uloženo do složky Stahování</string>
 	<string name="rotate_image_cw">Otočit obrázek po směru hodinových ručiček</string>
 	<string name="toggle_free_rotation">Přepnout zámek natočení</string>
-	<string name="pick_file">Pick a file</string>
+	<string name="pick_file">Vybrat soubor</string>
 	<string name="pick_image_file">Vybrat obrázek</string>
 	<string name="pick_code_to_scan">Vyberte kód k naskenování</string>
 	<string name="shortcut_decode">Skenovat čárový kód</string>
