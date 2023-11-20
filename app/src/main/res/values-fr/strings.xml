@@ -30,7 +30,7 @@
 	<string name="barcode_version_number">Version</string>
 	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
 	<string name="toggle_flash">Activer/Désactiver le flash</string>
-	<string name="error_flash">Erreur de changement d'état du flash</string>
+	<string name="error_flash">Erreur de changement d\'état du flash</string>
 	<string name="share">Partager</string>
 	<string name="share_file">Partager en tant que fichier</string>
 	<string name="share_as">Partager en tant que ?</string>
@@ -45,7 +45,7 @@
 	<string name="size_width_by_height">Taille en pixels : %1$d×%2$d</string>
 	<string name="margin_size">Marge en pixels : %1$d</string>
 	<string name="input_content_here">Insérer le contenu ici</string>
-	<string name="unescape">Étendre les caractères d'échappement</string>
+	<string name="unescape">Étendre les caractères d\'échappement</string>
 	<string name="encode">ENCODER</string>
 	<string name="error_no_content">Contenu manquant</string>
 	<string name="error_encoding_barcode">Le code-barres ne peut pas être généré</string>
@@ -99,7 +99,7 @@
 	<string name="open_immediately">Ouvrir immédiatement</string>
 	<string name="open_immediately_summary">Ignorer l\'inspection et ouvrir le contenu immédiatement. Si cette option est activée, cela peut ouvrir un contenu nocif.</string>
 	<string name="copy_immediately">Copier dans le presse-papiers</string>
-	<string name="copy_immediately_summary">Copier automatiquement les contenus scannés dans le presse-papiers. Veuillez noter que d'autres applications peuvent lire dans votre presse-papiers en arrière-plan.</string>
+	<string name="copy_immediately_summary">Copier automatiquement les contenus scannés dans le presse-papiers. Veuillez noter que d\'autres applications peuvent lire dans votre presse-papiers en arrière-plan.</string>
 	<string name="show_meta_data">Afficher les métadonnées</string>
 	<string name="show_meta_data_summary">Afficher des informations supplémentaires sur le code-barres scanné.</string>
 	<string name="show_hex_dump">Afficher le dump hexadécimal</string>
@@ -113,7 +113,7 @@
 	<string name="open_with_url">Ouvrir les données inconnues avec l’URL</string>
 	<string name="clear_network_suggestions">Supprimer les suggestions de réseau</string>
 	<string name="clear_network_suggestions_summary">Supprimer toutes les suggestions de réseau précédemment fournies par cette application.</string>
-	<string name="really_remove_all_networks">Vraiment supprimer tous les réseaux ?</string>
+	<string name="really_remove_all_networks">Vraiment supprimer tous les réseaux ?</string>
 	<string name="clear_network_suggestions_success">Suggestion(s) de réseau(x) supprimée(s)</string>
 	<string name="clear_network_suggestions_nothing_to_remove">Rien à supprimer</string>
 	<string name="send_category">Transfert</string>
@@ -131,8 +131,8 @@
 	<string name="send_scan_bluetooth_summary">Partager les scans à un hôte Bluetooth donné.</string>
 	<string name="send_scan_bluetooth_host">Hôte</string>
 	<string name="no_bluetooth_hosts_paired">Aucun hôte appairé</string>
-	<string name="bluetooth_connect_fail">Impossible de se connecter à l'appareil Bluetooth.</string>
-	<string name="bluetooth_send_fail">Impossible d'envoyer à l'appareil Bluetooth.</string>
+	<string name="bluetooth_connect_fail">Impossible de se connecter à l\'appareil Bluetooth.</string>
+	<string name="bluetooth_send_fail">Impossible d\'envoyer à l\'appareil Bluetooth.</string>
 	<string name="bluetooth_send_success">Envoi Bluetooth réussi.</string>
 	<string name="really_remove_scan">Supprimer le scan ?</string>
 	<string name="really_remove_all_scans">Supprimer tous les scans ?</string>
