@@ -33,7 +33,7 @@
 	<string name="toggle_flash">Включить вспышку</string>
 	<string name="error_flash">Ошибка при переключении вспышки</string>
 	<string name="share">Поделиться</string>
-	<string name="share_file">Share as file</string>
+	<string name="share_file">Поделиться файлом</string>
 	<string name="share_as">Поделиться как?</string>
 	<string name="copy_to_clipboard">Скопировать в буфер обмена</string>
 	<string name="copied_to_clipboard">Скопировано в буфер обмена</string>
