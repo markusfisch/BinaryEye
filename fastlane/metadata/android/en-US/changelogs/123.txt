@@ -1,0 +1,6 @@
+* Fix quick settings tile for Android 14
+* Fix Xiaomi MIUI lockscreen barcode shortcut
+* Update French translation
+* Update Czech translation
+* Update Russian translation
+

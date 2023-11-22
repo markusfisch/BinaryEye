@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.61.2
+* Fix quick settings tile for Android 14
+* Fix Xiaomi MIUI lockscreen barcode shortcut
+* Update French translation
+* Update Czech translation
+* Update Russian translation
+
 ## 1.61.1
 * Share scanned contents as a file
 * Recreate binary barcodes too
