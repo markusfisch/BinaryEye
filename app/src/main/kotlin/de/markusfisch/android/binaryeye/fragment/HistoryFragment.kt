@@ -427,7 +427,12 @@ class HistoryFragment : Fragment() {
 	private fun shareScans(format: String) = scope.launch {
 		progressView.useVisibility {
 			var text: String? = null
-			db.getScansDetailed(filter)?.use { cursor ->
+			val selectedIds = scansAdapter?.getSelectedIds()
+			if (selectedIds?.isNotEmpty() == true) {
+				db.getScansDetailed(selectedIds.toLongArray())
+			} else {
+				db.getScansDetailed(filter)
+			}?.use { cursor ->
 				val details = format.split(":")
 				text = when (details[0]) {
 					"text" -> cursor.exportText(details[1])

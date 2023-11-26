@@ -69,6 +69,29 @@ class Database {
 		null
 	}
 
+	fun getScansDetailed(ids: LongArray): Cursor? = db.rawQuery(
+		"""SELECT
+			$SCANS_ID,
+			$SCANS_DATETIME,
+			$SCANS_NAME,
+			$SCANS_CONTENT,
+			$SCANS_RAW,
+			$SCANS_FORMAT,
+			$SCANS_ERROR_CORRECTION_LEVEL,
+			$SCANS_VERSION,
+			$SCANS_SEQUENCE_SIZE,
+			$SCANS_SEQUENCE_INDEX,
+			$SCANS_SEQUENCE_ID,
+			$SCANS_GTIN_COUNTRY,
+			$SCANS_GTIN_ADD_ON,
+			$SCANS_GTIN_PRICE,
+			$SCANS_GTIN_ISSUE_NUMBER
+			FROM $SCANS
+			WHERE $SCANS_ID IN (?)
+			ORDER BY $SCANS_DATETIME DESC
+		""".trimMargin(), arrayOf(ids.joinToString(","))
+	)
+
 	fun getScan(id: Long): Scan? = db.rawQuery(
 		"""SELECT
 			$SCANS_ID,
