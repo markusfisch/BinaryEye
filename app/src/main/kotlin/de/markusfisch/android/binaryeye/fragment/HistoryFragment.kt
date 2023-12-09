@@ -24,6 +24,7 @@ import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.shareAsFile
 import de.markusfisch.android.binaryeye.content.shareText
+import de.markusfisch.android.binaryeye.content.wipeShareFile
 import de.markusfisch.android.binaryeye.database.*
 import de.markusfisch.android.binaryeye.io.askForFileName
 import de.markusfisch.android.binaryeye.io.toSaveResult
@@ -178,6 +179,7 @@ class HistoryFragment : Fragment() {
 		super.onDestroy()
 		scansAdapter?.changeCursor(null)
 		parentJob.cancel()
+		activity?.wipeShareFile()
 	}
 
 	override fun onPause() {
