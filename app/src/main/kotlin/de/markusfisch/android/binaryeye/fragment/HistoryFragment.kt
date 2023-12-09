@@ -187,11 +187,19 @@ class HistoryFragment : Fragment() {
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 		inflater.inflate(R.menu.fragment_history, menu)
-		initSearchView(menu.findItem(R.id.search))
-		menu.setGroupVisible(R.id.scans_available, scansAdapter?.count != 0)
-		clearListMenuItem = menu.findItem(R.id.clear)
-		exportHistoryMenuItem = menu.findItem(R.id.export_history)
-		shareAsFileMenuItem = menu.findItem(R.id.share_as_file)
+		val searchMenuItem = menu.findItem(R.id.search)
+		initSearchView(searchMenuItem)
+		val visible = scansAdapter?.count != 0
+		searchMenuItem?.isVisible = visible
+		exportHistoryMenuItem = menu.findItem(R.id.export_history)?.apply {
+			isVisible = visible
+		}
+		shareAsFileMenuItem = menu.findItem(R.id.share_as_file)?.apply {
+			isVisible = visible
+		}
+		clearListMenuItem = menu.findItem(R.id.clear)?.apply {
+			isVisible = visible
+		}
 	}
 
 	private fun initSearchView(item: MenuItem?) {
