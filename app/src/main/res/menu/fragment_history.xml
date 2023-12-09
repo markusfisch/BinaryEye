@@ -10,6 +10,11 @@
 			material:actionViewClass="android.support.v7.widget.SearchView"
 			material:showAsAction="collapseActionView|always"/>
 		<item
+			android:id="@+id/share_as_file"
+			android:icon="@drawable/ic_action_share"
+			android:title="@string/share_file"
+			material:showAsAction="ifRoom"/>
+		<item
 			android:id="@+id/export_history"
 			android:icon="@drawable/ic_action_export"
 			android:title="@string/export_to_file"

@@ -22,6 +22,7 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.ScansAdapter
 import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.content.copyToClipboard
+import de.markusfisch.android.binaryeye.content.shareAsFile
 import de.markusfisch.android.binaryeye.content.shareText
 import de.markusfisch.android.binaryeye.database.*
 import de.markusfisch.android.binaryeye.io.askForFileName
@@ -117,6 +118,7 @@ class HistoryFragment : Fragment() {
 	private var filter: String? = null
 	private var clearListMenuItem: MenuItem? = null
 	private var exportHistoryMenuItem: MenuItem? = null
+	private var shareAsFileMenuItem: MenuItem? = null
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -159,7 +161,7 @@ class HistoryFragment : Fragment() {
 
 		fab = view.findViewById(R.id.share)
 		fab.setOnClickListener { v ->
-			v.context.pickListSeparatorAndShare()
+			v.context.pickListSeparatorAndShare(false)
 		}
 
 		progressView = view.findViewById(R.id.progress_view)
@@ -189,6 +191,7 @@ class HistoryFragment : Fragment() {
 		menu.setGroupVisible(R.id.scans_available, scansAdapter?.count != 0)
 		clearListMenuItem = menu.findItem(R.id.clear)
 		exportHistoryMenuItem = menu.findItem(R.id.export_history)
+		shareAsFileMenuItem = menu.findItem(R.id.share_as_file)
 	}
 
 	private fun initSearchView(item: MenuItem?) {
@@ -227,6 +230,11 @@ class HistoryFragment : Fragment() {
 
 			R.id.export_history -> {
 				askToExportToFile()
+				true
+			}
+
+			R.id.share_as_file -> {
+				context.pickListSeparatorAndShare(true)
 				true
 			}
 
@@ -283,6 +291,7 @@ class HistoryFragment : Fragment() {
 	private fun enableMenuItems(enabled: Boolean) {
 		clearListMenuItem?.isEnabled = enabled
 		exportHistoryMenuItem?.isEnabled = enabled
+		shareAsFileMenuItem?.isEnabled = enabled
 	}
 
 	private fun closeActionMode() {
@@ -412,19 +421,19 @@ class HistoryFragment : Fragment() {
 		}
 	}
 
-	private fun Context.pickListSeparatorAndShare() {
+	private fun Context.pickListSeparatorAndShare(asFile: Boolean) {
 		val separators = resources.getStringArray(
 			R.array.list_separators_values
 		)
 		AlertDialog.Builder(this)
 			.setTitle(R.string.pick_list_separator)
 			.setItems(R.array.list_separators_names) { _, which ->
-				shareScans(separators[which])
+				shareScans(separators[which], asFile)
 			}
 			.show()
 	}
 
-	private fun shareScans(format: String) = scope.launch {
+	private fun shareScans(format: String, asFile: Boolean) = scope.launch {
 		progressView.useVisibility {
 			var text: String? = null
 			val selectedIds = scansAdapter?.getSelectedIds()
@@ -442,7 +451,11 @@ class HistoryFragment : Fragment() {
 			}
 			text?.let {
 				withContext(Dispatchers.Main) {
-					context.shareText(it)
+					if (asFile) {
+						context.shareAsFile(it)
+					} else {
+						context.shareText(it)
+					}
 				}
 			}
 		}
