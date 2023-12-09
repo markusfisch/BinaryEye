@@ -69,7 +69,7 @@ private fun Scan.asJson() = JSONObject().apply {
 private fun Scan.getMap(): Map<String, String> = mapOf(
 	"content" to content,
 	"raw" to raw?.toHexString(),
-	"format" to format,
+	"format" to format.name,
 	"errorCorrectionLevel" to errorCorrectionLevel,
 	"version" to version,
 	"sequenceSize" to sequenceSize.toString(),

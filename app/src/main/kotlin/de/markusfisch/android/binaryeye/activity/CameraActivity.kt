@@ -43,7 +43,8 @@ import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.cameraview.widget.CameraView
 import de.markusfisch.android.zxingcpp.ZxingCpp
 import de.markusfisch.android.zxingcpp.ZxingCpp.Binarizer
-import de.markusfisch.android.zxingcpp.ZxingCpp.DecodeHints
+import de.markusfisch.android.zxingcpp.ZxingCpp.ReaderOptions
+import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
 import kotlin.math.max
 import kotlin.math.min
@@ -58,7 +59,7 @@ class CameraActivity : AppCompatActivity() {
 	private lateinit var zoomBar: SeekBar
 	private lateinit var flashFab: FloatingActionButton
 
-	private var formatsToRead = setOf<String>()
+	private var formatsToRead = setOf<BarcodeFormat>()
 	private var frameMetrics = FrameMetrics()
 	private var decoding = true
 	private var returnResult = false
@@ -167,7 +168,7 @@ class CameraActivity : AppCompatActivity() {
 		} else {
 			setTitle(R.string.scan_code)
 			prefs.barcodeFormats
-		}
+		}.toFormatSet()
 	}
 
 	private fun setReturnTarget(intent: Intent?) {
@@ -432,7 +433,7 @@ class CameraActivity : AppCompatActivity() {
 				ignoreNext = null
 				decoding = true
 				// These settings can't change while the camera is open.
-				val decodeHints = DecodeHints(
+				val options = ReaderOptions(
 					tryHarder = prefs.tryHarder,
 					tryRotate = prefs.autoRotate,
 					tryInvert = true,
@@ -449,7 +450,7 @@ class CameraActivity : AppCompatActivity() {
 							frameRoi.left, frameRoi.top,
 							frameRoi.width(), frameRoi.height(),
 							frameMetrics.orientation,
-							decodeHints.apply {
+							options.apply {
 								// By default, ZXing uses LOCAL_AVERAGE, but
 								// this does not work well with inverted
 								// barcodes on low-contrast backgrounds.
@@ -458,7 +459,7 @@ class CameraActivity : AppCompatActivity() {
 								} else {
 									Binarizer.GLOBAL_HISTOGRAM
 								}
-								formats = formatsToRead.joinToString()
+								formats = formatsToRead
 							}
 						)?.let { results ->
 							val result = results.first()
@@ -638,6 +639,10 @@ class CameraActivity : AppCompatActivity() {
 	}
 }
 
+fun Set<String>.toFormatSet(): Set<BarcodeFormat> = map {
+	BarcodeFormat.valueOf(it)
+}.toSet()
+
 fun Activity.showResult(
 	result: Result,
 	bulkMode: Boolean = false,
@@ -721,9 +726,7 @@ private fun completeUrl(urlTemplate: String, result: Result) = Uri.parse(
 	urlTemplate
 		.replace("{RESULT}", result.text.urlEncode())
 		.replace("{RESULT_BYTES}", result.rawBytes.toHexString())
-		.replace(
-			"{FORMAT}", result.format.urlEncode()
-		)
+		.replace("{FORMAT}", result.format.name.urlEncode())
 		// And support {CODE} from the old ZXing app, too.
 		.replace("{CODE}", result.text.urlEncode())
 )

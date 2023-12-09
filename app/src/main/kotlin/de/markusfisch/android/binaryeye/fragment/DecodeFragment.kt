@@ -90,7 +90,7 @@ class DecodeFragment : Fragment() {
 		val originalContent = scan.content
 		isBinary = scan.content.isEmpty()
 		originalBytes = scan.raw ?: originalContent.toByteArray()
-		format = scan.format
+		format = scan.format.name
 		id = scan.id
 
 		contentView = view.findViewById(R.id.content)
@@ -258,7 +258,7 @@ class DecodeFragment : Fragment() {
 			R.string.gtin_issue_number to scan.issueNumber,
 		)
 		if (!scan.version.isNullOrBlank()) {
-			val versionString = if (scan.format == "QR_CODE") {
+			val versionString = if (scan.format.name == "QR_CODE") {
 				getString(
 					R.string.qr_version_and_modules,
 					scan.version,

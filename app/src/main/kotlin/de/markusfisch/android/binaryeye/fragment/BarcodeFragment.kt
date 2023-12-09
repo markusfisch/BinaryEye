@@ -24,7 +24,7 @@ import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.ConfinedScalingImageView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.zxingcpp.ZxingCpp
-import de.markusfisch.android.zxingcpp.ZxingCpp.Format
+import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import kotlinx.coroutines.*
 import java.io.File
 import java.io.FileOutputStream
@@ -113,7 +113,7 @@ class BarcodeFragment : Fragment() {
 		getString(CONTENT_TEXT) ?: getByteArray(CONTENT_RAW) ?: throw IllegalArgumentException(
 			"content cannot be null"
 		),
-		Format.valueOf(
+		BarcodeFormat.valueOf(
 			getString(FORMAT) ?: throw IllegalArgumentException(
 				"format cannot be null"
 			)
@@ -274,7 +274,7 @@ class BarcodeFragment : Fragment() {
 
 		fun <T> newInstance(
 			content: T,
-			format: Format,
+			format: BarcodeFormat,
 			size: Int,
 			margin: Int,
 			ecLevel: Int = -1,
@@ -310,7 +310,7 @@ class BarcodeFragment : Fragment() {
 
 private data class Barcode<T>(
 	val content: T,
-	val format: Format,
+	val format: BarcodeFormat,
 	val size: Int,
 	val margin: Int,
 	val ecLevel: Int,

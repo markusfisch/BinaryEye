@@ -31,7 +31,7 @@ import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.zxingcpp.ZxingCpp
 import de.markusfisch.android.zxingcpp.ZxingCpp.Binarizer
-import de.markusfisch.android.zxingcpp.ZxingCpp.DecodeHints
+import de.markusfisch.android.zxingcpp.ZxingCpp.ReaderOptions
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -46,13 +46,13 @@ class PickActivity : AppCompatActivity() {
 	private val matrix = Matrix()
 	private val parentJob = Job()
 	private val scope = CoroutineScope(Dispatchers.IO + parentJob)
-	private val decodeHints = DecodeHints(
+	private val options = ReaderOptions(
 		tryHarder = true,
 		tryRotate = true,
 		tryInvert = true,
 		tryDownscale = true,
 		maxNumberOfSymbols = 1,
-		formats = prefs.barcodeFormats.joinToString()
+		formats = prefs.barcodeFormats.toFormatSet()
 	)
 
 	private lateinit var cropImageView: CropImageView
@@ -179,7 +179,7 @@ class PickActivity : AppCompatActivity() {
 		0, 0,
 		width, height,
 		0,
-		decodeHints.apply {
+		options.apply {
 			binarizer = Binarizer.LOCAL_AVERAGE
 		}
 	) ?: ZxingCpp.readBitmap(
@@ -187,7 +187,7 @@ class PickActivity : AppCompatActivity() {
 		0, 0,
 		width, height,
 		0,
-		decodeHints.apply {
+		options.apply {
 			binarizer = Binarizer.GLOBAL_HISTOGRAM
 		}
 	)

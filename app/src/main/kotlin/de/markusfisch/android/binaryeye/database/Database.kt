@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 
 class Database {
 	private lateinit var db: SQLiteDatabase
@@ -117,7 +118,7 @@ class Database {
 			Scan(
 				it.getString(SCANS_CONTENT),
 				it.getBlob(SCANS_RAW),
-				it.getString(SCANS_FORMAT),
+				BarcodeFormat.valueOf(it.getString(SCANS_FORMAT)),
 				it.getString(SCANS_ERROR_CORRECTION_LEVEL),
 				it.getString(SCANS_VERSION),
 				it.getInt(SCANS_SEQUENCE_SIZE),
@@ -144,7 +145,7 @@ class Database {
 			if (scan.raw != null) {
 				put(SCANS_RAW, scan.raw)
 			}
-			put(SCANS_FORMAT, scan.format)
+			put(SCANS_FORMAT, scan.format.name)
 			scan.errorCorrectionLevel?.let {
 				put(SCANS_ERROR_CORRECTION_LEVEL, it)
 			}
@@ -172,7 +173,7 @@ class Database {
 	private fun getIdOfLastScan(
 		content: String,
 		raw: ByteArray?,
-		format: String
+		format: BarcodeFormat
 	): Long = db.rawQuery(
 		"""SELECT
 				$SCANS_ID,
@@ -189,7 +190,7 @@ class Database {
 			it.getString(SCANS_CONTENT) == content &&
 			(raw == null || it.getBlob(SCANS_RAW)
 				?.contentEquals(raw) == true) &&
-			it.getString(SCANS_FORMAT) == format
+			it.getString(SCANS_FORMAT) == format.name
 		) {
 			it.getLong(SCANS_ID)
 		} else {

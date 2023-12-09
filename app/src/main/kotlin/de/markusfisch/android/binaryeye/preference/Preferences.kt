@@ -6,29 +6,30 @@ import android.media.ToneGenerator
 import android.os.Build
 import android.preference.PreferenceManager
 import android.support.annotation.RequiresApi
-import de.markusfisch.android.zxingcpp.ZxingCpp.Format
+import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 
 class Preferences {
 	lateinit var preferences: SharedPreferences
 
 	var barcodeFormats = setOf(
-		Format.AZTEC.name,
-		Format.CODABAR.name,
-		Format.CODE_39.name,
-		Format.CODE_93.name,
-		Format.CODE_128.name,
-		Format.DATA_BAR.name,
-		Format.DATA_BAR_EXPANDED.name,
-		Format.DATA_MATRIX.name,
-		Format.EAN_8.name,
-		Format.EAN_13.name,
-		Format.ITF.name,
-		Format.MAXICODE.name,
-		Format.PDF_417.name,
-		Format.QR_CODE.name,
-		Format.MICRO_QR_CODE.name,
-		Format.UPC_A.name,
-		Format.UPC_E.name,
+		BarcodeFormat.AZTEC.name,
+		BarcodeFormat.CODABAR.name,
+		BarcodeFormat.CODE_39.name,
+		BarcodeFormat.CODE_93.name,
+		BarcodeFormat.CODE_128.name,
+		BarcodeFormat.DATA_BAR.name,
+		BarcodeFormat.DATA_BAR_EXPANDED.name,
+		BarcodeFormat.DATA_MATRIX.name,
+		BarcodeFormat.EAN_8.name,
+		BarcodeFormat.EAN_13.name,
+		BarcodeFormat.ITF.name,
+		BarcodeFormat.MAXICODE.name,
+		BarcodeFormat.PDF_417.name,
+		BarcodeFormat.QR_CODE.name,
+		BarcodeFormat.MICRO_QR_CODE.name,
+		BarcodeFormat.RMQR_CODE.name,
+		BarcodeFormat.UPC_A.name,
+		BarcodeFormat.UPC_E.name,
 	)
 		@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 		set(value) {

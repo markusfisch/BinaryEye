@@ -9,6 +9,7 @@ import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.net.sendAsync
 import de.markusfisch.android.binaryeye.preference.UrlPreference
+import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 
 class UrlDialogFragment : PreferenceDialogFragmentCompat() {
 	private var urlView: TextView? = null
@@ -50,7 +51,7 @@ class UrlDialogFragment : PreferenceDialogFragmentCompat() {
 		Scan(
 			"test",
 			null,
-			"none"
+			BarcodeFormat.NONE
 		).sendAsync(url, prefs.sendScanType) { code, body ->
 			textView.text = when {
 				code != null -> "$code"

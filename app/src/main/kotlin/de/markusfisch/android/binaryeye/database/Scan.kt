@@ -7,13 +7,13 @@ import android.os.Parcelable
 import android.text.format.DateFormat
 import de.markusfisch.android.zxingcpp.ZxingCpp
 import de.markusfisch.android.zxingcpp.ZxingCpp.ContentType
-import de.markusfisch.android.zxingcpp.ZxingCpp.Format
+import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
 
 data class Scan(
 	val content: String,
 	val raw: ByteArray?,
-	val format: String,
+	val format: BarcodeFormat,
 	val errorCorrectionLevel: String? = null,
 	val version: String? = null,
 	val sequenceSize: Int = -1,
@@ -78,7 +78,7 @@ data class Scan(
 	private constructor(parcel: Parcel) : this(
 		content = parcel.readString() ?: "",
 		raw = parcel.readSizedByteArray(),
-		format = parcel.readString() ?: "",
+		format = BarcodeFormat.valueOf(parcel.readString() ?: ""),
 		errorCorrectionLevel = parcel.readString(),
 		version = parcel.readString(),
 		sequenceSize = parcel.readInt(),
@@ -96,7 +96,7 @@ data class Scan(
 		parcel.apply {
 			writeString(content)
 			writeSizedByteArray(raw)
-			writeString(format)
+			writeString(format.name)
 			writeString(errorCorrectionLevel)
 			writeString(version)
 			writeInt(sequenceSize)
@@ -146,7 +146,7 @@ fun Result.toScan(): Scan {
 }
 
 data class Recreation(
-	val format: Format,
+	val format: BarcodeFormat,
 	val ecLevel: Int,
 	val size: Int,
 	val margin: Int
@@ -164,7 +164,7 @@ fun Scan.toRecreation(
 	size: Int = 128,
 	margin: Int = -1
 ) = Recreation(
-	Format.valueOf(format),
+	format,
 	when (errorCorrectionLevel) {
 		"L" -> 0
 		"M" -> 4

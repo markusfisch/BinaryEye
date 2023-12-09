@@ -27,7 +27,7 @@ import de.markusfisch.android.binaryeye.text.unescape
 import de.markusfisch.android.binaryeye.view.hideSoftKeyboard
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.toast
-import de.markusfisch.android.zxingcpp.ZxingCpp.Format
+import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import java.io.InputStream
 import kotlin.math.max
 import kotlin.math.min
@@ -47,17 +47,17 @@ class EncodeFragment : Fragment() {
 	private lateinit var unescapeCheckBox: CheckBox
 
 	private val formats = arrayListOf(
-		Format.AZTEC,
-		Format.CODABAR,
-		Format.CODE_39,
-		Format.CODE_128,
-		Format.DATA_MATRIX,
-		Format.EAN_8,
-		Format.EAN_13,
-		Format.ITF,
-		Format.PDF_417,
-		Format.QR_CODE,
-		Format.UPC_A
+		BarcodeFormat.AZTEC,
+		BarcodeFormat.CODABAR,
+		BarcodeFormat.CODE_39,
+		BarcodeFormat.CODE_128,
+		BarcodeFormat.DATA_MATRIX,
+		BarcodeFormat.EAN_8,
+		BarcodeFormat.EAN_13,
+		BarcodeFormat.ITF,
+		BarcodeFormat.PDF_417,
+		BarcodeFormat.QR_CODE,
+		BarcodeFormat.UPC_A
 	)
 
 	private var minMargin = 0
@@ -124,9 +124,9 @@ class EncodeFragment : Fragment() {
 			) {
 				val format = formats[position]
 				val arrayId = when (format) {
-					Format.AZTEC -> R.array.aztec_error_correction_levels
-					Format.QR_CODE -> R.array.qr_error_correction_levels
-					Format.PDF_417 -> R.array.pdf417_error_correction_levels
+					BarcodeFormat.AZTEC -> R.array.aztec_error_correction_levels
+					BarcodeFormat.QR_CODE -> R.array.qr_error_correction_levels
+					BarcodeFormat.PDF_417 -> R.array.pdf417_error_correction_levels
 					else -> 0
 				}
 				if (arrayId > 0) {
@@ -145,10 +145,10 @@ class EncodeFragment : Fragment() {
 					colorsLabel, colorsSpinner
 				)
 				when (format) {
-					Format.AZTEC -> setMarginBar(4, 4)
-					Format.DATA_MATRIX -> setMarginBar(1, 1)
-					Format.QR_CODE -> setMarginBar(4, 4)
-					Format.PDF_417 -> setMarginBar(0, 30)
+					BarcodeFormat.AZTEC -> setMarginBar(4, 4)
+					BarcodeFormat.DATA_MATRIX -> setMarginBar(1, 1)
+					BarcodeFormat.QR_CODE -> setMarginBar(4, 4)
+					BarcodeFormat.PDF_417 -> setMarginBar(0, 30)
 					else -> false
 				}.setVisibilityFor(marginLayout)
 			}
@@ -278,10 +278,10 @@ class EncodeFragment : Fragment() {
 				format,
 				getSize(sizeBarView.progress),
 				when (format) {
-					Format.AZTEC,
-					Format.DATA_MATRIX,
-					Format.QR_CODE,
-					Format.PDF_417 -> marginBarView.progress
+					BarcodeFormat.AZTEC,
+					BarcodeFormat.DATA_MATRIX,
+					BarcodeFormat.QR_CODE,
+					BarcodeFormat.PDF_417 -> marginBarView.progress
 
 					else -> -1
 				},
@@ -399,39 +399,39 @@ private fun Boolean.setVisibilityFor(vararg views: View) {
 	}
 }
 
-private fun Format.packEcLevel(packed: Int, level: Int): Int {
+private fun BarcodeFormat.packEcLevel(packed: Int, level: Int): Int {
 	val s = ecLevelShift()
 	return (level shl s) or (packed and (15 shl s).inv())
 }
 
-private fun Format.unpackEcLevel(packed: Int) =
+private fun BarcodeFormat.unpackEcLevel(packed: Int) =
 	(packed shr ecLevelShift()) and 15
 
-private fun Format.ecLevelShift() = when (this) {
-	Format.AZTEC -> 0
-	Format.QR_CODE -> 4
-	Format.PDF_417 -> 8
+private fun BarcodeFormat.ecLevelShift() = when (this) {
+	BarcodeFormat.AZTEC -> 0
+	BarcodeFormat.QR_CODE -> 4
+	BarcodeFormat.PDF_417 -> 8
 	else -> throw IllegalArgumentException("$this does not have error levels")
 }
 
-private fun Format.canBeInverted() = when (this) {
-	Format.AZTEC,
-	Format.DATA_MATRIX,
-	Format.QR_CODE -> true
+private fun BarcodeFormat.canBeInverted() = when (this) {
+	BarcodeFormat.AZTEC,
+	BarcodeFormat.DATA_MATRIX,
+	BarcodeFormat.QR_CODE -> true
 
 	else -> false
 }
 
-private fun String.toFormat(default: Format = Format.QR_CODE): Format = try {
-	Format.valueOf(this)
+private fun String.toFormat(default: BarcodeFormat = BarcodeFormat.QR_CODE): BarcodeFormat = try {
+	BarcodeFormat.valueOf(this)
 } catch (_: IllegalArgumentException) {
 	default
 }
 
-private fun Format.getErrorCorrectionLevel(position: Int) = when (this) {
-	Format.AZTEC -> position
-	Format.QR_CODE -> (position + 1) * 2
-	Format.PDF_417 -> position
+private fun BarcodeFormat.getErrorCorrectionLevel(position: Int) = when (this) {
+	BarcodeFormat.AZTEC -> position
+	BarcodeFormat.QR_CODE -> (position + 1) * 2
+	BarcodeFormat.PDF_417 -> position
 	else -> 0
 }.coerceIn(0, 8)
 
