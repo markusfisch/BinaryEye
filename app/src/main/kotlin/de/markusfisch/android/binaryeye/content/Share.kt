@@ -61,7 +61,7 @@ fun Context.shareText(text: String, mimeType: String = "text/plain") {
 	})
 }
 
-private const val SHARE_AS_TEXT_FILE_NAME = "barcode_content"
+private const val SHARE_AS_TEXT_FILE_NAME = "contents"
 fun Context.wipeShareFile() {
 	File(externalCacheDir, SHARE_AS_TEXT_FILE_NAME).delete()
 }
