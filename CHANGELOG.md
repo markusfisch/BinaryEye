@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.62.0
+* Add support for rMQR (rectangular Micro QR) Code
+* Share history as a file
+* Only share selected scans from history
+
 ## 1.61.2
 * Fix quick settings tile for Android 14
 * Fix Xiaomi MIUI lockscreen barcode shortcut
