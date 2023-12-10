@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-	namespace 'de.markusfisch.android.binaryeye'
+	namespace "de.markusfisch.android.binaryeye"
 	compileSdk sdk_version
+
 	defaultConfig {
 		minSdk 9
 		targetSdk sdk_version
-
-		versionCode 123
-		versionName '1.61.2'
+		versionCode 127
+		versionName '1.62.3'
 	}
 
 	signingConfigs {
@@ -52,18 +52,30 @@ android {
 			enableSplit = false
 		}
 	}
+
+	compileOptions {
+		// Required for Gradle 8.
+		sourceCompatibility = 17
+		targetCompatibility = 17
+	}
 }
 
 dependencies {
+	// Kotlin
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 	implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
+
+	// Support
 	implementation "com.android.support:appcompat-v7:$support_version"
 	implementation "com.android.support:design:$support_version"
 	implementation "com.android.support:preference-v7:$support_version"
 	implementation "com.android.support:preference-v14:$support_version"
+
+	// External
 	implementation 'com.github.markusfisch:CameraView:1.9.2'
 	implementation 'com.github.markusfisch:ScalingImageView:1.4.1'
-	implementation 'com.github.markusfisch:zxing-cpp:v2.1.0.2'
+	implementation 'com.github.markusfisch:zxing-cpp:v2.2.0.1'
 
+	// Testing
 	testImplementation 'junit:junit:4.13.2'
 }
