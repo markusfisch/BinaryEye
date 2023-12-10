@@ -61,12 +61,15 @@ fun Context.shareText(text: String, mimeType: String = "text/plain") {
 	})
 }
 
-private const val SHARE_AS_TEXT_FILE_NAME = "contents"
-fun Context.wipeShareFile() {
-	File(externalCacheDir, SHARE_AS_TEXT_FILE_NAME).delete()
+private var lastShareFile: File? = null
+fun wipeLastShareFile() {
+	lastShareFile?.let {
+		it.delete()
+		lastShareFile = null
+	}
 }
 
-fun <T> Context.shareAsFile(content: T) {
+fun <T> Context.shareAsFile(content: T, fileName: String) {
 	val (bytes, mimeType) = when (content) {
 		is ByteArray -> Pair(
 			content,
@@ -82,7 +85,8 @@ fun <T> Context.shareAsFile(content: T) {
 			"Unsupported content text for shareAsFile()"
 		)
 	}
-	val file = File(externalCacheDir, SHARE_AS_TEXT_FILE_NAME)
+	wipeLastShareFile()
+	val file = File(externalCacheDir, fileName)
 	try {
 		FileOutputStream(file).use {
 			it.write(bytes)
@@ -91,6 +95,7 @@ fun <T> Context.shareAsFile(content: T) {
 		toast(R.string.error_saving_file)
 		return
 	}
+	lastShareFile = file
 	shareFile(file, mimeType)
 }
 

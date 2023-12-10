@@ -24,7 +24,7 @@ import de.markusfisch.android.binaryeye.app.*
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.shareAsFile
 import de.markusfisch.android.binaryeye.content.shareText
-import de.markusfisch.android.binaryeye.content.wipeShareFile
+import de.markusfisch.android.binaryeye.content.wipeLastShareFile
 import de.markusfisch.android.binaryeye.database.*
 import de.markusfisch.android.binaryeye.io.askForFileName
 import de.markusfisch.android.binaryeye.io.toSaveResult
@@ -179,7 +179,7 @@ class HistoryFragment : Fragment() {
 		super.onDestroy()
 		scansAdapter?.changeCursor(null)
 		parentJob.cancel()
-		activity?.wipeShareFile()
+		wipeLastShareFile()
 	}
 
 	override fun onPause() {
@@ -445,7 +445,6 @@ class HistoryFragment : Fragment() {
 
 	private fun shareScans(format: String, asFile: Boolean) = scope.launch {
 		progressView.useVisibility {
-			var text: String? = null
 			val selectedIds = scansAdapter?.getSelectedIds()
 			if (selectedIds?.isNotEmpty() == true) {
 				db.getScansDetailed(selectedIds.toLongArray())
@@ -453,18 +452,22 @@ class HistoryFragment : Fragment() {
 				db.getScansDetailed(filter)
 			}?.use { cursor ->
 				val details = format.split(":")
-				text = when (details[0]) {
-					"text" -> cursor.exportText(details[1])
-					"csv" -> cursor.exportCsv(details[1])
-					else -> cursor.exportJson()
+				when (details[0]) {
+					"text" -> Pair(cursor.exportText(details[1]), "txt")
+					"csv" -> Pair(cursor.exportCsv(details[1]), "csv")
+					else -> Pair(cursor.exportJson(), "json")
 				}
-			}
-			text?.let {
-				withContext(Dispatchers.Main) {
-					if (asFile) {
-						context.shareAsFile(it)
-					} else {
-						context.shareText(it)
+			}?.let { (text, ext) ->
+				text?.let {
+					withContext(Dispatchers.Main) {
+						if (asFile) {
+							context.shareAsFile(
+								it,
+								String.format("scans.%s", ext)
+							)
+						} else {
+							context.shareText(it)
+						}
 					}
 				}
 			}
