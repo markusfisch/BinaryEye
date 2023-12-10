@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 	<string name="camera_error">Can\'t access camera, please try again</string>
 	<string name="scan_code">Scan code</string>
 	<string name="compose_barcode">Compose barcode</string>
@@ -27,7 +27,7 @@
 	<string name="gtin_price">Suggested price</string>
 	<string name="gtin_add_on">UPC EAN extension</string>
 	<string name="barcode_version_number">Version</string>
-	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
+	<string name="qr_version_and_modules" tools:ignore="PluralsCandidate">%1$s (%2$d modules)</string>
 	<string name="toggle_flash">Toggle flash</string>
 	<string name="error_flash">Error toggling flash</string>
 	<string name="share">Share</string>
