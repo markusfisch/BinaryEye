@@ -43,6 +43,7 @@ ZXing can read the following barcode formats:
 * [PDF417][pdf417]
 * [QR CODE][qr_code]
 * [Micro QR Code][micro_qr_code]
+* [rMQR Code][rmqr_code]
 * [RSS 14][rss]
 * [RSS EXPANDED][rss]
 * [UPC A][upc_a]
@@ -150,6 +151,7 @@ class YourActivity : Activity() {
 [pdf417]: https://en.wikipedia.org/wiki/PDF417
 [qr_code]: https://en.wikipedia.org/wiki/QR_code
 [micro_qr_code]: https://en.wikipedia.org/wiki/QR_code#Micro_QR_code
+[rmqr_code]: https://www.qrcode.com/en/codes/rmqr.html
 [rss]: https://en.wikipedia.org/wiki/GS1_DataBar
 [upc_a]: https://en.wikipedia.org/wiki/Universal_Product_Code
 [upc_e]: https://en.wikipedia.org/wiki/Universal_Product_Code#UPC-E
