@@ -1,5 +1,6 @@
 package de.markusfisch.android.binaryeye.preference
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.media.ToneGenerator
@@ -342,6 +343,7 @@ class Preferences {
 		preferences.edit().putInt(label, value).apply()
 	}
 
+	@SuppressLint("ApplySharedPref")
 	private fun commit(label: String, value: String) {
 		preferences.edit().putString(label, value).commit()
 	}
