@@ -2,6 +2,7 @@
 	<string-array name="search_engines_names">
 		<item>@string/always_ask</item>
 		<item>Google</item>
+		<item>Brave Search</item>
 		<item>DuckDuckGo</item>
 		<item>Qwant</item>
 		<item>Bing</item>
@@ -16,6 +17,7 @@
 	<string-array name="search_engines_values">
 		<item></item>
 		<item>https://www.google.de/search?q=</item>
+		<item>https://search.brave.com/search?q=</item>
 		<item>https://duckduckgo.com/?q=</item>
 		<item>https://www.qwant.com/?q=</item>
 		<item>https://bing.com/?q=</item>
