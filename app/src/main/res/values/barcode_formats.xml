@@ -15,6 +15,7 @@
 		<item>PDF 417</item>
 		<item>QR CODE</item>
 		<item>MICRO QR CODE</item>
+		<item>rMQR CODE</item>
 		<item>UPC A</item>
 		<item>UPC E</item>
 	</string-array>
@@ -34,6 +35,7 @@
 		<item>PDF_417</item>
 		<item>QR_CODE</item>
 		<item>MICRO_QR_CODE</item>
+		<item>RMQR_CODE</item>
 		<item>UPC_A</item>
 		<item>UPC_E</item>
 	</string-array>
