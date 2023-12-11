@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.62.1
+* Make rMQR Code selectable
+
 ## 1.62.0
 * Add support for rMQR (rectangular Micro QR) Code
 * Share history as a file
