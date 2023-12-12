@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.62.2
+* Include rMQR Code for updates
+
 ## 1.62.1
 * Make rMQR Code selectable
 
