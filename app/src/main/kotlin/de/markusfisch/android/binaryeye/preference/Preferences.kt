@@ -218,7 +218,16 @@ class Preferences {
 	fun update() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			preferences.getStringSet(BARCODE_FORMATS, barcodeFormats)?.let {
-				barcodeFormats = it
+				// Add rMQR Code for existing installations.
+				val addRMQRCode = "rmqr_added"
+				barcodeFormats = if (!preferences.getBoolean(addRMQRCode, false)) {
+					preferences.edit().putBoolean(addRMQRCode, true).apply()
+					it.toMutableSet().apply {
+						add(BarcodeFormat.RMQR_CODE.name)
+					}
+				} else {
+					it
+				}
 			}
 		}
 		cropHandleX = preferences.getInt(CROP_HANDLE_X, cropHandleX)
