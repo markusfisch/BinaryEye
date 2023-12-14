@@ -146,8 +146,12 @@ class HistoryFragment : Fragment() {
 		initHistorySwitch(useHistorySwitch)
 
 		listView = view.findViewById(R.id.scans)
-		listView.setOnItemClickListener { _, _, _, id ->
-			showScan(id)
+		listView.setOnItemClickListener { _, v, position, id ->
+			if (actionMode != null) {
+				scansAdapter?.select(v, id, position)
+			} else {
+				showScan(id)
+			}
 		}
 		listView.setOnItemLongClickListener { _, v, position, id ->
 			scansAdapter?.select(v, id, position)
