@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.62.3
+* Extend selection with single taps in history listing
+* Update Brazilian Portuguese translation
+
 ## 1.62.2
 * Include rMQR Code for updates
 

@@ -1,0 +1,3 @@
+* Extend selection with single taps in history listing
+* Update Brazilian Portuguese translation
+
