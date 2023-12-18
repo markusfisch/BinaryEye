@@ -8,6 +8,7 @@ android {
 	defaultConfig {
 		minSdk 9
 		targetSdk sdk_version
+
 		versionCode 127
 		versionName '1.62.3'
 	}
