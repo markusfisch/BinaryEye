@@ -193,5 +193,5 @@
 	<string name="wifi_identity">Identidad</string>
 	<string name="wifi_phase2">Método Phase 2</string>
 	<string name="network_suggestions">Sugerencias de red</string>
-	<string name="remove_suggestion">Elimnar sugerencia</string>
+	<string name="remove_suggestion">Eliminar sugerencia</string>
 </resources>
