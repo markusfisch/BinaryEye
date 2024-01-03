@@ -22,7 +22,7 @@ fun beepError() {
 		ToneGenerator.MAX_VOLUME
 	)
 	errorToneGenerator = tg
-	tg.startTone(ToneGenerator.TONE_SUP_ERROR)
+	tg.startTone(ToneGenerator.TONE_SUP_ERROR, 1000)
 }
 
 fun releaseToneGenerators() {
