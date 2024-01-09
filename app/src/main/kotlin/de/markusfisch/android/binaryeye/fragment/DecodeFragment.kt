@@ -215,6 +215,7 @@ class DecodeFragment : Fragment() {
 						content,
 						r.format,
 						r.size,
+						r.margin,
 						r.ecLevel
 					)
 				)
