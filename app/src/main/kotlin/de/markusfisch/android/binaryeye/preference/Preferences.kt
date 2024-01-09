@@ -199,7 +199,7 @@ class Preferences {
 			apply(LAST_MARGIN, value)
 			field = value
 		}
-	var freeRotation = true
+	var freeRotation = false
 		set(value) {
 			apply(FREE_ROTATION, value)
 			field = value
