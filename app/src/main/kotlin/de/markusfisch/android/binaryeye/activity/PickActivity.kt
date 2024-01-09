@@ -125,35 +125,38 @@ class PickActivity : AppCompatActivity() {
 	}
 
 	private fun scanWithinBounds(bitmap: Bitmap) {
-		val viewRoi = if (detectorView.roi.width() < 1) {
+		val viewRoi = Rect(if (detectorView.roi.width() < 1) {
 			cropImageView.getBoundsRect()
 		} else {
 			detectorView.roi
-		}
-		val mappedRect = cropImageView.mappedRect
-		val cropped = bitmap.crop(
-			getNormalizedRoi(mappedRect, viewRoi),
-			cropImageView.imageRotation,
-			cropImageView.pivotX,
-			cropImageView.pivotY
-		) ?: return
-		val croppedInView = Rect(
-			max(viewRoi.left, mappedRect.left.roundToInt()),
-			max(viewRoi.top, mappedRect.top.roundToInt()),
-			min(viewRoi.right, mappedRect.right.roundToInt()),
-			min(viewRoi.bottom, mappedRect.bottom.roundToInt())
-		)
-		matrix.apply {
-			setScale(
-				croppedInView.width().toFloat() / cropped.width,
-				croppedInView.height().toFloat() / cropped.height
-			)
-			postTranslate(
-				croppedInView.left.toFloat(),
-				croppedInView.top.toFloat()
-			)
-		}
+		})
+		val mappedRect = RectF(cropImageView.mappedRect)
+		val imageRotation = cropImageView.imageRotation
+		val pivotX = cropImageView.pivotX
+		val pivotY = cropImageView.pivotY
 		scope.launch {
+			val cropped = bitmap.crop(
+				getNormalizedRoi(mappedRect, viewRoi),
+				imageRotation,
+				pivotX,
+				pivotY
+			) ?: return@launch
+			val croppedInView = Rect(
+				max(viewRoi.left, mappedRect.left.roundToInt()),
+				max(viewRoi.top, mappedRect.top.roundToInt()),
+				min(viewRoi.right, mappedRect.right.roundToInt()),
+				min(viewRoi.bottom, mappedRect.bottom.roundToInt())
+			)
+			matrix.apply {
+				setScale(
+					croppedInView.width().toFloat() / cropped.width,
+					croppedInView.height().toFloat() / cropped.height
+				)
+				postTranslate(
+					croppedInView.left.toFloat(),
+					croppedInView.top.toFloat()
+				)
+			}
 			cropped.decode()?.first()?.let {
 				withContext(Dispatchers.Main) {
 					if (isFinishing) {
