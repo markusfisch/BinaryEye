@@ -32,7 +32,7 @@
 	<string name="toggle_flash">Увімкнути спалах</string>
 	<string name="error_flash">Помилка під час увімкнення спалаху</string>
 	<string name="share">Поділитися</string>
-	<string name="share_file">Share as file</string>
+	<string name="share_file">Поділитися файлом</string>
 	<string name="share_as">Поділитися як?</string>
 	<string name="copy_to_clipboard">Копіювати у буфер обміну</string>
 	<string name="copied_to_clipboard">Скопійовано у буфер обміну</string>
@@ -43,7 +43,7 @@
 	<string name="pick_search_engine">Вибрати пошукову систему</string>
 	<string name="format">Формат</string>
 	<string name="size_width_by_height">Розмір у пікселях: %1$d×%2$d</string>
-	<string name="margin_size">Margin in pixels: %1$d</string>
+	<string name="margin_size">Відступ у пікселях: %1$d</string>
 	<string name="input_content_here">Введіть вміст сюди</string>
 	<string name="unescape">Розгорнути спеціальні послідовності</string>
 	<string name="encode">КОДУВАТИ</string>
@@ -84,7 +84,7 @@
 	<string name="vibrate">Вібрувати при виявленні</string>
 	<string name="vibrate_summary">Увімкніть це, якщо хочете, щоб пристрій вібрував, коли код розпізнано.</string>
 	<string name="beep">Звук при виявленні</string>
-	<string name="beep_summary">Enable this if you want your device to beep when a code is recognized.</string>
+	<string name="beep_summary">Увімкніть це, якщо хочете, щоб пристрій подавав звуковий сигнал, коли код розпізнано.</string>
 	<string name="beep_tone">Тон звуку</string>
 	<string name="tone_cdma_confirm">Підтвердження CDMA</string>
 	<string name="tone_sup_confirm">Підтвердження диспетчерського виклику</string>
@@ -176,7 +176,7 @@
 	<string name="saved_in_downloads">Збережено в Завантаженнях</string>
 	<string name="rotate_image_cw">Повернути зображення за годинниковою стрілкою</string>
 	<string name="toggle_free_rotation">Увімкнути вільне обертання</string>
-	<string name="pick_file">Pick a file</string>
+	<string name="pick_file">Вибрати файл</string>
 	<string name="pick_image_file">Вибрати файл зображення</string>
 	<string name="pick_code_to_scan">Вибрати код для сканування</string>
 	<string name="shortcut_decode">Сканувати штрих-код</string>
