@@ -6,8 +6,8 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.text.format.DateFormat
 import de.markusfisch.android.zxingcpp.ZxingCpp
-import de.markusfisch.android.zxingcpp.ZxingCpp.ContentType
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
+import de.markusfisch.android.zxingcpp.ZxingCpp.ContentType
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
 
 data class Scan(

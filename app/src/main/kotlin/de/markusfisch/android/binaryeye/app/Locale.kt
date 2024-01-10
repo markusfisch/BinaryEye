@@ -2,7 +2,7 @@ package de.markusfisch.android.binaryeye.app
 
 import android.content.Context
 import android.os.Build
-import java.util.*
+import java.util.Locale
 
 fun Context.applyLocale(localeName: String) {
 	if (localeName.isEmpty()) {

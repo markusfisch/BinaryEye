@@ -8,8 +8,17 @@ import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
-import android.view.*
-import android.widget.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TableLayout
+import android.widget.TableRow
+import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
 import de.markusfisch.android.binaryeye.actions.IAction
@@ -17,7 +26,11 @@ import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
 import de.markusfisch.android.binaryeye.actions.wifi.WifiConnector
 import de.markusfisch.android.binaryeye.activity.MainActivity
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
-import de.markusfisch.android.binaryeye.app.*
+import de.markusfisch.android.binaryeye.app.addFragment
+import de.markusfisch.android.binaryeye.app.db
+import de.markusfisch.android.binaryeye.app.hasLocationPermission
+import de.markusfisch.android.binaryeye.app.hasWritePermission
+import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.shareAsFile
 import de.markusfisch.android.binaryeye.content.shareText
@@ -31,7 +44,11 @@ import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.io.writeExternalFile
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.toast
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.math.roundToInt
 
 class DecodeFragment : Fragment() {

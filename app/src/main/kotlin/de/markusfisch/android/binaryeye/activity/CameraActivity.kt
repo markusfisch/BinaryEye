@@ -20,7 +20,12 @@ import android.view.View
 import android.widget.SeekBar
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
-import de.markusfisch.android.binaryeye.app.*
+import de.markusfisch.android.binaryeye.app.PERMISSION_CAMERA
+import de.markusfisch.android.binaryeye.app.applyLocale
+import de.markusfisch.android.binaryeye.app.db
+import de.markusfisch.android.binaryeye.app.hasBluetoothPermission
+import de.markusfisch.android.binaryeye.app.hasCameraPermission
+import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.bluetooth.sendBluetoothAsync
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.execShareIntent
@@ -42,9 +47,9 @@ import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.cameraview.widget.CameraView
 import de.markusfisch.android.zxingcpp.ZxingCpp
+import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import de.markusfisch.android.zxingcpp.ZxingCpp.Binarizer
 import de.markusfisch.android.zxingcpp.ZxingCpp.ReaderOptions
-import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
 import kotlin.math.max
 import kotlin.math.min
