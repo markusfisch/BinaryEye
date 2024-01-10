@@ -124,7 +124,7 @@ class BarcodeFragment : Fragment() {
 		getInt(SIZE),
 		getInt(MARGIN),
 		getInt(EC_LEVEL),
-		Colors.values()[getInt(COLORS)]
+		Colors.entries[getInt(COLORS)]
 	)
 
 	override fun onDestroyView() {
@@ -169,7 +169,7 @@ class BarcodeFragment : Fragment() {
 		title: Int,
 		action: (FileType) -> Unit
 	) {
-		val fileTypes = FileType.values()
+		val fileTypes = FileType.entries.toTypedArray()
 		AlertDialog.Builder(this)
 			.setTitle(title)
 			.setItems(fileTypes.map { it.name }.toTypedArray()) { _, which ->
