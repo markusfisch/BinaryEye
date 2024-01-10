@@ -55,13 +55,13 @@ fun Bitmap.crop(
 	pivotX: Float,
 	pivotY: Float
 ) = try {
-	val erected = erect(rotation, pivotX, pivotY)
-	val w = erected.width
-	val h = erected.height
+	val b = rotate(rotation, pivotX, pivotY)
+	val w = b.width
+	val h = b.height
 	val x = max(0, (rect.left * w).roundToInt())
 	val y = max(0, (rect.top * h).roundToInt())
 	Bitmap.createBitmap(
-		erected,
+		b,
 		x,
 		y,
 		min(w - x, (rect.right * w).roundToInt() - x),
@@ -73,13 +73,11 @@ fun Bitmap.crop(
 	null
 }
 
-private fun Bitmap.erect(
+private fun Bitmap.rotate(
 	rotation: Float,
 	pivotX: Float,
 	pivotY: Float
-): Bitmap = if (
-	rotation % 360f != 0f
-) {
+): Bitmap = if (rotation % 360f != 0f) {
 	Bitmap.createBitmap(
 		this,
 		0,
