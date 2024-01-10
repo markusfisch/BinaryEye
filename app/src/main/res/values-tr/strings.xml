@@ -166,6 +166,8 @@
 	<string name="otpauth_add">2FA\'ya ekle</string>
 	<string name="search_web">Web\'i ara</string>
 	<string name="search_scan">Taramayı ara</string>
+	<string name="add_to_history">Add to history</string>
+	<string name="added_to_history">Added to history</string>
 	<string name="export_to_file">Dosyaya dışa aktar</string>
 	<string name="export_as">Ne olarak dışa aktarılsın?</string>
 	<string name="export_csv_comma">Virgüller ile CSV</string>

@@ -165,6 +165,8 @@
 	<string name="otpauth_add">加入雙重驗證 (2FA)</string>
 	<string name="search_web">在網路上搜尋</string>
 	<string name="search_scan">搜尋掃描記錄</string>
+	<string name="add_to_history">Add to history</string>
+	<string name="added_to_history">Added to history</string>
 	<string name="export_to_file">匯出檔案</string>
 	<string name="export_as">另存為？</string>
 	<string name="export_csv_comma">逗號分隔的 CSV 檔案</string>

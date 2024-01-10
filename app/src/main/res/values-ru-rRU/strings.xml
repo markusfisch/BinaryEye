@@ -168,6 +168,8 @@
 	<string name="otpauth_add">Добавить 2FA</string>
 	<string name="search_web">Поиск в сети</string>
 	<string name="search_scan">Поиск сканирования</string>
+	<string name="add_to_history">Add to history</string>
+	<string name="added_to_history">Added to history</string>
 	<string name="export_to_file">Экспортировать в файл</string>
 	<string name="export_as">Формат файла экспорта</string>
 	<string name="export_csv_comma">CSV (разделитель – запятая)</string>

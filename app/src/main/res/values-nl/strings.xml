@@ -166,6 +166,8 @@
 	<string name="otpauth_add">2FA toevoegen</string>
 	<string name="search_web">Zoeken op internet</string>
 	<string name="search_scan">Scan op internet zoeken</string>
+	<string name="add_to_history">Add to history</string>
+	<string name="added_to_history">Added to history</string>
 	<string name="export_to_file">Uitvoer naar bestand</string>
 	<string name="export_as">Exporteren als?</string>
 	<string name="export_csv_comma">CSV bestand met komma\'s</string>

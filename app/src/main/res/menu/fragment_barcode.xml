@@ -2,6 +2,11 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:material="http://schemas.android.com/apk/res-auto">
 	<item
+		android:id="@+id/add_to_history"
+		android:title="@string/add_to_history"
+		android:icon="@drawable/ic_action_history_add"
+		material:showAsAction="ifRoom"/>
+	<item
 		android:id="@+id/copy_to_clipboard"
 		android:title="@string/copy_to_clipboard"
 		android:icon="@drawable/ic_action_copy"

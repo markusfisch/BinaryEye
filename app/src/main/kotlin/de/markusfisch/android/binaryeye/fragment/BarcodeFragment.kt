@@ -10,10 +10,12 @@ import android.support.v4.app.Fragment
 import android.view.*
 import android.widget.EditText
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.hasWritePermission
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.shareFile
 import de.markusfisch.android.binaryeye.content.shareText
+import de.markusfisch.android.binaryeye.database.toScan
 import de.markusfisch.android.binaryeye.graphics.COLOR_BLACK
 import de.markusfisch.android.binaryeye.graphics.COLOR_WHITE
 import de.markusfisch.android.binaryeye.io.addSuffixIfNotGiven
@@ -42,6 +44,7 @@ class BarcodeFragment : Fragment() {
 	private val scope = CoroutineScope(Dispatchers.IO + parentJob)
 
 	private lateinit var barcode: Barcode<*>
+	private lateinit var addToHistoryItem: MenuItem
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -131,10 +134,18 @@ class BarcodeFragment : Fragment() {
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 		inflater.inflate(R.menu.fragment_barcode, menu)
+		addToHistoryItem = menu.findItem(R.id.add_to_history)
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return when (item.itemId) {
+			R.id.add_to_history -> {
+				readAndAddToHistory(barcode.bitmap(), barcode.format)
+				addToHistoryItem.isVisible = false
+				context.toast(R.string.added_to_history)
+				true
+			}
+
 			R.id.copy_to_clipboard -> {
 				context.apply {
 					copyToClipboard(barcode.text())
@@ -373,5 +384,31 @@ private fun Bitmap.saveAsPng(outputStream: OutputStream, quality: Int = 90) =
 	compress(Bitmap.CompressFormat.PNG, quality, outputStream)
 
 private val fileNameCharacters = "[^A-Za-z0-9]".toRegex()
-private fun encodeFileName(name: String): String =
-	fileNameCharacters.replace(name, "_").take(16).trim('_').lowercase(Locale.getDefault())
+private fun encodeFileName(name: String): String = fileNameCharacters
+	.replace(name, "_")
+	.take(16)
+	.trim('_')
+	.lowercase(Locale.getDefault())
+
+private fun readAndAddToHistory(
+	bitmap: Bitmap,
+	format: BarcodeFormat
+) {
+	ZxingCpp.readBitmap(
+		bitmap,
+		0, 0,
+		bitmap.width, bitmap.height,
+		0,
+		ZxingCpp.ReaderOptions(
+			tryHarder = true,
+			tryRotate = true,
+			tryInvert = true,
+			tryDownscale = true,
+			maxNumberOfSymbols = 1,
+			formats = setOf(format)
+		)
+	)?.first {
+		db.insertScan(it.toScan())
+		true
+	}
+}

@@ -166,6 +166,8 @@
 	<string name="otpauth_add">২এফএ যোগ করো</string>
 	<string name="search_web">ওয়েবে খুঁজো</string>
 	<string name="search_scan">আগেরগুলোতে খুঁজো</string>
+	<string name="add_to_history">Add to history</string>
+	<string name="added_to_history">Added to history</string>
 	<string name="export_to_file">নথিতে রপ্তানি করো</string>
 	<string name="export_as">রপ্তানির ধরণ?</string>
 	<string name="export_csv_comma">কমাসহ সিএসভি(.csv) নথি</string>

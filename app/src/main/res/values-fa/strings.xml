@@ -166,6 +166,8 @@
 	<string name="otpauth_add">افزودن احراز هویت چندعاملی(2FA)</string>
 	<string name="search_web">جست‌وجوی وب</string>
 	<string name="search_scan">جست‌وجوی پویش</string>
+	<string name="add_to_history">Add to history</string>
+	<string name="added_to_history">Added to history</string>
 	<string name="export_to_file">برون‌ریزی به پرونده</string>
 	<string name="export_as">برون‌ریزی به عنوان؟</string>
 	<string name="export_csv_comma">پروندهٔ سی‌اس‌وی با ویرگول</string>

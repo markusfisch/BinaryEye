@@ -168,6 +168,8 @@
 	<string name="otpauth_add">Přidat 2FA</string>
 	<string name="search_web">Vyhledat na webu</string>
 	<string name="search_scan">Vyhledat sken</string>
+	<string name="add_to_history">Add to history</string>
+	<string name="added_to_history">Added to history</string>
 	<string name="export_to_file">Exportovat do souboru</string>
 	<string name="export_as">Exportovat jako</string>
 	<string name="export_csv_comma">CSV oddělené čárkami</string>

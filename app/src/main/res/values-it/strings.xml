@@ -166,6 +166,8 @@
 	<string name="otpauth_add">Aggiungi 2FA</string>
 	<string name="search_web">Cerca nel web</string>
 	<string name="search_scan">Cerca scansione</string>
+	<string name="add_to_history">Add to history</string>
+	<string name="added_to_history">Added to history</string>
 	<string name="export_to_file">Esporta su file</string>
 	<string name="export_as">Come esportare?</string>
 	<string name="export_csv_comma">CSV con virgole</string>

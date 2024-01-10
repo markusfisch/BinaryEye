@@ -166,6 +166,8 @@
 	<string name="otpauth_add">Добави 2FA</string>
 	<string name="search_web">Търси в мрежата</string>
 	<string name="search_scan">Търсещо сканиране</string>
+	<string name="add_to_history">Add to history</string>
+	<string name="added_to_history">Added to history</string>
 	<string name="export_to_file">Извеждане в файл</string>
 	<string name="export_as">Извеждане като?</string>
 	<string name="export_csv_comma">CSV файл със запетаи</string>

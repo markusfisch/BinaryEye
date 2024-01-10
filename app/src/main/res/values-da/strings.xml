@@ -166,6 +166,8 @@
 	<string name="otpauth_add">Tilføj 2FA</string>
 	<string name="search_web">Søg på nettet</string>
 	<string name="search_scan">Søg scanning</string>
+	<string name="add_to_history">Add to history</string>
+	<string name="added_to_history">Added to history</string>
 	<string name="export_to_file">Eksporter til fil</string>
 	<string name="export_as">Eksporter som?</string>
 	<string name="export_csv_comma">CSV-fil med kommaer</string>

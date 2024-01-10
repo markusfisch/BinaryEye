@@ -166,6 +166,8 @@
 	<string name="otpauth_add">Kétlépcsős hitelesítés hozzáadása</string>
 	<string name="search_web">Keresés a weben</string>
 	<string name="search_scan">Beolvasás keresése</string>
+	<string name="add_to_history">Add to history</string>
+	<string name="added_to_history">Added to history</string>
 	<string name="export_to_file">Exportálás fájlba</string>
 	<string name="export_as">Exportálja másként?</string>
 	<string name="export_csv_comma">CSV-fájl vesszővel</string>
