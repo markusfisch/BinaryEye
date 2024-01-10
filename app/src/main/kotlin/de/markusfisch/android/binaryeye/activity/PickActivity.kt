@@ -125,11 +125,13 @@ class PickActivity : AppCompatActivity() {
 	}
 
 	private fun scanWithinBounds(bitmap: Bitmap) {
-		val viewRoi = Rect(if (detectorView.roi.width() < 1) {
-			cropImageView.getBoundsRect()
-		} else {
-			detectorView.roi
-		})
+		val viewRoi = Rect(
+			if (detectorView.roi.width() < 1) {
+				cropImageView.getBoundsRect()
+			} else {
+				detectorView.roi
+			}
+		)
 		val mappedRect = RectF(cropImageView.mappedRect)
 		val imageRotation = cropImageView.imageRotation
 		val pivotX = cropImageView.pivotX
