@@ -61,7 +61,6 @@ private fun Context.openExternalOutputStream(
 	fileName: String,
 	mimeType: String
 ): OutputStream = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-	@Suppress("DEPRECATION")
 	val file = File(
 		Environment.getExternalStoragePublicDirectory(
 			Environment.DIRECTORY_DOWNLOADS
