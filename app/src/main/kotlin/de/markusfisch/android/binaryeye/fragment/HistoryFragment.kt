@@ -82,7 +82,7 @@ class HistoryFragment : Fragment() {
 					true
 				}
 
-				R.id.edit_scan -> {
+				R.id.edit_label -> {
 					scansAdapter?.forSelection { id, position ->
 						ac.askForName(
 							id,

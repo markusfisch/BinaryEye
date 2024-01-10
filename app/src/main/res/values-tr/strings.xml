@@ -138,7 +138,7 @@
 	<string name="really_remove_selected_scans">Seçili taramalar gerçekten silinsin mi?</string>
 	<string name="clear_history">Geçmişi temizle</string>
 	<string name="copy_scan">Taramayı kopyala</string>
-	<string name="edit_scan">Etiketi düzenle</string>
+	<string name="edit_label">Etiketi düzenle</string>
 	<string name="remove_scan">Taramayı sil</string>
 	<string name="enter_name">Taramayı açıklayacak ad gir</string>
 	<string name="enter_name_hint">Taramanın adı</string>

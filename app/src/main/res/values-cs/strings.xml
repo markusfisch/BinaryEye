@@ -140,7 +140,7 @@
 	<string name="really_remove_selected_scans">Opravdu odstranit zvolené skeny?</string>
 	<string name="clear_history">Vymazat historii</string>
 	<string name="copy_scan">Zkopírovat sken</string>
-	<string name="edit_scan">Upravit popisek</string>
+	<string name="edit_label">Upravit popisek</string>
 	<string name="remove_scan">Odstranit sken</string>
 	<string name="enter_name">Napište název popisující sken</string>
 	<string name="enter_name_hint">Název skenu</string>

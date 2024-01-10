@@ -138,7 +138,7 @@
 	<string name="really_remove_selected_scans">Vil du virkelig fjerne valgte scanninger?</string>
 	<string name="clear_history">Ryd historik</string>
 	<string name="copy_scan">Kopier scanning</string>
-	<string name="edit_scan">Rediger etiket</string>
+	<string name="edit_label">Rediger etiket</string>
 	<string name="remove_scan">Fjern scanning</string>
 	<string name="enter_name">Indtast et navn for at beskrive scanningen</string>
 	<string name="enter_name_hint">Navn på scanningen</string>

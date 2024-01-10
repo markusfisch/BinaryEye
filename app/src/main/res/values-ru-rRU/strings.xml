@@ -140,7 +140,7 @@
 	<string name="really_remove_selected_scans">Удалить выбранные штрих-коды?</string>
 	<string name="clear_history">Очистить историю</string>
 	<string name="copy_scan">Копировать</string>
-	<string name="edit_scan">Редактировать</string>
+	<string name="edit_label">Редактировать</string>
 	<string name="remove_scan">Удалить сканирование</string>
 	<string name="enter_name">Укажите название сканирования</string>
 	<string name="enter_name_hint">Название сканирования</string>

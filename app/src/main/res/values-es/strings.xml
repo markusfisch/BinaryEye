@@ -138,7 +138,7 @@
 	<string name="really_remove_selected_scans">¿Eliminar los escaneos seleccionados?</string>
 	<string name="clear_history">Eliminar el historial</string>
 	<string name="copy_scan">Copiar escaneo</string>
-	<string name="edit_scan">Editar etiqueta</string>
+	<string name="edit_label">Editar etiqueta</string>
 	<string name="remove_scan">Eliminar escaneo</string>
 	<string name="enter_name">Introduzca un nombre para describir el escaneo</string>
 	<string name="enter_name_hint">Nombre del escaneo</string>

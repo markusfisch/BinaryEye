@@ -138,7 +138,7 @@
 	<string name="really_remove_selected_scans">Valóban eltávolítja a kijelölt beolvasásokat?</string>
 	<string name="clear_history">Előzmények törlése</string>
 	<string name="copy_scan">Beolvasás másolása</string>
-	<string name="edit_scan">Címke szerkesztése</string>
+	<string name="edit_label">Címke szerkesztése</string>
 	<string name="remove_scan">Beolvasás eltávolítása</string>
 	<string name="enter_name">Adjon meg egy nevet a beolvasás leírásához</string>
 	<string name="enter_name_hint">A beolvasás neve</string>

@@ -137,7 +137,7 @@
 	<string name="really_remove_selected_scans">確定要刪除選擇的掃描記錄？</string>
 	<string name="clear_history">清空記錄</string>
 	<string name="copy_scan">複製掃描記錄</string>
-	<string name="edit_scan">編輯名稱</string>
+	<string name="edit_label">編輯名稱</string>
 	<string name="remove_scan">刪除所選記錄</string>
 	<string name="enter_name">輸入名稱</string>
 	<string name="enter_name_hint">掃描描述</string>

@@ -7,8 +7,8 @@
 		android:icon="@drawable/ic_action_copy"
 		material:showAsAction="ifRoom"/>
 	<item
-		android:id="@+id/edit_scan"
-		android:title="@string/edit_scan"
+		android:id="@+id/edit_label"
+		android:title="@string/edit_label"
 		android:icon="@drawable/ic_action_edit"
 		material:showAsAction="ifRoom"/>
 	<item

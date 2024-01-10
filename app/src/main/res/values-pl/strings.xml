@@ -53,7 +53,7 @@
 	<string name="mail_error">Nie można wysłać e-maila</string>
 	<string name="rotate_image_cw">Obróć obraz zgodnie z ruchem wskazówek zegara</string>
 	<string name="toggle_free_rotation">Toggle free rotation</string>
-	<string name="edit_scan">Edytuj etykietę</string>
+	<string name="edit_label">Edytuj etykietę</string>
 	<string name="enter_name_hint">Nazwa skanu</string>
 	<string name="camera_error">Nie można uzyskać dostępu do kamery, spróbuj ponownie</string>
 	<string name="copy_scan">Skopiuj skan</string>

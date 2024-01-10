@@ -137,7 +137,7 @@
 	<string name="really_remove_selected_scans">Thật sự xoá các lần quét được chọn?</string>
 	<string name="clear_history">Xoá lịch sử</string>
 	<string name="copy_scan">Sao chép lần quét</string>
-	<string name="edit_scan">Sửa nhãn</string>
+	<string name="edit_label">Sửa nhãn</string>
 	<string name="remove_scan">Xoá lần quét</string>
 	<string name="enter_name">Nhập tên để miêu tả lần quét</string>
 	<string name="enter_name_hint">Tên lần quét</string>

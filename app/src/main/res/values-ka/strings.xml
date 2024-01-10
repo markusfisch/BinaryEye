@@ -138,7 +138,7 @@
 	<string name="really_remove_selected_scans">ნამდვილად გსურთ შერჩეული შტრიხ-კოდების წაშლა?</string>
 	<string name="clear_history">ისტორიის გასუფთავება</string>
 	<string name="copy_scan">კოპირება</string>
-	<string name="edit_scan">რედაქტირება</string>
+	<string name="edit_label">რედაქტირება</string>
 	<string name="remove_scan">სკანირების წაშლა</string>
 	<string name="enter_name">მიანიჭეთ სახელი სკანირებას</string>
 	<string name="enter_name_hint">სკანირების სახელი</string>

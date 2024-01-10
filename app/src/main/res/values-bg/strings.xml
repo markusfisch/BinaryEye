@@ -138,7 +138,7 @@
 	<string name="really_remove_selected_scans">Наистина ли искате да премахнете избраните сканирания?</string>
 	<string name="clear_history">Изчистване на историята</string>
 	<string name="copy_scan">Сопиране на сканирането</string>
-	<string name="edit_scan">Редактиране на етикет</string>
+	<string name="edit_label">Редактиране на етикет</string>
 	<string name="remove_scan">Премахване на сканиране</string>
 	<string name="enter_name">Въведете име, за да опишете сканирането</string>
 	<string name="enter_name_hint">Име на сканирането</string>

@@ -138,7 +138,7 @@
 	<string name="really_remove_selected_scans">برای برداشتن پویش‌های برگزیده شده مطمئنید؟</string>
 	<string name="clear_history">پاک کردن تاریخچه</string>
 	<string name="copy_scan">رونوشت پویش</string>
-	<string name="edit_scan">ویرایش عنوان</string>
+	<string name="edit_label">ویرایش عنوان</string>
 	<string name="remove_scan">برداشتن پویش</string>
 	<string name="enter_name">یک نام برای توضیح پویش وارد کنید</string>
 	<string name="enter_name_hint">نام پویش</string>

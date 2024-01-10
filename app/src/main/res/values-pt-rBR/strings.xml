@@ -138,7 +138,7 @@
 	<string name="really_remove_selected_scans">Deseja excluir as digitalizações selecionadas?</string>
 	<string name="clear_history">Apagar histórico</string>
 	<string name="copy_scan">Copiar digitalização</string>
-	<string name="edit_scan">Editar identificação</string>
+	<string name="edit_label">Editar identificação</string>
 	<string name="remove_scan">Excluir digitalização</string>
 	<string name="enter_name">Digite um nome para identificar esta digitalização</string>
 	<string name="enter_name_hint">Nome de digitalização</string>

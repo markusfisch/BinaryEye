@@ -137,7 +137,7 @@
 	<string name="really_remove_selected_scans">選択されたスキャン履歴を削除しても宜しいですか？</string>
 	<string name="clear_history">履歴を消去</string>
 	<string name="copy_scan">スキャン結果をコピー</string>
-	<string name="edit_scan">ラベルを編集</string>
+	<string name="edit_label">ラベルを編集</string>
 	<string name="remove_scan">スキャン結果を削除</string>
 	<string name="enter_name">スキャン結果を識別できる名前を入力してください</string>
 	<string name="enter_name_hint">ここに名前を入力</string>

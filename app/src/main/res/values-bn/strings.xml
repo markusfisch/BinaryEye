@@ -138,7 +138,7 @@
 	<string name="really_remove_selected_scans">আসলেই নির্বাচিত সব মুছবে?</string>
 	<string name="clear_history">ইতিহাস মুছো</string>
 	<string name="copy_scan">পাঠোদ্ধার অনুলিপি করো</string>
-	<string name="edit_scan">চিহ্ন সম্পাদনা করো</string>
+	<string name="edit_label">চিহ্ন সম্পাদনা করো</string>
 	<string name="remove_scan">পাঠোদ্ধার মুছো</string>
 	<string name="enter_name">পাঠোদ্ধার ব্যাখ্যা করতে একটা নাম দাও</string>
 	<string name="enter_name_hint">পাঠোদ্ধারের নাম</string>

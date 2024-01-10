@@ -138,7 +138,7 @@
 	<string name="really_remove_selected_scans">Vuoi rimuovere le scansioni selezionate?</string>
 	<string name="clear_history">Azzera cronologia</string>
 	<string name="copy_scan">Copia scansione</string>
-	<string name="edit_scan">Modifica etichetta</string>
+	<string name="edit_label">Modifica etichetta</string>
 	<string name="remove_scan">Rimuovi scansione</string>
 	<string name="enter_name">Inserisci un nome per descrivere la scansione</string>
 	<string name="enter_name_hint">Nome scansione</string>

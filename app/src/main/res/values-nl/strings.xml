@@ -138,7 +138,7 @@
 	<string name="really_remove_selected_scans">Geselecteerde scans verwijderen?</string>
 	<string name="clear_history">Wis opgeslagen codes</string>
 	<string name="copy_scan">Scan kopiëren</string>
-	<string name="edit_scan">Label bewerken</string>
+	<string name="edit_label">Label bewerken</string>
 	<string name="remove_scan">Scan verwijderen</string>
 	<string name="enter_name">Naam van de scan</string>
 	<string name="enter_name_hint">Voer een naam in om de scan te beschrijven</string>

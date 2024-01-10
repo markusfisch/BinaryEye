@@ -137,7 +137,7 @@
 	<string name="really_remove_selected_scans">Yakin menghapus pindaian yang dipilih?</string>
 	<string name="clear_history">Hapus riwayat</string>
 	<string name="copy_scan">Salin pindaian</string>
-	<string name="edit_scan">Sunting label</string>
+	<string name="edit_label">Sunting label</string>
 	<string name="remove_scan">Buang pindaian</string>
 	<string name="enter_name">Masukkan keterangan pindaian</string>
 	<string name="enter_name_hint">Nama pindaian</string>
