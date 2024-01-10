@@ -673,7 +673,7 @@ fun Activity.showResult(
 			if (code == null || code < 200 || code > 299) {
 				errorFeedback()
 			}
-			if (body != null && body.isNotEmpty()) {
+			if (!body.isNullOrEmpty()) {
 				toast(body)
 			} else if (code == null || code > 299) {
 				toast(R.string.background_request_failed)
