@@ -152,7 +152,7 @@ class Preferences {
 			apply(OPEN_WITH_URL, value)
 			field = value
 		}
-	var sendScanActive = true
+	var sendScanActive = false
 		set(value) {
 			apply(SEND_SCAN_ACTIVE, value)
 			field = value
