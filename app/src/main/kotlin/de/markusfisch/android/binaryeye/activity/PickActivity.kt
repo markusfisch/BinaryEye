@@ -7,8 +7,8 @@ import android.graphics.Matrix
 import android.graphics.Rect
 import android.graphics.RectF
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
-import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
@@ -245,9 +245,7 @@ class PickActivity : AppCompatActivity() {
 	}
 
 	private fun loadSentImage(intent: Intent): Bitmap? {
-		val uri = intent.getParcelableExtra<Parcelable>(
-			Intent.EXTRA_STREAM
-		) as? Uri ?: return null
+		val uri = intent.getUriExtra() ?: return null
 		return contentResolver.loadImageUri(uri)
 	}
 
@@ -276,4 +274,13 @@ private fun getNormalizedRoi(imageRect: RectF, roi: Rect): RectF {
 		(roi.right - imageRect.left) / w,
 		(roi.bottom - imageRect.top) / h
 	)
+}
+
+private fun Intent.getUriExtra(): Uri? = if (
+	Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU
+) {
+	@Suppress("DEPRECATION")
+	getParcelableExtra(Intent.EXTRA_STREAM)
+} else {
+	getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
 }

@@ -89,9 +89,9 @@ class MainActivity : AppCompatActivity() {
 					intent.getStringExtra(ENCODE)
 				)
 
-				intent.hasExtra(DECODED) -> DecodeFragment.newInstance(
-					intent.getParcelableExtra(DECODED)!!
-				)
+				intent.hasExtra(DECODED) -> intent.getScanExtra(DECODED)?.let {
+					DecodeFragment.newInstance(it)
+				} ?: DecodeFragment()
 
 				else -> PreferencesFragment()
 			}
@@ -136,4 +136,13 @@ class MainActivity : AppCompatActivity() {
 			return intent
 		}
 	}
+}
+
+private fun Intent.getScanExtra(name: String): Scan? = if (
+	Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU
+) {
+	@Suppress("DEPRECATION")
+	getParcelableExtra(name)
+} else {
+	getParcelableExtra(name, Scan::class.java)
 }
