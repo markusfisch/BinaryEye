@@ -13,6 +13,7 @@
 	<string name="error_correction_level_m" formatted="false">中 (~15&#37; の正確性)</string>
 	<string name="error_correction_level_q" formatted="false">高 (~25&#37; の正確性)</string>
 	<string name="error_correction_level_h" formatted="false">最高 (~30&#37; の正確性)</string>
+	<string name="label">Label</string>
 	<string name="colors">背面と前面</string>
 	<string name="colors_black_on_white">白地に黒色</string>
 	<string name="colors_white_on_black">黒地に白色</string>

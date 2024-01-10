@@ -34,6 +34,7 @@
 	<string name="error_correction_level_m" formatted="false">Średni (~15&#37; korekcji)</string>
 	<string name="error_correction_level_q" formatted="false">Kwartyl (~25&#37; korekcji)</string>
 	<string name="error_correction_level_h" formatted="false">Wysoki (~30&#37; korekcji)</string>
+	<string name="label">Label</string>
 	<string name="colors">Fore and background</string>
 	<string name="colors_black_on_white">Black on white</string>
 	<string name="colors_white_on_black">White on black</string>

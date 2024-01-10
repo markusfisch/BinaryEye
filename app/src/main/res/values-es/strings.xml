@@ -14,6 +14,7 @@
 	<string name="error_correction_level_m" formatted="false">Medio (~15&#37; de correción)</string>
 	<string name="error_correction_level_q" formatted="false">Cuartil (~25&#37; de correción)</string>
 	<string name="error_correction_level_h" formatted="false">Alto (~30&#37; de correción)</string>
+	<string name="label">Label</string>
 	<string name="colors">Color frontal y fondo</string>
 	<string name="colors_black_on_white">Negro sobre blanco</string>
 	<string name="colors_white_on_black">Blanco sobre negro</string>

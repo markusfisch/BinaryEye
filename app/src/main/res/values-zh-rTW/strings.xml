@@ -13,6 +13,7 @@
 	<string name="error_correction_level_m" formatted="false">中 (~15&#37; 準確度)</string>
 	<string name="error_correction_level_q" formatted="false">較高 (~25&#37; 準確度)</string>
 	<string name="error_correction_level_h" formatted="false">高 (~30&#37; 準確度)</string>
+	<string name="label">Label</string>
 	<string name="colors">前景與背景</string>
 	<string name="colors_black_on_white">白底黑字</string>
 	<string name="colors_white_on_black">黑底白字</string>

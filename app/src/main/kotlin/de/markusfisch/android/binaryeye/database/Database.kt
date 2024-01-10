@@ -129,7 +129,8 @@ class Database {
 				it.getString(SCANS_GTIN_PRICE),
 				it.getString(SCANS_GTIN_ISSUE_NUMBER),
 				it.getString(SCANS_DATETIME),
-				it.getLong(SCANS_ID)
+				it.getLong(SCANS_ID),
+				it.getString(SCANS_NAME),
 			)
 		} else {
 			null

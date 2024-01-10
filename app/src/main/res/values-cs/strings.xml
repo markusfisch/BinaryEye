@@ -16,6 +16,7 @@
 	<string name="error_correction_level_m" formatted="false">Střední (~15&#37; korekce)</string>
 	<string name="error_correction_level_q" formatted="false">Čtvrtinový (~25&#37; korekce)</string>
 	<string name="error_correction_level_h" formatted="false">Vysoký (~30&#37; korekce)</string>
+	<string name="label">Label</string>
 	<string name="colors">Popředí a pozadí</string>
 	<string name="colors_black_on_white">Černá na bílé</string>
 	<string name="colors_white_on_black">Bílá na černé</string>

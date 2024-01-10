@@ -14,6 +14,7 @@
 	<string name="error_correction_level_m" formatted="false">Средно (~15&#37; корекция)</string>
 	<string name="error_correction_level_q" formatted="false">Четвъртично (~25&#37; корекция)</string>
 	<string name="error_correction_level_h" formatted="false">Високо (~30&#37; корекция)</string>
+	<string name="label">Label</string>
 	<string name="colors">Преден и заден план</string>
 	<string name="colors_black_on_white">Черно на бяло</string>
 	<string name="colors_white_on_black">Бяло на черно</string>

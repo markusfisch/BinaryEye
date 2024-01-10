@@ -14,6 +14,7 @@
 	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; korrigering)</string>
 	<string name="error_correction_level_q" formatted="false">Kvartil (~25&#37; korrigering)</string>
 	<string name="error_correction_level_h" formatted="false">Høj (~30&#37; korrigering)</string>
+	<string name="label">Label</string>
 	<string name="colors">For- og baggrund</string>
 	<string name="colors_black_on_white">Sort på hvidt</string>
 	<string name="colors_white_on_black">Hvid på sort</string>

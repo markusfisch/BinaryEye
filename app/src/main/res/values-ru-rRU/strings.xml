@@ -16,6 +16,7 @@
 	<string name="error_correction_level_m" formatted="false">Средний (≈15&#37; исправлений)</string>
 	<string name="error_correction_level_q" formatted="false">Квартиль (≈25&#37; исправлений)</string>
 	<string name="error_correction_level_h" formatted="false">Высокий (≈30&#37; исправлений)</string>
+	<string name="label">Label</string>
 	<string name="colors">Цвета</string>
 	<string name="colors_black_on_white">Чёрный на белом</string>
 	<string name="colors_white_on_black">Белый на чёрном</string>

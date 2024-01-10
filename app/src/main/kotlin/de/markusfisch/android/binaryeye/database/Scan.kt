@@ -24,7 +24,8 @@ data class Scan(
 	val price: String? = null,
 	val issueNumber: String? = null,
 	val dateTime: String = getDateTime(),
-	var id: Long = 0L
+	var id: Long = 0L,
+	val label: String? = null
 ) : Parcelable {
 	// Needs to be overwritten manually, as ByteArray is an array and
 	// this isn't handled well by Kotlin.
@@ -89,7 +90,8 @@ data class Scan(
 		price = parcel.readString(),
 		issueNumber = parcel.readString(),
 		dateTime = parcel.readString() ?: "",
-		id = parcel.readLong()
+		id = parcel.readLong(),
+		label = parcel.readString()
 	)
 
 	override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -108,6 +110,7 @@ data class Scan(
 			writeString(issueNumber)
 			writeString(dateTime)
 			writeLong(id)
+			writeString(label)
 		}
 	}
 

@@ -14,6 +14,7 @@
 	<string name="error_correction_level_m" formatted="false">Orta (~&#37;15 düzeltim)</string>
 	<string name="error_correction_level_q" formatted="false">Dörtte Bir (~&#37;25 düzeltim)</string>
 	<string name="error_correction_level_h" formatted="false">Yüksek (~&#37;30 düzeltim)</string>
+	<string name="label">Label</string>
 	<string name="colors">Ön ve arka plan</string>
 	<string name="colors_black_on_white">Beyaz üzerine siyah</string>
 	<string name="colors_white_on_black">Siyah üzerine beyaz</string>

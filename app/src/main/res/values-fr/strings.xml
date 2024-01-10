@@ -14,6 +14,7 @@
 	<string name="error_correction_level_m" formatted="false">Moyen (~15% de correction)</string>
 	<string name="error_correction_level_q" formatted="false">Quartile (~25% de correction)</string>
 	<string name="error_correction_level_h" formatted="false">Élevé (~30% de correction)</string>
+	<string name="label">Label</string>
 	<string name="colors">Premier plan et arrière-plan</string>
 	<string name="colors_black_on_white">Noir sur blanc</string>
 	<string name="colors_white_on_black">Blanc sur noir</string>

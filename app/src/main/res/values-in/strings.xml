@@ -13,6 +13,7 @@
 	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; koreksi)</string>
 	<string name="error_correction_level_q" formatted="false">Kuartil (~25&#37; koreksi)</string>
 	<string name="error_correction_level_h" formatted="false">Tinggi (~30&#37; koreksi)</string>
+	<string name="label">Label</string>
 	<string name="colors">Muka dan latar belakang</string>
 	<string name="colors_black_on_white">Hitam di atas putih</string>
 	<string name="colors_white_on_black">Putih di atas hitam</string>

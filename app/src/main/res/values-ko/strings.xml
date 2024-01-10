@@ -13,6 +13,7 @@
 	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; correction)</string>
 	<string name="error_correction_level_q" formatted="false">Quartile (~25&#37; correction)</string>
 	<string name="error_correction_level_h" formatted="false">High (~30&#37; correction)</string>
+	<string name="label">Label</string>
 	<string name="colors">Fore and background</string>
 	<string name="colors_black_on_white">Black on white</string>
 	<string name="colors_white_on_black">White on black</string>

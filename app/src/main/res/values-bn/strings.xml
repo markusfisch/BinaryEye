@@ -14,6 +14,7 @@
 	<string name="error_correction_level_m" formatted="false">মধ্যম (~১৫&#37; ঠিককরণ)</string>
 	<string name="error_correction_level_q" formatted="false">বেশি (~২৫&#37; ঠিককরণ)</string>
 	<string name="error_correction_level_h" formatted="false">অনেক বেশি (~৩০&#37; ঠিককরণ)</string>
+	<string name="label">Label</string>
 	<string name="colors">Fore and background</string>
 	<string name="colors_black_on_white">Black on white</string>
 	<string name="colors_white_on_black">White on black</string>

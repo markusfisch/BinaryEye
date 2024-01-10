@@ -42,6 +42,7 @@ class DecodeFragment : Fragment() {
 	private lateinit var hexView: TextView
 	private lateinit var stampView: TextView
 	private lateinit var recreationView: ImageView
+	private lateinit var labelView: EditText
 	private lateinit var fab: FloatingActionButton
 	private lateinit var format: String
 
@@ -58,6 +59,7 @@ class DecodeFragment : Fragment() {
 	private var originalBytes: ByteArray = ByteArray(0)
 	private var id = 0L
 	private var recreation: Recreation? = null
+	private var label: String? = null
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -100,6 +102,7 @@ class DecodeFragment : Fragment() {
 		hexView = view.findViewById(R.id.hex)
 		stampView = view.findViewById(R.id.stamp)
 		recreationView = view.findViewById(R.id.recreation)
+		labelView = view.findViewById(R.id.label)
 		fab = view.findViewById(R.id.open)
 
 		initContentAndFab(originalContent)
@@ -114,6 +117,14 @@ class DecodeFragment : Fragment() {
 				(200f * dp).roundToInt()
 			)
 		}
+		if (id > 0) {
+			scan.label?.let {
+				labelView.setText(it)
+				label = it
+			}
+		} else {
+			labelView.visibility = View.GONE
+		}
 
 		updateViewsAndFab(originalContent, originalBytes)
 
@@ -121,6 +132,17 @@ class DecodeFragment : Fragment() {
 		(view.findViewById(R.id.scroll_view) as View).setPaddingFromWindowInsets()
 
 		return view
+	}
+
+	override fun onPause() {
+		super.onPause()
+		if (id > 0) {
+			val newLabel = labelView.text.toString().trim()
+			if (newLabel != (label ?: "")) {
+				db.renameScan(id, newLabel)
+				label = newLabel
+			}
+		}
 	}
 
 	override fun onDestroy() {
