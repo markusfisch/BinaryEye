@@ -10,9 +10,9 @@ import android.support.v4.content.ContextCompat
 var permissionGrantedCallback: (() -> Any)? = null
 
 const val PERMISSION_CAMERA = 1
-fun Activity.hasCameraPermission() = hasPermission(
+fun Activity.hasCameraPermission(request: Boolean = true) = hasPermission(
 	Manifest.permission.CAMERA,
-	PERMISSION_CAMERA
+	if (request) PERMISSION_CAMERA else 0
 )
 
 const val PERMISSION_WRITE = 2
@@ -53,11 +53,13 @@ private fun Activity.hasPermission(
 		permission
 	) != PackageManager.PERMISSION_GRANTED
 ) {
-	ActivityCompat.requestPermissions(
-		this,
-		arrayOf(permission),
-		requestCode
-	)
+	if (requestCode > 0) {
+		ActivityCompat.requestPermissions(
+			this,
+			arrayOf(permission),
+			requestCode
+		)
+	}
 	false
 } else {
 	true

@@ -70,6 +70,7 @@ class CameraActivity : AppCompatActivity() {
 	private var restrictFormat: String? = null
 	private var ignoreNext: String? = null
 	private var fallbackBuffer: IntArray? = null
+	private var requestCameraPermission = true
 
 	override fun onRequestPermissionsResult(
 		requestCode: Int,
@@ -152,9 +153,13 @@ class CameraActivity : AppCompatActivity() {
 			ignoreNext = null
 		}
 		setReturnTarget(intent)
-		if (hasCameraPermission()) {
+		// Avoid asking multiple times when the user has denied access
+		// for this session. Otherwise ActivityCompat.requestPermissions()
+		// will trigger onResume() again and again.
+		if (hasCameraPermission(requestCameraPermission)) {
 			openCamera()
 		}
+		requestCameraPermission = false
 	}
 
 	private fun updateHints() {
