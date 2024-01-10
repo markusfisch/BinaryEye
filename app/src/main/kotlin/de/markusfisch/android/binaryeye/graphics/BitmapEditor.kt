@@ -64,8 +64,8 @@ fun Bitmap.crop(
 		b,
 		x,
 		y,
-		min(w - x, (rect.right * w).roundToInt() - x),
-		min(h - y, (rect.bottom * h).roundToInt() - y)
+		min(w, (rect.right * w).roundToInt()) - x,
+		min(h, (rect.bottom * h).roundToInt()) - y
 	)
 } catch (e: OutOfMemoryError) {
 	null
