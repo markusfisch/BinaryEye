@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.63.0
+* Edit scan label in decoding screen
+* Add a button to add generated codes to the history
+* Improve scanning from images
+* Improve asking for camera permission
+* Fix margin for recreated barcodes
+* Limit duration of error beep to 1s
+* Update Ukrainian translation
+* Update Spanish translation
+
 ## 1.62.3
 * Extend selection with single taps in history listing
 * Update Brazilian Portuguese translation

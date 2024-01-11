@@ -1,0 +1,9 @@
+* Edit scan label in decoding screen
+* Add a button to add generated codes to the history
+* Improve scanning from images
+* Improve asking for camera permission
+* Fix margin for recreated barcodes
+* Limit duration of error beep to 1s
+* Update Ukrainian translation
+* Update Spanish translation
+
