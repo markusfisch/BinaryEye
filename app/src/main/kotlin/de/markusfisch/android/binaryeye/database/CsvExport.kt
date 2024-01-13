@@ -32,6 +32,7 @@ private fun exportCsv(
 	val columns = arrayOf(
 		Database.SCANS_DATETIME,
 		Database.SCANS_FORMAT,
+		Database.SCANS_NAME,
 		Database.SCANS_CONTENT,
 		Database.SCANS_ERROR_CORRECTION_LEVEL,
 		Database.SCANS_VERSION,
