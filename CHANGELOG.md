@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.63.1
+* Include scan label in exports/shares
+* Update Russian translation
+
 ## 1.63.0
 * Edit scan label in decoding screen
 * Add a button to add generated codes to the history
