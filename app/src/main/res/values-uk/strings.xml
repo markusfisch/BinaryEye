@@ -15,7 +15,7 @@
 	<string name="error_correction_level_m" formatted="false">Середній (~15&#37; виправлення)</string>
 	<string name="error_correction_level_q" formatted="false">Квартиль (~25&#37; виправлення)</string>
 	<string name="error_correction_level_h" formatted="false">Високий (~30&#37; виправлення)</string>
-	<string name="label">Label</string>
+	<string name="label">Мітка</string>
 	<string name="colors">Кольори</string>
 	<string name="colors_black_on_white">Чорний на білому</string>
 	<string name="colors_white_on_black">Білий на чорному</string>
@@ -168,8 +168,8 @@
 	<string name="otpauth_add">Додати 2FA</string>
 	<string name="search_web">Шукати в мережі</string>
 	<string name="search_scan">Шукати сканування</string>
-	<string name="add_to_history">Add to history</string>
-	<string name="added_to_history">Added to history</string>
+	<string name="add_to_history">Додати до історії</string>
+	<string name="added_to_history">Додано до історії</string>
 	<string name="export_to_file">Експортувати в файл</string>
 	<string name="export_as">Експортувати як?</string>
 	<string name="export_csv_comma">CSV із комами</string>
