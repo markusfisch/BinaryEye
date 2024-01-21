@@ -1,7 +1,7 @@
 <resources>
 	<string name="camera_error">Kameraya erişilemiyor, lütfen yeniden deneyin</string>
 	<string name="scan_code">Kod tara</string>
-	<string name="compose_barcode">Barkod yarat</string>
+	<string name="compose_barcode">Barkod oluştur</string>
 	<string name="decode_barcode">Barkod çöz</string>
 	<string name="content">İçerik</string>
 	<string name="binary_data">(ikili veri)</string>
@@ -14,7 +14,7 @@
 	<string name="error_correction_level_m" formatted="false">Orta (~&#37;15 düzeltim)</string>
 	<string name="error_correction_level_q" formatted="false">Dörtte Bir (~&#37;25 düzeltim)</string>
 	<string name="error_correction_level_h" formatted="false">Yüksek (~&#37;30 düzeltim)</string>
-	<string name="label">Label</string>
+	<string name="label">Etiket</string>
 	<string name="colors">Ön ve arka plan</string>
 	<string name="colors_black_on_white">Beyaz üzerine siyah</string>
 	<string name="colors_white_on_black">Siyah üzerine beyaz</string>
@@ -32,7 +32,7 @@
 	<string name="toggle_flash">Flaşı aç</string>
 	<string name="error_flash">Flaş açılırken hata oluştu</string>
 	<string name="share">Paylaş</string>
-	<string name="share_file">Share as file</string>
+	<string name="share_file">Dosya olarak paylaş</string>
 	<string name="share_as">Şöyle paylaş:</string>
 	<string name="copy_to_clipboard">Panoya kopyala</string>
 	<string name="copied_to_clipboard">Panoya kopyalandı</string>
@@ -43,12 +43,12 @@
 	<string name="pick_search_engine">Arama motoru seç</string>
 	<string name="format">Biçim</string>
 	<string name="size_width_by_height">Piksel türünde boyut: %1$d×%2$d</string>
-	<string name="margin_size">Margin in pixels: %1$d</string>
+	<string name="margin_size">Piksel türünde kenar boşluğu: %1$d</string>
 	<string name="input_content_here">İçeriği buraya gir</string>
-	<string name="unescape">Expand escape sequences</string>
+	<string name="unescape">Kaçış dizilerini genişlet</string>
 	<string name="encode">KODLA</string>
 	<string name="error_no_content">İçerik eksik</string>
-	<string name="error_encoding_barcode">Barkod yaratılamadı</string>
+	<string name="error_encoding_barcode">Barkod oluşturulamadı</string>
 	<string name="view_barcode">Barkodu gör</string>
 	<string name="info">Bilgi</string>
 	<string name="switch_camera">Kamerayı değiştir</string>
@@ -83,15 +83,15 @@
 	<string name="show_toast_in_bulk_mode_summary">Sürekli tarama yaparken taranan verileri kısaca göster.</string>
 	<string name="vibrate">Tanıyınca titre</string>
 	<string name="vibrate_summary">Kod tanındığında aygıtınızın titremesini istiyorsanız bunu etkinleştirin.</string>
-	<string name="beep">Beep on detection</string>
-	<string name="beep_summary">Enable this if you want your device to beep when a code is recognized.</string>
-	<string name="beep_tone">Beep tone</string>
-	<string name="tone_cdma_confirm">CDMA confirm</string>
-	<string name="tone_sup_confirm">Call supervisory confirm</string>
-	<string name="tone_sup_radio_ack">Call supervisory radio path acknowledgment</string>
-	<string name="tone_prop_ack">Positive acknowledgment</string>
-	<string name="tone_prop_beep">General beep</string>
-	<string name="tone_prop_beep2">General double beep</string>
+	<string name="beep">Tanıyınca ses çal</string>
+	<string name="beep_summary">Kod tanındığında aygıtınızın bip sesi çıkarmasını istiyorsanız bunu etkinleştirin.</string>
+	<string name="beep_tone">Ses tonu</string>
+	<string name="tone_cdma_confirm">CDMA onaylaması</string>
+	<string name="tone_sup_confirm">Çağrı denetleme onayı</string>
+	<string name="tone_sup_radio_ack">Çağrı denetleme radyo yolu onayı</string>
+	<string name="tone_prop_ack">Olumlu onay</string>
+	<string name="tone_prop_beep">Genel bip sesi</string>
+	<string name="tone_prop_beep2">Genel çift bip sesi</string>
 	<string name="use_history">Tarama geçmişini kaydet</string>
 	<string name="use_history_summary">Tanınan kodları aygıtınızda saklayın.</string>
 	<string name="ignore_consecutive_duplicates">Yinelemeleri göz ardı et</string>
@@ -127,13 +127,13 @@
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">Harici tarayıcıda aç</string>
 	<string name="test_url">URL\'yi sına</string>
-	<string name="send_scan_bluetooth">Forward scans with Bluetooth</string>
-	<string name="send_scan_bluetooth_summary">Enable to forwards scans to a given Bluetooth host.</string>
-	<string name="send_scan_bluetooth_host">Host</string>
-	<string name="no_bluetooth_hosts_paired">No Hosts Paired</string>
-	<string name="bluetooth_connect_fail">Could not connect to bluetooth device.</string>
-	<string name="bluetooth_send_fail">Could not send to bluetooth device.</string>
-	<string name="bluetooth_send_success">Successful bluetooth send.</string>
+	<string name="send_scan_bluetooth">Taramaları Bluetooth ile ilet</string>
+	<string name="send_scan_bluetooth_summary">Taramaları belirtilen bir Bluetooth aygıtına iletmeyi etkinleştirin</string>
+	<string name="send_scan_bluetooth_host">Aygıt</string>
+	<string name="no_bluetooth_hosts_paired">Eşleştirilen Aygıt Yok</string>
+	<string name="bluetooth_connect_fail">Bluetooth aygıtına bağlanılamadı.</string>
+	<string name="bluetooth_send_fail">Bluetooth aygıtına gönderilemedi.</string>
+	<string name="bluetooth_send_success">Bluetooth aygıtına gönderildi.</string>
 	<string name="really_remove_scan">Tarama gerçekten silinsin mi?</string>
 	<string name="really_remove_all_scans">Tüm taramalar gerçekten silinsin mi?</string>
 	<string name="really_remove_selected_scans">Seçili taramalar gerçekten silinsin mi?</string>
@@ -167,8 +167,8 @@
 	<string name="otpauth_add">2FA\'ya ekle</string>
 	<string name="search_web">Web\'i ara</string>
 	<string name="search_scan">Taramayı ara</string>
-	<string name="add_to_history">Add to history</string>
-	<string name="added_to_history">Added to history</string>
+	<string name="add_to_history">Geçmişe ekle</string>
+	<string name="added_to_history">Geçmişe eklendi</string>
 	<string name="export_to_file">Dosyaya dışa aktar</string>
 	<string name="export_as">Ne olarak dışa aktarılsın?</string>
 	<string name="export_csv_comma">Virgüller ile CSV</string>
@@ -178,11 +178,11 @@
 	<string name="saved_in_downloads">İndirilenlere kaydedildi</string>
 	<string name="rotate_image_cw">Görüntüyü saat yönünde döndür</string>
 	<string name="toggle_free_rotation">Serbest dönüşü değiştir</string>
-	<string name="pick_file">Pick a file</string>
+	<string name="pick_file">Dosya seç</string>
 	<string name="pick_image_file">Görüntü dosyası seç</string>
 	<string name="pick_code_to_scan">Taranacak kod seç</string>
 	<string name="shortcut_decode">Barkod tara</string>
-	<string name="shortcut_encode">Barkod yarat</string>
+	<string name="shortcut_encode">Barkod oluştur</string>
 	<string name="shortcut_preferences">Ayarlar</string>
 	<string name="background_request_failed">Arka plan isteği başarısız</string>
 	<string name="entry_type">Tür</string>
@@ -195,6 +195,6 @@
 	<string name="wifi_anonymous_identity">Anonim kimlik</string>
 	<string name="wifi_identity">Kimlik</string>
 	<string name="wifi_phase2">2. aşama yöntemi</string>
-	<string name="network_suggestions">Network suggestions</string>
-	<string name="remove_suggestion">Remove suggestion</string>
+	<string name="network_suggestions">Ağ önerileri</string>
+	<string name="remove_suggestion">Öneriyi kaldır</string>
 </resources>
