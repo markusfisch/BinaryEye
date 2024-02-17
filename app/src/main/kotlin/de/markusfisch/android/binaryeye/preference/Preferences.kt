@@ -21,6 +21,7 @@ class Preferences {
 		BarcodeFormat.DATA_BAR.name,
 		BarcodeFormat.DATA_BAR_EXPANDED.name,
 		BarcodeFormat.DATA_MATRIX.name,
+		BarcodeFormat.DX_FILM_EDGE.name,
 		BarcodeFormat.EAN_8.name,
 		BarcodeFormat.EAN_13.name,
 		BarcodeFormat.ITF.name,
@@ -218,16 +219,11 @@ class Preferences {
 	fun update() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			preferences.getStringSet(BARCODE_FORMATS, barcodeFormats)?.let {
-				// Add rMQR Code for existing installations.
-				val addRMQRCode = "rmqr_added"
-				barcodeFormats = if (!preferences.getBoolean(addRMQRCode, false)) {
-					preferences.edit().putBoolean(addRMQRCode, true).apply()
-					it.toMutableSet().apply {
-						add(BarcodeFormat.RMQR_CODE.name)
-					}
-				} else {
-					it
-				}
+				barcodeFormats = addFormatsOnUpdate(
+					it,
+					BarcodeFormat.RMQR_CODE,
+					BarcodeFormat.DX_FILM_EDGE
+				)
 			}
 		}
 		cropHandleX = preferences.getInt(CROP_HANDLE_X, cropHandleX)
@@ -323,6 +319,19 @@ class Preferences {
 			EXPAND_ESCAPE_SEQUENCES,
 			expandEscapeSequences
 		)
+	}
+
+	private fun addFormatsOnUpdate(
+		restored: Set<String>,
+		vararg formats: BarcodeFormat
+	) = restored.toMutableSet().apply {
+		for (format in formats) {
+			val name = "${format.name}_added"
+			if (!preferences.getBoolean(name, false)) {
+				preferences.edit().putBoolean(name, true).apply()
+				add(format.name)
+			}
+		}
 	}
 
 	fun beepTone() = when (beepToneName) {

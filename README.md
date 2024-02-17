@@ -36,6 +36,7 @@ ZXing can read the following barcode formats:
 * [CODE 93][code_93]
 * [CODE 128][code_128]
 * [DATA MATRIX][data_matrix]
+* [DX FILM EDGE][dx_film_edge]
 * [EAN 8][ean_8]
 * [EAN 13][ean_13]
 * [ITF][itf]
@@ -144,6 +145,7 @@ class YourActivity : Activity() {
 [code_93]: https://en.wikipedia.org/wiki/Code_93
 [code_128]: https://en.wikipedia.org/wiki/Code_128
 [data_matrix]: https://en.wikipedia.org/wiki/Data_Matrix
+[dx_film_edge]: https://en.wikipedia.org/wiki/DX_encoding
 [ean_8]: https://en.wikipedia.org/wiki/EAN-8
 [ean_13]: https://en.wikipedia.org/wiki/International_Article_Number
 [itf]: https://en.wikipedia.org/wiki/Interleaved_2_of_5
