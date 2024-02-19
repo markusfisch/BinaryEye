@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.63.2
+* Add DX Film Edge barcode format
+* Update Turkish translation
+* Update Ukrainian translation
+
 ## 1.63.1
 * Include scan label in exports/shares
 * Update Russian translation

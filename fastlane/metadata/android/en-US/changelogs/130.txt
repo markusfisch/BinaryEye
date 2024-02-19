@@ -1,0 +1,4 @@
+* Add DX Film Edge barcode format
+* Update Turkish translation
+* Update Ukrainian translation
+
