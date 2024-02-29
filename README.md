@@ -10,6 +10,15 @@ comes in Material Design and can also generate barcodes.
 Binary Eye uses the [ZXing-C++][zxing_cpp] ("Zebra Crossing") barcode
 scanning library.
 
+If you find this app useful and wish to support its continued development,
+you can [buy me a coffee](https://www.buymeacoffee.com/markusfisch) or
+send some Bitcoin decimals to `bc1q2guk2rpll587aymrfadkdtpq32448x5khk5j8z`.
+
+<a href="https://www.buymeacoffee.com/markusfisch" target="_blank"><img
+	src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+	alt="Buy Me A Coffee"
+	style="height: 60px !important;width: 217px !important;"/></a>
+
 ## Screenshots
 
 <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screencap-scanning.png"
