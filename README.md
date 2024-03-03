@@ -131,10 +131,12 @@ If you're using AndroidX, this would be the new,
 [recommended way][intent_result]:
 
 ```kotlin
-class YourActivity : Activity() {
-	private val resultLauncher = registerForActivityResult(StartActivityForResult()) { result ->
-		if (result.resultCode == Activity.RESULT_OK) {
-			val scan = result.data?.getStringExtra("SCAN_RESULT")
+class YourActivity : AppCompatActivity() {
+	private val resultLauncher = registerForActivityResult(
+		ActivityResultContracts.StartActivityForResult()
+	) { result ->
+		if (result.resultCode == RESULT_OK) {
+			val content = result.data?.getStringExtra("SCAN_RESULT")
 			…
 		}
 	}
