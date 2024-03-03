@@ -718,7 +718,7 @@ fun Activity.showResult(
 
 private fun getReturnIntent(result: Result) = Intent().apply {
 	putExtra("SCAN_RESULT", result.text)
-	putExtra("SCAN_RESULT_FORMAT", result.format)
+	putExtra("SCAN_RESULT_FORMAT", result.format.toString())
 	putExtra("SCAN_RESULT_ORIENTATION", result.orientation)
 	putExtra("SCAN_RESULT_ERROR_CORRECTION_LEVEL", result.ecLevel)
 	if (result.rawBytes.isNotEmpty()) {
