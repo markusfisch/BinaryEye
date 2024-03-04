@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.63.3
+* Fix SCAN Intent
+
 ## 1.63.2
 * Add DX Film Edge barcode format
 * Update Turkish translation
