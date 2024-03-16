@@ -13,7 +13,7 @@
 	<string name="error_correction_level_m" formatted="false">中 (~15&#37; 準確度)</string>
 	<string name="error_correction_level_q" formatted="false">較高 (~25&#37; 準確度)</string>
 	<string name="error_correction_level_h" formatted="false">高 (~30&#37; 準確度)</string>
-	<string name="label">Label</string>
+	<string name="label">名稱</string>
 	<string name="colors">前景與背景</string>
 	<string name="colors_black_on_white">白底黑字</string>
 	<string name="colors_white_on_black">黑底白字</string>
@@ -31,7 +31,7 @@
 	<string name="toggle_flash">控制閃光燈</string>
 	<string name="error_flash">控制閃光燈時發生錯誤</string>
 	<string name="share">分享</string>
-	<string name="share_file">Share as file</string>
+	<string name="share_file">分享檔案</string>
 	<string name="share_as">您要以何種方式分享？</string>
 	<string name="copy_to_clipboard">複製到剪貼簿</string>
 	<string name="copied_to_clipboard">已複製到剪貼簿</string>
@@ -42,7 +42,7 @@
 	<string name="pick_search_engine">選擇一個搜尋引擎</string>
 	<string name="format">格式</string>
 	<string name="size_width_by_height">圖片尺寸: %1$d×%2$d</string>
-	<string name="margin_size">Margin in pixels: %1$d</string>
+	<string name="margin_size">間距大小: %1$d</string>
 	<string name="input_content_here">請在這裡輸入內容</string>
 	<string name="unescape">展開逸出序列</string>
 	<string name="encode">編碼</string>
@@ -166,8 +166,8 @@
 	<string name="otpauth_add">加入雙重驗證 (2FA)</string>
 	<string name="search_web">在網路上搜尋</string>
 	<string name="search_scan">搜尋掃描記錄</string>
-	<string name="add_to_history">Add to history</string>
-	<string name="added_to_history">Added to history</string>
+	<string name="add_to_history">儲存記錄</string>
+	<string name="added_to_history">已新增至記錄</string>
 	<string name="export_to_file">匯出檔案</string>
 	<string name="export_as">另存為？</string>
 	<string name="export_csv_comma">逗號分隔的 CSV 檔案</string>
@@ -177,7 +177,7 @@
 	<string name="saved_in_downloads">已儲存至下載資料夾</string>
 	<string name="rotate_image_cw">順時針旋轉圖片</string>
 	<string name="toggle_free_rotation">切換自由旋轉</string>
-	<string name="pick_file">Pick a file</string>
+	<string name="pick_file">選擇檔案</string>
 	<string name="pick_image_file">選擇圖片檔案</string>
 	<string name="pick_code_to_scan">選擇要掃描的條碼</string>
 	<string name="shortcut_decode">掃描條碼</string>
