@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.63.4
+* Update Chinese translation
+* Improve support for old devices
+
 ## 1.63.3
 * Fix SCAN Intent
 

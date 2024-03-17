@@ -1,0 +1,3 @@
+* Update Chinese translation
+* Improve support for old devices
+
