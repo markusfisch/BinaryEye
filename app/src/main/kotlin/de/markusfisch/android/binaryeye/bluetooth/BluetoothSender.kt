@@ -76,7 +76,6 @@ private fun connect(deviceName: String, onceMore: Boolean): Boolean = try {
 		connect(deviceName, false)
 	else
 		close()
-	//TODO do i need the extra catch here? hmmm. line 74-79
 	false
 }
 
