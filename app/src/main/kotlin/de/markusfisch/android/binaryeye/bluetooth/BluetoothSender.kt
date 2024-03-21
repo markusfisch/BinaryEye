@@ -21,10 +21,10 @@ fun Scan.sendBluetoothAsync(
 		val connected = if (isConnected) {
 			true
 		} else {
-			connect(host)
+			connect(host,true)
 		}
 		val sent = if (connected) {
-			send(content)
+			send(content,host,true)
 		} else {
 			false
 		}
@@ -62,7 +62,7 @@ private val uuid = UUID.fromString(
 
 private var isConnected = false
 
-private fun connect(deviceName: String): Boolean = try {
+private fun connect(deviceName: String, onceMore: Boolean): Boolean = try {
 	val device = findByName(deviceName) ?: throw RuntimeException(
 		"Bluetooth device not found"
 	)
@@ -72,11 +72,14 @@ private fun connect(deviceName: String): Boolean = try {
 	isConnected = true
 	true
 } catch (e: Exception) {
-	close()
+	if (onceMore)
+		connect(deviceName, false)
+	else
+		close()
 	false
 }
 
-private fun send(message: String): Boolean = try {
+private fun send(message: String, host: String, onceMore: Boolean): Boolean = try {
 	writer?.apply {
 		write(message)
 		write("\n")
@@ -85,7 +88,11 @@ private fun send(message: String): Boolean = try {
 	true
 } catch (e: Exception) {
 	close()
-	false
+
+	if (connect(host, false))
+		send(message, host, false)
+	else
+		false
 }
 
 private fun close() {
