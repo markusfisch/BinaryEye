@@ -127,8 +127,10 @@
 	<string name="search_web">Szukaj w sieci</string>
 	<string name="search_scan">Szukaj skanu</string>
 	<string name="export_database">Eksportuj do bazy danych SQLite</string>
+	<string name="ignore_duplicates">Ignore duplicates</string>
 	<string name="ignore_consecutive_duplicates">Nie zapisuj kolejnych duplikatów</string>
-	<string name="ignore_consecutive_duplicates_summary">Nie zapisuj kolejnych duplikatów w historii skanowania.</string>
+	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="accept_duplicates">Accept duplicates</string>
 	<string name="default_search_engine">Otwórz nieznane dane w</string>
 	<string name="always_ask">Zawsze pytaj</string>
 	<string name="open_with_url">Otwieraj nieznane dane za pomocą adresu URL</string>

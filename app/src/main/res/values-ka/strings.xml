@@ -94,8 +94,10 @@
 	<string name="tone_prop_beep2">General double beep</string>
 	<string name="use_history">სკანირების ისტორიის შენახვა</string>
 	<string name="use_history_summary">ამოცნობილი შტრიხ-კოდების მოწყობილობაზე შენახვა.</string>
+	<string name="ignore_duplicates">Ignore duplicates</string>
 	<string name="ignore_consecutive_duplicates">არ შევინახოთ შემდგომი ასლები</string>
-	<string name="ignore_consecutive_duplicates_summary">არ შევინახოთ შემდგომი ასლები სკანირების ისტორიაში.</string>
+	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="accept_duplicates">Accept duplicates</string>
 	<string name="open_immediately">შემოწმების გამოტოვება და მყისიერი გახსნა</string>
 	<string name="open_immediately_summary">შემოწმების გამოტოვება და მყისიერი გახსნა. შესაძლოა გამოიწვიოს არასასარგებლო კონტენტის ჩვენება.</string>
 	<string name="copy_immediately">გაცვლის ბუფერში ავტომატური კოპირება</string>

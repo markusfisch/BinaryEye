@@ -108,9 +108,9 @@ class Preferences {
 			apply(USE_HISTORY, value)
 			field = value
 		}
-	var ignoreConsecutiveDuplicates = true
+	var ignoreDuplicatesName = "ignore_consecutive_duplicates"
 		set(value) {
-			apply(IGNORE_CONSECUTIVE_DUPLICATES, value)
+			apply(IGNORE_DUPLICATES_NAME, value)
 			field = value
 		}
 	var copyImmediately = false
@@ -254,10 +254,9 @@ class Preferences {
 			beepToneName = it
 		}
 		useHistory = preferences.getBoolean(USE_HISTORY, useHistory)
-		ignoreConsecutiveDuplicates = preferences.getBoolean(
-			IGNORE_CONSECUTIVE_DUPLICATES,
-			ignoreConsecutiveDuplicates
-		)
+		preferences.getString(IGNORE_DUPLICATES_NAME, ignoreDuplicatesName)?.also {
+			ignoreDuplicatesName = it
+		}
 		copyImmediately = preferences.getBoolean(
 			COPY_IMMEDIATELY,
 			copyImmediately
@@ -343,6 +342,12 @@ class Preferences {
 		else -> ToneGenerator.TONE_PROP_BEEP
 	}
 
+	fun ignoreDuplicates() = when (ignoreDuplicatesName) {
+		"ignore_consecutive_duplicates" -> IgnoreDuplicates.Consecutive
+		"ignore_any_duplicates" -> IgnoreDuplicates.Any
+		else -> IgnoreDuplicates.Never
+	}
+
 	private fun put(label: String, value: Boolean) =
 		preferences.edit().putBoolean(label, value)
 
@@ -372,6 +377,10 @@ class Preferences {
 	}
 
 	companion object {
+		enum class IgnoreDuplicates {
+			Consecutive, Any, Never
+		}
+
 		private const val BARCODE_FORMATS = "formats"
 		private const val CROP_HANDLE_X = "crop_handle_x"
 		private const val CROP_HANDLE_Y = "crop_handle_y"
@@ -387,7 +396,7 @@ class Preferences {
 		private const val BEEP = "beep"
 		private const val BEEP_TONE_NAME = "beep_tone_name"
 		private const val USE_HISTORY = "use_history"
-		private const val IGNORE_CONSECUTIVE_DUPLICATES = "ignore_consecutive_duplicates"
+		private const val IGNORE_DUPLICATES_NAME = "ignore_duplicates_name"
 		private const val OPEN_IMMEDIATELY = "open_immediately"
 		private const val COPY_IMMEDIATELY = "copy_immediately"
 		private const val SHOW_META_DATA = "show_meta_data"

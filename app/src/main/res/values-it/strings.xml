@@ -94,8 +94,10 @@
 	<string name="tone_prop_beep2">Doppio beep generale</string>
 	<string name="use_history">Salva cronologia scansioni</string>
 	<string name="use_history_summary">Salva i codici riconosciuti nel dispositivo.</string>
+	<string name="ignore_duplicates">Ignore duplicates</string>
 	<string name="ignore_consecutive_duplicates">Ignora i duplicati</string>
-	<string name="ignore_consecutive_duplicates_summary">Non salvare duplicati consecutivi nella cronologia di scansione.</string>
+	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="accept_duplicates">Accept duplicates</string>
 	<string name="open_immediately">Apri subito</string>
 	<string name="open_immediately_summary">Salta l\'ispezione e apri i contenuti immediatamente. Se abilitato può aprire contenuti dannosi.</string>
 	<string name="copy_immediately">Copia negli Appunti</string>

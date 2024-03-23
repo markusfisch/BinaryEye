@@ -94,8 +94,10 @@
 	<string name="tone_prop_beep2">General double beep</string>
 	<string name="use_history">ইতিহাস সংরক্ষণ করো।</string>
 	<string name="use_history_summary">সনাক্তকৃত সংকেত যন্ত্রে সংরক্ষণ করো।</string>
+	<string name="ignore_duplicates">Ignore duplicates</string>
 	<string name="ignore_consecutive_duplicates">দ্বিত্ব উপেক্ষা করো</string>
-	<string name="ignore_consecutive_duplicates_summary">দুইটা ইতিহাস সংরক্ষণ করবে না।</string>
+	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="accept_duplicates">Accept duplicates</string>
 	<string name="open_immediately">সাথে সাথে খুলো</string>
 	<string name="open_immediately_summary">না দেখে সাথে সাথে খুলো। সক্রিয় থাকলে ক্ষতিকারক তথ্য খুলতে পারে।</string>
 	<string name="copy_immediately">ক্লিপবোর্ডে রাখো</string>

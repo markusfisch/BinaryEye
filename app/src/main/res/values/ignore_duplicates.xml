@@ -1,0 +1,12 @@
+<resources>
+	<string-array name="ignore_duplicates_names">
+		<item>@string/ignore_consecutive_duplicates</item>
+		<item>@string/ignore_any_duplicates</item>
+		<item>@string/accept_duplicates</item>
+	</string-array>
+	<string-array name="ignore_duplicates_values">
+		<item>ignore_consecutive_duplicates</item>
+		<item>ignore_any_duplicates</item>
+		<item>accept_duplicates</item>
+	</string-array>
+</resources>

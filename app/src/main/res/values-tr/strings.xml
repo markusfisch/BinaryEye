@@ -94,8 +94,10 @@
 	<string name="tone_prop_beep2">Genel çift bip sesi</string>
 	<string name="use_history">Tarama geçmişini kaydet</string>
 	<string name="use_history_summary">Tanınan kodları aygıtınızda saklayın.</string>
+	<string name="ignore_duplicates">Ignore duplicates</string>
 	<string name="ignore_consecutive_duplicates">Yinelemeleri göz ardı et</string>
-	<string name="ignore_consecutive_duplicates_summary">Ardışık yinelemeleri tarama geçmişine kaydetme.</string>
+	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="accept_duplicates">Accept duplicates</string>
 	<string name="open_immediately">Hemen aç</string>
 	<string name="open_immediately_summary">İncelemeyi atla ve içeriği hemen aç. Eğer etkinse zararlı içerik açılabilir.</string>
 	<string name="copy_immediately">Panoya koy</string>

@@ -93,8 +93,10 @@
 	<string name="tone_prop_beep2">General double beep</string>
 	<string name="use_history">保存扫描历史</string>
 	<string name="use_history_summary">在本地保存扫描历史</string>
+	<string name="ignore_duplicates">Ignore duplicates</string>
 	<string name="ignore_consecutive_duplicates">不保存重复历史</string>
-	<string name="ignore_consecutive_duplicates_summary">在扫描历史中不保存重复项</string>
+	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="accept_duplicates">Accept duplicates</string>
 	<string name="open_immediately">不检查内容立即打开链接</string>
 	<string name="open_immediately_summary">可能会打开有害内容</string>
 	<string name="copy_immediately">自动复制扫描结果到剪贴板</string>

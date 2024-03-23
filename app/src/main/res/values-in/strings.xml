@@ -93,8 +93,10 @@
 	<string name="tone_prop_beep2">General double beep</string>
 	<string name="use_history">Simpan riwayat pemindaian</string>
 	<string name="use_history_summary">Simpan kode yang berhasil dipindai pada perangkat anda.</string>
+	<string name="ignore_duplicates">Ignore duplicates</string>
 	<string name="ignore_consecutive_duplicates">Abaikan duplikat</string>
-	<string name="ignore_consecutive_duplicates_summary">Jangan simpan duplikat yang berturutan di dalam riwayat pemindaian.</string>
+	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="accept_duplicates">Accept duplicates</string>
 	<string name="open_immediately">Buka segera</string>
 	<string name="open_immediately_summary">Lewati inspeksi dan segera buka konten. Mungkin membuka konten berbahaya jika diaktifkan.</string>
 	<string name="copy_immediately">Simpan ke dalam clipboard</string>

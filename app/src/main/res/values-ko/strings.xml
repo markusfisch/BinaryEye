@@ -93,8 +93,10 @@
 	<string name="tone_prop_beep2">General double beep</string>
 	<string name="use_history">Save scan history</string>
 	<string name="use_history_summary">Save recognized codes on your device.</string>
+	<string name="ignore_duplicates">Ignore duplicates</string>
 	<string name="ignore_consecutive_duplicates">Ignore duplicates</string>
-	<string name="ignore_consecutive_duplicates_summary">Do not save consecutive duplicates in the scan history.</string>
+	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="accept_duplicates">Accept duplicates</string>
 	<string name="open_immediately">Open immediately</string>
 	<string name="open_immediately_summary">Skip inspection and open contents immediately. May open harmful content if enabled.</string>
 	<string name="copy_immediately">Put into clipboard</string>

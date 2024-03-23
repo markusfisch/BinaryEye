@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.preference.Preferences
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 
 class Database {
@@ -137,39 +138,52 @@ class Database {
 		}
 	}
 
-	fun insertScan(scan: Scan): Long = db.insert(
-		SCANS,
-		null,
-		ContentValues().apply {
-			put(SCANS_DATETIME, scan.dateTime)
-			put(SCANS_CONTENT, scan.content)
-			if (scan.raw != null) {
-				put(SCANS_RAW, scan.raw)
-			}
-			put(SCANS_FORMAT, scan.format.name)
-			scan.errorCorrectionLevel?.let {
-				put(SCANS_ERROR_CORRECTION_LEVEL, it)
-			}
-			put(SCANS_VERSION, scan.version)
-			put(SCANS_SEQUENCE_SIZE, scan.sequenceSize)
-			put(SCANS_SEQUENCE_INDEX, scan.sequenceIndex)
-			put(SCANS_SEQUENCE_ID, scan.sequenceId)
-			scan.country?.let { put(SCANS_GTIN_COUNTRY, it) }
-			scan.addOn?.let { put(SCANS_GTIN_ADD_ON, it) }
-			scan.price?.let { put(SCANS_GTIN_PRICE, it) }
-			scan.issueNumber?.let { put(SCANS_GTIN_ISSUE_NUMBER, it) }
-			if (prefs.ignoreConsecutiveDuplicates) {
+	fun insertScan(scan: Scan): Long {
+		when (prefs.ignoreDuplicates()) {
+			Preferences.Companion.IgnoreDuplicates.Consecutive -> {
 				val id = getIdOfLastScan(
-					get(SCANS_CONTENT) as String,
-					get(SCANS_RAW) as ByteArray?,
+					scan.content,
+					scan.raw,
 					scan.format
 				)
 				if (id > 0L) {
 					return id
 				}
 			}
+
+			Preferences.Companion.IgnoreDuplicates.Any -> {
+				val id = getIdOfScanByContent(scan.content, scan.format)
+				if (id > 0L) {
+					return id
+				}
+			}
+
+			else -> Unit
 		}
-	)
+		return db.insert(
+			SCANS,
+			null,
+			ContentValues().apply {
+				put(SCANS_DATETIME, scan.dateTime)
+				put(SCANS_CONTENT, scan.content)
+				if (scan.raw != null) {
+					put(SCANS_RAW, scan.raw)
+				}
+				put(SCANS_FORMAT, scan.format.name)
+				scan.errorCorrectionLevel?.let {
+					put(SCANS_ERROR_CORRECTION_LEVEL, it)
+				}
+				put(SCANS_VERSION, scan.version)
+				put(SCANS_SEQUENCE_SIZE, scan.sequenceSize)
+				put(SCANS_SEQUENCE_INDEX, scan.sequenceIndex)
+				put(SCANS_SEQUENCE_ID, scan.sequenceId)
+				scan.country?.let { put(SCANS_GTIN_COUNTRY, it) }
+				scan.addOn?.let { put(SCANS_GTIN_ADD_ON, it) }
+				scan.price?.let { put(SCANS_GTIN_PRICE, it) }
+				scan.issueNumber?.let { put(SCANS_GTIN_ISSUE_NUMBER, it) }
+			}
+		)
+	}
 
 	private fun getIdOfLastScan(
 		content: String,
@@ -193,6 +207,25 @@ class Database {
 				?.contentEquals(raw) == true) &&
 			it.getString(SCANS_FORMAT) == format.name
 		) {
+			it.getLong(SCANS_ID)
+		} else {
+			0L
+		}
+	} ?: 0L
+
+	fun getIdOfScanByContent(
+		content: String,
+		format: BarcodeFormat
+	): Long = db.rawQuery(
+		"""SELECT
+				$SCANS_ID
+				FROM $SCANS
+				WHERE $SCANS_CONTENT = ?
+					AND $SCANS_FORMAT = ?
+				LIMIT 1
+			""".trimMargin(), arrayOf(content, format.name)
+	)?.use {
+		if (it.moveToFirst()) {
 			it.getLong(SCANS_ID)
 		} else {
 			0L

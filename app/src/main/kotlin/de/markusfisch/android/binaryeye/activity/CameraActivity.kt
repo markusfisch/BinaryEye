@@ -39,6 +39,7 @@ import de.markusfisch.android.binaryeye.graphics.setFrameToView
 import de.markusfisch.android.binaryeye.media.releaseToneGenerators
 import de.markusfisch.android.binaryeye.net.sendAsync
 import de.markusfisch.android.binaryeye.net.urlEncode
+import de.markusfisch.android.binaryeye.preference.Preferences
 import de.markusfisch.android.binaryeye.view.errorFeedback
 import de.markusfisch.android.binaryeye.view.initSystemBars
 import de.markusfisch.android.binaryeye.view.scanFeedback
@@ -626,8 +627,12 @@ class CameraActivity : AppCompatActivity() {
 				}
 			}
 			if (bulkMode) {
-				if (prefs.ignoreConsecutiveDuplicates) {
-					ignoreNext = result.text
+				when (prefs.ignoreDuplicates()) {
+					Preferences.Companion.IgnoreDuplicates.Consecutive,
+					Preferences.Companion.IgnoreDuplicates.Any ->
+						ignoreNext = result.text
+
+					else -> Unit
 				}
 				if (prefs.showToastInBulkMode) {
 					toast(result.text)

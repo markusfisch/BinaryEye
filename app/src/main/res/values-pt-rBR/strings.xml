@@ -94,8 +94,10 @@
 	<string name="tone_prop_beep2">Bipe duplo comum</string>
 	<string name="use_history">Ativar histórico de digitalizações</string>
 	<string name="use_history_summary">Salve códigos reconhecidos no dispositivo.</string>
+	<string name="ignore_duplicates">Ignore duplicates</string>
 	<string name="ignore_consecutive_duplicates">Ignorar duplicações</string>
-	<string name="ignore_consecutive_duplicates_summary">Não salvar duplicações consecutivas no histórico de digitalizações.</string>
+	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="accept_duplicates">Accept duplicates</string>
 	<string name="open_immediately">Abrir imediatamente</string>
 	<string name="open_immediately_summary">Pular a inspeção e abrir um conteúdo no mesmo instante. Quando ativado, pode abrir conteúdo perigoso.</string>
 	<string name="copy_immediately">Copiar ao clipboard</string>

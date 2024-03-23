@@ -93,8 +93,10 @@
 	<string name="tone_prop_beep2">標準連續嗶聲</string>
 	<string name="use_history">儲存掃描記錄</string>
 	<string name="use_history_summary">在本機儲存掃描記錄</string>
+	<string name="ignore_duplicates">Ignore duplicates</string>
 	<string name="ignore_consecutive_duplicates">不儲存重複歷史記錄</string>
-	<string name="ignore_consecutive_duplicates_summary">掃描記錄中不儲存連續的重複項目</string>
+	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="accept_duplicates">Accept duplicates</string>
 	<string name="open_immediately">立即開啟</string>
 	<string name="open_immediately_summary">跳過檢查並立即開啟。可能會開啟有害內容</string>
 	<string name="copy_immediately">自動複製掃描結果到剪貼簿</string>

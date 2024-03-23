@@ -94,8 +94,10 @@
 	<string name="tone_prop_beep2">General double beep</string>
 	<string name="use_history">Codes speichern</string>
 	<string name="use_history_summary">Eingelesene Barcodes auf dem Gerät speichern.</string>
-	<string name="ignore_consecutive_duplicates">Duplikate ignorieren</string>
-	<string name="ignore_consecutive_duplicates_summary">Aufeinanderfolgende Duplikate werden nicht in der Scan-Historie gespeichert.</string>
+	<string name="ignore_duplicates">Ignoriere Duplikate</string>
+	<string name="ignore_consecutive_duplicates">Aufeinanderfolgende Duplikate</string>
+	<string name="ignore_any_duplicates">Jedes Duplicat</string>
+	<string name="accept_duplicates">Akzeptiere Duplikate</string>
 	<string name="open_immediately">Inhalte sofort öffnen</string>
 	<string name="open_immediately_summary">Inspektion überspringen und Inhalt sofort öffnen. Kann schädliche Inhalte öffnen, wenn aktiviert.</string>
 	<string name="copy_immediately">Automatisch in Zwischenablage</string>

@@ -95,8 +95,10 @@
 	<string name="tone_prop_beep2">Звичайний подвійний сигнал</string>
 	<string name="use_history">Зберігати історію сканування</string>
 	<string name="use_history_summary">Збережіть розпізнані коди на своєму пристрої.</string>
+	<string name="ignore_duplicates">Ignore duplicates</string>
 	<string name="ignore_consecutive_duplicates">Ігнорувати дублікати</string>
-	<string name="ignore_consecutive_duplicates_summary">Не зберігати послідовні дублікати в історії сканування.</string>
+	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="accept_duplicates">Accept duplicates</string>
 	<string name="open_immediately">Відкривати негайно</string>
 	<string name="open_immediately_summary">Пропустити перегляд та негайно відкрити вміст. Якщо увімкнено, може відкрити шкідливий вміст.</string>
 	<string name="copy_immediately">Помістити в буфер обміну</string>

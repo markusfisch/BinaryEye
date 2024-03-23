@@ -93,8 +93,10 @@
 	<string name="tone_prop_beep2">General double beep</string>
 	<string name="use_history">Lưu lịch sử quét</string>
 	<string name="use_history_summary">Lưu mã đã nhận dạng được trên máy của bạn.</string>
+	<string name="ignore_duplicates">Ignore duplicates</string>
 	<string name="ignore_consecutive_duplicates">Bỏ qua trùng lặp</string>
-	<string name="ignore_consecutive_duplicates_summary">Không lưu các kết quả quét trùng lặp liên tục vào lịch sử.</string>
+	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="accept_duplicates">Accept duplicates</string>
 	<string name="open_immediately">Mở ngay</string>
 	<string name="open_immediately_summary">Bỏ qua kiểm tra và mở ngay nội dung. Có thể mở nội dung nguy hiểm nếu kích hoạt.</string>
 	<string name="copy_immediately">Sao chép kết quả</string>

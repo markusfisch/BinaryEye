@@ -94,8 +94,10 @@
 	<string name="tone_prop_beep2">General double beep</string>
 	<string name="use_history">Scancodes bewaren</string>
 	<string name="use_history_summary">Bewaar herkende codes op je toestel.</string>
+	<string name="ignore_duplicates">Ignore duplicates</string>
 	<string name="ignore_consecutive_duplicates">Duplicaten negeren</string>
-	<string name="ignore_consecutive_duplicates_summary">Bewaar geen opeenvolgende duplicaten in de scangeschiedenis.</string>
+	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="accept_duplicates">Accept duplicates</string>
 	<string name="open_immediately">Inhoud direct tonen, zonder inspectie</string>
 	<string name="open_immediately_summary">Sla inspectie over en open meteen de inhoud. Indien geactiveerd, kan schadelijke inhoud worden geopend.</string>
 	<string name="copy_immediately">Meteen op klembord zetten</string>

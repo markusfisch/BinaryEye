@@ -93,8 +93,10 @@
 	<string name="tone_prop_beep2">一般的なダブルビープ音</string>
 	<string name="use_history">スキャン履歴を保存する</string>
 	<string name="use_history_summary">認識されたバーコードを端末に保存しておきます。</string>
+	<string name="ignore_duplicates">Ignore duplicates</string>
 	<string name="ignore_consecutive_duplicates">重複を破棄する</string>
-	<string name="ignore_consecutive_duplicates_summary">重複したスキャン履歴を保存しないようにします。</string>
+	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="accept_duplicates">Accept duplicates</string>
 	<string name="open_immediately">すぐにコンテンツを開く</string>
 	<string name="open_immediately_summary">確認画面なしでコンテンツをすぐに開くようにします。有害なコンテンツを開いてしまうリスクがあります。</string>
 	<string name="copy_immediately">自動的にクリップボードにコピー</string>

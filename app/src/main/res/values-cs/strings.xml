@@ -96,8 +96,10 @@
 	<string name="tone_prop_beep2">Dvojité obecné pípnutí</string>
 	<string name="use_history">Ukládat historii skenování</string>
 	<string name="use_history_summary">Rozpoznané kódy se uloží do zařízení.</string>
+	<string name="ignore_duplicates">Ignore duplicates</string>
 	<string name="ignore_consecutive_duplicates">Ignorovat duplikáty</string>
-	<string name="ignore_consecutive_duplicates_summary">Další skeny stejného kódu se nebudou ukládat.</string>
+	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="accept_duplicates">Accept duplicates</string>
 	<string name="open_immediately">Otevírat okamžitě</string>
 	<string name="open_immediately_summary">Přeskočí kontrolu a otevře obsah okamžitě. Může otevřít škodlivý obsah.</string>
 	<string name="copy_immediately">Vložit do schránky</string>

@@ -94,8 +94,10 @@
 	<string name="tone_prop_beep2">General double beep</string>
 	<string name="use_history">Sauvegarder l\'historique des scans</string>
 	<string name="use_history_summary">Sauvegarder les codes reconnus sur votre appareil.</string>
+	<string name="ignore_duplicates">Ignore duplicates</string>
 	<string name="ignore_consecutive_duplicates">Ignorer les doublons</string>
-	<string name="ignore_consecutive_duplicates_summary">Ne pas sauvegarder les doublons dans l\'historique des scans.</string>
+	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="accept_duplicates">Accept duplicates</string>
 	<string name="open_immediately">Ouvrir immédiatement</string>
 	<string name="open_immediately_summary">Ignorer l\'inspection et ouvrir le contenu immédiatement. Si cette option est activée, cela peut ouvrir un contenu nocif.</string>
 	<string name="copy_immediately">Copier dans le presse-papiers</string>

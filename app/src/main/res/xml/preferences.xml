@@ -60,11 +60,12 @@
 			android:key="use_history"
 			android:title="@string/use_history"
 			android:summary="@string/use_history_summary"/>
-		<android.support.v7.preference.SwitchPreferenceCompat
-			android:defaultValue="true"
-			android:key="ignore_consecutive_duplicates"
-			android:title="@string/ignore_consecutive_duplicates"
-			android:summary="@string/ignore_consecutive_duplicates_summary"/>
+		<ListPreference
+			android:key="ignore_duplicates_name"
+			android:title="@string/ignore_duplicates"
+			android:entries="@array/ignore_duplicates_names"
+			android:entryValues="@array/ignore_duplicates_values"
+			android:defaultValue="ignore_consecutive_duplicates"/>
 		<android.support.v7.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="copy_immediately"

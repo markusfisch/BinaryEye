@@ -94,8 +94,10 @@
 	<string name="tone_prop_beep2">Generelt dobbelt bip</string>
 	<string name="use_history">Gem scanningshistorik</string>
 	<string name="use_history_summary">Gem genkendte koder på din enhed.</string>
+	<string name="ignore_duplicates">Ignore duplicates</string>
 	<string name="ignore_consecutive_duplicates">Ignorer dubletter</string>
-	<string name="ignore_consecutive_duplicates_summary">Gem ikke fortløbende dubletter i scanningshistorikken.</string>
+	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="accept_duplicates">Accept duplicates</string>
 	<string name="open_immediately">Åbn straks</string>
 	<string name="open_immediately_summary">Spring inspektion over og åbn indholdet med det samme. Kan åbne skadeligt indhold, hvis det er aktiveret.</string>
 	<string name="copy_immediately">Læg i udklipsholderen</string>
