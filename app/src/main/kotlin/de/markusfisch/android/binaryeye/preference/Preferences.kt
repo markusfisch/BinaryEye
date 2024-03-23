@@ -226,6 +226,7 @@ class Preferences {
 				)
 			}
 		}
+
 		cropHandleX = preferences.getInt(CROP_HANDLE_X, cropHandleX)
 		cropHandleY = preferences.getInt(CROP_HANDLE_Y, cropHandleY)
 		cropHandleOrientation = preferences.getInt(
@@ -254,6 +255,14 @@ class Preferences {
 			beepToneName = it
 		}
 		useHistory = preferences.getBoolean(USE_HISTORY, useHistory)
+
+		// Map old setting to new one if it wasn't on default value.
+		val ignoreConsecutiveDuplicates = "ignore_consecutive_duplicates"
+		if (!preferences.getBoolean(ignoreConsecutiveDuplicates, true)) {
+			preferences.edit().remove(ignoreConsecutiveDuplicates).apply()
+			ignoreDuplicatesName = "accept_duplicates"
+		}
+
 		preferences.getString(IGNORE_DUPLICATES_NAME, ignoreDuplicatesName)?.also {
 			ignoreDuplicatesName = it
 		}
