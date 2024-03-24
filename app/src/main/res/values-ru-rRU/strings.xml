@@ -96,10 +96,10 @@
 	<string name="tone_prop_beep2">Обычный двойной сигнал</string>
 	<string name="use_history">Сохранять историю сканирования</string>
 	<string name="use_history_summary">Сохранять распознанные штрих-коды на устройстве.</string>
-	<string name="ignore_duplicates">Ignore duplicates</string>
-	<string name="ignore_consecutive_duplicates">Не хранить дубликаты</string>
-	<string name="ignore_any_duplicates">Ignore any duplicates</string>
-	<string name="accept_duplicates">Accept duplicates</string>
+	<string name="ignore_duplicates">Действие с дубликатами</string>
+	<string name="ignore_consecutive_duplicates">Не сохранять последовательные дубликаты</string>
+	<string name="ignore_any_duplicates">Не сохранять никакие дубликаты</string>
+	<string name="accept_duplicates">Сохранять дубликаты</string>
 	<string name="open_immediately">Сразу открывать содержимое</string>
 	<string name="open_immediately_summary">Пропускать проверку и сразу открыть содержимое. Может привести к открытию небезопасного содержимого.</string>
 	<string name="copy_immediately">Автокопирование в буфер обмена</string>
@@ -112,7 +112,7 @@
 	<string name="show_recreation_summary">Показывать штрих-код, восстановленный из считанного содержимого.</string>
 	<string name="close_automatically">Возврат после копирования/обмена</string>
 	<string name="close_automatically_summary">Автоматически возвращаться к экрану сканирования после копирования или передачу через функцию «Поделиться» считанного содержимого.</string>
-	<string name="default_search_engine">Поиск неизвестных данных в</string>
+	<string name="default_search_engine">Поиск неизвестных данных</string>
 	<string name="always_ask">Всегда спрашивать</string>
 	<string name="open_with_url">Открывать неизвестные данные по URL</string>
 	<string name="clear_network_suggestions">Удалить сетевые предложения</string>
