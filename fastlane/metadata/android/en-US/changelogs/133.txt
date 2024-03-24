@@ -1,0 +1,5 @@
+* Add an option to ignore any duplicates
+* Fix invalid bluetooth connection
+* Update Russian translation
+* Update Ukrainian translation
+

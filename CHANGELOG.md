@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.63.5
+* Add an option to ignore any duplicates
+* Fix invalid bluetooth connection
+* Update Russian translation
+* Update Ukrainian translation
+
 ## 1.63.4
 * Update Chinese translation
 * Improve support for old devices
