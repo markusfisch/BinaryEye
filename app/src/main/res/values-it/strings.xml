@@ -185,6 +185,7 @@
 	<string name="pick_code_to_scan">Scegli codice da scansionare</string>
 	<string name="shortcut_decode">Scansiona un codice a barre</string>
 	<string name="shortcut_encode">Crea un codice a barre</string>
+	<string name="shortcut_history">History</string>
 	<string name="shortcut_preferences">Impostazioni</string>
 	<string name="background_request_failed">Richiesta in secondo piano fallita</string>
 	<string name="entry_type">Tipo</string>

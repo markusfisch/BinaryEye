@@ -184,6 +184,7 @@
 	<string name="pick_code_to_scan">選擇要掃描的條碼</string>
 	<string name="shortcut_decode">掃描條碼</string>
 	<string name="shortcut_encode">建立條碼</string>
+	<string name="shortcut_history">History</string>
 	<string name="shortcut_preferences">設定</string>
 	<string name="background_request_failed">背景請求失敗</string>
 	<string name="entry_type">類型</string>

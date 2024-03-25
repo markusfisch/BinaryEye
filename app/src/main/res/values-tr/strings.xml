@@ -185,6 +185,7 @@
 	<string name="pick_code_to_scan">Taranacak kod seç</string>
 	<string name="shortcut_decode">Barkod tara</string>
 	<string name="shortcut_encode">Barkod oluştur</string>
+	<string name="shortcut_history">History</string>
 	<string name="shortcut_preferences">Ayarlar</string>
 	<string name="background_request_failed">Arka plan isteği başarısız</string>
 	<string name="entry_type">Tür</string>

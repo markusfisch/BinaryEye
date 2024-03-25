@@ -27,6 +27,19 @@
 		</intent>
 	</shortcut>
 	<shortcut
+		android:shortcutId="history"
+		android:enabled="true"
+		android:icon="@drawable/ic_shortcut_history"
+		android:shortcutShortLabel="@string/shortcut_history"
+		android:shortcutDisabledMessage="@string/shortcut_history">
+		<intent
+			android:action="android.intent.action.VIEW"
+			android:targetPackage="de.markusfisch.android.binaryeye"
+			android:targetClass="de.markusfisch.android.binaryeye.activity.MainActivity">
+			<extra android:name="history" android:value="history"/>
+		</intent>
+	</shortcut>
+	<shortcut
 		android:shortcutId="preferences"
 		android:enabled="true"
 		android:icon="@drawable/ic_shortcut_preferences"

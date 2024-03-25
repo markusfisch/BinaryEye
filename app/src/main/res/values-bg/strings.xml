@@ -185,6 +185,7 @@
 	<string name="pick_code_to_scan">Изберете код за сканиране</string>
 	<string name="shortcut_decode">Сканирай баркод</string>
 	<string name="shortcut_encode">Създай баркод</string>
+	<string name="shortcut_history">History</string>
 	<string name="shortcut_preferences">Настройки</string>
 	<string name="background_request_failed">Неуспешна заявка в фонов режим</string>
 	<string name="entry_type">Тип</string>

@@ -185,6 +185,7 @@
 	<string name="pick_code_to_scan">Vælg kode til at scanne</string>
 	<string name="shortcut_decode">Scan en stregkode</string>
 	<string name="shortcut_encode">Opret en stregkode</string>
+	<string name="shortcut_history">History</string>
 	<string name="shortcut_preferences">Indstillinger</string>
 	<string name="background_request_failed">Baggrundsanmodning mislykkedes</string>
 	<string name="entry_type">Type</string>

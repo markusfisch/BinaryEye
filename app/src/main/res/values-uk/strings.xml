@@ -186,6 +186,7 @@
 	<string name="pick_code_to_scan">Вибрати код для сканування</string>
 	<string name="shortcut_decode">Сканувати штрих-код</string>
 	<string name="shortcut_encode">Створити штрих-код</string>
+	<string name="shortcut_history">History</string>
 	<string name="shortcut_preferences">Налаштування</string>
 	<string name="background_request_failed">Помилка фонового запиту</string>
 	<string name="entry_type">Тип</string>

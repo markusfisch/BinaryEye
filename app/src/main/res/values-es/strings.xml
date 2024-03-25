@@ -185,6 +185,7 @@
 	<string name="pick_code_to_scan">Seleccione el código a escanear</string>
 	<string name="shortcut_decode">Escanear un código</string>
 	<string name="shortcut_encode">Crear un código</string>
+	<string name="shortcut_history">History</string>
 	<string name="shortcut_preferences">Ajustes</string>
 	<string name="background_request_failed">Solicitud de fondo fallida</string>
 	<string name="entry_type">Tipo</string>

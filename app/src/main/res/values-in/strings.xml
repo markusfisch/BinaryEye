@@ -184,6 +184,7 @@
 	<string name="pick_code_to_scan">Pilih kode untuk dipindai</string>
 	<string name="shortcut_decode">Pindai barcode</string>
 	<string name="shortcut_encode">Buat barcode</string>
+	<string name="shortcut_history">History</string>
 	<string name="shortcut_preferences">Pengaturan</string>
 	<string name="background_request_failed">Permintaan latar belakang gagal</string>
 	<string name="entry_type">Tipe</string>
