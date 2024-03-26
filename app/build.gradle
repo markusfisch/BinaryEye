@@ -42,6 +42,10 @@ android {
 		}
 	}
 
+	buildFeatures {
+		buildConfig true
+	}
+
 	bundle {
 		language {
 			// To make the app bundle contain all language resources
