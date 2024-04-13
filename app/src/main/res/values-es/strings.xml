@@ -21,7 +21,7 @@
 	<string name="colors_black_on_transparent">Negro sobre transparente</string>
 	<string name="colors_white_on_transparent">Blanco sobre transparente</string>
 	<string name="sequence_size">Tamaño secuencia</string>
-	<string name="sequence_index">Indice secuencia</string>
+	<string name="sequence_index">Índice secuencia</string>
 	<string name="sequence_id">ID secuencia</string>
 	<string name="gtin_issue_number">Número de emisión</string>
 	<string name="gtin_country">Posible país de fabricación</string>
@@ -53,7 +53,7 @@
 	<string name="info">Información</string>
 	<string name="switch_camera">Cambiar cámara</string>
 	<string name="bulk_mode">Escaneo continuo</string>
-	<string name="bulk_mode_summary">Iniciar siempre en modo de escaneo contínuo</string>
+	<string name="bulk_mode_summary">Iniciar siempre en modo de escaneo continuo</string>
 	<string name="bulk_mode_delay">Demora entre escaneos continuos</string>
 	<string name="restrict_format">Restringir formato</string>
 	<string name="remove_restriction">Eliminar restricción</string>
