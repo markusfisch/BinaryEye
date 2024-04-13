@@ -1,0 +1,4 @@
+* Add history shortcut
+* Return Codabar start/stop codes
+* Update French, Russian, Spanish and Ukrainian translations
+

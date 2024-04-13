@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.63.6
+* Add history shortcut
+* Return Codabar start/stop codes
+* Update French, Russian, Spanish and Ukrainian translations
+
 ## 1.63.5
 * Add an option to ignore any duplicates
 * Fix invalid bluetooth connection
