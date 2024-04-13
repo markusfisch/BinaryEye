@@ -74,7 +74,7 @@
 	<string name="show_crop_handle_summary">Restreindre le scan à une zone personnalisée.</string>
 	<string name="barcode_formats">Formats de codes-barres</string>
 	<string name="zoom_by_swiping">Balayage haut/bas pour zoomer</string>
-	<string name="zoom_by_swiping_summary">Balayer vers le haut ou vers le bas de l’écran pour contrôler le niveau de zoom de la caméra.</string>
+	<string name="zoom_by_swiping_summary">Balayer vers le haut ou vers le bas de l\'écran pour contrôler le niveau de zoom de la caméra.</string>
 	<string name="auto_rotate">Reconnaître les codes-barres 1D verticaux</string>
 	<string name="auto_rotate_summary">Tourner automatiquement le cadre de la caméra pour reconnaître les codes-barres 1D verticaux. En fonction de l\'appareil, cela peut affecter les performances.</string>
 	<string name="try_harder">Optimiser la précision du lecteur</string>
@@ -94,10 +94,10 @@
 	<string name="tone_prop_beep2">General double beep</string>
 	<string name="use_history">Sauvegarder l\'historique des scans</string>
 	<string name="use_history_summary">Sauvegarder les codes reconnus sur votre appareil.</string>
-	<string name="ignore_duplicates">Ignore duplicates</string>
-	<string name="ignore_consecutive_duplicates">Ignorer les doublons</string>
-	<string name="ignore_any_duplicates">Ignore any duplicates</string>
-	<string name="accept_duplicates">Accept duplicates</string>
+	<string name="ignore_duplicates">Ignorer les doublons</string>
+	<string name="ignore_consecutive_duplicates">Ignorer les doublons consécutifs</string>
+	<string name="ignore_any_duplicates">Ignorer tous les doublons</string>
+	<string name="accept_duplicates">Autoriser les doublons</string>
 	<string name="open_immediately">Ouvrir immédiatement</string>
 	<string name="open_immediately_summary">Ignorer l\'inspection et ouvrir le contenu immédiatement. Si cette option est activée, cela peut ouvrir un contenu nocif.</string>
 	<string name="copy_immediately">Copier dans le presse-papiers</string>
@@ -112,7 +112,7 @@
 	<string name="close_automatically_summary">Revenir automatiquement sur l\'écran de scan après avoir copié ou partagé le contenu scanné.</string>
 	<string name="default_search_engine">Ouvrir les données inconnues dans</string>
 	<string name="always_ask">Toujours demander</string>
-	<string name="open_with_url">Ouvrir les données inconnues avec l’URL</string>
+	<string name="open_with_url">Ouvrir les données inconnues avec l\'URL</string>
 	<string name="clear_network_suggestions">Supprimer les suggestions de réseau</string>
 	<string name="clear_network_suggestions_summary">Supprimer toutes les suggestions de réseau précédemment fournies par cette application.</string>
 	<string name="really_remove_all_networks">Vraiment supprimer tous les réseaux ?</string>
@@ -169,8 +169,8 @@
 	<string name="otpauth_add">Ajouter l\'authentification à deux facteurs</string>
 	<string name="search_web">Rechercher sur internet</string>
 	<string name="search_scan">Rechercher un scan</string>
-	<string name="add_to_history">Add to history</string>
-	<string name="added_to_history">Added to history</string>
+	<string name="add_to_history">Ajouter à l\'historique</string>
+	<string name="added_to_history">Ajouté à l\'historique</string>
 	<string name="export_to_file">Exporter en tant que fichier</string>
 	<string name="export_as">Exporter en tant que ?</string>
 	<string name="export_csv_comma">CSV avec virgules</string>
@@ -185,7 +185,7 @@
 	<string name="pick_code_to_scan">Choisir le code à scanner</string>
 	<string name="shortcut_decode">Scanner un code-barres</string>
 	<string name="shortcut_encode">Créer un code-barres</string>
-	<string name="shortcut_history">History</string>
+	<string name="shortcut_history">Historique</string>
 	<string name="shortcut_preferences">Réglages</string>
 	<string name="background_request_failed">Échec de la requête d\'arrière-plan</string>
 	<string name="entry_type">Type</string>
