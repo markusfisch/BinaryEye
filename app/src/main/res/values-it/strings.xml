@@ -14,7 +14,7 @@
 	<string name="error_correction_level_m" formatted="false">Medio (correzione ~15&#37;)</string>
 	<string name="error_correction_level_q" formatted="false">Quartile (correzione ~25&#37;)</string>
 	<string name="error_correction_level_h" formatted="false">Alto (correzione ~30&#37;)</string>
-	<string name="label">Label</string>
+	<string name="label">Etichetta</string>
 	<string name="colors">Colore primo piano/sfondo</string>
 	<string name="colors_black_on_white">Nero su bianco</string>
 	<string name="colors_white_on_black">Bianco su nero</string>
@@ -32,7 +32,7 @@
 	<string name="toggle_flash">Attiva/disattiva flash</string>
 	<string name="error_flash">Errore durante l\'attivazione/disattivazione del flash</string>
 	<string name="share">Condividi</string>
-	<string name="share_file">Share as file</string>
+	<string name="share_file">Condividi come file</string>
 	<string name="share_as">Condividi come?</string>
 	<string name="copy_to_clipboard">Copia negli Appunti</string>
 	<string name="copied_to_clipboard">Copiato negli Appunti</string>
@@ -42,8 +42,8 @@
 	<string name="cannot_resolve_action">Nessuna app può aprirlo</string>
 	<string name="pick_search_engine">Scegli motore di ricerca</string>
 	<string name="format">Formato</string>
-	<string name="size_width_by_height">Dimensioni (pixel): %1$d×%2$d</string>
-	<string name="margin_size">Margin in pixels: %1$d</string>
+	<string name="size_width_by_height">Dimensioni in pixel: %1$d×%2$d</string>
+	<string name="margin_size">Margine in pixel: %1$d</string>
 	<string name="input_content_here">Inserisci qui il contenuto</string>
 	<string name="unescape">Espandi sequenze escape</string>
 	<string name="encode">CODIFICA</string>
@@ -94,10 +94,10 @@
 	<string name="tone_prop_beep2">Doppio beep generale</string>
 	<string name="use_history">Salva cronologia scansioni</string>
 	<string name="use_history_summary">Salva i codici riconosciuti nel dispositivo.</string>
-	<string name="ignore_duplicates">Ignore duplicates</string>
-	<string name="ignore_consecutive_duplicates">Ignora i duplicati</string>
-	<string name="ignore_any_duplicates">Ignore any duplicates</string>
-	<string name="accept_duplicates">Accept duplicates</string>
+	<string name="ignore_duplicates">Ignora duplicati</string>
+	<string name="ignore_consecutive_duplicates">Duplicati consecutivi</string>
+	<string name="ignore_any_duplicates">Qualsiasi duplicato</string>
+	<string name="accept_duplicates">Accetta duplicati</string>
 	<string name="open_immediately">Apri subito</string>
 	<string name="open_immediately_summary">Salta l\'ispezione e apri i contenuti immediatamente. Se abilitato può aprire contenuti dannosi.</string>
 	<string name="copy_immediately">Copia negli Appunti</string>
@@ -123,8 +123,8 @@
 	<string name="send_scan_active_summary">Abilita per inoltrare le scansioni a un URL specificato</string>
 	<string name="send_scan_url">URL a cui inoltrare</string>
 	<string name="send_scan_type">Tipo di richiesta</string>
-	<string name="send_type_get_add_content">OTTIENI e aggiungi il contenuto</string>
-	<string name="send_type_get_query_string">OTTIENI con stringa completa della richiesta</string>
+	<string name="send_type_get_add_content">GET e aggiungi il contenuto</string>
+	<string name="send_type_get_query_string">GET con stringa completa della richiesta</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">Apri nel browser esterno</string>
@@ -169,8 +169,8 @@
 	<string name="otpauth_add">Aggiungi 2FA</string>
 	<string name="search_web">Cerca nel web</string>
 	<string name="search_scan">Cerca scansione</string>
-	<string name="add_to_history">Add to history</string>
-	<string name="added_to_history">Added to history</string>
+	<string name="add_to_history">Aggiungi alla cronologia</string>
+	<string name="added_to_history">Aggiunto alla cronologia</string>
 	<string name="export_to_file">Esporta su file</string>
 	<string name="export_as">Come esportare?</string>
 	<string name="export_csv_comma">CSV con virgole</string>
@@ -180,12 +180,12 @@
 	<string name="saved_in_downloads">Salvato nei download</string>
 	<string name="rotate_image_cw">Ruota immagine in senso orario</string>
 	<string name="toggle_free_rotation">Abilita/disabilita rotazione libera</string>
-	<string name="pick_file">Pick a file</string>
+	<string name="pick_file">Scegli un file</string>
 	<string name="pick_image_file">Scegli file immagine</string>
 	<string name="pick_code_to_scan">Scegli codice da scansionare</string>
 	<string name="shortcut_decode">Scansiona un codice a barre</string>
 	<string name="shortcut_encode">Crea un codice a barre</string>
-	<string name="shortcut_history">History</string>
+	<string name="shortcut_history">Cronologia</string>
 	<string name="shortcut_preferences">Impostazioni</string>
 	<string name="background_request_failed">Richiesta in secondo piano fallita</string>
 	<string name="entry_type">Tipo</string>
