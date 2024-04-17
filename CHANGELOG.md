@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.63.7
+* Update ZXingCpp for Aztec Runes
+* Update Italian translation
+
 ## 1.63.6
 * Add history shortcut
 * Return Codabar start/stop codes
