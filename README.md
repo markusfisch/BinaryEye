@@ -17,7 +17,11 @@ send some Bitcoin decimals to `bc1q2guk2rpll587aymrfadkdtpq32448x5khk5j8z`.
 <a href="https://www.buymeacoffee.com/markusfisch" target="_blank"><img
 	src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
 	alt="Buy Me A Coffee"
-	style="height: 60px !important;width: 217px !important;"/></a>
+	style="height: 60px !important;width: 217px !important;"/></a>&nbsp;<a
+	href="https://liberapay.com/markusfisch/" target="_blank"><img
+	src="https://liberapay.com/assets/widgets/donate.svg"
+	alt="Liberapay"
+	style="height: 60px !important"/></a>
 
 ## Screenshots
 
