@@ -253,24 +253,7 @@ class EncodeFragment : Fragment() {
 
 	private fun Context.encode() {
 		hideSoftKeyboard(contentView)
-		val content = if (bytes != null) {
-			bytes
-		} else {
-			var text = contentView.text.toString()
-			if (unescapeCheckBox.isChecked) {
-				try {
-					text = text.unescape()
-				} catch (e: IllegalArgumentException) {
-					toast(e.message ?: "Invalid escape sequence")
-					return
-				}
-			}
-			if (text.isEmpty()) {
-				toast(R.string.error_no_content)
-				return
-			}
-			text
-		}
+		val content = getContent() ?: return
 		val format = formats[formatView.selectedItemPosition]
 		fragmentManager?.addFragment(
 			BarcodeFragment.newInstance(
@@ -291,6 +274,31 @@ class EncodeFragment : Fragment() {
 				} else 0
 			)
 		)
+	}
+
+	private fun Context.getContent(): Any? {
+		if (bytes != null) {
+			return bytes
+		}
+		var text = contentView.text.toString()
+		if (unescapeCheckBox.isChecked) {
+			try {
+				text = text.unescape()
+			} catch (e: IllegalArgumentException) {
+				toast(e.message ?: "Invalid escape sequence")
+				return null
+			}
+			// Convert to a ByteArray if there were escape sequences
+			// for non-printable characters.
+			if (text.any { it.code < 32 }) {
+				return text.toByteArray()
+			}
+		}
+		if (text.isEmpty()) {
+			toast(R.string.error_no_content)
+			return null
+		}
+		return text
 	}
 
 	private fun initSizeBar() {
