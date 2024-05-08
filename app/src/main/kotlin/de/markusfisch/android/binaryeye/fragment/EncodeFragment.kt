@@ -288,9 +288,11 @@ class EncodeFragment : Fragment() {
 				toast(e.message ?: "Invalid escape sequence")
 				return null
 			}
-			// Convert to a ByteArray if there were escape sequences
-			// for non-printable characters.
-			if (text.any { it.code < 32 }) {
+			// Return a ByteArray if there were escape sequences for
+			// non-printable characters (like `\0`). This means the content
+			// will be encoded in binary mode, what would be wrong for
+			// "something\nlike\tthüs".
+			if (text.any { it.code < 32 && it.code !in setOf(9, 10, 13) }) {
 				return text.toByteArray()
 			}
 		}
