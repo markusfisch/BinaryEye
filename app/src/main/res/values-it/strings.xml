@@ -106,8 +106,8 @@
 	<string name="show_meta_data_summary">Visualizza dati aggiuntivi codice a barre scansionato.</string>
 	<string name="show_hex_dump">Visualizza dump esadecimale</string>
 	<string name="show_hex_dump_summary">Visualizza un dump esadecimale dei contenuti scansionati.</string>
-	<string name="show_checksum">Show checksum</string>
-	<string name="no_checksum">No checksum</string>
+	<string name="show_checksum">Visualizza checksum</string>
+	<string name="no_checksum">Nessuna checksum</string>
 	<string name="show_recreation">Visualizza codice a barre ricreato</string>
 	<string name="show_recreation_summary">Ricrea e visualizza, se possibile, il codice a barre, dal contenuto letto.</string>
 	<string name="close_automatically">Vai indietro dopo la copia/condivisione</string>
