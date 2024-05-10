@@ -105,6 +105,8 @@
 	<string name="show_meta_data_summary">Tampilkan data tambahan tentang barcode yang dipindai.</string>
 	<string name="show_hex_dump">Tampilkan hex dump</string>
 	<string name="show_hex_dump_summary">Tampilkan hex dump dari konten hasil pemindaian.</string>
+	<string name="show_checksum">Show checksum</string>
+	<string name="no_checksum">No checksum</string>
 	<string name="show_recreation">Tampilkan barcode yang dibuat ulang</string>
 	<string name="show_recreation_summary">Buat ulang dan tampilkan barcode dari isi konten jika memungkinkan.</string>
 	<string name="close_automatically">Kembali setelah Salin/Berbagi</string>

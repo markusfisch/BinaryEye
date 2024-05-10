@@ -106,6 +106,8 @@
 	<string name="show_meta_data_summary">Taranan barkod ile ilgili ek veriyi göster</string>
 	<string name="show_hex_dump">Hex yığınını göster</string>
 	<string name="show_hex_dump_summary">Taranan içeriklerin hex yığınını göster.</string>
+	<string name="show_checksum">Show checksum</string>
+	<string name="no_checksum">No checksum</string>
 	<string name="show_recreation">Yeniden oluşturulan barkodu göster</string>
 	<string name="show_recreation_summary">Mümkünse okunan içerikten barkodu yeniden oluştur ve göster.</string>
 	<string name="close_automatically">Kopyala/Paylaş\'tan sonra geri dön</string>

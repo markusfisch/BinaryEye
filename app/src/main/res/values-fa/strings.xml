@@ -106,6 +106,8 @@
 	<string name="show_meta_data_summary">نمایش داده‌های اضافی در مورد بارکد پویش شده.</string>
 	<string name="show_hex_dump">نمایش کد هگز استخراج شده</string>
 	<string name="show_hex_dump_summary">نمایش کد هگز استخراج شده از محتویات پویش شده.</string>
+	<string name="show_checksum">Show checksum</string>
+	<string name="no_checksum">No checksum</string>
 	<string name="show_recreation">Show recreated barcode</string>
 	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
 	<string name="close_automatically">بازگشت پس از رونوشت یا هم‌رسانی</string>

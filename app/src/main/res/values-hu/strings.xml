@@ -106,6 +106,8 @@
 	<string name="show_meta_data_summary">További adatok megjelenítése a beolvasott vonalkódokról.</string>
 	<string name="show_hex_dump">Hexakiírás megjelenítése</string>
 	<string name="show_hex_dump_summary">A beolvasott tartalom hexakiírásának megjelenítése.</string>
+	<string name="show_checksum">Show checksum</string>
+	<string name="no_checksum">No checksum</string>
 	<string name="show_recreation">Show recreated barcode</string>
 	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
 	<string name="close_automatically">Ugrás vissza másolás vagy megosztás után</string>

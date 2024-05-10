@@ -1,0 +1,16 @@
+<resources>
+	<string-array name="checksum_names">
+		<item>@string/no_checksum</item>
+		<item>@string/crc4</item>
+		<item>@string/md5</item>
+		<item>@string/sha1</item>
+		<item>@string/sha256</item>
+	</string-array>
+	<string-array name="checksum_values">
+		<item></item>
+		<item>CRC4</item>
+		<item>MD5</item>
+		<item>SHA1</item>
+		<item>SHA256</item>
+	</string-array>
+</resources>

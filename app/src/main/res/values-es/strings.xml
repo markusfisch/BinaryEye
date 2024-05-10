@@ -106,6 +106,8 @@
 	<string name="show_meta_data_summary">Muestra datos adicionales del código escaneado.</string>
 	<string name="show_hex_dump">Mostrar volcado hexadecimal</string>
 	<string name="show_hex_dump_summary">Muestra un volcado hexadecimal del contenido escaneado.</string>
+	<string name="show_checksum">Show checksum</string>
+	<string name="no_checksum">No checksum</string>
 	<string name="show_recreation">Mostrar reconstrucción del código</string>
 	<string name="show_recreation_summary">Reconstruye y muestra el código de barras desde el contenido leído si es posible.</string>
 	<string name="close_automatically">Retroceder tras Copiar/Compartir</string>

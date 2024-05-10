@@ -6,8 +6,11 @@ import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.text.Editable
 import android.text.Html
+import android.text.Spannable
+import android.text.SpannableString
 import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
+import android.text.style.TypefaceSpan
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -49,6 +52,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.security.MessageDigest
 import kotlin.math.roundToInt
 
 class DecodeFragment : Fragment() {
@@ -260,12 +264,19 @@ class DecodeFragment : Fragment() {
 				)
 			}
 		}
-		dataView.fillDataView(text)
+		dataView.fillDataView(text, bytes)
 		stampView.setTrackingLink(bytes, format)
 	}
 
-	private fun TableLayout.fillDataView(text: String) {
-		val items = LinkedHashMap<Int, String?>()
+	private fun TableLayout.fillDataView(text: String, bytes: ByteArray) {
+		val items = LinkedHashMap<Int, CharSequence?>()
+		when (prefs.showChecksum) {
+			"CRC4" -> items[R.string.crc4] = String.format("%X", crc4(bytes))
+			"MD5" -> items[R.string.md5] = bytes.md5().toHexString().fold()
+			"SHA1" -> items[R.string.sha1] = bytes.sha1().toHexString().fold()
+			"SHA256" -> items[R.string.sha256] = bytes.sha256().toHexString().fold()
+			else -> Unit
+		}
 		if (action is WifiAction) {
 			WifiConnector.parseMap(text)?.let { wifiData ->
 				items.putAll(
@@ -287,7 +298,7 @@ class DecodeFragment : Fragment() {
 	}
 
 	private fun TableLayout.fillMetaView(scan: Scan) {
-		val items = linkedMapOf(
+		val items = linkedMapOf<Int, CharSequence?>(
 			R.string.error_correction_level to scan.errorCorrectionLevel,
 			R.string.sequence_size to scan.sequenceSize.positiveToString(),
 			R.string.sequence_index to scan.sequenceIndex.positiveToString(),
@@ -317,7 +328,7 @@ class DecodeFragment : Fragment() {
 	}
 
 	private fun TableLayout.fill(
-		items: LinkedHashMap<Int, String?>
+		items: LinkedHashMap<Int, CharSequence?>
 	) {
 		removeAllViews()
 		visibility = if (items.isEmpty()) View.GONE else {
@@ -642,4 +653,36 @@ private fun String.fromHtml() = if (
 } else {
 	@Suppress("DEPRECATION")
 	Html.fromHtml(this)
+}
+
+private fun ByteArray.md5(): ByteArray = MessageDigest.getInstance("MD5").run {
+	update(this@md5)
+	digest()
+}
+
+private fun ByteArray.sha1(): ByteArray = MessageDigest.getInstance("SHA-1").run {
+	update(this@sha1)
+	digest()
+}
+
+private fun ByteArray.sha256(): ByteArray = MessageDigest.getInstance("SHA-256").run {
+	update(this@sha256)
+	digest()
+}
+
+private fun String.fold(): CharSequence {
+	val l = length
+	return if (l > 10) {
+		val half = l / 2
+		val s = substring(0, half) + "\n" + substring(half)
+		SpannableString(s).apply {
+			setSpan(
+				TypefaceSpan("monospace"),
+				0, s.length,
+				Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+			)
+		}
+	} else {
+		this
+	}
 }

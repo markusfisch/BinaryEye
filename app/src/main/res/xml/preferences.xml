@@ -115,6 +115,12 @@
 			android:key="show_hex_dump"
 			android:title="@string/show_hex_dump"
 			android:summary="@string/show_hex_dump_summary"/>
+		<ListPreference
+			android:key="show_checksum"
+			android:title="@string/show_checksum"
+			android:entries="@array/checksum_names"
+			android:entryValues="@array/checksum_values"
+			android:defaultValue="@string/no_checksum"/>
 		<android.support.v7.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="show_recreation"

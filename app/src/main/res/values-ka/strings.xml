@@ -106,6 +106,8 @@
 	<string name="show_meta_data_summary">სკანირებულ შტრიხ-კოდებზე დამატებითი ინფორმაციის ჩვენება.</string>
 	<string name="show_hex_dump">თექვსმეტობითი dump-ის ჩვენება</string>
 	<string name="show_hex_dump_summary">სკანირებული შტრიხ-კოდის კონტენტის თექვსმეტობითი dump-ის ჩვენება.</string>
+	<string name="show_checksum">Show checksum</string>
+	<string name="no_checksum">No checksum</string>
 	<string name="show_recreation">Show recreated barcode</string>
 	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
 	<string name="close_automatically">Go back after Copy/Share</string>

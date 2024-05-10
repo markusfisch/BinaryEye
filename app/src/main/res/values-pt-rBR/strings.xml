@@ -106,6 +106,8 @@
 	<string name="show_meta_data_summary">Mostrar dados adicionais de código digitalizado.</string>
 	<string name="show_hex_dump">Mostrar impressão hexadecimal</string>
 	<string name="show_hex_dump_summary">Mostrar impressão hexadecimal de conteúdo digitalizado.</string>
+	<string name="show_checksum">Show checksum</string>
+	<string name="no_checksum">No checksum</string>
 	<string name="show_recreation">Mostrar código recuperado</string>
 	<string name="show_recreation_summary">Se possível, recupere e mostre código do conteúdo lido.</string>
 	<string name="close_automatically">Voltar após copiar/compartilhar</string>

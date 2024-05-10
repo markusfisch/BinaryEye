@@ -76,6 +76,8 @@
 	</plurals>
 	<string name="show_hex_dump">Pokazuj zrzut szesnastkowy</string>
 	<string name="show_hex_dump_summary">Pokaż zeskanowaną zawartośc w postaci szesnastkowej</string>
+	<string name="show_checksum">Show checksum</string>
+	<string name="no_checksum">No checksum</string>
 	<string name="show_recreation">Show recreated barcode</string>
 	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
 	<string name="close_automatically">Wróć po skopiowaniu/udostępnieniu</string>

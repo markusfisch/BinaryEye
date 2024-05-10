@@ -106,6 +106,8 @@
 	<string name="show_meta_data_summary">Zusätzliche Daten über den eingelesenen Barcode anzeigen.</string>
 	<string name="show_hex_dump">Hex Dump anzeigen</string>
 	<string name="show_hex_dump_summary">Zeigt einen Hexdump des eingelesenen Inhalts an.</string>
+	<string name="show_checksum">Prüfsumme anzeigen</string>
+	<string name="no_checksum">Keine Prüfsumme anzeigen</string>
 	<string name="show_recreation">Wiederhergestellten Barcode anzeigen</string>
 	<string name="show_recreation_summary">Barcode aus dem gelesenen Inhalt wiederherstellen und anzeigen, wenn möglich.</string>
 	<string name="close_automatically">Automatisch zurückkehren</string>

@@ -4,4 +4,8 @@
 	<string name="url_hint_add_content" translatable="false">http://example.com/?content=</string>
 	<string name="project_url" translatable="false">https://github.com/markusfisch/BinaryEye</string>
 	<string name="no_bluetooth_hosts_paired_value" translatable="false" />
+	<string name="crc4" translatable="false">CRC4</string>
+	<string name="md5" translatable="false">MD5</string>
+	<string name="sha1" translatable="false">SHA1</string>
+	<string name="sha256" translatable="false">SHA256</string>
 </resources>

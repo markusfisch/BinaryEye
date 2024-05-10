@@ -106,6 +106,8 @@
 	<string name="show_meta_data_summary">Показване на допълнителни данни за сканирания баркод.</string>
 	<string name="show_hex_dump">Показване на шестнадесетичен дъмп</string>
 	<string name="show_hex_dump_summary">Показване на шестнадесетичен дъмп на сканираното съдържание.</string>
+	<string name="show_checksum">Show checksum</string>
+	<string name="no_checksum">No checksum</string>
 	<string name="show_recreation">Показване на пресъздаден баркод</string>
 	<string name="show_recreation_summary">Създай и покажи баркод отново от прочетеното съдържание, ако е възможно.</string>
 	<string name="close_automatically">Върщане се след Копиране/Споделяне</string>

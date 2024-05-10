@@ -105,6 +105,8 @@
 	<string name="show_meta_data_summary">Hiện thêm thông tin về mã vạch quét được.</string>
 	<string name="show_hex_dump">Hiện mã thập lục phân</string>
 	<string name="show_hex_dump_summary">Hiện mã thập lục phân từ mã quét được.</string>
+	<string name="show_checksum">Show checksum</string>
+	<string name="no_checksum">No checksum</string>
 	<string name="show_recreation">Show recreated barcode</string>
 	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
 	<string name="close_automatically">Quay lại sau khi Sao chép/Chia sẻ</string>

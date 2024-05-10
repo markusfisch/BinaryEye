@@ -107,6 +107,8 @@
 	<string name="show_meta_data_summary">Показувати додаткові дані про відскановані штрих-коди.</string>
 	<string name="show_hex_dump">Показувати шістнадцятковий дамп</string>
 	<string name="show_hex_dump_summary">Показувати шістнадцятковий дамп відсканованого вмісту.</string>
+	<string name="show_checksum">Show checksum</string>
+	<string name="no_checksum">No checksum</string>
 	<string name="show_recreation">Показати відновлений штрих-код</string>
 	<string name="show_recreation_summary">Відтворити і показати штрих-код із прочитаного вмісту, якщо це можливо.</string>
 	<string name="close_automatically">Повернутися після копіювання/поширення</string>

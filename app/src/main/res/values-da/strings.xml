@@ -106,6 +106,8 @@
 	<string name="show_meta_data_summary">Vis yderligere data om den scannede stregkode.</string>
 	<string name="show_hex_dump">Vis hex-dump</string>
 	<string name="show_hex_dump_summary">Vis et hex-dump af det scannede indhold.</string>
+	<string name="show_checksum">Show checksum</string>
+	<string name="no_checksum">No checksum</string>
 	<string name="show_recreation">Vis genskabt stregkode</string>
 	<string name="show_recreation_summary">Genskab og vis stregkode fra læst indhold, hvis det er muligt.</string>
 	<string name="close_automatically">Gå tilbage efter Kopier/Del</string>

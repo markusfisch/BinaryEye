@@ -106,6 +106,8 @@
 	<string name="show_meta_data_summary">Afficher des informations supplémentaires sur le code-barres scanné.</string>
 	<string name="show_hex_dump">Afficher le dump hexadécimal</string>
 	<string name="show_hex_dump_summary">Afficher le dump hexadécimal du contenu scanné.</string>
+	<string name="show_checksum">Show checksum</string>
+	<string name="no_checksum">No checksum</string>
 	<string name="show_recreation">Afficher le code-barres recréé</string>
 	<string name="show_recreation_summary">Recréer et afficher, si possible, le code-barres à partir du contenu scanné.</string>
 	<string name="close_automatically">Revenir après une copie/partage</string>

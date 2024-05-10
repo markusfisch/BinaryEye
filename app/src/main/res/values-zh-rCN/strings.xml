@@ -105,6 +105,8 @@
 	<string name="show_meta_data_summary">显示已扫描条码的额外数据</string>
 	<string name="show_hex_dump">显示16进制数据</string>
 	<string name="show_hex_dump_summary">显示已扫描条码的16进制数据</string>
+	<string name="show_checksum">Show checksum</string>
+	<string name="no_checksum">No checksum</string>
 	<string name="show_recreation">显示重新创建的条码</string>
 	<string name="show_recreation_summary">如果可以，就从读取内容中重新创建并显示条码。</string>
 	<string name="close_automatically">复制/分享后自动返回</string>

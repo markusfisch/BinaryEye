@@ -105,6 +105,8 @@
 	<string name="show_meta_data_summary">スキャンされたバーコードの追加データを確認できるようにします。</string>
 	<string name="show_hex_dump">16進数を表示</string>
 	<string name="show_hex_dump_summary">スキャンされたコンテンツの16進数データを確認できるようにします。</string>
+	<string name="show_checksum">Show checksum</string>
+	<string name="no_checksum">No checksum</string>
 	<string name="show_recreation">再生成したバーコードを表示</string>
 	<string name="show_recreation_summary">可能であれば、読み取ったコンテンツからバーコードを再生成して表示します。</string>
 	<string name="close_automatically">コピー/共有後に戻る</string>
