@@ -1,0 +1,4 @@
+* Add an option to show a checksum for the decoded content
+* Add support for encoding escape sequences for non-printable characters
+* Update Italian translation
+

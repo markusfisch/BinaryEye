@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.63.8
+* Add an option to show a checksum for the decoded content
+* Add support for encoding escape sequences for non-printable characters
+* Update Italian translation
+
 ## 1.63.7
 * Update ZXingCpp for Aztec Runes
 * Update Italian translation
