@@ -7,7 +7,12 @@ import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.db
@@ -27,12 +32,16 @@ import de.markusfisch.android.binaryeye.widget.ConfinedScalingImageView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.zxingcpp.ZxingCpp
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
-import java.util.*
+import java.util.Locale
 import kotlin.math.min
 
 class BarcodeFragment : Fragment() {

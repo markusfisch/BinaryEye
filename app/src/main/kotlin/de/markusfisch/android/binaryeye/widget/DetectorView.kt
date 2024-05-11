@@ -2,7 +2,12 @@ package de.markusfisch.android.binaryeye.widget
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Path
+import android.graphics.Point
+import android.graphics.Rect
+import android.graphics.Region
 import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
