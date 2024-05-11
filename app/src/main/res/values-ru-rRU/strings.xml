@@ -108,8 +108,8 @@
 	<string name="show_meta_data_summary">Показывать дополнительную информацию о считанных штрих-кодах.</string>
 	<string name="show_hex_dump">Показывать шестнадцатеричный дамп</string>
 	<string name="show_hex_dump_summary">Показывать шестнадцатеричный дамп содержимого считанного штрих-кода.</string>
-	<string name="show_checksum">Show checksum</string>
-	<string name="no_checksum">No checksum</string>
+	<string name="show_checksum">Показывать контрольную сумму</string>
+	<string name="no_checksum">Нет контрольной суммы</string>
 	<string name="show_recreation">Показывать восстановленный штрих-код</string>
 	<string name="show_recreation_summary">Показывать штрих-код, восстановленный из считанного содержимого.</string>
 	<string name="close_automatically">Возврат после копирования/обмена</string>
