@@ -21,6 +21,10 @@ send some Bitcoin decimals to `bc1q2guk2rpll587aymrfadkdtpq32448x5khk5j8z`.
 	href="https://liberapay.com/markusfisch/" target="_blank"><img
 	src="https://liberapay.com/assets/widgets/donate.svg"
 	alt="Liberapay"
+	style="height: 60px !important"/></a>&nbsp;<a
+	href="https://ko-fi.com/markusfisch" target="_blank"><img
+	src="https://storage.ko-fi.com/cdn/brandasset/kofi_s_tag_dark.png"
+	alt="Ko-fi"
 	style="height: 60px !important"/></a>
 
 ## Screenshots
