@@ -89,9 +89,9 @@ class Database {
 			$SCANS_GTIN_PRICE,
 			$SCANS_GTIN_ISSUE_NUMBER
 			FROM $SCANS
-			WHERE $SCANS_ID IN (?)
+			WHERE $SCANS_ID IN (${ids.joinToString(",")})
 			ORDER BY $SCANS_DATETIME DESC
-		""".trimMargin(), arrayOf(ids.joinToString(","))
+		""".trimMargin(), null
 	)
 
 	fun getScan(id: Long): Scan? = db.rawQuery(
