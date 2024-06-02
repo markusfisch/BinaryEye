@@ -7,7 +7,7 @@ import de.markusfisch.android.binaryeye.content.openUrl
 
 object WebAction : IAction {
 	private val colloquialRegex =
-		"^(http[s]*://)*[A-Za-z0-9]{3,}\\.[A-Za-z]{2,}[^ \t\r\n]*$".toRegex()
+		"^(URL:[ ]*)*(http[s]*://)*[A-Za-z0-9]{3,}\\.[A-Za-z]{2,}[^ \t\r\n]*$".toRegex()
 
 	override val iconResId: Int = R.drawable.ic_action_open
 	override val titleResId: Int = R.string.open_url
@@ -18,6 +18,9 @@ object WebAction : IAction {
 
 	override suspend fun execute(context: Context, data: ByteArray) {
 		var url = String(data).trim()
+		if (url.startsWith("URL:")) {
+			url = url.substring(4).trim()
+		}
 		if (!url.startsWith("http") && !url.startsWith("ftp")) {
 			url = "http://${url}"
 		}
