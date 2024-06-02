@@ -1,0 +1,5 @@
+* Export/share as JPEG
+* Ignore "URL:" before URLs in barcode content
+* Fix exporting/sharing multiple history items
+* Update multiple translations
+

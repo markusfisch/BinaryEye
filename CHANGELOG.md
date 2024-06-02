@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.63.9
+* Export/share as JPEG
+* Ignore "URL:" before URLs in barcode content
+* Fix exporting/sharing multiple history items
+* Update multiple translations
+
 ## 1.63.8
 * Add an option to show a checksum for the decoded content
 * Add support for encoding escape sequences for non-printable characters
