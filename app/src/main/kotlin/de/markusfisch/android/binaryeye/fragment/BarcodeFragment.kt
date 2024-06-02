@@ -46,7 +46,7 @@ import kotlin.math.min
 
 class BarcodeFragment : Fragment() {
 	private enum class FileType {
-		PNG, SVG, TXT
+		PNG, JPG, SVG, TXT
 	}
 
 	private val parentJob = Job()
@@ -214,6 +214,13 @@ class BarcodeFragment : Fragment() {
 						barcode.bitmap().saveAsPng(it)
 					}
 
+					FileType.JPG -> saveAs(
+						addSuffixIfNotGiven(fileName, ".jpg"),
+						MIME_JPG
+					) {
+						barcode.bitmap().saveAsJpg(it)
+					}
+
 					FileType.SVG -> saveAs(
 						addSuffixIfNotGiven(fileName, ".svg"),
 						MIME_SVG
@@ -250,21 +257,28 @@ class BarcodeFragment : Fragment() {
 
 	private fun Context.shareAs(fileType: FileType) {
 		when (fileType) {
-			FileType.PNG -> share(barcode.bitmap())
+			FileType.PNG -> share(barcode.bitmap(), MIME_PNG, "png")
+			FileType.JPG -> share(barcode.bitmap(), MIME_JPG, "jpg")
 			FileType.SVG -> shareText(barcode.svg(), MIME_SVG)
 			FileType.TXT -> shareText(barcode.text())
 		}
 	}
 
-	private fun Context.share(bitmap: Bitmap) {
+	private fun Context.share(bitmap: Bitmap, mimeType: String, ext: String) {
 		scope.launch(Dispatchers.IO) {
 			val file = File(
 				externalCacheDir,
-				"shared_barcode.png"
+				"shared_barcode.$ext"
 			)
 			val success = try {
 				FileOutputStream(file).use {
-					bitmap.saveAsPng(it)
+					when (mimeType) {
+						MIME_PNG -> bitmap.saveAsPng(it)
+						MIME_JPG -> bitmap.saveAsJpg(it)
+						else -> throw IllegalArgumentException(
+							"Invalid mime type"
+						)
+					}
 				}
 				true
 			} catch (e: IOException) {
@@ -272,7 +286,7 @@ class BarcodeFragment : Fragment() {
 			}
 			withContext(Dispatchers.Main) {
 				if (success) {
-					shareFile(file, "image/png")
+					shareFile(file, mimeType)
 				} else {
 					toast(R.string.error_saving_file)
 				}
@@ -289,6 +303,7 @@ class BarcodeFragment : Fragment() {
 		private const val EC_LEVEL = "ec_level"
 		private const val COLORS = "colors"
 		private const val MIME_PNG = "image/png"
+		private const val MIME_JPG = "image/jpeg"
 		private const val MIME_SVG = "image/svg+xmg"
 		private const val MIME_TXT = "text/plain"
 
@@ -391,6 +406,9 @@ private enum class Colors {
 
 private fun Bitmap.saveAsPng(outputStream: OutputStream, quality: Int = 90) =
 	compress(Bitmap.CompressFormat.PNG, quality, outputStream)
+
+private fun Bitmap.saveAsJpg(outputStream: OutputStream, quality: Int = 90) =
+	compress(Bitmap.CompressFormat.JPEG, quality, outputStream)
 
 private val fileNameCharacters = "[^A-Za-z0-9]".toRegex()
 private fun encodeFileName(name: String): String = fileNameCharacters
