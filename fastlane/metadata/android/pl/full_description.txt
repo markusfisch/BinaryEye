@@ -1,0 +1,10 @@
+Działa w orientacji pionowej i poziomej, może odczytywać odwrócone kody,
+ma wygląd Material Design i może również generować kody kreskowe.
+
+Wykorzystuje bibliotekę skanowania kodów kreskowych ZXing-C++ („Zebra Crossing”).
+Obsługiwane formaty kodów kreskowych to: AZTEC, CODABAR, CODE 39, CODE 93, CODE 128,
+DATA MATRIX, EAN 8, EAN 13, ITF, PDF417, QR CODE, RSS 14, RSS EXPANDED,
+UPC A, UPC E i UPC EAN EXTENSION.
+
+Jest to oprogramowanie otwartoźródłowe:
+https://github.com/markusfisch/BinaryEye
