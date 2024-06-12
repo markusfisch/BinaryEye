@@ -140,9 +140,9 @@
 	<string name="bluetooth_connect_fail">Невозможно подключиться к bluetooth-устройству.</string>
 	<string name="bluetooth_send_fail">Невозможно отправить на bluetooth-устройство.</string>
 	<string name="bluetooth_send_success">Успешно отправлено по bluetooth.</string>
-	<string name="generation_category">Generation</string>
-	<string name="brighten_screen">Brighten screen</string>
-	<string name="brighten_screen_summary">Set brightness to maximum to enhance scanning a barcode from the screen.</string>
+	<string name="generation_category">Создание</string>
+	<string name="brighten_screen">Яркий экран</string>
+	<string name="brighten_screen_summary">Устанавливать максимальную яркость, чтобы улучшить сканирование штрих-кода с экрана.</string>
 	<string name="really_remove_scan">Удалить сканирование?</string>
 	<string name="really_remove_all_scans">Удалить все сканирования?</string>
 	<string name="really_remove_selected_scans">Удалить выбранные штрих-коды?</string>
