@@ -62,7 +62,7 @@
 			<intent-filter android:label="@string/compose_barcode">
 				<action android:name="android.intent.action.SEND"/>
 				<category android:name="android.intent.category.DEFAULT"/>
-				<data android:mimeType="text/plain"/>
+				<data android:mimeType="text/*"/>
 			</intent-filter>
 			<intent-filter>
 				<action android:name="com.google.zxing.client.android.SCAN"/>

@@ -52,6 +52,8 @@ import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import de.markusfisch.android.zxingcpp.ZxingCpp.Binarizer
 import de.markusfisch.android.zxingcpp.ZxingCpp.ReaderOptions
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
+import java.io.FileInputStream
+import java.util.Scanner
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -135,7 +137,7 @@ class CameraActivity : AppCompatActivity() {
 		initDetectorView()
 
 		if (intent?.action == Intent.ACTION_SEND &&
-			intent.type == "text/plain"
+			intent.type?.startsWith("text/") == true
 		) {
 			handleSendText(intent)
 		}
@@ -347,9 +349,27 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun handleSendText(intent: Intent) {
 		val text = intent.getStringExtra(Intent.EXTRA_TEXT)
+
 		if (text?.isEmpty() == false) {
 			startActivity(MainActivity.getEncodeIntent(this, text, true))
 			finish()
+			return
+		}
+
+		// Read text from file
+		val textUri = intent.getParcelableExtra(Intent.EXTRA_STREAM) as Uri?
+		if (textUri != null) {
+			val file = contentResolver.openFileDescriptor(textUri, "r")
+			if (file != null) {
+				val fs = FileInputStream(file.fileDescriptor)
+				val scn = Scanner(fs).useDelimiter("\\A")
+				if (scn.hasNext()) {
+					val fText = scn.next()
+					startActivity(MainActivity.getEncodeIntent(this, fText, true))
+					finish()
+				}
+				file.close()
+			}
 		}
 	}
 
