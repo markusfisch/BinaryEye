@@ -9,6 +9,7 @@ import android.graphics.Matrix
 import android.graphics.Rect
 import android.hardware.Camera
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
@@ -356,16 +357,23 @@ class CameraActivity : AppCompatActivity() {
 			return
 		}
 
-		// Read text from file
-		val textUri = intent.getParcelableExtra(Intent.EXTRA_STREAM) as Uri?
-		if (textUri != null) {
+		// Read text from file.
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+			@Suppress("DEPRECATION")
+			intent.getParcelableExtra(Intent.EXTRA_STREAM) as Uri?
+		} else {
+			intent.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
+		}?.let { textUri ->
 			val file = contentResolver.openFileDescriptor(textUri, "r")
 			if (file != null) {
 				val fs = FileInputStream(file.fileDescriptor)
 				val scn = Scanner(fs).useDelimiter("\\A")
 				if (scn.hasNext()) {
-					val fText = scn.next()
-					startActivity(MainActivity.getEncodeIntent(this, fText, true))
+					startActivity(
+						MainActivity.getEncodeIntent(
+							this, scn.next(), true
+						)
+					)
 					finish()
 				}
 				file.close()
