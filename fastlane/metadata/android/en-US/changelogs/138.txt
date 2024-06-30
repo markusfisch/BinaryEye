@@ -1,0 +1,4 @@
+* Use maximum brightness when showing a generated barcode
+* Allow file input from share menu
+* Update multiple translations
+

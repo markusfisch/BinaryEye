@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.63.10
+* Use maximum brightness when showing a generated barcode
+* Allow file input from share menu
+* Update multiple translations
+
 ## 1.63.9
 * Export/share as JPEG
 * Ignore "URL:" before URLs in barcode content
