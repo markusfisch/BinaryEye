@@ -138,6 +138,9 @@
 	<string name="bluetooth_connect_fail">Bluetooth aygıtına bağlanılamadı.</string>
 	<string name="bluetooth_send_fail">Bluetooth aygıtına gönderilemedi.</string>
 	<string name="bluetooth_send_success">Bluetooth aygıtına gönderildi.</string>
+	<string name="generation_category">Generation</string>
+	<string name="brighten_screen">Brighten screen</string>
+	<string name="brighten_screen_summary">Set brightness to maximum to enhance scanning a barcode from the screen.</string>
 	<string name="really_remove_scan">Tarama gerçekten silinsin mi?</string>
 	<string name="really_remove_all_scans">Tüm taramalar gerçekten silinsin mi?</string>
 	<string name="really_remove_selected_scans">Seçili taramalar gerçekten silinsin mi?</string>

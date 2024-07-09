@@ -139,6 +139,9 @@
 	<string name="bluetooth_connect_fail">Неможливо підключитися до пристрою Bluetooth.</string>
 	<string name="bluetooth_send_fail">Неможливо надіслати на пристрій Bluetooth.</string>
 	<string name="bluetooth_send_success">Успішно надіслано через Bluetooth.</string>
+	<string name="generation_category">Generation</string>
+	<string name="brighten_screen">Brighten screen</string>
+	<string name="brighten_screen_summary">Set brightness to maximum to enhance scanning a barcode from the screen.</string>
 	<string name="really_remove_scan">Дійсно видалити сканування?</string>
 	<string name="really_remove_all_scans">Дійсно видалити всі сканування?</string>
 	<string name="really_remove_selected_scans">Дійсно видалити вибрані сканування?</string>

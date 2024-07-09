@@ -138,6 +138,9 @@
 	<string name="bluetooth_connect_fail">Неуспешно свързване с Bluetooth устройство.</string>
 	<string name="bluetooth_send_fail">Неуспешно изпращане до Bluetooth устройство.</string>
 	<string name="bluetooth_send_success">Успешно Bluetooth изпращане.</string>
+	<string name="generation_category">Generation</string>
+	<string name="brighten_screen">Brighten screen</string>
+	<string name="brighten_screen_summary">Set brightness to maximum to enhance scanning a barcode from the screen.</string>
 	<string name="really_remove_scan">Наистина ли искате да премахнете това сканиране?</string>
 	<string name="really_remove_all_scans">Наистина ли искате да премахнете всички сканирания?</string>
 	<string name="really_remove_selected_scans">Наистина ли искате да премахнете избраните сканирания?</string>

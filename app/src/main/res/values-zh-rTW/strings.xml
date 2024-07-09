@@ -137,6 +137,9 @@
 	<string name="bluetooth_connect_fail">無法連線到藍牙裝置</string>
 	<string name="bluetooth_send_fail">無法傳送到藍牙裝置</string>
 	<string name="bluetooth_send_success">藍牙傳送完成</string>
+	<string name="generation_category">Generation</string>
+	<string name="brighten_screen">Brighten screen</string>
+	<string name="brighten_screen_summary">Set brightness to maximum to enhance scanning a barcode from the screen.</string>
 	<string name="really_remove_scan">確定刪除記錄？</string>
 	<string name="really_remove_all_scans">確定要刪除所有掃描記錄？</string>
 	<string name="really_remove_selected_scans">確定要刪除選擇的掃描記錄？</string>

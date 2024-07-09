@@ -17,6 +17,7 @@ import android.widget.EditText
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.hasWritePermission
+import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.shareFile
 import de.markusfisch.android.binaryeye.content.shareText
@@ -26,6 +27,8 @@ import de.markusfisch.android.binaryeye.graphics.COLOR_WHITE
 import de.markusfisch.android.binaryeye.io.addSuffixIfNotGiven
 import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.io.writeExternalFile
+import de.markusfisch.android.binaryeye.os.getScreenBrightness
+import de.markusfisch.android.binaryeye.os.setScreenBrightness
 import de.markusfisch.android.binaryeye.view.doOnApplyWindowInsets
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.ConfinedScalingImageView
@@ -54,6 +57,8 @@ class BarcodeFragment : Fragment() {
 
 	private lateinit var barcode: Barcode<*>
 	private lateinit var addToHistoryItem: MenuItem
+
+	private var currentBrightness = -1f;
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -135,6 +140,24 @@ class BarcodeFragment : Fragment() {
 		getInt(EC_LEVEL),
 		Colors.entries[getInt(COLORS)]
 	)
+
+	override fun onResume() {
+		super.onResume()
+		if (prefs.brightenScreen) {
+			activity?.let {
+				currentBrightness = it.getScreenBrightness()
+				it.setScreenBrightness(1f);
+			}
+		}
+	}
+
+	override fun onPause() {
+		super.onPause()
+		if (currentBrightness > -1f) {
+			activity?.setScreenBrightness(currentBrightness);
+			currentBrightness = -1f
+		}
+	}
 
 	override fun onDestroyView() {
 		super.onDestroyView()

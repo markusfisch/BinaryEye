@@ -139,6 +139,9 @@
 	<string name="bluetooth_connect_fail">Não foi possível conectar com o dispositivo Bluetooth.</string>
 	<string name="bluetooth_send_fail">Não foi possível enviar para o dispositivo Bluetooth.</string>
 	<string name="bluetooth_send_success">Envio Bluetooth com sucesso.</string>
+	<string name="generation_category">Generation</string>
+	<string name="brighten_screen">Brighten screen</string>
+	<string name="brighten_screen_summary">Set brightness to maximum to enhance scanning a barcode from the screen.</string>
 	<string name="really_remove_scan">Deseja excluir esta digitalização?</string>
 	<string name="really_remove_all_scans">Deseja excluir todas as digitalizações?</string>
 	<string name="really_remove_selected_scans">Deseja excluir as digitalizações selecionadas?</string>

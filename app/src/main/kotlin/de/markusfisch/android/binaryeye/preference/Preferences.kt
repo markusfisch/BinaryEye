@@ -215,6 +215,11 @@ class Preferences {
 			apply(EXPAND_ESCAPE_SEQUENCES, value)
 			field = value
 		}
+	var brightenScreen = false
+		set(value) {
+			apply(BRIGHTEN_SCREEN, value)
+			field = value
+		}
 
 	fun init(context: Context) {
 		preferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -335,6 +340,10 @@ class Preferences {
 			EXPAND_ESCAPE_SEQUENCES,
 			expandEscapeSequences
 		)
+		brightenScreen = preferences.getBoolean(
+			BRIGHTEN_SCREEN,
+			brightenScreen
+		)
 	}
 
 	private fun addFormatsOnUpdate(
@@ -434,5 +443,6 @@ class Preferences {
 		private const val LAST_MARGIN = "last_margin"
 		private const val FREE_ROTATION = "free_rotation"
 		private const val EXPAND_ESCAPE_SEQUENCES = "expand_escape_sequences"
+		private const val BRIGHTEN_SCREEN = "brighten_screen"
 	}
 }

@@ -140,6 +140,9 @@
 	<string name="bluetooth_connect_fail">Nelze se připojit k zařízení Bluetooth.</string>
 	<string name="bluetooth_send_fail">Nelze odesílat na zařízení Bluetooth.</string>
 	<string name="bluetooth_send_success">Odesílání přes Bluetooth se zdařilo.</string>
+	<string name="generation_category">Generation</string>
+	<string name="brighten_screen">Brighten screen</string>
+	<string name="brighten_screen_summary">Set brightness to maximum to enhance scanning a barcode from the screen.</string>
 	<string name="really_remove_scan">Opravdu odstranit sken?</string>
 	<string name="really_remove_all_scans">Opravdu odstranit všechny skeny?</string>
 	<string name="really_remove_selected_scans">Opravdu odstranit zvolené skeny?</string>

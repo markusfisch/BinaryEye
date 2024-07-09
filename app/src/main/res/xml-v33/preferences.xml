@@ -150,4 +150,11 @@
 			android:title="@string/clear_network_suggestions"
 			android:summary="@string/clear_network_suggestions_summary"/>
 	</PreferenceCategory>
+	<PreferenceCategory android:title="@string/generation_category">
+		<android.support.v7.preference.SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="brighten_screen"
+			android:title="@string/brighten_screen"
+			android:summary="@string/brighten_screen_summary"/>
+	</PreferenceCategory>
 </PreferenceScreen>

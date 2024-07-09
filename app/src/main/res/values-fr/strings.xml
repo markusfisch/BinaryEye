@@ -138,6 +138,9 @@
 	<string name="bluetooth_connect_fail">Impossible de se connecter à l\'appareil Bluetooth.</string>
 	<string name="bluetooth_send_fail">Impossible d\'envoyer à l\'appareil Bluetooth.</string>
 	<string name="bluetooth_send_success">Envoi Bluetooth réussi.</string>
+	<string name="generation_category">Generation</string>
+	<string name="brighten_screen">Brighten screen</string>
+	<string name="brighten_screen_summary">Set brightness to maximum to enhance scanning a barcode from the screen.</string>
 	<string name="really_remove_scan">Supprimer le scan ?</string>
 	<string name="really_remove_all_scans">Supprimer tous les scans ?</string>
 	<string name="really_remove_selected_scans">Supprimer les scans sélectionnés ?</string>

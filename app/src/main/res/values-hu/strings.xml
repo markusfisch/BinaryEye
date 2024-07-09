@@ -138,6 +138,9 @@
 	<string name="bluetooth_connect_fail">Could not connect to bluetooth device.</string>
 	<string name="bluetooth_send_fail">Could not send to bluetooth device.</string>
 	<string name="bluetooth_send_success">Successful bluetooth send.</string>
+	<string name="generation_category">Generation</string>
+	<string name="brighten_screen">Brighten screen</string>
+	<string name="brighten_screen_summary">Set brightness to maximum to enhance scanning a barcode from the screen.</string>
 	<string name="really_remove_scan">Valóban eltávolítja a beolvasást?</string>
 	<string name="really_remove_all_scans">Valóban eltávolítja az összes beolvasását?</string>
 	<string name="really_remove_selected_scans">Valóban eltávolítja a kijelölt beolvasásokat?</string>
