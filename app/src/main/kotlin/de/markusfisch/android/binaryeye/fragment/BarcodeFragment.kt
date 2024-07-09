@@ -57,6 +57,7 @@ class BarcodeFragment : Fragment() {
 
 	private lateinit var barcode: Barcode<*>
 	private lateinit var addToHistoryItem: MenuItem
+	private lateinit var brightenScreenItem: MenuItem
 
 	private var currentBrightness = -1f;
 
@@ -144,9 +145,9 @@ class BarcodeFragment : Fragment() {
 	override fun onResume() {
 		super.onResume()
 		if (prefs.brightenScreen) {
-			activity?.let {
-				currentBrightness = it.getScreenBrightness()
-				it.setScreenBrightness(1f);
+			// Post to make sure brightenScreenItem is initialized.
+			view?.post {
+				brightenScreen()
 			}
 		}
 	}
@@ -154,8 +155,7 @@ class BarcodeFragment : Fragment() {
 	override fun onPause() {
 		super.onPause()
 		if (currentBrightness > -1f) {
-			activity?.setScreenBrightness(currentBrightness);
-			currentBrightness = -1f
+			restoreScreenBrightness()
 		}
 	}
 
@@ -167,6 +167,7 @@ class BarcodeFragment : Fragment() {
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 		inflater.inflate(R.menu.fragment_barcode, menu)
 		addToHistoryItem = menu.findItem(R.id.add_to_history)
+		brightenScreenItem = menu.findItem(R.id.brighten_screen)
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -189,6 +190,17 @@ class BarcodeFragment : Fragment() {
 			R.id.export_to_file -> {
 				context.pickFileType(R.string.export_as) {
 					askForFileNameAndSave(it)
+				}
+				true
+			}
+
+			R.id.brighten_screen -> {
+				prefs.brightenScreen = if (currentBrightness > -1f) {
+					restoreScreenBrightness()
+					false
+				} else {
+					brightenScreen()
+					true
 				}
 				true
 			}
@@ -314,6 +326,22 @@ class BarcodeFragment : Fragment() {
 					toast(R.string.error_saving_file)
 				}
 			}
+		}
+	}
+
+	private fun brightenScreen() {
+		activity?.let {
+			currentBrightness = it.getScreenBrightness()
+			it.setScreenBrightness(1f);
+			brightenScreenItem.isChecked = true
+		}
+	}
+
+	private fun restoreScreenBrightness() {
+		if (currentBrightness > -1f) {
+			activity?.setScreenBrightness(currentBrightness);
+			currentBrightness = -1f
+			brightenScreenItem.isChecked = false
 		}
 	}
 

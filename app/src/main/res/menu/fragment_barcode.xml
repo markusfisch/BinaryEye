@@ -16,4 +16,10 @@
 		android:title="@string/export_to_file"
 		android:icon="@drawable/ic_action_save"
 		material:showAsAction="ifRoom"/>
+	<item
+		android:id="@+id/brighten_screen"
+		android:title="@string/brighten_screen"
+		android:icon="@drawable/ic_action_bright"
+		android:checkable="true"
+		material:showAsAction="ifRoom"/>
 </menu>
