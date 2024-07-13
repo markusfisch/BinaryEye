@@ -106,8 +106,8 @@
 	<string name="show_meta_data_summary">Afficher des informations supplémentaires sur le code-barres scanné.</string>
 	<string name="show_hex_dump">Afficher le dump hexadécimal</string>
 	<string name="show_hex_dump_summary">Afficher le dump hexadécimal du contenu scanné.</string>
-	<string name="show_checksum">Show checksum</string>
-	<string name="no_checksum">No checksum</string>
+	<string name="show_checksum">Afficher la somme de contrôle</string>
+	<string name="no_checksum">Pas de somme de contrôle</string>
 	<string name="show_recreation">Afficher le code-barres recréé</string>
 	<string name="show_recreation_summary">Recréer et afficher, si possible, le code-barres à partir du contenu scanné.</string>
 	<string name="close_automatically">Revenir après une copie/partage</string>
@@ -138,9 +138,9 @@
 	<string name="bluetooth_connect_fail">Impossible de se connecter à l\'appareil Bluetooth.</string>
 	<string name="bluetooth_send_fail">Impossible d\'envoyer à l\'appareil Bluetooth.</string>
 	<string name="bluetooth_send_success">Envoi Bluetooth réussi.</string>
-	<string name="generation_category">Generation</string>
-	<string name="brighten_screen">Brighten screen</string>
-	<string name="brighten_screen_summary">Set brightness to maximum to enhance scanning a barcode from the screen.</string>
+	<string name="generation_category">Génération</string>
+	<string name="brighten_screen">Augmenter la luminosité de l\'écran</string>
+	<string name="brighten_screen_summary">Régler la luminosité au maximum pour améliorer la lecture d\'un code-barres à l\'écran.</string>
 	<string name="really_remove_scan">Supprimer le scan ?</string>
 	<string name="really_remove_all_scans">Supprimer tous les scans ?</string>
 	<string name="really_remove_selected_scans">Supprimer les scans sélectionnés ?</string>
