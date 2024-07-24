@@ -24,7 +24,6 @@ import android.widget.TableRow
 import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
-import de.markusfisch.android.binaryeye.actions.IAction
 import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
 import de.markusfisch.android.binaryeye.actions.wifi.WifiConnector
 import de.markusfisch.android.binaryeye.activity.MainActivity
@@ -222,12 +221,9 @@ class DecodeFragment : Fragment() {
 			action = ActionRegistry.getAction(bytes)
 		}
 		if (prevAction !== action) {
-			updateFab(action)
+			fab.setImageResource(action.iconResId)
 		}
-	}
-
-	private fun updateFab(action: IAction) {
-		fab.setImageResource(action.iconResId)
+		// Run this for the initial action too.
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
 			fab.setOnLongClickListener { v ->
 				v.context.toast(action.titleResId)
