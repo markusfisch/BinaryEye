@@ -615,7 +615,7 @@ private fun generateDpTrackingLink(bytes: ByteArray, format: String): String? {
 		"%X",
 		crc4(hexString.toByteArray(Charsets.ISO_8859_1))
 	)
-	return "<a href=\"https://www.deutschepost.de/de/s/sendungsverfolgung/verfolgen.html?piececode=$trackingNumber\">Deutsche Post: $trackingNumber</a>"
+	return "<a href=\"https://www.deutschepost.de/de/s/sendungsverfolgung.html?piececode=$trackingNumber\">Deutsche Post: $trackingNumber</a>"
 }
 
 // CRC-4 with polynomial x^4 + x + 1.
