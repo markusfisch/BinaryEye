@@ -1,0 +1,2 @@
+* Consertado pré-processamento para Android 7+
+* Consertados ícones adaptativos para Android 8+
