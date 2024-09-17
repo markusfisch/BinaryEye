@@ -519,7 +519,7 @@ private inline fun <T : View> T.showIf(
 }
 
 private val nonAlNum = "[^a-zA-Z0-9]".toRegex()
-private val multipleDots = "[…]+".toRegex()
+private val multipleDots = "…+".toRegex()
 private fun String.foldNonAlNum() = replace(nonAlNum, "…")
 	.replace(multipleDots, "…")
 
