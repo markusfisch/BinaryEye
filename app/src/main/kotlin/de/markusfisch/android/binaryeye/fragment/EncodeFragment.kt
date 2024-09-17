@@ -323,7 +323,11 @@ class EncodeFragment : Fragment() {
 
 	private fun updateSize(power: Int) {
 		val size = getSize(power)
-		sizeView.text = getString(R.string.size_width_by_height, size, size)
+		sizeView.text = if (size > 0) {
+			getString(R.string.size_width_by_height, size, size)
+		} else {
+			getString(R.string.size_no_magnification)
+		}
 	}
 
 	private fun initMarginBar() {
@@ -456,7 +460,10 @@ private fun Spinner.setEntries(resId: Int) = ArrayAdapter.createFromResource(
 	adapter = aa
 }
 
-private fun getSize(power: Int) = 128 * (power + 1)
+private fun getSize(step: Int) = when (step) {
+	0 -> 0
+	else -> 128 shl (step - 1)
+}
 
 private fun InputStream.readBytesMax(max: Int): ByteArray {
 	var offset = 0

@@ -185,6 +185,7 @@
 	<string name="show_toast_in_bulk_mode_summary">Zwięźle pokazuje zeskanowane dane podczas skanowania ciągłego.</string>
 	<string name="cannot_resolve_action">Żadna aplikacja nie może tego otworzyć</string>
 	<string name="size_width_by_height">Rozmiar w pikselach: %1$d×%2$d</string>
+	<string name="size_no_magnification">No magnification</string>
 	<string name="margin_size">Margines w pikselach: %1$d</string>
 	<string name="input_content_here">Wprowadź zawartość tutaj</string>
 	<string name="unescape">Rozwiń sekwencje ucieczki</string>

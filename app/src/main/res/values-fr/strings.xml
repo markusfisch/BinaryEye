@@ -43,6 +43,7 @@
 	<string name="pick_search_engine">Choisir un moteur de recherche</string>
 	<string name="format">Format</string>
 	<string name="size_width_by_height">Taille en pixels : %1$d×%2$d</string>
+	<string name="size_no_magnification">No magnification</string>
 	<string name="margin_size">Marge en pixels : %1$d</string>
 	<string name="input_content_here">Insérer le contenu ici</string>
 	<string name="unescape">Étendre les caractères d\'échappement</string>

@@ -78,8 +78,8 @@
 				android:layout_marginBottom="16dp"
 				android:paddingTop="16dp"
 				android:paddingBottom="16dp"
-				android:progress="4"
-				android:max="7"/>
+				android:progress="2"
+				android:max="4"/>
 			<LinearLayout
 				android:id="@+id/margin"
 				android:layout_width="match_parent"
