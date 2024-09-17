@@ -38,8 +38,6 @@ class EncodeFragment : Fragment() {
 	private lateinit var ecSpinner: Spinner
 	private lateinit var colorsLabel: TextView
 	private lateinit var colorsSpinner: Spinner
-	private lateinit var sizeView: TextView
-	private lateinit var sizeBarView: SeekBar
 	private lateinit var marginLayout: View
 	private lateinit var marginView: TextView
 	private lateinit var marginBarView: SeekBar
@@ -178,10 +176,6 @@ class EncodeFragment : Fragment() {
 		colorsLabel = view.findViewById(R.id.colors_label)
 		colorsSpinner = view.findViewById(R.id.colors)
 
-		sizeView = view.findViewById(R.id.size_display)
-		sizeBarView = view.findViewById(R.id.size_bar)
-		initSizeBar()
-
 		marginLayout = view.findViewById(R.id.margin)
 		marginView = view.findViewById(R.id.margin_display)
 		marginBarView = view.findViewById(R.id.margin_bar)
@@ -259,7 +253,6 @@ class EncodeFragment : Fragment() {
 			BarcodeFragment.newInstance(
 				content,
 				format,
-				getSize(sizeBarView.progress),
 				when (format) {
 					BarcodeFormat.AZTEC,
 					BarcodeFormat.DATA_MATRIX,
@@ -301,33 +294,6 @@ class EncodeFragment : Fragment() {
 			return null
 		}
 		return text
-	}
-
-	private fun initSizeBar() {
-		updateSize(sizeBarView.progress)
-		sizeBarView.setOnSeekBarChangeListener(
-			object : SeekBar.OnSeekBarChangeListener {
-				override fun onProgressChanged(
-					seekBar: SeekBar,
-					progressValue: Int,
-					fromUser: Boolean
-				) {
-					updateSize(progressValue)
-				}
-
-				override fun onStartTrackingTouch(seekBar: SeekBar) {}
-
-				override fun onStopTrackingTouch(seekBar: SeekBar) {}
-			})
-	}
-
-	private fun updateSize(power: Int) {
-		val size = getSize(power)
-		sizeView.text = if (size > 0) {
-			getString(R.string.size_width_by_height, size, size)
-		} else {
-			getString(R.string.size_no_magnification)
-		}
 	}
 
 	private fun initMarginBar() {
@@ -458,11 +424,6 @@ private fun Spinner.setEntries(resId: Int) = ArrayAdapter.createFromResource(
 		android.R.layout.simple_spinner_dropdown_item
 	)
 	adapter = aa
-}
-
-private fun getSize(step: Int) = when (step) {
-	0 -> 0
-	else -> 128 shl (step - 1)
 }
 
 private fun InputStream.readBytesMax(max: Int): ByteArray {

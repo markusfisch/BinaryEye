@@ -14,6 +14,8 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.SeekBar
+import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.hasWritePermission
@@ -45,6 +47,7 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
 import java.util.Locale
+import kotlin.math.max
 import kotlin.math.min
 
 class BarcodeFragment : Fragment() {
@@ -107,7 +110,7 @@ class BarcodeFragment : Fragment() {
 			// Make sure to invoke this after ScalingImageView.onLayout().
 			imageView.minWidth = min(
 				imageView.minWidth / 2f,
-				barcode.size.toFloat()
+				max(bitmap.width, bitmap.height).toFloat()
 			)
 		}
 
@@ -136,7 +139,6 @@ class BarcodeFragment : Fragment() {
 				"format cannot be null"
 			)
 		),
-		getInt(SIZE),
 		getInt(MARGIN),
 		getInt(EC_LEVEL),
 		Colors.entries[getInt(COLORS)]
@@ -173,7 +175,10 @@ class BarcodeFragment : Fragment() {
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return when (item.itemId) {
 			R.id.add_to_history -> {
-				readAndAddToHistory(barcode.bitmap(), barcode.format)
+				readAndAddToHistory(
+					barcode.bitmap(),
+					barcode.format
+				)
 				addToHistoryItem.isVisible = false
 				context.toast(R.string.added_to_history)
 				true
@@ -224,11 +229,23 @@ class BarcodeFragment : Fragment() {
 
 	// Dialogs do not have a parent view.
 	@SuppressLint("InflateParams")
-	private fun askForFileNameAndSave(fileType: FileType) {
+	private fun askForFileNameAndSave(fileType: FileType, size: Int = -1) {
+		if (size == -1) {
+			when (fileType) {
+				FileType.PNG, FileType.JPG -> {
+					askForSize {
+						askForFileNameAndSave(fileType, it)
+					}
+					return
+				}
+
+				else -> {}
+			}
+		}
 		val ac = activity ?: return
 		// Write permission is only required before Android Q.
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
-			!ac.hasWritePermission { askForFileNameAndSave(fileType) }
+			!ac.hasWritePermission { askForFileNameAndSave(fileType, size) }
 		) {
 			return
 		}
@@ -246,14 +263,14 @@ class BarcodeFragment : Fragment() {
 						addSuffixIfNotGiven(fileName, ".png"),
 						MIME_PNG
 					) {
-						barcode.bitmap().saveAsPng(it)
+						barcode.bitmap(size).saveAsPng(it)
 					}
 
 					FileType.JPG -> saveAs(
 						addSuffixIfNotGiven(fileName, ".jpg"),
 						MIME_JPG
 					) {
-						barcode.bitmap().saveAsJpg(it)
+						barcode.bitmap(size).saveAsJpg(it)
 					}
 
 					FileType.SVG -> saveAs(
@@ -276,6 +293,52 @@ class BarcodeFragment : Fragment() {
 			.show()
 	}
 
+	// Dialogs do not have a parent view.
+	@SuppressLint("InflateParams")
+	private fun askForSize(write: (size: Int) -> Unit) {
+		val ac = activity ?: return
+		val view = ac.layoutInflater.inflate(R.layout.dialog_size, null)
+		val sizeView = view.findViewById<TextView>(R.id.size_display)
+		val sizeBarView = view.findViewById<SeekBar>(R.id.size_bar)
+		sizeBarView.initSizeBar(sizeView)
+		AlertDialog.Builder(ac)
+			.setView(view)
+			.setPositiveButton(android.R.string.ok) { _, _ ->
+				write(getSize(sizeBarView.progress))
+			}
+			.setNegativeButton(android.R.string.cancel) { _, _ ->
+			}
+			.show()
+	}
+
+	private fun SeekBar.initSizeBar(sizeView: TextView) {
+		sizeView.updateSize(progress)
+		setOnSeekBarChangeListener(
+			object : SeekBar.OnSeekBarChangeListener {
+				override fun onProgressChanged(
+					seekBar: SeekBar,
+					progressValue: Int,
+					fromUser: Boolean
+				) {
+					sizeView.updateSize(progressValue)
+				}
+
+				override fun onStartTrackingTouch(seekBar: SeekBar) {}
+
+				override fun onStopTrackingTouch(seekBar: SeekBar) {}
+			}
+		)
+	}
+
+	private fun TextView.updateSize(power: Int) {
+		val size = getSize(power)
+		text = if (size > 0) {
+			getString(R.string.size_width_by_height, size, size)
+		} else {
+			getString(R.string.size_no_magnification)
+		}
+	}
+
 	private fun saveAs(
 		fileName: String,
 		mimeType: String,
@@ -292,8 +355,14 @@ class BarcodeFragment : Fragment() {
 
 	private fun Context.shareAs(fileType: FileType) {
 		when (fileType) {
-			FileType.PNG -> share(barcode.bitmap(), MIME_PNG, "png")
-			FileType.JPG -> share(barcode.bitmap(), MIME_JPG, "jpg")
+			FileType.PNG -> askForSize {
+				share(barcode.bitmap(it), MIME_PNG, "png")
+			}
+
+			FileType.JPG -> askForSize {
+				share(barcode.bitmap(it), MIME_JPG, "jpg")
+			}
+
 			FileType.SVG -> shareText(barcode.svg(), MIME_SVG)
 			FileType.TXT -> shareText(barcode.text())
 		}
@@ -349,7 +418,6 @@ class BarcodeFragment : Fragment() {
 		private const val CONTENT_TEXT = "content_text"
 		private const val CONTENT_RAW = "content_raw"
 		private const val FORMAT = "format"
-		private const val SIZE = "size"
 		private const val MARGIN = "margin"
 		private const val EC_LEVEL = "ec_level"
 		private const val COLORS = "colors"
@@ -361,7 +429,6 @@ class BarcodeFragment : Fragment() {
 		fun <T> newInstance(
 			content: T,
 			format: BarcodeFormat,
-			size: Int,
 			margin: Int,
 			ecLevel: Int = -1,
 			colors: Int = 0
@@ -383,7 +450,6 @@ class BarcodeFragment : Fragment() {
 				}
 			}
 			args.putString(FORMAT, format.name)
-			args.putInt(SIZE, size)
 			args.putInt(MARGIN, margin)
 			args.putInt(EC_LEVEL, ecLevel)
 			args.putInt(COLORS, colors)
@@ -397,20 +463,23 @@ class BarcodeFragment : Fragment() {
 private data class Barcode<T>(
 	val content: T,
 	val format: BarcodeFormat,
-	val size: Int,
 	val margin: Int,
 	val ecLevel: Int,
 	val colors: Colors
 ) {
 	private var _bitmap: Bitmap? = null
 	fun bitmap(): Bitmap {
-		val b = _bitmap ?: ZxingCpp.encodeAsBitmap(
+		val b = _bitmap ?: bitmap(512)
+		_bitmap = b
+		return b
+	}
+
+	fun bitmap(size: Int): Bitmap {
+		return ZxingCpp.encodeAsBitmap(
 			content, format, size, size, margin, ecLevel,
 			setColor = colors.foregroundColor(),
 			unsetColor = colors.backgroundColor()
 		)
-		_bitmap = b
-		return b
 	}
 
 	private var _svg: String? = null
@@ -467,6 +536,11 @@ private fun encodeFileName(name: String): String = fileNameCharacters
 	.take(16)
 	.trim('_')
 	.lowercase(Locale.getDefault())
+
+private fun getSize(step: Int) = when (step) {
+	0 -> 0
+	else -> 128 shl (step - 1)
+}
 
 private fun readAndAddToHistory(
 	bitmap: Bitmap,
