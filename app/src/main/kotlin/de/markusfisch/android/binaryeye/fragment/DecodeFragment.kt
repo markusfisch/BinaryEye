@@ -148,8 +148,8 @@ class DecodeFragment : Fragment() {
 
 		updateViewsAndFab(originalContent, originalBytes)
 
-		(view.findViewById(R.id.inset_layout) as View).setPaddingFromWindowInsets()
-		(view.findViewById(R.id.scroll_view) as View).setPaddingFromWindowInsets()
+		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
+		view.findViewById<View>(R.id.scroll_view).setPaddingFromWindowInsets()
 
 		return view
 	}

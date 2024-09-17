@@ -122,7 +122,7 @@ class BarcodeFragment : Fragment() {
 			}
 		}
 
-		(view.findViewById(R.id.inset_layout) as View).setPaddingFromWindowInsets()
+		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
 		imageView.doOnApplyWindowInsets { v, insets ->
 			(v as ConfinedScalingImageView).insets.set(insets)
 		}

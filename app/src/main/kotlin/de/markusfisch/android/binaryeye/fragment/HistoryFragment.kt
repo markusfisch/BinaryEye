@@ -163,7 +163,7 @@ class HistoryFragment : Fragment() {
 
 		useHistorySwitch = view.findViewById(
 			R.id.use_history
-		) as SwitchCompat
+		)
 		initHistorySwitch(useHistorySwitch)
 
 		listView = view.findViewById(R.id.scans)
@@ -192,7 +192,7 @@ class HistoryFragment : Fragment() {
 
 		progressView = view.findViewById(R.id.progress_view)
 
-		(view.findViewById(R.id.inset_layout) as View).setPaddingFromWindowInsets()
+		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
 		listView.setPaddingFromWindowInsets()
 
 		update()
