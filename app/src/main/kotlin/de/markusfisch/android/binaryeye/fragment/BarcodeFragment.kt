@@ -193,8 +193,15 @@ class BarcodeFragment : Fragment() {
 			}
 
 			R.id.export_to_file -> {
-				context.pickFileType(R.string.export_as) {
-					askForFileNameAndSave(it)
+				context.pickFileType(R.string.export_as) { fileType ->
+					when (fileType) {
+						FileType.PNG,
+						FileType.JPG -> askForSize { size ->
+							askForFileNameAndSave(fileType, size)
+						}
+
+						else -> askForFileNameAndSave(fileType, 0)
+					}
 				}
 				true
 			}
@@ -229,23 +236,13 @@ class BarcodeFragment : Fragment() {
 
 	// Dialogs do not have a parent view.
 	@SuppressLint("InflateParams")
-	private fun askForFileNameAndSave(fileType: FileType, size: Int = -1) {
-		if (size == -1) {
-			when (fileType) {
-				FileType.PNG, FileType.JPG -> {
-					askForSize {
-						askForFileNameAndSave(fileType, it)
-					}
-					return
-				}
-
-				else -> {}
-			}
-		}
+	private fun askForFileNameAndSave(fileType: FileType, bitmapSize: Int) {
 		val ac = activity ?: return
 		// Write permission is only required before Android Q.
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
-			!ac.hasWritePermission { askForFileNameAndSave(fileType, size) }
+			!ac.hasWritePermission {
+				askForFileNameAndSave(fileType, bitmapSize)
+			}
 		) {
 			return
 		}
@@ -263,28 +260,28 @@ class BarcodeFragment : Fragment() {
 						addSuffixIfNotGiven(fileName, ".png"),
 						MIME_PNG
 					) {
-						barcode.bitmap(size).saveAsPng(it)
+						barcode.bitmap(bitmapSize).saveAsPng(it)
 					}
 
 					FileType.JPG -> saveAs(
 						addSuffixIfNotGiven(fileName, ".jpg"),
 						MIME_JPG
 					) {
-						barcode.bitmap(size).saveAsJpg(it)
+						barcode.bitmap(bitmapSize).saveAsJpg(it)
 					}
 
 					FileType.SVG -> saveAs(
 						addSuffixIfNotGiven(fileName, ".svg"),
 						MIME_SVG
-					) { outputStream ->
-						outputStream.write(barcode.svg().toByteArray())
+					) {
+						it.write(barcode.svg().toByteArray())
 					}
 
 					FileType.TXT -> saveAs(
 						addSuffixIfNotGiven(fileName, ".txt"),
 						MIME_TXT
-					) { outputStream ->
-						outputStream.write(barcode.text().toByteArray())
+					) {
+						it.write(barcode.text().toByteArray())
 					}
 				}
 			}
