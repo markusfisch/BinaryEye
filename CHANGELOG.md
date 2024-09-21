@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.63.11
+* Update parcel tracking URL
+* Update multiple translations
+* Only ask for barcode size when exporting/sharing
+
 ## 1.63.10
 * Use maximum brightness when showing a generated barcode
 * Allow file input from share menu

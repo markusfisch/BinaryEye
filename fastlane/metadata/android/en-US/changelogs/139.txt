@@ -1,0 +1,4 @@
+* Update parcel tracking URL
+* Update multiple translations
+* Only ask for barcode size when exporting/sharing
+
