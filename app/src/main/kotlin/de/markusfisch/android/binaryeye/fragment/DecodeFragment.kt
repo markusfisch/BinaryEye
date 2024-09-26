@@ -253,7 +253,6 @@ class DecodeFragment : Fragment() {
 					BarcodeFragment.newInstance(
 						content,
 						r.format,
-						r.size,
 						r.margin,
 						r.ecLevel
 					)
