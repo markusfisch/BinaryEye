@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.63.12
+* Fix magnifying barcode recreation
+
 ## 1.63.11
 * Update parcel tracking URL
 * Update multiple translations
