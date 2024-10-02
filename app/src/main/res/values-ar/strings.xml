@@ -149,7 +149,7 @@
 	<string name="copy_scan">نسخ عملية المسح</string>
 	<string name="edit_label">تعديل العنوان</string>
 	<string name="remove_scan">حذف عملية المسح</string>
-	<string name="enter_name">أدخل اسمًا لوصف عملية الفحص</string>
+	<string name="enter_name">أدخل اسمًا لوصف عملية المسح</string>
 	<string name="enter_name_hint">اسم عملية المسح</string>
 	<string name="no_barcode_found">لا يوجد أي رمز Barcode</string>
 	<string name="pick_list_separator">الفاصل المستخدم لفصل عناصر القائمة؟</string>
