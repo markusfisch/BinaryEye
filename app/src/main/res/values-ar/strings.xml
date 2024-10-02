@@ -6,9 +6,11 @@
 	<string name="content">المحتوى</string>
 	<string name="binary_data">(بيانات ثنائية)</string>
 	<plurals name="barcode_info">
+		<item quantity="zero">باطل</item>
 		<item quantity="one">حرف واحد، %1$s</item>
 		<item quantity="two">حرفين، %1$s</item>
 		<item quantity="few">%2$d حروف، %1$s</item>
+		<item quantity="many">%2$d حرف، %1$s</item>
 		<item quantity="other">%2$d حرف، %1$s</item>
 	</plurals>
 	<string name="error_correction_level">مستوى تصحيح الأخطاء</string>
