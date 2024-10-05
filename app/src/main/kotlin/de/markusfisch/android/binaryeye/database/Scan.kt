@@ -190,7 +190,7 @@ private fun getDateTime(
 		"yyyy-MM-dd HH:mm:ss"
 	},
 	time
-).toString()
+).toString() + String.format(":%03d", (time % 1000))
 
 private fun Parcel.writeSizedByteArray(array: ByteArray?) {
 	val size = array?.size ?: 0
