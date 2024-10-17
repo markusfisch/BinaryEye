@@ -2,7 +2,7 @@
 
 Yet another barcode scanner for Android. As if there weren't [enough][play].
 
-This one is free, without any ads and open source.
+This one is free, without any ads, and open source.
 
 Works in portrait and landscape orientation, can read inverted codes,
 comes in Material Design and can also generate barcodes.
