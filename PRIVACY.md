@@ -15,7 +15,7 @@ Before Android Q, this feature requires using
 [WifiManager.getConfiguredNetworks][getConfiguredNetworks]
 which requires `ACCESS_FINE_LOCATION`.
 
-On Android Q an better, this permission is not requested nor required.
+On Android Q and better, this permission is not requested nor required.
 
 ### [BLUETOOTH][BLUETOOTH], [BLUETOOTH_ADMIN][BLUETOOTH_ADMIN] and [BLUETOOTH_CONNECT][BLUETOOTH_CONNECT]
 
