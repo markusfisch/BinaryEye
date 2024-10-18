@@ -140,7 +140,7 @@
 	<string name="bluetooth_send_fail">Senden zum Bluetooth-Gerät fehlgeschlagen</string>
 	<string name="bluetooth_send_success">Erfolgreich zum Bluetooth-Gerät gesendet</string>
 	<string name="generation_category">Generation</string>
-	<string name="brighten_screen">Bildschrim aufhellen</string>
+	<string name="brighten_screen">Bildschirm aufhellen</string>
 	<string name="brighten_screen_summary">Helligkeit auf Maximum stellen um das Scannen eines Barcodes vom Bildschirm zu verbessern.</string>
 	<string name="really_remove_scan">Code wirklich entfernen?</string>
 	<string name="really_remove_all_scans">Alle Codes entfernen?</string>
