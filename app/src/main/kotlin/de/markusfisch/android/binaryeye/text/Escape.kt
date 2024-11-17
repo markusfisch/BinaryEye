@@ -70,7 +70,13 @@ fun String.unescape(): String {
 	val sb = StringBuilder()
 	while (i < len) {
 		val ch = get(i++)
-		sb.append(if (ch == '\\' && i < len) expand() else ch)
+		sb.append(
+			if (ch == '\\' && i < len) {
+				expand()
+			} else {
+				ch
+			}
+		)
 	}
 	return sb.toString()
 }
