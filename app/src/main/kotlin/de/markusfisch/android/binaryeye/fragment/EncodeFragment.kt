@@ -291,7 +291,7 @@ class EncodeFragment : Fragment() {
 		// non-printable characters.
 		return if (text.any { it.code < 32 && it.code !in setOf(9, 10, 13) }) {
 			// Do not expand UTF-8 sequences in binary data.
-			text.toByteArray()
+			text.toByteArray(Charsets.ISO_8859_1)
 		} else {
 			text
 		}
