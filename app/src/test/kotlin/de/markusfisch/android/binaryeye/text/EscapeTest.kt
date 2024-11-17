@@ -6,25 +6,25 @@ import org.junit.Test
 class EscapeTest {
 	@Test
 	fun oneLetter() {
-		assertEquals("foo\\nbar".unescape(), "foo\nbar")
-		assertEquals("foo\\tbar".unescape(), "foo\tbar")
-		assertEquals("\\tfoo\\tbar\\n".unescape(), "\tfoo\tbar\n")
+		assertEquals("foo\nbar", "foo\\nbar".unescape())
+		assertEquals("foo\tbar", "foo\\tbar".unescape())
+		assertEquals("\tfoo\tbar\n", "\\tfoo\\tbar\\n".unescape())
 	}
 
 	@Test
 	fun specialChars() {
-		assertEquals("foo\\\\bar".unescape(), "foo\\bar")
-		assertEquals("foo\\\"bar".unescape(), "foo\"bar")
+		assertEquals("foo\\bar", "foo\\\\bar".unescape())
+		assertEquals("foo\"bar", "foo\\\"bar".unescape())
 	}
 
 	@Test
 	fun hexCode() {
-		assertEquals("\\x48\\x65\\x78".unescape(), "Hex")
-		assertEquals("\\u263A".unescape(), "☺")
+		assertEquals("Hex", "\\x48\\x65\\x78".unescape())
+		assertEquals("☺", "\\u263A".unescape())
 	}
 
 	@Test
 	fun incomplete() {
-		assertEquals("foo\\".unescape(), "foo\\")
+		assertEquals("foo\\", "foo\\".unescape())
 	}
 }
