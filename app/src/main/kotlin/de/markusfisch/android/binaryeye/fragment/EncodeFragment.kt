@@ -274,26 +274,27 @@ class EncodeFragment : Fragment() {
 			return bytes
 		}
 		var text = contentView.text.toString()
-		if (unescapeCheckBox.isChecked) {
-			try {
-				text = text.unescape()
-			} catch (e: IllegalArgumentException) {
-				toast(e.message ?: "Invalid escape sequence")
-				return null
-			}
-			// Return a ByteArray if there were escape sequences for
-			// non-printable characters (like `\0`). This means the content
-			// will be encoded in binary mode, what would be wrong for
-			// "something\nlike\tthüs".
-			if (text.any { it.code < 32 && it.code !in setOf(9, 10, 13) }) {
-				return text.toByteArray()
-			}
-		}
 		if (text.isEmpty()) {
 			toast(R.string.error_no_content)
 			return null
 		}
-		return text
+		if (!unescapeCheckBox.isChecked) {
+			return text
+		}
+		try {
+			text = text.unescape()
+		} catch (e: IllegalArgumentException) {
+			toast(e.message ?: "Invalid escape sequence")
+			return null
+		}
+		// Return a ByteArray if there were escape sequences for
+		// non-printable characters.
+		return if (text.any { it.code < 32 && it.code !in setOf(9, 10, 13) }) {
+			// Do not expand UTF-8 sequences in binary data.
+			text.toByteArray()
+		} else {
+			text
+		}
 	}
 
 	private fun initMarginBar() {
