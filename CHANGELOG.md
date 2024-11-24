@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.63.13
+* Fix UTF-8 conversion of binary escape sequences when creating barcodes
+* Fix scan order for intervals under one second
+* Add arabic translation
+* Update French translation
+
 ## 1.63.12
 * Fix magnifying barcode recreation
 
