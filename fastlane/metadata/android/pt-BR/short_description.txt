@@ -1,1 +1,1 @@
-Mais um leitor de códigos QR para Android. Sem anúncios e de software livre.
+Mais um leitor de códigos QR para Android. Sem anúncios e de código-aberto.
