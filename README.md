@@ -90,7 +90,7 @@ ZXing can generate the following barcode formats:
 You can invoke Binary Eye with a web URI intent from anything that can
 open URIs. There are two options:
 
-1. [binaryeye://scan](binaryeye://scan)
+1. [binaryeye://scan](binaryeye://scan)       (note: Github Markdown does not render this as clickable link)
 2. [http(s)://markusfisch.de/BinaryEye](http://markusfisch.de/BinaryEye)
 
 If you want to get the scanned contents, you can add a `ret` query
