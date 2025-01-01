@@ -520,7 +520,10 @@ class DecodeFragment : Fragment() {
 	private fun copyToClipboard(text: String, isSensitive: Boolean = false) {
 		activity?.apply {
 			copyToClipboard(text, isSensitive)
-			toast(R.string.copied_to_clipboard)
+			// There's a clipboard popup from Android 13 on.
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+				toast(R.string.copied_to_clipboard)
+			}
 		}
 	}
 
