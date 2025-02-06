@@ -1,0 +1,2 @@
+* Corretto il pre-processing su Android 7+
+* Corrette le icone adattive su Android 8+
