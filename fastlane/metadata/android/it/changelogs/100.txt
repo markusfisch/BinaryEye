@@ -1,0 +1,2 @@
+* Corretto il parsing del fuso orario nelle date del calendario
+* Aggiornata la traduzione francese
