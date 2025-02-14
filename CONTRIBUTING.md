@@ -16,7 +16,10 @@ to squash when merging into master:
 Then write a [good commit message][commit_messages] to keep the history
 meaningful and useful. One feature, one commit.
 
+## Translations
+
+For translations use [Toolate][toolate].
+
 [android_best_practices]: https://developer.android.com/distribute/best-practices/develop/
 [commit_messages]: https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project#_commit_guidelines
-
-For translations use https://toolate.othing.xyz/projects/binaryeye/
+[toolate]: https://toolate.othing.xyz/projects/binaryeye/
