@@ -18,3 +18,5 @@ meaningful and useful. One feature, one commit.
 
 [android_best_practices]: https://developer.android.com/distribute/best-practices/develop/
 [commit_messages]: https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project#_commit_guidelines
+
+For translations use https://toolate.othing.xyz/projects/binaryeye/
