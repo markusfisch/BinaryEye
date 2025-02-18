@@ -7,7 +7,6 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.PERMISSION_LOCATION
 import de.markusfisch.android.binaryeye.app.PERMISSION_WRITE
@@ -21,8 +20,7 @@ import de.markusfisch.android.binaryeye.fragment.EncodeFragment
 import de.markusfisch.android.binaryeye.fragment.HistoryFragment
 import de.markusfisch.android.binaryeye.fragment.PreferencesFragment
 import de.markusfisch.android.binaryeye.view.colorSystemAndToolBars
-import de.markusfisch.android.binaryeye.view.initSystemBars
-import de.markusfisch.android.binaryeye.view.recordToolbarHeight
+import de.markusfisch.android.binaryeye.view.initBars
 
 class MainActivity : AppCompatActivity() {
 	override fun onRequestPermissionsResult(
@@ -59,10 +57,7 @@ class MainActivity : AppCompatActivity() {
 		super.onCreate(state)
 		setContentView(R.layout.activity_main)
 
-		initSystemBars(this)
-		val toolbar = findViewById(R.id.toolbar) as Toolbar
-		recordToolbarHeight(toolbar)
-		setSupportActionBar(toolbar)
+		initBars()
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 		supportFragmentManager.addOnBackStackChangedListener {

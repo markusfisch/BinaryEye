@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.Toolbar
 import android.view.View
 import android.view.WindowManager
 import android.widget.AbsListView
@@ -57,10 +58,9 @@ private fun lastChildOutOfView(listView: AbsListView): Boolean {
 	return child != null && child.bottom >= listView.height
 }
 
-fun initSystemBars(activity: AppCompatActivity) {
+fun AppCompatActivity.initBars() {
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 		// Keeps the soft keyboard from repositioning the layout.
-		val window = activity.window
 		window.setSoftInputMode(
 			WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
 		)
@@ -69,7 +69,11 @@ fun initSystemBars(activity: AppCompatActivity) {
 					View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
 					View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 	}
-	colorSystemAndToolBars(activity)
+	colorSystemAndToolBars(this)
+	(findViewById(R.id.toolbar) as Toolbar?)?.apply {
+		setup()
+		setSupportActionBar(this)
+	}
 }
 
 private var statusBarColorLocked = false

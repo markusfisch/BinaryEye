@@ -10,7 +10,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import de.markusfisch.android.binaryeye.R
@@ -22,8 +21,7 @@ import de.markusfisch.android.binaryeye.graphics.loadImageUri
 import de.markusfisch.android.binaryeye.graphics.mapPosition
 import de.markusfisch.android.binaryeye.media.releaseToneGenerators
 import de.markusfisch.android.binaryeye.view.colorSystemAndToolBars
-import de.markusfisch.android.binaryeye.view.initSystemBars
-import de.markusfisch.android.binaryeye.view.recordToolbarHeight
+import de.markusfisch.android.binaryeye.view.initBars
 import de.markusfisch.android.binaryeye.view.scanFeedback
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.CropImageView
@@ -75,10 +73,7 @@ class PickActivity : AppCompatActivity() {
 		// locale.
 		setTitle(R.string.pick_code_to_scan)
 
-		initSystemBars(this)
-		val toolbar = findViewById(R.id.toolbar) as Toolbar
-		recordToolbarHeight(toolbar)
-		setSupportActionBar(toolbar)
+		initBars()
 
 		supportFragmentManager.addOnBackStackChangedListener {
 			colorSystemAndToolBars(this@PickActivity)

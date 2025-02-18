@@ -13,7 +13,6 @@ import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
@@ -42,7 +41,7 @@ import de.markusfisch.android.binaryeye.net.sendAsync
 import de.markusfisch.android.binaryeye.net.urlEncode
 import de.markusfisch.android.binaryeye.preference.Preferences
 import de.markusfisch.android.binaryeye.view.errorFeedback
-import de.markusfisch.android.binaryeye.view.initSystemBars
+import de.markusfisch.android.binaryeye.view.initBars
 import de.markusfisch.android.binaryeye.view.scanFeedback
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.DetectorView
@@ -125,8 +124,7 @@ class CameraActivity : AppCompatActivity() {
 		// custom locale.
 		setTitle(R.string.scan_code)
 
-		initSystemBars(this)
-		setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
+		initBars()
 
 		cameraView = findViewById(R.id.camera_view) as CameraView
 		detectorView = findViewById(R.id.detector_view) as DetectorView
