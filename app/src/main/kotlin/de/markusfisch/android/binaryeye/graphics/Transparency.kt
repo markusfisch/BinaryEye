@@ -5,11 +5,12 @@ import android.graphics.Canvas
 
 fun Bitmap.fixTransparency(): Bitmap {
 	val result = analyzeTransparency()
-	return if (result.hasTransparentPixels) {
+	val cfg = config
+	return if (cfg != null && result.hasTransparentPixels) {
 		val copy = Bitmap.createBitmap(
 			width,
 			height,
-			config
+			cfg
 		)
 		Canvas(copy).apply {
 			drawColor(result.backgroundColor)
