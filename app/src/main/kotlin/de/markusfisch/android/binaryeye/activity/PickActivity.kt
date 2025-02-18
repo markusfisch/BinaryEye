@@ -242,7 +242,7 @@ class PickActivity : AppCompatActivity() {
 	}
 
 	private fun rotateClockwise() {
-		cropImageView.imageRotation = cropImageView.imageRotation + 90 % 360
+		cropImageView.imageRotation = (cropImageView.imageRotation + 90) % 360
 	}
 
 	private fun loadSentImage(intent: Intent): Bitmap? {
