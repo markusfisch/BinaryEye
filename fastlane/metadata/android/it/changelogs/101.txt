@@ -1,0 +1,11 @@
+* Migrazione a ZXing-C++ e aggiunta del supporto per i micro codici QR
+* Selezione multipla delle scansioni nell'elenco della cronologia
+* Rimiovi il contenuto preimpostato per la scorciatoia Codifica
+* Mostra sempre la versione del codice QR e rimuovi l'impostazione
+* Corretta la codifica del testo PDF-417 UTF-8
+* Nascosti i contenuti sensibili dagli appunti
+* Rimossa l'impostazione di una lingua personalizzata su Android 13+
+* Condensato l'output di testo dei codici a barre generati
+* Aggiornata la traduzione in russo
+* Aggiornata la traduzione in spagnolo
+* Aggiunta traduzione in persiano
