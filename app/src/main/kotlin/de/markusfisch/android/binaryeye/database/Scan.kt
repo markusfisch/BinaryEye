@@ -9,6 +9,7 @@ import de.markusfisch.android.zxingcpp.ZxingCpp
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import de.markusfisch.android.zxingcpp.ZxingCpp.ContentType
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
+import java.util.Locale
 
 data class Scan(
 	val content: String,
@@ -190,7 +191,11 @@ private fun getDateTime(
 		"yyyy-MM-dd HH:mm:ss"
 	},
 	time
-).toString() + String.format(":%03d", (time % 1000))
+).toString() + String.format(
+	Locale.getDefault(),
+	":%03d",
+	time % 1000
+)
 
 private fun Parcel.writeSizedByteArray(array: ByteArray?) {
 	val size = array?.size ?: 0
