@@ -46,8 +46,8 @@ object OpenOrSearchAction : IAction {
 		).toMutableList()
 		// Remove the "Always ask" entry. The arrays search_engines_*
 		// are used in the preferences too.
-		names.removeFirst()
-		urls.removeFirst()
+		names.removeAt(0)
+		urls.removeAt(0)
 		if (prefs.openWithUrl.isNotEmpty()) {
 			names.add(prefs.openWithUrl)
 			urls.add(prefs.openWithUrl)
