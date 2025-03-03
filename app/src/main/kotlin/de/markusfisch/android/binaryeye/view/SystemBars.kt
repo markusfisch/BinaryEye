@@ -100,11 +100,16 @@ fun colorSystemAndToolBars(
 	}
 	val topColor = if (scrolled) translucentPrimaryColor else 0
 	val activity = getAppCompatActivity(context) ?: return
-	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP &&
+		// System bars no longer have a background from SDK35+.
+		Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM
+	) {
 		val window = activity.window
 		if (!statusBarColorLocked) {
+			@Suppress("DEPRECATION")
 			window.statusBarColor = topColor
 		}
+		@Suppress("DEPRECATION")
 		window.navigationBarColor = if (scrolled || scrollable) {
 			translucentPrimaryColor
 		} else {
