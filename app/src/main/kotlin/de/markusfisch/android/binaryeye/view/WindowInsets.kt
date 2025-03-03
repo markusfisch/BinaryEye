@@ -14,7 +14,7 @@ fun Toolbar.setup() {
 	toolbarHeight = layoutParams.height
 	// SDK 35+ is edge-to-edge by default, so the toolbar needs to extend
 	// below the status bar.
-	if (Build.VERSION.SDK_INT > Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
 		setOnApplyWindowInsetsListener { _, insets ->
 			val statusBarTop = insets.getInsets(
 				WindowInsets.Type.statusBars()
