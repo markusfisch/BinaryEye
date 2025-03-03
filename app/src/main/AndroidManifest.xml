@@ -116,7 +116,8 @@
 			android:icon="@drawable/ic_action_scan"
 			android:label="@string/scan_code"
 			android:exported="true"
-			android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+			android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+			tools:targetApi="n">
 			<intent-filter>
 				<action android:name="android.service.quicksettings.action.QS_TILE"/>
 			</intent-filter>
