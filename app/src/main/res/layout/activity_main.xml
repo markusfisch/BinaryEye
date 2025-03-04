@@ -10,4 +10,5 @@
 		android:fitsSystemWindows="@bool/fitsSystemWindows">
 		<include layout="@layout/toolbar"/>
 	</FrameLayout>
+	<include layout="@layout/navbar"/>
 </merge>

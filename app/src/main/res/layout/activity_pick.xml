@@ -20,4 +20,5 @@
 			android:contentDescription="@string/scan_code"
 			android:src="@drawable/ic_action_next"/>
 	</android.support.design.widget.CoordinatorLayout>
+	<include layout="@layout/navbar"/>
 </merge>

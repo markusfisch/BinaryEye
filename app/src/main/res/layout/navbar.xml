@@ -1,0 +1,8 @@
+<!-- Navigation bar background from SDK35+ -->
+<View
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/navbar"
+	android:layout_width="match_parent"
+	android:layout_height="0dp"
+	android:layout_gravity="bottom"
+	android:visibility="gone"/>

@@ -10,7 +10,7 @@ import android.view.View
 import android.view.WindowInsets
 
 private var toolbarHeight = 0
-fun setPaddingFromWindowInsets(mainLayout: View, toolbar: Toolbar) {
+fun setPaddingFromWindowInsets(mainLayout: View, toolbar: Toolbar, navbar: View?) {
 	toolbarHeight = toolbar.layoutParams.height
 	// SDK 35+ is edge-to-edge by default, so the toolbar needs to extend
 	// below the status bar.
@@ -31,6 +31,9 @@ fun setPaddingFromWindowInsets(mainLayout: View, toolbar: Toolbar) {
 		val navBarBottom = systemBarInsets.bottom
 		if (navBarBottom > 0) {
 			mainLayout.setPadding(0, 0, 0, navBarBottom);
+			navbar?.apply {
+				layoutParams.height = navBarBottom
+			}
 		}
 
 		insets

@@ -70,10 +70,15 @@ fun AppCompatActivity.initBars() {
 					View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 	}
 	colorSystemAndToolBars(this)
-	val mainLayout = findViewById(R.id.main)
-	val toolbar = findViewById(R.id.toolbar) as Toolbar
-	setSupportActionBar(toolbar)
-	setPaddingFromWindowInsets(mainLayout, toolbar)
+	setPaddingFromWindowInsets(
+		findViewById(R.id.main),
+		(findViewById(R.id.toolbar) as Toolbar).apply {
+			setSupportActionBar(this)
+		},
+		findViewById(R.id.navbar)?.apply {
+			setBackgroundColor(translucentPrimaryColor)
+		}
+	)
 }
 
 private var statusBarColorLocked = false
@@ -100,20 +105,28 @@ fun colorSystemAndToolBars(
 	}
 	val topColor = if (scrolled) translucentPrimaryColor else 0
 	val activity = getAppCompatActivity(context) ?: return
-	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP &&
+	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 		// System bars no longer have a background from SDK35+.
-		Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM
-	) {
-		val window = activity.window
-		if (!statusBarColorLocked) {
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+			val window = activity.window
+			if (!statusBarColorLocked) {
+				@Suppress("DEPRECATION")
+				window.statusBarColor = topColor
+			}
 			@Suppress("DEPRECATION")
-			window.statusBarColor = topColor
-		}
-		@Suppress("DEPRECATION")
-		window.navigationBarColor = if (scrolled || scrollable) {
-			translucentPrimaryColor
+			window.navigationBarColor = if (scrolled || scrollable) {
+				translucentPrimaryColor
+			} else {
+				0
+			}
 		} else {
-			0
+			activity.findViewById(R.id.navbar)?.apply {
+				visibility = if (scrolled || scrollable) {
+					View.VISIBLE
+				} else {
+					View.GONE
+				}
+			}
 		}
 	}
 	activity.supportActionBar?.setBackgroundDrawable(
