@@ -213,7 +213,7 @@ class Database {
 		}
 	}
 
-	fun getIdOfScanByContent(
+	private fun getIdOfScanByContent(
 		content: String,
 		format: BarcodeFormat
 	): Long = db.rawQuery(
