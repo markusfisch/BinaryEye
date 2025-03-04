@@ -297,7 +297,7 @@ class HistoryFragment : Fragment() {
 			val cursor = db.getScans(filter)
 			withContext(Dispatchers.Main) {
 				val ac = activity ?: return@withContext
-				val hasScans = cursor != null && cursor.count > 0
+				val hasScans = cursor.count > 0
 				if (filter == null) {
 					if (!hasScans) {
 						listView.emptyView = useHistorySwitch
@@ -310,7 +310,7 @@ class HistoryFragment : Fragment() {
 				} else {
 					View.GONE
 				}
-				cursor?.let { cursor ->
+				cursor.let { cursor ->
 					// Close previous cursor.
 					scansAdapter?.also { it.changeCursor(null) }
 					scansAdapter = ScansAdapter(ac, cursor)
@@ -442,12 +442,12 @@ class HistoryFragment : Fragment() {
 				} ?: return@useVisibility
 				val message = when (delimiter) {
 					"db" -> ac.exportDatabase(name)
-					else -> db.getScansDetailed(filter)?.use {
+					else -> db.getScansDetailed(filter).use {
 						when (delimiter) {
 							"json" -> ac.exportJson(name, it)
 							else -> ac.exportCsv(name, it, delimiter)
 						}
-					} ?: false
+					}
 				}.toSaveResult()
 				withContext(Dispatchers.Main) {
 					ac.toast(message)
@@ -475,14 +475,14 @@ class HistoryFragment : Fragment() {
 				db.getScansDetailed(selectedIds.toLongArray())
 			} else {
 				db.getScansDetailed(filter)
-			}?.use { cursor ->
+			}.use { cursor ->
 				val details = format.split(":")
 				when (details[0]) {
 					"text" -> Pair(cursor.exportText(details[1]), "txt")
 					"csv" -> Pair(cursor.exportCsv(details[1]), "csv")
 					else -> Pair(cursor.exportJson(), "json")
 				}
-			}?.let { (text, ext) ->
+			}.let { (text, ext) ->
 				text?.let {
 					withContext(Dispatchers.Main) {
 						if (asFile) {

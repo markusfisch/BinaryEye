@@ -16,7 +16,7 @@ class Database {
 		db = OpenHelper(context).writableDatabase
 	}
 
-	fun getScans(query: String? = null): Cursor? = db.rawQuery(
+	fun getScans(query: String? = null): Cursor = db.rawQuery(
 		"""SELECT
 			$SCANS_ID,
 			$SCANS_DATETIME,
@@ -29,7 +29,7 @@ class Database {
 		""".trimMargin(), getWhereArguments(query)
 	)
 
-	fun getScansDetailed(query: String? = null): Cursor? = db.rawQuery(
+	fun getScansDetailed(query: String? = null): Cursor = db.rawQuery(
 		"""SELECT
 			$SCANS_ID,
 			$SCANS_DATETIME,
@@ -71,7 +71,7 @@ class Database {
 		null
 	}
 
-	fun getScansDetailed(ids: LongArray): Cursor? = db.rawQuery(
+	fun getScansDetailed(ids: LongArray): Cursor = db.rawQuery(
 		"""SELECT
 			$SCANS_ID,
 			$SCANS_DATETIME,
@@ -114,7 +114,7 @@ class Database {
 			FROM $SCANS
 			WHERE $SCANS_ID = ?
 		""".trimMargin(), arrayOf("$id")
-	)?.use {
+	).use {
 		if (it.moveToFirst()) {
 			Scan(
 				it.getString(SCANS_CONTENT),
@@ -199,7 +199,7 @@ class Database {
 				ORDER BY $SCANS_ID DESC
 				LIMIT 1
 			""".trimMargin(), null
-	)?.use {
+	).use {
 		if (it.count > 0 &&
 			it.moveToFirst() &&
 			it.getString(SCANS_CONTENT) == content &&
@@ -211,7 +211,7 @@ class Database {
 		} else {
 			0L
 		}
-	} ?: 0L
+	}
 
 	fun getIdOfScanByContent(
 		content: String,
@@ -224,13 +224,13 @@ class Database {
 					AND $SCANS_FORMAT = ?
 				LIMIT 1
 			""".trimMargin(), arrayOf(content, format.name)
-	)?.use {
+	).use {
 		if (it.moveToFirst()) {
 			it.getLong(SCANS_ID)
 		} else {
 			0L
 		}
-	} ?: 0L
+	}
 
 	fun removeScan(id: Long) {
 		db.delete(SCANS, "$SCANS_ID = ?", arrayOf("$id"))
