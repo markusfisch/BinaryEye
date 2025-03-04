@@ -70,9 +70,13 @@ class HistoryFragment : Fragment() {
 				R.menu.fragment_history_edit,
 				menu
 			)
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP &&
+				// SDK35+ doesn't draw a status bar background anymore.
+				Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM
+			) {
 				lockStatusBarColor()
 				val ac = activity ?: return false
+				@Suppress("DEPRECATION")
 				ac.window.statusBarColor = ContextCompat.getColor(
 					ac,
 					R.color.accent_dark
