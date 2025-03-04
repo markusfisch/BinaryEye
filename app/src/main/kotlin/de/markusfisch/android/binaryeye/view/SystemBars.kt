@@ -70,10 +70,10 @@ fun AppCompatActivity.initBars() {
 					View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 	}
 	colorSystemAndToolBars(this)
-	(findViewById(R.id.toolbar) as Toolbar?)?.apply {
-		setup()
-		setSupportActionBar(this)
-	}
+	val mainLayout = findViewById(R.id.main)
+	val toolbar = findViewById(R.id.toolbar) as Toolbar
+	setSupportActionBar(toolbar)
+	setPaddingFromWindowInsets(mainLayout, toolbar)
 }
 
 private var statusBarColorLocked = false
