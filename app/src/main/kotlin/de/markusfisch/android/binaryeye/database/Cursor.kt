@@ -1,6 +1,7 @@
 package de.markusfisch.android.binaryeye.database
 
 import android.database.Cursor
+import de.markusfisch.android.zxingcpp.ZxingCpp
 
 // Overwrite Kotlin's ".use" function for Cursor because Cursor cannot
 // be cast to Closeable below API level 16. This should be removed when
@@ -29,4 +30,19 @@ fun Cursor.getString(name: String): String {
 fun Cursor.getBlob(name: String): ByteArray? {
 	val idx = getColumnIndex(name)
 	return if (idx < 0) null else getBlob(idx)
+}
+
+fun Cursor.getBitMatrix(
+	widthName: String,
+	heightName: String,
+	dataName: String
+): ZxingCpp.BitMatrix? {
+	val width = getInt(widthName)
+	val height = getInt(heightName)
+	val data = getBlob(dataName)
+	return if (width > 0 && height > 0 && data != null) {
+		ZxingCpp.BitMatrix(width, height, data)
+	} else {
+		null
+	}
 }

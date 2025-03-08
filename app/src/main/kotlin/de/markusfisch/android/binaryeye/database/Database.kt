@@ -105,6 +105,9 @@ class Database {
 			$SCANS_ERROR_CORRECTION_LEVEL,
 			$SCANS_VERSION,
 			$SCANS_DATA_MASK,
+			$SCANS_SYMBOL_WIDTH,
+			$SCANS_SYMBOL_HEIGHT,
+			$SCANS_SYMBOL_DATA,
 			$SCANS_SEQUENCE_SIZE,
 			$SCANS_SEQUENCE_INDEX,
 			$SCANS_SEQUENCE_ID,
@@ -124,6 +127,11 @@ class Database {
 				it.getString(SCANS_ERROR_CORRECTION_LEVEL),
 				it.getString(SCANS_VERSION),
 				it.getInt(SCANS_DATA_MASK),
+				it.getBitMatrix(
+					SCANS_SYMBOL_WIDTH,
+					SCANS_SYMBOL_HEIGHT,
+					SCANS_SYMBOL_DATA
+				),
 				it.getInt(SCANS_SEQUENCE_SIZE),
 				it.getInt(SCANS_SEQUENCE_INDEX),
 				it.getString(SCANS_SEQUENCE_ID),
@@ -177,6 +185,11 @@ class Database {
 				}
 				put(SCANS_VERSION, scan.version)
 				put(SCANS_DATA_MASK, scan.dataMask)
+				if (scan.symbol != null) {
+					put(SCANS_SYMBOL_WIDTH, scan.symbol.width)
+					put(SCANS_SYMBOL_HEIGHT, scan.symbol.height)
+					put(SCANS_SYMBOL_DATA, scan.symbol.data)
+				}
 				put(SCANS_SEQUENCE_SIZE, scan.sequenceSize)
 				put(SCANS_SEQUENCE_INDEX, scan.sequenceIndex)
 				put(SCANS_SEQUENCE_ID, scan.sequenceId)
@@ -250,7 +263,7 @@ class Database {
 	}
 
 	private class OpenHelper(context: Context) :
-		SQLiteOpenHelper(context, FILE_NAME, null, 7) {
+		SQLiteOpenHelper(context, FILE_NAME, null, 8) {
 		override fun onCreate(db: SQLiteDatabase) {
 			db.createScans()
 		}
@@ -278,6 +291,9 @@ class Database {
 			if (oldVersion < 7) {
 				db.addDataMaskColumn()
 			}
+			if (oldVersion < 8) {
+				db.addSymbolColumns()
+			}
 		}
 	}
 
@@ -294,6 +310,9 @@ class Database {
 		const val SCANS_VERSION_NUMBER = "version_number"
 		const val SCANS_VERSION = "version"
 		const val SCANS_DATA_MASK = "data_mask"
+		const val SCANS_SYMBOL_WIDTH = "symbol_width"
+		const val SCANS_SYMBOL_HEIGHT = "symbol_height"
+		const val SCANS_SYMBOL_DATA = "symbol_data"
 		const val SCANS_ISSUE_NUMBER = "issue_number"
 		const val SCANS_ORIENTATION = "orientation"
 		const val SCANS_OTHER_META_DATA = "other_meta_data"
@@ -376,6 +395,12 @@ class Database {
 
 		private fun SQLiteDatabase.addDataMaskColumn() {
 			execSQL("ALTER TABLE $SCANS ADD $SCANS_DATA_MASK INTEGER")
+		}
+
+		private fun SQLiteDatabase.addSymbolColumns() {
+			execSQL("ALTER TABLE $SCANS ADD $SCANS_SYMBOL_WIDTH INTEGER")
+			execSQL("ALTER TABLE $SCANS ADD $SCANS_SYMBOL_HEIGHT INTEGER")
+			execSQL("ALTER TABLE $SCANS ADD $SCANS_SYMBOL_DATA BLOB")
 		}
 	}
 }

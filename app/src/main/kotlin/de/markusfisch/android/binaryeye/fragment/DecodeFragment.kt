@@ -76,6 +76,7 @@ class DecodeFragment : Fragment() {
 	private var closeAutomatically = false
 	private var action = ActionRegistry.DEFAULT_ACTION
 	private var isBinary = false
+	private var originalContent: String = ""
 	private var originalBytes: ByteArray = ByteArray(0)
 	private var id = 0L
 	private var recreation: Recreation? = null
@@ -109,8 +110,8 @@ class DecodeFragment : Fragment() {
 			arguments?.getParcelable(SCAN) as Scan?
 		} ?: throw IllegalArgumentException("DecodeFragment needs a Scan")
 
-		val originalContent = scan.content
 		isBinary = scan.content.isEmpty()
+		originalContent = scan.content
 		originalBytes = scan.raw ?: originalContent.toByteArray()
 		format = scan.format.name
 		id = scan.id
@@ -125,7 +126,7 @@ class DecodeFragment : Fragment() {
 		labelView = view.findViewById(R.id.label)
 		fab = view.findViewById(R.id.open)
 
-		initContentAndFab(originalContent)
+		initContentAndFab()
 
 		if (prefs.showMetaData) {
 			metaView.fillMetaView(scan)
@@ -171,7 +172,7 @@ class DecodeFragment : Fragment() {
 		wipeLastShareFile()
 	}
 
-	private fun initContentAndFab(originalContent: String) {
+	private fun initContentAndFab() {
 		if (isBinary) {
 			contentView.setText(String(originalBytes).foldNonAlNum())
 			contentView.isEnabled = false
@@ -201,10 +202,10 @@ class DecodeFragment : Fragment() {
 				) = Unit
 			})
 			fab.setOnClickListener {
-				executeAction(content)
+				executeAction(this.content)
 			}
 			if (prefs.openImmediately) {
-				executeAction(content)
+				executeAction(this.content)
 			}
 		}
 	}
@@ -246,8 +247,15 @@ class DecodeFragment : Fragment() {
 		}
 		recreationView.showIf(prefs.showRecreation) { v ->
 			val r = recreation ?: return@showIf
-			val content = if (isBinary) bytes else text
-			v.setImageBitmap(r.encode(content))
+			val unmodified: Boolean
+			val content = if (isBinary) {
+				unmodified = bytes.contentEquals(originalBytes)
+				bytes
+			} else {
+				unmodified = text == originalContent
+				text
+			}
+			v.setImageBitmap(r.getBitmap(content, unmodified))
 			v.setOnClickListener {
 				fragmentManager?.addFragment(
 					BarcodeFragment.newInstance(

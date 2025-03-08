@@ -7,8 +7,11 @@ import android.os.Parcelable
 import android.text.format.DateFormat
 import de.markusfisch.android.zxingcpp.ZxingCpp
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
+import de.markusfisch.android.zxingcpp.ZxingCpp.BitMatrix
 import de.markusfisch.android.zxingcpp.ZxingCpp.ContentType
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
+import de.markusfisch.android.zxingcpp.ZxingCpp.toBitmap
+import java.util.Arrays
 import java.util.Locale
 
 data class Scan(
@@ -18,6 +21,7 @@ data class Scan(
 	val errorCorrectionLevel: String? = null,
 	val version: String? = null,
 	val dataMask: Int = 0,
+	val symbol: BitMatrix? = null,
 	val sequenceSize: Int = -1,
 	val sequenceIndex: Int = -1,
 	val sequenceId: String = "",
@@ -87,6 +91,7 @@ data class Scan(
 		errorCorrectionLevel = parcel.readString(),
 		version = parcel.readString(),
 		dataMask = parcel.readInt(),
+		symbol = parcel.readBitMatrix(),
 		sequenceSize = parcel.readInt(),
 		sequenceIndex = parcel.readInt(),
 		sequenceId = parcel.readString() ?: "",
@@ -107,6 +112,7 @@ data class Scan(
 			writeString(errorCorrectionLevel)
 			writeString(version)
 			writeInt(dataMask)
+			writeBitMatrix(symbol)
 			writeInt(sequenceSize)
 			writeInt(sequenceIndex)
 			writeString(sequenceId)
@@ -145,6 +151,7 @@ fun Result.toScan(): Scan {
 		ecLevel,
 		version,
 		dataMask,
+		symbol,
 		sequenceSize,
 		sequenceIndex,
 		sequenceId,
@@ -156,17 +163,23 @@ fun Result.toScan(): Scan {
 }
 
 data class Recreation(
+	val bitMatrix: BitMatrix?,
 	val format: BarcodeFormat,
 	val ecLevel: Int,
 	val size: Int,
 	val margin: Int
 ) {
-	fun <T> encode(content: T): Bitmap? = try {
-		ZxingCpp.encodeAsBitmap(
-			content, format, size, size, margin, ecLevel
-		)
-	} catch (_: RuntimeException) {
-		null
+	fun <T> getBitmap(content: T, unmodified: Boolean = false): Bitmap? {
+		if (unmodified && bitMatrix != null) {
+			return bitMatrix.inflate(size).toBitmap()
+		}
+		return try {
+			ZxingCpp.encodeAsBitmap(
+				content, format, size, size, margin, ecLevel
+			)
+		} catch (_: RuntimeException) {
+			null
+		}
 	}
 }
 
@@ -174,6 +187,7 @@ fun Scan.toRecreation(
 	size: Int = 128,
 	margin: Int = -1
 ) = Recreation(
+	symbol,
 	format,
 	when (errorCorrectionLevel) {
 		"L" -> 0
@@ -185,6 +199,45 @@ fun Scan.toRecreation(
 	size,
 	margin
 )
+
+private fun BitMatrix.inflate(
+	size: Int,
+	quietZone: Boolean = true
+): BitMatrix {
+	val extraModules = if (quietZone) 2 else 0
+	val codeWidth = width + extraModules
+	val codeHeight = height + extraModules
+	var scale = size / codeWidth
+	if (scale < 1) {
+		if (!quietZone) {
+			return this
+		}
+		scale = 1
+	}
+	val outWidth = codeWidth * scale
+	val outHeight = codeHeight * scale
+	val scaled = BitMatrix(
+		outWidth,
+		outHeight,
+		ByteArray(outWidth * outHeight)
+	)
+	Arrays.fill(scaled.data, 1)
+	val padding = extraModules / 2
+	val left = padding * scale
+	val top = padding * scale
+	val right = outWidth - left
+	val bottom = outHeight - top
+	for (y in top until bottom) {
+		var dst = y * outWidth + left
+		val offset = (y - top) / scale * width
+		for (x in left until right) {
+			scaled.data[dst++] = data[
+				offset + (x - left) / scale
+			]
+		}
+	}
+	return scaled
+}
 
 private fun getDateTime(
 	time: Long = System.currentTimeMillis()
@@ -220,4 +273,22 @@ private fun Parcel.readSizedByteArray(): ByteArray? {
 	} else {
 		null
 	}
+}
+
+private fun Parcel.writeBitMatrix(bm: BitMatrix?) {
+	writeInt(bm?.width ?: 0)
+	bm?.let {
+		writeInt(bm.height)
+		writeSizedByteArray(bm.data)
+	}
+}
+
+private fun Parcel.readBitMatrix(): BitMatrix? {
+	val width = readInt()
+	if (width < 1) {
+		return null
+	}
+	val height = readInt()
+	val data = readSizedByteArray() ?: return null
+	return BitMatrix(width, height, data)
 }
