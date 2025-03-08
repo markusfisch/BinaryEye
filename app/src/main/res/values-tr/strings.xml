@@ -45,7 +45,7 @@
 	<string name="format">Biçim</string>
 	<string name="size_width_by_height">Piksel türünde boyut: %1$d×%2$d</string>
 	<string name="size_no_magnification">No magnification</string>
-	<string name="margin_size">Piksel türünde kenar boşluğu: %1$d</string>
+	<string name="add_quiet_zone">Add quiet zone</string>
 	<string name="input_content_here">İçeriği buraya gir</string>
 	<string name="unescape">Kaçış dizilerini genişlet</string>
 	<string name="encode">KODLA</string>

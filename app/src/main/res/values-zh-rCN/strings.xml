@@ -44,7 +44,7 @@
 	<string name="format">编码格式</string>
 	<string name="size_width_by_height">图片尺寸: %1$d×%2$d</string>
 	<string name="size_no_magnification">No magnification</string>
-	<string name="margin_size">边距（像素）：%1$d</string>
+	<string name="add_quiet_zone">Add quiet zone</string>
 	<string name="input_content_here">在这里输入内容</string>
 	<string name="unescape">展开转义字符</string>
 	<string name="encode">编码</string>

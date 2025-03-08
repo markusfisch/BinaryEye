@@ -3,9 +3,9 @@ package de.markusfisch.android.binaryeye.fragment
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.SwitchCompat
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -16,7 +16,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.EditText
-import android.widget.SeekBar
 import android.widget.Spinner
 import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
@@ -29,7 +28,6 @@ import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import java.io.InputStream
-import kotlin.math.max
 import kotlin.math.min
 
 class EncodeFragment : Fragment() {
@@ -38,9 +36,7 @@ class EncodeFragment : Fragment() {
 	private lateinit var ecSpinner: Spinner
 	private lateinit var colorsLabel: TextView
 	private lateinit var colorsSpinner: Spinner
-	private lateinit var marginLayout: View
-	private lateinit var marginView: TextView
-	private lateinit var marginBarView: SeekBar
+	private lateinit var addQuietZoneSwitch: SwitchCompat
 	private lateinit var contentView: EditText
 	private lateinit var unescapeCheckBox: CheckBox
 
@@ -143,12 +139,13 @@ class EncodeFragment : Fragment() {
 					colorsLabel, colorsSpinner
 				)
 				when (format) {
-					BarcodeFormat.AZTEC -> setMarginBar(4, 4)
-					BarcodeFormat.DATA_MATRIX -> setMarginBar(1, 1)
-					BarcodeFormat.QR_CODE -> setMarginBar(4, 4)
-					BarcodeFormat.PDF_417 -> setMarginBar(0, 30)
+					BarcodeFormat.AZTEC,
+					BarcodeFormat.DATA_MATRIX,
+					BarcodeFormat.QR_CODE,
+					BarcodeFormat.PDF_417 -> true
+
 					else -> false
-				}.setVisibilityFor(marginLayout)
+				}.setVisibilityFor(addQuietZoneSwitch)
 			}
 
 			override fun onNothingSelected(parentView: AdapterView<*>?) {}
@@ -175,11 +172,7 @@ class EncodeFragment : Fragment() {
 
 		colorsLabel = view.findViewById(R.id.colors_label)
 		colorsSpinner = view.findViewById(R.id.colors)
-
-		marginLayout = view.findViewById(R.id.margin)
-		marginView = view.findViewById(R.id.margin_display)
-		marginBarView = view.findViewById(R.id.margin_bar)
-		initMarginBar()
+		addQuietZoneSwitch = view.findViewById(R.id.add_quiet_zone)
 
 		contentView = view.findViewById(R.id.content)
 		unescapeCheckBox = view.findViewById(R.id.unescape)
@@ -242,7 +235,6 @@ class EncodeFragment : Fragment() {
 		super.onPause()
 		prefs.indexOfLastSelectedFormat = formatView.selectedItemPosition
 		prefs.expandEscapeSequences = unescapeCheckBox.isChecked
-		prefs.lastMargin = marginBarView.progress
 	}
 
 	private fun Context.encode() {
@@ -257,7 +249,9 @@ class EncodeFragment : Fragment() {
 					BarcodeFormat.AZTEC,
 					BarcodeFormat.DATA_MATRIX,
 					BarcodeFormat.QR_CODE,
-					BarcodeFormat.PDF_417 -> marginBarView.progress
+					BarcodeFormat.PDF_417 -> if (
+						addQuietZoneSwitch.isChecked
+					) 1 else 0
 
 					else -> -1
 				},
@@ -295,47 +289,6 @@ class EncodeFragment : Fragment() {
 		} else {
 			text
 		}
-	}
-
-	private fun initMarginBar() {
-		updateMargin(marginBarView.progress)
-		marginBarView.setOnSeekBarChangeListener(
-			object : SeekBar.OnSeekBarChangeListener {
-				override fun onProgressChanged(
-					seekBar: SeekBar,
-					progressValue: Int,
-					fromUser: Boolean
-				) {
-					if (progressValue >= minMargin) {
-						updateMargin(progressValue)
-					}
-				}
-
-				override fun onStartTrackingTouch(seekBar: SeekBar) {}
-
-				override fun onStopTrackingTouch(seekBar: SeekBar) {}
-			})
-	}
-
-	private fun updateMargin(margin: Int) {
-		marginView.text = getString(R.string.margin_size, margin)
-	}
-
-	private fun setMarginBar(minimum: Int, value: Int): Boolean {
-		minMargin = minimum
-		marginBarView.apply {
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-				min = minimum
-			}
-			progress = max(
-				minimum, if (prefs.lastMargin > -1) {
-					prefs.lastMargin
-				} else {
-					value
-				}
-			)
-		}
-		return true
 	}
 
 	private fun setEncodeByteArray() {

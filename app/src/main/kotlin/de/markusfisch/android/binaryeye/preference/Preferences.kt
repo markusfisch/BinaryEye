@@ -200,11 +200,6 @@ class Preferences {
 			apply(INDEX_OF_LAST_SELECTED_EC_LEVEL, value)
 			field = value
 		}
-	var lastMargin: Int = -1
-		set(value) {
-			apply(LAST_MARGIN, value)
-			field = value
-		}
 	var freeRotation = false
 		set(value) {
 			apply(FREE_ROTATION, value)
@@ -331,10 +326,6 @@ class Preferences {
 			INDEX_OF_LAST_SELECTED_EC_LEVEL,
 			indexOfLastSelectedEcLevel
 		)
-		lastMargin = preferences.getInt(
-			LAST_MARGIN,
-			lastMargin
-		)
 		freeRotation = preferences.getBoolean(FREE_ROTATION, freeRotation)
 		expandEscapeSequences = preferences.getBoolean(
 			EXPAND_ESCAPE_SEQUENCES,
@@ -440,7 +431,6 @@ class Preferences {
 		private const val CUSTOM_LOCALE = "custom_locale"
 		private const val INDEX_OF_LAST_SELECTED_FORMAT = "index_of_last_selected_format"
 		private const val INDEX_OF_LAST_SELECTED_EC_LEVEL = "index_of_last_selected_ec_level"
-		private const val LAST_MARGIN = "last_margin"
 		private const val FREE_ROTATION = "free_rotation"
 		private const val EXPAND_ESCAPE_SEQUENCES = "expand_escape_sequences"
 		private const val BRIGHTEN_SCREEN = "brighten_screen"

@@ -65,27 +65,12 @@
 				android:id="@+id/colors"
 				android:layout_marginBottom="16dp"
 				android:entries="@array/colors"/>
-			<LinearLayout
-				android:id="@+id/margin"
+			<android.support.v7.widget.SwitchCompat
+				android:visibility="gone"
+				android:id="@+id/add_quiet_zone"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:orientation="vertical"
-				android:visibility="gone">
-				<TextView
-					android:id="@+id/margin_display"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginBottom="8dp"/>
-				<SeekBar
-					style="@style/Widget.AppCompat.SeekBar.Discrete"
-					android:id="@+id/margin_bar"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginBottom="16dp"
-					android:paddingTop="16dp"
-					android:paddingBottom="16dp"
-					android:max="32"/>
-			</LinearLayout>
+				android:text="@string/add_quiet_zone"/>
 		</LinearLayout>
 	</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>
 	<android.support.design.widget.CoordinatorLayout

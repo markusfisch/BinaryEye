@@ -47,7 +47,7 @@
 	<string name="format">Formát</string>
 	<string name="size_width_by_height">Velikost v pixelech: %1$d×%2$d</string>
 	<string name="size_no_magnification">No magnification</string>
-	<string name="margin_size">Okraje v pixelech: %1$d</string>
+	<string name="add_quiet_zone">Add quiet zone</string>
 	<string name="input_content_here">Sem vložte obsah</string>
 	<string name="unescape">Rozšířit escape sekvence</string>
 	<string name="encode">ZAKÓDOVAT</string>

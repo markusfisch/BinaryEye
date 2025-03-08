@@ -45,7 +45,7 @@
 	<string name="format">Formato</string>
 	<string name="size_width_by_height">Tamaño en píxeles: %1$d×%2$d</string>
 	<string name="size_no_magnification">No magnification</string>
-	<string name="margin_size">Margen en pixeles: %1$d</string>
+	<string name="add_quiet_zone">Add quiet zone</string>
 	<string name="input_content_here">Introduzca el contenido aquí</string>
 	<string name="unescape">Expandir secuencia de escape</string>
 	<string name="encode">CODIFICAR</string>
