@@ -104,6 +104,7 @@ class Database {
 			$SCANS_FORMAT,
 			$SCANS_ERROR_CORRECTION_LEVEL,
 			$SCANS_VERSION,
+			$SCANS_DATA_MASK,
 			$SCANS_SEQUENCE_SIZE,
 			$SCANS_SEQUENCE_INDEX,
 			$SCANS_SEQUENCE_ID,
@@ -122,6 +123,7 @@ class Database {
 				BarcodeFormat.valueOf(it.getString(SCANS_FORMAT)),
 				it.getString(SCANS_ERROR_CORRECTION_LEVEL),
 				it.getString(SCANS_VERSION),
+				it.getInt(SCANS_DATA_MASK),
 				it.getInt(SCANS_SEQUENCE_SIZE),
 				it.getInt(SCANS_SEQUENCE_INDEX),
 				it.getString(SCANS_SEQUENCE_ID),
@@ -174,6 +176,7 @@ class Database {
 					put(SCANS_ERROR_CORRECTION_LEVEL, it)
 				}
 				put(SCANS_VERSION, scan.version)
+				put(SCANS_DATA_MASK, scan.dataMask)
 				put(SCANS_SEQUENCE_SIZE, scan.sequenceSize)
 				put(SCANS_SEQUENCE_INDEX, scan.sequenceIndex)
 				put(SCANS_SEQUENCE_ID, scan.sequenceId)
@@ -247,7 +250,7 @@ class Database {
 	}
 
 	private class OpenHelper(context: Context) :
-		SQLiteOpenHelper(context, FILE_NAME, null, 6) {
+		SQLiteOpenHelper(context, FILE_NAME, null, 7) {
 		override fun onCreate(db: SQLiteDatabase) {
 			db.createScans()
 		}
@@ -272,6 +275,9 @@ class Database {
 			if (oldVersion < 6) {
 				db.migrateToVersionString()
 			}
+			if (oldVersion < 7) {
+				db.addDataMaskColumn()
+			}
 		}
 	}
 
@@ -287,6 +293,7 @@ class Database {
 		const val SCANS_ERROR_CORRECTION_LEVEL = "error_correction_level"
 		const val SCANS_VERSION_NUMBER = "version_number"
 		const val SCANS_VERSION = "version"
+		const val SCANS_DATA_MASK = "data_mask"
 		const val SCANS_ISSUE_NUMBER = "issue_number"
 		const val SCANS_ORIENTATION = "orientation"
 		const val SCANS_OTHER_META_DATA = "other_meta_data"
@@ -314,6 +321,7 @@ class Database {
 					$SCANS_FORMAT TEXT NOT NULL,
 					$SCANS_ERROR_CORRECTION_LEVEL TEXT,
 					$SCANS_VERSION TEXT,
+					$SCANS_DATA_MASK INTEGER,
 					$SCANS_SEQUENCE_SIZE INTEGER,
 					$SCANS_SEQUENCE_INDEX INTEGER,
 					$SCANS_SEQUENCE_ID TEXT,
@@ -341,7 +349,7 @@ class Database {
 		}
 
 		private fun SQLiteDatabase.addNameColumn() {
-			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_NAME TEXT".trimMargin())
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_NAME TEXT")
 		}
 
 		private fun SQLiteDatabase.migrateToZxingCpp() {
@@ -364,6 +372,10 @@ class Database {
 		private fun SQLiteDatabase.migrateToVersionString() {
 			execSQL("ALTER TABLE $SCANS ADD $SCANS_VERSION TEXT")
 			execSQL("UPDATE $SCANS SET $SCANS_VERSION = $SCANS_VERSION_NUMBER")
+		}
+
+		private fun SQLiteDatabase.addDataMaskColumn() {
+			execSQL("ALTER TABLE $SCANS ADD $SCANS_DATA_MASK INTEGER")
 		}
 	}
 }

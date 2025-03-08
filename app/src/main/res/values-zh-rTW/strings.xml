@@ -28,6 +28,7 @@
 	<string name="gtin_add_on">UPC EAN 擴充</string>
 	<string name="barcode_version_number">版本</string>
 	<string name="qr_version_and_modules">%1$s (%2$d 模組)</string>
+	<string name="qr_data_mask">Data mask</string>
 	<string name="toggle_flash">控制閃光燈</string>
 	<string name="error_flash">控制閃光燈時發生錯誤</string>
 	<string name="share">分享</string>

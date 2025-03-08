@@ -29,6 +29,7 @@
 	<string name="gtin_add_on">UPC EAN udvidelse</string>
 	<string name="barcode_version_number">Version</string>
 	<string name="qr_version_and_modules">%1$s (%2$d moduler)</string>
+	<string name="qr_data_mask">Data mask</string>
 	<string name="toggle_flash">Slå blitz til/fra</string>
 	<string name="error_flash">Der opstod en fejl ved at slå blitz til/fra</string>
 	<string name="share">Del</string>

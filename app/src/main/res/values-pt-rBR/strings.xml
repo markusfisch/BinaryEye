@@ -29,6 +29,7 @@
 	<string name="gtin_add_on">Extensão UPC EAN</string>
 	<string name="barcode_version_number">Versão</string>
 	<string name="qr_version_and_modules">%1$s (%2$d módulos)</string>
+	<string name="qr_data_mask">Data mask</string>
 	<string name="toggle_flash">Ligar lanterna</string>
 	<string name="error_flash">Falha ao ligar a lanterna</string>
 	<string name="share">Compartilhar</string>

@@ -29,6 +29,7 @@
 	<string name="gtin_add_on">UPC EAN kiterjesztés</string>
 	<string name="barcode_version_number">Version</string>
 	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
+	<string name="qr_data_mask">Data mask</string>
 	<string name="toggle_flash">Vaku be- vagy kikapcsolása</string>
 	<string name="error_flash">Hiba a vaku be- vagy kikapcsolásakor</string>
 	<string name="share">Megosztás</string>

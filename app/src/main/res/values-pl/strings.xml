@@ -176,6 +176,7 @@
 	<string name="gtin_add_on">Dodatek UPC EAN</string>
 	<string name="barcode_version_number">Wersja</string>
 	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
+	<string name="qr_data_mask">Data mask</string>
 	<string name="gtin_country">Możliwy kraj produkcji</string>
 	<string name="encode">ZAKODUJ</string>
 	<string name="error_no_content">Brak zawartości</string>

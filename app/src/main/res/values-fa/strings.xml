@@ -29,6 +29,7 @@
 	<string name="gtin_add_on">UPC EAN extension</string>
 	<string name="barcode_version_number">Version</string>
 	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
+	<string name="qr_data_mask">Data mask</string>
 	<string name="toggle_flash">روشن/خاموش کردن چراغ</string>
 	<string name="error_flash">خطا هنگام روشن/خاموش کردن چراغ</string>
 	<string name="share">هم‌رسانی</string>

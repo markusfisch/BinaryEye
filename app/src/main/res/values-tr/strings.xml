@@ -29,6 +29,7 @@
 	<string name="gtin_add_on">UPC EAN eklentisi</string>
 	<string name="barcode_version_number">Sürüm</string>
 	<string name="qr_version_and_modules">%1$s (%2$d modül)</string>
+	<string name="qr_data_mask">Data mask</string>
 	<string name="toggle_flash">Flaşı aç</string>
 	<string name="error_flash">Flaş açılırken hata oluştu</string>
 	<string name="share">Paylaş</string>

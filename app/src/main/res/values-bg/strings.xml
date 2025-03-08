@@ -29,6 +29,7 @@
 	<string name="gtin_add_on">UPC EAN разширение</string>
 	<string name="barcode_version_number">Версия</string>
 	<string name="qr_version_and_modules">%1$s (%2$d модули)</string>
+	<string name="qr_data_mask">Data mask</string>
 	<string name="toggle_flash">Превключване на светкавицата</string>
 	<string name="error_flash">Грешка при превключването на светкавицата</string>
 	<string name="share">Сподели</string>

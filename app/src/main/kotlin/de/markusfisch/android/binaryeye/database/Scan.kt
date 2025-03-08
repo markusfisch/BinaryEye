@@ -17,6 +17,7 @@ data class Scan(
 	val format: BarcodeFormat,
 	val errorCorrectionLevel: String? = null,
 	val version: String? = null,
+	val dataMask: Int = 0,
 	val sequenceSize: Int = -1,
 	val sequenceIndex: Int = -1,
 	val sequenceId: String = "",
@@ -48,6 +49,7 @@ data class Scan(
 				format == other.format &&
 				errorCorrectionLevel == other.errorCorrectionLevel &&
 				version == other.version &&
+				dataMask == other.dataMask &&
 				sequenceSize == other.sequenceSize &&
 				sequenceIndex == other.sequenceIndex &&
 				sequenceId == other.sequenceId &&
@@ -67,6 +69,7 @@ data class Scan(
 		result = 31 * result + format.hashCode()
 		result = 31 * result + (errorCorrectionLevel?.hashCode() ?: 0)
 		result = 31 * result + version.hashCode()
+		result = 31 * result + dataMask
 		result = 31 * result + sequenceSize
 		result = 31 * result + sequenceIndex
 		result = 31 * result + sequenceId.hashCode()
@@ -83,6 +86,7 @@ data class Scan(
 		format = BarcodeFormat.valueOf(parcel.readString() ?: ""),
 		errorCorrectionLevel = parcel.readString(),
 		version = parcel.readString(),
+		dataMask = parcel.readInt(),
 		sequenceSize = parcel.readInt(),
 		sequenceIndex = parcel.readInt(),
 		sequenceId = parcel.readString() ?: "",
@@ -102,6 +106,7 @@ data class Scan(
 			writeString(format.name)
 			writeString(errorCorrectionLevel)
 			writeString(version)
+			writeInt(dataMask)
 			writeInt(sequenceSize)
 			writeInt(sequenceIndex)
 			writeString(sequenceId)
@@ -139,6 +144,7 @@ fun Result.toScan(): Scan {
 		format,
 		ecLevel,
 		version,
+		dataMask,
 		sequenceSize,
 		sequenceIndex,
 		sequenceId,

@@ -319,6 +319,13 @@ class DecodeFragment : Fragment() {
 				)
 			)
 		}
+		if (scan.dataMask > 0) {
+			items.putAll(
+				linkedMapOf(
+					R.string.qr_data_mask to scan.dataMask.toString()
+				)
+			)
+		}
 		fill(items)
 	}
 
