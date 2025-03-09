@@ -244,9 +244,17 @@ class DecodeFragment : Fragment() {
 		recreationView.showIf(prefs.showRecreation) { v ->
 			val unmodified: Boolean
 			val content = if (isBinary) {
+				if (bytes.isEmpty()) {
+					clearRecreation()
+					return@showIf
+				}
 				unmodified = bytes.contentEquals(originalBytes)
 				bytes
 			} else {
+				if (text.isEmpty()) {
+					clearRecreation()
+					return@showIf
+				}
 				unmodified = text == scan.content
 				text
 			}
@@ -259,15 +267,26 @@ class DecodeFragment : Fragment() {
 					scan.errorCorrectionLevel.toErrorCorrectionInt()
 				)
 			}
-			v.setImageBitmap(barcode.bitmap(recreationSize))
-			v.setOnClickListener {
-				fragmentManager?.addFragment(
-					BarcodeFragment.newInstance(barcode)
-				)
+			try {
+				v.setImageBitmap(barcode.bitmap(recreationSize))
+				v.setOnClickListener {
+					fragmentManager?.addFragment(
+						BarcodeFragment.newInstance(barcode)
+					)
+				}
+			} catch (e: RuntimeException) {
+				clearRecreation()
 			}
 		}
 		dataView.fillDataView(text, bytes)
 		stampView.setTrackingLink(bytes, format)
+	}
+
+	private fun clearRecreation() {
+		recreationView.apply {
+			setImageBitmap(null)
+			setOnClickListener(null)
+		}
 	}
 
 	private fun TableLayout.fillDataView(text: String, bytes: ByteArray) {
