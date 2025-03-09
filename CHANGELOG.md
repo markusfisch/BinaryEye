@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.64.1
+* Handle empty input for recreation
+* Fix setting up database
+
 ## 1.64.0
 * Find barcode by content
 * Immediately replace toasts
