@@ -62,7 +62,7 @@ class BarcodeFragment : Fragment() {
 	private lateinit var addToHistoryItem: MenuItem
 	private lateinit var brightenScreenItem: MenuItem
 
-	private var currentBrightness = -1f;
+	private var currentBrightness = -1f
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -398,14 +398,14 @@ class BarcodeFragment : Fragment() {
 	private fun brightenScreen() {
 		activity?.let {
 			currentBrightness = it.getScreenBrightness()
-			it.setScreenBrightness(1f);
+			it.setScreenBrightness(1f)
 			brightenScreenItem.isChecked = true
 		}
 	}
 
 	private fun restoreScreenBrightness() {
 		if (currentBrightness > -1f) {
-			activity?.setScreenBrightness(currentBrightness);
+			activity?.setScreenBrightness(currentBrightness)
 			currentBrightness = -1f
 			brightenScreenItem.isChecked = false
 		}
