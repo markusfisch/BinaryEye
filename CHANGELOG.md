@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.64.0
+* Find barcode by content
+* Immediately replace toasts
+* Use detected barcode for recreation
+* Show data mask of QR Codes
+* Fix deep linking
+* Replace margin with quiet zone switch when generating barcodes
+* Update Russian translation
+* Update Portuguese (Brazil) translation
+
 ## 1.63.13
 * Fix UTF-8 conversion of binary escape sequences when creating barcodes
 * Fix scan order for intervals under one second
