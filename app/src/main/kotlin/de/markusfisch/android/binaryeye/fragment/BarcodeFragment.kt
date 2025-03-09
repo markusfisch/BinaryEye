@@ -426,7 +426,7 @@ class BarcodeFragment : Fragment() {
 		fun <T> newInstance(
 			content: T,
 			format: BarcodeFormat,
-			margin: Int,
+			margin: Int = -1,
 			ecLevel: Int = -1,
 			colors: Int = 0
 		): Fragment {
