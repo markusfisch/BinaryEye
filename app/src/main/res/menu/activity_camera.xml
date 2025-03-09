@@ -33,6 +33,11 @@
 		android:icon="@drawable/ic_action_restrict_format"
 		material:showAsAction="ifRoom"/>
 	<item
+		android:id="@+id/find_code"
+		android:title="@string/find_code"
+		android:icon="@drawable/ic_action_search"
+		material:showAsAction="ifRoom"/>
+	<item
 		android:id="@+id/preferences"
 		android:title="@string/preferences"
 		android:icon="@drawable/ic_action_preferences"

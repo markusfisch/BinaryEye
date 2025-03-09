@@ -59,6 +59,9 @@
 	<string name="bulk_mode_delay">Delay between continuous scans</string>
 	<string name="restrict_format">Restrict format</string>
 	<string name="remove_restriction">Remove restriction</string>
+	<string name="find_code">Find code</string>
+	<string name="find_code_with_content">What content?</string>
+	<string name="find_code_hint">Enter a term</string>
 	<string name="scan_format">Scan %s</string>
 	<string name="quarter_second">A quarter second</string>
 	<string name="half_second">Half a second</string>

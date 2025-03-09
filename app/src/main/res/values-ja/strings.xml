@@ -58,6 +58,9 @@
 	<string name="bulk_mode_delay">連続スキャンの間隔</string>
 	<string name="restrict_format">フォーマットの制限</string>
 	<string name="remove_restriction">制限を解除</string>
+	<string name="find_code">Find code</string>
+	<string name="find_code_with_content">What content?</string>
+	<string name="find_code_hint">Enter a term</string>
 	<string name="scan_format">%sをスキャン</string>
 	<string name="quarter_second">0.25秒</string>
 	<string name="half_second">0.5秒</string>

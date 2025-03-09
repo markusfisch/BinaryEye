@@ -59,6 +59,9 @@
 	<string name="bulk_mode_delay">Folyamatos beolvasások közti késleltetés</string>
 	<string name="restrict_format">Formátum korlátozása</string>
 	<string name="remove_restriction">Korlátozás eltávolítása</string>
+	<string name="find_code">Find code</string>
+	<string name="find_code_with_content">What content?</string>
+	<string name="find_code_hint">Enter a term</string>
 	<string name="scan_format">%s beolvasása</string>
 	<string name="quarter_second">Negyed másodperc</string>
 	<string name="half_second">Fél másodperc</string>

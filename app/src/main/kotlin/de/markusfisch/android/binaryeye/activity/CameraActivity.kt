@@ -1,5 +1,6 @@
 package de.markusfisch.android.binaryeye.activity
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
@@ -17,6 +18,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
+import android.widget.EditText
 import android.widget.SeekBar
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
@@ -76,6 +78,7 @@ class CameraActivity : AppCompatActivity() {
 	private var frontFacing = false
 	private var bulkMode = prefs.bulkMode
 	private var restrictFormat: String? = null
+	private var searchTerm: String? = null
 	private var ignoreNext: String? = null
 	private var fallbackBuffer: IntArray? = null
 	private var requestCameraPermission = true
@@ -153,7 +156,7 @@ class CameraActivity : AppCompatActivity() {
 	override fun onResume() {
 		super.onResume()
 		System.gc()
-		updateHints()
+		updateHintsAndTitle()
 		if (prefs.bulkMode && bulkMode != prefs.bulkMode) {
 			bulkMode = prefs.bulkMode
 			invalidateOptionsMenu()
@@ -169,18 +172,30 @@ class CameraActivity : AppCompatActivity() {
 		requestCameraPermission = false
 	}
 
-	private fun updateHints() {
+	private fun updateHintsAndTitle() {
 		val restriction = restrictFormat
 		formatsToRead = if (restriction != null) {
-			title = getString(
-				R.string.scan_format,
-				prettifyFormatName(restriction)
-			)
 			setOf(restriction)
 		} else {
-			setTitle(R.string.scan_code)
 			prefs.barcodeFormats
 		}.toFormatSet()
+		updateTitle()
+	}
+
+	private fun updateTitle() {
+		if (searchTerm != null || restrictFormat != null) {
+			title = getString(
+				R.string.scan_format,
+				prettifyFormatName(
+					listOfNotNull(
+						restrictFormat,
+						searchTerm
+					).joinToString(",")
+				)
+			)
+		} else {
+			setTitle(R.string.scan_code)
+		}
 	}
 
 	private fun setReturnTarget(intent: Intent?) {
@@ -225,6 +240,7 @@ class CameraActivity : AppCompatActivity() {
 		frontFacing = savedState.getBoolean(FRONT_FACING)
 		bulkMode = savedState.getBoolean(BULK_MODE)
 		restrictFormat = savedState.getString(RESTRICT_FORMAT)
+		searchTerm = savedState.getString(SEARCH_TERM)
 	}
 
 	override fun onSaveInstanceState(outState: Bundle) {
@@ -233,6 +249,7 @@ class CameraActivity : AppCompatActivity() {
 		outState.putBoolean(FRONT_FACING, frontFacing)
 		outState.putBoolean(BULK_MODE, bulkMode)
 		outState.putString(RESTRICT_FORMAT, restrictFormat)
+		outState.putString(SEARCH_TERM, searchTerm)
 		super.onSaveInstanceState(outState)
 	}
 
@@ -293,6 +310,11 @@ class CameraActivity : AppCompatActivity() {
 				true
 			}
 
+			R.id.find_code -> {
+				askForCode()
+				true
+			}
+
 			R.id.preferences -> {
 				startActivity(MainActivity.getPreferencesIntent(this))
 				true
@@ -332,10 +354,34 @@ class CameraActivity : AppCompatActivity() {
 			setTitle(R.string.restrict_format)
 			setItems(names.toTypedArray()) { _, which ->
 				restrictFormat = formats[which]
-				updateHints()
+				updateHintsAndTitle()
 			}
 			show()
 		}
+	}
+
+	// Dialogs do not have a parent view.
+	@SuppressLint("InflateParams")
+	private fun askForCode() {
+		val view = layoutInflater.inflate(R.layout.dialog_find_code, null)
+		val editText = view.findViewById<EditText>(R.id.term)
+		searchTerm.let {
+			editText.setText(it)
+		}
+		AlertDialog.Builder(this)
+			.setView(view)
+			.setPositiveButton(android.R.string.ok) { _, _ ->
+				searchTerm = editText.text.toString()
+				if (searchTerm?.isEmpty() == true) {
+					searchTerm = null
+				}
+				updateTitle()
+			}
+			.setNegativeButton(android.R.string.cancel) { _, _ ->
+				searchTerm = null
+				updateTitle()
+			}
+			.show()
 	}
 
 	private fun openReadme() {
@@ -501,7 +547,11 @@ class CameraActivity : AppCompatActivity() {
 							}
 						)?.let { results ->
 							val result = results.first()
-							if (result.text != ignoreNext) {
+							val text = result.text
+							val term = searchTerm
+							if (text != ignoreNext &&
+								(term == null || text.contains(term))
+							) {
 								postResult(result)
 								decoding = false
 							}
@@ -678,6 +728,7 @@ class CameraActivity : AppCompatActivity() {
 		private const val FRONT_FACING = "front_facing"
 		private const val BULK_MODE = "bulk_mode"
 		private const val RESTRICT_FORMAT = "restrict_format"
+		private const val SEARCH_TERM = "search_term"
 	}
 }
 

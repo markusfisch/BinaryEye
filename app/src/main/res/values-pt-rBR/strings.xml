@@ -59,6 +59,9 @@
 	<string name="bulk_mode_delay">Espera entre digitalizações contínuas</string>
 	<string name="restrict_format">Restringir formato</string>
 	<string name="remove_restriction">Remover restrição</string>
+	<string name="find_code">Find code</string>
+	<string name="find_code_with_content">What content?</string>
+	<string name="find_code_hint">Enter a term</string>
 	<string name="scan_format">Digitalizar %s</string>
 	<string name="quarter_second">Um quarto de segundo</string>
 	<string name="half_second">Meio segundo</string>

@@ -59,6 +59,9 @@
 	<string name="bulk_mode_delay">Sürekli taramalar arasındaki gecikme</string>
 	<string name="restrict_format">Biçimi kısıtla</string>
 	<string name="remove_restriction">Kısıtlamayı kaldır</string>
+	<string name="find_code">Find code</string>
+	<string name="find_code_with_content">What content?</string>
+	<string name="find_code_hint">Enter a term</string>
 	<string name="scan_format">%s tara</string>
 	<string name="quarter_second">Çeyrek saniye</string>
 	<string name="half_second">Yarım saniye</string>

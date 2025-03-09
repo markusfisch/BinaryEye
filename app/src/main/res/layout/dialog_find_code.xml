@@ -1,0 +1,22 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="16dp">
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:text="@string/find_code_with_content"/>
+	<EditText
+		android:id="@+id/term"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:inputType="textShortMessage"
+		android:imeOptions="actionDone"
+		android:hint="@string/find_code_hint"
+		android:maxLines="1"
+		android:maxLength="1024"
+		android:importantForAutofill="no"/>
+</LinearLayout>
