@@ -31,7 +31,7 @@
 	<string name="gtin_add_on">Расширение UPC EAN</string>
 	<string name="barcode_version_number">Версия</string>
 	<string name="qr_version_and_modules">%1$s (модули: %2$d)</string>
-	<string name="qr_data_mask">Data mask</string>
+	<string name="qr_data_mask">Маска данных</string>
 	<string name="toggle_flash">Включить вспышку</string>
 	<string name="error_flash">Ошибка при переключении вспышки</string>
 	<string name="share">Поделиться</string>
@@ -47,7 +47,7 @@
 	<string name="format">Формат</string>
 	<string name="size_width_by_height">Размер в пикселях: %1$d×%2$d</string>
 	<string name="size_no_magnification">Без увеличения</string>
-	<string name="add_quiet_zone">Add quiet zone</string>
+	<string name="add_quiet_zone">Добавить отступы</string>
 	<string name="input_content_here">Введите текст здесь</string>
 	<string name="unescape">Раскрывать управляющие последовательности</string>
 	<string name="encode">Создать</string>
