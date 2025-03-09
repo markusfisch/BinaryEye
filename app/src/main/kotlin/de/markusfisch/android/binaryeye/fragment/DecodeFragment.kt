@@ -33,14 +33,15 @@ import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.hasLocationPermission
 import de.markusfisch.android.binaryeye.app.hasWritePermission
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.content.ContentBarcode
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.shareAsFile
 import de.markusfisch.android.binaryeye.content.shareText
+import de.markusfisch.android.binaryeye.content.toBarcode
+import de.markusfisch.android.binaryeye.content.toErrorCorrectionInt
 import de.markusfisch.android.binaryeye.content.toHexString
 import de.markusfisch.android.binaryeye.content.wipeLastShareFile
-import de.markusfisch.android.binaryeye.database.Recreation
 import de.markusfisch.android.binaryeye.database.Scan
-import de.markusfisch.android.binaryeye.database.toRecreation
 import de.markusfisch.android.binaryeye.io.askForFileName
 import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.io.writeExternalFile
@@ -64,6 +65,7 @@ class DecodeFragment : Fragment() {
 	private lateinit var recreationView: ImageView
 	private lateinit var labelView: EditText
 	private lateinit var fab: FloatingActionButton
+	private lateinit var scan: Scan
 	private lateinit var format: String
 
 	private val parentJob = Job()
@@ -76,11 +78,10 @@ class DecodeFragment : Fragment() {
 	private var closeAutomatically = false
 	private var action = ActionRegistry.DEFAULT_ACTION
 	private var isBinary = false
-	private var originalContent: String = ""
 	private var originalBytes: ByteArray = ByteArray(0)
 	private var id = 0L
-	private var recreation: Recreation? = null
 	private var label: String? = null
+	private var recreationSize = 0
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -103,7 +104,7 @@ class DecodeFragment : Fragment() {
 		closeAutomatically = prefs.closeAutomatically &&
 				activity?.intent?.hasExtra(MainActivity.DECODED) == true
 
-		val scan = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+		scan = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
 			arguments?.getParcelable(SCAN, Scan::class.java)
 		} else {
 			@Suppress("DEPRECATION")
@@ -111,10 +112,10 @@ class DecodeFragment : Fragment() {
 		} ?: throw IllegalArgumentException("DecodeFragment needs a Scan")
 
 		isBinary = scan.content.isEmpty()
-		originalContent = scan.content
-		originalBytes = scan.raw ?: originalContent.toByteArray()
+		originalBytes = scan.raw ?: scan.content.toByteArray()
 		format = scan.format.name
 		id = scan.id
+		recreationSize = (200f * dp).roundToInt()
 
 		contentView = view.findViewById(R.id.content)
 		formatView = view.findViewById(R.id.format)
@@ -133,11 +134,6 @@ class DecodeFragment : Fragment() {
 		} else {
 			metaView.visibility = View.GONE
 		}
-		if (prefs.showRecreation) {
-			recreation = scan.toRecreation(
-				(200f * dp).roundToInt()
-			)
-		}
 		if (id > 0) {
 			scan.label?.let {
 				labelView.setText(it)
@@ -147,7 +143,7 @@ class DecodeFragment : Fragment() {
 			labelView.visibility = View.GONE
 		}
 
-		updateViewsAndFab(originalContent, originalBytes)
+		updateViewsAndFab(scan.content, originalBytes)
 
 		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
 		view.findViewById<View>(R.id.scroll_view).setPaddingFromWindowInsets()
@@ -181,7 +177,7 @@ class DecodeFragment : Fragment() {
 				askForFileNameAndSave(originalBytes)
 			}
 		} else {
-			contentView.setText(originalContent)
+			contentView.setText(scan.content)
 			contentView.addTextChangedListener(object : TextWatcher {
 				override fun afterTextChanged(s: Editable?) {
 					updateViewsAndFab(s?.toString() ?: "")
@@ -246,24 +242,27 @@ class DecodeFragment : Fragment() {
 			v.text = hexDump(bytes)
 		}
 		recreationView.showIf(prefs.showRecreation) { v ->
-			val r = recreation ?: return@showIf
 			val unmodified: Boolean
 			val content = if (isBinary) {
 				unmodified = bytes.contentEquals(originalBytes)
 				bytes
 			} else {
-				unmodified = text == originalContent
+				unmodified = text == scan.content
 				text
 			}
-			v.setImageBitmap(r.getBitmap(content, unmodified))
+			val barcode = if (unmodified) {
+				scan.toBarcode()
+			} else {
+				ContentBarcode(
+					content,
+					scan.format,
+					scan.errorCorrectionLevel.toErrorCorrectionInt()
+				)
+			}
+			v.setImageBitmap(barcode.bitmap(recreationSize))
 			v.setOnClickListener {
 				fragmentManager?.addFragment(
-					BarcodeFragment.newInstance(
-						content,
-						r.format,
-						r.margin,
-						r.ecLevel
-					)
+					BarcodeFragment.newInstance(barcode)
 				)
 			}
 		}

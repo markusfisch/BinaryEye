@@ -1,17 +1,13 @@
 package de.markusfisch.android.binaryeye.database
 
-import android.graphics.Bitmap
 import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
 import android.text.format.DateFormat
-import de.markusfisch.android.zxingcpp.ZxingCpp
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import de.markusfisch.android.zxingcpp.ZxingCpp.BitMatrix
 import de.markusfisch.android.zxingcpp.ZxingCpp.ContentType
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
-import de.markusfisch.android.zxingcpp.ZxingCpp.toBitmap
-import java.util.Arrays
 import java.util.Locale
 
 data class Scan(
@@ -160,83 +156,6 @@ fun Result.toScan(): Scan {
 		gtin?.price,
 		gtin?.issueNumber
 	)
-}
-
-data class Recreation(
-	val bitMatrix: BitMatrix?,
-	val format: BarcodeFormat,
-	val ecLevel: Int,
-	val size: Int,
-	val margin: Int
-) {
-	fun <T> getBitmap(content: T, unmodified: Boolean = false): Bitmap? {
-		if (unmodified && bitMatrix != null) {
-			return bitMatrix.inflate(size).toBitmap()
-		}
-		return try {
-			ZxingCpp.encodeAsBitmap(
-				content, format, size, size, margin, ecLevel
-			)
-		} catch (_: RuntimeException) {
-			null
-		}
-	}
-}
-
-fun Scan.toRecreation(
-	size: Int = 128,
-	margin: Int = -1
-) = Recreation(
-	symbol,
-	format,
-	when (errorCorrectionLevel) {
-		"L" -> 0
-		"M" -> 4
-		"Q" -> 6
-		"H" -> 8
-		else -> -1
-	},
-	size,
-	margin
-)
-
-private fun BitMatrix.inflate(
-	size: Int,
-	quietZone: Boolean = true
-): BitMatrix {
-	val extraModules = if (quietZone) 2 else 0
-	val codeWidth = width + extraModules
-	val codeHeight = height + extraModules
-	var scale = size / codeWidth
-	if (scale < 1) {
-		if (!quietZone) {
-			return this
-		}
-		scale = 1
-	}
-	val outWidth = codeWidth * scale
-	val outHeight = codeHeight * scale
-	val scaled = BitMatrix(
-		outWidth,
-		outHeight,
-		ByteArray(outWidth * outHeight)
-	)
-	Arrays.fill(scaled.data, 1)
-	val padding = extraModules / 2
-	val left = padding * scale
-	val top = padding * scale
-	val right = outWidth - left
-	val bottom = outHeight - top
-	for (y in top until bottom) {
-		var dst = y * outWidth + left
-		val offset = (y - top) / scale * width
-		for (x in left until right) {
-			scaled.data[dst++] = data[
-				offset + (x - left) / scale
-			]
-		}
-	}
-	return scaled
 }
 
 private fun getDateTime(

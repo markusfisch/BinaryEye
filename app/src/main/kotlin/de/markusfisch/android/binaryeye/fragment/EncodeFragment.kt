@@ -245,6 +245,7 @@ class EncodeFragment : Fragment() {
 			BarcodeFragment.newInstance(
 				content,
 				format,
+				format.getErrorCorrectionLevel(ecSpinner.selectedItemPosition),
 				when (format) {
 					BarcodeFormat.AZTEC,
 					BarcodeFormat.DATA_MATRIX,
@@ -255,7 +256,6 @@ class EncodeFragment : Fragment() {
 
 					else -> -1
 				},
-				format.getErrorCorrectionLevel(ecSpinner.selectedItemPosition),
 				if (format.canBeInverted()) {
 					colorsSpinner.selectedItemPosition
 				} else 0

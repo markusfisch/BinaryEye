@@ -20,12 +20,14 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.hasWritePermission
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.content.Barcode
+import de.markusfisch.android.binaryeye.content.BitMatrixBarcode
+import de.markusfisch.android.binaryeye.content.BarcodeColors
+import de.markusfisch.android.binaryeye.content.ContentBarcode
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.shareFile
 import de.markusfisch.android.binaryeye.content.shareText
 import de.markusfisch.android.binaryeye.database.toScan
-import de.markusfisch.android.binaryeye.graphics.COLOR_BLACK
-import de.markusfisch.android.binaryeye.graphics.COLOR_WHITE
 import de.markusfisch.android.binaryeye.io.addSuffixIfNotGiven
 import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.io.writeExternalFile
@@ -130,19 +132,39 @@ class BarcodeFragment : Fragment() {
 		return view
 	}
 
-	private fun Bundle.toBarcode() = Barcode(
-		getString(CONTENT_TEXT) ?: getByteArray(CONTENT_RAW) ?: throw IllegalArgumentException(
-			"content cannot be null"
-		),
-		BarcodeFormat.valueOf(
+	private fun Bundle.toBarcode(): Barcode<*> {
+		val content =
+			getString(CONTENT_TEXT) ?: getByteArray(CONTENT_RAW) ?: throw IllegalArgumentException(
+				"content cannot be null"
+			)
+		val barcodeFormat = BarcodeFormat.valueOf(
 			getString(FORMAT) ?: throw IllegalArgumentException(
 				"format cannot be null"
 			)
-		),
-		getInt(MARGIN),
-		getInt(EC_LEVEL),
-		Colors.entries[getInt(COLORS)]
-	)
+		)
+		val colors = BarcodeColors.entries[getInt(COLORS)]
+		val data = getByteArray(BIT_MATRIX_DATA)
+		return if (data != null) {
+			BitMatrixBarcode(
+				ZxingCpp.BitMatrix(
+					getInt(BIT_MATRIX_WIDTH),
+					getInt(BIT_MATRIX_HEIGHT),
+					data
+				),
+				content,
+				barcodeFormat,
+				colors
+			)
+		} else {
+			ContentBarcode(
+				content,
+				barcodeFormat,
+				getInt(EC_LEVEL),
+				getInt(MARGIN),
+				colors
+			)
+		}
+	}
 
 	override fun onResume() {
 		super.onResume()
@@ -412,32 +434,76 @@ class BarcodeFragment : Fragment() {
 	}
 
 	companion object {
+		private const val BIT_MATRIX_WIDTH = "bit_matrix_width"
+		private const val BIT_MATRIX_HEIGHT = "bit_matrix_height"
+		private const val BIT_MATRIX_DATA = "bit_matrix_data"
 		private const val CONTENT_TEXT = "content_text"
 		private const val CONTENT_RAW = "content_raw"
 		private const val FORMAT = "format"
-		private const val MARGIN = "margin"
 		private const val EC_LEVEL = "ec_level"
+		private const val MARGIN = "margin"
 		private const val COLORS = "colors"
 		private const val MIME_PNG = "image/png"
 		private const val MIME_JPG = "image/jpeg"
 		private const val MIME_SVG = "image/svg+xmg"
 		private const val MIME_TXT = "text/plain"
 
-		fun <T> newInstance(
-			content: T,
-			format: BarcodeFormat,
-			margin: Int = -1,
-			ecLevel: Int = -1,
+		fun newInstance(
+			barcode: Barcode<*>,
 			colors: Int = 0
 		): Fragment {
 			val args = Bundle()
+			when (barcode) {
+				is ContentBarcode -> args.putEcLevelMargin(
+					barcode.ecLevel,
+					barcode.margin
+				)
+
+				is BitMatrixBarcode -> {
+					args.putInt(BIT_MATRIX_WIDTH, barcode.bitMatrix.width)
+					args.putInt(BIT_MATRIX_HEIGHT, barcode.bitMatrix.height)
+					args.putByteArray(BIT_MATRIX_DATA, barcode.bitMatrix.data)
+				}
+
+				else -> throw IllegalArgumentException("unknown barcode")
+			}
+			args.putContentFormatColors(
+				barcode.content,
+				barcode.format,
+				colors
+			)
+			val fragment = BarcodeFragment()
+			fragment.arguments = args
+			return fragment
+		}
+
+		fun <T> newInstance(
+			content: T,
+			format: BarcodeFormat,
+			ecLevel: Int = -1,
+			margin: Int = -1,
+			colors: Int = 0
+		): Fragment {
+			val args = Bundle()
+			args.putContentFormatColors(content, format, colors)
+			args.putEcLevelMargin(ecLevel, margin)
+			val fragment = BarcodeFragment()
+			fragment.arguments = args
+			return fragment
+		}
+
+		private fun <T> Bundle.putContentFormatColors(
+			content: T,
+			format: BarcodeFormat,
+			colors: Int
+		) {
 			when (content) {
 				is String -> {
-					args.putString(CONTENT_TEXT, content)
+					putString(CONTENT_TEXT, content)
 				}
 
 				is ByteArray -> {
-					args.putByteArray(CONTENT_RAW, content)
+					putByteArray(CONTENT_RAW, content)
 				}
 
 				else -> {
@@ -446,78 +512,17 @@ class BarcodeFragment : Fragment() {
 					)
 				}
 			}
-			args.putString(FORMAT, format.name)
-			args.putInt(MARGIN, margin)
-			args.putInt(EC_LEVEL, ecLevel)
-			args.putInt(COLORS, colors)
-			val fragment = BarcodeFragment()
-			fragment.arguments = args
-			return fragment
+			putString(FORMAT, format.name)
+			putInt(COLORS, colors)
 		}
-	}
-}
 
-private data class Barcode<T>(
-	val content: T,
-	val format: BarcodeFormat,
-	val margin: Int,
-	val ecLevel: Int,
-	val colors: Colors
-) {
-	private var _bitmap: Bitmap? = null
-	fun bitmap(): Bitmap {
-		val b = _bitmap ?: bitmap(512)
-		_bitmap = b
-		return b
-	}
-
-	fun bitmap(size: Int): Bitmap {
-		return ZxingCpp.encodeAsBitmap(
-			content, format, size, size, margin, ecLevel,
-			setColor = colors.foregroundColor(),
-			unsetColor = colors.backgroundColor()
-		)
-	}
-
-	private var _svg: String? = null
-	fun svg(): String {
-		val s = _svg ?: ZxingCpp.encodeAsSvg(
-			content, format, margin, ecLevel
-		)
-		_svg = s
-		return s
-	}
-
-	private var _text: String? = null
-	fun text(): String {
-		val t = _text ?: ZxingCpp.encodeAsText(
-			content, format, margin, ecLevel,
-			inverted = colors == Colors.BLACK_ON_WHITE
-		)
-		_text = t
-		return t
-	}
-}
-
-private enum class Colors {
-	BLACK_ON_WHITE,
-	WHITE_ON_BLACK,
-	BLACK_ON_TRANSPARENT,
-	WHITE_ON_TRANSPARENT;
-
-	fun foregroundColor(): Int = when (this) {
-		BLACK_ON_WHITE,
-		BLACK_ON_TRANSPARENT -> COLOR_BLACK
-
-		WHITE_ON_BLACK,
-		WHITE_ON_TRANSPARENT -> COLOR_WHITE
-	}
-
-	fun backgroundColor(): Int = when (this) {
-		BLACK_ON_WHITE -> COLOR_WHITE
-		WHITE_ON_BLACK -> COLOR_BLACK
-		BLACK_ON_TRANSPARENT,
-		WHITE_ON_TRANSPARENT -> 0
+		private fun Bundle.putEcLevelMargin(
+			ecLevel: Int,
+			margin: Int
+		) {
+			putInt(EC_LEVEL, ecLevel)
+			putInt(MARGIN, margin)
+		}
 	}
 }
 
