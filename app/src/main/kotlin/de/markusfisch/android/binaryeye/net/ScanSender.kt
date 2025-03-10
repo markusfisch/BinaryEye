@@ -53,7 +53,7 @@ private fun Scan.send(url: String, type: String): Response {
 		}
 
 		else -> request(
-			url + content.urlEncode()
+			url + text.urlEncode()
 		)
 	}
 }
@@ -67,7 +67,7 @@ private fun Scan.asJson() = JSONObject().apply {
 }
 
 private fun Scan.getMap(): Map<String, String> = mapOf(
-	"content" to content,
+	"content" to text,
 	"raw" to raw?.toHexString(),
 	"format" to format.name,
 	"errorCorrectionLevel" to errorCorrectionLevel,

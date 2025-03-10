@@ -152,7 +152,7 @@ class Database {
 		when (prefs.ignoreDuplicates()) {
 			Preferences.Companion.IgnoreDuplicates.Consecutive -> {
 				val id = getIdOfLastScan(
-					scan.content,
+					scan.text,
 					scan.raw,
 					scan.format
 				)
@@ -162,7 +162,7 @@ class Database {
 			}
 
 			Preferences.Companion.IgnoreDuplicates.Any -> {
-				val id = getIdOfScanByContent(scan.content, scan.format)
+				val id = getIdOfScanByContent(scan.text, scan.format)
 				if (id > 0L) {
 					return id
 				}
@@ -175,7 +175,7 @@ class Database {
 			null,
 			ContentValues().apply {
 				put(SCANS_DATETIME, scan.dateTime)
-				put(SCANS_CONTENT, scan.content)
+				put(SCANS_CONTENT, scan.text)
 				if (scan.raw != null) {
 					put(SCANS_RAW, scan.raw)
 				}

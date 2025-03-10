@@ -750,7 +750,7 @@ fun Activity.showResult(
 	if (prefs.sendScanActive && prefs.sendScanUrl.isNotEmpty()) {
 		if (prefs.sendScanType == "4") {
 			openUrl(
-				prefs.sendScanUrl + scan.content.urlEncode()
+				prefs.sendScanUrl + scan.text.urlEncode()
 			)
 			return
 		}

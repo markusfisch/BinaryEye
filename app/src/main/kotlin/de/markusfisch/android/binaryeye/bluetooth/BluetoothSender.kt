@@ -24,7 +24,7 @@ fun Scan.sendBluetoothAsync(
 			connect(host, true)
 		}
 		val sent = if (connected) {
-			send(content, host, true)
+			send(text, host, true)
 		} else {
 			false
 		}

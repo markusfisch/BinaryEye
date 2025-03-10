@@ -11,7 +11,7 @@ import de.markusfisch.android.zxingcpp.ZxingCpp.Result
 import java.util.Locale
 
 data class Scan(
-	val content: String,
+	val text: String,
 	val raw: ByteArray?,
 	val format: BarcodeFormat,
 	val errorCorrectionLevel: String? = null,
@@ -43,7 +43,7 @@ data class Scan(
 
 		return id == other.id &&
 				dateTime == other.dateTime &&
-				content == other.content &&
+				text == other.text &&
 				((raw == null && other.raw == null) ||
 						(raw != null && other.raw != null && raw.contentEquals(other.raw))) &&
 				format == other.format &&
@@ -64,7 +64,7 @@ data class Scan(
 	override fun hashCode(): Int {
 		var result = id.hashCode()
 		result = 31 * result + dateTime.hashCode()
-		result = 31 * result + content.hashCode()
+		result = 31 * result + text.hashCode()
 		result = 31 * result + (raw?.contentHashCode() ?: 0)
 		result = 31 * result + format.hashCode()
 		result = 31 * result + (errorCorrectionLevel?.hashCode() ?: 0)
@@ -81,7 +81,7 @@ data class Scan(
 	}
 
 	private constructor(parcel: Parcel) : this(
-		content = parcel.readString() ?: "",
+		text = parcel.readString() ?: "",
 		raw = parcel.readSizedByteArray(),
 		format = BarcodeFormat.valueOf(parcel.readString() ?: ""),
 		errorCorrectionLevel = parcel.readString(),
@@ -102,7 +102,7 @@ data class Scan(
 
 	override fun writeToParcel(parcel: Parcel, flags: Int) {
 		parcel.apply {
-			writeString(content)
+			writeString(text)
 			writeSizedByteArray(raw)
 			writeString(format.name)
 			writeString(errorCorrectionLevel)

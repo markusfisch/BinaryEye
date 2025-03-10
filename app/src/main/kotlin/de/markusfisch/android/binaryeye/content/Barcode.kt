@@ -37,12 +37,12 @@ enum class BarcodeColors {
 fun Scan.toBarcode() = if (symbol != null) {
 	BitMatrixBarcode(
 		symbol,
-		content,
+		text,
 		format
 	)
 } else {
 	ContentBarcode(
-		content,
+		text,
 		format,
 		errorCorrectionLevel.toErrorCorrectionInt()
 	)

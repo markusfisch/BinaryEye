@@ -112,8 +112,8 @@ class DecodeFragment : Fragment() {
 			arguments?.getParcelable(SCAN) as Scan?
 		} ?: throw IllegalArgumentException("DecodeFragment needs a Scan")
 
-		isBinary = scan.content.isEmpty()
-		originalBytes = scan.raw ?: scan.content.toByteArray()
+		isBinary = scan.text.isEmpty()
+		originalBytes = scan.raw ?: scan.text.toByteArray()
 		format = scan.format.name
 		id = scan.id
 		recreationSize = (200f * dp).roundToInt()
@@ -144,7 +144,7 @@ class DecodeFragment : Fragment() {
 			labelView.visibility = View.GONE
 		}
 
-		updateViewsAndFab(scan.content, originalBytes)
+		updateViewsAndFab(scan.text, originalBytes)
 
 		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
 		view.findViewById<View>(R.id.scroll_view).setPaddingFromWindowInsets()
@@ -178,7 +178,7 @@ class DecodeFragment : Fragment() {
 				askForFileNameAndSave(originalBytes)
 			}
 		} else {
-			contentView.setText(scan.content)
+			contentView.setText(scan.text)
 			contentView.addTextChangedListener(object : TextWatcher {
 				override fun afterTextChanged(s: Editable?) {
 					updateViewsAndFab(s?.toString() ?: "")
@@ -256,7 +256,7 @@ class DecodeFragment : Fragment() {
 					clearRecreation()
 					return@showIf
 				}
-				unmodified = text == scan.content
+				unmodified = text == scan.text
 				text
 			}
 			val barcode = if (unmodified) {
