@@ -34,18 +34,23 @@ enum class BarcodeColors {
 	}
 }
 
-fun Scan.toBarcode() = if (symbol != null) {
-	BitMatrixBarcode(
-		symbol,
-		text,
-		format
-	)
-} else {
-	ContentBarcode(
-		text,
-		format,
-		errorCorrectionLevel.toErrorCorrectionInt()
-	)
+fun Scan.toBarcode(): Barcode<*> {
+	val content = text.ifEmpty {
+		raw
+	}
+	return if (symbol != null) {
+		BitMatrixBarcode(
+			symbol,
+			content,
+			format
+		)
+	} else {
+		ContentBarcode(
+			content,
+			format,
+			errorCorrectionLevel.toErrorCorrectionInt()
+		)
+	}
 }
 
 fun String?.toErrorCorrectionInt() = when (this) {
