@@ -7,6 +7,7 @@ import android.media.ToneGenerator
 import android.os.Build
 import android.preference.PreferenceManager
 import android.support.annotation.RequiresApi
+import de.markusfisch.android.binaryeye.activity.CameraActivity
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 
 class Preferences {
@@ -36,26 +37,6 @@ class Preferences {
 		@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 		set(value) {
 			apply(BARCODE_FORMATS, value)
-			field = value
-		}
-	var cropHandleX = -2 // -2 means set default roi.
-		set(value) {
-			apply(CROP_HANDLE_X, value)
-			field = value
-		}
-	var cropHandleY = -2
-		set(value) {
-			apply(CROP_HANDLE_Y, value)
-			field = value
-		}
-	var cropHandleOrientation = 0
-		set(value) {
-			apply(CROP_HANDLE_ORIENTATION, value)
-			field = value
-		}
-	var showCropHandle = true
-		set(value) {
-			apply(SHOW_CROP_HANDLE, value)
 			field = value
 		}
 	var zoomBySwiping = true
@@ -232,16 +213,8 @@ class Preferences {
 			}
 		}
 
-		cropHandleX = preferences.getInt(CROP_HANDLE_X, cropHandleX)
-		cropHandleY = preferences.getInt(CROP_HANDLE_Y, cropHandleY)
-		cropHandleOrientation = preferences.getInt(
-			CROP_HANDLE_ORIENTATION,
-			cropHandleOrientation
-		)
-		showCropHandle = preferences.getBoolean(
-			SHOW_CROP_HANDLE,
-			showCropHandle
-		)
+		migrateCropHandle()
+
 		zoomBySwiping = preferences.getBoolean(ZOOM_BY_SWIPING, zoomBySwiping)
 		autoRotate = preferences.getBoolean(AUTO_ROTATE, autoRotate)
 		tryHarder = preferences.getBoolean(TRY_HARDER, tryHarder)
@@ -350,6 +323,32 @@ class Preferences {
 		}
 	}
 
+	private fun migrateCropHandle() {
+		val showCropHandleName = "show_crop_handle"
+		if (!preferences.getBoolean(showCropHandleName, false)) {
+			return;
+		}
+		val def = CropHandle()
+		storeCropHandle(
+			CameraActivity.CAMERA_CROP_HANDLE,
+			CropHandle(
+				true,
+				preferences.getInt("crop_handle_x", def.x),
+				preferences.getInt("crop_handle_y", def.y),
+				preferences.getInt("crop_handle_orientation", def.orientation)
+			)
+		)
+		preferences.edit().putBoolean(showCropHandleName, false).apply()
+	}
+
+	fun restoreCropHandle(
+		name: String
+	) = preferences.restoreCropHandle(name)
+
+	fun storeCropHandle(name: String, cropHandle: CropHandle) {
+		preferences.storeCropHandle(name, cropHandle)
+	}
+
 	fun beepTone() = when (beepToneName) {
 		"tone_cdma_confirm" -> ToneGenerator.TONE_CDMA_CONFIRM
 		"tone_sup_radio_ack" -> ToneGenerator.TONE_SUP_RADIO_ACK
@@ -367,9 +366,6 @@ class Preferences {
 
 	private fun put(label: String, value: Boolean) =
 		preferences.edit().putBoolean(label, value)
-
-	private fun put(label: String, value: String) =
-		preferences.edit().putString(label, value)
 
 	private fun apply(label: String, value: Boolean) {
 		put(label, value).apply()
@@ -399,10 +395,6 @@ class Preferences {
 		}
 
 		private const val BARCODE_FORMATS = "formats"
-		private const val CROP_HANDLE_X = "crop_handle_x"
-		private const val CROP_HANDLE_Y = "crop_handle_y"
-		private const val CROP_HANDLE_ORIENTATION = "crop_handle_orientation"
-		private const val SHOW_CROP_HANDLE = "show_crop_handle"
 		private const val ZOOM_BY_SWIPING = "zoom_by_swiping"
 		private const val AUTO_ROTATE = "auto_rotate"
 		private const val TRY_HARDER = "try_harder"

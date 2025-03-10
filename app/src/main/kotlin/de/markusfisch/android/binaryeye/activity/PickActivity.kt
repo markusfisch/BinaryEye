@@ -20,6 +20,7 @@ import de.markusfisch.android.binaryeye.graphics.fixTransparency
 import de.markusfisch.android.binaryeye.graphics.loadImageUri
 import de.markusfisch.android.binaryeye.graphics.mapPosition
 import de.markusfisch.android.binaryeye.media.releaseToneGenerators
+import de.markusfisch.android.binaryeye.preference.Preferences
 import de.markusfisch.android.binaryeye.view.colorSystemAndToolBars
 import de.markusfisch.android.binaryeye.view.initBars
 import de.markusfisch.android.binaryeye.view.scanFeedback
@@ -99,7 +100,7 @@ class PickActivity : AppCompatActivity() {
 			scanWithinBounds(bitmap)
 		}
 		detectorView.setPaddingFromWindowInsets()
-		detectorView.restoreCropHandlePos()
+		detectorView.restoreCropHandlePos(PICKER_CROP_HANDLE)
 
 		findViewById(R.id.scan).setOnClickListener {
 			showResult()
@@ -195,7 +196,7 @@ class PickActivity : AppCompatActivity() {
 
 	override fun onDestroy() {
 		super.onDestroy()
-		detectorView.saveCropHandlePos()
+		detectorView.storeCropHandlePos(PICKER_CROP_HANDLE)
 		parentJob.cancel()
 		releaseToneGenerators()
 	}
@@ -258,6 +259,10 @@ class PickActivity : AppCompatActivity() {
 		} else {
 			applicationContext.toast(R.string.no_barcode_found)
 		}
+	}
+
+	companion object {
+		private const val PICKER_CROP_HANDLE = "picker_crop_handle"
 	}
 }
 

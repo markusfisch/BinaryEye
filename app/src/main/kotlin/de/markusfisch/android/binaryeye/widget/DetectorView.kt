@@ -19,6 +19,7 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.graphics.getBitmapFromDrawable
 import de.markusfisch.android.binaryeye.graphics.getDashedBorderPaint
+import de.markusfisch.android.binaryeye.preference.CropHandle
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
@@ -58,6 +59,7 @@ class DetectorView : View {
 	private val padding: Int
 
 	private var coordinatesLast = 0
+	private var showCropHandle = true
 	private var handleGrabbed = false
 	private var handleActive = false
 	private var minY = 0
@@ -83,11 +85,17 @@ class DetectorView : View {
 	constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) :
 			super(context, attrs, defStyleAttr)
 
-	fun saveCropHandlePos() {
+	fun storeCropHandlePos(name: String) {
 		val pos = getCropHandlePos()
-		prefs.cropHandleX = pos.x
-		prefs.cropHandleY = pos.y
-		prefs.cropHandleOrientation = currentOrientation
+		prefs.storeCropHandle(
+			name,
+			CropHandle(
+				showCropHandle,
+				pos.x,
+				pos.y,
+				currentOrientation
+			)
+		)
 	}
 
 	private fun getCropHandlePos() = if (handleActive) {
@@ -96,11 +104,13 @@ class DetectorView : View {
 		Point(-1, -1)
 	}
 
-	fun restoreCropHandlePos() {
+	fun restoreCropHandlePos(name: String) {
+		val cropHandle = prefs.restoreCropHandle(name)
+		showCropHandle = cropHandle.active
 		setCropHandlePos(
-			prefs.cropHandleX,
-			prefs.cropHandleY,
-			prefs.cropHandleOrientation
+			cropHandle.x,
+			cropHandle.y,
+			cropHandle.orientation
 		)
 	}
 
@@ -155,7 +165,7 @@ class DetectorView : View {
 		val y = event.y.roundToInt()
 		return when (event.actionMasked) {
 			MotionEvent.ACTION_DOWN -> {
-				if (prefs.showCropHandle) {
+				if (showCropHandle) {
 					touchDown.set(x, y)
 					handleGrabbed = abs(x - handlePos.x) < handleXRadius &&
 							abs(y - handlePos.y) < handleYRadius
@@ -273,7 +283,7 @@ class DetectorView : View {
 			canvas.drawClip()
 		}
 		canvas.drawDots()
-		if (prefs.showCropHandle) {
+		if (showCropHandle) {
 			canvas.drawHandle()
 		}
 	}

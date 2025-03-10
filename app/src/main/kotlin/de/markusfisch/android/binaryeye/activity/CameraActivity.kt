@@ -149,7 +149,7 @@ class CameraActivity : AppCompatActivity() {
 		super.onDestroy()
 		fallbackBuffer = null
 		saveZoom()
-		detectorView.saveCropHandlePos()
+		detectorView.storeCropHandlePos(CAMERA_CROP_HANDLE)
 		releaseToneGenerators()
 	}
 
@@ -622,7 +622,7 @@ class CameraActivity : AppCompatActivity() {
 			updateFrameRoiAndMappingMatrix()
 		}
 		detectorView.setPaddingFromWindowInsets()
-		detectorView.restoreCropHandlePos()
+		detectorView.restoreCropHandlePos(CAMERA_CROP_HANDLE)
 	}
 
 	private fun updateFrameRoiAndMappingMatrix() {
@@ -722,6 +722,8 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	companion object {
+		const val CAMERA_CROP_HANDLE = "camera_crop_handle"
+
 		private const val PICK_FILE_RESULT_CODE = 1
 		private const val ZOOM_MAX = "zoom_max"
 		private const val ZOOM_LEVEL = "zoom_level"
