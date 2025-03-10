@@ -398,6 +398,7 @@ class Database {
 
 		private fun SQLiteDatabase.addDataMaskColumn() {
 			execSQL("ALTER TABLE $SCANS ADD $SCANS_DATA_MASK INTEGER")
+			execSQL("UPDATE $SCANS SET $SCANS_DATA_MASK = -1")
 		}
 
 		private fun SQLiteDatabase.addSymbolColumns() {

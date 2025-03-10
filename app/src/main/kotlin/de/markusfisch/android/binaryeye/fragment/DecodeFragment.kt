@@ -47,6 +47,7 @@ import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.io.writeExternalFile
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.toast
+import de.markusfisch.android.zxingcpp.ZxingCpp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -345,7 +346,9 @@ class DecodeFragment : Fragment() {
 				)
 			)
 		}
-		if (scan.dataMask > -1) {
+		if (scan.format == ZxingCpp.BarcodeFormat.QR_CODE &&
+			scan.dataMask > -1
+		) {
 			items.putAll(
 				linkedMapOf(
 					R.string.qr_data_mask to scan.dataMask.toString()

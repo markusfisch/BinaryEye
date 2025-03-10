@@ -16,7 +16,7 @@ data class Scan(
 	val format: BarcodeFormat,
 	val errorCorrectionLevel: String? = null,
 	val version: String? = null,
-	val dataMask: Int = 0,
+	val dataMask: Int = -1,
 	val symbol: BitMatrix? = null,
 	val sequenceSize: Int = -1,
 	val sequenceIndex: Int = -1,
