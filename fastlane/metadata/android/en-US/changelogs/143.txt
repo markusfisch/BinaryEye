@@ -1,0 +1,4 @@
+* Separate crop window settings for image scanning
+* Fix initializing dataMask
+* Update Russian translation
+

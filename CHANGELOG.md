@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.64.2
+* Separate crop window settings for image scanning
+* Fix initializing dataMask
+* Update Russian translation
+
 ## 1.64.1
 * Handle empty input for recreation
 * Fix setting up database
