@@ -203,6 +203,7 @@ class DecodeFragment : Fragment() {
 			}
 			if (prefs.openImmediately) {
 				executeAction(this.content)
+				backOrFinish()
 			}
 		}
 	}

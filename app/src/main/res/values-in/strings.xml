@@ -1,4 +1,9 @@
 <resources>
+	<string name="welcome">Selamat datang!</string>
+	<string name="mode_expert">Lanjutan</string>
+	<string name="mode_expert_description">Saya ingin memeriksa konten yang dibaca dan membukanya secara manual.</string>
+	<string name="mode_simple">Sederhana</string>
+	<string name="mode_simple_description">Saya hanya ingin memindai kode batang dan langsung membukanya.</string>
 	<string name="camera_error">Tidak bisa mengakses kamera, silakan coba lagi</string>
 	<string name="scan_code">Pindai kode</string>
 	<string name="compose_barcode">Buat barcode</string>

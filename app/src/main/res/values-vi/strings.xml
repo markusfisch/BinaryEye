@@ -1,4 +1,9 @@
 <resources>
+	<string name="welcome">Chào mừng!</string>
+	<string name="mode_expert">Nâng cao</string>
+	<string name="mode_expert_description">Tôi muốn kiểm tra nội dung đã đọc và mở nó theo cách thủ công.</string>
+	<string name="mode_simple">Đơn giản</string>
+	<string name="mode_simple_description">Tôi chỉ muốn quét mã vạch và mở ngay lập tức.</string>
 	<string name="camera_error">Không thể mở camera, hãy thử lại</string>
 	<string name="scan_code">Quét mã</string>
 	<string name="compose_barcode">Tạo mã vạch</string>

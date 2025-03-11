@@ -1,4 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+	<string name="welcome">مرحبًا!</string>
+	<string name="mode_expert">متقدم</string>
+	<string name="mode_expert_description">أود التحقق من المحتوى المقروء وفتحه يدويًا.</string>
+	<string name="mode_simple">بسيط</string>
+	<string name="mode_simple_description">أريد فقط قراءة الباركود وفتحه فورًا.</string>
 	<string name="camera_error">يتعذر الوصول إلى الكاميرا، يرجى المحاولة مرة أخرى</string>
 	<string name="scan_code">مسح الرمز</string>
 	<string name="compose_barcode">إنشاء رمز Bardcode</string>

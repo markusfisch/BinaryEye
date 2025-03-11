@@ -1,4 +1,9 @@
 <resources>
+	<string name="welcome">স্বাগতম!</string>
+	<string name="mode_expert">উন্নত</string>
+	<string name="mode_expert_description">আমি পড়া বিষয়বস্তু যাচাই করতে চাই এবং এটি নিজে খুলতে চাই।</string>
+	<string name="mode_simple">সহজ</string>
+	<string name="mode_simple_description">আমি কেবল বারকোড স্ক্যান করতে চাই এবং তা সঙ্গে সঙ্গে খুলতে চাই।</string>
 	<string name="camera_error">ক্যামেরা পাওয়া যাচ্ছে না, পরে চেষ্টা করো</string>
 	<string name="scan_code">সংকেতের পাঠোদ্ধার</string>
 	<string name="compose_barcode">বারকোড বানাও</string>

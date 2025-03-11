@@ -1,4 +1,9 @@
 <resources>
+	<string name="welcome">Ласкаво просимо!</string>
+	<string name="mode_expert">Розширений</string>
+	<string name="mode_expert_description">Я хочу перевірити прочитаний вміст і відкрити його вручну.</string>
+	<string name="mode_simple">Простий</string>
+	<string name="mode_simple_description">Я просто хочу сканувати штрих-коди і відкривати їх одразу.</string>
 	<string name="camera_error">Неможливо отримати доступ до камери, будь ласка, спробуйте ще раз</string>
 	<string name="scan_code">Сканування коду</string>
 	<string name="compose_barcode">Створити штрих-код</string>

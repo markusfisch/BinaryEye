@@ -1,4 +1,9 @@
 <resources>
+	<string name="welcome">Velkommen!</string>
+	<string name="mode_expert">Avanceret</string>
+	<string name="mode_expert_description">Jeg vil kontrollere det læste indhold og åbne det manuelt.</string>
+	<string name="mode_simple">Simpel</string>
+	<string name="mode_simple_description">Jeg vil bare scanne stregkoder og få dem åbnet med det samme.</string>
 	<string name="camera_error">Kan ikke få adgang til kamera, prøv igen</string>
 	<string name="scan_code">Scan kode</string>
 	<string name="compose_barcode">Opret stregkode</string>

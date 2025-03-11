@@ -1,4 +1,9 @@
 <resources>
+	<string name="welcome">ようこそ！</string>
+	<string name="mode_expert">上級</string>
+	<string name="mode_expert_description">読み取った内容を確認し、手動で開きたい。</string>
+	<string name="mode_simple">簡単</string>
+	<string name="mode_simple_description">バーコードをスキャンしてすぐに開きたい。</string>
 	<string name="camera_error">カメラに接続できませんでした。再試行してください。</string>
 	<string name="scan_code">バーコードをスキャン</string>
 	<string name="compose_barcode">バーコードを作成</string>

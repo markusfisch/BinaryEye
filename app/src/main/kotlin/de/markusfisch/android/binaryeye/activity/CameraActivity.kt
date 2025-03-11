@@ -61,6 +61,7 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
 
+
 class CameraActivity : AppCompatActivity() {
 	private val frameRoi = Rect()
 	private val matrix = Matrix()
@@ -156,6 +157,10 @@ class CameraActivity : AppCompatActivity() {
 
 	override fun onResume() {
 		super.onResume()
+		if (firstStart()) {
+			startActivity(Intent(this, WelcomeActivity::class.java))
+			return
+		}
 		System.gc()
 		updateHintsAndTitle()
 		if (prefs.bulkMode && bulkMode != prefs.bulkMode) {
@@ -171,6 +176,19 @@ class CameraActivity : AppCompatActivity() {
 			openCamera()
 		}
 		requestCameraPermission = false
+	}
+
+	private fun Context.firstStart(): Boolean {
+		val welcomeShownName = "welcome_shown"
+		if (prefs.preferences.getBoolean(welcomeShownName, false)) {
+			android.util.Log.d("mfdbg", "mfdbg: already welcome shown")
+			return false
+		}
+		prefs.preferences.edit().putBoolean(welcomeShownName, true).apply()
+		val packageInfo = packageManager.getPackageInfo(packageName, 0)
+		val installedSince = System.currentTimeMillis() - packageInfo.firstInstallTime
+		android.util.Log.d("mfdbg", "mfdbg: installed since is $installedSince")
+		return installedSince < 86400000
 	}
 
 	private fun updateHintsAndTitle() {

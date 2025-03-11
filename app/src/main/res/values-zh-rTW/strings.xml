@@ -1,4 +1,9 @@
 <resources>
+	<string name="welcome">歡迎！</string>
+	<string name="mode_expert">進階</string>
+	<string name="mode_expert_description">我想檢查讀取的內容並手動開啟。</string>
+	<string name="mode_simple">簡單</string>
+	<string name="mode_simple_description">我只想掃描條碼並立即開啟。</string>
 	<string name="camera_error">無法開啟相機，請再試一次</string>
 	<string name="scan_code">掃描條碼</string>
 	<string name="compose_barcode">製作條碼</string>

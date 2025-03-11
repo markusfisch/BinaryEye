@@ -1,4 +1,9 @@
 <resources>
+	<string name="welcome">მოგესალმებით!</string>
+	<string name="mode_expert">გაფართოებული</string>
+	<string name="mode_expert_description">მინდა გადავამოწმო წაკითხული შინაარსი და გავხსნა ხელით.</string>
+	<string name="mode_simple">მარტივი</string>
+	<string name="mode_simple_description">მხოლოდ მინდა დავასკანერო ბარკოდი და გავხსნა დაუყოვნებლივ.</string>
 	<string name="camera_error">კამერაზე წვდომის მოპოვება ვერ ხერხდება, გთხოვთ, კიდევ სცადეთ</string>
 	<string name="scan_code">შტრიხ-კოდის სკანირება</string>
 	<string name="compose_barcode">შტრიხ-კოდის შექმნა</string>

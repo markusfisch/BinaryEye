@@ -10,6 +10,7 @@ import android.support.annotation.RequiresApi
 import de.markusfisch.android.binaryeye.activity.CameraActivity
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 
+
 class Preferences {
 	lateinit var preferences: SharedPreferences
 

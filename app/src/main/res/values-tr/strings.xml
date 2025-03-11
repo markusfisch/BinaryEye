@@ -1,4 +1,9 @@
 <resources>
+	<string name="welcome">Hoş geldiniz!</string>
+	<string name="mode_expert">Gelişmiş</string>
+	<string name="mode_expert_description">Okunan içeriği kontrol etmek ve manuel olarak açmak istiyorum.</string>
+	<string name="mode_simple">Basit</string>
+	<string name="mode_simple_description">Barkodları taramak ve hemen açmak istiyorum.</string>
 	<string name="camera_error">Kameraya erişilemiyor, lütfen yeniden deneyin</string>
 	<string name="scan_code">Kod tara</string>
 	<string name="compose_barcode">Barkod oluştur</string>

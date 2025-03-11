@@ -1,4 +1,9 @@
 <resources>
+	<string name="welcome">Vítejte!</string>
+	<string name="mode_expert">Pokročilý</string>
+	<string name="mode_expert_description">Chci zkontrolovat načtený obsah a otevřít jej ručně.</string>
+	<string name="mode_simple">Jednoduchý</string>
+	<string name="mode_simple_description">Chci jen skenovat čárové kódy a okamžitě je otevírat.</string>
 	<string name="camera_error">Nepodařilo se otevřít fotoaparát, prosím zkuste to znovu</string>
 	<string name="scan_code">Naskenovat kód</string>
 	<string name="compose_barcode">Vytvořit čárový kód</string>

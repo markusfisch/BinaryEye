@@ -1,4 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+	<string name="welcome">Welcome!</string>
+	<string name="mode_expert">Advanced</string>
+	<string name="mode_expert_description">I would like to check the read content and open it manually.</string>
+	<string name="mode_simple">Simple</string>
+	<string name="mode_simple_description">I just want to read barcodes and have them opened immediately.</string>
 	<string name="camera_error">Can\'t access camera, please try again</string>
 	<string name="scan_code">Scan code</string>
 	<string name="compose_barcode">Compose barcode</string>

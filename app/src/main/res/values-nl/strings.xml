@@ -1,4 +1,9 @@
 <resources>
+	<string name="welcome">Welkom!</string>
+	<string name="mode_expert">Geavanceerd</string>
+	<string name="mode_expert_description">Ik wil de gelezen inhoud controleren en handmatig openen.</string>
+	<string name="mode_simple">Eenvoudig</string>
+	<string name="mode_simple_description">Ik wil gewoon barcodes scannen en direct openen.</string>
 	<string name="camera_error">Geen toegang tot camera, probeer opnieuw.</string>
 	<string name="scan_code">Scan een code</string>
 	<string name="compose_barcode">Barcode scannen</string>

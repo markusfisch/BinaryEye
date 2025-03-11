@@ -1,4 +1,9 @@
 <resources>
+	<string name="welcome">Witamy!</string>
+	<string name="mode_expert">Zaawansowany</string>
+	<string name="mode_expert_description">Chcę sprawdzić odczytaną treść i otworzyć ją ręcznie.</string>
+	<string name="mode_simple">Prosty</string>
+	<string name="mode_simple_description">Chcę tylko skanować kody kreskowe i otwierać je natychmiast.</string>
 	<string name="open_url">Otwórz URL</string>
 	<string name="content">Zawartość</string>
 	<string name="copied_to_clipboard">Skopiowano do schowka</string>

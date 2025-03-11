@@ -1,4 +1,9 @@
 <resources>
+	<string name="welcome">Willkommen!</string>
+	<string name="mode_expert">Erweitert</string>
+	<string name="mode_expert_description">Ich möchte den gelesenen Inhalt überprüfen und manuell öffnen.</string>
+	<string name="mode_simple">Einfach</string>
+	<string name="mode_simple_description">Ich möchte nur Barcodes scannen und sie sofort öffnen.</string>
 	<string name="camera_error">Auf die Kamera kann nicht zugegriffen werden, bitte versuche es nochmal</string>
 	<string name="scan_code">Code scannen</string>
 	<string name="compose_barcode">Barcode erstellen</string>

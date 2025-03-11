@@ -1,4 +1,9 @@
 <resources>
+	<string name="welcome">خوش آمدید!</string>
+	<string name="mode_expert">پیشرفته</string>
+	<string name="mode_expert_description">می‌خواهم محتوای خوانده شده را بررسی کرده و به صورت دستی باز کنم.</string>
+	<string name="mode_simple">ساده</string>
+	<string name="mode_simple_description">فقط می‌خواهم بارکدها را اسکن کنم و فوراً باز شوند.</string>
 	<string name="camera_error">نمی‌توان به دوربین دسترسی داشت، لطفاً دوباره تلاش کنید</string>
 	<string name="scan_code">پویش کد</string>
 	<string name="compose_barcode">ایجاد بارکد</string>

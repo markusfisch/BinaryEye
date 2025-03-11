@@ -26,6 +26,26 @@
 		<item name="android:paddingRight">@dimen/button_padding</item>
 		<item name="android:maxLines">1</item>
 	</style>
+	<style name="WelcomeButton" parent="Button">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:background">@drawable/button_welcome</item>
+		<item name="android:padding">24dp</item>
+	</style>
+	<style name="WelcomeButtonText">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginBottom">8dp</item>
+		<item name="android:gravity">center</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+	</style>
+	<style name="WelcomeButtonSubText">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:gravity">center</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+	</style>
 	<style name="Spinner">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>

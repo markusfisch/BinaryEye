@@ -1,0 +1,57 @@
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:fillViewport="true">
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:fitsSystemWindows="true">
+		<!-- The FrameLayout is necessary because this LinearLayout
+			should have a padding which would be reset by the window
+			insets from `fitsSystemWindows`. -->
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:gravity="bottom"
+			android:padding="24dp"
+			android:orientation="vertical"
+			tools:ignore="UselessParent">
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="32dp"
+				android:drawableTop="@drawable/logo"
+				android:drawablePadding="16dp"
+				android:gravity="center"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:text="@string/welcome"/>
+
+			<LinearLayout
+				style="@style/WelcomeButton"
+				android:id="@+id/expert"
+				android:layout_marginBottom="16dp"
+				android:orientation="vertical">
+				<TextView
+					style="@style/WelcomeButtonText"
+					android:text="@string/mode_expert"/>
+				<TextView
+					style="@style/WelcomeButtonSubText"
+					android:text="@string/mode_expert_description"/>
+			</LinearLayout>
+
+			<LinearLayout
+				style="@style/WelcomeButton"
+				android:id="@+id/simple"
+				android:orientation="vertical">
+				<TextView
+					style="@style/WelcomeButtonText"
+					android:text="@string/mode_simple"/>
+				<TextView
+					style="@style/WelcomeButtonSubText"
+					android:text="@string/mode_simple_description"/>
+			</LinearLayout>
+		</LinearLayout>
+	</FrameLayout>
+</ScrollView>

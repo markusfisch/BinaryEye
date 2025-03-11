@@ -1,4 +1,9 @@
 <resources>
+	<string name="welcome">Üdvözöljük!</string>
+	<string name="mode_expert">Haladó</string>
+	<string name="mode_expert_description">Szeretném ellenőrizni az olvasott tartalmat és kézzel megnyitni.</string>
+	<string name="mode_simple">Egyszerű</string>
+	<string name="mode_simple_description">Csak be akarom olvasni a vonalkódokat, és azonnal megnyitni őket.</string>
 	<string name="camera_error">Nem lehet hozzáférni a kamerához, próbálja meg újra</string>
 	<string name="scan_code">Kód beolvasása</string>
 	<string name="compose_barcode">Vonalkód létrehozása</string>

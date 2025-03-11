@@ -1,4 +1,9 @@
 <resources>
+	<string name="welcome">환영합니다!</string>
+	<string name="mode_expert">고급</string>
+	<string name="mode_expert_description">읽은 내용을 확인하고 수동으로 열고 싶습니다.</string>
+	<string name="mode_simple">간단</string>
+	<string name="mode_simple_description">바코드를 스캔하고 즉시 열고 싶습니다.</string>
 	<string name="camera_error">카메라를 접근할 수 없습니다. 다시 시도하세요</string>
 	<string name="scan_code">Scan code</string>
 	<string name="compose_barcode">Compose barcode</string>
