@@ -106,7 +106,7 @@ class ContentBarcode<T>(
 	colors: BarcodeColors = BarcodeColors.BLACK_ON_WHITE
 ) : Barcode<T>(content, format, colors) {
 	override fun toBitmap(size: Int) = ZxingCpp.encodeAsBitmap(
-		content, format, size, size, margin, ecLevel,
+		content, format, size, format.height(size), margin, ecLevel,
 		setColor = colors.foregroundColor(),
 		unsetColor = colors.backgroundColor()
 	)
@@ -176,4 +176,22 @@ private fun BitMatrix.inflate(
 		}
 	}
 	return scaled
+}
+
+private fun BarcodeFormat.height(size: Int) = when (this) {
+	// 1D barcodes don't need as much vertical space.
+	BarcodeFormat.CODABAR,
+	BarcodeFormat.CODE_39,
+	BarcodeFormat.CODE_93,
+	BarcodeFormat.CODE_128,
+	BarcodeFormat.DATA_BAR,
+	BarcodeFormat.DATA_BAR_EXPANDED,
+	BarcodeFormat.DX_FILM_EDGE,
+	BarcodeFormat.EAN_8,
+	BarcodeFormat.EAN_13,
+	BarcodeFormat.ITF,
+	BarcodeFormat.UPC_A,
+	BarcodeFormat.UPC_E -> size / 3
+
+	else -> size
 }
