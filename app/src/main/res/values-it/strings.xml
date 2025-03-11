@@ -29,7 +29,7 @@
 	<string name="gtin_add_on">Estensione UPC EAN</string>
 	<string name="barcode_version_number">Versione</string>
 	<string name="qr_version_and_modules">%1$s (%2$d moduli)</string>
-	<string name="qr_data_mask">Data mask</string>
+	<string name="qr_data_mask">Maschera dati</string>
 	<string name="toggle_flash">Attiva/disattiva flash</string>
 	<string name="error_flash">Errore durante attivazione/disattivazione flash</string>
 	<string name="share">Condividi</string>
@@ -45,7 +45,7 @@
 	<string name="format">Formato</string>
 	<string name="size_width_by_height">Dimensioni (pixel): %1$d×%2$d</string>
 	<string name="size_no_magnification">Nessun ingrandimento</string>
-	<string name="add_quiet_zone">Add quiet zone</string>
+	<string name="add_quiet_zone">Aggiungi zona tranquilla</string>
 	<string name="input_content_here">Inserisci qui il contenuto</string>
 	<string name="unescape">Espandi sequenze escape</string>
 	<string name="encode">CODIFICA</string>
@@ -59,9 +59,9 @@
 	<string name="bulk_mode_delay">Ritardo tra scansioni continue</string>
 	<string name="restrict_format">Limita formato</string>
 	<string name="remove_restriction">Rimuovi limitazione</string>
-	<string name="find_code">Find code</string>
-	<string name="find_code_with_content">What content?</string>
-	<string name="find_code_hint">Enter a term</string>
+	<string name="find_code">Trova codice</string>
+	<string name="find_code_with_content">Quale contenuto?</string>
+	<string name="find_code_hint">Inserisci un termine</string>
 	<string name="scan_format">Scansiona %s</string>
 	<string name="quarter_second">Un quarto di secondo</string>
 	<string name="half_second">Mezzo secondo</string>
@@ -110,7 +110,7 @@
 	<string name="show_meta_data">Visualizza metadati</string>
 	<string name="show_meta_data_summary">Visualizza dati aggiuntivi codice a barre scansionato.</string>
 	<string name="show_hex_dump">Visualizza dump esadecimale</string>
-	<string name="show_hex_dump_summary">Visualizza un dump esadecimale dei contenuti scansionati.</string>
+	<string name="show_hex_dump_summary">Visualizza dump esadecimale contenuti scansionati.</string>
 	<string name="show_checksum">Visualizza checksum</string>
 	<string name="no_checksum">Nessuna checksum</string>
 	<string name="show_recreation">Visualizza codice a barre ricreato</string>
