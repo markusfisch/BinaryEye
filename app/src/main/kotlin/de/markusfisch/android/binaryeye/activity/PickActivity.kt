@@ -86,26 +86,28 @@ class PickActivity : AppCompatActivity() {
 			return
 		}
 
-		cropImageView = findViewById(R.id.image) as CropImageView
-		cropImageView.restrictTranslation = false
-		cropImageView.freeRotation = prefs.freeRotation
-		cropImageView.setImageBitmap(bitmap)
-		cropImageView.onScan = {
-			scanWithinBounds(bitmap)
-		}
-		cropImageView.runAfterLayout = {
-			cropImageView.minWidth = min(
-				cropImageView.minWidth / 2f,
-				max(bitmap.width, bitmap.height).toFloat()
-			)
+		cropImageView = (findViewById(R.id.image) as CropImageView).apply {
+			restrictTranslation = false
+			freeRotation = prefs.freeRotation
+			setImageBitmap(bitmap)
+			onScan = {
+				scanWithinBounds(bitmap)
+			}
+			runAfterLayout = {
+				minWidth = min(
+					minWidth / 2f,
+					max(bitmap.width, bitmap.height).toFloat()
+				)
+			}
 		}
 
-		detectorView = findViewById(R.id.detector_view) as DetectorView
-		detectorView.onRoiChanged = {
-			scanWithinBounds(bitmap)
+		detectorView = (findViewById(R.id.detector_view) as DetectorView).apply {
+			onRoiChanged = {
+				scanWithinBounds(bitmap)
+			}
+			setPaddingFromWindowInsets()
+			restoreCropHandlePos(PICKER_CROP_HANDLE)
 		}
-		detectorView.setPaddingFromWindowInsets()
-		detectorView.restoreCropHandlePos(PICKER_CROP_HANDLE)
 
 		findViewById(R.id.scan).setOnClickListener {
 			showResult()
