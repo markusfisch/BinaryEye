@@ -3,6 +3,7 @@ package de.markusfisch.android.binaryeye.activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -80,6 +81,15 @@ class MainActivity : AppCompatActivity() {
 			return when {
 				intent.hasExtra(PREFERENCES) -> PreferencesFragment()
 				intent.hasExtra(HISTORY) -> HistoryFragment()
+
+				intent.dataString?.startsWith("binaryeye://encode") == true -> {
+					val uri = Uri.parse(intent.dataString)
+					EncodeFragment.newInstance(
+						uri.getQueryParameter("content"),
+						uri.getQueryParameter("format")
+					)
+				}
+
 				intent.hasExtra(ENCODE) -> EncodeFragment.newInstance(
 					intent.getStringExtra(ENCODE)
 				)

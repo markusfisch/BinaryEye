@@ -110,7 +110,14 @@
 		</activity>
 		<activity
 			android:name=".activity.MainActivity"
-			android:exported="true"/>
+			android:exported="true">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<category android:name="android.intent.category.BROWSABLE"/>
+				<data android:scheme="binaryeye" android:host="encode"/>
+			</intent-filter>
+		</activity>
 		<service
 			android:name=".service.ScanTileService"
 			android:icon="@drawable/ic_action_scan"

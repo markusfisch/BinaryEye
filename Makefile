@@ -28,6 +28,11 @@ testscan:
 		-c android.intent.category.BROWSABLE \
 		-d 'binaryeye://scan/?ret=http%3A%2F%2Fmarkusfisch.de%2F%3Fresult%3D{RESULT}'
 
+testencode:
+	adb shell am start -a android.intent.action.VIEW \
+		-c android.intent.category.BROWSABLE \
+		-d 'binaryeye://encode?content=Test\&format=QRCode'
+
 testurl:
 	adb shell am start -a android.intent.action.VIEW \
 		-c android.intent.category.BROWSABLE \
