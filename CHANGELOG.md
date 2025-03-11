@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.65.0
+* Add a welcome screen to choose a mode
+* Add a deep link to encode a barcode
+* Remember zoom level of generated barcodes
+* Remove Human Readable Interpretation (HRI) decoration
+* Update Italian translation
+
 ## 1.64.2
 * Separate crop window settings for image scanning
 * Fix initializing dataMask
