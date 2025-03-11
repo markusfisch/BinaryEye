@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Matrix
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -14,6 +15,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
@@ -21,8 +23,8 @@ import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.hasWritePermission
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.content.Barcode
-import de.markusfisch.android.binaryeye.content.BitMatrixBarcode
 import de.markusfisch.android.binaryeye.content.BarcodeColors
+import de.markusfisch.android.binaryeye.content.BitMatrixBarcode
 import de.markusfisch.android.binaryeye.content.ContentBarcode
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.shareFile
@@ -60,6 +62,7 @@ class BarcodeFragment : Fragment() {
 	private val parentJob = Job()
 	private val scope = CoroutineScope(Dispatchers.IO + parentJob)
 
+	private lateinit var imageView: ConfinedScalingImageView
 	private lateinit var barcode: Barcode<*>
 	private lateinit var addToHistoryItem: MenuItem
 	private lateinit var brightenScreenItem: MenuItem
@@ -85,6 +88,9 @@ class BarcodeFragment : Fragment() {
 			false
 		)
 
+		// Make `imageView` available for `onPause()`.
+		imageView = view.findViewById(R.id.barcode)
+
 		val bitmap: Bitmap
 		try {
 			barcode = arguments?.toBarcode() ?: throw IllegalArgumentException(
@@ -104,12 +110,17 @@ class BarcodeFragment : Fragment() {
 			return null
 		}
 
-		val imageView = view.findViewById<ConfinedScalingImageView>(
-			R.id.barcode
-		)
 		imageView.setImageBitmap(bitmap)
-		imageView.post {
-			// Make sure to invoke this after ScalingImageView.onLayout().
+		imageView.runAfterLayout = {
+			val scale = prefs.previewScale
+			if (scale > 0) {
+				imageView.setScale(
+					scale,
+					bitmap.width / 2f,
+					bitmap.height / 2f
+				)
+			}
+
 			imageView.minWidth = min(
 				imageView.minWidth / 2f,
 				max(bitmap.width, bitmap.height).toFloat()
@@ -125,8 +136,8 @@ class BarcodeFragment : Fragment() {
 		}
 
 		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
-		imageView.doOnApplyWindowInsets { v, insets ->
-			(v as ConfinedScalingImageView).insets.set(insets)
+		imageView.doOnApplyWindowInsets { _, insets ->
+			imageView.insets.set(insets)
 		}
 
 		return view
@@ -180,6 +191,9 @@ class BarcodeFragment : Fragment() {
 		super.onPause()
 		if (currentBrightness > -1f) {
 			restoreScreenBrightness()
+		}
+		if (imageView.isInBounds()) {
+			prefs.previewScale = imageView.getScale()
 		}
 	}
 
@@ -524,6 +538,20 @@ class BarcodeFragment : Fragment() {
 			putInt(MARGIN, margin)
 		}
 	}
+}
+
+private fun ImageView.setScale(scale: Float, x: Float, y: Float) {
+	imageMatrix = Matrix().apply {
+		setTranslate(-x, -y)
+		postScale(scale, scale)
+		postTranslate(x, y)
+	}
+}
+
+private fun ImageView.getScale(): Float {
+	val values = FloatArray(9)
+	imageMatrix.getValues(values)
+	return values[Matrix.MSCALE_X]
 }
 
 private fun Bitmap.saveAsPng(outputStream: OutputStream, quality: Int = 90) =

@@ -196,6 +196,11 @@ class Preferences {
 			apply(BRIGHTEN_SCREEN, value)
 			field = value
 		}
+	var previewScale = 0f
+		set(value) {
+			apply(PREVIEW_SCALE, value)
+			field = value
+		}
 
 	fun init(context: Context) {
 		preferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -308,6 +313,10 @@ class Preferences {
 			BRIGHTEN_SCREEN,
 			brightenScreen
 		)
+		previewScale = preferences.getFloat(
+			PREVIEW_SCALE,
+			previewScale
+		)
 	}
 
 	private fun addFormatsOnUpdate(
@@ -379,6 +388,10 @@ class Preferences {
 		preferences.edit().putInt(label, value).apply()
 	}
 
+	private fun apply(label: String, value: Float) {
+		preferences.edit().putFloat(label, value).apply()
+	}
+
 	@SuppressLint("ApplySharedPref")
 	private fun commit(label: String, value: String) {
 		preferences.edit().putString(label, value).commit()
@@ -426,5 +439,6 @@ class Preferences {
 		private const val FREE_ROTATION = "free_rotation"
 		private const val EXPAND_ESCAPE_SEQUENCES = "expand_escape_sequences"
 		private const val BRIGHTEN_SCREEN = "brighten_screen"
+		private const val PREVIEW_SCALE = "preview_scale"
 	}
 }

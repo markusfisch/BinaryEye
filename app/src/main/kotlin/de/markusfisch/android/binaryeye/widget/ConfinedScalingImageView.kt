@@ -10,6 +10,8 @@ import de.markusfisch.android.scalingimageview.widget.ScalingImageView
 open class ConfinedScalingImageView : ScalingImageView {
 	val insets = Rect()
 
+	var runAfterLayout: (() -> Unit)? = null
+
 	constructor(context: Context, attrs: AttributeSet, defStyle: Int) :
 			super(context, attrs, defStyle)
 
@@ -37,5 +39,8 @@ open class ConfinedScalingImageView : ScalingImageView {
 			)
 		}
 		centerRemap()
+		runAfterLayout?.invoke()
 	}
+
+	fun isInBounds(): Boolean = inBounds()
 }
