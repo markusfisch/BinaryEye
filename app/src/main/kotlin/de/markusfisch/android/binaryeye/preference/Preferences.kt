@@ -197,6 +197,11 @@ class Preferences {
 			apply(EXPAND_ESCAPE_SEQUENCES, value)
 			field = value
 		}
+	var addQuietZone = true
+		set(value) {
+			apply(ADD_QUIET_ZONE, value)
+			field = value
+		}
 	var brightenScreen = false
 		set(value) {
 			apply(BRIGHTEN_SCREEN, value)
@@ -319,6 +324,7 @@ class Preferences {
 			EXPAND_ESCAPE_SEQUENCES,
 			expandEscapeSequences
 		)
+		addQuietZone = preferences.getBoolean(ADD_QUIET_ZONE, addQuietZone)
 		brightenScreen = preferences.getBoolean(
 			BRIGHTEN_SCREEN,
 			brightenScreen
@@ -448,6 +454,7 @@ class Preferences {
 		private const val INDEX_OF_LAST_SELECTED_EC_LEVEL = "index_of_last_selected_ec_level"
 		private const val FREE_ROTATION = "free_rotation"
 		private const val EXPAND_ESCAPE_SEQUENCES = "expand_escape_sequences"
+		private const val ADD_QUIET_ZONE = "add_quiet_zone"
 		private const val BRIGHTEN_SCREEN = "brighten_screen"
 		private const val PREVIEW_SCALE = "preview_scale"
 	}

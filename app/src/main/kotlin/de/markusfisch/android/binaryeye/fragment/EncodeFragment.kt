@@ -173,6 +173,7 @@ class EncodeFragment : Fragment() {
 		colorsLabel = view.findViewById(R.id.colors_label)
 		colorsSpinner = view.findViewById(R.id.colors)
 		addQuietZoneSwitch = view.findViewById(R.id.add_quiet_zone)
+		addQuietZoneSwitch.isChecked = prefs.addQuietZone
 
 		contentView = view.findViewById(R.id.content)
 		unescapeCheckBox = view.findViewById(R.id.unescape)
@@ -235,6 +236,7 @@ class EncodeFragment : Fragment() {
 		super.onPause()
 		prefs.indexOfLastSelectedFormat = formatView.selectedItemPosition
 		prefs.expandEscapeSequences = unescapeCheckBox.isChecked
+		prefs.addQuietZone = addQuietZoneSwitch.isChecked
 	}
 
 	private fun Context.encode() {
