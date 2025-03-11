@@ -4,7 +4,6 @@ import android.content.SharedPreferences
 import org.json.JSONObject
 
 data class CropHandle(
-	val active: Boolean = true,
 	val x: Int = -2, // -2 means set default roi.
 	val y: Int = -2,
 	val orientation: Int = 0
@@ -17,7 +16,6 @@ fun SharedPreferences.storeCropHandle(
 	edit().putString(
 		name,
 		JSONObject().apply {
-			put("active", cropHandle.active)
 			put("x", cropHandle.x)
 			put("y", cropHandle.y)
 			put("orientation", cropHandle.orientation)
@@ -33,7 +31,6 @@ fun SharedPreferences.restoreCropHandle(
 	return try {
 		val json = JSONObject(s)
 		CropHandle(
-			json.getBoolean("active"),
 			json.getInt("x"),
 			json.getInt("y"),
 			json.getInt("orientation")

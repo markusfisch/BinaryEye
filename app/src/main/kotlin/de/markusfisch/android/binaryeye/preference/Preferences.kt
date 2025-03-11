@@ -39,6 +39,11 @@ class Preferences {
 			apply(BARCODE_FORMATS, value)
 			field = value
 		}
+	var showCropHandle = true
+		set(value) {
+			apply(SHOW_CROP_HANDLE, value)
+			field = value
+		}
 	var zoomBySwiping = true
 		set(value) {
 			apply(ZOOM_BY_SWIPING, value)
@@ -220,6 +225,10 @@ class Preferences {
 
 		migrateCropHandle()
 
+		showCropHandle = preferences.getBoolean(
+			SHOW_CROP_HANDLE,
+			showCropHandle
+		)
 		zoomBySwiping = preferences.getBoolean(ZOOM_BY_SWIPING, zoomBySwiping)
 		autoRotate = preferences.getBoolean(AUTO_ROTATE, autoRotate)
 		tryHarder = preferences.getBoolean(TRY_HARDER, tryHarder)
@@ -333,21 +342,20 @@ class Preferences {
 	}
 
 	private fun migrateCropHandle() {
-		val showCropHandleName = "show_crop_handle"
-		if (!preferences.getBoolean(showCropHandleName, false)) {
+		val cropHandleXName = "crop_handle_x"
+		val def = CropHandle()
+		if (preferences.getInt(cropHandleXName, def.x) == def.x) {
 			return;
 		}
-		val def = CropHandle()
 		storeCropHandle(
 			CameraActivity.CAMERA_CROP_HANDLE,
 			CropHandle(
-				true,
-				preferences.getInt("crop_handle_x", def.x),
+				preferences.getInt(cropHandleXName, def.x),
 				preferences.getInt("crop_handle_y", def.y),
 				preferences.getInt("crop_handle_orientation", def.orientation)
 			)
 		)
-		preferences.edit().putBoolean(showCropHandleName, false).apply()
+		preferences.edit().putInt(cropHandleXName, def.x).apply()
 	}
 
 	fun restoreCropHandle(
@@ -408,6 +416,7 @@ class Preferences {
 		}
 
 		private const val BARCODE_FORMATS = "formats"
+		private const val SHOW_CROP_HANDLE = "show_crop_handle"
 		private const val ZOOM_BY_SWIPING = "zoom_by_swiping"
 		private const val AUTO_ROTATE = "auto_rotate"
 		private const val TRY_HARDER = "try_harder"

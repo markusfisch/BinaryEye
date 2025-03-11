@@ -59,7 +59,6 @@ class DetectorView : View {
 	private val padding: Int
 
 	private var coordinatesLast = 0
-	private var showCropHandle = true
 	private var handleGrabbed = false
 	private var handleActive = false
 	private var minY = 0
@@ -90,7 +89,6 @@ class DetectorView : View {
 		prefs.storeCropHandle(
 			name,
 			CropHandle(
-				showCropHandle,
 				pos.x,
 				pos.y,
 				currentOrientation
@@ -106,7 +104,6 @@ class DetectorView : View {
 
 	fun restoreCropHandlePos(name: String) {
 		val cropHandle = prefs.restoreCropHandle(name)
-		showCropHandle = cropHandle.active
 		setCropHandlePos(
 			cropHandle.x,
 			cropHandle.y,
@@ -165,7 +162,7 @@ class DetectorView : View {
 		val y = event.y.roundToInt()
 		return when (event.actionMasked) {
 			MotionEvent.ACTION_DOWN -> {
-				if (showCropHandle) {
+				if (prefs.showCropHandle) {
 					touchDown.set(x, y)
 					handleGrabbed = abs(x - handlePos.x) < handleXRadius &&
 							abs(y - handlePos.y) < handleYRadius
@@ -283,7 +280,7 @@ class DetectorView : View {
 			canvas.drawClip()
 		}
 		canvas.drawDots()
-		if (showCropHandle) {
+		if (prefs.showCropHandle) {
 			canvas.drawHandle()
 		}
 	}
