@@ -21,7 +21,7 @@ class Database {
 			$SCANS_ID,
 			$SCANS_DATETIME,
 			$SCANS_NAME,
-			$SCANS_CONTENT,
+			$SCANS_TEXT,
 			$SCANS_FORMAT
 			FROM $SCANS
 			${getWhereClause(query)}
@@ -34,7 +34,7 @@ class Database {
 			$SCANS_ID,
 			$SCANS_DATETIME,
 			$SCANS_NAME,
-			$SCANS_CONTENT,
+			$SCANS_TEXT,
 			$SCANS_RAW,
 			$SCANS_FORMAT,
 			$SCANS_ERROR_CORRECTION_LEVEL,
@@ -56,7 +56,7 @@ class Database {
 		query: String?,
 		prefix: String = "WHERE"
 	) = if (query?.isNotEmpty() == true) {
-		"""$prefix $SCANS_CONTENT LIKE ?
+		"""$prefix $SCANS_TEXT LIKE ?
 			OR $SCANS_NAME LIKE ?"""
 	} else {
 		""
@@ -76,7 +76,7 @@ class Database {
 			$SCANS_ID,
 			$SCANS_DATETIME,
 			$SCANS_NAME,
-			$SCANS_CONTENT,
+			$SCANS_TEXT,
 			$SCANS_RAW,
 			$SCANS_FORMAT,
 			$SCANS_ERROR_CORRECTION_LEVEL,
@@ -99,7 +99,7 @@ class Database {
 			$SCANS_ID,
 			$SCANS_DATETIME,
 			$SCANS_NAME,
-			$SCANS_CONTENT,
+			$SCANS_TEXT,
 			$SCANS_RAW,
 			$SCANS_FORMAT,
 			$SCANS_ERROR_CORRECTION_LEVEL,
@@ -121,7 +121,7 @@ class Database {
 	).use {
 		if (it.moveToFirst()) {
 			Scan(
-				it.getString(SCANS_CONTENT),
+				it.getString(SCANS_TEXT),
 				it.getBlob(SCANS_RAW),
 				BarcodeFormat.valueOf(it.getString(SCANS_FORMAT)),
 				it.getString(SCANS_ERROR_CORRECTION_LEVEL),
@@ -175,7 +175,7 @@ class Database {
 			null,
 			ContentValues().apply {
 				put(SCANS_DATETIME, scan.dateTime)
-				put(SCANS_CONTENT, scan.text)
+				put(SCANS_TEXT, scan.text)
 				if (scan.raw != null) {
 					put(SCANS_RAW, scan.raw)
 				}
@@ -208,7 +208,7 @@ class Database {
 	): Long = db.rawQuery(
 		"""SELECT
 				$SCANS_ID,
-				$SCANS_CONTENT,
+				$SCANS_TEXT,
 				$SCANS_RAW,
 				$SCANS_FORMAT
 				FROM $SCANS
@@ -218,7 +218,7 @@ class Database {
 	).use {
 		if (it.count > 0 &&
 			it.moveToFirst() &&
-			it.getString(SCANS_CONTENT) == content &&
+			it.getString(SCANS_TEXT) == content &&
 			(raw == null || it.getBlob(SCANS_RAW)
 				?.contentEquals(raw) == true) &&
 			it.getString(SCANS_FORMAT) == format.name
@@ -236,7 +236,7 @@ class Database {
 		"""SELECT
 				$SCANS_ID
 				FROM $SCANS
-				WHERE $SCANS_CONTENT = ?
+				WHERE $SCANS_TEXT = ?
 					AND $SCANS_FORMAT = ?
 				LIMIT 1
 			""".trimMargin(), arrayOf(content, format.name)
@@ -303,7 +303,7 @@ class Database {
 		const val SCANS_ID = "_id"
 		const val SCANS_DATETIME = "_datetime"
 		const val SCANS_NAME = "name"
-		const val SCANS_CONTENT = "content"
+		const val SCANS_TEXT = "content"
 		const val SCANS_RAW = "raw"
 		const val SCANS_FORMAT = "format"
 		const val SCANS_ERROR_CORRECTION_LEVEL = "error_correction_level"
@@ -335,7 +335,7 @@ class Database {
 					$SCANS_ID INTEGER PRIMARY KEY AUTOINCREMENT,
 					$SCANS_DATETIME DATETIME NOT NULL,
 					$SCANS_NAME TEXT,
-					$SCANS_CONTENT TEXT NOT NULL,
+					$SCANS_TEXT TEXT NOT NULL,
 					$SCANS_RAW BLOB,
 					$SCANS_FORMAT TEXT NOT NULL,
 					$SCANS_ERROR_CORRECTION_LEVEL TEXT,

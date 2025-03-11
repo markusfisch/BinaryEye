@@ -33,7 +33,7 @@ private fun exportCsv(
 		Database.SCANS_DATETIME,
 		Database.SCANS_FORMAT,
 		Database.SCANS_NAME,
-		Database.SCANS_CONTENT,
+		Database.SCANS_TEXT,
 		Database.SCANS_ERROR_CORRECTION_LEVEL,
 		Database.SCANS_VERSION,
 		Database.SCANS_SEQUENCE_SIZE,
@@ -47,7 +47,7 @@ private fun exportCsv(
 	val indices = columns.map {
 		cursor.getColumnIndex(it)
 	}
-	val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
+	val contentIndex = cursor.getColumnIndex(Database.SCANS_TEXT)
 	val rawIndex = cursor.getColumnIndex(Database.SCANS_RAW)
 	outputStream.write(
 		columns.joinToString(

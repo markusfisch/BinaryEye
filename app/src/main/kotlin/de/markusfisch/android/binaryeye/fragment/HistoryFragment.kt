@@ -506,7 +506,7 @@ class HistoryFragment : Fragment() {
 
 private fun Cursor.exportText(separator: String): String {
 	val sb = StringBuilder()
-	val contentIndex = getColumnIndex(Database.SCANS_CONTENT)
+	val contentIndex = getColumnIndex(Database.SCANS_TEXT)
 	if (contentIndex > -1 && moveToFirst()) {
 		do {
 			val content = getString(contentIndex)

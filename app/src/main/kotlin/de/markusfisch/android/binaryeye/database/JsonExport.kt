@@ -25,7 +25,7 @@ fun Cursor.exportJson(): String? {
 		Database.SCANS_DATETIME,
 		Database.SCANS_FORMAT,
 		Database.SCANS_NAME,
-		Database.SCANS_CONTENT,
+		Database.SCANS_TEXT,
 		Database.SCANS_ERROR_CORRECTION_LEVEL,
 		Database.SCANS_VERSION,
 		Database.SCANS_SEQUENCE_SIZE,
@@ -39,7 +39,7 @@ fun Cursor.exportJson(): String? {
 	val indices = columns.map {
 		Pair(getColumnIndex(it), it)
 	}
-	val contentIndex = getColumnIndex(Database.SCANS_CONTENT)
+	val contentIndex = getColumnIndex(Database.SCANS_TEXT)
 	val rawIndex = getColumnIndex(Database.SCANS_RAW)
 	val root = JSONArray()
 	do {

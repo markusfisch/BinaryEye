@@ -20,7 +20,7 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 	private val idIndex = cursor.getColumnIndex(Database.SCANS_ID)
 	private val timeIndex = cursor.getColumnIndex(Database.SCANS_DATETIME)
 	private val nameIndex = cursor.getColumnIndex(Database.SCANS_NAME)
-	private val contentIndex = cursor.getColumnIndex(Database.SCANS_CONTENT)
+	private val textIndex = cursor.getColumnIndex(Database.SCANS_TEXT)
 	private val formatIndex = cursor.getColumnIndex(Database.SCANS_FORMAT)
 	private val selections = mutableMapOf<Long, Int>()
 	private val selectedColor = ContextCompat.getColor(
@@ -74,7 +74,7 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 
 	fun getContent(
 		position: Int
-	) = (getItem(position) as Cursor?)?.getString(contentIndex)
+	) = (getItem(position) as Cursor?)?.getString(textIndex)
 
 	override fun newView(
 		context: Context,
@@ -92,7 +92,7 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 		getViewHolder(view).apply {
 			timeView.text = formatDateTime(cursor.getString(timeIndex))
 			val name = cursor.getString(nameIndex)
-			val content = cursor.getString(contentIndex)
+			val text = cursor.getString(textIndex)
 			var icon = 0
 			contentView.text = when {
 				name?.isNotEmpty() == true -> {
@@ -100,11 +100,11 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 					name
 				}
 
-				content.isNullOrEmpty() -> context.getString(
+				text.isNullOrEmpty() -> context.getString(
 					R.string.binary_data
 				)
 
-				else -> content
+				else -> text
 			}
 			contentView.setCompoundDrawablesWithIntrinsicBounds(
 				icon, 0, 0, 0
