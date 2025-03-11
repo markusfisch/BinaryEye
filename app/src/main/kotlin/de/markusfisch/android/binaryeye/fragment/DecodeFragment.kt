@@ -101,8 +101,8 @@ class DecodeFragment : Fragment() {
 			false
 		)
 
-		closeAutomatically = prefs.closeAutomatically &&
-				activity?.intent?.hasExtra(MainActivity.DECODED) == true
+		val justScanned = activity?.intent?.hasExtra(MainActivity.DECODED) == true
+		closeAutomatically = prefs.closeAutomatically && justScanned
 
 		scan = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
 			arguments?.getParcelable(SCAN, Scan::class.java)
@@ -126,7 +126,7 @@ class DecodeFragment : Fragment() {
 		labelView = view.findViewById(R.id.label)
 		fab = view.findViewById(R.id.open)
 
-		initContentAndFab()
+		initContentAndFab(justScanned)
 
 		if (prefs.showMetaData) {
 			metaView.fillMetaView(scan)
@@ -168,7 +168,7 @@ class DecodeFragment : Fragment() {
 		wipeLastShareFile()
 	}
 
-	private fun initContentAndFab() {
+	private fun initContentAndFab(justScanned: Boolean) {
 		if (isBinary) {
 			contentView.setText(String(originalBytes).foldNonAlNum())
 			contentView.isEnabled = false
@@ -200,7 +200,7 @@ class DecodeFragment : Fragment() {
 			fab.setOnClickListener {
 				executeAction(this.content)
 			}
-			if (prefs.openImmediately) {
+			if (justScanned && prefs.openImmediately) {
 				executeAction(this.content)
 				backOrFinish()
 			}
