@@ -140,7 +140,7 @@ fun Result.toScan(): Scan {
 			ContentType.ISO15434,
 			ContentType.TEXT -> text
 
-			else -> ""
+			else -> "" // Show as binary.
 		},
 		rawBytes,
 		format,
