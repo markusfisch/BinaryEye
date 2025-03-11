@@ -94,6 +94,12 @@ class PickActivity : AppCompatActivity() {
 		cropImageView.onScan = {
 			scanWithinBounds(bitmap)
 		}
+		cropImageView.runAfterLayout = {
+			cropImageView.minWidth = min(
+				cropImageView.minWidth / 2f,
+				max(bitmap.width, bitmap.height).toFloat()
+			)
+		}
 
 		detectorView = findViewById(R.id.detector_view) as DetectorView
 		detectorView.onRoiChanged = {
