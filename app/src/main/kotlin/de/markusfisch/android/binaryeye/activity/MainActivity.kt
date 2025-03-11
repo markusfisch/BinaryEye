@@ -86,7 +86,8 @@ class MainActivity : AppCompatActivity() {
 					val uri = Uri.parse(intent.dataString)
 					EncodeFragment.newInstance(
 						uri.getQueryParameter("content"),
-						uri.getQueryParameter("format")
+						uri.getQueryParameter("format"),
+						!uri.getQueryParameter("execute").isNullOrEmpty()
 					)
 				}
 

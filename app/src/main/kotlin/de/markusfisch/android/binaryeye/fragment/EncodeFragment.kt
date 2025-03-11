@@ -22,6 +22,7 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
 import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.app.setFragment
 import de.markusfisch.android.binaryeye.text.unescape
 import de.markusfisch.android.binaryeye.view.hideSoftKeyboard
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
@@ -54,7 +55,6 @@ class EncodeFragment : Fragment() {
 		BarcodeFormat.UPC_A
 	)
 
-	private var minMargin = 0
 	private var bytes: ByteArray? = null
 
 	override fun onActivityResult(
@@ -179,12 +179,15 @@ class EncodeFragment : Fragment() {
 		unescapeCheckBox = view.findViewById(R.id.unescape)
 		unescapeCheckBox.isChecked = prefs.expandEscapeSequences
 
+		var complete = false
 		val args = arguments
 		args?.getString(CONTENT_TEXT)?.let {
 			contentView.setText(it)
+			complete = it.isNotEmpty()
 		}
 		args?.getByteArray(CONTENT_RAW)?.let {
 			bytes = it
+			complete = it.isNotEmpty()
 			setEncodeByteArray()
 		}
 
@@ -205,6 +208,15 @@ class EncodeFragment : Fragment() {
 
 		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
 		view.findViewById<View>(R.id.scroll_view).setPaddingFromWindowInsets()
+
+		if (complete &&
+			args?.getBoolean(EXECUTE, false) == true
+		) {
+			view.post {
+				val content = view.context.getContent() ?: return@post
+				fragmentManager?.setFragment(newEncodeFragment(content))
+			}
+		}
 
 		return view
 	}
@@ -242,26 +254,30 @@ class EncodeFragment : Fragment() {
 	private fun Context.encode() {
 		hideSoftKeyboard(contentView)
 		val content = getContent() ?: return
-		val format = formats[formatView.selectedItemPosition]
-		fragmentManager?.addFragment(
-			BarcodeFragment.newInstance(
-				content,
-				format,
-				format.getErrorCorrectionLevel(ecSpinner.selectedItemPosition),
-				when (format) {
-					BarcodeFormat.AZTEC,
-					BarcodeFormat.DATA_MATRIX,
-					BarcodeFormat.QR_CODE,
-					BarcodeFormat.PDF_417 -> if (
-						addQuietZoneSwitch.isChecked
-					) 1 else 0
+		contentView.post {
+			fragmentManager?.addFragment(newEncodeFragment(content))
+		}
+	}
 
-					else -> -1
-				},
-				if (format.canBeInverted()) {
-					colorsSpinner.selectedItemPosition
-				} else 0
-			)
+	private fun newEncodeFragment(content: Any): Fragment {
+		val format = formats[formatView.selectedItemPosition]
+		return BarcodeFragment.newInstance(
+			content,
+			format,
+			format.getErrorCorrectionLevel(ecSpinner.selectedItemPosition),
+			when (format) {
+				BarcodeFormat.AZTEC,
+				BarcodeFormat.DATA_MATRIX,
+				BarcodeFormat.QR_CODE,
+				BarcodeFormat.PDF_417 -> if (
+					addQuietZoneSwitch.isChecked
+				) 1 else 0
+
+				else -> -1
+			},
+			if (format.canBeInverted()) {
+				colorsSpinner.selectedItemPosition
+			} else 0
 		)
 	}
 
@@ -304,11 +320,13 @@ class EncodeFragment : Fragment() {
 		private const val CONTENT_TEXT = "content_text"
 		private const val CONTENT_RAW = "content_raw"
 		private const val FORMAT = "format"
+		private const val EXECUTE = "execute"
 		private const val PICK_FILE_RESULT_CODE = 1
 
 		fun <T> newInstance(
 			content: T? = null,
-			format: String? = null
+			format: String? = null,
+			execute: Boolean = false
 		): Fragment {
 			val args = Bundle()
 			content?.let {
@@ -319,6 +337,7 @@ class EncodeFragment : Fragment() {
 						"content must be a String or a ByteArray"
 					)
 				}
+				args.putBoolean(EXECUTE, execute)
 			}
 			format?.let { args.putString(FORMAT, it) }
 			val fragment = EncodeFragment()

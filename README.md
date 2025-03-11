@@ -115,6 +115,8 @@ preset this data. For example:
 
 [binaryeye://encode?content=Test&format=QRCODE](binaryeye://encode?content=Test&format=QRCODE)
 
+If you want the code to be generated immediately, add `execute=true`.
+
 ### SCAN Intent
 
 You can also use Binary Eye from other apps by using the

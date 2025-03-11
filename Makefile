@@ -33,6 +33,11 @@ testencode:
 		-c android.intent.category.BROWSABLE \
 		-d 'binaryeye://encode?content=Test\&format=QRCode'
 
+testencodeexec:
+	adb shell am start -a android.intent.action.VIEW \
+		-c android.intent.category.BROWSABLE \
+		-d 'binaryeye://encode?content=Test\&format=QRCode\&execute=true'
+
 testurl:
 	adb shell am start -a android.intent.action.VIEW \
 		-c android.intent.category.BROWSABLE \
