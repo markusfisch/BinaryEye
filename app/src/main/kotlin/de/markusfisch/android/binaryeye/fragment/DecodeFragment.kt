@@ -45,6 +45,7 @@ import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.io.askForFileName
 import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.io.writeExternalFile
+import de.markusfisch.android.binaryeye.view.hideSoftKeyboard
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.zxingcpp.ZxingCpp
@@ -271,9 +272,12 @@ class DecodeFragment : Fragment() {
 			try {
 				v.setImageBitmap(barcode.bitmap(recreationSize))
 				v.setOnClickListener {
-					fragmentManager?.addFragment(
-						BarcodeFragment.newInstance(barcode)
-					)
+					v.context.hideSoftKeyboard(contentView)
+					v.post {
+						fragmentManager?.addFragment(
+							BarcodeFragment.newInstance(barcode)
+						)
+					}
 				}
 			} catch (e: RuntimeException) {
 				clearRecreation()
