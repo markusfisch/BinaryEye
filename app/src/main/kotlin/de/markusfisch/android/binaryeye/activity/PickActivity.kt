@@ -20,7 +20,6 @@ import de.markusfisch.android.binaryeye.graphics.fixTransparency
 import de.markusfisch.android.binaryeye.graphics.loadImageUri
 import de.markusfisch.android.binaryeye.graphics.mapPosition
 import de.markusfisch.android.binaryeye.media.releaseToneGenerators
-import de.markusfisch.android.binaryeye.preference.Preferences
 import de.markusfisch.android.binaryeye.view.colorSystemAndToolBars
 import de.markusfisch.android.binaryeye.view.initBars
 import de.markusfisch.android.binaryeye.view.scanFeedback
