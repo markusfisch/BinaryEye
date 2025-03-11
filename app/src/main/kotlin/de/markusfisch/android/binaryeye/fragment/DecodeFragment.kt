@@ -80,7 +80,6 @@ class DecodeFragment : Fragment() {
 	private var action = ActionRegistry.DEFAULT_ACTION
 	private var isBinary = false
 	private var originalBytes: ByteArray = ByteArray(0)
-	private var id = 0L
 	private var label: String? = null
 	private var recreationSize = 0
 
@@ -115,7 +114,6 @@ class DecodeFragment : Fragment() {
 		isBinary = scan.text.isEmpty()
 		originalBytes = scan.raw ?: scan.text.toByteArray()
 		format = scan.format.name
-		id = scan.id
 		recreationSize = (200f * dp).roundToInt()
 
 		contentView = view.findViewById(R.id.content)
@@ -154,6 +152,7 @@ class DecodeFragment : Fragment() {
 
 	override fun onPause() {
 		super.onPause()
+		val id = scan.id
 		if (id > 0) {
 			val newLabel = labelView.text.toString().trim()
 			if (newLabel != (label ?: "")) {
@@ -440,7 +439,7 @@ class DecodeFragment : Fragment() {
 			}
 
 			R.id.remove -> {
-				db.removeScan(id)
+				db.removeScan(scan.id)
 				backOrFinish()
 				true
 			}
