@@ -54,6 +54,7 @@ import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import de.markusfisch.android.zxingcpp.ZxingCpp.Binarizer
 import de.markusfisch.android.zxingcpp.ZxingCpp.ReaderOptions
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
+import de.markusfisch.android.zxingcpp.ZxingCpp.TextMode
 import java.io.FileInputStream
 import java.util.Scanner
 import kotlin.math.max
@@ -522,7 +523,8 @@ class CameraActivity : AppCompatActivity() {
 					tryInvert = true,
 					tryDownscale = true,
 					returnCodabarStartEnd = true,
-					maxNumberOfSymbols = 1
+					maxNumberOfSymbols = 1,
+					textMode = TextMode.PLAIN
 				)
 				var useLocalAverage = false
 				camera.setPreviewCallback { frameData, _ ->
