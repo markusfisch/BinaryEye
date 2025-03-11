@@ -21,6 +21,8 @@ class WelcomeActivity : AppCompatActivity() {
 				openImmediately = true
 				showMetaData = false
 				showHexDump = false
+				defaultSearchUrl = "https://www.google.com/search?q="
+				openWithUrl = defaultSearchUrl
 				expandEscapeSequences = false
 				brightenScreen = true
 			}
