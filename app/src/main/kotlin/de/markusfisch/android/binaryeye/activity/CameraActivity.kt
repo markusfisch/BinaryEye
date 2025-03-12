@@ -181,13 +181,11 @@ class CameraActivity : AppCompatActivity() {
 	private fun Context.firstStart(): Boolean {
 		val welcomeShownName = "welcome_shown"
 		if (prefs.preferences.getBoolean(welcomeShownName, false)) {
-			android.util.Log.d("mfdbg", "mfdbg: already welcome shown")
 			return false
 		}
 		prefs.preferences.edit().putBoolean(welcomeShownName, true).apply()
 		val packageInfo = packageManager.getPackageInfo(packageName, 0)
 		val installedSince = System.currentTimeMillis() - packageInfo.firstInstallTime
-		android.util.Log.d("mfdbg", "mfdbg: installed since is $installedSince")
 		return installedSince < 86400000
 	}
 
