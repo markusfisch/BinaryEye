@@ -375,11 +375,12 @@ class DecodeFragment : Fragment() {
 					val tr = TableRow(ctx)
 					val keyView = TextView(ctx)
 					keyView.setText(item.key)
-					val valueView = TextView(ctx)
-					valueView.setPadding(spaceBetween, 0, 0, 0)
-					valueView.text = text
-					valueView.setOnClickListener {
-						copyToClipboard(text.toString())
+					val valueView = TextView(ctx).apply {
+						setPadding(spaceBetween, 0, 0, 0)
+						this.text = text
+						setOnClickListener {
+							copyToClipboard(text.toString())
+						}
 					}
 					tr.addView(keyView)
 					tr.addView(valueView)
