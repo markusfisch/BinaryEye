@@ -378,6 +378,9 @@ class DecodeFragment : Fragment() {
 					val valueView = TextView(ctx)
 					valueView.setPadding(spaceBetween, 0, 0, 0)
 					valueView.text = text
+					valueView.setOnClickListener {
+						copyToClipboard(text.toString())
+					}
 					tr.addView(keyView)
 					tr.addView(valueView)
 					addView(tr)
