@@ -647,7 +647,16 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun updateFrameRoiAndMappingMatrix() {
 		val viewRect = cameraView.previewRect
-		val viewRoi = if (detectorView.roi.width() < 1) {
+		if (viewRect.width() < 1 ||
+			viewRect.height() < 1 ||
+			!frameMetrics.isValid()
+		) {
+			return
+		}
+		val viewRoi = if (
+			detectorView.roi.width() < 1 ||
+			detectorView.roi.height() < 1
+		) {
 			viewRect
 		} else {
 			detectorView.roi
