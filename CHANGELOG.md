@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.65.2
+* Sanity check ROI metrics
+
 ## 1.65.1
 * Improve simple mode
 * Remember quiet zone settings
