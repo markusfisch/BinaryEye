@@ -1,4 +1,3 @@
-* Separate crop window settings for image scanning
-* Fix initializing dataMask
-* Update Russian translation
+* Handle empty input for recreation
+* Fix setting up database
 
