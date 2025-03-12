@@ -1,5 +1,6 @@
 package de.markusfisch.android.binaryeye.fragment
 
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -24,9 +25,12 @@ import android.widget.TableRow
 import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
+import de.markusfisch.android.binaryeye.actions.mail.MatMsg
+import de.markusfisch.android.binaryeye.actions.mail.MatMsgAction
 import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
 import de.markusfisch.android.binaryeye.actions.vtype.vcard.VCardAction
 import de.markusfisch.android.binaryeye.actions.vtype.vevent.VEventAction
+import de.markusfisch.android.binaryeye.actions.web.WebAction
 import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
 import de.markusfisch.android.binaryeye.actions.wifi.WifiConnector
 import de.markusfisch.android.binaryeye.activity.MainActivity
@@ -307,6 +311,41 @@ class DecodeFragment : Fragment() {
 			else -> Unit
 		}
 		when (action) {
+			is MatMsgAction -> items.putAll(
+				MatMsg(text).run {
+					mapOf(
+						R.string.email_to to to,
+						R.string.email_subject to sub,
+						R.string.email_body to body
+					)
+				}
+			)
+
+			is VCardAction,
+			is VEventAction -> VTypeParser.parseMap(text).let { vData ->
+				items.putAll(
+					vData.map { item ->
+						item.key to item.value.joinToString("\n") {
+							it.value
+						}
+					}.toMap()
+				)
+			}
+
+			is WebAction -> try {
+				items.putAll(
+					Uri.parse(text).run {
+						mapOf(
+							R.string.scheme to scheme,
+							R.string.host to host,
+							R.string.query to query
+						)
+					}
+				)
+			} catch (e: Exception) {
+				// Ignore
+			}
+
 			is WifiAction -> WifiConnector.parseMap(text)?.let { wifiData ->
 				items.putAll(
 					linkedMapOf(
@@ -320,17 +359,6 @@ class DecodeFragment : Fragment() {
 						R.string.wifi_anonymous_identity to wifiData["A"],
 						R.string.wifi_phase2 to wifiData["PH2"]
 					)
-				)
-			}
-
-			is VCardAction,
-			is VEventAction -> VTypeParser.parseMap(text).let { vData ->
-				items.putAll(
-					vData.map { item ->
-						item.key to item.value.joinToString("\n") {
-							it.value
-						}
-					}.toMap()
 				)
 			}
 		}

@@ -215,4 +215,10 @@
 	<string name="wifi_phase2">Phase 2 метод</string>
 	<string name="network_suggestions">Мережеві пропозиції</string>
 	<string name="remove_suggestion">Видалити пропозицію</string>
+	<string name="email_to">Одержувач</string>
+	<string name="email_subject">Тема</string>
+	<string name="email_body">Тіло листа</string>
+	<string name="scheme">Scheme</string>
+	<string name="host">Host</string>
+	<string name="query">Query</string>
 </resources>

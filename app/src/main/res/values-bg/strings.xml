@@ -214,4 +214,10 @@
 	<string name="wifi_phase2">Фаза 2 метод</string>
 	<string name="network_suggestions">Предложения за интернет мрежа</string>
 	<string name="remove_suggestion">Премахване на предложението</string>
+	<string name="email_to">Получател</string>
+	<string name="email_subject">Тема</string>
+	<string name="email_body">Съдържание</string>
+	<string name="scheme">Scheme</string>
+	<string name="host">Host</string>
+	<string name="query">Query</string>
 </resources>

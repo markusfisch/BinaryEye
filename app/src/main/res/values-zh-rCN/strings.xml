@@ -213,4 +213,10 @@
 	<string name="wifi_phase2">阶段 2 方法</string>
 	<string name="network_suggestions">网络建议</string>
 	<string name="remove_suggestion">删除建议</string>
+	<string name="email_to">收件人</string>
+	<string name="email_subject">主题</string>
+	<string name="email_body">正文</string>
+	<string name="scheme">Scheme</string>
+	<string name="host">Host</string>
+	<string name="query">Query</string>
 </resources>

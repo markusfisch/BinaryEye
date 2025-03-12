@@ -214,4 +214,10 @@
 	<string name="wifi_phase2">Phase 2 method</string>
 	<string name="network_suggestions">Network suggestions</string>
 	<string name="remove_suggestion">Remove suggestion</string>
+	<string name="email_to">მიმღები</string>
+	<string name="email_subject">თემა</string>
+	<string name="email_body">შინაარსი</string>
+	<string name="scheme">Scheme</string>
+	<string name="host">Host</string>
+	<string name="query">Query</string>
 </resources>

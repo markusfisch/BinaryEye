@@ -214,4 +214,10 @@
 	<string name="wifi_phase2">2. aşama yöntemi</string>
 	<string name="network_suggestions">Ağ önerileri</string>
 	<string name="remove_suggestion">Öneriyi kaldır</string>
+	<string name="email_to">Alıcı</string>
+	<string name="email_subject">Konu</string>
+	<string name="email_body">İçerik</string>
+	<string name="scheme">Scheme</string>
+	<string name="host">Host</string>
+	<string name="query">Query</string>
 </resources>

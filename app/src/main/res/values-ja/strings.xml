@@ -213,4 +213,10 @@
 	<string name="wifi_phase2">フェーズ2方式</string>
 	<string name="network_suggestions">ネットワークに関する提案</string>
 	<string name="remove_suggestion">提案の削除</string>
+	<string name="email_to">宛先</string>
+	<string name="email_subject">件名</string>
+	<string name="email_body">本文</string>
+	<string name="scheme">Scheme</string>
+	<string name="host">Host</string>
+	<string name="query">Query</string>
 </resources>

@@ -216,4 +216,10 @@
 	<string name="wifi_phase2">Двухэтапный метод</string>
 	<string name="network_suggestions">Сетевые предложения</string>
 	<string name="remove_suggestion">Удалить предложение</string>
+	<string name="email_to">Получатель</string>
+	<string name="email_subject">Тема</string>
+	<string name="email_body">Текст</string>
+	<string name="scheme">Scheme</string>
+	<string name="host">Host</string>
+	<string name="query">Query</string>
 </resources>

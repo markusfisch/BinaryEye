@@ -218,4 +218,10 @@
 	<string name="wifi_phase2">طريقة Phase 2</string>
 	<string name="network_suggestions">الشبكات المقترحة</string>
 	<string name="remove_suggestion">إزالة الاقتراحات</string>
+	<string name="email_to">المستلم</string>
+	<string name="email_subject">الموضوع</string>
+	<string name="email_body">النص</string>
+	<string name="scheme">Scheme</string>
+	<string name="host">Host</string>
+	<string name="query">Query</string>
 </resources>

@@ -214,4 +214,10 @@
 	<string name="wifi_phase2">Phase 2 Methode</string>
 	<string name="network_suggestions">WiFi Netzwerkvorschläge</string>
 	<string name="remove_suggestion">Vorschlag entfernen</string>
+	<string name="email_to">Empfänger</string>
+	<string name="email_subject">Betreff</string>
+	<string name="email_body">Nachricht</string>
+	<string name="scheme">Schema</string>
+	<string name="host">Host</string>
+	<string name="query">Query</string>
 </resources>

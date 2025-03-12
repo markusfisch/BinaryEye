@@ -216,4 +216,10 @@
 	<string name="wifi_phase2">Ověření Phase 2</string>
 	<string name="network_suggestions">Návrhy sítí</string>
 	<string name="remove_suggestion">Odebrat návrh</string>
+	<string name="email_to">Příjemce</string>
+	<string name="email_subject">Předmět</string>
+	<string name="email_body">Tělo zprávy</string>
+	<string name="scheme">Scheme</string>
+	<string name="host">Host</string>
+	<string name="query">Query</string>
 </resources>
