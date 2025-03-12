@@ -83,14 +83,12 @@ ZXing can generate the following barcode formats:
 * [QR CODE][qr_code]
 * [UPC A][upc_a]
 
-## Deep Links and Intents
-
-### Deep Links
+## Deep Links
 
 You can invoke Binary Eye with a web URI intent from anything that can
 open URIs.
 
-#### Decoding
+### Decoding
 
 1. [binaryeye://scan](binaryeye://scan) (note: GitHub does not render this as clickable link)
 2. [http(s)://markusfisch.de/BinaryEye](http://markusfisch.de/BinaryEye)
@@ -106,7 +104,7 @@ Supported symbols are:
 * `RESULT_BYTES` - raw result as a hex string
 * `FORMAT` - barcode format
 
-#### Encoding
+### Encoding
 
 1. [binaryeye://encode](binaryeye://encode)
 
@@ -117,10 +115,18 @@ preset this data. For example:
 
 If you want the code to be generated immediately, add `execute=true`.
 
+## Intents
+
+You can also use Binary Eye from other apps by using an [Intent][intent].
+
+If you prefer to integrate a barcode scanner into your app, take a look at
+at [BarcodeScannerView][barcode_scanner_view] (if you also want to use
+[ZXing-C++][zxing_cpp]) or read how to
+[scan barcodes with ML Kit on Android][mlkit_barcode_scanning].
+
 ### SCAN Intent
 
-You can also use Binary Eye from other apps by using the
-`com.google.zxing.client.android.SCAN` Intent with
+Use the `com.google.zxing.client.android.SCAN` `Intent` with
 [startActivityForResult()][start_activity] like this:
 
 ```kotlin
@@ -190,6 +196,9 @@ class YourActivity : AppCompatActivity() {
 [upc_a]: https://en.wikipedia.org/wiki/Universal_Product_Code
 [upc_e]: https://en.wikipedia.org/wiki/Universal_Product_Code#UPC-E
 [upc_ean]: https://en.wikipedia.org/wiki/Universal_Product_Code#EAN-13
+[intent]: https://developer.android.com/reference/android/content/Intent
+[barcode_scanner_view]: https://github.com/markusfisch/BarcodeScannerView
+[mlkit_barcode_scanning]: https://developers.google.com/ml-kit/vision/barcode-scanning/android
 [start_activity]: https://developer.android.com/reference/android/app/Activity#startActivityForResult(android.content.Intent,%20int)
 [on_activity_result]: https://developer.android.com/reference/android/app/Activity#onActivityResult(int,%20int,%20android.content.Intent)
 [intent_result]: https://developer.android.com/training/basics/intents/result
