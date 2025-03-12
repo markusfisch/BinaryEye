@@ -24,6 +24,9 @@ import android.widget.TableRow
 import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
+import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
+import de.markusfisch.android.binaryeye.actions.vtype.vcard.VCardAction
+import de.markusfisch.android.binaryeye.actions.vtype.vevent.VEventAction
 import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
 import de.markusfisch.android.binaryeye.actions.wifi.WifiConnector
 import de.markusfisch.android.binaryeye.activity.MainActivity
@@ -295,7 +298,7 @@ class DecodeFragment : Fragment() {
 	}
 
 	private fun TableLayout.fillDataView(text: String, bytes: ByteArray) {
-		val items = LinkedHashMap<Int, CharSequence?>()
+		val items = LinkedHashMap<Any, CharSequence?>()
 		when (prefs.showChecksum) {
 			"CRC4" -> items[R.string.crc4] = String.format("%X", crc4(bytes))
 			"MD5" -> items[R.string.md5] = bytes.md5().toHexString().fold()
@@ -303,8 +306,8 @@ class DecodeFragment : Fragment() {
 			"SHA256" -> items[R.string.sha256] = bytes.sha256().toHexString().fold()
 			else -> Unit
 		}
-		if (action is WifiAction) {
-			WifiConnector.parseMap(text)?.let { wifiData ->
+		when (action) {
+			is WifiAction -> WifiConnector.parseMap(text)?.let { wifiData ->
 				items.putAll(
 					linkedMapOf(
 						R.string.entry_type to getString(R.string.wifi_network),
@@ -319,12 +322,23 @@ class DecodeFragment : Fragment() {
 					)
 				)
 			}
+
+			is VCardAction,
+			is VEventAction -> VTypeParser.parseMap(text).let { vData ->
+				items.putAll(
+					vData.map { item ->
+						item.key to item.value.joinToString("\n") {
+							it.value
+						}
+					}.toMap()
+				)
+			}
 		}
 		fill(items)
 	}
 
 	private fun TableLayout.fillMetaView(scan: Scan) {
-		val items = linkedMapOf<Int, CharSequence?>(
+		val items = linkedMapOf<Any, CharSequence?>(
 			R.string.error_correction_level to scan.errorCorrectionLevel,
 			R.string.sequence_size to scan.sequenceSize.positiveToString(),
 			R.string.sequence_index to scan.sequenceIndex.positiveToString(),
@@ -363,7 +377,7 @@ class DecodeFragment : Fragment() {
 	}
 
 	private fun TableLayout.fill(
-		items: LinkedHashMap<Int, CharSequence?>
+		items: LinkedHashMap<Any, CharSequence?>
 	) {
 		removeAllViews()
 		visibility = if (items.isEmpty()) View.GONE else {
@@ -374,7 +388,11 @@ class DecodeFragment : Fragment() {
 				if (!text.isNullOrBlank()) {
 					val tr = TableRow(ctx)
 					val keyView = TextView(ctx)
-					keyView.setText(item.key)
+					when (val key = item.key) {
+						is Int -> keyView.setText(key)
+						is String -> keyView.text = key
+						else -> keyView.text = key.toString()
+					}
 					val valueView = TextView(ctx).apply {
 						setPadding(spaceBetween, 0, 0, 0)
 						this.text = text
