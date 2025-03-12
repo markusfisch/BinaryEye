@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.65.1
+* Improve simple mode
+* Remember quiet zone settings
+* Reduce height for 1D barcodes
+* Add execute argument for binaryeye://encode
+* Update Russian translation
+
 ## 1.65.0
 * Add a welcome screen to choose a mode
 * Add a deep link to encode a barcode

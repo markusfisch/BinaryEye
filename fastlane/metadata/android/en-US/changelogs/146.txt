@@ -1,0 +1,6 @@
+* Improve simple mode
+* Remember quiet zone settings
+* Reduce height for 1D barcodes
+* Add execute argument for binaryeye://encode
+* Update Russian translation
+
