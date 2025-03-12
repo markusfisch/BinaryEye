@@ -45,7 +45,6 @@
 	<string name="copy_to_clipboard">Скопировать в буфер обмена</string>
 	<string name="copied_to_clipboard">Скопировано в буфер обмена</string>
 	<string name="copy_password">Скопировать пароль в буфер обмена</string>
-	<string name="copied_password_to_clipboard">Пароль скопирован в буфер обмена</string>
 	<string name="open_url">Открыть URL</string>
 	<string name="cannot_resolve_action">Не найдено приложение для этого действия</string>
 	<string name="pick_search_engine">Выберите поисковую систему</string>

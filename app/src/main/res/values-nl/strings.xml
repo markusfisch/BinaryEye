@@ -43,7 +43,6 @@
 	<string name="copy_to_clipboard">Naar klembord kopiëren</string>
 	<string name="copied_to_clipboard">Naar klembord gekopieerd</string>
 	<string name="copy_password">Kopieer wachtwoord naar klembord</string>
-	<string name="copied_password_to_clipboard">Wachtwoord gekopieerd naar klembord</string>
 	<string name="open_url">URL openen</string>
 	<string name="cannot_resolve_action">Geen enkele toepassing kan dat openen</string>
 	<string name="pick_search_engine">Zoekmachine kiezen</string>

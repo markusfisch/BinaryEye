@@ -42,7 +42,6 @@
 	<string name="copy_to_clipboard">Salin ke clipboard</string>
 	<string name="copied_to_clipboard">Disalin ke clipboard</string>
 	<string name="copy_password">Salin sandi ke clipboard</string>
-	<string name="copied_password_to_clipboard">Sandi disalin ke clipboard</string>
 	<string name="open_url">Buka url</string>
 	<string name="cannot_resolve_action">Tidak ada aplikasi yang bisa membukanya</string>
 	<string name="pick_search_engine">Pilih mesin pencari</string>

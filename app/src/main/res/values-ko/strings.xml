@@ -42,7 +42,6 @@
 	<string name="copy_to_clipboard">Copy to clipboard</string>
 	<string name="copied_to_clipboard">Copied to clipboard</string>
 	<string name="copy_password">Copy password into clipboard</string>
-	<string name="copied_password_to_clipboard">Password copied to clipboard</string>
 	<string name="open_url">Open url</string>
 	<string name="cannot_resolve_action">No application can open that</string>
 	<string name="pick_search_engine">Pick a search engine</string>

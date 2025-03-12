@@ -43,7 +43,6 @@
 	<string name="copy_to_clipboard">Copiar para a área de transferência</string>
 	<string name="copied_to_clipboard">Copiado para a área de transferência</string>
 	<string name="copy_password">Copiar senha para a área de transferência</string>
-	<string name="copied_password_to_clipboard">Senha copiada para a área de transferência</string>
 	<string name="open_url">Abrir URL</string>
 	<string name="cannot_resolve_action">Nenhum app pode abrir isto</string>
 	<string name="pick_search_engine">Escolha um motor de pesquisa</string>

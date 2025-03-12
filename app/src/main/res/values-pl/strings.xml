@@ -172,7 +172,6 @@
 	<string name="brighten_screen">Brighten screen</string>
 	<string name="brighten_screen_summary">Set brightness to maximum to enhance scanning a barcode from the screen.</string>
 	<string name="copy_password">Skopiuj hasło do schowka</string>
-	<string name="copied_password_to_clipboard">Hasło skopiowane do schowka</string>
 	<string name="gtin_price">Sugerowana cena</string>
 	<string name="preferences">Ustawienia</string>
 	<string name="scan_category">Skanowanie</string>

@@ -43,7 +43,6 @@
 	<string name="copy_to_clipboard">Panoya kopyala</string>
 	<string name="copied_to_clipboard">Panoya kopyalandı</string>
 	<string name="copy_password">Parolayı panoya kopyala</string>
-	<string name="copied_password_to_clipboard">Parola panoya kopyalandı</string>
 	<string name="open_url">URL\'yi aç</string>
 	<string name="cannot_resolve_action">Bunu açacak uygulama yok</string>
 	<string name="pick_search_engine">Arama motoru seç</string>

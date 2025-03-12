@@ -43,7 +43,6 @@
 	<string name="copy_to_clipboard">გაცვლის ბუფერში კოპირება</string>
 	<string name="copied_to_clipboard">კოპირებულია გაცვლის ბუფერში</string>
 	<string name="copy_password">პაროლის გაცვლით ბუფერში კოპირება</string>
-	<string name="copied_password_to_clipboard">პაროლი კოპირებულია გაცვლის ბუფერში</string>
 	<string name="open_url">ბმულის გახსნა</string>
 	<string name="cannot_resolve_action">ამ მოქმედებისთვის აპლიკაცია ნაპოვნი არაა</string>
 	<string name="pick_search_engine">აირჩიეთ საძიებო სისტემა</string>

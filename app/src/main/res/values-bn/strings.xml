@@ -43,7 +43,6 @@
 	<string name="copy_to_clipboard">ক্লিপবোর্ডে অনুলিপি</string>
 	<string name="copied_to_clipboard">ক্লিপবোর্ডে অনুলিপিত</string>
 	<string name="copy_password">ক্লিপবোর্ডে পাসওয়ার্ড অনুলিপি করো</string>
-	<string name="copied_password_to_clipboard">ক্লিপবোর্ডে পাসওয়ার্ড অনুলিপিত</string>
 	<string name="open_url">ইউআরএল খুলো</string>
 	<string name="cannot_resolve_action">খোলার মতো অ্যাপ নেই</string>
 	<string name="pick_search_engine">একটা সার্চ ইঞ্জিন নাও</string>

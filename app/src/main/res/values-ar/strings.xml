@@ -47,7 +47,6 @@
 	<string name="copy_to_clipboard">نسخ إلى الحافظة</string>
 	<string name="copied_to_clipboard">تم النسخ إلى الحافظة</string>
 	<string name="copy_password">نسخ كلمة المرور إلى الحافظة</string>
-	<string name="copied_password_to_clipboard">تم نسخ كلمة المرور إلى الحافظة</string>
 	<string name="open_url">فتح الرابط</string>
 	<string name="cannot_resolve_action">لم يتم العثور على تطبيق يمكنه فتح ذلك</string>
 	<string name="pick_search_engine">اختر محرك البحث</string>

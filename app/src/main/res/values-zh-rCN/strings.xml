@@ -42,7 +42,6 @@
 	<string name="copy_to_clipboard">复制到剪贴板</string>
 	<string name="copied_to_clipboard">已复制到剪贴板</string>
 	<string name="copy_password">复制密码到剪贴板</string>
-	<string name="copied_password_to_clipboard">已复制密码到剪贴板</string>
 	<string name="open_url">打开链接</string>
 	<string name="cannot_resolve_action">没有应用可以打开它</string>
 	<string name="pick_search_engine">选择一个搜索引擎</string>

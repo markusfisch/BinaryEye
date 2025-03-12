@@ -42,7 +42,6 @@
 	<string name="copy_to_clipboard">複製到剪貼簿</string>
 	<string name="copied_to_clipboard">已複製到剪貼簿</string>
 	<string name="copy_password">複製密碼到剪貼簿</string>
-	<string name="copied_password_to_clipboard">已複製密碼到剪貼簿</string>
 	<string name="open_url">開啟連結</string>
 	<string name="cannot_resolve_action">沒有可開啟這個項目的應用程式</string>
 	<string name="pick_search_engine">選擇一個搜尋引擎</string>

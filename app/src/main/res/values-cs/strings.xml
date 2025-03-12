@@ -45,7 +45,6 @@
 	<string name="copy_to_clipboard">Zkopírovat do schránky</string>
 	<string name="copied_to_clipboard">Zkopírováno do schránky</string>
 	<string name="copy_password">Zkopírovat heslo do schránky</string>
-	<string name="copied_password_to_clipboard">Heslo zkopírováno do schránky</string>
 	<string name="open_url">Otevřít URL</string>
 	<string name="cannot_resolve_action">Nemáte aplikaci, která by toto uměla otevřít</string>
 	<string name="pick_search_engine">Zvolte vyhledávač</string>

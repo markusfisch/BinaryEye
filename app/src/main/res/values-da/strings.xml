@@ -43,7 +43,6 @@
 	<string name="copy_to_clipboard">Kopier til udklipsholder</string>
 	<string name="copied_to_clipboard">Kopieret til udklipsholder</string>
 	<string name="copy_password">Kopier adgangskode til udklipsholderen</string>
-	<string name="copied_password_to_clipboard">Adgangskode kopieret til udklipsholderen</string>
 	<string name="open_url">Åbn URL</string>
 	<string name="cannot_resolve_action">Inge applikation kan åbne det</string>
 	<string name="pick_search_engine">Vælg en søgemaskine</string>

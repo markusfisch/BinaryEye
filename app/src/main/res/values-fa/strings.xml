@@ -43,7 +43,6 @@
 	<string name="copy_to_clipboard">رونوشت به تخه‌گیره</string>
 	<string name="copied_to_clipboard">به تخته‌گیره رونوشت شد</string>
 	<string name="copy_password">رونوشت گذرواژه به تخته‌گیره</string>
-	<string name="copied_password_to_clipboard">گذرواژه به تخته‌گیره رونوشت شد</string>
 	<string name="open_url">گشودن نشانی</string>
 	<string name="cannot_resolve_action">هیچ برنامه‌ای نمی‌تواند آن را بگشاید</string>
 	<string name="pick_search_engine">یک موتور جست‌وجو برگزینید</string>

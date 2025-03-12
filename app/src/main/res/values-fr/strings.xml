@@ -43,7 +43,6 @@
 	<string name="copy_to_clipboard">Copier dans le presse-papiers</string>
 	<string name="copied_to_clipboard">Copié dans le presse-papiers</string>
 	<string name="copy_password">Copier le mot de passe dans le presse-papiers</string>
-	<string name="copied_password_to_clipboard">Mot de passe copié dans le presse-papiers</string>
 	<string name="open_url">Ouvrir l\'URL</string>
 	<string name="cannot_resolve_action">Aucune application ne peut ouvrir cela</string>
 	<string name="pick_search_engine">Choisir un moteur de recherche</string>

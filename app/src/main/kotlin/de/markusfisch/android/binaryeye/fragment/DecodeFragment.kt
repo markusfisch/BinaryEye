@@ -465,10 +465,7 @@ class DecodeFragment : Fragment() {
 		val ac = action
 		if (ac is WifiAction) {
 			ac.password?.let { password ->
-				activity?.apply {
-					copyToClipboard(password, isSensitive = true)
-					toast(R.string.copied_password_to_clipboard)
-				}
+				copyToClipboard(password, isSensitive = true)
 			}
 		}
 	}

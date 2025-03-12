@@ -43,7 +43,6 @@
 	<string name="copy_to_clipboard">Копиране в клипборда</string>
 	<string name="copied_to_clipboard">Копирано в клипборда</string>
 	<string name="copy_password">Копиране на паролата в клипборда</string>
-	<string name="copied_password_to_clipboard">Паролата е копирана в клипборда</string>
 	<string name="open_url">Отворете URL(Линк)</string>
 	<string name="cannot_resolve_action">Няма приложение което може да отвори това</string>
 	<string name="pick_search_engine">Изберете търсачка</string>

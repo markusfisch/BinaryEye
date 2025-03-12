@@ -42,7 +42,6 @@
 	<string name="copy_to_clipboard">Sao chép</string>
 	<string name="copied_to_clipboard">Đã sao chép</string>
 	<string name="copy_password">Sao chép mật khẩu</string>
-	<string name="copied_password_to_clipboard">Đã sao chép mật khẩu</string>
 	<string name="open_url">Mở đường dẫn</string>
 	<string name="cannot_resolve_action">Không có ứng dụng nào mở được nội dung này</string>
 	<string name="pick_search_engine">Chọn một trình tìm kiếm</string>
