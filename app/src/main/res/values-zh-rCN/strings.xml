@@ -18,7 +18,7 @@
 	<string name="error_correction_level_m" formatted="false">中 (~15% 准确度)</string>
 	<string name="error_correction_level_q" formatted="false">较高 (~25% 准确度)</string>
 	<string name="error_correction_level_h" formatted="false">高 (~30% 准确度)</string>
-	<string name="label">Label</string>
+	<string name="label">标签</string>
 	<string name="colors">前景和背景</string>
 	<string name="colors_black_on_white">白底黑字</string>
 	<string name="colors_white_on_black">黑底白字</string>
@@ -33,7 +33,7 @@
 	<string name="gtin_add_on">UPC EAN 扩展</string>
 	<string name="barcode_version_number">版本</string>
 	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
-	<string name="qr_data_mask">Data mask</string>
+	<string name="qr_data_mask">数据蒙版</string>
 	<string name="toggle_flash">开关闪光灯</string>
 	<string name="error_flash">开关闪光灯出错</string>
 	<string name="share">分享</string>
@@ -47,8 +47,8 @@
 	<string name="pick_search_engine">选择一个搜索引擎</string>
 	<string name="format">编码格式</string>
 	<string name="size_width_by_height">图片尺寸: %1$d×%2$d</string>
-	<string name="size_no_magnification">No magnification</string>
-	<string name="add_quiet_zone">Add quiet zone</string>
+	<string name="size_no_magnification">无放大</string>
+	<string name="add_quiet_zone">添加安静区</string>
 	<string name="input_content_here">在这里输入内容</string>
 	<string name="unescape">展开转义字符</string>
 	<string name="encode">编码</string>
@@ -62,9 +62,9 @@
 	<string name="bulk_mode_delay">连续扫描之间的延迟</string>
 	<string name="restrict_format">严格模式（扫描指定编码格式）</string>
 	<string name="remove_restriction">解除限制</string>
-	<string name="find_code">Find code</string>
-	<string name="find_code_with_content">What content?</string>
-	<string name="find_code_hint">Enter a term</string>
+	<string name="find_code">找码</string>
+	<string name="find_code_with_content">什么内容？</string>
+	<string name="find_code_hint">输入一个术语</string>
 	<string name="scan_format">扫描 %s</string>
 	<string name="quarter_second">四分之一秒</string>
 	<string name="half_second">半秒</string>
@@ -216,7 +216,7 @@
 	<string name="email_to">收件人</string>
 	<string name="email_subject">主题</string>
 	<string name="email_body">正文</string>
-	<string name="scheme">Scheme</string>
-	<string name="host">Host</string>
-	<string name="query">Query</string>
+	<string name="scheme">方案</string>
+	<string name="host">主机</string>
+	<string name="query">查询</string>
 </resources>

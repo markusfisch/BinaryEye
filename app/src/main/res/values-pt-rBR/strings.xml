@@ -34,7 +34,7 @@
 	<string name="gtin_add_on">Extensão UPC EAN</string>
 	<string name="barcode_version_number">Versão</string>
 	<string name="qr_version_and_modules">%1$s (%2$d módulos)</string>
-	<string name="qr_data_mask">Data mask</string>
+	<string name="qr_data_mask">Máscara de dados</string>
 	<string name="toggle_flash">Ligar lanterna</string>
 	<string name="error_flash">Falha ao ligar a lanterna</string>
 	<string name="share">Compartilhar</string>
@@ -49,7 +49,7 @@
 	<string name="format">Formato</string>
 	<string name="size_width_by_height">Tamanho em pixels: %1$d×%2$d</string>
 	<string name="size_no_magnification">Sem magnificação</string>
-	<string name="add_quiet_zone">Add quiet zone</string>
+	<string name="add_quiet_zone">Adicionar zona tranquila</string>
 	<string name="input_content_here">Digite algum conteúdo aqui</string>
 	<string name="unescape">Expandir sequências de escape</string>
 	<string name="encode">CODIFICAR</string>
@@ -63,9 +63,9 @@
 	<string name="bulk_mode_delay">Espera entre digitalizações contínuas</string>
 	<string name="restrict_format">Restringir formato</string>
 	<string name="remove_restriction">Remover restrição</string>
-	<string name="find_code">Find code</string>
-	<string name="find_code_with_content">What content?</string>
-	<string name="find_code_hint">Enter a term</string>
+	<string name="find_code">Encontrar código</string>
+	<string name="find_code_with_content">Qual conteúdo?</string>
+	<string name="find_code_hint">Insira um termo</string>
 	<string name="scan_format">Digitalizar %s</string>
 	<string name="quarter_second">Um quarto de segundo</string>
 	<string name="half_second">Meio segundo</string>
@@ -142,7 +142,7 @@
 	<string name="test_url">Testar a URL</string>
 	<string name="send_scan_bluetooth">Encaminhar digitalizações com Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Ative para encaminhar digitalizações a um determinado host Bluetooth.</string>
-	<string name="send_scan_bluetooth_host">Host</string>
+	<string name="send_scan_bluetooth_host">Anfitrião</string>
 	<string name="no_bluetooth_hosts_paired">Nenhum Host Pareado</string>
 	<string name="bluetooth_connect_fail">Não foi possível conectar com o dispositivo Bluetooth.</string>
 	<string name="bluetooth_send_fail">Não foi possível enviar para o dispositivo Bluetooth.</string>
@@ -217,7 +217,7 @@
 	<string name="email_to">Destinatário</string>
 	<string name="email_subject">Assunto</string>
 	<string name="email_body">Corpo</string>
-	<string name="scheme">Scheme</string>
+	<string name="scheme">Esquema</string>
 	<string name="host">Host</string>
-	<string name="query">Query</string>
+	<string name="query">Consulta</string>
 </resources>

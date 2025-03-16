@@ -33,7 +33,7 @@
 	<string name="gtin_add_on">UPC EAN 擴充</string>
 	<string name="barcode_version_number">版本</string>
 	<string name="qr_version_and_modules">%1$s (%2$d 模組)</string>
-	<string name="qr_data_mask">Data mask</string>
+	<string name="qr_data_mask">資料遮罩</string>
 	<string name="toggle_flash">控制閃光燈</string>
 	<string name="error_flash">控制閃光燈時發生錯誤</string>
 	<string name="share">分享</string>
@@ -47,8 +47,8 @@
 	<string name="pick_search_engine">選擇一個搜尋引擎</string>
 	<string name="format">格式</string>
 	<string name="size_width_by_height">圖片尺寸: %1$d×%2$d</string>
-	<string name="size_no_magnification">No magnification</string>
-	<string name="add_quiet_zone">Add quiet zone</string>
+	<string name="size_no_magnification">無放大</string>
+	<string name="add_quiet_zone">添加安静区域</string>
 	<string name="input_content_here">請在這裡輸入內容</string>
 	<string name="unescape">展開逸出序列</string>
 	<string name="encode">編碼</string>
@@ -62,9 +62,9 @@
 	<string name="bulk_mode_delay">連續掃描間的延遲</string>
 	<string name="restrict_format">限制格式</string>
 	<string name="remove_restriction">刪除限制</string>
-	<string name="find_code">Find code</string>
-	<string name="find_code_with_content">What content?</string>
-	<string name="find_code_hint">Enter a term</string>
+	<string name="find_code">尋找代碼</string>
+	<string name="find_code_with_content">什麼內容？</string>
+	<string name="find_code_hint">輸入一個術語</string>
 	<string name="scan_format">掃描 %s</string>
 	<string name="quarter_second">四分之一秒</string>
 	<string name="half_second">半秒</string>
@@ -102,10 +102,10 @@
 	<string name="tone_prop_beep2">標準連續嗶聲</string>
 	<string name="use_history">儲存掃描記錄</string>
 	<string name="use_history_summary">在本機儲存掃描記錄</string>
-	<string name="ignore_duplicates">Ignore duplicates</string>
+	<string name="ignore_duplicates">忽略重複項目</string>
 	<string name="ignore_consecutive_duplicates">不儲存重複歷史記錄</string>
 	<string name="ignore_any_duplicates">Ignore any duplicates</string>
-	<string name="accept_duplicates">Accept duplicates</string>
+	<string name="accept_duplicates">接受重複</string>
 	<string name="open_immediately">立即開啟</string>
 	<string name="open_immediately_summary">跳過檢查並立即開啟。可能會開啟有害內容</string>
 	<string name="copy_immediately">自動複製掃描結果到剪貼簿</string>
@@ -114,8 +114,8 @@
 	<string name="show_meta_data_summary">顯示已掃描條碼的額外資訊</string>
 	<string name="show_hex_dump">顯示 Hex dump</string>
 	<string name="show_hex_dump_summary">顯示已掃描條碼的十六進位轉儲資訊</string>
-	<string name="show_checksum">Show checksum</string>
-	<string name="no_checksum">No checksum</string>
+	<string name="show_checksum">顯示校驗和</string>
+	<string name="no_checksum">無檢查碼</string>
 	<string name="show_recreation">顯示重新產生的條碼</string>
 	<string name="show_recreation_summary">如果可以，從讀取內容中重新建立並顯示條碼</string>
 	<string name="close_automatically">複製 / 分享後自動返回</string>
@@ -146,9 +146,9 @@
 	<string name="bluetooth_connect_fail">無法連線到藍牙裝置</string>
 	<string name="bluetooth_send_fail">無法傳送到藍牙裝置</string>
 	<string name="bluetooth_send_success">藍牙傳送完成</string>
-	<string name="generation_category">Generation</string>
-	<string name="brighten_screen">Brighten screen</string>
-	<string name="brighten_screen_summary">Set brightness to maximum to enhance scanning a barcode from the screen.</string>
+	<string name="generation_category">世代</string>
+	<string name="brighten_screen">亮螢幕</string>
+	<string name="brighten_screen_summary">將亮度調至最大以增強從螢幕掃描條碼。</string>
 	<string name="really_remove_scan">確定刪除記錄？</string>
 	<string name="really_remove_all_scans">確定要刪除所有掃描記錄？</string>
 	<string name="really_remove_selected_scans">確定要刪除選擇的掃描記錄？</string>
@@ -198,7 +198,7 @@
 	<string name="pick_code_to_scan">選擇要掃描的條碼</string>
 	<string name="shortcut_decode">掃描條碼</string>
 	<string name="shortcut_encode">建立條碼</string>
-	<string name="shortcut_history">History</string>
+	<string name="shortcut_history">歷史</string>
 	<string name="shortcut_preferences">設定</string>
 	<string name="background_request_failed">背景請求失敗</string>
 	<string name="entry_type">類型</string>
@@ -216,7 +216,7 @@
 	<string name="email_to">收件者</string>
 	<string name="email_subject">主題</string>
 	<string name="email_body">內文</string>
-	<string name="scheme">Scheme</string>
-	<string name="host">Host</string>
-	<string name="query">Query</string>
+	<string name="scheme">方案</string>
+	<string name="host">主機</string>
+	<string name="query">查詢</string>
 </resources>

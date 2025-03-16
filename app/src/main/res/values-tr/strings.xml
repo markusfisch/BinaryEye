@@ -34,7 +34,7 @@
 	<string name="gtin_add_on">UPC EAN eklentisi</string>
 	<string name="barcode_version_number">Sürüm</string>
 	<string name="qr_version_and_modules">%1$s (%2$d modül)</string>
-	<string name="qr_data_mask">Data mask</string>
+	<string name="qr_data_mask">Veri maskesi</string>
 	<string name="toggle_flash">Flaşı aç</string>
 	<string name="error_flash">Flaş açılırken hata oluştu</string>
 	<string name="share">Paylaş</string>
@@ -48,8 +48,8 @@
 	<string name="pick_search_engine">Arama motoru seç</string>
 	<string name="format">Biçim</string>
 	<string name="size_width_by_height">Piksel türünde boyut: %1$d×%2$d</string>
-	<string name="size_no_magnification">No magnification</string>
-	<string name="add_quiet_zone">Add quiet zone</string>
+	<string name="size_no_magnification">Büyütme Yok</string>
+	<string name="add_quiet_zone">Sessiz bölge ekle</string>
 	<string name="input_content_here">İçeriği buraya gir</string>
 	<string name="unescape">Kaçış dizilerini genişlet</string>
 	<string name="encode">KODLA</string>
@@ -63,9 +63,9 @@
 	<string name="bulk_mode_delay">Sürekli taramalar arasındaki gecikme</string>
 	<string name="restrict_format">Biçimi kısıtla</string>
 	<string name="remove_restriction">Kısıtlamayı kaldır</string>
-	<string name="find_code">Find code</string>
-	<string name="find_code_with_content">What content?</string>
-	<string name="find_code_hint">Enter a term</string>
+	<string name="find_code">Kod bul</string>
+	<string name="find_code_with_content">Ne içerik?</string>
+	<string name="find_code_hint">Terim girin</string>
 	<string name="scan_format">%s tara</string>
 	<string name="quarter_second">Çeyrek saniye</string>
 	<string name="half_second">Yarım saniye</string>
@@ -103,10 +103,10 @@
 	<string name="tone_prop_beep2">Genel çift bip sesi</string>
 	<string name="use_history">Tarama geçmişini kaydet</string>
 	<string name="use_history_summary">Tanınan kodları aygıtınızda saklayın.</string>
-	<string name="ignore_duplicates">Ignore duplicates</string>
+	<string name="ignore_duplicates">Yinelenenleri Yoksay</string>
 	<string name="ignore_consecutive_duplicates">Yinelemeleri göz ardı et</string>
 	<string name="ignore_any_duplicates">Ignore any duplicates</string>
-	<string name="accept_duplicates">Accept duplicates</string>
+	<string name="accept_duplicates">Yinelenenleri kabul et</string>
 	<string name="open_immediately">Hemen aç</string>
 	<string name="open_immediately_summary">İncelemeyi atla ve içeriği hemen aç. Eğer etkinse zararlı içerik açılabilir.</string>
 	<string name="copy_immediately">Panoya koy</string>
@@ -115,8 +115,8 @@
 	<string name="show_meta_data_summary">Taranan barkod ile ilgili ek veriyi göster</string>
 	<string name="show_hex_dump">Hex yığınını göster</string>
 	<string name="show_hex_dump_summary">Taranan içeriklerin hex yığınını göster.</string>
-	<string name="show_checksum">Show checksum</string>
-	<string name="no_checksum">No checksum</string>
+	<string name="show_checksum">Özet göster</string>
+	<string name="no_checksum">Özet yok</string>
 	<string name="show_recreation">Yeniden oluşturulan barkodu göster</string>
 	<string name="show_recreation_summary">Mümkünse okunan içerikten barkodu yeniden oluştur ve göster.</string>
 	<string name="close_automatically">Kopyala/Paylaş\'tan sonra geri dön</string>
@@ -147,9 +147,9 @@
 	<string name="bluetooth_connect_fail">Bluetooth aygıtına bağlanılamadı.</string>
 	<string name="bluetooth_send_fail">Bluetooth aygıtına gönderilemedi.</string>
 	<string name="bluetooth_send_success">Bluetooth aygıtına gönderildi.</string>
-	<string name="generation_category">Generation</string>
-	<string name="brighten_screen">Brighten screen</string>
-	<string name="brighten_screen_summary">Set brightness to maximum to enhance scanning a barcode from the screen.</string>
+	<string name="generation_category">Nesil</string>
+	<string name="brighten_screen">Ekranı parlaklaştır</string>
+	<string name="brighten_screen_summary">Ekran parlaklığını maksimuma ayarlayarak ekrandan barkod okumayı iyileştirin.</string>
 	<string name="really_remove_scan">Tarama gerçekten silinsin mi?</string>
 	<string name="really_remove_all_scans">Tüm taramalar gerçekten silinsin mi?</string>
 	<string name="really_remove_selected_scans">Seçili taramalar gerçekten silinsin mi?</string>
@@ -199,7 +199,7 @@
 	<string name="pick_code_to_scan">Taranacak kod seç</string>
 	<string name="shortcut_decode">Barkod tara</string>
 	<string name="shortcut_encode">Barkod oluştur</string>
-	<string name="shortcut_history">History</string>
+	<string name="shortcut_history">Tarih</string>
 	<string name="shortcut_preferences">Ayarlar</string>
 	<string name="background_request_failed">Arka plan isteği başarısız</string>
 	<string name="entry_type">Tür</string>
@@ -217,7 +217,7 @@
 	<string name="email_to">Alıcı</string>
 	<string name="email_subject">Konu</string>
 	<string name="email_body">İçerik</string>
-	<string name="scheme">Scheme</string>
-	<string name="host">Host</string>
-	<string name="query">Query</string>
+	<string name="scheme">Düzen</string>
+	<string name="host">Ana Bilgisayar</string>
+	<string name="query">Sorgu</string>
 </resources>

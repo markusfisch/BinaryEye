@@ -19,7 +19,7 @@
 	<string name="error_correction_level_m" formatted="false">Средно (~15&#37; корекция)</string>
 	<string name="error_correction_level_q" formatted="false">Четвъртично (~25&#37; корекция)</string>
 	<string name="error_correction_level_h" formatted="false">Високо (~30&#37; корекция)</string>
-	<string name="label">Label</string>
+	<string name="label">Етикет</string>
 	<string name="colors">Преден и заден план</string>
 	<string name="colors_black_on_white">Черно на бяло</string>
 	<string name="colors_white_on_black">Бяло на черно</string>
@@ -34,11 +34,11 @@
 	<string name="gtin_add_on">UPC EAN разширение</string>
 	<string name="barcode_version_number">Версия</string>
 	<string name="qr_version_and_modules">%1$s (%2$d модули)</string>
-	<string name="qr_data_mask">Data mask</string>
+	<string name="qr_data_mask">Маска за данни</string>
 	<string name="toggle_flash">Превключване на светкавицата</string>
 	<string name="error_flash">Грешка при превключването на светкавицата</string>
 	<string name="share">Сподели</string>
-	<string name="share_file">Share as file</string>
+	<string name="share_file">Споделяне като файл</string>
 	<string name="share_as">Сподели като?</string>
 	<string name="copy_to_clipboard">Копиране в клипборда</string>
 	<string name="copied_to_clipboard">Копирано в клипборда</string>
@@ -48,8 +48,8 @@
 	<string name="pick_search_engine">Изберете търсачка</string>
 	<string name="format">Формат</string>
 	<string name="size_width_by_height">Размер в пиксели: %1$d×%2$d</string>
-	<string name="size_no_magnification">No magnification</string>
-	<string name="add_quiet_zone">Add quiet zone</string>
+	<string name="size_no_magnification">Без увеличение</string>
+	<string name="add_quiet_zone">Добавяне на тиха зона</string>
 	<string name="input_content_here">Въведете съдържание тук</string>
 	<string name="unescape">Разширете последователности за извеждане</string>
 	<string name="encode">КОДИРАНЕ</string>
@@ -63,9 +63,9 @@
 	<string name="bulk_mode_delay">Забавяне между непрекъснатите сканирания</string>
 	<string name="restrict_format">Ограничаване на формат</string>
 	<string name="remove_restriction">Премахване на ограничението</string>
-	<string name="find_code">Find code</string>
-	<string name="find_code_with_content">What content?</string>
-	<string name="find_code_hint">Enter a term</string>
+	<string name="find_code">Намерете кода</string>
+	<string name="find_code_with_content">Какво съдържание?</string>
+	<string name="find_code_hint">Въведете термин</string>
 	<string name="scan_format">Сканиране %s</string>
 	<string name="quarter_second">Червърт секунда</string>
 	<string name="half_second">Половин секунда</string>
@@ -103,10 +103,10 @@
 	<string name="tone_prop_beep2">Общ двоен звуков сигнал</string>
 	<string name="use_history">Хронология на сканирането</string>
 	<string name="use_history_summary">Запазва разпознатите кодове на вашето устройство.</string>
-	<string name="ignore_duplicates">Ignore duplicates</string>
+	<string name="ignore_duplicates">Игнорирайте дубликати</string>
 	<string name="ignore_consecutive_duplicates">Игнориране на дубликатите</string>
 	<string name="ignore_any_duplicates">Ignore any duplicates</string>
-	<string name="accept_duplicates">Accept duplicates</string>
+	<string name="accept_duplicates">Приемане на дубликати</string>
 	<string name="open_immediately">Отваряй внезапно</string>
 	<string name="open_immediately_summary">Пропуска проверката и внезапно отваря съдържанието. Може да отвори вредно съдържание, ако е активирано.</string>
 	<string name="copy_immediately">Поставяй в клипборда</string>
@@ -115,8 +115,8 @@
 	<string name="show_meta_data_summary">Показване на допълнителни данни за сканирания баркод.</string>
 	<string name="show_hex_dump">Показване на шестнадесетичен дъмп</string>
 	<string name="show_hex_dump_summary">Показване на шестнадесетичен дъмп на сканираното съдържание.</string>
-	<string name="show_checksum">Show checksum</string>
-	<string name="no_checksum">No checksum</string>
+	<string name="show_checksum">Покажи контролна сума</string>
+	<string name="no_checksum">Без контролна сума</string>
 	<string name="show_recreation">Показване на пресъздаден баркод</string>
 	<string name="show_recreation_summary">Създай и покажи баркод отново от прочетеното съдържание, ако е възможно.</string>
 	<string name="close_automatically">Върщане се след Копиране/Споделяне</string>
@@ -147,9 +147,9 @@
 	<string name="bluetooth_connect_fail">Неуспешно свързване с Bluetooth устройство.</string>
 	<string name="bluetooth_send_fail">Неуспешно изпращане до Bluetooth устройство.</string>
 	<string name="bluetooth_send_success">Успешно Bluetooth изпращане.</string>
-	<string name="generation_category">Generation</string>
-	<string name="brighten_screen">Brighten screen</string>
-	<string name="brighten_screen_summary">Set brightness to maximum to enhance scanning a barcode from the screen.</string>
+	<string name="generation_category">Поколение</string>
+	<string name="brighten_screen">Подсвети екрана</string>
+	<string name="brighten_screen_summary">Задайте яркостта на максимум, за да подобрите сканирането на баркод от екрана.</string>
 	<string name="really_remove_scan">Наистина ли искате да премахнете това сканиране?</string>
 	<string name="really_remove_all_scans">Наистина ли искате да премахнете всички сканирания?</string>
 	<string name="really_remove_selected_scans">Наистина ли искате да премахнете избраните сканирания?</string>
@@ -183,8 +183,8 @@
 	<string name="otpauth_add">Добави 2FA</string>
 	<string name="search_web">Търси в мрежата</string>
 	<string name="search_scan">Търсещо сканиране</string>
-	<string name="add_to_history">Add to history</string>
-	<string name="added_to_history">Added to history</string>
+	<string name="add_to_history">Добави към историята</string>
+	<string name="added_to_history">Добавено към историята</string>
 	<string name="export_to_file">Извеждане в файл</string>
 	<string name="export_as">Извеждане като?</string>
 	<string name="export_csv_comma">CSV файл със запетаи</string>
@@ -199,7 +199,7 @@
 	<string name="pick_code_to_scan">Изберете код за сканиране</string>
 	<string name="shortcut_decode">Сканирай баркод</string>
 	<string name="shortcut_encode">Създай баркод</string>
-	<string name="shortcut_history">History</string>
+	<string name="shortcut_history">История</string>
 	<string name="shortcut_preferences">Настройки</string>
 	<string name="background_request_failed">Неуспешна заявка в фонов режим</string>
 	<string name="entry_type">Тип</string>
@@ -217,7 +217,7 @@
 	<string name="email_to">Получател</string>
 	<string name="email_subject">Тема</string>
 	<string name="email_body">Съдържание</string>
-	<string name="scheme">Scheme</string>
-	<string name="host">Host</string>
-	<string name="query">Query</string>
+	<string name="scheme">Схема</string>
+	<string name="host">Домакин</string>
+	<string name="query">Заявка</string>
 </resources>

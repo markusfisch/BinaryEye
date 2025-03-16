@@ -35,7 +35,7 @@
 	<string name="gtin_add_on">Розширення UPC EAN</string>
 	<string name="barcode_version_number">Версія</string>
 	<string name="qr_version_and_modules">%1$s (%2$d модулі)</string>
-	<string name="qr_data_mask">Data mask</string>
+	<string name="qr_data_mask">Маска даних</string>
 	<string name="toggle_flash">Увімкнути спалах</string>
 	<string name="error_flash">Помилка під час увімкнення спалаху</string>
 	<string name="share">Поділитися</string>
@@ -50,7 +50,7 @@
 	<string name="format">Формат</string>
 	<string name="size_width_by_height">Розмір у пікселях: %1$d×%2$d</string>
 	<string name="size_no_magnification">Без збільшення</string>
-	<string name="add_quiet_zone">Add quiet zone</string>
+	<string name="add_quiet_zone">Додати тиху зону</string>
 	<string name="input_content_here">Введіть вміст сюди</string>
 	<string name="unescape">Розгорнути спеціальні послідовності</string>
 	<string name="encode">КОДУВАТИ</string>
@@ -64,9 +64,9 @@
 	<string name="bulk_mode_delay">Затримка між безперервним скануванням</string>
 	<string name="restrict_format">Обмежити формат</string>
 	<string name="remove_restriction">Скасувати обмеження</string>
-	<string name="find_code">Find code</string>
-	<string name="find_code_with_content">What content?</string>
-	<string name="find_code_hint">Enter a term</string>
+	<string name="find_code">Знайти код</string>
+	<string name="find_code_with_content">Що саме вміст?</string>
+	<string name="find_code_hint">Введіть термін</string>
 	<string name="scan_format">Сканувати %s</string>
 	<string name="quarter_second">Чверть секунди</string>
 	<string name="half_second">Півсекунди</string>
@@ -218,7 +218,7 @@
 	<string name="email_to">Одержувач</string>
 	<string name="email_subject">Тема</string>
 	<string name="email_body">Тіло листа</string>
-	<string name="scheme">Scheme</string>
-	<string name="host">Host</string>
-	<string name="query">Query</string>
+	<string name="scheme">Схема</string>
+	<string name="host">Хост</string>
+	<string name="query">Запит</string>
 </resources>

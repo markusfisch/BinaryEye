@@ -19,7 +19,7 @@
 	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; korrigering)</string>
 	<string name="error_correction_level_q" formatted="false">Kvartil (~25&#37; korrigering)</string>
 	<string name="error_correction_level_h" formatted="false">Høj (~30&#37; korrigering)</string>
-	<string name="label">Label</string>
+	<string name="label">Mærke</string>
 	<string name="colors">For- og baggrund</string>
 	<string name="colors_black_on_white">Sort på hvidt</string>
 	<string name="colors_white_on_black">Hvid på sort</string>
@@ -38,7 +38,7 @@
 	<string name="toggle_flash">Slå blitz til/fra</string>
 	<string name="error_flash">Der opstod en fejl ved at slå blitz til/fra</string>
 	<string name="share">Del</string>
-	<string name="share_file">Share as file</string>
+	<string name="share_file">Del som fil</string>
 	<string name="share_as">Del som?</string>
 	<string name="copy_to_clipboard">Kopier til udklipsholder</string>
 	<string name="copied_to_clipboard">Kopieret til udklipsholder</string>
@@ -48,10 +48,10 @@
 	<string name="pick_search_engine">Vælg en søgemaskine</string>
 	<string name="format">Format</string>
 	<string name="size_width_by_height">Størrelse i pixels: %1$d×%2$d</string>
-	<string name="size_no_magnification">No magnification</string>
-	<string name="add_quiet_zone">Add quiet zone</string>
+	<string name="size_no_magnification">Ingen forstørrelse</string>
+	<string name="add_quiet_zone">Tilføj stille zone</string>
 	<string name="input_content_here">Indtast indhold her</string>
-	<string name="unescape">Expand escape sequences</string>
+	<string name="unescape">Udvid escape-sekvenser</string>
 	<string name="encode">INDKOD</string>
 	<string name="error_no_content">Manglende indhold</string>
 	<string name="error_encoding_barcode">Stregkode kan ikke genereres</string>
@@ -63,9 +63,9 @@
 	<string name="bulk_mode_delay">Forsinkelse mellem kontinuerlige scanninger</string>
 	<string name="restrict_format">Begræns format</string>
 	<string name="remove_restriction">Fjern begrænsningen</string>
-	<string name="find_code">Find code</string>
-	<string name="find_code_with_content">What content?</string>
-	<string name="find_code_hint">Enter a term</string>
+	<string name="find_code">Find kode</string>
+	<string name="find_code_with_content">Hvad indhold?</string>
+	<string name="find_code_hint">Indtast en term</string>
 	<string name="scan_format">Scan %s</string>
 	<string name="quarter_second">Et kvart sekund</string>
 	<string name="half_second">Et halvt sekund</string>
@@ -96,14 +96,14 @@
 	<string name="beep_summary">Aktiver dette, hvis du vil have din enhed til at bippe, når en kode genkendes.</string>
 	<string name="beep_tone">Bip tone</string>
 	<string name="tone_cdma_confirm">CDMA bekræftelse</string>
-	<string name="tone_sup_confirm">Call supervisory confirm</string>
-	<string name="tone_sup_radio_ack">Call supervisory radio path acknowledgment</string>
+	<string name="tone_sup_confirm">Opkald tilsyn bekræft</string>
+	<string name="tone_sup_radio_ack">Opkald tilsynsradio sti anerkendelse</string>
 	<string name="tone_prop_ack">Positiv anerkendelse</string>
 	<string name="tone_prop_beep">Generelt bip</string>
 	<string name="tone_prop_beep2">Generelt dobbelt bip</string>
 	<string name="use_history">Gem scanningshistorik</string>
 	<string name="use_history_summary">Gem genkendte koder på din enhed.</string>
-	<string name="ignore_duplicates">Ignore duplicates</string>
+	<string name="ignore_duplicates">Ignorer duplikater</string>
 	<string name="ignore_consecutive_duplicates">Ignorer dubletter</string>
 	<string name="ignore_any_duplicates">Ignore any duplicates</string>
 	<string name="accept_duplicates">Accept duplicates</string>
@@ -115,8 +115,8 @@
 	<string name="show_meta_data_summary">Vis yderligere data om den scannede stregkode.</string>
 	<string name="show_hex_dump">Vis hex-dump</string>
 	<string name="show_hex_dump_summary">Vis et hex-dump af det scannede indhold.</string>
-	<string name="show_checksum">Show checksum</string>
-	<string name="no_checksum">No checksum</string>
+	<string name="show_checksum">Vis kontrolsum</string>
+	<string name="no_checksum">Ingen kontrolsum</string>
 	<string name="show_recreation">Vis genskabt stregkode</string>
 	<string name="show_recreation_summary">Genskab og vis stregkode fra læst indhold, hvis det er muligt.</string>
 	<string name="close_automatically">Gå tilbage efter Kopier/Del</string>
@@ -140,16 +140,16 @@
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">Åbn i ekstern browser</string>
 	<string name="test_url">Test URL</string>
-	<string name="send_scan_bluetooth">Forward scans with Bluetooth</string>
+	<string name="send_scan_bluetooth">Send scanninger med Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Enable to forwards scans to a given Bluetooth host.</string>
-	<string name="send_scan_bluetooth_host">Host</string>
-	<string name="no_bluetooth_hosts_paired">No Hosts Paired</string>
+	<string name="send_scan_bluetooth_host">Vært</string>
+	<string name="no_bluetooth_hosts_paired">Ingen værter parret</string>
 	<string name="bluetooth_connect_fail">Could not connect to bluetooth device.</string>
 	<string name="bluetooth_send_fail">Could not send to bluetooth device.</string>
 	<string name="bluetooth_send_success">Successful bluetooth send.</string>
 	<string name="generation_category">Generation</string>
-	<string name="brighten_screen">Brighten screen</string>
-	<string name="brighten_screen_summary">Set brightness to maximum to enhance scanning a barcode from the screen.</string>
+	<string name="brighten_screen">Skærm lysere</string>
+	<string name="brighten_screen_summary">Indstil lysstyrken til maksimum for at forbedre scanning af en stregkode fra skærmen.</string>
 	<string name="really_remove_scan">Vil du virkelig fjerne scanningen?</string>
 	<string name="really_remove_all_scans">Vil du virkelig fjerne alle scanninger?</string>
 	<string name="really_remove_selected_scans">Vil du virkelig fjerne valgte scanninger?</string>
@@ -183,23 +183,23 @@
 	<string name="otpauth_add">Tilføj 2FA</string>
 	<string name="search_web">Søg på nettet</string>
 	<string name="search_scan">Søg scanning</string>
-	<string name="add_to_history">Add to history</string>
-	<string name="added_to_history">Added to history</string>
+	<string name="add_to_history">Tilføj til historik</string>
+	<string name="added_to_history">Tilføjet til historik</string>
 	<string name="export_to_file">Eksporter til fil</string>
 	<string name="export_as">Eksporter som?</string>
 	<string name="export_csv_comma">CSV-fil med kommaer</string>
 	<string name="export_csv_semicolon">CSV-fil med semikoloner</string>
 	<string name="export_json">JSON fil</string>
-	<string name="export_database">SQLite database</string>
+	<string name="export_database">SQLite-database</string>
 	<string name="saved_in_downloads">Gemt i downloads</string>
 	<string name="rotate_image_cw">Roter billedet med uret</string>
 	<string name="toggle_free_rotation">Slå fri rotation til/fra</string>
-	<string name="pick_file">Pick a file</string>
+	<string name="pick_file">Vælg en fil</string>
 	<string name="pick_image_file">Vælg billedfil</string>
 	<string name="pick_code_to_scan">Vælg kode til at scanne</string>
 	<string name="shortcut_decode">Scan en stregkode</string>
 	<string name="shortcut_encode">Opret en stregkode</string>
-	<string name="shortcut_history">History</string>
+	<string name="shortcut_history">Historik</string>
 	<string name="shortcut_preferences">Indstillinger</string>
 	<string name="background_request_failed">Baggrundsanmodning mislykkedes</string>
 	<string name="entry_type">Type</string>
@@ -217,7 +217,7 @@
 	<string name="email_to">Modtager</string>
 	<string name="email_subject">Emne</string>
 	<string name="email_body">Brødtekst</string>
-	<string name="scheme">Scheme</string>
-	<string name="host">Host</string>
-	<string name="query">Query</string>
+	<string name="scheme">Ordning</string>
+	<string name="host">Vært</string>
+	<string name="query">Forespørgsel</string>
 </resources>

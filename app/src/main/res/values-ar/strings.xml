@@ -38,7 +38,7 @@
 	<string name="gtin_add_on">إضافة UPC EAN</string>
 	<string name="barcode_version_number">الإصدار</string>
 	<string name="qr_version_and_modules" tools:ignore="PluralsCandidate">%1$s (%2$d وحدات)</string>
-	<string name="qr_data_mask">Data mask</string>
+	<string name="qr_data_mask">قناع البيانات</string>
 	<string name="toggle_flash">تشغيل/إيقاف الوميض</string>
 	<string name="error_flash">خطأ في تشغيل الوميض</string>
 	<string name="share">مشاركة</string>
@@ -53,7 +53,7 @@
 	<string name="format">التنسيق</string>
 	<string name="size_width_by_height">الحجم بالبكسل: %1$d×%2$d</string>
 	<string name="size_no_magnification">بدون تكبير</string>
-	<string name="add_quiet_zone">Add quiet zone</string>
+	<string name="add_quiet_zone">إضافة منطقة هادئة</string>
 	<string name="input_content_here">أدخل المحتوى هنا</string>
 	<string name="unescape">توسيع رموز الهروب (escape sequences)</string>
 	<string name="encode">ترميز</string>
@@ -67,9 +67,9 @@
 	<string name="bulk_mode_delay">الفارق الزمني بين عمليات المسح المستمرة</string>
 	<string name="restrict_format">تحديد التنسيق</string>
 	<string name="remove_restriction">إزالة التحديد</string>
-	<string name="find_code">Find code</string>
-	<string name="find_code_with_content">What content?</string>
-	<string name="find_code_hint">Enter a term</string>
+	<string name="find_code">العثور على الرمز</string>
+	<string name="find_code_with_content">ما المحتوى؟</string>
+	<string name="find_code_hint">أدخل مصطلحًا</string>
 	<string name="scan_format">مسح %s</string>
 	<string name="quarter_second">ربع ثانية</string>
 	<string name="half_second">نصف ثانية</string>
@@ -138,8 +138,8 @@
 	<string name="send_scan_active_summary">قم بالتمكين لإعادة توجيه عمليات المسح إلى رابط معين.</string>
 	<string name="send_scan_url">الرابط المراد إعادة التوجيه إليه</string>
 	<string name="send_scan_type">نوع الطلب</string>
-	<string name="send_type_get_add_content">GET and simply add content</string>
-	<string name="send_type_get_query_string">GET with complete query string</string>
+	<string name="send_type_get_add_content">احصل على المحتوى وأضفه ببساطة</string>
+	<string name="send_type_get_query_string">الحصول بالاستعلام الكامل</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">فتح في متصفح خارجي</string>
@@ -221,7 +221,7 @@
 	<string name="email_to">المستلم</string>
 	<string name="email_subject">الموضوع</string>
 	<string name="email_body">النص</string>
-	<string name="scheme">Scheme</string>
-	<string name="host">Host</string>
-	<string name="query">Query</string>
+	<string name="scheme">المخطط</string>
+	<string name="host">المضيف</string>
+	<string name="query">استعلام</string>
 </resources>

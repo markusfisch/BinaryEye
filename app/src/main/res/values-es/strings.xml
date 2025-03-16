@@ -2,7 +2,7 @@
 	<string name="welcome">¡Bienvenido!</string>
 	<string name="mode_expert">Avanzado</string>
 	<string name="mode_expert_description">Quiero verificar el contenido leído y abrirlo manualmente.</string>
-	<string name="mode_simple">Simple</string>
+	<string name="mode_simple">Sencillo</string>
 	<string name="mode_simple_description">Solo quiero escanear códigos de barras y abrirlos de inmediato.</string>
 	<string name="camera_error">No se puede acceder a la cámara, por favor, inténtelo de nuevo</string>
 	<string name="scan_code">Escanear código</string>
@@ -19,7 +19,7 @@
 	<string name="error_correction_level_m" formatted="false">Medio (~15&#37; de correción)</string>
 	<string name="error_correction_level_q" formatted="false">Cuartil (~25&#37; de correción)</string>
 	<string name="error_correction_level_h" formatted="false">Alto (~30&#37; de correción)</string>
-	<string name="label">Label</string>
+	<string name="label">Etiqueta</string>
 	<string name="colors">Color frontal y fondo</string>
 	<string name="colors_black_on_white">Negro sobre blanco</string>
 	<string name="colors_white_on_black">Blanco sobre negro</string>
@@ -32,9 +32,9 @@
 	<string name="gtin_country">Posible país de fabricación</string>
 	<string name="gtin_price">Precio sugerido</string>
 	<string name="gtin_add_on">Extensión UPC EAN</string>
-	<string name="barcode_version_number">Version</string>
+	<string name="barcode_version_number">Versión</string>
 	<string name="qr_version_and_modules">%1$s (%2$d modulos)</string>
-	<string name="qr_data_mask">Data mask</string>
+	<string name="qr_data_mask">Máscara de datos</string>
 	<string name="toggle_flash">Activar el flash</string>
 	<string name="error_flash">Error activando flash</string>
 	<string name="share">Compartir</string>
@@ -48,8 +48,8 @@
 	<string name="pick_search_engine">Seleccionar motor de búsqueda</string>
 	<string name="format">Formato</string>
 	<string name="size_width_by_height">Tamaño en píxeles: %1$d×%2$d</string>
-	<string name="size_no_magnification">No magnification</string>
-	<string name="add_quiet_zone">Add quiet zone</string>
+	<string name="size_no_magnification">Sin aumento</string>
+	<string name="add_quiet_zone">Agregar zona tranquila</string>
 	<string name="input_content_here">Introduzca el contenido aquí</string>
 	<string name="unescape">Expandir secuencia de escape</string>
 	<string name="encode">CODIFICAR</string>
@@ -63,9 +63,9 @@
 	<string name="bulk_mode_delay">Demora entre escaneos continuos</string>
 	<string name="restrict_format">Restringir formato</string>
 	<string name="remove_restriction">Eliminar restricción</string>
-	<string name="find_code">Find code</string>
-	<string name="find_code_with_content">What content?</string>
-	<string name="find_code_hint">Enter a term</string>
+	<string name="find_code">Encuentra código</string>
+	<string name="find_code_with_content">¿Qué contenido?</string>
+	<string name="find_code_hint">Introduce un término</string>
 	<string name="scan_format">Escanear %s</string>
 	<string name="quarter_second">Un cuarto de segundo</string>
 	<string name="half_second">Medio segundo</string>
@@ -103,10 +103,10 @@
 	<string name="tone_prop_beep2">Sonido doble general</string>
 	<string name="use_history">Guardar historial de escaneo</string>
 	<string name="use_history_summary">Guarda los códigos reconocidos en su dispositivo.</string>
-	<string name="ignore_duplicates">Ignore duplicates</string>
+	<string name="ignore_duplicates">Ignorar duplicados</string>
 	<string name="ignore_consecutive_duplicates">Ignorar duplicados</string>
 	<string name="ignore_any_duplicates">Ignore any duplicates</string>
-	<string name="accept_duplicates">Accept duplicates</string>
+	<string name="accept_duplicates">Aceptar duplicados</string>
 	<string name="open_immediately">Abrir inmediatamente</string>
 	<string name="open_immediately_summary">Omite la inspección y abre el contenido inmediatamente. Podría abrir contenido dañino si está activado.</string>
 	<string name="copy_immediately">Copiar en el portapapeles</string>
@@ -115,8 +115,8 @@
 	<string name="show_meta_data_summary">Muestra datos adicionales del código escaneado.</string>
 	<string name="show_hex_dump">Mostrar volcado hexadecimal</string>
 	<string name="show_hex_dump_summary">Muestra un volcado hexadecimal del contenido escaneado.</string>
-	<string name="show_checksum">Show checksum</string>
-	<string name="no_checksum">No checksum</string>
+	<string name="show_checksum">Mostrar suma de comprobación</string>
+	<string name="no_checksum">Sin suma de comprobación</string>
 	<string name="show_recreation">Mostrar reconstrucción del código</string>
 	<string name="show_recreation_summary">Reconstruye y muestra el código de barras desde el contenido leído si es posible.</string>
 	<string name="close_automatically">Retroceder tras Copiar/Compartir</string>
@@ -142,14 +142,14 @@
 	<string name="test_url">URL de prueba</string>
 	<string name="send_scan_bluetooth">Enviar escaneos con Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Habilita el envío de escaneos a un host Bluetooth.</string>
-	<string name="send_scan_bluetooth_host">Host</string>
+	<string name="send_scan_bluetooth_host">Anfitrión</string>
 	<string name="no_bluetooth_hosts_paired">Ningún host emparejado</string>
 	<string name="bluetooth_connect_fail">No se pudo conectar a un dispositivo bluetooth.</string>
 	<string name="bluetooth_send_fail">No se pudo enviar a un dispositivo bluetooth.</string>
 	<string name="bluetooth_send_success">Envío bluetooth completado.</string>
-	<string name="generation_category">Generation</string>
-	<string name="brighten_screen">Brighten screen</string>
-	<string name="brighten_screen_summary">Set brightness to maximum to enhance scanning a barcode from the screen.</string>
+	<string name="generation_category">Generación</string>
+	<string name="brighten_screen">Aumentar el brillo de la pantalla</string>
+	<string name="brighten_screen_summary">Establezca el brillo al máximo para mejorar la lectura de un código de barras desde la pantalla.</string>
 	<string name="really_remove_scan">¿Eliminar el escaneo seleccionado?</string>
 	<string name="really_remove_all_scans">¿Eliminar todos los escaneos?</string>
 	<string name="really_remove_selected_scans">¿Eliminar los escaneos seleccionados?</string>
@@ -183,8 +183,8 @@
 	<string name="otpauth_add">Añadir 2FA</string>
 	<string name="search_web">Buscar en la web</string>
 	<string name="search_scan">Buscar escaneo</string>
-	<string name="add_to_history">Add to history</string>
-	<string name="added_to_history">Added to history</string>
+	<string name="add_to_history">Añadir al historial</string>
+	<string name="added_to_history">Añadido a historial</string>
 	<string name="export_to_file">Exportar a archivo</string>
 	<string name="export_as">¿Exportar como?</string>
 	<string name="export_csv_comma">Archivo CSV con comas</string>
@@ -199,7 +199,7 @@
 	<string name="pick_code_to_scan">Seleccione el código a escanear</string>
 	<string name="shortcut_decode">Escanear un código</string>
 	<string name="shortcut_encode">Crear un código</string>
-	<string name="shortcut_history">History</string>
+	<string name="shortcut_history">Historial</string>
 	<string name="shortcut_preferences">Ajustes</string>
 	<string name="background_request_failed">Solicitud de fondo fallida</string>
 	<string name="entry_type">Tipo</string>
@@ -217,7 +217,7 @@
 	<string name="email_to">Destinatario</string>
 	<string name="email_subject">Asunto</string>
 	<string name="email_body">Cuerpo</string>
-	<string name="scheme">Scheme</string>
-	<string name="host">Host</string>
-	<string name="query">Query</string>
+	<string name="scheme">Esquema</string>
+	<string name="host">Anfitrión</string>
+	<string name="query">Consulta</string>
 </resources>

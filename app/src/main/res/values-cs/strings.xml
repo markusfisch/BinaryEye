@@ -21,7 +21,7 @@
 	<string name="error_correction_level_m" formatted="false">Střední (~15&#37; korekce)</string>
 	<string name="error_correction_level_q" formatted="false">Čtvrtinový (~25&#37; korekce)</string>
 	<string name="error_correction_level_h" formatted="false">Vysoký (~30&#37; korekce)</string>
-	<string name="label">Label</string>
+	<string name="label">Štítek</string>
 	<string name="colors">Popředí a pozadí</string>
 	<string name="colors_black_on_white">Černá na bílé</string>
 	<string name="colors_white_on_black">Bílá na černé</string>
@@ -36,7 +36,7 @@
 	<string name="gtin_add_on">rozšíření UPC EAN</string>
 	<string name="barcode_version_number">Verze</string>
 	<string name="qr_version_and_modules">%1$s (%2$d modulů)</string>
-	<string name="qr_data_mask">Data mask</string>
+	<string name="qr_data_mask">Maska dat</string>
 	<string name="toggle_flash">Přepnout blesk</string>
 	<string name="error_flash">Zapnutí/vypnutí blesku selhalo</string>
 	<string name="share">Sdílet</string>
@@ -50,8 +50,8 @@
 	<string name="pick_search_engine">Zvolte vyhledávač</string>
 	<string name="format">Formát</string>
 	<string name="size_width_by_height">Velikost v pixelech: %1$d×%2$d</string>
-	<string name="size_no_magnification">No magnification</string>
-	<string name="add_quiet_zone">Add quiet zone</string>
+	<string name="size_no_magnification">Žádné zvětšení</string>
+	<string name="add_quiet_zone">Přidat tichou zónu</string>
 	<string name="input_content_here">Sem vložte obsah</string>
 	<string name="unescape">Rozšířit escape sekvence</string>
 	<string name="encode">ZAKÓDOVAT</string>
@@ -65,9 +65,9 @@
 	<string name="bulk_mode_delay">Prodleva mezi skeny</string>
 	<string name="restrict_format">Omezit na formát</string>
 	<string name="remove_restriction">Zrušit omezení formátu</string>
-	<string name="find_code">Find code</string>
-	<string name="find_code_with_content">What content?</string>
-	<string name="find_code_hint">Enter a term</string>
+	<string name="find_code">Najít kód</string>
+	<string name="find_code_with_content">Co obsah?</string>
+	<string name="find_code_hint">Zadejte termín</string>
 	<string name="scan_format">Naskenovat %s</string>
 	<string name="quarter_second">Čtvrt sekundy</string>
 	<string name="half_second">Půl sekundy</string>
@@ -98,17 +98,17 @@
 	<string name="beep_summary">Povolte, pokud chcete pípnutí při rozpoznání kódu.</string>
 	<string name="beep_tone">Tón pípnutí</string>
 	<string name="tone_cdma_confirm">Potvrzení CDMA</string>
-	<string name="tone_sup_confirm">Call supervisory confirm</string>
-	<string name="tone_sup_radio_ack">Call supervisory radio path acknowledgment</string>
+	<string name="tone_sup_confirm">Potvrzení dohledu volání</string>
+	<string name="tone_sup_radio_ack">Hovor na dohledové rádiové cestě potvrzení</string>
 	<string name="tone_prop_ack">Kladné potvrzení příjmu</string>
 	<string name="tone_prop_beep">Obecné pípnutí</string>
 	<string name="tone_prop_beep2">Dvojité obecné pípnutí</string>
 	<string name="use_history">Ukládat historii skenování</string>
 	<string name="use_history_summary">Rozpoznané kódy se uloží do zařízení.</string>
-	<string name="ignore_duplicates">Ignore duplicates</string>
+	<string name="ignore_duplicates">Ignorovat duplicity</string>
 	<string name="ignore_consecutive_duplicates">Ignorovat duplikáty</string>
 	<string name="ignore_any_duplicates">Ignore any duplicates</string>
-	<string name="accept_duplicates">Accept duplicates</string>
+	<string name="accept_duplicates">Přijmout duplicity</string>
 	<string name="open_immediately">Otevírat okamžitě</string>
 	<string name="open_immediately_summary">Přeskočí kontrolu a otevře obsah okamžitě. Může otevřít škodlivý obsah.</string>
 	<string name="copy_immediately">Vložit do schránky</string>
@@ -117,8 +117,8 @@
 	<string name="show_meta_data_summary">Zobrazí další data o naskenovaném čárovém kódu.</string>
 	<string name="show_hex_dump">Zobrazit hex dump</string>
 	<string name="show_hex_dump_summary">Zobrazí hex dump naskenovaného obsahu.</string>
-	<string name="show_checksum">Show checksum</string>
-	<string name="no_checksum">No checksum</string>
+	<string name="show_checksum">Zobrazit kontrolní součet</string>
+	<string name="no_checksum">Žádný kontrolní součet</string>
 	<string name="show_recreation">Zobrazit zrekonstruovaný kód</string>
 	<string name="show_recreation_summary">Zrekonstruovat a zobrazit čárový kód z přečteného obrazu, pokud je to možné.</string>
 	<string name="close_automatically">Vrátit se po zkopírování/sdílení</string>
@@ -137,7 +137,7 @@
 	<string name="send_scan_url">Posílat každý sken na URL</string>
 	<string name="send_scan_type">Typ požadavku pro každý sken</string>
 	<string name="send_type_get_add_content">GET a simply add content</string>
-	<string name="send_type_get_query_string">GET with complete query string</string>
+	<string name="send_type_get_query_string">GET s kompletním řetězcem dotazu</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">Otevřít v prohlížeči</string>
@@ -149,9 +149,9 @@
 	<string name="bluetooth_connect_fail">Nelze se připojit k zařízení Bluetooth.</string>
 	<string name="bluetooth_send_fail">Nelze odesílat na zařízení Bluetooth.</string>
 	<string name="bluetooth_send_success">Odesílání přes Bluetooth se zdařilo.</string>
-	<string name="generation_category">Generation</string>
-	<string name="brighten_screen">Brighten screen</string>
-	<string name="brighten_screen_summary">Set brightness to maximum to enhance scanning a barcode from the screen.</string>
+	<string name="generation_category">Generace</string>
+	<string name="brighten_screen">Zvýšit jas obrazovky</string>
+	<string name="brighten_screen_summary">Nastavte jas na maximum pro zlepšení skenování čárového kódu ze obrazovky.</string>
 	<string name="really_remove_scan">Opravdu odstranit sken?</string>
 	<string name="really_remove_all_scans">Opravdu odstranit všechny skeny?</string>
 	<string name="really_remove_selected_scans">Opravdu odstranit zvolené skeny?</string>
@@ -185,8 +185,8 @@
 	<string name="otpauth_add">Přidat 2FA</string>
 	<string name="search_web">Vyhledat na webu</string>
 	<string name="search_scan">Vyhledat sken</string>
-	<string name="add_to_history">Add to history</string>
-	<string name="added_to_history">Added to history</string>
+	<string name="add_to_history">Přidat do historie</string>
+	<string name="added_to_history">Přidáno do historie</string>
 	<string name="export_to_file">Exportovat do souboru</string>
 	<string name="export_as">Exportovat jako</string>
 	<string name="export_csv_comma">CSV oddělené čárkami</string>
@@ -201,7 +201,7 @@
 	<string name="pick_code_to_scan">Vyberte kód k naskenování</string>
 	<string name="shortcut_decode">Skenovat čárový kód</string>
 	<string name="shortcut_encode">Vytvořit čárový kód</string>
-	<string name="shortcut_history">History</string>
+	<string name="shortcut_history">Historie</string>
 	<string name="shortcut_preferences">Nastavení</string>
 	<string name="background_request_failed">Požadavek na pozadí selhal</string>
 	<string name="entry_type">Typ</string>
@@ -219,7 +219,7 @@
 	<string name="email_to">Příjemce</string>
 	<string name="email_subject">Předmět</string>
 	<string name="email_body">Tělo zprávy</string>
-	<string name="scheme">Scheme</string>
+	<string name="scheme">Schéma</string>
 	<string name="host">Host</string>
-	<string name="query">Query</string>
+	<string name="query">Dotaz</string>
 </resources>

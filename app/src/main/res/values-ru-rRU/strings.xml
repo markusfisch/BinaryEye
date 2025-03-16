@@ -138,8 +138,8 @@
 	<string name="send_scan_type">Тип запроса для отправки штрих-кодов</string>
 	<string name="send_type_get_add_content">GET с добавлением содержимого</string>
 	<string name="send_type_get_query_string">GET с полной строкой параметров запроса</string>
-	<string name="send_type_post_form">POST-приложение/x-www-form-urlencoded</string>
-	<string name="send_type_post_json">POST-приложение/json</string>
+	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
+	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">Открыть во внешнем браузере</string>
 	<string name="test_url">Проверка URL</string>
 	<string name="send_scan_bluetooth">Отправлять сканирования по bluetooth</string>
@@ -219,7 +219,7 @@
 	<string name="email_to">Получатель</string>
 	<string name="email_subject">Тема</string>
 	<string name="email_body">Текст</string>
-	<string name="scheme">Scheme</string>
-	<string name="host">Host</string>
-	<string name="query">Query</string>
+	<string name="scheme">Схема</string>
+	<string name="host">Хост</string>
+	<string name="query">Запрос</string>
 </resources>

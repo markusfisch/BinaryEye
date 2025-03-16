@@ -19,7 +19,7 @@
 	<string name="error_correction_level_m" formatted="false">Moyen (~15% de correction)</string>
 	<string name="error_correction_level_q" formatted="false">Quartile (~25% de correction)</string>
 	<string name="error_correction_level_h" formatted="false">Élevé (~30% de correction)</string>
-	<string name="label">Label</string>
+	<string name="label">Étiquette</string>
 	<string name="colors">Premier plan et arrière-plan</string>
 	<string name="colors_black_on_white">Noir sur blanc</string>
 	<string name="colors_white_on_black">Blanc sur noir</string>
@@ -66,7 +66,7 @@
 	<string name="find_code">Trouver un code</string>
 	<string name="find_code_with_content">Quel contenu ?</string>
 	<string name="find_code_hint">Entrer un terme</string>
-	<string name="scan_format">Scan %s</string>
+	<string name="scan_format">Numériser %s</string>
 	<string name="quarter_second">Un quart de seconde</string>
 	<string name="half_second">Une demi-seconde</string>
 	<string name="a_second">Une seconde</string>
@@ -74,7 +74,7 @@
 	<string name="five_seconds">Cinq secondes</string>
 	<string name="history">Historique</string>
 	<string name="preferences">Préférences</string>
-	<string name="scan_category">Scan</string>
+	<string name="scan_category">Balayer</string>
 	<string name="content_category">Contenu</string>
 	<string name="locale_category">Langue</string>
 	<string name="custom_locale">Langue personnalisée</string>
@@ -95,12 +95,12 @@
 	<string name="beep">Biper à la détection</string>
 	<string name="beep_summary">Émettre un son lorsqu\'un code est détecté.</string>
 	<string name="beep_tone">Tonalité du signal sonore</string>
-	<string name="tone_cdma_confirm">CDMA confirm</string>
-	<string name="tone_sup_confirm">Call supervisory confirm</string>
-	<string name="tone_sup_radio_ack">Call supervisory radio path acknowledgment</string>
-	<string name="tone_prop_ack">Positive acknowledgment</string>
-	<string name="tone_prop_beep">General beep</string>
-	<string name="tone_prop_beep2">General double beep</string>
+	<string name="tone_cdma_confirm">Confirmer CDMA</string>
+	<string name="tone_sup_confirm">Confirmer la supervision de l\'appel</string>
+	<string name="tone_sup_radio_ack">Accusé de réception du chemin radio de supervision d\'appel</string>
+	<string name="tone_prop_ack">Accusé de réception positif</string>
+	<string name="tone_prop_beep">Signal sonore général</string>
+	<string name="tone_prop_beep2">Général double bip</string>
 	<string name="use_history">Sauvegarder l\'historique des scans</string>
 	<string name="use_history_summary">Sauvegarder les codes reconnus sur votre appareil.</string>
 	<string name="ignore_duplicates">Ignorer les doublons</string>
@@ -217,7 +217,7 @@
 	<string name="email_to">Destinataire</string>
 	<string name="email_subject">Sujet</string>
 	<string name="email_body">Corps du message</string>
-	<string name="scheme">Scheme</string>
-	<string name="host">Host</string>
-	<string name="query">Query</string>
+	<string name="scheme">Schéma</string>
+	<string name="host">Hôte</string>
+	<string name="query">Requête</string>
 </resources>
