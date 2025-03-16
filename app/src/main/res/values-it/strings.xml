@@ -217,7 +217,7 @@
 	<string name="email_to">Destinatario</string>
 	<string name="email_subject">Oggetto</string>
 	<string name="email_body">Corpo</string>
-	<string name="scheme">Scheme</string>
+	<string name="scheme">Schema</string>
 	<string name="host">Host</string>
 	<string name="query">Query</string>
 </resources>
