@@ -1,11 +1,13 @@
 package de.markusfisch.android.binaryeye.actions.wifi
 
 import android.content.Context
+import android.content.Intent
 import android.net.wifi.WifiConfiguration
 import android.net.wifi.WifiEnterpriseConfig
 import android.net.wifi.WifiManager
 import android.net.wifi.WifiNetworkSuggestion
 import android.os.Build
+import android.provider.Settings
 import android.support.annotation.RequiresApi
 import de.markusfisch.android.binaryeye.R
 import java.util.*
@@ -63,6 +65,13 @@ object WifiConnector {
 	}
 
 	fun addNetwork(context: Context, config: Any): Int {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+			config is WifiNetworkSuggestion.Builder
+		) {
+			context.suggestNetworkFromBuilder(config)
+			return R.string.wifi_added
+		}
+
 		val wifiManager = context.applicationContext.getSystemService(
 			Context.WIFI_SERVICE
 		) as WifiManager
@@ -311,6 +320,21 @@ private fun WifiManager.addNetworkFromBuilder(
 	removeNetworkSuggestions(suggestions)
 	val result = addNetworkSuggestions(suggestions)
 	return result == WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS
+}
+
+@RequiresApi(Build.VERSION_CODES.R)
+private fun Context.suggestNetworkFromBuilder(
+	builder: WifiNetworkSuggestion.Builder
+) {
+	val suggestion = builder.build()
+	startActivity(
+		Intent(Settings.ACTION_WIFI_ADD_NETWORKS).apply {
+			putParcelableArrayListExtra(
+				Settings.EXTRA_WIFI_NETWORK_LIST,
+				arrayListOf(suggestion)
+			)
+		}
+	)
 }
 
 // Make sure the string ends with a semicolon.
