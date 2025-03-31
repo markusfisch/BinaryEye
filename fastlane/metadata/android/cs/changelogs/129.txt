@@ -1,0 +1,2 @@
+* Include scan label in exports/shares
+* Update Russian translation

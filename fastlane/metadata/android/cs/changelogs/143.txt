@@ -1,0 +1,2 @@
+* Handle empty input for recreation
+* Fix setting up database

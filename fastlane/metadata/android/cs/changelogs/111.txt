@@ -1,0 +1,2 @@
+* Fix parsing URLs in barcodes
+* Update French, Portuguese, Turkish and Taiwan translation

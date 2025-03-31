@@ -1,0 +1,2 @@
+* Allow scaling a new barcode to half its size
+* Remember last selected barcode format

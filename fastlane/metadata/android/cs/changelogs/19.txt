@@ -1,0 +1,3 @@
+* Show a hex dump of decoded contents
+* Fix processing text from share menu
+* Add French translation

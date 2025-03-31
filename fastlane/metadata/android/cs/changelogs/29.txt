@@ -1,0 +1,1 @@
+* Pick search engine for content that is not an URL

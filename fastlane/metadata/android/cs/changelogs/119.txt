@@ -1,0 +1,2 @@
+* Expand escape sequences in encoding input
+* Update Taiwan translation
