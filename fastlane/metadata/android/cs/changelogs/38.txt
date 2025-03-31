@@ -1,0 +1,1 @@
+* Fix crash caused by missing support for Regex on Android < 6

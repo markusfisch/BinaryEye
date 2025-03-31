@@ -1,0 +1,3 @@
+* Add support for rMQR (rectangular Micro QR) Code
+* Share history as a file
+* Only share selected scans from history

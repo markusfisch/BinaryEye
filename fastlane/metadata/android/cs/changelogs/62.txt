@@ -1,0 +1,3 @@
+* Export SQLite database
+* Improve order of preferences
+* Update Italian translation
