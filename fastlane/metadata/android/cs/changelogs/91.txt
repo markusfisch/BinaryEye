@@ -1,0 +1,2 @@
+* Add forwarding into external browser
+* Fix visibility of zoom slider when switching cameras

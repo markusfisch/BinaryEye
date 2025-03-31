@@ -1,0 +1,3 @@
+* Stop detection while region of interest is modified
+* Fix resetting region of interest
+* Add Polish translation

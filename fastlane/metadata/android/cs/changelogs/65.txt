@@ -1,0 +1,1 @@
+* Add a setting to enable reading of vertical 1D barcodes
