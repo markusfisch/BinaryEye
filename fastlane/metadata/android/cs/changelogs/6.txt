@@ -1,0 +1,3 @@
+* Support tap to focus
+* Save chose zoom level permanently
+* Update ZXing to latest version (3.3.2)

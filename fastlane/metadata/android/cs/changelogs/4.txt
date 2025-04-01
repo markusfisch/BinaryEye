@@ -1,0 +1,1 @@
+* Brought back inverting every second frame

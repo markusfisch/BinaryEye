@@ -1,0 +1,2 @@
+* Pick list separator on sharing history listing
+* Update Hungarian translation

@@ -1,0 +1,3 @@
+* Add german translation
+* Fix handling of data intents
+* Respond to ZXing' SCAN intents

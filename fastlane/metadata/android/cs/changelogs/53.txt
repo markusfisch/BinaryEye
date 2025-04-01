@@ -1,0 +1,1 @@
+* Ensure non-printable content is saved as raw data

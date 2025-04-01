@@ -1,0 +1,2 @@
+* Update zh-rCn translation
+* Fix monochrome launcher icon

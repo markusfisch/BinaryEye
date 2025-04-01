@@ -1,0 +1,1 @@
+* Make rMQR Code selectable

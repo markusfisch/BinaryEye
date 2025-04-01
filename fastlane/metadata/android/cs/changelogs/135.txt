@@ -1,0 +1,2 @@
+* Update ZXingCpp for Aztec Runes
+* Update Italian translation
