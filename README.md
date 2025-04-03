@@ -176,19 +176,18 @@ class YourActivity : AppCompatActivity() {
 
 ## Forwarding scans via Bluetooth
 
-#### Please note: The companion apps aren't developed nor maintained by the Author of Binary Eye.
+**Note:** The companion apps aren't developed nor maintained by the
+author of Binary Eye.
 
 In order to set up Bluetooth forwarding to a computer:
 
 1. Pair your devices (phone and pc) if not paired already
 2. Download and run a companion app:
-- Windows: https://github.com/KamaleiZestri/BinaryReceptorWindows
-- Install dependency .NET https://aka.ms/dotnet-core-applaunch?framework=Microsoft.AspNetCore.App&framework_version=6.0.0
-- If installed correctly, a webpage with instructions should open when you run the application (or right-click tray icon -> start)
-
-- Linux: (X.Org) https://github.com/sean666888/bin_eye_bt_receiver (written in Rust, gotta compile it)
-3. As per the opened webpage with instructions, in the settings of Binary Eye, enable "Forward scans with Bluetooth" and select apropriate target host device that is running the companion application.
-#### You're all set! Happy scanning~!
+	- Windows: https://github.com/KamaleiZestri/BinaryReceptorWindows
+	- Linux: https://github.com/sean666888/bin_eye_bt_receiver
+3. In the settings of Binary Eye, enable "Forward scans with Bluetooth"
+	and select the appropriate target host device that is running the
+	companion application.
 
 [play]: https://play.google.com/store/search?q=barcode%20scanner&c=apps
 [zxing_cpp]: https://github.com/zxing-cpp/zxing-cpp
