@@ -41,7 +41,9 @@ import de.markusfisch.android.binaryeye.app.hasLocationPermission
 import de.markusfisch.android.binaryeye.app.hasWritePermission
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.content.ContentBarcode
+import de.markusfisch.android.binaryeye.content.IDLParser
 import de.markusfisch.android.binaryeye.content.copyToClipboard
+import de.markusfisch.android.binaryeye.content.idlToRes
 import de.markusfisch.android.binaryeye.content.shareAsFile
 import de.markusfisch.android.binaryeye.content.shareText
 import de.markusfisch.android.binaryeye.content.toBarcode
@@ -134,13 +136,12 @@ class DecodeFragment : Fragment() {
 		labelView = view.findViewById(R.id.label)
 		fab = view.findViewById(R.id.open)
 
-		initContentAndFab(justScanned)
-
 		if (prefs.showMetaData) {
 			metaView.fillMetaView(scan)
 		} else {
 			metaView.visibility = View.GONE
 		}
+
 		if (id > 0) {
 			scan.label?.let {
 				labelView.setText(it)
@@ -150,10 +151,11 @@ class DecodeFragment : Fragment() {
 			labelView.visibility = View.GONE
 		}
 
-		updateViewsAndFab(scan.text, originalBytes)
-
 		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
 		view.findViewById<View>(R.id.scroll_view).setPaddingFromWindowInsets()
+
+		initContentAndFab(justScanned)
+		updateViewsAndFab(scan.text, originalBytes)
 
 		return view
 	}
@@ -222,12 +224,14 @@ class DecodeFragment : Fragment() {
 	}
 
 	private fun resolveActionAndUpdateFab(bytes: ByteArray) {
-		val prevAction = action
-		if (!prevAction.canExecuteOn(bytes)) {
-			action = ActionRegistry.getAction(bytes)
-		}
-		if (prevAction !== action) {
-			fab.setImageResource(action.iconResId)
+		if (!isBinary) {
+			val prevAction = action
+			if (!prevAction.canExecuteOn(bytes)) {
+				action = ActionRegistry.getAction(bytes)
+			}
+			if (prevAction !== action) {
+				fab.setImageResource(action.iconResId)
+			}
 		}
 		// Run this for the initial action too.
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
@@ -309,6 +313,14 @@ class DecodeFragment : Fragment() {
 			"SHA1" -> items[R.string.sha1] = bytes.sha1().toHexString().fold()
 			"SHA256" -> items[R.string.sha256] = bytes.sha256().toHexString().fold()
 			else -> Unit
+		}
+		IDLParser.parse(String(bytes))?.let {
+			items.putAll(mapOf("IIN" to it.iin))
+			items.putAll(
+				it.elements.entries.associate { (id, value) ->
+					context.idlToRes(id) to value
+				}
+			)
 		}
 		when (action) {
 			is MatMsgAction -> items.putAll(

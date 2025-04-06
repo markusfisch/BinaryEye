@@ -8,4 +8,55 @@
 	<string name="md5" translatable="false">MD5</string>
 	<string name="sha1" translatable="false">SHA1</string>
 	<string name="sha256" translatable="false">SHA256</string>
+	<string name="idl_vehicle_class">Vehicle Class</string>
+	<string name="idl_restriction_codes">Restriction Codes</string>
+	<string name="idl_endorsement_codes">Endorsement Codes</string>
+	<string name="idl_date_of_expiry">Date of Expiry</string>
+	<string name="idl_customer_family_name">Customer Family Name</string>
+	<string name="idl_customer_first_name">Customer First Name</string>
+	<string name="idl_customer_first_name_alt">Customer First Name Alt</string>
+	<string name="idl_customer_middle_name">Customer Middle Name</string>
+	<string name="idl_date_of_issue">Date of Issue</string>
+	<string name="idl_date_of_birth">Date of Birth</string>
+	<string name="idl_sex">Sex</string>
+	<string name="idl_eye_color">Eye Color</string>
+	<string name="idl_body_height">Body Height</string>
+	<string name="idl_address_street">Address Street</string>
+	<string name="idl_address_city">Address City</string>
+	<string name="idl_address_jurisdiction_code">Address Jurisdiction Code</string>
+	<string name="idl_address_postal_code">Address Postal Code</string>
+	<string name="idl_customer_id_number">Customer ID Number</string>
+	<string name="idl_document_discriminator">Document Discriminator</string>
+	<string name="idl_country">Country</string>
+	<string name="idl_family_name_truncation">Family Name Truncation</string>
+	<string name="idl_first_name_truncation">First Name Truncation</string>
+	<string name="idl_middle_name_truncation">Middle Name Truncation</string>
+	<string name="idl_address_street_2">Address Street 2</string>
+	<string name="idl_hair_color">Hair Color</string>
+	<string name="idl_place_of_birth">Place of Birth</string>
+	<string name="idl_audit_information">Audit Information</string>
+	<string name="idl_inventory_control_number">Inventory Control Number</string>
+	<string name="idl_alias_family_name">Alias Family Name</string>
+	<string name="idl_alias_given_name">Alias Given Name</string>
+	<string name="idl_alias_suffix_name">Alias Suffix Name</string>
+	<string name="idl_name_suffix">Name Suffix</string>
+	<string name="idl_weight_range">Weight Range</string>
+	<string name="idl_ethnicity">Ethnicity</string>
+	<string name="idl_standard_vehicle_classification">Standard Vehicle Classification</string>
+	<string name="idl_standard_endorsement_code">Standard Endorsement Code</string>
+	<string name="idl_standard_restriction_code">Standard Restriction Code</string>
+	<string name="idl_vehicle_classification_description">Vehicle Classification Description</string>
+	<string name="idl_endorsement_code_description">Endorsement Code Description</string>
+	<string name="idl_restriction_code_description">Restriction Code Description</string>
+	<string name="idl_compliance_type">Compliance Type</string>
+	<string name="idl_card_revision_date">Card Revision Date</string>
+	<string name="idl_hazmat_endorsement_expiration_date">Hazmat Endorsement Expiration Date</string>
+	<string name="idl_limited_duration_document_indicator">Limited Duration Document Indicator</string>
+	<string name="idl_weight_pounds">Weight (Pounds)</string>
+	<string name="idl_weight_kilograms">Weight (Kilograms)</string>
+	<string name="idl_under_18_until_date">Under 18 Until Date</string>
+	<string name="idl_under_19_until_date">Under 19 Until Date</string>
+	<string name="idl_under_21_until_date">Under 21 Until Date</string>
+	<string name="idl_organ_donor_indicator">Organ Donor Indicator</string>
+	<string name="idl_veteran_indicator">Veteran Indicator</string>
 </resources>

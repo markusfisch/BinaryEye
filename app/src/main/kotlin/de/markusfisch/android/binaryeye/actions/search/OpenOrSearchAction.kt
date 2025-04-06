@@ -15,49 +15,49 @@ object OpenOrSearchAction : IAction {
 	override fun canExecuteOn(data: ByteArray): Boolean = false
 
 	override suspend fun execute(context: Context, data: ByteArray) {
-		view(context, String(data), true)
+		openUrlOrSearch(context, String(data))
 	}
+}
 
-	private suspend fun view(
-		context: Context,
-		url: String,
-		search: Boolean
-	) {
-		if (!context.openUrl(url, silent = true) && search) {
-			openSearch(context, url)
-		}
+private suspend fun openUrlOrSearch(
+	context: Context,
+	url: String,
+	search: Boolean = true
+) {
+	if (context.openUrl(url, silent = true) || !search) {
+		return
 	}
+	prependSearchUrl(context, url)?.let {
+		openUrlOrSearch(context, it, false)
+	}
+}
 
-	private suspend fun openSearch(context: Context, query: String) {
-		val defaultSearchUrl = prefs.defaultSearchUrl
-		if (defaultSearchUrl.isNotEmpty()) {
-			view(
-				context,
-				defaultSearchUrl + query.urlEncode(),
-				false
-			)
-			return
+private suspend fun prependSearchUrl(
+	context: Context,
+	query: String
+): String? {
+	val defaultSearchUrl = prefs.defaultSearchUrl
+	if (defaultSearchUrl.isNotEmpty()) {
+		return defaultSearchUrl + query.urlEncode()
+	}
+	val names = context.resources.getStringArray(
+		R.array.search_engines_names
+	).toMutableList()
+	val urls = context.resources.getStringArray(
+		R.array.search_engines_values
+	).toMutableList()
+	// Remove the "Always ask" entry. The arrays search_engines_*
+	// are used in the preferences too.
+	names.removeAt(0)
+	urls.removeAt(0)
+	if (prefs.openWithUrl.isNotEmpty()) {
+		names.add(prefs.openWithUrl)
+		urls.add(prefs.openWithUrl)
+	}
+	return alertDialog(context) { resume ->
+		setTitle(R.string.pick_search_engine)
+		setItems(names.toTypedArray()) { _, which ->
+			resume(urls[which] + query.urlEncode())
 		}
-		val names = context.resources.getStringArray(
-			R.array.search_engines_names
-		).toMutableList()
-		val urls = context.resources.getStringArray(
-			R.array.search_engines_values
-		).toMutableList()
-		// Remove the "Always ask" entry. The arrays search_engines_*
-		// are used in the preferences too.
-		names.removeAt(0)
-		urls.removeAt(0)
-		if (prefs.openWithUrl.isNotEmpty()) {
-			names.add(prefs.openWithUrl)
-			urls.add(prefs.openWithUrl)
-		}
-		val queryUri = alertDialog<String>(context) { resume ->
-			setTitle(R.string.pick_search_engine)
-			setItems(names.toTypedArray()) { _, which ->
-				resume(urls[which] + query.urlEncode())
-			}
-		} ?: return
-		view(context, queryUri, false)
 	}
 }
