@@ -41,6 +41,7 @@
 	<string name="share_file">ফাইল হিসেবে ভাগাভাগি</string>
 	<string name="share_as">ভাগ করার মাধ্যম</string>
 	<string name="copy_to_clipboard">ক্লিপবোর্ডে অনুলিপি</string>
+	<string name="copy_as_deeplink">ডিপলিংক হিসেবে কপি করুন</string>
 	<string name="copied_to_clipboard">ক্লিপবোর্ডে অনুলিপিত</string>
 	<string name="copy_password">ক্লিপবোর্ডে পাসওয়ার্ড অনুলিপি করো</string>
 	<string name="open_url">ইউআরএল খুলো</string>

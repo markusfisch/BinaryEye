@@ -40,6 +40,7 @@
 	<string name="share_file">Chia sẻ dưới dạng tập tin</string>
 	<string name="share_as">Chia sẻ dưới định dạng?</string>
 	<string name="copy_to_clipboard">Sao chép</string>
+	<string name="copy_as_deeplink">Sao chép dưới dạng liên kết sâu</string>
 	<string name="copied_to_clipboard">Đã sao chép</string>
 	<string name="copy_password">Sao chép mật khẩu</string>
 	<string name="open_url">Mở đường dẫn</string>

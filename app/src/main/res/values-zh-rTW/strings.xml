@@ -40,6 +40,7 @@
 	<string name="share_file">分享檔案</string>
 	<string name="share_as">您要以何種方式分享？</string>
 	<string name="copy_to_clipboard">複製到剪貼簿</string>
+	<string name="copy_as_deeplink">複製為深層連結</string>
 	<string name="copied_to_clipboard">已複製到剪貼簿</string>
 	<string name="copy_password">複製密碼到剪貼簿</string>
 	<string name="open_url">開啟連結</string>

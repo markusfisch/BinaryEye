@@ -41,6 +41,7 @@
 	<string name="share_file">Споделяне като файл</string>
 	<string name="share_as">Сподели като?</string>
 	<string name="copy_to_clipboard">Копиране в клипборда</string>
+	<string name="copy_as_deeplink">Копиране като дийп линк</string>
 	<string name="copied_to_clipboard">Копирано в клипборда</string>
 	<string name="copy_password">Копиране на паролата в клипборда</string>
 	<string name="open_url">Отворете URL(Линк)</string>

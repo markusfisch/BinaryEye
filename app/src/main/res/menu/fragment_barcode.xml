@@ -12,6 +12,11 @@
 		android:icon="@drawable/ic_action_copy"
 		material:showAsAction="ifRoom"/>
 	<item
+		android:id="@+id/copy_as_deeplink"
+		android:title="@string/copy_as_deeplink"
+		android:icon="@drawable/ic_action_link"
+		material:showAsAction="ifRoom"/>
+	<item
 		android:id="@+id/export_to_file"
 		android:title="@string/export_to_file"
 		android:icon="@drawable/ic_action_save"

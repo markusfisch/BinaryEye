@@ -40,6 +40,7 @@
 	<string name="share_file">ファイルとして共有</string>
 	<string name="share_as">画像形式を選択</string>
 	<string name="copy_to_clipboard">クリップボードにコピー</string>
+	<string name="copy_as_deeplink">ディープリンクとしてコピー</string>
 	<string name="copied_to_clipboard">クリップボードにコピーされました</string>
 	<string name="copy_password">クリップボードにパスワードをコピー</string>
 	<string name="open_url">URLを開く</string>

@@ -41,6 +41,7 @@
 	<string name="share_file">Condividi come file</string>
 	<string name="share_as">Condividi come?</string>
 	<string name="copy_to_clipboard">Copia negli Appunti</string>
+	<string name="copy_as_deeplink">Copia come deeplink</string>
 	<string name="copied_to_clipboard">Copiato negli Appunti</string>
 	<string name="copy_password">Copia password negli Appunti</string>
 	<string name="open_url">Apri URL</string>

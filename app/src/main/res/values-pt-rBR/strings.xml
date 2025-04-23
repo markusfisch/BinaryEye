@@ -41,6 +41,7 @@
 	<string name="share_file">Compartilhar como arquivo</string>
 	<string name="share_as">Compartilhar como?</string>
 	<string name="copy_to_clipboard">Copiar para a área de transferência</string>
+	<string name="copy_as_deeplink">Copiar como link direto</string>
 	<string name="copied_to_clipboard">Copiado para a área de transferência</string>
 	<string name="copy_password">Copiar senha para a área de transferência</string>
 	<string name="open_url">Abrir URL</string>

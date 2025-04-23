@@ -41,6 +41,7 @@
 	<string name="share_file">Del som fil</string>
 	<string name="share_as">Del som?</string>
 	<string name="copy_to_clipboard">Kopier til udklipsholder</string>
+	<string name="copy_as_deeplink">Kopiér som deeplink</string>
 	<string name="copied_to_clipboard">Kopieret til udklipsholder</string>
 	<string name="copy_password">Kopier adgangskode til udklipsholderen</string>
 	<string name="open_url">Åbn URL</string>

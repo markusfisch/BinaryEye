@@ -45,6 +45,7 @@
 	<string name="share_file">مشاركة كملف</string>
 	<string name="share_as">مشاركة كـ؟</string>
 	<string name="copy_to_clipboard">نسخ إلى الحافظة</string>
+	<string name="copy_as_deeplink">نسخ كرابط عميق</string>
 	<string name="copied_to_clipboard">تم النسخ إلى الحافظة</string>
 	<string name="copy_password">نسخ كلمة المرور إلى الحافظة</string>
 	<string name="open_url">فتح الرابط</string>

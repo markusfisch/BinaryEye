@@ -40,6 +40,7 @@
 	<string name="share_file">Dijeli kao datoteku</string>
 	<string name="share_as">Bagikan sebagai?</string>
 	<string name="copy_to_clipboard">Salin ke clipboard</string>
+	<string name="copy_as_deeplink">Salin sebagai tautan langsung</string>
 	<string name="copied_to_clipboard">Disalin ke clipboard</string>
 	<string name="copy_password">Salin sandi ke clipboard</string>
 	<string name="open_url">Buka url</string>

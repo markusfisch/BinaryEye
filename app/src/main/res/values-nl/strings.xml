@@ -41,6 +41,7 @@
 	<string name="share_file">Delen als bestand</string>
 	<string name="share_as">Delen als?</string>
 	<string name="copy_to_clipboard">Naar klembord kopiëren</string>
+	<string name="copy_as_deeplink">Kopieer als deeplink</string>
 	<string name="copied_to_clipboard">Naar klembord gekopieerd</string>
 	<string name="copy_password">Kopieer wachtwoord naar klembord</string>
 	<string name="open_url">URL openen</string>
