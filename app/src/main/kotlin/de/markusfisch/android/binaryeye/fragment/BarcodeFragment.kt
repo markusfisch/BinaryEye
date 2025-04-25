@@ -29,10 +29,12 @@ import de.markusfisch.android.binaryeye.content.ContentBarcode
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.shareFile
 import de.markusfisch.android.binaryeye.content.shareText
+import de.markusfisch.android.binaryeye.content.toHexString
 import de.markusfisch.android.binaryeye.database.toScan
 import de.markusfisch.android.binaryeye.io.addSuffixIfNotGiven
 import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.io.writeExternalFile
+import de.markusfisch.android.binaryeye.net.createEncodeDeeplink
 import de.markusfisch.android.binaryeye.os.getScreenBrightness
 import de.markusfisch.android.binaryeye.os.setScreenBrightness
 import de.markusfisch.android.binaryeye.view.doOnApplyWindowInsets
@@ -221,10 +223,12 @@ class BarcodeFragment : Fragment() {
 			}
 
 			R.id.copy_to_clipboard -> {
-				context.apply {
-					copyToClipboard(barcode.text())
-					toast(R.string.copied_to_clipboard)
-				}
+				copyToClipboard(barcode.text())
+				true
+			}
+
+			R.id.copy_as_deeplink -> {
+				copyToClipboard(deeplinkToCopy())
 				true
 			}
 
@@ -256,6 +260,18 @@ class BarcodeFragment : Fragment() {
 			else -> super.onOptionsItemSelected(item)
 		}
 	}
+
+	private fun copyToClipboard(text: String, isSensitive: Boolean = false) {
+		activity?.apply {
+			copyToClipboard(text, isSensitive)
+			toast(R.string.copied_to_clipboard)
+		}
+	}
+
+	private fun deeplinkToCopy() = createEncodeDeeplink(
+		format = barcode.format.name,
+		content = barcode.textOrHex(),
+	)
 
 	private fun Context.pickFileType(
 		title: Int,

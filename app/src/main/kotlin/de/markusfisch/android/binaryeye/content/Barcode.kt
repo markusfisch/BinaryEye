@@ -61,7 +61,7 @@ fun String?.toErrorCorrectionInt() = when (this) {
 	else -> -1
 }
 
-abstract class Barcode<T>(
+sealed class Barcode<T>(
 	val content: T,
 	val format: BarcodeFormat,
 	val colors: BarcodeColors
@@ -96,6 +96,12 @@ abstract class Barcode<T>(
 	}
 
 	protected abstract fun toText(): String
+
+	fun textOrHex(): String = when (content) {
+		is String -> content
+		is ByteArray -> content.toHexString()
+		else -> throw IllegalArgumentException("Illegal arguments")
+	}
 }
 
 class ContentBarcode<T>(

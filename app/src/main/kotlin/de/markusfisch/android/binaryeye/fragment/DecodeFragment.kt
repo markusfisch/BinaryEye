@@ -54,6 +54,7 @@ import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.io.askForFileName
 import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.io.writeExternalFile
+import de.markusfisch.android.binaryeye.net.createEncodeDeeplink
 import de.markusfisch.android.binaryeye.view.hideSoftKeyboard
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.toast
@@ -473,6 +474,12 @@ class DecodeFragment : Fragment() {
 				true
 			}
 
+			R.id.copy_as_deeplink -> {
+				copyToClipboard(deeplinkToCopy())
+				maybeBackOrFinish()
+				true
+			}
+
 			R.id.share -> {
 				context?.apply {
 					shareText(textOrHex())
@@ -519,6 +526,11 @@ class DecodeFragment : Fragment() {
 	} else {
 		content
 	}
+
+	private fun deeplinkToCopy() = createEncodeDeeplink(
+		format = format,
+		content = textOrHex(),
+	)
 
 	private fun copyPasswordToClipboard() {
 		val ac = action

@@ -40,6 +40,7 @@
 	<string name="share_file">파일로 공유</string>
 	<string name="share_as">공유할까요?</string>
 	<string name="copy_to_clipboard">클립보드에 복사</string>
+	<string name="copy_as_deeplink">딥링크로 복사</string>
 	<string name="copied_to_clipboard">클립보드에 복사되었습니다</string>
 	<string name="copy_password">클립보드에 비밀번호 복사</string>
 	<string name="open_url">Open url</string>

@@ -43,6 +43,7 @@
 	<string name="share_file">Поделиться файлом</string>
 	<string name="share_as">Поделиться как?</string>
 	<string name="copy_to_clipboard">Скопировать в буфер обмена</string>
+	<string name="copy_as_deeplink">Копировать как диплинк</string>
 	<string name="copied_to_clipboard">Скопировано в буфер обмена</string>
 	<string name="copy_password">Скопировать пароль в буфер обмена</string>
 	<string name="open_url">Открыть URL</string>

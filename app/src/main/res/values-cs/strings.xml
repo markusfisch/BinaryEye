@@ -43,6 +43,7 @@
 	<string name="share_file">Sdílet jako soubor</string>
 	<string name="share_as">Sdílet jako</string>
 	<string name="copy_to_clipboard">Zkopírovat do schránky</string>
+	<string name="copy_as_deeplink">Kopírovat jako deeplink</string>
 	<string name="copied_to_clipboard">Zkopírováno do schránky</string>
 	<string name="copy_password">Zkopírovat heslo do schránky</string>
 	<string name="open_url">Otevřít URL</string>

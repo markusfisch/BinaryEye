@@ -31,12 +31,22 @@ testscan:
 testencode:
 	adb shell am start -a android.intent.action.VIEW \
 		-c android.intent.category.BROWSABLE \
-		-d 'binaryeye://encode?content=Test\&format=QRCode'
+		-d 'binaryeye://encode?content=Test\&format=QR_CODE'
+
+testencodenotqr:
+	adb shell am start -a android.intent.action.VIEW \
+		-c android.intent.category.BROWSABLE \
+		-d 'binaryeye://encode?content=Test\&format=DATA_MATRIX'
 
 testencodeexec:
 	adb shell am start -a android.intent.action.VIEW \
 		-c android.intent.category.BROWSABLE \
-		-d 'binaryeye://encode?content=Test\&format=QRCode\&execute=true'
+		-d 'binaryeye://encode?content=Test\&format=QR_CODE\&execute'
+
+testencodeurl:
+	adb shell am start -a android.intent.action.VIEW \
+		-c android.intent.category.BROWSABLE \
+		-d 'http://markusfisch.de/encode?content=Test\&format=QR_CODE'
 
 testurl:
 	adb shell am start -a android.intent.action.VIEW \

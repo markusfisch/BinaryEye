@@ -111,9 +111,11 @@ Supported symbols are:
 You can use the URL arguments `content` and `format` to automatically
 preset this data. For example:
 
-[binaryeye://encode?content=Test&format=QRCODE](binaryeye://encode?content=Test&format=QRCODE)
+1. [binaryeye://encode?content=Test&format=QR_CODE](binaryeye://encode?content=Test&format=QR_CODE)
+2. [http(s)://markusfisch.de/encode?content=Test&format=QR_CODE](http://markusfisch.de/encode?content=Test&format=QR_CODE)
+3. [http(s)://markusfisch.de/encode?content=Test&format=DATA_MATRIX](http://markusfisch.de/encode?content=Test2&format=DATA_MATRIX&execute)
 
-If you want the code to be generated immediately, add `execute=true`.
+If you want the code to be generated immediately, add `execute=true` (or just `execute`).
 
 ## Intents
 

@@ -41,6 +41,7 @@
 	<string name="share_file">Dosya olarak paylaş</string>
 	<string name="share_as">Şöyle paylaş:</string>
 	<string name="copy_to_clipboard">Panoya kopyala</string>
+	<string name="copy_as_deeplink">Derin bağlantı olarak kopyala</string>
 	<string name="copied_to_clipboard">Panoya kopyalandı</string>
 	<string name="copy_password">Parolayı panoya kopyala</string>
 	<string name="open_url">URL\'yi aç</string>

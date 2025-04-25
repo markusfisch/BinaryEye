@@ -41,6 +41,7 @@
 	<string name="share_file">გაზიარეთ ფაილის სახით</string>
 	<string name="share_as">გაზიარე როგორ?</string>
 	<string name="copy_to_clipboard">გაცვლის ბუფერში კოპირება</string>
+	<string name="copy_as_deeplink">კოპირება deeplink-ის სახით</string>
 	<string name="copied_to_clipboard">კოპირებულია გაცვლის ბუფერში</string>
 	<string name="copy_password">პაროლის გაცვლით ბუფერში კოპირება</string>
 	<string name="open_url">ბმულის გახსნა</string>

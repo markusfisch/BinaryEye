@@ -39,6 +39,7 @@ import de.markusfisch.android.binaryeye.graphics.mapPosition
 import de.markusfisch.android.binaryeye.graphics.setFrameRoi
 import de.markusfisch.android.binaryeye.graphics.setFrameToView
 import de.markusfisch.android.binaryeye.media.releaseToneGenerators
+import de.markusfisch.android.binaryeye.net.isScanDeeplink
 import de.markusfisch.android.binaryeye.net.sendAsync
 import de.markusfisch.android.binaryeye.net.urlEncode
 import de.markusfisch.android.binaryeye.preference.Preferences
@@ -221,7 +222,7 @@ class CameraActivity : AppCompatActivity() {
 				returnResult = true
 			}
 
-			intent?.dataString?.isReturnUrl() == true -> {
+			intent?.dataString?.let(::isScanDeeplink) == true -> {
 				finishAfterShowingResult = true
 				returnUrlTemplate = intent.data?.getQueryParameter("ret")
 			}
@@ -837,12 +838,6 @@ private fun getReturnIntent(result: Result) = Intent().apply {
 		putExtra("SCAN_RESULT_BYTES", result.rawBytes)
 	}
 }
-
-private fun String.isReturnUrl() = listOf(
-	"binaryeye://scan",
-	"http://markusfisch.de/BinaryEye",
-	"https://markusfisch.de/BinaryEye"
-).firstOrNull { startsWith(it) } != null
 
 private fun completeUrl(urlTemplate: String, result: Result) = Uri.parse(
 	urlTemplate

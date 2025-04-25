@@ -41,6 +41,7 @@
 	<string name="share_file">Partager en tant que fichier</string>
 	<string name="share_as">Partager en tant que ?</string>
 	<string name="copy_to_clipboard">Copier dans le presse-papiers</string>
+	<string name="copy_as_deeplink">Copier sous forme de lien profond</string>
 	<string name="copied_to_clipboard">Copié dans le presse-papiers</string>
 	<string name="copy_password">Copier le mot de passe dans le presse-papiers</string>
 	<string name="open_url">Ouvrir l\'URL</string>

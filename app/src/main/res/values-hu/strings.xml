@@ -41,6 +41,7 @@
 	<string name="share_file">Fájlként megosztás</string>
 	<string name="share_as">Megosztja másként?</string>
 	<string name="copy_to_clipboard">Másolás a vágólapra</string>
+	<string name="copy_as_deeplink">Másolás mélyhivatkozásként</string>
 	<string name="copied_to_clipboard">Vágólapra helyezés</string>
 	<string name="copy_password">Jelszó másolása a vágólapra</string>
 	<string name="open_url">URL megnyitása</string>

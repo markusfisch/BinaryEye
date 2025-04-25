@@ -19,6 +19,11 @@
 		android:icon="@drawable/ic_action_copy"
 		material:showAsAction="ifRoom"/>
 	<item
+		android:id="@+id/copy_as_deeplink"
+		android:title="@string/copy_as_deeplink"
+		android:icon="@drawable/ic_action_link"
+		material:showAsAction="ifRoom"/>
+	<item
 		android:id="@+id/share"
 		android:title="@string/share"
 		android:icon="@drawable/ic_action_share"
