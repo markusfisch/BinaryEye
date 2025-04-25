@@ -1,0 +1,6 @@
+* Support deep links to encode content via web links
+* Parse International Driver Licenses (IDL) in PDF417 barcodes
+* Add WiFis from system settings
+* Show parsed data items
+* Update translations
+

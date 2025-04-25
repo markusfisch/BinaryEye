@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.66.0
+* Support deep links to encode content via web links
+* Parse International Driver Licenses (IDL) in PDF417 barcodes
+* Add WiFis from system settings
+* Show parsed data items
+* Update translations
+
 ## 1.65.2
 * Sanity check ROI metrics
 
