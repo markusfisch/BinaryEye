@@ -13,6 +13,7 @@
 	<string name="binary_data">(dados em binário)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d caractere, %1$s</item>
+		<item quantity="many">%2$d de characters, %1$s</item>
 		<item quantity="other">%2$d caracteres, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Nível de correção de erro</string>

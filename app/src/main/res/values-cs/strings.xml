@@ -42,7 +42,7 @@
 	<string name="error_flash">Zapnutí/vypnutí blesku selhalo</string>
 	<string name="share">Sdílet</string>
 	<string name="share_file">Sdílet jako soubor</string>
-	<string name="share_as">Sdílet jako</string>
+    <string name="share_as">Sdílet jako?</string>
 	<string name="copy_to_clipboard">Zkopírovat do schránky</string>
 	<string name="copy_as_deeplink">Kopírovat jako deeplink</string>
 	<string name="copied_to_clipboard">Zkopírováno do schránky</string>
@@ -135,7 +135,7 @@
 	<string name="clear_network_suggestions_nothing_to_remove">Nic ke smazání</string>
 	<string name="send_category">Předávání</string>
 	<string name="send_scan_active">Předávat skeny</string>
-	<string name="send_scan_active_summary">Zapnout předávání skenů na danou URL</string>
+    <string name="send_scan_active_summary">Zapnout předávání skenů na danou URL.</string>
 	<string name="send_scan_url">Posílat každý sken na URL</string>
 	<string name="send_scan_type">Typ požadavku pro každý sken</string>
 	<string name="send_type_get_add_content">GET a simply add content</string>
@@ -167,7 +167,7 @@
 	<string name="pick_list_separator">Jak mají být odděleny položky?</string>
 	<string name="separator_line_break">Nový řádek</string>
 	<string name="separator_ruler">Svislice</string>
-	<string name="save_as_file_name">Uložit jako do složky Stahování</string>
+    <string name="save_as_file_name">Uložit do složky Stahování?</string>
 	<string name="file_name">Název souboru</string>
 	<string name="error_saving_file">Soubor se nepodařilo uložit</string>
 	<string name="error_file_exists">Soubor již existuje</string>
@@ -190,7 +190,7 @@
 	<string name="add_to_history">Přidat do historie</string>
 	<string name="added_to_history">Přidáno do historie</string>
 	<string name="export_to_file">Exportovat do souboru</string>
-	<string name="export_as">Exportovat jako</string>
+    <string name="export_as">Exportovat jako?</string>
 	<string name="export_csv_comma">CSV oddělené čárkami</string>
 	<string name="export_csv_semicolon">CSV oddělené středníky</string>
 	<string name="export_json">soubor JSON</string>
