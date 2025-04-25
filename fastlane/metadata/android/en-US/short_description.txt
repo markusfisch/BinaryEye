@@ -1,1 +1,1 @@
-Yet another barcode scanner for Android. Free, no ads and open source.
+QR code and barcode scanner with no ads
