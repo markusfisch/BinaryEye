@@ -1,11 +1,11 @@
 package de.markusfisch.android.binaryeye.content
 
-data class IDL(
+data class IdlInfo(
 	var iin: String? = null,
 	val elements: MutableMap<String, String> = linkedMapOf()
 )
 
-object IDLParser {
+object IdlParser {
 	private fun resolveSex(value: String): String = when (value.firstOrNull()) {
 		'1' -> "M"
 		'2' -> "F"
@@ -21,7 +21,7 @@ object IDLParser {
 		return i
 	}
 
-	private fun findSubType(s: String, idl: IDL): String {
+	private fun findSubType(s: String, idlInfo: IdlInfo): String {
 		val len = s.length
 		var p = skipWhitespace(s, 0)
 
@@ -46,7 +46,7 @@ object IDLParser {
 					continue
 				}
 
-				idl.elements["DL"] = code
+				idlInfo.elements["DL"] = code
 				d += 2
 
 				while (d < len) {
@@ -85,15 +85,15 @@ object IDLParser {
 		return s.substring(iinStart, p)
 	}
 
-	fun parse(s: String?): IDL? {
+	fun parse(s: String?): IdlInfo? {
 		if (s.isNullOrEmpty()) {
 			return null
 		}
 
-		val idl = IDL().apply {
+		val idlInfo = IdlInfo().apply {
 			iin = findIIN(s)
 		}
-		val data = findSubType(s, idl)
+		val data = findSubType(s, idlInfo)
 		val len = data.length
 		var start = 0
 
@@ -111,12 +111,12 @@ object IDLParser {
 					if (key == "DBC") {
 						value = resolveSex(value)
 					}
-					idl.elements[key] = value.trim()
+					idlInfo.elements[key] = value.trim()
 				}
 			}
 			start = p + 1
 		}
 
-		return if (idl.elements.isEmpty()) null else idl
+		return if (idlInfo.elements.isEmpty()) null else idlInfo
 	}
 }

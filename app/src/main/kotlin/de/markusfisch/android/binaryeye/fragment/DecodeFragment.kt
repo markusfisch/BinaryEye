@@ -41,7 +41,7 @@ import de.markusfisch.android.binaryeye.app.hasLocationPermission
 import de.markusfisch.android.binaryeye.app.hasWritePermission
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.content.ContentBarcode
-import de.markusfisch.android.binaryeye.content.IDLParser
+import de.markusfisch.android.binaryeye.content.IdlParser
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.idlToRes
 import de.markusfisch.android.binaryeye.content.shareAsFile
@@ -315,7 +315,7 @@ class DecodeFragment : Fragment() {
 			"SHA256" -> items[R.string.sha256] = bytes.sha256().toHexString().fold()
 			else -> Unit
 		}
-		IDLParser.parse(String(bytes))?.let {
+		IdlParser.parse(String(bytes))?.let {
 			items.putAll(mapOf("IIN" to it.iin))
 			items.putAll(
 				it.elements.entries.associate { (id, value) ->
