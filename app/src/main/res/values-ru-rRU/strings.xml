@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">Добро пожаловать!</string>
 	<string name="mode_expert">Расширенный</string>
@@ -17,10 +18,10 @@
 		<item quantity="other">%2$d символов, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Уровень коррекции ошибок</string>
-	<string name="error_correction_level_l" formatted="false">Низкий (≈7&#37; исправлений)</string>
-	<string name="error_correction_level_m" formatted="false">Средний (≈15&#37; исправлений)</string>
-	<string name="error_correction_level_q" formatted="false">Квартиль (≈25&#37; исправлений)</string>
-	<string name="error_correction_level_h" formatted="false">Высокий (≈30&#37; исправлений)</string>
+	<string name="error_correction_level_l" formatted="false">Низкий (≈7% исправлений)</string>
+	<string name="error_correction_level_m" formatted="false">Средний (≈15% исправлений)</string>
+	<string name="error_correction_level_q" formatted="false">Квартиль (≈25% исправлений)</string>
+	<string name="error_correction_level_h" formatted="false">Высокий (≈30% исправлений)</string>
 	<string name="label">Метка</string>
 	<string name="colors">Цвета</string>
 	<string name="colors_black_on_white">Чёрный на белом</string>
@@ -163,10 +164,10 @@
 	<string name="enter_name">Укажите название сканирования</string>
 	<string name="enter_name_hint">Название сканирования</string>
 	<string name="no_barcode_found">Штрих-код не найден</string>
-	<string name="pick_list_separator">Разделение элементов списка</string>
+    <string name="pick_list_separator">Как разделять пункты списка?</string>
 	<string name="separator_line_break">Разрыв строки</string>
 	<string name="separator_ruler">Горизонтальная линия</string>
-	<string name="save_as_file_name">Сохранить файл как</string>
+    <string name="save_as_file_name">Сохранить в папке скачиваний Downloads?</string>
 	<string name="file_name">Имя файла</string>
 	<string name="error_saving_file">Невозможно сохранить файл</string>
 	<string name="error_file_exists">Файл уже существует</string>
@@ -189,7 +190,7 @@
 	<string name="add_to_history">Добавить в историю</string>
 	<string name="added_to_history">Добавлено в историю</string>
 	<string name="export_to_file">Экспортировать в файл</string>
-	<string name="export_as">Формат файла экспорта</string>
+    <string name="export_as">Экспортировать как?</string>
 	<string name="export_csv_comma">CSV (разделитель – запятая)</string>
 	<string name="export_csv_semicolon">CSV (разделитель – точка с запятой)</string>
 	<string name="export_json">JSON</string>
