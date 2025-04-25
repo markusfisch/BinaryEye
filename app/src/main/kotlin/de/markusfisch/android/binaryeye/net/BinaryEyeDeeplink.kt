@@ -26,5 +26,5 @@ fun createEncodeDeeplink(format: String, content: String): String {
 		.appendQueryParameter("format", format)
 		.appendQueryParameter("content", content)
 		.build()
-			.toString()
+		.toString()
 }

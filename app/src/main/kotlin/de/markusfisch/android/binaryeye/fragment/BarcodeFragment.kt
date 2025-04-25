@@ -29,7 +29,6 @@ import de.markusfisch.android.binaryeye.content.ContentBarcode
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.shareFile
 import de.markusfisch.android.binaryeye.content.shareText
-import de.markusfisch.android.binaryeye.content.toHexString
 import de.markusfisch.android.binaryeye.database.toScan
 import de.markusfisch.android.binaryeye.io.addSuffixIfNotGiven
 import de.markusfisch.android.binaryeye.io.toSaveResult
