@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 	<string name="welcome">مرحبًا!</string>
 	<string name="mode_expert">متقدم</string>
@@ -19,10 +20,10 @@
 		<item quantity="other">%2$d حرف، %1$s</item>
 	</plurals>
 	<string name="error_correction_level">مستوى تصحيح الأخطاء</string>
-	<string name="error_correction_level_l" formatted="false">منخفض (~7&#37; تصحيح)</string>
-	<string name="error_correction_level_m" formatted="false">متوسط (~15&#37; تصحيح)</string>
-	<string name="error_correction_level_q" formatted="false">ربع (~25&#37; تصحيح)</string>
-	<string name="error_correction_level_h" formatted="false">مرتفع (~30&#37; تصحيح)</string>
+	<string name="error_correction_level_l" formatted="false">منخفض (~7% تصحيح)</string>
+	<string name="error_correction_level_m" formatted="false">متوسط (~15% تصحيح)</string>
+	<string name="error_correction_level_q" formatted="false">ربع (~25% تصحيح)</string>
+	<string name="error_correction_level_h" formatted="false">مرتفع (~30% تصحيح)</string>
 	<string name="label">العنوان</string>
 	<string name="colors">المقدمة والخلفية</string>
 	<string name="colors_black_on_white">أسود على خلفية بيضاء</string>

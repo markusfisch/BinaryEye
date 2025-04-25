@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">Vítejte!</string>
 	<string name="mode_expert">Pokročilý</string>
@@ -17,10 +18,10 @@
 		<item quantity="other">%2$d znaků, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Stupeň korekce chyb</string>
-	<string name="error_correction_level_l" formatted="false">Nízký (~7&#37; korekce)</string>
-	<string name="error_correction_level_m" formatted="false">Střední (~15&#37; korekce)</string>
-	<string name="error_correction_level_q" formatted="false">Čtvrtinový (~25&#37; korekce)</string>
-	<string name="error_correction_level_h" formatted="false">Vysoký (~30&#37; korekce)</string>
+	<string name="error_correction_level_l" formatted="false">Nízký (~7% korekce)</string>
+	<string name="error_correction_level_m" formatted="false">Střední (~15% korekce)</string>
+	<string name="error_correction_level_q" formatted="false">Čtvrtinový (~25% korekce)</string>
+	<string name="error_correction_level_h" formatted="false">Vysoký (~30% korekce)</string>
 	<string name="label">Štítek</string>
 	<string name="colors">Popředí a pozadí</string>
 	<string name="colors_black_on_white">Černá na bílé</string>
