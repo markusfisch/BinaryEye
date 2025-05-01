@@ -75,7 +75,7 @@
 	<string name="five_seconds">Cinq secondes</string>
 	<string name="history">Historique</string>
 	<string name="preferences">Préférences</string>
-	<string name="scan_category">Balayer</string>
+	<string name="scan_category">Numériser</string>
 	<string name="content_category">Contenu</string>
 	<string name="locale_category">Langue</string>
 	<string name="custom_locale">Langue personnalisée</string>
@@ -96,12 +96,12 @@
 	<string name="beep">Biper à la détection</string>
 	<string name="beep_summary">Émettre un son lorsqu\'un code est détecté.</string>
 	<string name="beep_tone">Tonalité du signal sonore</string>
-	<string name="tone_cdma_confirm">Confirmer CDMA</string>
-	<string name="tone_sup_confirm">Confirmer la supervision de l\'appel</string>
+	<string name="tone_cdma_confirm">Confirmation CDMA</string>
+	<string name="tone_sup_confirm">Confirmation de la supervision de l\'appel</string>
 	<string name="tone_sup_radio_ack">Accusé de réception du chemin radio de supervision d\'appel</string>
 	<string name="tone_prop_ack">Accusé de réception positif</string>
-	<string name="tone_prop_beep">Signal sonore général</string>
-	<string name="tone_prop_beep2">Général double bip</string>
+	<string name="tone_prop_beep">Bip simple</string>
+	<string name="tone_prop_beep2">Bip double</string>
 	<string name="use_history">Sauvegarder l\'historique des scans</string>
 	<string name="use_history_summary">Sauvegarder les codes reconnus sur votre appareil.</string>
 	<string name="ignore_duplicates">Ignorer les doublons</string>
