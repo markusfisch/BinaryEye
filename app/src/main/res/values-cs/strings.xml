@@ -61,7 +61,7 @@
     <string name="error_encoding_barcode">Nepodařilo se vygenerovat čárový kód</string>
     <string name="view_barcode">Zobrazit čárový kód</string>
     <string name="info">Informace</string>
-    <string name="switch_camera">Přepnout kameru</string>
+    <string name="switch_camera">Přepnout fotoaparát</string>
     <string name="bulk_mode">Skenovat nepřetržitě</string>
     <string name="bulk_mode_summary">Vždy začít v módu nepřetržitého skenování.</string>
     <string name="bulk_mode_delay">Prodleva mezi skeny</string>
