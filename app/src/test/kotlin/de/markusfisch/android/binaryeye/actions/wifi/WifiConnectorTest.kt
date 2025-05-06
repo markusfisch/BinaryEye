@@ -97,6 +97,17 @@ class WifiConnectorTest {
 		assertFalse(info.hidden)
 	}
 
+	@Test
+	fun escapingEmojis() {
+		val info = simpleDataAccessor(
+			"""WIFI:S: ⚡ "Quick-Test, 3.141 @_'🥝/🍉:|:🍉\🥝'_@"\; + })]>!<[({ ⚓ ;;"""
+		)
+		assertEquals(
+			" ⚡ \"Quick-Test, 3.141 @_'🥝/🍉:|:🍉\\🥝'_@\"; + })]>!<[({ ⚓ ",
+			info.ssid
+		)
+	}
+
 	private fun simpleDataAccessor(wifiString: String): WifiConnector.SimpleDataAccessor {
 		val map = WifiConnector.parseMap(wifiString)
 			?: simpleFail("parsing map of valid string fails ($wifiString)")
