@@ -102,7 +102,7 @@ object WifiConnector {
 			input.trimAndTerminate()
 		)?.groupValues?.get(1)?.let { pairs ->
 			pairRegex.findAll(pairs).map { pair ->
-				pair.groupValues[1].uppercase(Locale.US) to pair.groupValues[2]
+				pair.groupValues[1].uppercase(Locale.US) to pair.groupValues[2].unescape
 			}.toMap()
 		}
 	}
@@ -112,17 +112,17 @@ object WifiConnector {
 	) {
 		// This should be private but because of testing it isn't possible.
 		internal val ssid: String
-			get() = inputMap.getValue("S").unescape
+			get() = inputMap.getValue("S")
 		internal val securityType: String
-			get() = inputMap["T"]?.unescape ?: ""
+			get() = inputMap["T"] ?: ""
 		internal val password: String?
-			get() = inputMap["P"]?.unescape
+			get() = inputMap["P"]
 		internal val hidden: Boolean
-			get() = inputMap["H"]?.unescape == "true"
+			get() = inputMap["H"] == "true"
 		internal val anonymousIdentity: String
-			get() = inputMap["AI"]?.unescape ?: inputMap["A"]?.unescape ?: ""
+			get() = inputMap["AI"] ?: inputMap["A"] ?: ""
 		internal val identity: String
-			get() = inputMap["I"]?.unescape ?: ""
+			get() = inputMap["I"] ?: ""
 		internal val eapMethod: Int?
 			get() = if (inputMap["E"].isNullOrEmpty()) {
 				requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) {
