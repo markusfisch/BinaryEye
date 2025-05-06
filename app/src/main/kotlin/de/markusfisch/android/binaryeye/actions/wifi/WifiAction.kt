@@ -13,10 +13,13 @@ object WifiAction : IAction {
 
 	var password: String? = null
 
-	override fun canExecuteOn(data: ByteArray): Boolean =
-		WifiConnector.parse(String(data)) {
-			password = it
-		} != null
+	override fun canExecuteOn(data: ByteArray): Boolean {
+		// Just check if the data can be parsed as the app should also
+		// show invalid configurations so users can still access them.
+		val inputMap = WifiConnector.parseMap(String(data)) ?: return false
+		password = inputMap["P"]
+		return !inputMap["S"].isNullOrEmpty()
+	}
 
 	override suspend fun execute(
 		context: Context,
