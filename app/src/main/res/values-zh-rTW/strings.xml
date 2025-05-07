@@ -48,8 +48,8 @@
 	<string name="pick_search_engine">選擇一個搜尋引擎</string>
 	<string name="format">格式</string>
 	<string name="size_width_by_height">圖片尺寸: %1$d×%2$d</string>
-	<string name="size_no_magnification">無放大</string>
-	<string name="add_quiet_zone">添加安静区域</string>
+	<string name="size_no_magnification">不擴大</string>
+	<string name="add_quiet_zone">新增空白邊界</string>
 	<string name="input_content_here">請在這裡輸入內容</string>
 	<string name="unescape">展開逸出序列</string>
 	<string name="encode">編碼</string>
@@ -62,7 +62,7 @@
 	<string name="bulk_mode_summary">始終開啟連續掃描</string>
 	<string name="bulk_mode_delay">連續掃描間的延遲</string>
 	<string name="restrict_format">限制格式</string>
-	<string name="remove_restriction">刪除限制</string>
+	<string name="remove_restriction">移除限制</string>
 	<string name="find_code">尋找代碼</string>
 	<string name="find_code_with_content">什麼內容？</string>
 	<string name="find_code_hint">輸入一個術語</string>
@@ -103,9 +103,9 @@
 	<string name="tone_prop_beep2">標準連續嗶聲</string>
 	<string name="use_history">儲存掃描記錄</string>
 	<string name="use_history_summary">在本機儲存掃描記錄</string>
-	<string name="ignore_duplicates">忽略重複項目</string>
+	<string name="ignore_duplicates">略過重複項目</string>
 	<string name="ignore_consecutive_duplicates">不儲存重複歷史記錄</string>
-	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="ignore_any_duplicates">略過任何重複項目</string>
 	<string name="accept_duplicates">接受重複</string>
 	<string name="open_immediately">立即開啟</string>
 	<string name="open_immediately_summary">跳過檢查並立即開啟。可能會開啟有害內容</string>
@@ -118,7 +118,7 @@
 	<string name="show_checksum">顯示校驗和</string>
 	<string name="no_checksum">無檢查碼</string>
 	<string name="show_recreation">顯示重新產生的條碼</string>
-	<string name="show_recreation_summary">如果可以，從讀取內容中重新建立並顯示條碼</string>
+	<string name="show_recreation_summary">盡可能從讀取內容中重新建立並顯示條碼</string>
 	<string name="close_automatically">複製 / 分享後自動返回</string>
 	<string name="close_automatically_summary">複製或分享讀取的內容後自動返回掃描畫面</string>
 	<string name="default_search_engine">開啟未知資料的方式</string>
@@ -215,7 +215,7 @@
 	<string name="network_suggestions">網路建議</string>
 	<string name="remove_suggestion">移除建議</string>
 	<string name="email_to">收件者</string>
-	<string name="email_subject">主題</string>
+	<string name="email_subject">主旨</string>
 	<string name="email_body">內文</string>
 	<string name="scheme">方案</string>
 	<string name="host">主機</string>
