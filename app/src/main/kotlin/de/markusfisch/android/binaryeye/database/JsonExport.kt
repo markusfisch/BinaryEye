@@ -70,7 +70,7 @@ private fun Cursor.toJsonObject(
 			obj.put(it.second, value ?: "")
 		}
 		obj
-	} catch (e: JSONException) {
+	} catch (_: JSONException) {
 		obj
 	}
 }

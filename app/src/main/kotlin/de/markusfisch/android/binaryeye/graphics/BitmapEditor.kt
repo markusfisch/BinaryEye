@@ -25,7 +25,7 @@ fun ContentResolver.loadImageUri(uri: Uri): Bitmap? = try {
 	openInputStream(uri)?.use {
 		BitmapFactory.decodeStream(it, null, options)
 	}
-} catch (e: IOException) {
+} catch (_: IOException) {
 	null
 }
 

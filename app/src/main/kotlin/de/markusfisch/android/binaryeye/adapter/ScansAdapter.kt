@@ -149,7 +149,7 @@ private fun formatDateTime(rfc: String): String {
 				DateFormat.SHORT
 			).format(it)
 		}
-	} catch (e: ParseException) {
+	} catch (_: ParseException) {
 		// Ignore and fall through.
 	}
 	return rfc

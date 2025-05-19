@@ -33,7 +33,7 @@ fun Context.startIntent(intent: Intent): Boolean = try {
 	// necessary.
 	startActivity(intent)
 	true
-} catch (e: ActivityNotFoundException) {
+} catch (_: ActivityNotFoundException) {
 	false
 }
 
@@ -91,7 +91,7 @@ fun <T> Context.shareAsFile(content: T, fileName: String) {
 		FileOutputStream(file).use {
 			it.write(bytes)
 		}
-	} catch (e: IOException) {
+	} catch (_: IOException) {
 		toast(R.string.error_saving_file)
 		return
 	}

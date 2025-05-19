@@ -345,7 +345,7 @@ class HistoryFragment : Fragment() {
 		closeActionMode()
 		try {
 			fragmentManager?.addFragment(DecodeFragment.newInstance(scan))
-		} catch (e: IllegalArgumentException) {
+		} catch (_: IllegalArgumentException) {
 			// Ignore, can never happen.
 		}
 	}

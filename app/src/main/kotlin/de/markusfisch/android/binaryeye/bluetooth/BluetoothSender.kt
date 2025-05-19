@@ -37,7 +37,7 @@ fun Scan.sendBluetoothAsync(
 fun setBluetoothHosts(listPref: ListPreference) {
 	val devices = try {
 		BluetoothAdapter.getDefaultAdapter().bondedDevices
-	} catch (e: SecurityException) {
+	} catch (_: SecurityException) {
 		// Do nothing, either the user has denied Bluetooth access
 		// or the permission was removed by the system. We're catching
 		// the exception to keep the app from crashing.
@@ -71,7 +71,7 @@ private fun connect(deviceName: String, onceMore: Boolean): Boolean = try {
 	writer = socket?.outputStream?.writer()
 	isConnected = true
 	true
-} catch (e: Exception) {
+} catch (_: Exception) {
 	if (onceMore)
 		connect(deviceName, false)
 	else
@@ -86,7 +86,7 @@ private fun send(message: String, host: String, onceMore: Boolean): Boolean = tr
 		flush()
 	}
 	true
-} catch (e: Exception) {
+} catch (_: Exception) {
 	close()
 
 	if (connect(host, false))
@@ -98,12 +98,12 @@ private fun send(message: String, host: String, onceMore: Boolean): Boolean = tr
 private fun close() {
 	try {
 		writer?.close()
-	} catch (e: IOException) {
+	} catch (_: IOException) {
 		// Catch exception if writer wasn't initialized.
 	}
 	try {
 		socket?.close()
-	} catch (e: IOException) {
+	} catch (_: IOException) {
 		// Nothing we can do about this but keep
 		// the app from crashing.
 	}

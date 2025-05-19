@@ -53,7 +53,7 @@ fun Context.writeExternalFile(
 ): Boolean = try {
 	openExternalOutputStream(fileName, mimeType).use { write(it) }
 	true
-} catch (e: IOException) {
+} catch (_: IOException) {
 	false
 }
 

@@ -50,7 +50,7 @@ object WifiConnector {
 			} else {
 				WifiNetworkSuggestion.Builder().apply(parsedData)
 			}
-		} catch (e: IllegalArgumentException) {
+		} catch (_: IllegalArgumentException) {
 			// Some arguments may be out of range, e.g. SSIDs cannot
 			// be longer than 32 characters in some versions of Android.
 			// See: https://github.com/markusfisch/BinaryEye/issues/402
@@ -204,7 +204,7 @@ object WifiConnector {
 						})
 					}
 				}
-			} catch (e: IllegalArgumentException) {
+			} catch (_: IllegalArgumentException) {
 				// Don't accept passphrases that aren't ASCII encodeable.
 				return null
 			}
@@ -384,7 +384,7 @@ private fun WifiManager.removeOldNetwork(
 		}?.networkId?.also {
 			removeNetwork(it)
 		}
-	} catch (e: SecurityException) {
+	} catch (_: SecurityException) {
 		// The user didn't allow ACCESS_FINE_LOCATION which is
 		// required to access configuredNetworks and that's fine.
 	}

@@ -612,7 +612,7 @@ class CameraActivity : AppCompatActivity() {
 			val params = parameters
 			params.zoom = zoom
 			parameters = params
-		} catch (e: RuntimeException) {
+		} catch (_: RuntimeException) {
 			// Ignore. There's nothing we can do.
 		}
 	}

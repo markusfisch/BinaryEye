@@ -88,6 +88,6 @@ private fun List<String>.simpleFindParse(date: String): Date? {
 
 private fun SimpleDateFormat.simpleParse(date: String): Date? = try {
 	parse(date)
-} catch (e: Exception) {
+} catch (_: Exception) {
 	null
 }

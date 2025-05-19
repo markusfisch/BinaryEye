@@ -291,7 +291,7 @@ class DecodeFragment : Fragment() {
 						)
 					}
 				}
-			} catch (e: RuntimeException) {
+			} catch (_: RuntimeException) {
 				clearRecreation()
 			}
 		}
@@ -355,7 +355,7 @@ class DecodeFragment : Fragment() {
 						)
 					}
 				)
-			} catch (e: Exception) {
+			} catch (_: Exception) {
 				// Ignore
 			}
 

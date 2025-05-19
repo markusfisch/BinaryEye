@@ -433,7 +433,7 @@ class BarcodeFragment : Fragment() {
 					}
 				}
 				true
-			} catch (e: IOException) {
+			} catch (_: IOException) {
 				false
 			}
 			withContext(Dispatchers.Main) {

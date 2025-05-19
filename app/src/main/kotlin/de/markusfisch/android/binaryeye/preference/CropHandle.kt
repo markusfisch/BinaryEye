@@ -35,7 +35,7 @@ fun SharedPreferences.restoreCropHandle(
 			json.getInt("y"),
 			json.getInt("orientation")
 		)
-	} catch (e: Exception) {
+	} catch (_: Exception) {
 		return default
 	}
 }
