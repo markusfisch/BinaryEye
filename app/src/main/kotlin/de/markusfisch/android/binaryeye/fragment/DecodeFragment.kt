@@ -143,7 +143,7 @@ class DecodeFragment : Fragment() {
 			metaView.visibility = View.GONE
 		}
 
-		if (id > 0) {
+		if (scan.id > 0) {
 			scan.label?.let {
 				labelView.setText(it)
 				label = it
