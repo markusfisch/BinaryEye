@@ -119,7 +119,7 @@ class DecodeFragment : Fragment() {
 			arguments?.getParcelable(SCAN, Scan::class.java)
 		} else {
 			@Suppress("DEPRECATION")
-			arguments?.getParcelable(SCAN) as Scan?
+			arguments?.getParcelable(SCAN)
 		} ?: throw IllegalArgumentException("DecodeFragment needs a Scan")
 
 		isBinary = scan.text.isEmpty()
