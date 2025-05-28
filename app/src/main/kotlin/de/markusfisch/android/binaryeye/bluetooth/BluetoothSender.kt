@@ -35,21 +35,20 @@ fun Scan.sendBluetoothAsync(
 }
 
 fun setBluetoothHosts(listPref: ListPreference) {
-	val devices = try {
-		BluetoothAdapter.getDefaultAdapter().bondedDevices
+	try {
+		val devices = blue.bondedDevices ?: return
+		listPref.entries = devices.map {
+			it.name
+		}.toTypedArray()
+		listPref.entryValues = devices.map {
+			it.address
+		}.toTypedArray()
+		listPref.callChangeListener(listPref.value)
 	} catch (_: SecurityException) {
 		// Do nothing, either the user has denied Bluetooth access
 		// or the permission was removed by the system. We're catching
 		// the exception to keep the app from crashing.
-		null
-	} ?: return
-	listPref.entries = devices.map {
-		it.name
-	}.toTypedArray()
-	listPref.entryValues = devices.map {
-		it.address
-	}.toTypedArray()
-	listPref.callChangeListener(listPref.value)
+	}
 }
 
 private var socket: BluetoothSocket? = null
@@ -71,7 +70,7 @@ private fun connect(deviceName: String, onceMore: Boolean): Boolean = try {
 	writer = socket?.outputStream?.writer()
 	isConnected = true
 	true
-} catch (_: Exception) {
+} catch (_: SecurityException) {
 	if (onceMore)
 		connect(deviceName, false)
 	else
@@ -113,11 +112,15 @@ private fun close() {
 }
 
 private fun findByName(findableName: String): BluetoothDevice? {
-	val deviceList = blue.bondedDevices
-	for (device in deviceList) {
-		if (device.address == findableName) {
-			return device
+	try {
+		val deviceList = blue.bondedDevices
+		for (device in deviceList) {
+			if (device.address == findableName) {
+				return device
+			}
 		}
+	} catch (_: SecurityException) {
+		// Fall through.
 	}
 	return null
 }
