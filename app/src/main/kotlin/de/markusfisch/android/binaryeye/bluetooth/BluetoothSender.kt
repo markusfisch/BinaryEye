@@ -71,10 +71,11 @@ private fun connect(deviceName: String, onceMore: Boolean): Boolean = try {
 	isConnected = true
 	true
 } catch (_: SecurityException) {
-	if (onceMore)
+	if (onceMore) {
 		connect(deviceName, false)
-	else
+	} else {
 		close()
+	}
 	false
 }
 
@@ -88,10 +89,11 @@ private fun send(message: String, host: String): Boolean = try {
 } catch (_: Exception) {
 	close()
 
-	if (connect(host, false))
+	if (connect(host, false)) {
 		send(message, host)
-	else
+	} else {
 		false
+	}
 }
 
 private fun close() {
