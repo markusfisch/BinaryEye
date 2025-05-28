@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.66.1
+* Show elements of invalid Wifi configurations too
+* Update translations
+
 ## 1.66.0
 * Support deep links to encode content via web links
 * Parse International Driver Licenses (IDL) in PDF417 barcodes

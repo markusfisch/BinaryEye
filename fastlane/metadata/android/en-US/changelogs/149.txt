@@ -1,0 +1,3 @@
+* Show elements of invalid Wifi configurations too
+* Update translations
+
