@@ -24,7 +24,7 @@ fun Scan.sendBluetoothAsync(
 			connect(host, true)
 		}
 		val sent = if (connected) {
-			send(text, host, true)
+			send(text, host)
 		} else {
 			false
 		}
@@ -78,7 +78,7 @@ private fun connect(deviceName: String, onceMore: Boolean): Boolean = try {
 	false
 }
 
-private fun send(message: String, host: String, onceMore: Boolean): Boolean = try {
+private fun send(message: String, host: String): Boolean = try {
 	writer?.apply {
 		write(message)
 		write("\n")
@@ -89,7 +89,7 @@ private fun send(message: String, host: String, onceMore: Boolean): Boolean = tr
 	close()
 
 	if (connect(host, false))
-		send(message, host, false)
+		send(message, host)
 	else
 		false
 }
