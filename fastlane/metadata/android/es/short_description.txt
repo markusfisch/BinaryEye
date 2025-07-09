@@ -1,1 +1,1 @@
-Otro escáner de código de barras para Android. Gratis, sin anuncios y de código abierto.
+Un escáner de QR y códigos de barras sin anuncios
