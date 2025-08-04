@@ -80,10 +80,5 @@ private fun completeUrl(template: String): String {
 	if (!s.startsWith("http")) {
 		s = "http://${s}"
 	}
-	if (prefs.sendScanType == "0" &&
-		!s.matches(".*/[a-zA-Z._-]*\\?[a-zA-Z0-9&=_-]+=$".toRegex())
-	) {
-		s = "${s}?content="
-	}
 	return s
 }
