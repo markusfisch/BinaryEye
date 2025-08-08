@@ -64,9 +64,9 @@
 	<string name="bulk_mode_delay">Demora entre escaneos continuos</string>
 	<string name="restrict_format">Restringir formato</string>
 	<string name="remove_restriction">Eliminar restricción</string>
-	<string name="find_code">Encuentra código</string>
+	<string name="find_code">Encontrar código</string>
 	<string name="find_code_with_content">¿Qué contenido?</string>
-	<string name="find_code_hint">Introduce un término</string>
+	<string name="find_code_hint">Introduzca un término</string>
 	<string name="scan_format">Escanear %s</string>
 	<string name="quarter_second">Un cuarto de segundo</string>
 	<string name="half_second">Medio segundo</string>
@@ -150,7 +150,7 @@
 	<string name="bluetooth_send_success">Envío bluetooth completado.</string>
 	<string name="generation_category">Generación</string>
 	<string name="brighten_screen">Aumentar el brillo de la pantalla</string>
-	<string name="brighten_screen_summary">Establezca el brillo al máximo para mejorar la lectura de un código de barras desde la pantalla.</string>
+	<string name="brighten_screen_summary">Suba el brillo al máximo para mejorar la lectura del código de barras desde la pantalla.</string>
 	<string name="really_remove_scan">¿Eliminar el escaneo seleccionado?</string>
 	<string name="really_remove_all_scans">¿Eliminar todos los escaneos?</string>
 	<string name="really_remove_selected_scans">¿Eliminar los escaneos seleccionados?</string>
@@ -185,7 +185,7 @@
 	<string name="search_web">Buscar en la web</string>
 	<string name="search_scan">Buscar escaneo</string>
 	<string name="add_to_history">Añadir al historial</string>
-	<string name="added_to_history">Añadido a historial</string>
+	<string name="added_to_history">Añadido al historial</string>
 	<string name="export_to_file">Exportar a archivo</string>
 	<string name="export_as">¿Exportar como?</string>
 	<string name="export_csv_comma">Archivo CSV con comas</string>
