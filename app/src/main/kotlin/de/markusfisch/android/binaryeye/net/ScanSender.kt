@@ -36,7 +36,10 @@ private fun Scan.send(url: String, type: String): Response {
 
 		"2" -> request(url) { con ->
 			con.requestMethod = "POST"
-			con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
+			con.setRequestProperty(
+				"Content-Type",
+				"application/x-www-form-urlencoded"
+			)
 			con.outputStream.apply {
 				write(asUrlArguments().toByteArray())
 				close()

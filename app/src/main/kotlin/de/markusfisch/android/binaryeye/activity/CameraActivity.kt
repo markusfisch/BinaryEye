@@ -62,7 +62,6 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
 
-
 class CameraActivity : AppCompatActivity() {
 	private val frameRoi = Rect()
 	private val matrix = Matrix()
@@ -186,7 +185,8 @@ class CameraActivity : AppCompatActivity() {
 		}
 		prefs.preferences.edit().putBoolean(welcomeShownName, true).apply()
 		val packageInfo = packageManager.getPackageInfo(packageName, 0)
-		val installedSince = System.currentTimeMillis() - packageInfo.firstInstallTime
+		val installedSince = System.currentTimeMillis() -
+				packageInfo.firstInstallTime
 		return installedSince < 86400000
 	}
 
@@ -466,7 +466,8 @@ class CameraActivity : AppCompatActivity() {
 							v ?: return false
 							val dist = offset - pos
 							val maxValue = zoomBar.max
-							val change = maxValue / v.height.toFloat() * 2f * dist
+							val change = maxValue /
+									v.height.toFloat() * 2f * dist
 							zoomBar.progress = min(
 								maxValue,
 								max(progress + change.roundToInt(), 0)

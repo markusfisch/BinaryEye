@@ -377,7 +377,9 @@ private fun BarcodeFormat.canBeInverted() = when (this) {
 	else -> false
 }
 
-private fun String.toFormat(default: BarcodeFormat = BarcodeFormat.QR_CODE): BarcodeFormat = try {
+private fun String.toFormat(
+	default: BarcodeFormat = BarcodeFormat.QR_CODE
+): BarcodeFormat = try {
 	BarcodeFormat.valueOf(this)
 } catch (_: IllegalArgumentException) {
 	default

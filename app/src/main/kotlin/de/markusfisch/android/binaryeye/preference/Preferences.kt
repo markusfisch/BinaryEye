@@ -10,7 +10,6 @@ import android.support.annotation.RequiresApi
 import de.markusfisch.android.binaryeye.activity.CameraActivity
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 
-
 class Preferences {
 	lateinit var preferences: SharedPreferences
 
@@ -261,7 +260,10 @@ class Preferences {
 			ignoreDuplicatesName = "accept_duplicates"
 		}
 
-		preferences.getString(IGNORE_DUPLICATES_NAME, ignoreDuplicatesName)?.also {
+		preferences.getString(
+			IGNORE_DUPLICATES_NAME,
+			ignoreDuplicatesName
+		)?.also {
 			ignoreDuplicatesName = it
 		}
 		copyImmediately = preferences.getBoolean(

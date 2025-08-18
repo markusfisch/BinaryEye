@@ -26,7 +26,8 @@ val systemBarListViewScrollListener = object : AbsListView.OnScrollListener {
 		view.post {
 			val scrolled = firstVisibleItem > 0 ||
 					(totalItemCount > 0 && firstChildScrolled(view))
-			val scrollable = scrolled || totalItemCount > 0 && lastChildOutOfView(view)
+			val scrollable = scrolled ||
+					totalItemCount > 0 && lastChildOutOfView(view)
 			colorSystemAndToolBars(view.context, scrolled, scrollable)
 		}
 	}
@@ -38,8 +39,10 @@ val systemBarListViewScrollListener = object : AbsListView.OnScrollListener {
 val systemBarRecyclerViewScrollListener = object : RecyclerView.OnScrollListener() {
 	override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
 		val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-		val scrolled = layoutManager.findFirstCompletelyVisibleItemPosition() != 0
-		val scrollable = scrolled || layoutManager.findLastVisibleItemPosition() <
+		val scrolled =
+			layoutManager.findFirstCompletelyVisibleItemPosition() != 0
+		val scrollable = scrolled ||
+				layoutManager.findLastVisibleItemPosition() <
 				recyclerView.adapter.itemCount - 1
 		colorSystemAndToolBars(recyclerView.context, scrolled, scrollable)
 	}

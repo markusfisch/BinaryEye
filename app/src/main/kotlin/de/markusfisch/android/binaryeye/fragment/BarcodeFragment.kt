@@ -394,7 +394,9 @@ class BarcodeFragment : Fragment() {
 	) {
 		val ac = activity ?: return
 		scope.launch(Dispatchers.IO) {
-			val message = ac.writeExternalFile(fileName, mimeType, write).toSaveResult()
+			val message = ac.writeExternalFile(
+				fileName, mimeType, write
+			).toSaveResult()
 			withContext(Dispatchers.Main) {
 				ac.toast(message)
 			}

@@ -10,7 +10,7 @@ import android.os.Build
 import android.provider.Settings
 import android.support.annotation.RequiresApi
 import de.markusfisch.android.binaryeye.R
-import java.util.*
+import java.util.Locale
 
 /**
  * Normal:

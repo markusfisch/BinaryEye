@@ -27,7 +27,8 @@ class ConfinedScrollView : ScrollView {
 			// not putting it on the queue makes it only work sometimes.
 			post {
 				getChildAt(0)?.also { child ->
-					scrollable = height < child.height + paddingTop + paddingBottom
+					scrollable = height <
+							child.height + paddingTop + paddingBottom
 					colorSystemAndToolBars(
 						context,
 						scrollY > 0,

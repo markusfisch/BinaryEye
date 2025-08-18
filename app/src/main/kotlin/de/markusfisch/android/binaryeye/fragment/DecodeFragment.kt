@@ -81,7 +81,9 @@ class DecodeFragment : Fragment() {
 	private lateinit var format: String
 
 	private val parentJob = Job()
-	private val scope: CoroutineScope = CoroutineScope(Dispatchers.Main + parentJob)
+	private val scope: CoroutineScope = CoroutineScope(
+		Dispatchers.Main + parentJob
+	)
 	private val dp: Float
 		get() = resources.displayMetrics.density
 	private val content: String
@@ -112,7 +114,9 @@ class DecodeFragment : Fragment() {
 			false
 		)
 
-		val justScanned = activity?.intent?.hasExtra(MainActivity.DECODED) == true
+		val justScanned = activity?.intent?.hasExtra(
+			MainActivity.DECODED
+		) == true
 		closeAutomatically = prefs.closeAutomatically && justScanned
 
 		scan = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -312,7 +316,9 @@ class DecodeFragment : Fragment() {
 			"CRC4" -> items[R.string.crc4] = String.format("%X", crc4(bytes))
 			"MD5" -> items[R.string.md5] = bytes.md5().toHexString().fold()
 			"SHA1" -> items[R.string.sha1] = bytes.sha1().toHexString().fold()
-			"SHA256" -> items[R.string.sha256] = bytes.sha256().toHexString().fold()
+			"SHA256" -> items[R.string.sha256] =
+				bytes.sha256().toHexString().fold()
+
 			else -> Unit
 		}
 		IdlParser.parse(String(bytes))?.let {
@@ -765,17 +771,23 @@ private fun String.fromHtml() = if (
 	Html.fromHtml(this)
 }
 
-private fun ByteArray.md5(): ByteArray = MessageDigest.getInstance("MD5").run {
+private fun ByteArray.md5(): ByteArray = MessageDigest.getInstance(
+	"MD5"
+).run {
 	update(this@md5)
 	digest()
 }
 
-private fun ByteArray.sha1(): ByteArray = MessageDigest.getInstance("SHA-1").run {
+private fun ByteArray.sha1(): ByteArray = MessageDigest.getInstance(
+	"SHA-1"
+).run {
 	update(this@sha1)
 	digest()
 }
 
-private fun ByteArray.sha256(): ByteArray = MessageDigest.getInstance("SHA-256").run {
+private fun ByteArray.sha256(): ByteArray = MessageDigest.getInstance(
+	"SHA-256"
+).run {
 	update(this@sha256)
 	digest()
 }

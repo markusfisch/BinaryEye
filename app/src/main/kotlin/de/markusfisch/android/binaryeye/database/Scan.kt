@@ -45,7 +45,8 @@ data class Scan(
 				dateTime == other.dateTime &&
 				text == other.text &&
 				((raw == null && other.raw == null) ||
-						(raw != null && other.raw != null && raw.contentEquals(other.raw))) &&
+						(raw != null && other.raw != null &&
+								raw.contentEquals(other.raw))) &&
 				format == other.format &&
 				errorCorrectionLevel == other.errorCorrectionLevel &&
 				version == other.version &&

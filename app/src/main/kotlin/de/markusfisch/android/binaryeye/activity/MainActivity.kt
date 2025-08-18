@@ -31,7 +31,8 @@ class MainActivity : AppCompatActivity() {
 		grantResults: IntArray
 	) {
 		when (requestCode) {
-			PERMISSION_LOCATION, PERMISSION_WRITE -> if (grantResults.isNotEmpty() &&
+			PERMISSION_LOCATION, PERMISSION_WRITE -> if (
+				grantResults.isNotEmpty() &&
 				grantResults[0] == PackageManager.PERMISSION_GRANTED
 			) {
 				permissionGrantedCallback?.invoke()
@@ -125,10 +126,11 @@ class MainActivity : AppCompatActivity() {
 			val intent = Intent(context, MainActivity::class.java)
 			intent.putExtra(ENCODE, text)
 			if (isExternal) {
-				val flagActivityClearTask =
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-						Intent.FLAG_ACTIVITY_CLEAR_TASK
-					} else 0
+				val flagActivityClearTask = if (
+					Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB
+				) {
+					Intent.FLAG_ACTIVITY_CLEAR_TASK
+				} else 0
 				intent.addFlags(
 					Intent.FLAG_ACTIVITY_NO_HISTORY or
 							flagActivityClearTask or

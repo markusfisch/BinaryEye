@@ -251,7 +251,13 @@ class DetectorView : View {
 		roi.set(0, 0, 0, 0)
 	}
 
-	override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+	override fun onLayout(
+		changed: Boolean,
+		left: Int,
+		top: Int,
+		right: Int,
+		bottom: Int
+	) {
 		super.onLayout(changed, left, top, right, bottom)
 		val width = right - left
 		val height = bottom - top
@@ -382,8 +388,11 @@ class DetectorView : View {
 		companion object {
 			@JvmField
 			val CREATOR = object : Parcelable.Creator<SavedState> {
-				override fun createFromParcel(source: Parcel) = SavedState(source)
-				override fun newArray(size: Int): Array<SavedState?> = arrayOfNulls(size)
+				override fun createFromParcel(source: Parcel) =
+					SavedState(source)
+
+				override fun newArray(size: Int): Array<SavedState?> =
+					arrayOfNulls(size)
 			}
 		}
 	}

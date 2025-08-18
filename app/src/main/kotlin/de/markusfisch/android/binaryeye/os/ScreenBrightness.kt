@@ -5,7 +5,9 @@ import android.view.WindowManager
 
 fun Activity.getScreenBrightness(): Float {
 	val layoutParams = window.attributes
-	return if (layoutParams.screenBrightness == WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE) {
+	return if (layoutParams.screenBrightness ==
+		WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
+	) {
 		android.provider.Settings.System.getInt(
 			contentResolver,
 			android.provider.Settings.System.SCREEN_BRIGHTNESS
