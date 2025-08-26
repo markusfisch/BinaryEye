@@ -1,0 +1,3 @@
+* Remove forcing `?content=` on forwarding URL
+* Update Spanish translation
+
