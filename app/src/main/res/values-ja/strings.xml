@@ -47,9 +47,9 @@
 	<string name="cannot_resolve_action">開くためのアプリがありません！</string>
 	<string name="pick_search_engine">検索エンジンを選択</string>
 	<string name="format">フォーマット</string>
-	<string name="size_width_by_height">大きさ（ピクセル): %1$d×%2$d</string>
+	<string name="size_width_by_height">大きさ（ピクセル）: %1$d×%2$d</string>
 	<string name="size_no_magnification">拡大なし</string>
-	<string name="add_quiet_zone">静かなゾーンを追加する</string>
+	<string name="add_quiet_zone">外側に余白（クワイエットゾーン）を追加する</string>
 	<string name="input_content_here">ここに内容を入力</string>
 	<string name="unescape">エスケープシーケンスを展開する</string>
 	<string name="encode">エンコード</string>
@@ -147,7 +147,7 @@
 	<string name="bluetooth_connect_fail">Could not connect to bluetooth device.</string>
 	<string name="bluetooth_send_fail">Could not send to bluetooth device.</string>
 	<string name="bluetooth_send_success">Successful bluetooth send.</string>
-	<string name="generation_category">世代</string>
+	<string name="generation_category">作成</string>
 	<string name="brighten_screen">画面を明るくする</string>
 	<string name="brighten_screen_summary">画面からバーコードをスキャンするために、明るさを最大に設定します。</string>
 	<string name="really_remove_scan">このスキャン履歴を削除しても宜しいですか？</string>

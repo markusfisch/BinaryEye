@@ -49,7 +49,7 @@
 	<string name="format">格式</string>
 	<string name="size_width_by_height">圖片尺寸: %1$d×%2$d</string>
 	<string name="size_no_magnification">不擴大</string>
-	<string name="add_quiet_zone">新增空白邊界</string>
+	<string name="add_quiet_zone">加上空白邊界</string>
 	<string name="input_content_here">請在這裡輸入內容</string>
 	<string name="unescape">展開逸出序列</string>
 	<string name="encode">編碼</string>
@@ -147,9 +147,9 @@
 	<string name="bluetooth_connect_fail">無法連線到藍牙裝置</string>
 	<string name="bluetooth_send_fail">無法傳送到藍牙裝置</string>
 	<string name="bluetooth_send_success">藍牙傳送完成</string>
-	<string name="generation_category">世代</string>
-	<string name="brighten_screen">亮螢幕</string>
-	<string name="brighten_screen_summary">將亮度調至最大以增強從螢幕掃描條碼。</string>
+	<string name="generation_category">產生</string>
+	<string name="brighten_screen">調亮螢幕</string>
+	<string name="brighten_screen_summary">將螢幕亮度調至最亮，方便掃描螢幕上的條碼。</string>
 	<string name="really_remove_scan">確定刪除記錄？</string>
 	<string name="really_remove_all_scans">確定要刪除所有掃描記錄？</string>
 	<string name="really_remove_selected_scans">確定要刪除選擇的掃描記錄？</string>
