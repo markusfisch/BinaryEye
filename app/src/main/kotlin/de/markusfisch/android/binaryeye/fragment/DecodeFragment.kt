@@ -253,7 +253,7 @@ class DecodeFragment : Fragment() {
 		formatView.text = resources.getQuantityString(
 			R.plurals.barcode_info,
 			bytes.size,
-			prettifyFormatName(format),
+			format.prettifyFormatName(),
 			bytes.size
 		)
 		hexView.showIf(prefs.showHexDump) { v ->

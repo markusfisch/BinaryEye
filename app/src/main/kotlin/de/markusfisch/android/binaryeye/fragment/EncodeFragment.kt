@@ -103,7 +103,7 @@ class EncodeFragment : Fragment() {
 		val formatAdapter = ArrayAdapter(
 			ac,
 			android.R.layout.simple_spinner_item,
-			formats.map { prettifyFormatName(it.name) }
+			formats.map { it.name.prettifyFormatName() }
 		)
 		formatAdapter.setDropDownViewResource(
 			android.R.layout.simple_spinner_dropdown_item

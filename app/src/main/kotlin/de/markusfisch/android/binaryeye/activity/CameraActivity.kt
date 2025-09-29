@@ -204,12 +204,10 @@ class CameraActivity : AppCompatActivity() {
 		if (searchTerm != null || restrictFormat != null) {
 			title = getString(
 				R.string.scan_format,
-				prettifyFormatName(
-					listOfNotNull(
-						restrictFormat,
-						searchTerm
-					).joinToString(",")
-				)
+				listOfNotNull(
+					searchTerm,
+					restrictFormat?.prettifyFormatName(),
+				).joinToString(", ")
 			)
 		} else {
 			setTitle(R.string.scan_code)

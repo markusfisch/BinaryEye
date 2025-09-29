@@ -109,7 +109,7 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 			contentView.setCompoundDrawablesWithIntrinsicBounds(
 				icon, 0, 0, 0
 			)
-			formatView.text = prettifyFormatName(cursor.getString(formatIndex))
+			formatView.text = cursor.getString(formatIndex).prettifyFormatName()
 		}
 		val selected = selections[cursor.getLong(idIndex)] != null
 		view.post {
@@ -139,7 +139,7 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 	)
 }
 
-fun prettifyFormatName(format: String) = format.replace("_", " ")
+fun String.prettifyFormatName() = replace("_", " ")
 
 private fun formatDateTime(rfc: String): String {
 	try {
