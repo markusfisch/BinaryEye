@@ -73,7 +73,7 @@
 	<string name="find_code_with_content">ما المحتوى؟</string>
 	<string name="find_code_hint">أدخل مصطلحًا</string>
 	<string name="does_not_match_search_term">لا يطابق مصطلح البحث</string>
-	<string name="scan_format">مسح %s</string>
+	<string name="scan_for">مسح %s</string>
 	<string name="quarter_second">ربع ثانية</string>
 	<string name="half_second">نصف ثانية</string>
 	<string name="a_second">ثانية واحدة</string>

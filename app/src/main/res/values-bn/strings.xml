@@ -68,7 +68,7 @@
 	<string name="find_code_with_content"> কী বিষয়টি? </string>
 	<string name="find_code_hint">একটি শব্দ লিখুন</string>
 	<string name="does_not_match_search_term">অনুসন্ধান শর্তের সাথে মিলে না</string>
-	<string name="scan_format">স্ক্যান %s</string>
+	<string name="scan_for">স্ক্যান %s</string>
 	<string name="quarter_second">এক চতুর্থ সেকেন্ড</string>
 	<string name="half_second">আধা সেকেন্ড</string>
 	<string name="a_second">এক সেকেন্ড</string>

@@ -67,7 +67,7 @@
 	<string name="find_code_with_content">Quel contenu?</string>
 	<string name="find_code_hint">Ingresa un término</string>
 	<string name="does_not_match_search_term">Tidak cocok dengan istilah pencarian</string>
-	<string name="scan_format">Pindai %s</string>
+	<string name="scan_for">Pindai %s</string>
 	<string name="quarter_second">Seperempat detik</string>
 	<string name="half_second">Setengah detik</string>
 	<string name="a_second">Satu detik</string>

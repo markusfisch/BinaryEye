@@ -70,7 +70,7 @@
 	<string name="find_code_with_content">Qual conteúdo?</string>
 	<string name="find_code_hint">Insira um termo</string>
 	<string name="does_not_match_search_term">Não corresponde ao termo de busca</string>
-	<string name="scan_format">Digitalizar %s</string>
+	<string name="scan_for">Digitalizar %s</string>
 	<string name="quarter_second">Um quarto de segundo</string>
 	<string name="half_second">Meio segundo</string>
 	<string name="a_second">Um segundo</string>

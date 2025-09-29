@@ -68,7 +68,7 @@
 	<string name="find_code_with_content">Hvad indhold?</string>
 	<string name="find_code_hint">Indtast en term</string>
 	<string name="does_not_match_search_term">Stemmer ikke overens med søgeterm</string>
-	<string name="scan_format">Scan %s</string>
+	<string name="scan_for">Scan %s</string>
 	<string name="quarter_second">Et kvart sekund</string>
 	<string name="half_second">Et halvt sekund</string>
 	<string name="a_second">Et sekund</string>

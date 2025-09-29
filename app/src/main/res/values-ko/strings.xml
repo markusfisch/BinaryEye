@@ -67,7 +67,7 @@
 	<string name="find_code_with_content">무슨 내용?</string>
 	<string name="find_code_hint">용어를 입력하세요</string>
 	<string name="does_not_match_search_term">검색어와 일치하지 않음</string>
-	<string name="scan_format">스캔 %s</string>
+	<string name="scan_for">스캔 %s</string>
 	<string name="quarter_second">0.25초</string>
 	<string name="half_second">반초</string>
 	<string name="a_second">일 초</string>

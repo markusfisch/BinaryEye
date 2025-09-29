@@ -69,7 +69,7 @@
 	<string name="find_code_with_content">Що саме вміст?</string>
 	<string name="find_code_hint">Введіть термін</string>
 	<string name="does_not_match_search_term">Не відповідає пошуковому терміну</string>
-	<string name="scan_format">Сканувати %s</string>
+	<string name="scan_for">Сканувати %s</string>
 	<string name="quarter_second">Чверть секунди</string>
 	<string name="half_second">Півсекунди</string>
 	<string name="a_second">Одна секунда</string>

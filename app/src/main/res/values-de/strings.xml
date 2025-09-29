@@ -68,7 +68,7 @@
 	<string name="find_code_with_content">Mit welchem Inhalt?</string>
 	<string name="find_code_hint">Begriff eingeben</string>
 	<string name="does_not_match_search_term">Entspricht nicht dem Suchbegriff</string>
-	<string name="scan_format">%s scannen</string>
+	<string name="scan_for">%s scannen</string>
 	<string name="quarter_second">Eine Viertelsekunde</string>
 	<string name="half_second">Eine halbe Sekunde</string>
 	<string name="a_second">Eine Sekunde</string>

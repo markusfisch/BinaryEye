@@ -203,7 +203,7 @@ class CameraActivity : AppCompatActivity() {
 	private fun updateTitle() {
 		if (searchTerm != null || restrictFormat != null) {
 			title = getString(
-				R.string.scan_format,
+				R.string.scan_for,
 				listOfNotNull(
 					searchTerm,
 					restrictFormat?.prettifyFormatName(),
