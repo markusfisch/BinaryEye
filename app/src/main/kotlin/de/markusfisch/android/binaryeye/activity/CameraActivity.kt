@@ -205,9 +205,9 @@ class CameraActivity : AppCompatActivity() {
 			title = getString(
 				R.string.scan_for,
 				listOfNotNull(
-					searchTerm,
+					searchTerm?.let { "\"$it\"" },
 					restrictFormat?.prettifyFormatName(),
-				).joinToString(", ")
+				).joinToString(" ")
 			)
 		} else {
 			setTitle(R.string.scan_code)
