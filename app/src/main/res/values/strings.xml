@@ -120,7 +120,7 @@
 	<string name="no_checksum">No checksum</string>
 	<string name="show_recreation">Show recreated barcode</string>
 	<string name="show_recreation_summary">Recreate and show barcode from read content if possible.</string>
-	<string name="close_automatically">Go back after Copy/Share</string>
+	<string name="close_automatically">Go back after copying or sharing</string>
 	<string name="close_automatically_summary">Automatically return to the scan screen after copying or sharing the read contents.</string>
 	<string name="default_search_engine">Open unknown data in</string>
 	<string name="always_ask">Always ask</string>
@@ -144,7 +144,7 @@
 	<string name="send_scan_bluetooth">Forward scans with Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Enable to forward scans to a given Bluetooth host.</string>
 	<string name="send_scan_bluetooth_host">Host</string>
-	<string name="no_bluetooth_hosts_paired">No Hosts Paired</string>
+	<string name="no_bluetooth_hosts_paired">No hosts paired</string>
 	<string name="bluetooth_connect_fail">Could not connect to Bluetooth device.</string>
 	<string name="bluetooth_send_fail">Could not send to Bluetooth device.</string>
 	<string name="bluetooth_send_success">Successful Bluetooth send.</string>
