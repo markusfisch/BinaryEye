@@ -70,6 +70,7 @@
 	<string name="find_code">Поиск кода</string>
 	<string name="find_code_with_content">Что искать?</string>
 	<string name="find_code_hint">Введите поисковый запрос</string>
+	<string name="does_not_match_search_term">Не соответствует поисковому запросу</string>
 	<string name="scan_format">Сканировать %s</string>
 	<string name="quarter_second">Четверть секунды</string>
 	<string name="half_second">Полсекунды</string>

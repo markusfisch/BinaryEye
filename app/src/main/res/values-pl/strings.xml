@@ -99,6 +99,7 @@
 	<string name="find_code">Znajdź kod</string>
 	<string name="find_code_with_content">Jaki treść?</string>
 	<string name="find_code_hint">Wprowadź termin</string>
+	<string name="does_not_match_search_term">Nie pasuje do wyszukiwania</string>
 	<string name="scan_format">Skan %s</string>
 	<string name="quarter_second">Ćwierć sekundy</string>
 	<string name="half_second">Pół sekundy</string>

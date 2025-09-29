@@ -67,6 +67,7 @@
 	<string name="find_code">კოდის პოვნა</string>
 	<string name="find_code_with_content">რა შინაა?</string>
 	<string name="find_code_hint">შეიყვანეთ ტერმინი</string>
+	<string name="does_not_match_search_term">არ შეესაბამება ძიების ტერმინს</string>
 	<string name="scan_format">სკანირე %s</string>
 	<string name="quarter_second">ერთი კვარტალი წამი</string>
 	<string name="half_second">ნახე წამში</string>

@@ -67,6 +67,7 @@
 	<string name="find_code">Kod bul</string>
 	<string name="find_code_with_content">Ne içerik?</string>
 	<string name="find_code_hint">Terim girin</string>
+	<string name="does_not_match_search_term">Arama terimiyle eşleşmiyor</string>
 	<string name="scan_format">%s tara</string>
 	<string name="quarter_second">Çeyrek saniye</string>
 	<string name="half_second">Yarım saniye</string>

@@ -67,6 +67,7 @@
 	<string name="find_code">کد را پیدا کنید</string>
 	<string name="find_code_with_content">چه محتوا؟</string>
 	<string name="find_code_hint">یک عبارت وارد کنید</string>
+	<string name="does_not_match_search_term">با عبارت جستجو مطابقت ندارد</string>
 	<string name="scan_format">پویش %s</string>
 	<string name="quarter_second">یک‌چهارم ثانیه</string>
 	<string name="half_second">نیم ثانیه</string>

@@ -66,6 +66,7 @@
 	<string name="find_code">Tìm mã</string>
 	<string name="find_code_with_content">Nội dung là gì?</string>
 	<string name="find_code_hint">Nhập một thuật ngữ</string>
+	<string name="does_not_match_search_term">Không khớp với thuật ngữ tìm kiếm</string>
 	<string name="scan_format">Quét %s</string>
 	<string name="quarter_second">Một phần tư giây</string>
 	<string name="half_second">Nửa giây</string>

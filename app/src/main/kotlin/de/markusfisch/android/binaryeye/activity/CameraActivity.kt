@@ -568,13 +568,16 @@ class CameraActivity : AppCompatActivity() {
 						)?.let { results ->
 							val result = results.first()
 							val text = result.text
-							val term = searchTerm
-							if (text != ignoreNext &&
-								(term == null || text.contains(term))
-							) {
-								postResult(result)
-								decoding = false
+							if (text == ignoreNext) {
+								return@let
 							}
+							val term = searchTerm
+							if (term != null && !text.contains(term)) {
+								toast(R.string.does_not_match_search_term)
+								return@let
+							}
+							postResult(result)
+							decoding = false
 						}
 					}
 				}

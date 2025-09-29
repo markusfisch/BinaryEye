@@ -70,6 +70,7 @@
 	<string name="find_code">Najít kód</string>
 	<string name="find_code_with_content">Co obsah?</string>
 	<string name="find_code_hint">Zadejte termín</string>
+	<string name="does_not_match_search_term">Neodpovídá vyhledávacímu termínu</string>
 	<string name="scan_format">Naskenovat %s</string>
 	<string name="quarter_second">Čtvrt sekundy</string>
 	<string name="half_second">Půl sekundy</string>

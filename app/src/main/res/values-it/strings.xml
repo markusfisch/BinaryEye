@@ -67,6 +67,7 @@
 	<string name="find_code">Trova codice</string>
 	<string name="find_code_with_content">Quale contenuto?</string>
 	<string name="find_code_hint">Inserisci un termine</string>
+	<string name="does_not_match_search_term">Non corrisponde al termine di ricerca</string>
 	<string name="scan_format">Scansiona %s</string>
 	<string name="quarter_second">Un quarto di secondo</string>
 	<string name="half_second">Mezzo secondo</string>

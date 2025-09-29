@@ -66,6 +66,7 @@
 	<string name="find_code">コードを検索</string>
 	<string name="find_code_with_content">何の内容ですか？</string>
 	<string name="find_code_hint">検索ワードを入力してください</string>
+	<string name="does_not_match_search_term">検索ワードと一致しません</string>
 	<string name="scan_format">%sをスキャン</string>
 	<string name="quarter_second">0.25秒</string>
 	<string name="half_second">0.5秒</string>
