@@ -80,7 +80,7 @@ class CameraActivity : AppCompatActivity() {
 	private var frontFacing = false
 	private var bulkMode = prefs.bulkMode
 	private var restrictFormat: String? = null
-	private var searchTerm: String? = null
+	private var searchTerm: Regex? = null
 	private var ignoreNext: String? = null
 	private var fallbackBuffer: IntArray? = null
 	private var requestCameraPermission = true
@@ -256,7 +256,7 @@ class CameraActivity : AppCompatActivity() {
 		frontFacing = savedState.getBoolean(FRONT_FACING)
 		bulkMode = savedState.getBoolean(BULK_MODE)
 		restrictFormat = savedState.getString(RESTRICT_FORMAT)
-		searchTerm = savedState.getString(SEARCH_TERM)
+		searchTerm = savedState.getString(SEARCH_TERM)?.toRegex()
 	}
 
 	override fun onSaveInstanceState(outState: Bundle) {
@@ -265,7 +265,7 @@ class CameraActivity : AppCompatActivity() {
 		outState.putBoolean(FRONT_FACING, frontFacing)
 		outState.putBoolean(BULK_MODE, bulkMode)
 		outState.putString(RESTRICT_FORMAT, restrictFormat)
-		outState.putString(SEARCH_TERM, searchTerm)
+		outState.putString(SEARCH_TERM, searchTerm?.toString())
 		super.onSaveInstanceState(outState)
 	}
 
@@ -381,20 +381,22 @@ class CameraActivity : AppCompatActivity() {
 	private fun askForCode() {
 		val view = layoutInflater.inflate(R.layout.dialog_find_code, null)
 		val editText = view.findViewById<EditText>(R.id.term)
-		searchTerm.let {
-			editText.setText(it)
+		searchTerm?.let {
+			editText.setText(it.toString())
 		}
 		AlertDialog.Builder(this)
 			.setView(view)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
-				searchTerm = editText.text.toString()
-				if (searchTerm?.isEmpty() == true) {
-					searchTerm = null
+				val term = editText.text.toString().trim()
+				if (!term.isEmpty()) {
+					searchTerm = term.toRegex()
+					ignoreNext = null
 				}
 				updateTitle()
 			}
 			.setNegativeButton(android.R.string.cancel) { _, _ ->
 				searchTerm = null
+				ignoreNext = null
 				updateTitle()
 			}
 			.show()
@@ -570,7 +572,12 @@ class CameraActivity : AppCompatActivity() {
 								return@let
 							}
 							val term = searchTerm
-							if (term != null && !text.contains(term)) {
+							if (term != null &&
+								!text.matches(term) &&
+								!text.contains(term)
+							) {
+								ignoreNext = text
+								errorFeedback()
 								toast(R.string.does_not_match_search_term)
 								return@let
 							}

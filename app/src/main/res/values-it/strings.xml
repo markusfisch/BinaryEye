@@ -66,7 +66,7 @@
 	<string name="remove_restriction">Rimuovi limitazione</string>
 	<string name="find_code">Trova codice</string>
 	<string name="find_code_with_content">Quale contenuto?</string>
-	<string name="find_code_hint">Inserisci un termine</string>
+	<string name="find_code_hint">Termine o espressione regolare</string>
 	<string name="does_not_match_search_term">Non corrisponde al termine di ricerca</string>
 	<string name="scan_for">Scansiona %s</string>
 	<string name="quarter_second">Un quarto di secondo</string>

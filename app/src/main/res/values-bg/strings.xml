@@ -66,7 +66,7 @@
 	<string name="remove_restriction">Премахване на ограничението</string>
 	<string name="find_code">Намерете кода</string>
 	<string name="find_code_with_content">Какво съдържание?</string>
-	<string name="find_code_hint">Въведете термин</string>
+	<string name="find_code_hint">Термин или регулярен израз</string>
 	<string name="does_not_match_search_term">Не съответства на търсения термин</string>
 	<string name="scan_for">Сканиране %s</string>
 	<string name="quarter_second">Червърт секунда</string>

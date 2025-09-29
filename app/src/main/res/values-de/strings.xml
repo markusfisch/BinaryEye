@@ -66,7 +66,7 @@
 	<string name="remove_restriction">Einschränkung entfernen</string>
 	<string name="find_code">Barcode finden</string>
 	<string name="find_code_with_content">Mit welchem Inhalt?</string>
-	<string name="find_code_hint">Begriff eingeben</string>
+	<string name="find_code_hint">Begriff oder regulärer Ausdruck</string>
 	<string name="does_not_match_search_term">Entspricht nicht dem Suchbegriff</string>
 	<string name="scan_for">%s scannen</string>
 	<string name="quarter_second">Eine Viertelsekunde</string>

@@ -65,7 +65,7 @@
 	<string name="remove_restriction">解除限制</string>
 	<string name="find_code">找码</string>
 	<string name="find_code_with_content">什么内容？</string>
-	<string name="find_code_hint">输入一个术语</string>
+	<string name="find_code_hint">术语或正则表达式</string>
 	<string name="does_not_match_search_term">与搜索词不匹配</string>
 	<string name="scan_for">扫描 %s</string>
 	<string name="quarter_second">四分之一秒</string>

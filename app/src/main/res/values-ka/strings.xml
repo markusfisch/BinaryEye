@@ -66,7 +66,7 @@
 	<string name="remove_restriction">შეასწორე შეზღუდვა</string>
 	<string name="find_code">კოდის პოვნა</string>
 	<string name="find_code_with_content">რა შინაა?</string>
-	<string name="find_code_hint">შეიყვანეთ ტერმინი</string>
+	<string name="find_code_hint">ტერმინი ან რეგულარული გამოთქმა</string>
 	<string name="does_not_match_search_term">არ შეესაბამება ძიების ტერმინს</string>
 	<string name="scan_for">სკანირე %s</string>
 	<string name="quarter_second">ერთი კვარტალი წამი</string>
