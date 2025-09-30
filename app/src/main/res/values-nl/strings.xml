@@ -79,6 +79,13 @@
 	<string name="scan_category">Scannen</string>
 	<string name="content_category">Inhoud</string>
 	<string name="locale_category">Taal</string>
+	<string name="profile_category">Profiel</string>
+	<string name="profile">Profiel</string>
+	<string name="profile_default">Standaard</string>
+	<string name="profile_add">Nieuw profiel toevoegen</string>
+	<string name="profile_enter_name">Voer profielnaam in</string>
+	<string name="profile_enter_name_hint">Naam</string>
+	<string name="current_profile">Profiel: %s</string>
 	<string name="custom_locale">Taal instelling</string>
 	<string name="follow_system_settings">Systeeminstellingen volgen</string>
 	<string name="show_crop_handle">Bijsnijd-begrenzer tonen</string>

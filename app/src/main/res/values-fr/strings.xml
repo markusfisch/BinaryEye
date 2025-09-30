@@ -79,6 +79,13 @@
 	<string name="scan_category">Numériser</string>
 	<string name="content_category">Contenu</string>
 	<string name="locale_category">Langue</string>
+	<string name="profile_category">Profil</string>
+	<string name="profile">Profil</string>
+	<string name="profile_default">Par défaut</string>
+	<string name="profile_add">Ajouter un nouveau profil</string>
+	<string name="profile_enter_name">Entrez le nom du profil</string>
+	<string name="profile_enter_name_hint">Nom</string>
+	<string name="current_profile">Profil : %s</string>
 	<string name="custom_locale">Langue personnalisée</string>
 	<string name="follow_system_settings">Suivre les réglages du système</string>
 	<string name="show_crop_handle">Afficher le contrôle du cadrage</string>

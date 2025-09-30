@@ -78,6 +78,13 @@
 	<string name="scan_category">掃描</string>
 	<string name="content_category">內容</string>
 	<string name="locale_category">語言</string>
+	<string name="profile_category">設定檔</string>
+	<string name="profile">設定檔</string>
+	<string name="profile_default">預設</string>
+	<string name="profile_add">新增設定檔</string>
+	<string name="profile_enter_name">輸入設定檔名稱</string>
+	<string name="profile_enter_name_hint">名稱</string>
+	<string name="current_profile">設定檔：%s</string>
 	<string name="custom_locale">設定語言</string>
 	<string name="follow_system_settings">跟隨系統設定</string>
 	<string name="show_crop_handle">顯示裁切範圍選擇器</string>

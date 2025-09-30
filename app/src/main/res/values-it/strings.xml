@@ -79,6 +79,13 @@
 	<string name="scan_category">Scansione</string>
 	<string name="content_category">Contenuto</string>
 	<string name="locale_category">Lingua</string>
+	<string name="profile_category">Profilo</string>
+	<string name="profile">Profilo</string>
+	<string name="profile_default">Predefinito</string>
+	<string name="profile_add">Aggiungi nuovo profilo</string>
+	<string name="profile_enter_name">Inserisci nome profilo</string>
+	<string name="profile_enter_name_hint">Nome</string>
+	<string name="current_profile">Profilo: %s</string>
 	<string name="custom_locale">Lingua personalizzata</string>
 	<string name="follow_system_settings">Usa impostazioni di sistema</string>
 	<string name="show_crop_handle">Visualizza riquadro limite</string>

@@ -1,5 +1,6 @@
 package de.markusfisch.android.binaryeye.fragment
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
@@ -15,6 +16,7 @@ import android.support.v7.preference.ListPreference
 import android.support.v7.preference.Preference
 import android.support.v7.preference.PreferenceFragmentCompat
 import android.support.v7.preference.PreferenceGroup
+import android.widget.EditText
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.activity.SplashActivity
 import de.markusfisch.android.binaryeye.app.addFragment
@@ -35,32 +37,105 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		) {
 			key ?: return
 			val preference = findPreference(key) ?: return
-			prefs.update()
-			when (preference.key) {
-				"custom_locale" -> activity?.restartApp()
-				"beep_tone_name" -> {
-					beepConfirm()
-					setSummary(preference)
-				}
-
-				"send_scan_bluetooth" -> {
-					if (prefs.sendScanBluetooth &&
-						activity?.hasBluetoothPermission() == false
-					) {
-						prefs.sendScanBluetooth = false
-					}
-					setSummary(preference)
-				}
-
-				else -> setSummary(preference)
+			if (preference.key != "profile") {
+				prefs.update()
 			}
+			when (preference.key) {
+				"custom_locale" -> {
+					activity?.restartApp()
+					return
+				}
+
+				"beep_tone_name" -> beepConfirm()
+
+				"send_scan_bluetooth" -> if (
+					prefs.sendScanBluetooth &&
+					activity?.hasBluetoothPermission() == false
+				) {
+					prefs.sendScanBluetooth = false
+				}
+			}
+			setSummary(preference)
 		}
 	}
 
 	override fun onCreatePreferences(state: Bundle?, rootKey: String?) {
-		addPreferencesFromResource(R.xml.preferences)
+		loadPreferences(rootKey)
+	}
+
+	private fun loadPreferences(rootKey: String? = null) {
+		preferenceScreen?.sharedPreferences
+			?.unregisterOnSharedPreferenceChangeListener(changeListener)
+
+		preferenceManager.apply {
+			sharedPreferencesName = prefs.profile ?: "${context.packageName}_preferences"
+			sharedPreferencesMode = Context.MODE_PRIVATE
+		}
+
+		// Refresh the preferences.
+		preferenceScreen = null
+		setPreferencesFromResource(R.xml.preferences, rootKey)
+		preferenceScreen.sharedPreferences
+			.registerOnSharedPreferenceChangeListener(changeListener)
+		setSummaries(preferenceScreen)
+
+		wireProfiles()
 		setBluetoothResources()
 		wireClearNetworkPreferences()
+	}
+
+	private fun wireProfiles() {
+		findPreference("profile").apply {
+			summary = prefs.profile ?: getString(R.string.profile_default)
+			onPreferenceClickListener = Preference.OnPreferenceClickListener {
+				pickProfile()
+				true
+			}
+		}
+	}
+
+	private fun pickProfile() {
+		val profiles = arrayOf(
+			getString(R.string.profile_add),
+			getString(R.string.profile_default),
+		) + prefs.profiles
+		AlertDialog.Builder(context)
+			.setTitle(R.string.profile)
+			.setItems(profiles) { _, which ->
+				val current = prefs.profile
+				when (which) {
+					0 -> {
+						askForProfileName()
+						return@setItems
+					}
+
+					1 -> prefs.load(activity, null)
+					else -> prefs.load(activity, profiles[which])
+				}
+				if (current != prefs.profile) {
+					loadPreferences()
+				}
+			}
+			.show()
+	}
+
+	// Dialogs do not have a parent view.
+	@SuppressLint("InflateParams")
+	private fun askForProfileName() {
+		val view = activity.layoutInflater.inflate(
+			R.layout.dialog_profile_name, null
+		)
+		val editText = view.findViewById<EditText>(R.id.name)
+		AlertDialog.Builder(activity)
+			.setView(view)
+			.setPositiveButton(android.R.string.ok) { _, _ ->
+				val name = editText.text.toString().trim()
+				if (name.isNotEmpty() && prefs.addProfile(name)) {
+					prefs.load(activity, name)
+					loadPreferences()
+				}
+			}
+			.show()
 	}
 
 	private fun setBluetoothResources() {
@@ -128,9 +203,6 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		listView.setPaddingFromWindowInsets()
 		listView.removeOnScrollListener(systemBarRecyclerViewScrollListener)
 		listView.addOnScrollListener(systemBarRecyclerViewScrollListener)
-		preferenceScreen.sharedPreferences
-			.registerOnSharedPreferenceChangeListener(changeListener)
-		setSummaries(preferenceScreen)
 	}
 
 	override fun onPause() {
@@ -167,7 +239,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 	private fun setSummary(preference: Preference) {
 		when (preference) {
 			is UrlPreference -> {
-				preference.setSummary(preference.getUrl())
+				preference.summary = preference.getUrl()
 			}
 
 			is ListPreference -> {
@@ -175,11 +247,9 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 			}
 
 			is MultiSelectListPreference -> {
-				preference.setSummary(
-					preference.values.joinToString(", ") {
-						it.replace(Regex("_"), " ")
-					}
-				)
+				preference.summary = preference.values.joinToString(", ") {
+					it.replace(Regex("_"), " ")
+				}
 			}
 
 			is PreferenceGroup -> {

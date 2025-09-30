@@ -79,6 +79,13 @@
 	<string name="scan_category">სკანირება</string>
 	<string name="content_category">კონტენტი</string>
 	<string name="locale_category">ენა</string>
+	<string name="profile_category">პროფილი</string>
+	<string name="profile">პროფილი</string>
+	<string name="profile_default">ნაგულისხმევი</string>
+	<string name="profile_add">ახალი პროფილის დამატება</string>
+	<string name="profile_enter_name">შეიყვანეთ პროფილის სახელი</string>
+	<string name="profile_enter_name_hint">სახელი</string>
+	<string name="current_profile">პროფილი: %s</string>
 	<string name="custom_locale">შერჩეული ენა</string>
 	<string name="follow_system_settings">სისტემის პარამეტრების მინიჭება</string>
 	<string name="show_crop_handle">სკანირების არეალის ჩვენება</string>

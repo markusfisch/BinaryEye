@@ -79,6 +79,13 @@
 	<string name="scan_category">Tarama</string>
 	<string name="content_category">İçerik</string>
 	<string name="locale_category">Dil</string>
+	<string name="profile_category">Profil</string>
+	<string name="profile">Profil</string>
+	<string name="profile_default">Varsayılan</string>
+	<string name="profile_add">Yeni profil ekle</string>
+	<string name="profile_enter_name">Profil adını girin</string>
+	<string name="profile_enter_name_hint">Ad</string>
+	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Özel yerel</string>
 	<string name="follow_system_settings">Sistem ayarlarını izle</string>
 	<string name="show_crop_handle">Kırpım kısıtlayıcıyı göster</string>

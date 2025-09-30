@@ -79,6 +79,13 @@
 	<string name="scan_category">Scan</string>
 	<string name="content_category">Indhold</string>
 	<string name="locale_category">Sprog</string>
+	<string name="profile_category">Profil</string>
+	<string name="profile">Profil</string>
+	<string name="profile_default">Standard</string>
+	<string name="profile_add">Tilføj ny profil</string>
+	<string name="profile_enter_name">Indtast profilnavn</string>
+	<string name="profile_enter_name_hint">Navn</string>
+	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Brugerdefineret sprog</string>
 	<string name="follow_system_settings">Følg systemindstillingerne</string>
 	<string name="show_crop_handle">Vis beskæringsbegrænser</string>

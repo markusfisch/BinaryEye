@@ -79,6 +79,13 @@
 	<string name="scan_category">Beolvasás</string>
 	<string name="content_category">Tartalom</string>
 	<string name="locale_category">Nyelv</string>
+	<string name="profile_category">Profil</string>
+	<string name="profile">Profil</string>
+	<string name="profile_default">Alapértelmezett</string>
+	<string name="profile_add">Új profil hozzáadása</string>
+	<string name="profile_enter_name">Adja meg a profil nevét</string>
+	<string name="profile_enter_name_hint">Név</string>
+	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Egyéni nyelv</string>
 	<string name="follow_system_settings">Rendszerbeállítások követése</string>
 	<string name="show_crop_handle">Levágási korlátozó megjelenítése</string>

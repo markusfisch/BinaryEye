@@ -79,6 +79,13 @@
 	<string name="scan_category">খুঁজো</string>
 	<string name="content_category">তথ্য</string>
 	<string name="locale_category">ভাষা</string>
+	<string name="profile_category">প্রোফাইল</string>
+	<string name="profile">প্রোফাইল</string>
+	<string name="profile_default">ডিফল্ট</string>
+	<string name="profile_add">নতুন প্রোফাইল যোগ করো</string>
+	<string name="profile_enter_name">প্রোফাইলের নাম লেখো</string>
+	<string name="profile_enter_name_hint">নাম</string>
+	<string name="current_profile">প্রোফাইল: %s</string>
 	<string name="custom_locale">আলাদা ভাষা</string>
 	<string name="follow_system_settings">ব্যবস্থার পছন্দসমূহ অনুসরণ করো</string>
 	<string name="show_crop_handle">ছাটার সীমা দেখাও</string>

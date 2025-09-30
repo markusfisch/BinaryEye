@@ -1,0 +1,22 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="16dp">
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:text="@string/profile_enter_name"/>
+	<EditText
+		android:id="@+id/name"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:inputType="textShortMessage|textAutoCorrect|textCapSentences"
+		android:imeOptions="actionDone"
+		android:hint="@string/profile_enter_name_hint"
+		android:maxLines="1"
+		android:maxLength="1024"
+		android:importantForAutofill="no"/>
+</LinearLayout>

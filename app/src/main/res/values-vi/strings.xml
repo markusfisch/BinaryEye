@@ -78,6 +78,13 @@
 	<string name="scan_category">Quét</string>
 	<string name="content_category">Nội dung</string>
 	<string name="locale_category">Ngôn ngữ</string>
+	<string name="profile_category">Hồ sơ</string>
+	<string name="profile">Hồ sơ</string>
+	<string name="profile_default">Mặc định</string>
+	<string name="profile_add">Thêm hồ sơ mới</string>
+	<string name="profile_enter_name">Nhập tên hồ sơ</string>
+	<string name="profile_enter_name_hint">Tên</string>
+	<string name="current_profile">Hồ sơ: %s</string>
 	<string name="custom_locale">Tùy chọn ngôn ngữ</string>
 	<string name="follow_system_settings">Theo cài đặt của máy</string>
 	<string name="show_crop_handle">Hiện giới hạn cắt hình</string>

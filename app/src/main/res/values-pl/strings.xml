@@ -179,6 +179,13 @@
 	<string name="scan_category">Skanowanie</string>
 	<string name="content_category">Zawarość</string>
 	<string name="locale_category">Język</string>
+	<string name="profile_category">Profil</string>
+	<string name="profile">Profil</string>
+	<string name="profile_default">Domyślny</string>
+	<string name="profile_add">Dodaj nowy profil</string>
+	<string name="profile_enter_name">Wprowadź nazwę profilu</string>
+	<string name="profile_enter_name_hint">Nazwa</string>
+	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Język niestandardowy</string>
 	<string name="follow_system_settings">Zgodny z ustawieniami systemu</string>
 	<string name="decode_barcode">Dekoduj kod kreskowy</string>

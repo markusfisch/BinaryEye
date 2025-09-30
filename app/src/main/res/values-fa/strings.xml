@@ -79,6 +79,13 @@
 	<string name="scan_category">پویش</string>
 	<string name="content_category">محتویات</string>
 	<string name="locale_category">زبان</string>
+	<string name="profile_category">نمایه</string>
+	<string name="profile">نمایه</string>
+	<string name="profile_default">پیش‌فرض</string>
+	<string name="profile_add">افزودن نمایهٔ جدید</string>
+	<string name="profile_enter_name">نام نمایه را وارد کنید</string>
+	<string name="profile_enter_name_hint">نام</string>
+	<string name="current_profile">نمایه: %s</string>
 	<string name="custom_locale">زبان سفارشی</string>
 	<string name="follow_system_settings">پیروی از زبان سامانه</string>
 	<string name="show_crop_handle">نمایش محدود کننده برش</string>

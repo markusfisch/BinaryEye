@@ -78,6 +78,13 @@
 	<string name="scan_category">Pemindaian</string>
 	<string name="content_category">Konten</string>
 	<string name="locale_category">Bahasa</string>
+	<string name="profile_category">Profil</string>
+	<string name="profile">Profil</string>
+	<string name="profile_default">Bawaan</string>
+	<string name="profile_add">Tambah profil baru</string>
+	<string name="profile_enter_name">Masukkan nama profil</string>
+	<string name="profile_enter_name_hint">Nama</string>
+	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Bahasa lainnya</string>
 	<string name="follow_system_settings">Ikuti pengaturan sistem</string>
 	<string name="show_crop_handle">Tampilkan pembatas pemotongan</string>

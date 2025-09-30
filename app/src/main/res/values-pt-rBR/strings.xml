@@ -81,6 +81,13 @@
 	<string name="scan_category">Digitalização</string>
 	<string name="content_category">Conteúdo</string>
 	<string name="locale_category">Idioma</string>
+	<string name="profile_category">Perfil</string>
+	<string name="profile">Perfil</string>
+	<string name="profile_default">Padrão</string>
+	<string name="profile_add">Adicionar novo perfil</string>
+	<string name="profile_enter_name">Insira o nome do perfil</string>
+	<string name="profile_enter_name_hint">Nome</string>
+	<string name="current_profile">Perfil: %s</string>
 	<string name="custom_locale">Idioma customizado</string>
 	<string name="follow_system_settings">Seguir configurações do sistema</string>
 	<string name="show_crop_handle">Mostrar limitador customizável</string>

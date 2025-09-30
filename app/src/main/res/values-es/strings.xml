@@ -79,6 +79,13 @@
 	<string name="scan_category">Escanear</string>
 	<string name="content_category">Contenido</string>
 	<string name="locale_category">Idioma</string>
+	<string name="profile_category">Perfil</string>
+	<string name="profile">Perfil</string>
+	<string name="profile_default">Predeterminado</string>
+	<string name="profile_add">Añadir nuevo perfil</string>
+	<string name="profile_enter_name">Introduce el nombre del perfil</string>
+	<string name="profile_enter_name_hint">Nombre</string>
+	<string name="current_profile">Perfil: %s</string>
 	<string name="custom_locale">Idioma personalizado</string>
 	<string name="follow_system_settings">Seguir los ajustes del sistema</string>
 	<string name="show_crop_handle">Mostrar delimitador de recorte</string>

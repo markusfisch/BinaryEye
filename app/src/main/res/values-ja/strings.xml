@@ -78,6 +78,13 @@
 	<string name="scan_category">スキャン</string>
 	<string name="content_category">コンテンツ</string>
 	<string name="locale_category">言語</string>
+	<string name="profile_category">プロファイル</string>
+	<string name="profile">プロファイル</string>
+	<string name="profile_default">デフォルト</string>
+	<string name="profile_add">新しいプロファイルを追加</string>
+	<string name="profile_enter_name">プロファイル名を入力</string>
+	<string name="profile_enter_name_hint">名前</string>
+	<string name="current_profile">プロファイル: %s</string>
 	<string name="custom_locale">言語の変更</string>
 	<string name="follow_system_settings">システム設定に従う</string>
 	<string name="show_crop_handle">トリミングツールを表示</string>

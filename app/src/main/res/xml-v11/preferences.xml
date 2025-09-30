@@ -2,6 +2,12 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:title="@string/preferences"
 	android:key="preferences">
+	<PreferenceCategory android:title="@string/profile_category">
+		<Preference
+			android:key="profile"
+			android:title="@string/profile"
+			android:summary="@string/profile_default"/>
+	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/scan_category">
 		<MultiSelectListPreference
 			android:key="formats"

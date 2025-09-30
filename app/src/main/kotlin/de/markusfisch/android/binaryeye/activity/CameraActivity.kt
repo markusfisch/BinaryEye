@@ -162,12 +162,7 @@ class CameraActivity : AppCompatActivity() {
 			return
 		}
 		System.gc()
-		updateHintsAndTitle()
-		if (prefs.bulkMode && bulkMode != prefs.bulkMode) {
-			bulkMode = prefs.bulkMode
-			invalidateOptionsMenu()
-			ignoreNext = null
-		}
+		updateFromPreferences()
 		setReturnTarget(intent)
 		// Avoid asking multiple times when the user has denied access
 		// for this session. Otherwise ActivityCompat.requestPermissions()
@@ -188,6 +183,15 @@ class CameraActivity : AppCompatActivity() {
 		val installedSince = System.currentTimeMillis() -
 				packageInfo.firstInstallTime
 		return installedSince < 86400000
+	}
+
+	private fun updateFromPreferences() {
+		updateHintsAndTitle()
+		if (prefs.bulkMode && bulkMode != prefs.bulkMode) {
+			bulkMode = prefs.bulkMode
+			invalidateOptionsMenu()
+			ignoreNext = null
+		}
 	}
 
 	private fun updateHintsAndTitle() {
@@ -281,6 +285,10 @@ class CameraActivity : AppCompatActivity() {
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
 		menuInflater.inflate(R.menu.activity_camera, menu)
 		menu.findItem(R.id.bulk_mode).isChecked = bulkMode
+		menu.findItem(R.id.profile).title = getString(
+			R.string.current_profile,
+			prefs.profile ?: getString(R.string.profile_default)
+		)
 		return true
 	}
 
@@ -338,6 +346,11 @@ class CameraActivity : AppCompatActivity() {
 
 			R.id.info -> {
 				openReadme()
+				true
+			}
+
+			R.id.profile -> {
+				pickProfile()
 				true
 			}
 
@@ -408,6 +421,31 @@ class CameraActivity : AppCompatActivity() {
 			Uri.parse(getString(R.string.project_url))
 		)
 		execShareIntent(intent)
+	}
+
+	private fun pickProfile() {
+		val profiles = arrayOf(
+			getString(R.string.profile_default),
+		) + prefs.profiles
+		AlertDialog.Builder(this)
+			.setTitle(R.string.profile)
+			.setItems(profiles) { _, which ->
+				val old = prefs.profile
+				val new = when (which) {
+					0 -> null
+					else -> profiles[which]
+				}
+				if (old != new) {
+					prefs.load(this, new)
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+						recreate()
+					} else {
+						finish()
+						startActivity(Intent(this, CameraActivity::class.java))
+					}
+				}
+			}
+			.show()
 	}
 
 	private fun handleSendText(intent: Intent) {

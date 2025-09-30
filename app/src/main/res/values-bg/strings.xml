@@ -79,6 +79,13 @@
 	<string name="scan_category">Сканиране</string>
 	<string name="content_category">Съдържание</string>
 	<string name="locale_category">Език</string>
+	<string name="profile_category">Профил</string>
+	<string name="profile">Профил</string>
+	<string name="profile_default">По подразбиране</string>
+	<string name="profile_add">Добавяне на нов профил</string>
+	<string name="profile_enter_name">Въведете име на профила</string>
+	<string name="profile_enter_name_hint">Име</string>
+	<string name="current_profile">Профил: %s</string>
 	<string name="custom_locale">Персонализиран език</string>
 	<string name="follow_system_settings">Следване на системните настройки</string>
 	<string name="show_crop_handle">Показване на ограничителя за изрязване</string>

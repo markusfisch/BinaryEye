@@ -82,6 +82,13 @@
 	<string name="scan_category">Сканирование</string>
 	<string name="content_category">Содержимое</string>
 	<string name="locale_category">Язык</string>
+	<string name="profile_category">Профиль</string>
+	<string name="profile">Профиль</string>
+	<string name="profile_default">По умолчанию</string>
+	<string name="profile_add">Добавить новый профиль</string>
+	<string name="profile_enter_name">Введите имя профиля</string>
+	<string name="profile_enter_name_hint">Имя</string>
+	<string name="current_profile">Профиль: %s</string>
 	<string name="custom_locale">Выбрать язык</string>
 	<string name="follow_system_settings">Как в системе</string>
 	<string name="show_crop_handle">Показывать область сканирования</string>

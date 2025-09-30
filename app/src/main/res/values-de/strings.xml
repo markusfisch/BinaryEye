@@ -79,6 +79,13 @@
 	<string name="scan_category">Scannen</string>
 	<string name="content_category">Inhalt</string>
 	<string name="locale_category">Sprache</string>
+	<string name="profile_category">Profil</string>
+	<string name="profile">Profil</string>
+	<string name="profile_default">Standard</string>
+	<string name="profile_add">Neues Profil hinzufügen</string>
+	<string name="profile_enter_name">Profilnamen eingeben</string>
+	<string name="profile_enter_name_hint">Name</string>
+	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Spracheinstellung</string>
 	<string name="follow_system_settings">Systemeinstellung übernehmen</string>
 	<string name="show_crop_handle">Ausschnitt verkleinern anzeigen</string>

@@ -80,6 +80,13 @@
 	<string name="scan_category">Сканування</string>
 	<string name="content_category">Вміст</string>
 	<string name="locale_category">Мова</string>
+	<string name="profile_category">Профіль</string>
+	<string name="profile">Профіль</string>
+	<string name="profile_default">Типовий</string>
+	<string name="profile_add">Додати новий профіль</string>
+	<string name="profile_enter_name">Введіть назву профілю</string>
+	<string name="profile_enter_name_hint">Назва</string>
+	<string name="current_profile">Профіль: %s</string>
 	<string name="custom_locale">Вибрати мову</string>
 	<string name="follow_system_settings">Дотримуватись системних налаштувань</string>
 	<string name="show_crop_handle">Обмежити область сканування</string>
