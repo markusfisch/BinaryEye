@@ -175,10 +175,10 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun Context.firstStart(): Boolean {
 		val welcomeShownName = "welcome_shown"
-		if (prefs.preferences.getBoolean(welcomeShownName, false)) {
+		if (prefs.defaultPreferences.getBoolean(welcomeShownName, false)) {
 			return false
 		}
-		prefs.preferences.edit().putBoolean(welcomeShownName, true).apply()
+		prefs.defaultPreferences.edit().putBoolean(welcomeShownName, true).apply()
 		val packageInfo = packageManager.getPackageInfo(packageName, 0)
 		val installedSince = System.currentTimeMillis() -
 				packageInfo.firstInstallTime
