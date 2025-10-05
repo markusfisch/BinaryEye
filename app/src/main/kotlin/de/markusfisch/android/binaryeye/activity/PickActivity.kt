@@ -106,7 +106,7 @@ class PickActivity : AppCompatActivity() {
 				scanWithinBounds(bitmap)
 			}
 			setPaddingFromWindowInsets()
-			restoreCropHandlePos(PICKER_CROP_HANDLE)
+			cropHandleName = "picker_crop_handle"
 		}
 
 		findViewById(R.id.scan).setOnClickListener {
@@ -203,7 +203,7 @@ class PickActivity : AppCompatActivity() {
 
 	override fun onDestroy() {
 		super.onDestroy()
-		detectorView.storeCropHandlePos(PICKER_CROP_HANDLE)
+		detectorView.storeCropHandlePos()
 		parentJob.cancel()
 		releaseToneGenerators()
 	}
@@ -266,10 +266,6 @@ class PickActivity : AppCompatActivity() {
 		} else {
 			applicationContext.toast(R.string.no_barcode_found)
 		}
-	}
-
-	companion object {
-		private const val PICKER_CROP_HANDLE = "picker_crop_handle"
 	}
 }
 

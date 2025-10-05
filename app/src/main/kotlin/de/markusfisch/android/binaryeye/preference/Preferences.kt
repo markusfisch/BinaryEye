@@ -3,11 +3,11 @@ package de.markusfisch.android.binaryeye.preference
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Point
 import android.media.ToneGenerator
 import android.os.Build
 import android.preference.PreferenceManager
 import android.support.annotation.RequiresApi
-import de.markusfisch.android.binaryeye.activity.CameraActivity
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import org.json.JSONArray
 
@@ -281,8 +281,6 @@ class Preferences {
 			}
 		}
 
-		migrateCropHandle()
-
 		showCropHandle = preferences.getBoolean(
 			SHOW_CROP_HANDLE,
 			showCropHandle
@@ -403,30 +401,18 @@ class Preferences {
 		}
 	}
 
-	private fun migrateCropHandle() {
-		val cropHandleXName = "crop_handle_x"
-		val def = CropHandle()
-		if (preferences.getInt(cropHandleXName, def.x) == def.x) {
-			return;
-		}
-		storeCropHandle(
-			CameraActivity.CAMERA_CROP_HANDLE,
-			CropHandle(
-				preferences.getInt(cropHandleXName, def.x),
-				preferences.getInt("crop_handle_y", def.y),
-				preferences.getInt("crop_handle_orientation", def.orientation)
-			)
-		)
-		preferences.edit().putInt(cropHandleXName, def.x).apply()
-	}
-
 	fun restoreCropHandle(
-		name: String
-	) = preferences.restoreCropHandle(name)
+		name: String,
+		viewWidth: Int,
+		viewHeight: Int
+	) = preferences.restoreCropHandle(name, viewWidth, viewHeight)
 
-	fun storeCropHandle(name: String, cropHandle: CropHandle) {
-		preferences.storeCropHandle(name, cropHandle)
-	}
+	fun storeCropHandle(
+		name: String,
+		viewWidth: Int,
+		viewHeight: Int,
+		cropHandle: Point
+	) = preferences.storeCropHandle(name, viewWidth, viewHeight, cropHandle)
 
 	fun beepTone() = when (beepToneName) {
 		"tone_cdma_confirm" -> ToneGenerator.TONE_CDMA_CONFIRM

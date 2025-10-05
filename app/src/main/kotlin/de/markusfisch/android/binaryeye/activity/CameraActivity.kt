@@ -150,8 +150,6 @@ class CameraActivity : AppCompatActivity() {
 	override fun onDestroy() {
 		super.onDestroy()
 		fallbackBuffer = null
-		saveZoom()
-		detectorView.storeCropHandlePos(CAMERA_CROP_HANDLE)
 		releaseToneGenerators()
 	}
 
@@ -186,6 +184,7 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun updateFromPreferences() {
+		detectorView.updateCropHandlePos()
 		updateHintsAndTitle()
 		if (prefs.bulkMode && bulkMode != prefs.bulkMode) {
 			bulkMode = prefs.bulkMode
@@ -247,6 +246,8 @@ class CameraActivity : AppCompatActivity() {
 	override fun onPause() {
 		super.onPause()
 		closeCamera()
+		saveZoom()
+		detectorView.storeCropHandlePos()
 	}
 
 	private fun closeCamera() {
@@ -688,7 +689,7 @@ class CameraActivity : AppCompatActivity() {
 			updateFrameRoiAndMappingMatrix()
 		}
 		detectorView.setPaddingFromWindowInsets()
-		detectorView.restoreCropHandlePos(CAMERA_CROP_HANDLE)
+		detectorView.cropHandleName = "camera_crop_handle"
 	}
 
 	private fun updateFrameRoiAndMappingMatrix() {
@@ -797,8 +798,6 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	companion object {
-		const val CAMERA_CROP_HANDLE = "camera_crop_handle"
-
 		private const val PICK_FILE_RESULT_CODE = 1
 		private const val ZOOM_MAX = "zoom_max"
 		private const val ZOOM_LEVEL = "zoom_level"

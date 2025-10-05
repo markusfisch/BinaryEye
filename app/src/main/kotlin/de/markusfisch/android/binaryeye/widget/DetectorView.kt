@@ -9,8 +9,6 @@ import android.graphics.Point
 import android.graphics.Rect
 import android.graphics.Region
 import android.os.Build
-import android.os.Parcel
-import android.os.Parcelable
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -19,7 +17,6 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.graphics.getBitmapFromDrawable
 import de.markusfisch.android.binaryeye.graphics.getDashedBorderPaint
-import de.markusfisch.android.binaryeye.preference.CropHandle
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
@@ -29,10 +26,10 @@ class DetectorView : View {
 	val coordinates = FloatArray(32)
 	val roi = Rect()
 
+	var cropHandleName: String? = null
 	var onRoiChange: (() -> Unit)? = null
 	var onRoiChanged: (() -> Unit)? = null
 
-	private val currentOrientation = resources.configuration.orientation
 	private val invalidateRunnable: Runnable = Runnable {
 		coordinatesLast = 0
 		invalidate()
@@ -48,7 +45,8 @@ class DetectorView : View {
 	)
 	private val handleXRadius = handleBitmap.width / 2
 	private val handleYRadius = handleBitmap.height / 2
-	private val handlePos = Point(-1, -1)
+	private val inactiveHandlePos = Point(-1, -1)
+	private val handlePos = Point(inactiveHandlePos)
 	private val handleHome = Point()
 	private val center = Point()
 	private val touchDown = Point()
@@ -58,6 +56,8 @@ class DetectorView : View {
 	private val fabHeight: Int
 	private val padding: Int
 
+	private var viewWidth = 0
+	private var viewHeight = 0
 	private var coordinatesLast = 0
 	private var handleGrabbed = false
 	private var handleActive = false
@@ -84,43 +84,38 @@ class DetectorView : View {
 	constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) :
 			super(context, attrs, defStyleAttr)
 
-	fun storeCropHandlePos(name: String) {
-		val pos = getCropHandlePos()
+	fun storeCropHandlePos() {
+		val name = cropHandleName ?: return
+		val pos = if (handleActive) {
+			handlePos
+		} else {
+			inactiveHandlePos
+		}
 		prefs.storeCropHandle(
 			name,
-			CropHandle(
-				pos.x,
-				pos.y,
-				currentOrientation
-			)
+			viewWidth,
+			viewHeight,
+			pos
 		)
 	}
 
-	private fun getCropHandlePos() = if (handleActive) {
-		handlePos
-	} else {
-		Point(-1, -1)
-	}
-
-	fun restoreCropHandlePos(name: String) {
-		val cropHandle = prefs.restoreCropHandle(name)
-		setCropHandlePos(
-			cropHandle.x,
-			cropHandle.y,
-			cropHandle.orientation
-		)
-	}
-
-	private fun setCropHandlePos(x: Int, y: Int, orientation: Int) {
-		// Always set handlePos even if it's invalid because
-		// handlePos.x may be -2 which is a signal to set the
-		// default ROI.
-		if (orientation == currentOrientation) {
-			handlePos.set(x, y)
-		} else {
-			handlePos.set(y, x)
+	fun updateCropHandlePos() {
+		val name = cropHandleName ?: return
+		if (viewWidth < 1 || viewHeight < 1) {
+			return
 		}
-		handleActive = handlePos.x > -1
+		val cropHandle = prefs.restoreCropHandle(name, viewWidth, viewHeight)
+		if (cropHandle.x == -2) {
+			setHandleToDefaultRoi()
+		} else {
+			handlePos.set(cropHandle.x, cropHandle.y)
+			handleActive = handlePos.x > -1
+		}
+		if (handleActive) {
+			updateClipRect()
+		} else {
+			reset()
+		}
 	}
 
 	fun update(numberOfCoordinates: Int) {
@@ -128,31 +123,6 @@ class DetectorView : View {
 		invalidate()
 		removeCallbacks(invalidateRunnable)
 		postDelayed(invalidateRunnable, 500)
-	}
-
-	override fun onSaveInstanceState(): Parcelable? {
-		if (!handleActive) {
-			return super.onSaveInstanceState()
-		}
-		return SavedState(super.onSaveInstanceState()).apply {
-			savedHandlePos.set(getCropHandlePos())
-			savedOrientation = currentOrientation
-		}
-	}
-
-	override fun onRestoreInstanceState(state: Parcelable) {
-		super.onRestoreInstanceState(
-			if (state is SavedState) {
-				setCropHandlePos(
-					state.savedHandlePos.x,
-					state.savedHandlePos.y,
-					state.savedOrientation
-				)
-				state.superState
-			} else {
-				state
-			}
-		)
 	}
 
 	@SuppressLint("ClickableViewAccessibility")
@@ -259,26 +229,19 @@ class DetectorView : View {
 		bottom: Int
 	) {
 		super.onLayout(changed, left, top, right, bottom)
-		val width = right - left
-		val height = bottom - top
+		viewWidth = right - left
+		viewHeight = bottom - top
 		center.set(
-			left + (width / 2),
-			top + (height / 2)
+			left + (viewWidth / 2),
+			top + (viewHeight / 2)
 		)
 		minY = padding * 2
-		maxY = height - minY
+		maxY = viewHeight - minY
 		handleHome.set(
-			width - handleXRadius - paddingRight - padding,
-			height - handleYRadius - paddingBottom - fabHeight
+			viewWidth - handleXRadius - paddingRight - padding,
+			viewHeight - handleYRadius - paddingBottom - fabHeight
 		)
-		if (handlePos.x == -2) {
-			setHandleToDefaultRoi()
-		}
-		if (handleActive) {
-			updateClipRect()
-		} else {
-			reset()
-		}
+		updateCropHandlePos()
 	}
 
 	override fun onDraw(canvas: Canvas) {
@@ -362,40 +325,6 @@ class DetectorView : View {
 	private fun clampX(x: Int) = min(center.x * 2, max(0, x))
 
 	private fun clampY(y: Int) = min(maxY, max(minY, y))
-
-	internal class SavedState : BaseSavedState {
-		val savedHandlePos = Point()
-
-		var savedOrientation = 0
-
-		constructor(superState: Parcelable?) : super(superState)
-
-		private constructor(parcel: Parcel) : super(parcel) {
-			savedHandlePos.set(
-				parcel.readInt(),
-				parcel.readInt()
-			)
-			savedOrientation = parcel.readInt()
-		}
-
-		override fun writeToParcel(out: Parcel, flags: Int) {
-			super.writeToParcel(out, flags)
-			out.writeInt(savedHandlePos.x)
-			out.writeInt(savedHandlePos.y)
-			out.writeInt(savedOrientation)
-		}
-
-		companion object {
-			@JvmField
-			val CREATOR = object : Parcelable.Creator<SavedState> {
-				override fun createFromParcel(source: Parcel) =
-					SavedState(source)
-
-				override fun newArray(size: Int): Array<SavedState?> =
-					arrayOfNulls(size)
-			}
-		}
-	}
 }
 
 private fun distSq(a: Point, b: Point): Int {
