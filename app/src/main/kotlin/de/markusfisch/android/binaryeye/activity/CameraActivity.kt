@@ -18,6 +18,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.SeekBar
 import de.markusfisch.android.binaryeye.R
@@ -70,6 +71,7 @@ class CameraActivity : AppCompatActivity() {
 	private lateinit var detectorView: DetectorView
 	private lateinit var zoomBar: SeekBar
 	private lateinit var flashFab: FloatingActionButton
+	private lateinit var pickImageButton: Button
 
 	private var formatsToRead = setOf<BarcodeFormat>()
 	private var frameMetrics = FrameMetrics()
@@ -135,10 +137,12 @@ class CameraActivity : AppCompatActivity() {
 		detectorView = findViewById(R.id.detector_view) as DetectorView
 		zoomBar = findViewById(R.id.zoom) as SeekBar
 		flashFab = findViewById(R.id.flash) as FloatingActionButton
+		pickImageButton = findViewById(R.id.pick_image_button) as Button
 
 		initCameraView()
 		initZoomBar()
 		initDetectorView()
+		initPickImageButton()
 
 		if (intent?.action == Intent.ACTION_SEND &&
 			intent.type?.startsWith("text/") == true
@@ -301,19 +305,6 @@ class CameraActivity : AppCompatActivity() {
 
 			R.id.history -> {
 				startActivity(MainActivity.getHistoryIntent(this))
-				true
-			}
-
-			R.id.pick_file -> {
-				startActivityForResult(
-					Intent.createChooser(
-						Intent(Intent.ACTION_GET_CONTENT).apply {
-							type = "image/*"
-						},
-						getString(R.string.pick_image_file)
-					),
-					PICK_FILE_RESULT_CODE
-				)
 				true
 			}
 
@@ -718,6 +709,20 @@ class CameraActivity : AppCompatActivity() {
 		} else {
 			flashFab.setImageResource(R.drawable.ic_action_flash)
 			flashFab.setOnClickListener { toggleTorchMode() }
+		}
+	}
+
+	private fun initPickImageButton() {
+		pickImageButton.setOnClickListener {
+			startActivityForResult(
+				Intent.createChooser(
+					Intent(Intent.ACTION_GET_CONTENT).apply {
+						type = "image/*"
+					},
+					getString(R.string.pick_image_file)
+				),
+				PICK_FILE_RESULT_CODE
+			)
 		}
 	}
 

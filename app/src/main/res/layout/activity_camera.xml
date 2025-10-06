@@ -29,5 +29,21 @@
 			android:id="@+id/flash"
 			android:contentDescription="@string/toggle_flash"
 			android:src="@drawable/ic_action_flash"/>
+		<Button
+			android:id="@+id/pick_image_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom|center_horizontal"
+			android:layout_marginBottom="80dp"
+			android:background="@drawable/button_raised"
+			android:drawableLeft="@drawable/ic_action_pick_file"
+			android:drawableStart="@drawable/ic_action_pick_file"
+			android:drawablePadding="8dp"
+			android:padding="12dp"
+			android:text="@string/pick_image_file"
+			android:textColor="@color/button_text"
+			android:textSize="14sp"
+			android:elevation="4dp"
+			android:contentDescription="@string/pick_image_file"/>
 	</android.support.design.widget.CoordinatorLayout>
 </merge>
