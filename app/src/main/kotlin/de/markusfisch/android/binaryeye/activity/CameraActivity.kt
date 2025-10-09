@@ -71,6 +71,8 @@ class CameraActivity : AppCompatActivity() {
 	private lateinit var zoomBar: SeekBar
 	private lateinit var flashFab: FloatingActionButton
 
+	private var currentProfile = prefs.profile
+	private var shouldStoreSettings = true
 	private var formatsToRead = setOf<BarcodeFormat>()
 	private var frameMetrics = FrameMetrics()
 	private var decoding = true
@@ -159,8 +161,11 @@ class CameraActivity : AppCompatActivity() {
 			startActivity(Intent(this, WelcomeActivity::class.java))
 			return
 		}
+		loadPreferences()
+		if (refreshIfProfileChanged()) {
+			return
+		}
 		System.gc()
-		updateFromPreferences()
 		setReturnTarget(intent)
 		// Avoid asking multiple times when the user has denied access
 		// for this session. Otherwise ActivityCompat.requestPermissions()
@@ -183,7 +188,23 @@ class CameraActivity : AppCompatActivity() {
 		return installedSince < 86400000
 	}
 
-	private fun updateFromPreferences() {
+	private fun refreshIfProfileChanged(): Boolean {
+		if (currentProfile == prefs.profile) {
+			return false
+		}
+		shouldStoreSettings = false
+		zoomBar.max = 0 // Reset zoom when there are no preferences yet.
+		currentProfile = prefs.profile
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			recreate()
+		} else {
+			finish()
+			startActivity(Intent(this, CameraActivity::class.java))
+		}
+		return true
+	}
+
+	private fun loadPreferences() {
 		detectorView.updateCropHandlePos()
 		updateHintsAndTitle()
 		if (prefs.bulkMode && bulkMode != prefs.bulkMode) {
@@ -246,12 +267,19 @@ class CameraActivity : AppCompatActivity() {
 	override fun onPause() {
 		super.onPause()
 		closeCamera()
-		saveZoom()
-		detectorView.storeCropHandlePos()
+		if (shouldStoreSettings) {
+			storeSettings();
+		}
+		shouldStoreSettings = true
 	}
 
 	private fun closeCamera() {
 		cameraView.close()
+	}
+
+	private fun storeSettings() {
+		storeZoomBarSettings()
+		detectorView.storeCropHandlePos()
 	}
 
 	override fun onRestoreInstanceState(savedState: Bundle) {
@@ -431,19 +459,15 @@ class CameraActivity : AppCompatActivity() {
 		AlertDialog.Builder(this)
 			.setTitle(R.string.profile)
 			.setItems(profiles) { _, which ->
-				val old = prefs.profile
-				val new = when (which) {
+				val newProfile = when (which) {
 					0 -> null
 					else -> profiles[which]
 				}
-				if (old != new) {
-					prefs.load(this, new)
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-						recreate()
-					} else {
-						finish()
-						startActivity(Intent(this, CameraActivity::class.java))
-					}
+				if (currentProfile != newProfile) {
+					storeSettings()
+					prefs.load(this, newProfile)
+					loadPreferences()
+					refreshIfProfileChanged()
 				}
 			}
 			.show()
@@ -536,11 +560,12 @@ class CameraActivity : AppCompatActivity() {
 				parameters: Camera.Parameters
 			) {
 				zoomBar.visibility = if (parameters.isZoomSupported) {
+					restoreZoomBarSettings()
 					val max = parameters.maxZoom
 					if (zoomBar.max != max) {
 						zoomBar.max = max
 						zoomBar.progress = max / 10
-						saveZoom()
+						storeZoomBarSettings()
 					}
 					parameters.zoom = zoomBar.progress
 					View.VISIBLE
@@ -651,7 +676,6 @@ class CameraActivity : AppCompatActivity() {
 
 			override fun onStopTrackingTouch(seekBar: SeekBar) {}
 		})
-		restoreZoom()
 	}
 
 	@Suppress("DEPRECATION")
@@ -665,14 +689,14 @@ class CameraActivity : AppCompatActivity() {
 		}
 	}
 
-	private fun saveZoom() {
+	private fun storeZoomBarSettings() {
 		val editor = prefs.preferences.edit()
 		editor.putInt(ZOOM_MAX, zoomBar.max)
 		editor.putInt(ZOOM_LEVEL, zoomBar.progress)
 		editor.apply()
 	}
 
-	private fun restoreZoom() {
+	private fun restoreZoomBarSettings() {
 		zoomBar.max = prefs.preferences.getInt(ZOOM_MAX, zoomBar.max)
 		zoomBar.progress = prefs.preferences.getInt(
 			ZOOM_LEVEL,
