@@ -1,0 +1,5 @@
+* Add preference profiles
+* Support regex when searching for a barcode
+* Improve feedback when searching for a barcode
+* Update translations
+

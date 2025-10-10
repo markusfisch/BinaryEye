@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.67.0
+* Add preference profiles
+* Support regex when searching for a barcode
+* Improve feedback when searching for a barcode
+* Update translations
+
 ## 1.66.2
 * Remove forcing `?content=` on forwarding URL
 * Update Spanish translation
