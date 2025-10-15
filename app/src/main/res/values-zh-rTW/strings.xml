@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">歡迎！</string>
 	<string name="mode_expert">進階</string>
@@ -14,10 +15,10 @@
 		<item quantity="other">%2$d 個字元，%1$s</item>
 	</plurals>
 	<string name="error_correction_level">糾錯等級</string>
-	<string name="error_correction_level_l" formatted="false">低 (~7&#37; 準確度)</string>
-	<string name="error_correction_level_m" formatted="false">中 (~15&#37; 準確度)</string>
-	<string name="error_correction_level_q" formatted="false">較高 (~25&#37; 準確度)</string>
-	<string name="error_correction_level_h" formatted="false">高 (~30&#37; 準確度)</string>
+	<string name="error_correction_level_l" formatted="false">低 (~7% 準確度)</string>
+	<string name="error_correction_level_m" formatted="false">中 (~15% 準確度)</string>
+	<string name="error_correction_level_q" formatted="false">較高 (~25% 準確度)</string>
+	<string name="error_correction_level_h" formatted="false">高 (~30% 準確度)</string>
 	<string name="label">名稱</string>
 	<string name="colors">前景與背景</string>
 	<string name="colors_black_on_white">白底黑字</string>
