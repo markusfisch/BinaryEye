@@ -121,8 +121,7 @@ If you want the code to be generated immediately, add `execute=true` (or just `e
 
 You can also use Binary Eye from other apps by using an [Intent][intent].
 
-If you prefer to integrate a barcode scanner into your app, take a look at
-at [BarcodeScannerView][barcode_scanner_view] (if you also want to use
+If you prefer to integrate a barcode scanner into your app, take a look at [BarcodeScannerView][barcode_scanner_view] (if you also want to use
 [ZXing-C++][zxing_cpp]) or read how to
 [scan barcodes with ML Kit on Android][mlkit_barcode_scanning].
 
