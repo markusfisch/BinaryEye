@@ -6,7 +6,7 @@
 	<string name="mode_simple">Простой</string>
 	<string name="mode_simple_description">Я просто хочу сканировать штрих-коды и сразу их открывать.</string>
 	<string name="camera_error">Невозможно получить доступ к камере, попробуйте ещё раз</string>
-	<string name="scan_code">Сканировать штрих-код</string>
+	<string name="scan_code">Сканировать код</string>
 	<string name="compose_barcode">Создать штрих-код</string>
 	<string name="decode_barcode">Декодировать штрих-код</string>
 	<string name="content">Текст</string>
@@ -86,8 +86,8 @@
 	<string name="profile">Профиль</string>
 	<string name="profile_default">По умолчанию</string>
 	<string name="profile_add">Добавить новый профиль</string>
-	<string name="profile_enter_name">Введите имя профиля</string>
-	<string name="profile_enter_name_hint">Имя</string>
+	<string name="profile_enter_name">Введите название профиля</string>
+	<string name="profile_enter_name_hint">Название</string>
 	<string name="current_profile">Профиль: %s</string>
 	<string name="custom_locale">Выбрать язык</string>
 	<string name="follow_system_settings">Как в системе</string>
@@ -131,7 +131,7 @@
 	<string name="no_checksum">Нет контрольной суммы</string>
 	<string name="show_recreation">Показывать восстановленный штрих-код</string>
 	<string name="show_recreation_summary">Показывать штрих-код, восстановленный из считанного содержимого.</string>
-	<string name="close_automatically">Возврат после копирования/обмена</string>
+	<string name="close_automatically">Возврат после копирования или отправки</string>
 	<string name="close_automatically_summary">Автоматически возвращаться к экрану сканирования после копирования или передачу через функцию «Поделиться» считанного содержимого.</string>
 	<string name="default_search_engine">Поиск неизвестных данных</string>
 	<string name="always_ask">Всегда спрашивать</string>
@@ -172,10 +172,10 @@
 	<string name="enter_name">Укажите название сканирования</string>
 	<string name="enter_name_hint">Название сканирования</string>
 	<string name="no_barcode_found">Штрих-код не найден</string>
-    <string name="pick_list_separator">Как разделять пункты списка?</string>
+	<string name="pick_list_separator">Как разделять пункты списка?</string>
 	<string name="separator_line_break">Разрыв строки</string>
 	<string name="separator_ruler">Горизонтальная линия</string>
-    <string name="save_as_file_name">Сохранить в папке скачиваний Downloads?</string>
+	<string name="save_as_file_name">Сохранить в папке скачиваний Downloads?</string>
 	<string name="file_name">Имя файла</string>
 	<string name="error_saving_file">Невозможно сохранить файл</string>
 	<string name="error_file_exists">Файл уже существует</string>
@@ -198,7 +198,7 @@
 	<string name="add_to_history">Добавить в историю</string>
 	<string name="added_to_history">Добавлено в историю</string>
 	<string name="export_to_file">Экспортировать в файл</string>
-    <string name="export_as">Экспортировать как?</string>
+	<string name="export_as">Экспортировать как?</string>
 	<string name="export_csv_comma">CSV (разделитель – запятая)</string>
 	<string name="export_csv_semicolon">CSV (разделитель – точка с запятой)</string>
 	<string name="export_json">JSON</string>
