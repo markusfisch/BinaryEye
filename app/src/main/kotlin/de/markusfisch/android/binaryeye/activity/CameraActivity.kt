@@ -268,7 +268,7 @@ class CameraActivity : AppCompatActivity() {
 		super.onPause()
 		closeCamera()
 		if (shouldStoreSettings) {
-			storeSettings();
+			storeSettings()
 		}
 		shouldStoreSettings = true
 	}
@@ -784,7 +784,7 @@ class CameraActivity : AppCompatActivity() {
 			}
 			when {
 				returnResult -> {
-					setResult(Activity.RESULT_OK, getReturnIntent(result))
+					setResult(RESULT_OK, getReturnIntent(result))
 					finish()
 				}
 
