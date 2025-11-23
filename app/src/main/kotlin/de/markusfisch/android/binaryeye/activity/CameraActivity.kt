@@ -432,14 +432,14 @@ class CameraActivity : AppCompatActivity() {
 				val term = editText.text.toString().trim()
 				if (!term.isEmpty()) {
 					searchTerm = term.toRegex()
-					ignoreNext = null
+				} else {
+					searchTerm = null
 				}
+				ignoreNext = null
 				updateTitle()
 			}
 			.setNegativeButton(android.R.string.cancel) { _, _ ->
-				searchTerm = null
-				ignoreNext = null
-				updateTitle()
+				// do not change anything on cancel
 			}
 			.show()
 	}
