@@ -70,7 +70,7 @@ private fun connect(deviceName: String, onceMore: Boolean): Boolean = try {
 	writer = socket?.outputStream?.writer()
 	isConnected = true
 	true
-} catch (_: SecurityException) {
+} catch (_: Exception) {
 	if (onceMore) {
 		connect(deviceName, false)
 	} else {
