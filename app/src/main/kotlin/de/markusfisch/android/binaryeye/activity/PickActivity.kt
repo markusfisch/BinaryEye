@@ -54,10 +54,9 @@ class PickActivity : AppCompatActivity() {
 		formats = prefs.barcodeFormats.toFormatSet()
 	)
 
-	private lateinit var cropImageView: CropImageView
-	private lateinit var detectorView: DetectorView
-	private lateinit var freeRotationItem: MenuItem
-
+	private var cropImageView: CropImageView? = null
+	private var detectorView: DetectorView? = null
+	private var freeRotationItem: MenuItem? = null
 	private var result: Result? = null
 
 	override fun attachBaseContext(base: Context?) {
@@ -83,6 +82,9 @@ class PickActivity : AppCompatActivity() {
 		if (bitmap == null) {
 			applicationContext.toast(R.string.error_no_content)
 			finish()
+			// This is why cropImageView and detectorView aren't lateinit.
+			// If they were, a kotlin.UninitializedPropertyAccessException
+			// would happen here.
 			return
 		}
 
@@ -129,17 +131,19 @@ class PickActivity : AppCompatActivity() {
 	}
 
 	private fun scanWithinBounds(bitmap: Bitmap) {
+		val dv = detectorView ?: return
+		val civ = cropImageView ?: return
 		val viewRoi = Rect(
-			if (detectorView.roi.width() < 1) {
-				cropImageView.getBoundsRect()
+			if (dv.roi.width() < 1) {
+				civ.getBoundsRect()
 			} else {
-				detectorView.roi
+				dv.roi
 			}
 		)
-		val mappedRect = RectF(cropImageView.mappedRect)
-		val imageRotation = cropImageView.imageRotation
-		val pivotX = cropImageView.pivotX
-		val pivotY = cropImageView.pivotY
+		val mappedRect = RectF(civ.mappedRect)
+		val imageRotation = civ.imageRotation
+		val pivotX = civ.pivotX
+		val pivotY = civ.pivotY
 		scope.launch {
 			val cropped = bitmap.crop(
 				getNormalizedRoi(mappedRect, viewRoi),
@@ -170,10 +174,10 @@ class PickActivity : AppCompatActivity() {
 					}
 					result = it
 					scanFeedback()
-					detectorView.update(
+					dv.update(
 						matrix.mapPosition(
 							it.position,
-							detectorView.coordinates
+							dv.coordinates
 						)
 					)
 				}
@@ -203,7 +207,7 @@ class PickActivity : AppCompatActivity() {
 
 	override fun onDestroy() {
 		super.onDestroy()
-		detectorView.storeCropHandlePos()
+		detectorView?.storeCropHandlePos()
 		parentJob.cancel()
 		releaseToneGenerators()
 	}
@@ -225,8 +229,8 @@ class PickActivity : AppCompatActivity() {
 
 			R.id.toggle_free -> {
 				prefs.freeRotation = prefs.freeRotation xor true
-				cropImageView.freeRotation = prefs.freeRotation
-				freeRotationItem.updateFreeRotationIcon()
+				cropImageView?.freeRotation = prefs.freeRotation
+				freeRotationItem?.updateFreeRotationIcon()
 				true
 			}
 
@@ -245,7 +249,8 @@ class PickActivity : AppCompatActivity() {
 	}
 
 	private fun rotateClockwise() {
-		cropImageView.imageRotation = (cropImageView.imageRotation + 90) % 360
+		val civ = cropImageView ?: return
+		civ.imageRotation = (civ.imageRotation + 90) % 360
 	}
 
 	private fun loadSentImage(intent: Intent): Bitmap? {
