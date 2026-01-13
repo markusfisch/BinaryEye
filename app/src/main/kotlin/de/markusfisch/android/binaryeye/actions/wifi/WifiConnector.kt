@@ -9,7 +9,6 @@ import android.net.wifi.WifiNetworkSuggestion
 import android.os.Build
 import android.provider.Settings
 import android.support.annotation.RequiresApi
-import de.markusfisch.android.binaryeye.R
 import java.util.Locale
 
 /**
@@ -58,12 +57,12 @@ object WifiConnector {
 		}
 	}
 
-	fun addNetwork(context: Context, config: Any): Int {
+	fun addNetwork(context: Context, config: Any): Boolean {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
 			config is WifiNetworkSuggestion.Builder
 		) {
 			context.suggestNetworkFromBuilder(config)
-			return R.string.wifi_added
+			return true
 		}
 
 		val wifiManager = context.applicationContext.getSystemService(
@@ -71,18 +70,13 @@ object WifiConnector {
 		) as WifiManager
 		// WifiConfiguration is deprecated in Android Q.
 		@Suppress("DEPRECATION")
-		return if ((config is WifiConfiguration &&
-					wifiManager.enableWifi() &&
-					wifiManager.removeOldNetwork(config) &&
-					wifiManager.enableNewNetwork(config)) ||
-			(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
-					config is WifiNetworkSuggestion.Builder &&
-					wifiManager.addNetworkFromBuilder(config))
-		) {
-			R.string.wifi_added
-		} else {
-			R.string.wifi_config_failed
-		}
+		return (config is WifiConfiguration &&
+				wifiManager.enableWifi() &&
+				wifiManager.removeOldNetwork(config) &&
+				wifiManager.enableNewNetwork(config)) ||
+				(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
+						config is WifiNetworkSuggestion.Builder &&
+						wifiManager.addNetworkFromBuilder(config))
 	}
 
 	internal fun parseMap(input: String): Map<String, String>? {

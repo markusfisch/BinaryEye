@@ -2,10 +2,10 @@ package de.markusfisch.android.binaryeye.actions.web
 
 import android.content.Context
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.IAction
+import de.markusfisch.android.binaryeye.actions.Action
 import de.markusfisch.android.binaryeye.content.openUrl
 
-object WebAction : IAction {
+object WebAction : Action() {
 	private val colloquialRegex =
 		"^(URL:[ ]*)*(http[s]*://)*[A-Za-z0-9-]{3,}\\.[A-Za-z]{2,}[^ \t\r\n]*$".toRegex()
 
@@ -24,6 +24,6 @@ object WebAction : IAction {
 		if (!url.startsWith("http") && !url.startsWith("ftp")) {
 			url = "http://${url}"
 		}
-		context.openUrl(url)
+		fired = context.openUrl(url)
 	}
 }

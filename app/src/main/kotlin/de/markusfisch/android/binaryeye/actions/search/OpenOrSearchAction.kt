@@ -2,20 +2,20 @@ package de.markusfisch.android.binaryeye.actions.search
 
 import android.content.Context
 import de.markusfisch.android.binaryeye.R
-import de.markusfisch.android.binaryeye.actions.IAction
+import de.markusfisch.android.binaryeye.actions.Action
 import de.markusfisch.android.binaryeye.app.alertDialog
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.content.openUrl
 import de.markusfisch.android.binaryeye.net.urlEncode
 
-object OpenOrSearchAction : IAction {
+object OpenOrSearchAction : Action() {
 	override val iconResId: Int = R.drawable.ic_action_search
 	override val titleResId: Int = R.string.search_web
 
 	override fun canExecuteOn(data: ByteArray): Boolean = false
 
 	override suspend fun execute(context: Context, data: ByteArray) {
-		openUrlOrSearch(context, String(data))
+		fired = openUrlOrSearch(context, String(data))
 	}
 }
 
@@ -23,13 +23,16 @@ private suspend fun openUrlOrSearch(
 	context: Context,
 	url: String,
 	search: Boolean = true
-) {
-	if (context.openUrl(url, silent = true) || !search) {
-		return
+): Boolean {
+	if (context.openUrl(url, silent = true)) {
+		return true
 	}
-	prependSearchUrl(context, url)?.let {
-		openUrlOrSearch(context, it, false)
+	if (search) {
+		return prependSearchUrl(context, url)?.let {
+			openUrlOrSearch(context, it, false)
+		} ?: false
 	}
+	return false
 }
 
 private suspend fun prependSearchUrl(

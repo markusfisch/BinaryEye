@@ -175,6 +175,9 @@ class DecodeFragment : Fragment() {
 				label = newLabel
 			}
 		}
+		if (action.fired) {
+			maybeBackOrFinish()
+		}
 	}
 
 	override fun onDestroy() {
@@ -216,8 +219,8 @@ class DecodeFragment : Fragment() {
 				executeAction(this.content)
 			}
 			if (justScanned && prefs.openImmediately) {
+				closeAutomatically = true
 				executeAction(this.content)
-				backOrFinish()
 			}
 		}
 	}
@@ -585,7 +588,6 @@ class DecodeFragment : Fragment() {
 		}
 		scope.launch {
 			action.execute(ac, content.toByteArray())
-			maybeBackOrFinish()
 		}
 	}
 

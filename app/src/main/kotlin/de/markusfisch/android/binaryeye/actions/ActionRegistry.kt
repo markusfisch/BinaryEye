@@ -12,9 +12,9 @@ import de.markusfisch.android.binaryeye.actions.web.WebAction
 import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
 
 object ActionRegistry {
-	val DEFAULT_ACTION: IAction = OpenOrSearchAction
+	val DEFAULT_ACTION: Action = OpenOrSearchAction
 
-	private val REGISTRY: Set<IAction> = setOf(
+	private val REGISTRY: Set<Action> = setOf(
 		MailAction,
 		MatMsgAction,
 		OtpauthAction,
@@ -28,7 +28,7 @@ object ActionRegistry {
 		WebAction
 	)
 
-	fun getAction(data: ByteArray): IAction = REGISTRY.find {
+	fun getAction(data: ByteArray): Action = REGISTRY.find {
 		it.canExecuteOn(data)
 	} ?: DEFAULT_ACTION
 }
