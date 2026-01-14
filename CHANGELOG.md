@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.67.1
+* Fix opening file:// Uris
+* Fix auto-return/immediate opening
+* Improve Bluetooth stability
+
 ## 1.67.0
 * Add preference profiles
 * Support regex when searching for a barcode

@@ -1,0 +1,3 @@
+* Fix opening file:// Uris
+* Fix auto-return/immediate opening
+* Improve Bluetooth stability
