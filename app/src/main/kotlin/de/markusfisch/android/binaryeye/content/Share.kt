@@ -38,7 +38,15 @@ fun Context.startIntent(intent: Intent): Boolean = try {
 }
 
 fun Context.openUrl(url: String, silent: Boolean = false): Boolean {
-	val intent = Intent(Intent.ACTION_VIEW, url.parseAndNormalizeUri())
+	return openUri(url.parseAndNormalizeUri(), silent)
+}
+
+fun Context.openUri(uri: Uri, silent: Boolean = false): Boolean {
+	val intent = Intent(Intent.ACTION_VIEW, uri).apply {
+		if (uri.scheme == "content") {
+			addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+		}
+	}
 	return if (silent) {
 		startIntent(intent)
 	} else {

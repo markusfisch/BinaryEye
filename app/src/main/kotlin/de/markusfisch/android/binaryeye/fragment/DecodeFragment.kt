@@ -1,8 +1,13 @@
 package de.markusfisch.android.binaryeye.fragment
 
+import android.app.Activity
+import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.provider.DocumentsContract
+import android.support.annotation.RequiresApi
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.text.Editable
@@ -64,6 +69,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.File
 import java.security.MessageDigest
 import kotlin.math.roundToInt
 
@@ -95,6 +101,21 @@ class DecodeFragment : Fragment() {
 	private var originalBytes: ByteArray = ByteArray(0)
 	private var label: String? = null
 	private var recreationSize = 0
+
+	override fun onActivityResult(
+		requestCode: Int,
+		resultCode: Int,
+		resultData: Intent?
+	) {
+		when (requestCode) {
+			OPEN_DOCUMENT -> {
+				if (resultCode == Activity.RESULT_OK) {
+					val uri = resultData?.data ?: return
+					activity?.openPickedFile(uri)
+				}
+			}
+		}
+	}
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
@@ -216,11 +237,11 @@ class DecodeFragment : Fragment() {
 				) = Unit
 			})
 			fab.setOnClickListener {
-				executeAction(this.content)
+				executeAction(content)
 			}
 			if (justScanned && prefs.openImmediately) {
 				closeAutomatically = true
-				executeAction(this.content)
+				executeAction(content)
 			}
 		}
 	}
@@ -575,20 +596,51 @@ class DecodeFragment : Fragment() {
 		}
 	}
 
-	private fun executeAction(content: String) {
+	private fun executeAction(str: String) {
 		val ac = activity ?: return
-		if (content.isEmpty()) {
+		if (str.isEmpty() || openLocalDocument(str)) {
 			return
 		}
 		if (action is WifiAction &&
 			Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
-			!ac.hasLocationPermission { executeAction(content) }
+			!ac.hasLocationPermission { executeAction(str) }
 		) {
 			return
 		}
 		scope.launch {
-			action.execute(ac, content.toByteArray())
+			action.execute(ac, str.toByteArray())
 		}
+	}
+
+	private fun openLocalDocument(str: String): Boolean {
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N ||
+			!str.startsWith(SCHEME_FILE)
+		) {
+			return false
+		}
+		// Needs to be disabled so we get the result.
+		closeAutomatically = false
+		// file:// can't be used with Scoped Storage anymore.
+		startActivityForResult(
+			Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+				addCategory(Intent.CATEGORY_OPENABLE)
+				type = "*/*"
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+					val primary = str.substring(
+						SCHEME_FILE.length
+					).localDirName() ?: Environment.getExternalStorageDirectory().path
+					putExtra(
+						DocumentsContract.EXTRA_INITIAL_URI,
+						DocumentsContract.buildDocumentUri(
+							"com.android.externalstorage.documents",
+							"primary:$primary"
+						)
+					)
+				}
+			},
+			OPEN_DOCUMENT
+		)
+		return true
 	}
 
 	private fun askForFileNameAndSave(raw: ByteArray) {
@@ -617,6 +669,8 @@ class DecodeFragment : Fragment() {
 
 	companion object {
 		private const val SCAN = "scan"
+		private const val OPEN_DOCUMENT = 1
+		private const val SCHEME_FILE = "file://"
 
 		fun newInstance(scan: Scan): Fragment {
 			val args = Bundle()
@@ -809,4 +863,23 @@ private fun String.fold(): CharSequence {
 	} else {
 		this
 	}
+}
+
+private fun String.localDirName(): String? = when {
+	endsWith("/") -> this
+	else -> File(this).parentFile?.absolutePath
+}?.replaceFirst(Regex("^/storage/emulated/0/"), "")
+	?.replaceFirst(Regex("^/sdcard/"), "")
+	?.trim('/')
+
+private fun Activity.openPickedFile(uri: Uri) {
+	startActivity(
+		Intent.createChooser(
+			Intent(Intent.ACTION_VIEW).apply {
+				setDataAndType(uri, contentResolver.getType(uri) ?: "*/*")
+				addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+			},
+			getString(R.string.open_url)
+		)
+	)
 }
