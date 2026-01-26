@@ -2,7 +2,6 @@ package de.markusfisch.android.binaryeye.database
 
 import android.content.Context
 import android.database.Cursor
-import de.markusfisch.android.binaryeye.content.toHexString
 import de.markusfisch.android.binaryeye.io.writeExternalFile
 import java.io.ByteArrayOutputStream
 import java.io.OutputStream

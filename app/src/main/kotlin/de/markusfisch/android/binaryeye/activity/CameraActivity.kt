@@ -32,7 +32,6 @@ import de.markusfisch.android.binaryeye.bluetooth.sendBluetoothAsync
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.execShareIntent
 import de.markusfisch.android.binaryeye.content.openUrl
-import de.markusfisch.android.binaryeye.content.toHexString
 import de.markusfisch.android.binaryeye.database.toScan
 import de.markusfisch.android.binaryeye.graphics.FrameMetrics
 import de.markusfisch.android.binaryeye.graphics.mapPosition

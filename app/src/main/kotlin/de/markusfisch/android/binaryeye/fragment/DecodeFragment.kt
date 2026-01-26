@@ -53,7 +53,6 @@ import de.markusfisch.android.binaryeye.content.shareAsFile
 import de.markusfisch.android.binaryeye.content.shareText
 import de.markusfisch.android.binaryeye.content.toBarcode
 import de.markusfisch.android.binaryeye.content.toErrorCorrectionInt
-import de.markusfisch.android.binaryeye.content.toHexString
 import de.markusfisch.android.binaryeye.content.wipeLastShareFile
 import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.io.askForFileName
