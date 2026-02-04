@@ -133,6 +133,30 @@
 	<string name="default_search_engine">Ismeretlen adatok megnyitása ebben</string>
 	<string name="always_ask">Mindig kérdezzen</string>
 	<string name="open_with_url">Ismeretlen adat megnyitása URL-lel</string>
+
+	<string name="automated_actions">Automatizált műveletek</string>
+	<string name="automated_actions_none">Nincsenek automatizált műveletek</string>
+	<string name="automated_actions_empty">Még nincsenek automatizált műveletek</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d automatizált művelet</item>
+		<item quantity="other">%d automatizált művelet</item>
+	</plurals>
+	<string name="automated_action_add">Művelet hozzáadása</string>
+	<string name="automated_action_edit">Művelet szerkesztése</string>
+	<string name="automated_action_regex">Reguláris kifejezés</string>
+	<string name="automated_action_regex_hint">pl. ^https?://.*</string>
+	<string name="automated_action_regex_required">A reguláris kifejezés kötelező</string>
+	<string name="automated_action_regex_invalid">Érvénytelen reguláris kifejezés</string>
+	<string name="automated_action_type">Művelet típusa</string>
+	<string name="automated_action_type_intent">URL megnyitása</string>
+	<string name="automated_action_url_template">URL-sablon</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">URL-sablon kötelező</string>
+	<string name="automated_action_invalid_url">Érvénytelen URL-sablon</string>
+	<string name="automated_action_remove_confirm">Törli ezt a műveletet?</string>
+	<string name="automated_action_list_intent">URL megnyitása: %s</string>
+	<string name="automated_action_list_intent_empty">URL megnyitása</string>
+	<string name="automated_action_webview_title">Automatizált művelet</string>
 	<string name="clear_network_suggestions">Hálózati javaslatok törlése</string>
 	<string name="clear_network_suggestions_summary">Az alkalmazás által korábban biztosított összes hálózati javaslat eltávolítása.</string>
 	<string name="really_remove_all_networks">Valóban eltávolítja az összes hálózatot?</string>
@@ -229,4 +253,12 @@
 	<string name="scheme">Terv</string>
 	<string name="host">Házigazda</string>
 	<string name="query">Lekérdezés</string>
+	<string name="automated_action_type_custom_intent">Egyéni intent</string>
+	<string name="automated_action_intent_uri_template">Intent URI-sablon</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">Intent URI szükséges</string>
+	<string name="automated_action_intent_uri_invalid">Érvénytelen Intent URI</string>
+	<string name="automated_action_list_custom_intent">Egyéni intent: %s</string>
+	<string name="automated_action_list_custom_intent_empty">Egyéni intent</string>
+
 </resources>

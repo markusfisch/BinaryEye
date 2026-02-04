@@ -133,6 +133,30 @@
 	<string name="default_search_engine">Abrir datos desconocidos en</string>
 	<string name="always_ask">Preguntar siempre</string>
 	<string name="open_with_url">Abrir datos desconocidos en la URL</string>
+
+	<string name="automated_actions">Acciones automatizadas</string>
+	<string name="automated_actions_none">No hay acciones automatizadas</string>
+	<string name="automated_actions_empty">Aún no hay acciones automatizadas</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d acción automatizada</item>
+		<item quantity="other">%d acciones automatizadas</item>
+	</plurals>
+	<string name="automated_action_add">Añadir acción</string>
+	<string name="automated_action_edit">Editar acción</string>
+	<string name="automated_action_regex">Expresión regular</string>
+	<string name="automated_action_regex_hint">p. ej. ^https?://.*</string>
+	<string name="automated_action_regex_required">Se requiere expresión regular</string>
+	<string name="automated_action_regex_invalid">Expresión regular inválida</string>
+	<string name="automated_action_type">Tipo de acción</string>
+	<string name="automated_action_type_intent">Abrir URL</string>
+	<string name="automated_action_url_template">Plantilla de URL</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">Se requiere plantilla de URL</string>
+	<string name="automated_action_invalid_url">Plantilla de URL inválida</string>
+	<string name="automated_action_remove_confirm">¿Eliminar esta acción?</string>
+	<string name="automated_action_list_intent">Abrir URL: %s</string>
+	<string name="automated_action_list_intent_empty">Abrir URL</string>
+	<string name="automated_action_webview_title">Acción automatizada</string>
 	<string name="clear_network_suggestions">Eliminar sugerencias de red</string>
 	<string name="clear_network_suggestions_summary">Elimina todas las sugerencias de red proporcionadas por esta aplicación.</string>
 	<string name="really_remove_all_networks">¿Realmente eliminar todas las redes?</string>
@@ -229,4 +253,12 @@
 	<string name="scheme">Esquema</string>
 	<string name="host">Anfitrión</string>
 	<string name="query">Consulta</string>
+	<string name="automated_action_type_custom_intent">Intent personalizado</string>
+	<string name="automated_action_intent_uri_template">Plantilla de URI de Intent</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">URI de Intent requerida</string>
+	<string name="automated_action_intent_uri_invalid">URI de Intent no válida</string>
+	<string name="automated_action_list_custom_intent">Intent personalizado: %s</string>
+	<string name="automated_action_list_custom_intent_empty">Intent personalizado</string>
+
 </resources>

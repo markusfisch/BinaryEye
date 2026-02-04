@@ -133,6 +133,30 @@
 	<string name="default_search_engine">გახსნის უცნობი მონაცემები</string>
 	<string name="always_ask">ყოველთვის კითხვა</string>
 	<string name="open_with_url">უცნობი მონაცემების ამ ბმულის საშუალებით გახსნა</string>
+
+	<string name="automated_actions">ავტომატური მოქმედებები</string>
+	<string name="automated_actions_none">ავტომატური მოქმედებები არ არის</string>
+	<string name="automated_actions_empty">ჯერ ავტომატური მოქმედებები არ არის</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d ავტომატური მოქმედება</item>
+		<item quantity="other">%d ავტომატური მოქმედება</item>
+	</plurals>
+	<string name="automated_action_add">მოქმედების დამატება</string>
+	<string name="automated_action_edit">მოქმედების რედაქტირება</string>
+	<string name="automated_action_regex">რეგულარული გამოსახულება</string>
+	<string name="automated_action_regex_hint">მაგ. ^https?://.*</string>
+	<string name="automated_action_regex_required">რეგულარული გამოსახულება აუცილებელია</string>
+	<string name="automated_action_regex_invalid">არასწორი რეგულარული გამოსახულება</string>
+	<string name="automated_action_type">მოქმედების ტიპი</string>
+	<string name="automated_action_type_intent">URL-ის გახსნა</string>
+	<string name="automated_action_url_template">URL შაბლონი</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">URL შაბლონი აუცილებელია</string>
+	<string name="automated_action_invalid_url">არასწორი URL შაბლონი</string>
+	<string name="automated_action_remove_confirm">ამ მოქმედების წაშლა?</string>
+	<string name="automated_action_list_intent">URL გახსნა: %s</string>
+	<string name="automated_action_list_intent_empty">URL გახსნა</string>
+	<string name="automated_action_webview_title">ავტომატური მოქმედება</string>
 	<string name="clear_network_suggestions">ქსელის შეთანხმებების წაშლა</string>
 	<string name="clear_network_suggestions_summary">Remove network suggestions that were previously added with this app.</string>
 	<string name="really_remove_all_networks">ნამდვილად ამოიღოს ყველა ქსელი?</string>
@@ -229,4 +253,12 @@
 	<string name="scheme">სქემა</string>
 	<string name="host">ჰოსტი</string>
 	<string name="query">კითხვა</string>
+	<string name="automated_action_type_custom_intent">კონფიგურირებადი Intent</string>
+	<string name="automated_action_intent_uri_template">Intent URI შაბლონი</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">Intent URI აუცილებელია</string>
+	<string name="automated_action_intent_uri_invalid">არასწორი Intent URI</string>
+	<string name="automated_action_list_custom_intent">კონფიგურირებადი Intent: %s</string>
+	<string name="automated_action_list_custom_intent_empty">კონფიგურირებადი Intent</string>
+
 </resources>

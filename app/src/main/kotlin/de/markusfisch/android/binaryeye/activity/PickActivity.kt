@@ -73,7 +73,6 @@ class PickActivity : AppCompatActivity() {
 		setTitle(R.string.pick_code_to_scan)
 
 		initBars()
-
 		supportFragmentManager.addOnBackStackChangedListener {
 			colorSystemAndToolBars(this@PickActivity)
 		}

@@ -133,6 +133,30 @@
 	<string name="default_search_engine">Unbekannte Daten öffnen mit</string>
 	<string name="always_ask">Immer fragen</string>
 	<string name="open_with_url">URL zum Öffnen unbekannter Daten</string>
+
+	<string name="automated_actions">Automatisierte Aktionen</string>
+	<string name="automated_actions_none">Keine automatisierten Aktionen</string>
+	<string name="automated_actions_empty">Noch keine automatisierten Aktionen</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d automatisierte Aktion</item>
+		<item quantity="other">%d automatisierte Aktionen</item>
+	</plurals>
+	<string name="automated_action_add">Aktion hinzufügen</string>
+	<string name="automated_action_edit">Aktion bearbeiten</string>
+	<string name="automated_action_regex">Regex</string>
+	<string name="automated_action_regex_hint">z.B. ^https?://.*</string>
+	<string name="automated_action_regex_required">Regex erforderlich</string>
+	<string name="automated_action_regex_invalid">Ungültiger Regex</string>
+	<string name="automated_action_type">Aktionstyp</string>
+	<string name="automated_action_type_intent">URL öffnen</string>
+	<string name="automated_action_url_template">URL-Vorlage</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">URL-Vorlage erforderlich</string>
+	<string name="automated_action_invalid_url">Ungültige URL-Vorlage</string>
+	<string name="automated_action_remove_confirm">Diese Aktion entfernen?</string>
+	<string name="automated_action_list_intent">URL öffnen: %s</string>
+	<string name="automated_action_list_intent_empty">URL öffnen</string>
+	<string name="automated_action_webview_title">Automatisierte Aktion</string>
 	<string name="clear_network_suggestions">WiFi Netzwerkvorschläge entfernen</string>
 	<string name="clear_network_suggestions_summary">Betrifft nur Netzwerke, die zuvor mit dieser App bereitgestellt wurden.</string>
 	<string name="really_remove_all_networks">Alle Netzwerkvorschläge entfernen?</string>
@@ -229,4 +253,12 @@
 	<string name="scheme">Schema</string>
 	<string name="host">Host</string>
 	<string name="query">Query</string>
+	<string name="automated_action_type_custom_intent">Benutzerdefinierter Intent</string>
+	<string name="automated_action_intent_uri_template">Intent-URI-Vorlage</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">Intent-URI erforderlich</string>
+	<string name="automated_action_intent_uri_invalid">Ungültige Intent-URI</string>
+	<string name="automated_action_list_custom_intent">Benutzerdefinierter Intent: %s</string>
+	<string name="automated_action_list_custom_intent_empty">Benutzerdefinierter Intent</string>
+
 </resources>

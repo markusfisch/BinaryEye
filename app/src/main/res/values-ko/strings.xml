@@ -132,6 +132,30 @@
 	<string name="default_search_engine">알 수 없는 데이터 열기:</string>
 	<string name="always_ask">항상 물어보기</string>
 	<string name="open_with_url">URL로 알려지지 않은 데이터 열기</string>
+
+	<string name="automated_actions">자동 작업</string>
+	<string name="automated_actions_none">자동 작업 없음</string>
+	<string name="automated_actions_empty">아직 자동 작업 없음</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d개의 자동 작업</item>
+		<item quantity="other">%d개의 자동 작업</item>
+	</plurals>
+	<string name="automated_action_add">작업 추가</string>
+	<string name="automated_action_edit">작업 편집</string>
+	<string name="automated_action_regex">정규식</string>
+	<string name="automated_action_regex_hint">예: ^https?://.*</string>
+	<string name="automated_action_regex_required">정규식이 필요합니다</string>
+	<string name="automated_action_regex_invalid">잘못된 정규식입니다</string>
+	<string name="automated_action_type">작업 유형</string>
+	<string name="automated_action_type_intent">URL 열기</string>
+	<string name="automated_action_url_template">URL 템플릿</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">URL 템플릿이 필요합니다</string>
+	<string name="automated_action_invalid_url">잘못된 URL 템플릿입니다</string>
+	<string name="automated_action_remove_confirm">이 작업을 제거할까요?</string>
+	<string name="automated_action_list_intent">URL 열기: %s</string>
+	<string name="automated_action_list_intent_empty">URL 열기</string>
+	<string name="automated_action_webview_title">자동 작업</string>
 	<string name="clear_network_suggestions">네트워크 제안 사항 제거</string>
 	<string name="clear_network_suggestions_summary">이 앱을 통해 이전에 추가된 네트워크 제안을 제거합니다.</string>
 	<string name="really_remove_all_networks">모든 네트워크를 정말로 삭제하시겠습니까?</string>
@@ -228,4 +252,12 @@
 	<string name="scheme">스키마</string>
 	<string name="host">호스트</string>
 	<string name="query">쿼리</string>
+	<string name="automated_action_type_custom_intent">맞춤 Intent</string>
+	<string name="automated_action_intent_uri_template">Intent URI 템플릿</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">Intent URI가 필요합니다</string>
+	<string name="automated_action_intent_uri_invalid">잘못된 Intent URI</string>
+	<string name="automated_action_list_custom_intent">맞춤 Intent: %s</string>
+	<string name="automated_action_list_custom_intent_empty">맞춤 Intent</string>
+
 </resources>

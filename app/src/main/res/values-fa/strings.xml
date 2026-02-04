@@ -133,6 +133,30 @@
 	<string name="default_search_engine">گشودن دادهٔ نامشخص در</string>
 	<string name="always_ask">همیشه بپرس</string>
 	<string name="open_with_url">داده‌های ناشناخته را با URL باز کنید</string>
+
+	<string name="automated_actions">اقدام‌های خودکار</string>
+	<string name="automated_actions_none">هیچ اقدام خودکاری وجود ندارد</string>
+	<string name="automated_actions_empty">هنوز اقدام خودکاری وجود ندارد</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d اقدام خودکار</item>
+		<item quantity="other">%d اقدام خودکار</item>
+	</plurals>
+	<string name="automated_action_add">افزودن اقدام</string>
+	<string name="automated_action_edit">ویرایش اقدام</string>
+	<string name="automated_action_regex">عبارت منظم</string>
+	<string name="automated_action_regex_hint">مثلاً ^https?://.*</string>
+	<string name="automated_action_regex_required">عبارت منظم لازم است</string>
+	<string name="automated_action_regex_invalid">عبارت منظم نامعتبر است</string>
+	<string name="automated_action_type">نوع اقدام</string>
+	<string name="automated_action_type_intent">باز کردن URL</string>
+	<string name="automated_action_url_template">قالب URL</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">قالب URL لازم است</string>
+	<string name="automated_action_invalid_url">قالب URL نامعتبر است</string>
+	<string name="automated_action_remove_confirm">این اقدام حذف شود؟</string>
+	<string name="automated_action_list_intent">باز کردن URL: %s</string>
+	<string name="automated_action_list_intent_empty">باز کردن URL</string>
+	<string name="automated_action_webview_title">اقدام خودکار</string>
 	<string name="clear_network_suggestions">پاک کردن پیشنهادات شبکه</string>
 	<string name="clear_network_suggestions_summary">همه پیشنهادات شبکه را که قبلاً توسط این برنامه ارائه شده است حذف کنید.</string>
 	<string name="really_remove_all_networks">واقعاً همه شبکه‌ها را حذف می‌کنید؟</string>
@@ -229,4 +253,12 @@
 	<string name="scheme">برنامه</string>
 	<string name="host">میزبان</string>
 	<string name="query">پرس و جو</string>
+	<string name="automated_action_type_custom_intent">Intent سفارشی</string>
+	<string name="automated_action_intent_uri_template">الگوی URI Intent</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">URI Intent لازم است</string>
+	<string name="automated_action_intent_uri_invalid">URI Intent نامعتبر</string>
+	<string name="automated_action_list_custom_intent">Intent سفارشی: %s</string>
+	<string name="automated_action_list_custom_intent_empty">Intent سفارشی</string>
+
 </resources>

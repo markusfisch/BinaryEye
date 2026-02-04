@@ -132,6 +132,30 @@
 	<string name="default_search_engine">Mở dữ liệu không xác định bằng</string>
 	<string name="always_ask">Luôn hỏi</string>
 	<string name="open_with_url">Mở dữ liệu không xác định với URL</string>
+
+	<string name="automated_actions">Hành động tự động</string>
+	<string name="automated_actions_none">Không có hành động tự động</string>
+	<string name="automated_actions_empty">Chưa có hành động tự động</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d hành động tự động</item>
+		<item quantity="other">%d hành động tự động</item>
+	</plurals>
+	<string name="automated_action_add">Thêm hành động</string>
+	<string name="automated_action_edit">Chỉnh sửa hành động</string>
+	<string name="automated_action_regex">Biểu thức chính quy</string>
+	<string name="automated_action_regex_hint">ví dụ ^https?://.*</string>
+	<string name="automated_action_regex_required">Cần biểu thức chính quy</string>
+	<string name="automated_action_regex_invalid">Biểu thức chính quy không hợp lệ</string>
+	<string name="automated_action_type">Loại hành động</string>
+	<string name="automated_action_type_intent">Mở URL</string>
+	<string name="automated_action_url_template">Mẫu URL</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">Cần mẫu URL</string>
+	<string name="automated_action_invalid_url">Mẫu URL không hợp lệ</string>
+	<string name="automated_action_remove_confirm">Xóa hành động này?</string>
+	<string name="automated_action_list_intent">Mở URL: %s</string>
+	<string name="automated_action_list_intent_empty">Mở URL</string>
+	<string name="automated_action_webview_title">Hành động tự động</string>
 	<string name="clear_network_suggestions">Xoá gợi ý mạng</string>
 	<string name="clear_network_suggestions_summary">Xoá tất cả trang mạng được gợi ý bởi ứng dụng này.</string>
 	<string name="really_remove_all_networks">Thật sự xoá tất cả trang mạng?</string>
@@ -228,4 +252,12 @@
 	<string name="scheme">Kế hoạch</string>
 	<string name="host">Chủ nhà</string>
 	<string name="query">Truy vấn</string>
+	<string name="automated_action_type_custom_intent">Intent tuỳ chỉnh</string>
+	<string name="automated_action_intent_uri_template">Mẫu URI Intent</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">Cần URI Intent</string>
+	<string name="automated_action_intent_uri_invalid">URI Intent không hợp lệ</string>
+	<string name="automated_action_list_custom_intent">Intent tuỳ chỉnh: %s</string>
+	<string name="automated_action_list_custom_intent_empty">Intent tuỳ chỉnh</string>
+
 </resources>

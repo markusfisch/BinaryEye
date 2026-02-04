@@ -80,6 +80,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		setSummaries(preferenceScreen)
 
 		wireProfiles()
+		wireAutomatedActions()
 		setBluetoothResources()
 		wireClearNetworkPreferences()
 	}
@@ -89,6 +90,16 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 			summary = prefs.profile ?: getString(R.string.profile_default)
 			onPreferenceClickListener = Preference.OnPreferenceClickListener {
 				pickProfile()
+				true
+			}
+		}
+	}
+
+	private fun wireAutomatedActions() {
+		findPreference(AUTOMATED_ACTIONS).apply {
+			updateAutomatedActionsSummary(this)
+			onPreferenceClickListener = Preference.OnPreferenceClickListener {
+				fragmentManager.addFragment(AutomatedActionsFragment())
 				true
 			}
 		}
@@ -200,6 +211,9 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 	override fun onResume() {
 		super.onResume()
 		activity?.setTitle(R.string.preferences)
+		findPreference(AUTOMATED_ACTIONS)?.let {
+			updateAutomatedActionsSummary(it)
+		}
 		listView.setPaddingFromWindowInsets()
 		listView.removeOnScrollListener(systemBarRecyclerViewScrollListener)
 		listView.addOnScrollListener(systemBarRecyclerViewScrollListener)
@@ -237,6 +251,10 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 	}
 
 	private fun setSummary(preference: Preference) {
+		if (preference.key == AUTOMATED_ACTIONS) {
+			updateAutomatedActionsSummary(preference)
+			return
+		}
 		when (preference) {
 			is UrlPreference -> {
 				preference.summary = preference.getUrl()
@@ -256,6 +274,23 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 				setSummaries(preference)
 			}
 		}
+	}
+
+	private fun updateAutomatedActionsSummary(preference: Preference) {
+		val count = prefs.automatedActions.size
+		preference.summary = if (count == 0) {
+			getString(R.string.automated_actions_none)
+		} else {
+			resources.getQuantityString(
+				R.plurals.automated_actions_count,
+				count,
+				count
+			)
+		}
+	}
+
+	companion object {
+		private const val AUTOMATED_ACTIONS = "automated_actions"
 	}
 }
 

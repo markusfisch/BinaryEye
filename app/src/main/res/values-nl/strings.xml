@@ -133,6 +133,30 @@
 	<string name="default_search_engine">Onbekende data openen in</string>
 	<string name="always_ask">Altijd vragen</string>
 	<string name="open_with_url">URL om niet bekende data te openen</string>
+
+	<string name="automated_actions">Geautomatiseerde acties</string>
+	<string name="automated_actions_none">Geen geautomatiseerde acties</string>
+	<string name="automated_actions_empty">Nog geen geautomatiseerde acties</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d geautomatiseerde actie</item>
+		<item quantity="other">%d geautomatiseerde acties</item>
+	</plurals>
+	<string name="automated_action_add">Actie toevoegen</string>
+	<string name="automated_action_edit">Actie bewerken</string>
+	<string name="automated_action_regex">Regex</string>
+	<string name="automated_action_regex_hint">bijv. ^https?://.*</string>
+	<string name="automated_action_regex_required">Regex vereist</string>
+	<string name="automated_action_regex_invalid">Ongeldige regex</string>
+	<string name="automated_action_type">Type actie</string>
+	<string name="automated_action_type_intent">URL openen</string>
+	<string name="automated_action_url_template">URL-sjabloon</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">URL-sjabloon vereist</string>
+	<string name="automated_action_invalid_url">Ongeldig URL-sjabloon</string>
+	<string name="automated_action_remove_confirm">Deze actie verwijderen?</string>
+	<string name="automated_action_list_intent">URL openen: %s</string>
+	<string name="automated_action_list_intent_empty">URL openen</string>
+	<string name="automated_action_webview_title">Geautomatiseerde actie</string>
 	<string name="clear_network_suggestions">Network suggesties wissen</string>
 	<string name="clear_network_suggestions_summary">Verwijder alle netwerksuggesties die eerder door deze app werden gegeven.</string>
 	<string name="really_remove_all_networks">Echt alle netwerken verwijderen?</string>
@@ -229,4 +253,12 @@
 	<string name="scheme">Regeling</string>
 	<string name="host">Host</string>
 	<string name="query">Query</string>
+	<string name="automated_action_type_custom_intent">Aangepaste intent</string>
+	<string name="automated_action_intent_uri_template">Intent-URI-sjabloon</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">Intent-URI vereist</string>
+	<string name="automated_action_intent_uri_invalid">Ongeldige Intent-URI</string>
+	<string name="automated_action_list_custom_intent">Aangepaste intent: %s</string>
+	<string name="automated_action_list_custom_intent_empty">Aangepaste intent</string>
+
 </resources>

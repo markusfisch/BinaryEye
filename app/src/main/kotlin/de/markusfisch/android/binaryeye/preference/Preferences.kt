@@ -8,6 +8,9 @@ import android.media.ToneGenerator
 import android.os.Build
 import android.preference.PreferenceManager
 import android.support.annotation.RequiresApi
+import de.markusfisch.android.binaryeye.automation.AutomatedAction
+import de.markusfisch.android.binaryeye.automation.AutomatedAction.Companion.fromJsonArray
+import de.markusfisch.android.binaryeye.automation.AutomatedAction.Companion.toJsonArray
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import org.json.JSONArray
 
@@ -220,6 +223,8 @@ class Preferences {
 			apply(PREVIEW_SCALE, value)
 			field = value
 		}
+	var automatedActions = mutableListOf<AutomatedAction>()
+		private set
 
 	fun init(context: Context) {
 		// I'm not including a support library just to get the
@@ -386,6 +391,14 @@ class Preferences {
 			PREVIEW_SCALE,
 			previewScale
 		)
+		automatedActions = fromJsonArray(
+			preferences.getString(AUTOMATED_ACTIONS, "[]") ?: "[]"
+		)
+	}
+
+	fun setAutomatedActions(actions: List<AutomatedAction>) {
+		automatedActions = actions.toMutableList()
+		apply(AUTOMATED_ACTIONS, toJsonArray(actions))
 	}
 
 	private fun addFormatsOnUpdate(
@@ -500,5 +513,6 @@ class Preferences {
 		private const val ADD_QUIET_ZONE = "add_quiet_zone"
 		private const val BRIGHTEN_SCREEN = "brighten_screen"
 		private const val PREVIEW_SCALE = "preview_scale"
+		private const val AUTOMATED_ACTIONS = "automated_actions"
 	}
 }

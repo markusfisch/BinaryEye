@@ -136,6 +136,32 @@
 	<string name="default_search_engine">Nerozpoznaná data otevřít v</string>
 	<string name="always_ask">Vždy se zeptat</string>
 	<string name="open_with_url">Otevřít nerozpoznaná data pomocí URL</string>
+
+	<string name="automated_actions">Automatizované akce</string>
+	<string name="automated_actions_none">Žádné automatizované akce</string>
+	<string name="automated_actions_empty">Zatím žádné automatizované akce</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d automatizovaná akce</item>
+		<item quantity="few">%d automatizované akce</item>
+		<item quantity="many">%d automatizovaných akcí</item>
+		<item quantity="other">%d automatizované akce</item>
+	</plurals>
+	<string name="automated_action_add">Přidat akci</string>
+	<string name="automated_action_edit">Upravit akci</string>
+	<string name="automated_action_regex">Regulární výraz</string>
+	<string name="automated_action_regex_hint">např. ^https?://.*</string>
+	<string name="automated_action_regex_required">Regulární výraz je povinný</string>
+	<string name="automated_action_regex_invalid">Neplatný regulární výraz</string>
+	<string name="automated_action_type">Typ akce</string>
+	<string name="automated_action_type_intent">Otevřít URL</string>
+	<string name="automated_action_url_template">Šablona URL</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">Šablona URL je povinná</string>
+	<string name="automated_action_invalid_url">Neplatná šablona URL</string>
+	<string name="automated_action_remove_confirm">Odstranit tuto akci?</string>
+	<string name="automated_action_list_intent">Otevřít URL: %s</string>
+	<string name="automated_action_list_intent_empty">Otevřít URL</string>
+	<string name="automated_action_webview_title">Automatizovaná akce</string>
 	<string name="clear_network_suggestions">Smazat navrhované sítě</string>
 	<string name="clear_network_suggestions_summary">Smazat všechny sítě, které byly navrženy touto aplikací.</string>
 	<string name="really_remove_all_networks">Opravdu smazat všechny sítě?</string>
@@ -232,4 +258,12 @@
 	<string name="scheme">Schéma</string>
 	<string name="host">Host</string>
 	<string name="query">Dotaz</string>
+	<string name="automated_action_type_custom_intent">Vlastní intent</string>
+	<string name="automated_action_intent_uri_template">Šablona URI intentu</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">URI intentu je povinné</string>
+	<string name="automated_action_intent_uri_invalid">Neplatné URI intentu</string>
+	<string name="automated_action_list_custom_intent">Vlastní intent: %s</string>
+	<string name="automated_action_list_custom_intent_empty">Vlastní intent</string>
+
 </resources>

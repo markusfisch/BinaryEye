@@ -133,6 +133,30 @@
 	<string name="default_search_engine">Åbn ukendte data i</string>
 	<string name="always_ask">Spørg altid</string>
 	<string name="open_with_url">Åbn ukendte data med URL</string>
+
+	<string name="automated_actions">Automatiserede handlinger</string>
+	<string name="automated_actions_none">Ingen automatiserede handlinger</string>
+	<string name="automated_actions_empty">Ingen automatiserede handlinger endnu</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d automatiseret handling</item>
+		<item quantity="other">%d automatiserede handlinger</item>
+	</plurals>
+	<string name="automated_action_add">Tilføj handling</string>
+	<string name="automated_action_edit">Rediger handling</string>
+	<string name="automated_action_regex">Regex</string>
+	<string name="automated_action_regex_hint">f.eks. ^https?://.*</string>
+	<string name="automated_action_regex_required">Regex påkrævet</string>
+	<string name="automated_action_regex_invalid">Ugyldig regex</string>
+	<string name="automated_action_type">Handlingstype</string>
+	<string name="automated_action_type_intent">Åbn URL</string>
+	<string name="automated_action_url_template">URL-skabelon</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">URL-skabelon påkrævet</string>
+	<string name="automated_action_invalid_url">Ugyldig URL-skabelon</string>
+	<string name="automated_action_remove_confirm">Fjern denne handling?</string>
+	<string name="automated_action_list_intent">Åbn URL: %s</string>
+	<string name="automated_action_list_intent_empty">Åbn URL</string>
+	<string name="automated_action_webview_title">Automatiseret handling</string>
 	<string name="clear_network_suggestions">Fjern netværksforslag</string>
 	<string name="clear_network_suggestions_summary">Fjern netværksforslag, der tidligere blev tilføjet med denne app.</string>
 	<string name="really_remove_all_networks">Vil du virkelig fjerne alle netværk?</string>
@@ -229,4 +253,12 @@
 	<string name="scheme">Ordning</string>
 	<string name="host">Vært</string>
 	<string name="query">Forespørgsel</string>
+	<string name="automated_action_type_custom_intent">Brugerdefineret intent</string>
+	<string name="automated_action_intent_uri_template">Intent-URI-skabelon</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">Intent-URI påkrævet</string>
+	<string name="automated_action_intent_uri_invalid">Ugyldig Intent-URI</string>
+	<string name="automated_action_list_custom_intent">Brugerdefineret intent: %s</string>
+	<string name="automated_action_list_custom_intent_empty">Brugerdefineret intent</string>
+
 </resources>

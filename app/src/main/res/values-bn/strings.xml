@@ -133,6 +133,30 @@
 	<string name="default_search_engine">অজানা ডেটা খোলুন</string>
 	<string name="always_ask">সবসময় জিজ্ঞাসা করুন</string>
 	<string name="open_with_url">অজানা ইউআরএল খুলো</string>
+
+	<string name="automated_actions">স্বয়ংক্রিয় ক্রিয়াসমূহ</string>
+	<string name="automated_actions_none">কোনো স্বয়ংক্রিয় ক্রিয়া নেই</string>
+	<string name="automated_actions_empty">এখনো কোনো স্বয়ংক্রিয় ক্রিয়া নেই</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%dটি স্বয়ংক্রিয় ক্রিয়া</item>
+		<item quantity="other">%dটি স্বয়ংক্রিয় ক্রিয়া</item>
+	</plurals>
+	<string name="automated_action_add">ক্রিয়া যোগ করুন</string>
+	<string name="automated_action_edit">ক্রিয়া সম্পাদনা</string>
+	<string name="automated_action_regex">রেগেক্স</string>
+	<string name="automated_action_regex_hint">উদাহরণ ^https?://.*</string>
+	<string name="automated_action_regex_required">রেগেক্স প্রয়োজন</string>
+	<string name="automated_action_regex_invalid">অবৈধ রেগেক্স</string>
+	<string name="automated_action_type">ক্রিয়ার ধরন</string>
+	<string name="automated_action_type_intent">URL খুলুন</string>
+	<string name="automated_action_url_template">URL টেমপ্লেট</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">URL টেমপ্লেট প্রয়োজন</string>
+	<string name="automated_action_invalid_url">অবৈধ URL টেমপ্লেট</string>
+	<string name="automated_action_remove_confirm">এই ক্রিয়াটি সরাবেন?</string>
+	<string name="automated_action_list_intent">URL খুলুন: %s</string>
+	<string name="automated_action_list_intent_empty">URL খুলুন</string>
+	<string name="automated_action_webview_title">স্বয়ংক্রিয় ক্রিয়া</string>
 	<string name="clear_network_suggestions">Clear network suggestions</string>
 	<string name="clear_network_suggestions_summary">Remove all of the network suggestions that were previously provided by this app.</string>
 	<string name="really_remove_all_networks">সব নেটওয়ার্ক সত্যিই সরান?</string>
@@ -229,4 +253,12 @@
 	<string name="scheme">ব্যবস্থা</string>
 	<string name="host">হোস্ট</string>
 	<string name="query">অনুসন্ধান</string>
+	<string name="automated_action_type_custom_intent">কাস্টম Intent</string>
+	<string name="automated_action_intent_uri_template">Intent URI টেমপ্লেট</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">Intent URI প্রয়োজন</string>
+	<string name="automated_action_intent_uri_invalid">অবৈধ Intent URI</string>
+	<string name="automated_action_list_custom_intent">কাস্টম Intent: %s</string>
+	<string name="automated_action_list_custom_intent_empty">কাস্টম Intent</string>
+
 </resources>

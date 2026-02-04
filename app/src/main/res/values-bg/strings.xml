@@ -133,6 +133,30 @@
 	<string name="default_search_engine">Отворяй неизвестни данни в</string>
 	<string name="always_ask">Винаги питай</string>
 	<string name="open_with_url">Отворяне на неизвестни данни с URL</string>
+
+	<string name="automated_actions">Автоматизирани действия</string>
+	<string name="automated_actions_none">Няма автоматизирани действия</string>
+	<string name="automated_actions_empty">Все още няма автоматизирани действия</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d автоматизирано действие</item>
+		<item quantity="other">%d автоматизирани действия</item>
+	</plurals>
+	<string name="automated_action_add">Добавяне на действие</string>
+	<string name="automated_action_edit">Редактиране на действие</string>
+	<string name="automated_action_regex">Регулярен израз</string>
+	<string name="automated_action_regex_hint">напр. ^https?://.*</string>
+	<string name="automated_action_regex_required">Регулярен израз е задължителен</string>
+	<string name="automated_action_regex_invalid">Невалиден регулярен израз</string>
+	<string name="automated_action_type">Тип действие</string>
+	<string name="automated_action_type_intent">Отваряне на URL</string>
+	<string name="automated_action_url_template">Шаблон на URL</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">Шаблон на URL е задължителен</string>
+	<string name="automated_action_invalid_url">Невалиден шаблон на URL</string>
+	<string name="automated_action_remove_confirm">Да се премахне ли това действие?</string>
+	<string name="automated_action_list_intent">Отваряне на URL: %s</string>
+	<string name="automated_action_list_intent_empty">Отваряне на URL</string>
+	<string name="automated_action_webview_title">Автоматизирано действие</string>
 	<string name="clear_network_suggestions">Премахнете мрежовите предложения</string>
 	<string name="clear_network_suggestions_summary">Премахване на мрежовите предложения, които преди са били добавени с това приложение.</string>
 	<string name="really_remove_all_networks">Наистина ли искате да премахнете всички мрежи?</string>
@@ -229,4 +253,12 @@
 	<string name="scheme">Схема</string>
 	<string name="host">Домакин</string>
 	<string name="query">Заявка</string>
+	<string name="automated_action_type_custom_intent">Персонализиран Intent</string>
+	<string name="automated_action_intent_uri_template">Шаблон за Intent URI</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">Intent URI е задължителен</string>
+	<string name="automated_action_intent_uri_invalid">Невалиден Intent URI</string>
+	<string name="automated_action_list_custom_intent">Персонализиран Intent: %s</string>
+	<string name="automated_action_list_custom_intent_empty">Персонализиран Intent</string>
+
 </resources>

@@ -136,6 +136,32 @@
 	<string name="default_search_engine">Поиск неизвестных данных</string>
 	<string name="always_ask">Всегда спрашивать</string>
 	<string name="open_with_url">Открывать неизвестные данные по URL</string>
+
+	<string name="automated_actions">Автоматические действия</string>
+	<string name="automated_actions_none">Нет автоматических действий</string>
+	<string name="automated_actions_empty">Пока нет автоматических действий</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d автоматическое действие</item>
+		<item quantity="few">%d автоматических действия</item>
+		<item quantity="many">%d автоматических действий</item>
+		<item quantity="other">%d автоматических действий</item>
+	</plurals>
+	<string name="automated_action_add">Добавить действие</string>
+	<string name="automated_action_edit">Редактировать действие</string>
+	<string name="automated_action_regex">Регулярное выражение</string>
+	<string name="automated_action_regex_hint">напр. ^https?://.*</string>
+	<string name="automated_action_regex_required">Требуется регулярное выражение</string>
+	<string name="automated_action_regex_invalid">Неверное регулярное выражение</string>
+	<string name="automated_action_type">Тип действия</string>
+	<string name="automated_action_type_intent">Открыть URL</string>
+	<string name="automated_action_url_template">Шаблон URL</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">Требуется шаблон URL</string>
+	<string name="automated_action_invalid_url">Неверный шаблон URL</string>
+	<string name="automated_action_remove_confirm">Удалить это действие?</string>
+	<string name="automated_action_list_intent">Открыть URL: %s</string>
+	<string name="automated_action_list_intent_empty">Открыть URL</string>
+	<string name="automated_action_webview_title">Автоматическое действие</string>
 	<string name="clear_network_suggestions">Удалить сетевые предложения</string>
 	<string name="clear_network_suggestions_summary">Удалить все сетевые предложения, ранее добавленные этим приложением.</string>
 	<string name="really_remove_all_networks">Удалить все сетевые предложения?</string>
@@ -232,4 +258,12 @@
 	<string name="scheme">Схема</string>
 	<string name="host">Хост</string>
 	<string name="query">Запрос</string>
+	<string name="automated_action_type_custom_intent">Пользовательский Intent</string>
+	<string name="automated_action_intent_uri_template">Шаблон URI Intent</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">URI Intent обязателен</string>
+	<string name="automated_action_intent_uri_invalid">Недопустимый URI Intent</string>
+	<string name="automated_action_list_custom_intent">Пользовательский Intent: %s</string>
+	<string name="automated_action_list_custom_intent_empty">Пользовательский Intent</string>
+
 </resources>

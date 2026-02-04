@@ -28,6 +28,7 @@ import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.hasBluetoothPermission
 import de.markusfisch.android.binaryeye.app.hasCameraPermission
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.automation.runAutomatedActions
 import de.markusfisch.android.binaryeye.bluetooth.sendBluetoothAsync
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.execShareIntent
@@ -107,7 +108,7 @@ class CameraActivity : AppCompatActivity() {
 	) {
 		when (requestCode) {
 			PICK_FILE_RESULT_CODE -> {
-				if (resultCode == Activity.RESULT_OK && resultData != null) {
+				if (resultCode == RESULT_OK && resultData != null) {
 					val pick = Intent(this, PickActivity::class.java)
 					pick.action = Intent.ACTION_VIEW
 					pick.setDataAndType(resultData.data, "image/*")
@@ -890,6 +891,9 @@ fun Activity.showResult(
 				}
 			)
 		}
+	}
+	if (runAutomatedActions(scan)) {
+		return
 	}
 	if (!bulkMode) {
 		startActivity(

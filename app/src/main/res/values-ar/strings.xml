@@ -138,6 +138,34 @@
 	<string name="default_search_engine">فتح البيانات المجهولة في</string>
 	<string name="always_ask">اسأل دائمًا</string>
 	<string name="open_with_url">فتح البيانات المجهولة باستخدام رابط</string>
+
+	<string name="automated_actions">الإجراءات الآلية</string>
+	<string name="automated_actions_none">لا توجد إجراءات آلية</string>
+	<string name="automated_actions_empty">لا توجد إجراءات آلية بعد</string>
+	<plurals name="automated_actions_count">
+		<item quantity="zero">%d إجراء آلي</item>
+		<item quantity="one">%d إجراء آلي</item>
+		<item quantity="two">%d إجراءان آليان</item>
+		<item quantity="few">%d إجراءات آلية</item>
+		<item quantity="many">%d إجراءً آليًا</item>
+		<item quantity="other">%d إجراءات آلية</item>
+	</plurals>
+	<string name="automated_action_add">إضافة إجراء</string>
+	<string name="automated_action_edit">تعديل الإجراء</string>
+	<string name="automated_action_regex">تعبير نمطي</string>
+	<string name="automated_action_regex_hint">مثل ^https?://.*</string>
+	<string name="automated_action_regex_required">التعبير النمطي مطلوب</string>
+	<string name="automated_action_regex_invalid">تعبير نمطي غير صالح</string>
+	<string name="automated_action_type">نوع الإجراء</string>
+	<string name="automated_action_type_intent">فتح URL</string>
+	<string name="automated_action_url_template">قالب URL</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">قالب URL مطلوب</string>
+	<string name="automated_action_invalid_url">قالب URL غير صالح</string>
+	<string name="automated_action_remove_confirm">إزالة هذا الإجراء؟</string>
+	<string name="automated_action_list_intent">فتح URL: %s</string>
+	<string name="automated_action_list_intent_empty">فتح URL</string>
+	<string name="automated_action_webview_title">إجراء آلي</string>
 	<string name="clear_network_suggestions">إزالة الشبكات المقترحة</string>
 	<string name="clear_network_suggestions_summary">إزالة الشبكات المقترحة التي تمت إضافتها مسبقًا من خلال هذا التطبيق.</string>
 	<string name="really_remove_all_networks">هل تريد حقًا إزالة جميع الشبكات؟</string>
@@ -234,4 +262,12 @@
 	<string name="scheme">المخطط</string>
 	<string name="host">المضيف</string>
 	<string name="query">استعلام</string>
+	<string name="automated_action_type_custom_intent">Intent مخصص</string>
+	<string name="automated_action_intent_uri_template">قالب عنوان Intent</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">عنوان Intent مطلوب</string>
+	<string name="automated_action_intent_uri_invalid">عنوان Intent غير صالح</string>
+	<string name="automated_action_list_custom_intent">Intent مخصص: %s</string>
+	<string name="automated_action_list_custom_intent_empty">Intent مخصص</string>
+
 </resources>

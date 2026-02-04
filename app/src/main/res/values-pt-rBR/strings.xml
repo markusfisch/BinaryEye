@@ -135,6 +135,30 @@
 	<string name="default_search_engine">Abrir dados desconhecidos em</string>
 	<string name="always_ask">Sempre perguntar</string>
 	<string name="open_with_url">Abrir dados desconhecidos com URL</string>
+
+	<string name="automated_actions">Ações automatizadas</string>
+	<string name="automated_actions_none">Nenhuma ação automatizada</string>
+	<string name="automated_actions_empty">Ainda não há ações automatizadas</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d ação automatizada</item>
+		<item quantity="other">%d ações automatizadas</item>
+	</plurals>
+	<string name="automated_action_add">Adicionar ação</string>
+	<string name="automated_action_edit">Editar ação</string>
+	<string name="automated_action_regex">Regex</string>
+	<string name="automated_action_regex_hint">ex.: ^https?://.*</string>
+	<string name="automated_action_regex_required">Regex obrigatório</string>
+	<string name="automated_action_regex_invalid">Regex inválido</string>
+	<string name="automated_action_type">Tipo de ação</string>
+	<string name="automated_action_type_intent">Abrir URL</string>
+	<string name="automated_action_url_template">Modelo de URL</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">Modelo de URL obrigatório</string>
+	<string name="automated_action_invalid_url">Modelo de URL inválido</string>
+	<string name="automated_action_remove_confirm">Remover esta ação?</string>
+	<string name="automated_action_list_intent">Abrir URL: %s</string>
+	<string name="automated_action_list_intent_empty">Abrir URL</string>
+	<string name="automated_action_webview_title">Ação automatizada</string>
 	<string name="clear_network_suggestions">Excluir sugestões de rede</string>
 	<string name="clear_network_suggestions_summary">Excluir todas as sugestões de rede que foram anteriormente adicionadas com este app.</string>
 	<string name="really_remove_all_networks">Deseja excluir todas as redes?</string>
@@ -231,4 +255,12 @@
 	<string name="scheme">Esquema</string>
 	<string name="host">Host</string>
 	<string name="query">Consulta</string>
+	<string name="automated_action_type_custom_intent">Intent personalizado</string>
+	<string name="automated_action_intent_uri_template">Modelo de URI de Intent</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">URI de Intent obrigatório</string>
+	<string name="automated_action_intent_uri_invalid">URI de Intent inválido</string>
+	<string name="automated_action_list_custom_intent">Intent personalizado: %s</string>
+	<string name="automated_action_list_custom_intent_empty">Intent personalizado</string>
+
 </resources>

@@ -132,6 +132,30 @@
 	<string name="default_search_engine">未知のデータの表示方法</string>
 	<string name="always_ask">常に尋ねる</string>
 	<string name="open_with_url">未知のデータを次のURLから開く</string>
+
+	<string name="automated_actions">自動アクション</string>
+	<string name="automated_actions_none">自動アクションはありません</string>
+	<string name="automated_actions_empty">まだ自動アクションがありません</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d 件の自動アクション</item>
+		<item quantity="other">%d 件の自動アクション</item>
+	</plurals>
+	<string name="automated_action_add">アクションを追加</string>
+	<string name="automated_action_edit">アクションを編集</string>
+	<string name="automated_action_regex">正規表現</string>
+	<string name="automated_action_regex_hint">例: ^https?://.*</string>
+	<string name="automated_action_regex_required">正規表現が必要です</string>
+	<string name="automated_action_regex_invalid">正規表現が無効です</string>
+	<string name="automated_action_type">アクションの種類</string>
+	<string name="automated_action_type_intent">URL を開く</string>
+	<string name="automated_action_url_template">URLテンプレート</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">URLテンプレートが必要です</string>
+	<string name="automated_action_invalid_url">URLテンプレートが無効です</string>
+	<string name="automated_action_remove_confirm">このアクションを削除しますか？</string>
+	<string name="automated_action_list_intent">URLを開く: %s</string>
+	<string name="automated_action_list_intent_empty">URLを開く</string>
+	<string name="automated_action_webview_title">自動アクション</string>
 	<string name="clear_network_suggestions">ネットワークの提案を消去</string>
 	<string name="clear_network_suggestions_summary">このアプリのネットワークの提案をすべて削除します。</string>
 	<string name="really_remove_all_networks">ネットワークの提案を消去してもよろしいですか？</string>
@@ -228,4 +252,12 @@
 	<string name="scheme">スキーム</string>
 	<string name="host">ホスト</string>
 	<string name="query">クエリ</string>
+	<string name="automated_action_type_custom_intent">カスタム Intent</string>
+	<string name="automated_action_intent_uri_template">Intent URI テンプレート</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">Intent URI が必要です</string>
+	<string name="automated_action_intent_uri_invalid">無効な Intent URI</string>
+	<string name="automated_action_list_custom_intent">カスタム Intent: %s</string>
+	<string name="automated_action_list_custom_intent_empty">カスタム Intent</string>
+
 </resources>

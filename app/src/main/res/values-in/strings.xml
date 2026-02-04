@@ -132,6 +132,30 @@
 	<string name="default_search_engine">Buka data tak dikenal di</string>
 	<string name="always_ask">Selalu tanya</string>
 	<string name="open_with_url">Buka data tak dikenal dengan URL</string>
+
+	<string name="automated_actions">Tindakan otomatis</string>
+	<string name="automated_actions_none">Tidak ada tindakan otomatis</string>
+	<string name="automated_actions_empty">Belum ada tindakan otomatis</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d tindakan otomatis</item>
+		<item quantity="other">%d tindakan otomatis</item>
+	</plurals>
+	<string name="automated_action_add">Tambah tindakan</string>
+	<string name="automated_action_edit">Edit tindakan</string>
+	<string name="automated_action_regex">Regex</string>
+	<string name="automated_action_regex_hint">mis. ^https?://.*</string>
+	<string name="automated_action_regex_required">Regex wajib diisi</string>
+	<string name="automated_action_regex_invalid">Regex tidak valid</string>
+	<string name="automated_action_type">Jenis tindakan</string>
+	<string name="automated_action_type_intent">Buka URL</string>
+	<string name="automated_action_url_template">Templat URL</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">Templat URL wajib diisi</string>
+	<string name="automated_action_invalid_url">Templat URL tidak valid</string>
+	<string name="automated_action_remove_confirm">Hapus tindakan ini?</string>
+	<string name="automated_action_list_intent">Buka URL: %s</string>
+	<string name="automated_action_list_intent_empty">Buka URL</string>
+	<string name="automated_action_webview_title">Tindakan otomatis</string>
 	<string name="clear_network_suggestions">Hapus saran jaringan</string>
 	<string name="clear_network_suggestions_summary">Hapus semua saran jaringan yang sebelumnya disediakan oleh aplikasi ini.</string>
 	<string name="really_remove_all_networks">Yakin menghapus semua jaringan?</string>
@@ -228,4 +252,12 @@
 	<string name="scheme">Schema</string>
 	<string name="host">Anfitrión</string>
 	<string name="query">Consulta</string>
+	<string name="automated_action_type_custom_intent">Intent kustom</string>
+	<string name="automated_action_intent_uri_template">Templat URI Intent</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">URI Intent wajib diisi</string>
+	<string name="automated_action_intent_uri_invalid">URI Intent tidak valid</string>
+	<string name="automated_action_list_custom_intent">Intent kustom: %s</string>
+	<string name="automated_action_list_custom_intent_empty">Intent kustom</string>
+
 </resources>

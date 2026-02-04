@@ -152,6 +152,10 @@
 			android:key="open_with_url"
 			android:title="@string/open_with_url"/>
 		<Preference
+			android:key="automated_actions"
+			android:title="@string/automated_actions"
+			android:summary="@string/automated_actions_none"/>
+		<Preference
 			android:key="clear_network_suggestions"
 			android:title="@string/clear_network_suggestions"
 			android:summary="@string/clear_network_suggestions_summary"/>

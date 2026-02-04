@@ -134,6 +134,32 @@
 	<string name="default_search_engine">Відкривати невідомі дані в</string>
 	<string name="always_ask">Завжди запитувати</string>
 	<string name="open_with_url">Відкривати невідомі дані за допомогою URL</string>
+
+	<string name="automated_actions">Автоматичні дії</string>
+	<string name="automated_actions_none">Немає автоматичних дій</string>
+	<string name="automated_actions_empty">Ще немає автоматичних дій</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d автоматична дія</item>
+		<item quantity="few">%d автоматичні дії</item>
+		<item quantity="many">%d автоматичних дій</item>
+		<item quantity="other">%d автоматичних дій</item>
+	</plurals>
+	<string name="automated_action_add">Додати дію</string>
+	<string name="automated_action_edit">Редагувати дію</string>
+	<string name="automated_action_regex">Регулярний вираз</string>
+	<string name="automated_action_regex_hint">напр. ^https?://.*</string>
+	<string name="automated_action_regex_required">Потрібен регулярний вираз</string>
+	<string name="automated_action_regex_invalid">Невірний регулярний вираз</string>
+	<string name="automated_action_type">Тип дії</string>
+	<string name="automated_action_type_intent">Відкрити URL</string>
+	<string name="automated_action_url_template">Шаблон URL</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">Потрібен шаблон URL</string>
+	<string name="automated_action_invalid_url">Невірний шаблон URL</string>
+	<string name="automated_action_remove_confirm">Видалити цю дію?</string>
+	<string name="automated_action_list_intent">Відкрити URL: %s</string>
+	<string name="automated_action_list_intent_empty">Відкрити URL</string>
+	<string name="automated_action_webview_title">Автоматична дія</string>
 	<string name="clear_network_suggestions">Очистити мережеві пропозиції</string>
 	<string name="clear_network_suggestions_summary">Видалити усі мережеві пропозиції, які раніше надавала ця програма.</string>
 	<string name="really_remove_all_networks">Ви впевнені, що хочете видалити всі мережі?</string>
@@ -230,4 +256,12 @@
 	<string name="scheme">Схема</string>
 	<string name="host">Хост</string>
 	<string name="query">Запит</string>
+	<string name="automated_action_type_custom_intent">Користувацький Intent</string>
+	<string name="automated_action_intent_uri_template">Шаблон URI Intent</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">URI Intent обов’язковий</string>
+	<string name="automated_action_intent_uri_invalid">Некоректний URI Intent</string>
+	<string name="automated_action_list_custom_intent">Користувацький Intent: %s</string>
+	<string name="automated_action_list_custom_intent_empty">Користувацький Intent</string>
+
 </resources>

@@ -133,6 +133,30 @@
 	<string name="default_search_engine">Bilinmeyen verileri şurada aç</string>
 	<string name="always_ask">Her zaman sor</string>
 	<string name="open_with_url">URL\'si olan bilinmeyen veriyi aç</string>
+
+	<string name="automated_actions">Otomatik eylemler</string>
+	<string name="automated_actions_none">Otomatik eylem yok</string>
+	<string name="automated_actions_empty">Henüz otomatik eylem yok</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d otomatik eylem</item>
+		<item quantity="other">%d otomatik eylemler</item>
+	</plurals>
+	<string name="automated_action_add">Eylem ekle</string>
+	<string name="automated_action_edit">Eylemi düzenle</string>
+	<string name="automated_action_regex">Düzenli ifade</string>
+	<string name="automated_action_regex_hint">örn. ^https?://.*</string>
+	<string name="automated_action_regex_required">Düzenli ifade gerekli</string>
+	<string name="automated_action_regex_invalid">Geçersiz düzenli ifade</string>
+	<string name="automated_action_type">Eylem türü</string>
+	<string name="automated_action_type_intent">URL aç</string>
+	<string name="automated_action_url_template">URL şablonu</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">URL şablonu gerekli</string>
+	<string name="automated_action_invalid_url">Geçersiz URL şablonu</string>
+	<string name="automated_action_remove_confirm">Bu eylem kaldırılsın mı?</string>
+	<string name="automated_action_list_intent">URL aç: %s</string>
+	<string name="automated_action_list_intent_empty">URL aç</string>
+	<string name="automated_action_webview_title">Otomatik eylem</string>
 	<string name="clear_network_suggestions">Ağ önerilerini temizle</string>
 	<string name="clear_network_suggestions_summary">Bu uygulama tarafından daha önce sağlanan tüm ağ önerilerini kaldır.</string>
 	<string name="really_remove_all_networks">Tüm ağlar gerçekten kaldırılsın mı?</string>
@@ -229,4 +253,12 @@
 	<string name="scheme">Düzen</string>
 	<string name="host">Ana Bilgisayar</string>
 	<string name="query">Sorgu</string>
+	<string name="automated_action_type_custom_intent">Özel Intent</string>
+	<string name="automated_action_intent_uri_template">Intent URI şablonu</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">Intent URI gerekli</string>
+	<string name="automated_action_intent_uri_invalid">Geçersiz Intent URI</string>
+	<string name="automated_action_list_custom_intent">Özel Intent: %s</string>
+	<string name="automated_action_list_custom_intent_empty">Özel Intent</string>
+
 </resources>

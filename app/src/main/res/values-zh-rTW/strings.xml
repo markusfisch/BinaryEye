@@ -132,6 +132,30 @@
 	<string name="default_search_engine">開啟未知資料的方式</string>
 	<string name="always_ask">總是詢問</string>
 	<string name="open_with_url">使用 URL 開啟未知資料</string>
+
+	<string name="automated_actions">自動操作</string>
+	<string name="automated_actions_none">沒有自動操作</string>
+	<string name="automated_actions_empty">尚無自動操作</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d 個自動操作</item>
+		<item quantity="other">%d 個自動操作</item>
+	</plurals>
+	<string name="automated_action_add">新增操作</string>
+	<string name="automated_action_edit">編輯操作</string>
+	<string name="automated_action_regex">正則表達式</string>
+	<string name="automated_action_regex_hint">例如 ^https?://.*</string>
+	<string name="automated_action_regex_required">需要正則表達式</string>
+	<string name="automated_action_regex_invalid">正則表達式無效</string>
+	<string name="automated_action_type">操作類型</string>
+	<string name="automated_action_type_intent">開啟 URL</string>
+	<string name="automated_action_url_template">URL 範本</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">需要 URL 範本</string>
+	<string name="automated_action_invalid_url">URL 範本無效</string>
+	<string name="automated_action_remove_confirm">刪除此操作？</string>
+	<string name="automated_action_list_intent">開啟 URL：%s</string>
+	<string name="automated_action_list_intent_empty">開啟 URL</string>
+	<string name="automated_action_webview_title">自動操作</string>
 	<string name="clear_network_suggestions">清除網路建議</string>
 	<string name="clear_network_suggestions_summary">移除應用程式先前提供的所有網路建議</string>
 	<string name="really_remove_all_networks">您確定要移除所有網路嗎？</string>
@@ -228,4 +252,12 @@
 	<string name="scheme">方案</string>
 	<string name="host">主機</string>
 	<string name="query">查詢</string>
+	<string name="automated_action_type_custom_intent">自訂 Intent</string>
+	<string name="automated_action_intent_uri_template">Intent URI 範本</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">需要 Intent URI</string>
+	<string name="automated_action_intent_uri_invalid">Intent URI 無效</string>
+	<string name="automated_action_list_custom_intent">自訂 Intent：%s</string>
+	<string name="automated_action_list_custom_intent_empty">自訂 Intent</string>
+
 </resources>

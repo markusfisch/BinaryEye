@@ -147,6 +147,32 @@
 	<string name="default_search_engine">Otwórz nieznane dane w</string>
 	<string name="always_ask">Zawsze pytaj</string>
 	<string name="open_with_url">Otwieraj nieznane dane za pomocą adresu URL</string>
+
+	<string name="automated_actions">Automatyczne akcje</string>
+	<string name="automated_actions_none">Brak automatycznych akcji</string>
+	<string name="automated_actions_empty">Brak jeszcze automatycznych akcji</string>
+	<plurals name="automated_actions_count">
+		<item quantity="one">%d automatyczna akcja</item>
+		<item quantity="few">%d automatyczne akcje</item>
+		<item quantity="many">%d automatycznych akcji</item>
+		<item quantity="other">%d automatyczne akcje</item>
+	</plurals>
+	<string name="automated_action_add">Dodaj akcję</string>
+	<string name="automated_action_edit">Edytuj akcję</string>
+	<string name="automated_action_regex">Wyrażenie regularne</string>
+	<string name="automated_action_regex_hint">np. ^https?://.*</string>
+	<string name="automated_action_regex_required">Wyrażenie regularne jest wymagane</string>
+	<string name="automated_action_regex_invalid">Nieprawidłowe wyrażenie regularne</string>
+	<string name="automated_action_type">Typ akcji</string>
+	<string name="automated_action_type_intent">Otwórz URL</string>
+	<string name="automated_action_url_template">Szablon URL</string>
+	<string name="automated_action_url_hint">https://example.com/?q={RESULT}</string>
+	<string name="automated_action_url_required">Szablon URL jest wymagany</string>
+	<string name="automated_action_invalid_url">Nieprawidłowy szablon URL</string>
+	<string name="automated_action_remove_confirm">Usunąć tę akcję?</string>
+	<string name="automated_action_list_intent">Otwórz URL: %s</string>
+	<string name="automated_action_list_intent_empty">Otwórz URL</string>
+	<string name="automated_action_webview_title">Automatyczna akcja</string>
 	<string name="clear_network_suggestions">Wyczyść sugestie z sieci</string>
 	<string name="clear_network_suggestions_summary">Usuń wszystkie sugestie z sieci, które były wcześniej dostarczane przez tę aplikację.</string>
 	<string name="really_remove_all_networks">Naprawdę usunąć wszystkie sieci?</string>
@@ -231,4 +257,12 @@
 	<string name="scheme">Schemat</string>
 	<string name="host">Gospodarz</string>
 	<string name="query">Zapytanie</string>
+	<string name="automated_action_type_custom_intent">Niestandardowy Intent</string>
+	<string name="automated_action_intent_uri_template">Szablon URI Intent</string>
+	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
+	<string name="automated_action_intent_uri_required">URI Intent jest wymagany</string>
+	<string name="automated_action_intent_uri_invalid">Nieprawidłowy URI Intent</string>
+	<string name="automated_action_list_custom_intent">Niestandardowy Intent: %s</string>
+	<string name="automated_action_list_custom_intent_empty">Niestandardowy Intent</string>
+
 </resources>

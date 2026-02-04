@@ -1,0 +1,31 @@
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<ListView
+		android:id="@+id/actions"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:clipToPadding="false"
+		android:divider="@color/separator"
+		android:dividerHeight="1px"/>
+	<android.support.design.widget.CoordinatorLayout
+		android:id="@+id/inset_layout"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		<TextView
+			android:visibility="gone"
+			android:id="@+id/no_actions"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:gravity="center"
+			android:padding="32dp"
+			android:text="@string/automated_actions_empty"/>
+		<android.support.design.widget.FloatingActionButton
+			style="@style/FAB"
+			android:id="@+id/add"
+			android:contentDescription="@string/automated_action_add"
+			android:src="@drawable/ic_action_create"/>
+	</android.support.design.widget.CoordinatorLayout>
+</FrameLayout>
