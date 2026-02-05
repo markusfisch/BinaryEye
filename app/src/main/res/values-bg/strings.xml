@@ -86,6 +86,9 @@
 	<string name="profile_enter_name">Въведете име на профила</string>
 	<string name="profile_enter_name_hint">Име</string>
 	<string name="profile_invalid_name">Невалидно име на профила</string>
+	<string name="profile_empty">Все още няма профили</string>
+	<string name="profile_current">Текущ профил</string>
+	<string name="profile_remove_confirm">Премахване на този профил?</string>
 	<string name="current_profile">Профил: %s</string>
 	<string name="custom_locale">Персонализиран език</string>
 	<string name="follow_system_settings">Следване на системните настройки</string>

@@ -261,6 +261,14 @@ class Preferences {
 		return true
 	}
 
+	fun removeProfile(name: String): Boolean {
+		if (!profiles.remove(name)) {
+			return false
+		}
+		saveProfiles()
+		return true
+	}
+
 	fun saveProfiles() {
 		defaultPreferences.edit().putString(
 			PROFILES,

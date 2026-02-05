@@ -86,6 +86,9 @@
 	<string name="profile_enter_name">Indtast profilnavn</string>
 	<string name="profile_enter_name_hint">Navn</string>
 	<string name="profile_invalid_name">Ugyldigt profilnavn</string>
+	<string name="profile_empty">Ingen profiler endnu</string>
+	<string name="profile_current">Nuværende profil</string>
+	<string name="profile_remove_confirm">Fjern denne profil?</string>
 	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Brugerdefineret sprog</string>
 	<string name="follow_system_settings">Følg systemindstillingerne</string>

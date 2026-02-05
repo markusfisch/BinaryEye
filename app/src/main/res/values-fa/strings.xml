@@ -86,6 +86,9 @@
 	<string name="profile_enter_name">نام نمایه را وارد کنید</string>
 	<string name="profile_enter_name_hint">نام</string>
 	<string name="profile_invalid_name">نام نمایه نامعتبر است</string>
+	<string name="profile_empty">هنوز هیچ نمایه‌ای نیست</string>
+	<string name="profile_current">نمایهٔ فعلی</string>
+	<string name="profile_remove_confirm">این نمایه حذف شود؟</string>
 	<string name="current_profile">نمایه: %s</string>
 	<string name="custom_locale">زبان سفارشی</string>
 	<string name="follow_system_settings">پیروی از زبان سامانه</string>

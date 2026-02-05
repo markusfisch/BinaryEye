@@ -86,6 +86,9 @@
 	<string name="profile_enter_name">Introduce el nombre del perfil</string>
 	<string name="profile_enter_name_hint">Nombre</string>
 	<string name="profile_invalid_name">Nombre de perfil no válido</string>
+	<string name="profile_empty">Aún no hay perfiles</string>
+	<string name="profile_current">Perfil actual</string>
+	<string name="profile_remove_confirm">¿Eliminar este perfil?</string>
 	<string name="current_profile">Perfil: %s</string>
 	<string name="custom_locale">Idioma personalizado</string>
 	<string name="follow_system_settings">Seguir los ajustes del sistema</string>

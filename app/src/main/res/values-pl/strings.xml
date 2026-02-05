@@ -212,6 +212,9 @@
 	<string name="profile_enter_name">Wprowadź nazwę profilu</string>
 	<string name="profile_enter_name_hint">Nazwa</string>
 	<string name="profile_invalid_name">Nieprawidłowa nazwa profilu</string>
+	<string name="profile_empty">Brak profili</string>
+	<string name="profile_current">Bieżący profil</string>
+	<string name="profile_remove_confirm">Usunąć ten profil?</string>
 	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Język niestandardowy</string>
 	<string name="follow_system_settings">Zgodny z ustawieniami systemu</string>

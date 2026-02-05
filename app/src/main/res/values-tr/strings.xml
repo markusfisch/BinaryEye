@@ -86,6 +86,9 @@
 	<string name="profile_enter_name">Profil adını girin</string>
 	<string name="profile_enter_name_hint">Ad</string>
 	<string name="profile_invalid_name">Geçersiz profil adı</string>
+	<string name="profile_empty">Henüz profil yok</string>
+	<string name="profile_current">Geçerli profil</string>
+	<string name="profile_remove_confirm">Bu profil kaldırılsın mı?</string>
 	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Özel yerel</string>
 	<string name="follow_system_settings">Sistem ayarlarını izle</string>

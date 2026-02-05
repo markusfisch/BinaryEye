@@ -87,6 +87,9 @@
 	<string name="profile_enter_name">Введіть назву профілю</string>
 	<string name="profile_enter_name_hint">Назва</string>
 	<string name="profile_invalid_name">Неприпустиме імʼя профілю</string>
+	<string name="profile_empty">Профілів ще немає</string>
+	<string name="profile_current">Поточний профіль</string>
+	<string name="profile_remove_confirm">Видалити цей профіль?</string>
 	<string name="current_profile">Профіль: %s</string>
 	<string name="custom_locale">Вибрати мову</string>
 	<string name="follow_system_settings">Дотримуватись системних налаштувань</string>

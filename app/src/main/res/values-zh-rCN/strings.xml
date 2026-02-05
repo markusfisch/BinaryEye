@@ -85,6 +85,9 @@
 	<string name="profile_enter_name">输入配置文件名称</string>
 	<string name="profile_enter_name_hint">名称</string>
 	<string name="profile_invalid_name">无效的个人资料名称</string>
+	<string name="profile_empty">暂无配置文件</string>
+	<string name="profile_current">当前配置文件</string>
+	<string name="profile_remove_confirm">删除此配置文件？</string>
 	<string name="current_profile">配置文件：%s</string>
 	<string name="custom_locale">设定语言</string>
 	<string name="follow_system_settings">跟随系统设置</string>

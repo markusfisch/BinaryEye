@@ -86,6 +86,9 @@
 	<string name="profile_enter_name">Voer profielnaam in</string>
 	<string name="profile_enter_name_hint">Naam</string>
 	<string name="profile_invalid_name">Ongeldige profielnaam</string>
+	<string name="profile_empty">Nog geen profielen</string>
+	<string name="profile_current">Huidig profiel</string>
+	<string name="profile_remove_confirm">Dit profiel verwijderen?</string>
 	<string name="current_profile">Profiel: %s</string>
 	<string name="custom_locale">Taal instelling</string>
 	<string name="follow_system_settings">Systeeminstellingen volgen</string>

@@ -86,6 +86,9 @@
 	<string name="profile_enter_name">Profilnamen eingeben</string>
 	<string name="profile_enter_name_hint">Name</string>
 	<string name="profile_invalid_name">Ungültiger Profilname</string>
+	<string name="profile_empty">Noch keine Profile</string>
+	<string name="profile_current">Aktuelles Profil</string>
+	<string name="profile_remove_confirm">Dieses Profil entfernen?</string>
 	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Spracheinstellung</string>
 	<string name="follow_system_settings">Systemeinstellung übernehmen</string>

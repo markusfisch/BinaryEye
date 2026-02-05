@@ -86,6 +86,9 @@
 	<string name="profile_enter_name">প্রোফাইলের নাম লেখো</string>
 	<string name="profile_enter_name_hint">নাম</string>
 	<string name="profile_invalid_name">প্রোফাইলের নাম অবৈধ</string>
+	<string name="profile_empty">এখনও কোনো প্রোফাইল নেই</string>
+	<string name="profile_current">বর্তমান প্রোফাইল</string>
+	<string name="profile_remove_confirm">এই প্রোফাইলটি সরাবেন?</string>
 	<string name="current_profile">প্রোফাইল: %s</string>
 	<string name="custom_locale">আলাদা ভাষা</string>
 	<string name="follow_system_settings">ব্যবস্থার পছন্দসমূহ অনুসরণ করো</string>

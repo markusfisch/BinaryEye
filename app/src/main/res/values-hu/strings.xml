@@ -86,6 +86,9 @@
 	<string name="profile_enter_name">Adja meg a profil nevét</string>
 	<string name="profile_enter_name_hint">Név</string>
 	<string name="profile_invalid_name">Érvénytelen profilnév</string>
+	<string name="profile_empty">Még nincs profil</string>
+	<string name="profile_current">Aktuális profil</string>
+	<string name="profile_remove_confirm">Eltávolítja ezt a profilt?</string>
 	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Egyéni nyelv</string>
 	<string name="follow_system_settings">Rendszerbeállítások követése</string>

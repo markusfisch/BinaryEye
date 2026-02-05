@@ -85,6 +85,9 @@
 	<string name="profile_enter_name">Masukkan nama profil</string>
 	<string name="profile_enter_name_hint">Nama</string>
 	<string name="profile_invalid_name">Nama profil tidak valid</string>
+	<string name="profile_empty">Belum ada profil</string>
+	<string name="profile_current">Profil saat ini</string>
+	<string name="profile_remove_confirm">Hapus profil ini?</string>
 	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Bahasa lainnya</string>
 	<string name="follow_system_settings">Ikuti pengaturan sistem</string>
