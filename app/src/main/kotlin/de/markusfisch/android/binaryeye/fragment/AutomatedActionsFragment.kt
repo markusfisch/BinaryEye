@@ -1,6 +1,7 @@
 package de.markusfisch.android.binaryeye.fragment
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -124,65 +125,83 @@ class AutomatedActionsFragment : Fragment() {
 
 		dialog.setOnShowListener {
 			dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-				val pattern = regexView.text.toString().trim()
-				if (pattern.isEmpty()) {
-					regexView.error = getString(R.string.automated_action_regex_required)
-					return@setOnClickListener
-				}
-				try {
-					Regex(pattern)
-				} catch (_: Exception) {
-					regexView.error = getString(R.string.automated_action_regex_invalid)
-					return@setOnClickListener
-				}
-				val isIntent = typeGroup.checkedRadioButtonId == R.id.action_type_intent
-				val newAction = if (isIntent) {
-					val urlTemplate = urlView.text.toString().trim()
-					if (urlTemplate.isEmpty()) {
-						urlView.error = getString(R.string.automated_action_url_required)
-						return@setOnClickListener
-					}
-					AutomatedAction(
-						pattern = pattern,
-						type = AutomatedAction.Type.Intent,
-						urlTemplate = urlTemplate
-					)
-				} else {
-					val intentUriTemplate = intentUriView.text.toString().trim()
-					if (intentUriTemplate.isEmpty()) {
-						intentUriView.error = getString(
-							R.string.automated_action_intent_uri_required
-						)
-						return@setOnClickListener
-					}
-					if (!intentUriTemplate.startsWith(
-							"intent:",
-							ignoreCase = true
-						)
-					) {
-						intentUriView.error = getString(
-							R.string.automated_action_intent_uri_invalid
-						)
-						return@setOnClickListener
-					}
-					AutomatedAction(
-						pattern = pattern,
-						type = AutomatedAction.Type.CustomIntent,
-						intentUriTemplate = intentUriTemplate
-					)
-				}
-				if (position == null) {
-					actions.add(newAction)
-				} else {
-					actions[position] = newAction
-				}
-				prefs.setAutomatedActions(actions)
-				adapter.notifyDataSetChanged()
-				dialog.dismiss()
+				addOrUpdateAction(
+					position,
+					regexView,
+					urlView,
+					typeGroup,
+					intentUriView,
+					dialog
+				)
 			}
 		}
 
 		dialog.show()
+	}
+
+	private fun addOrUpdateAction(
+		position: Int?,
+		regexView: EditText,
+		urlView: EditText,
+		typeGroup: RadioGroup,
+		intentUriView: EditText,
+		dialog: Dialog,
+	) {
+		val pattern = regexView.text.toString().trim()
+		if (pattern.isEmpty()) {
+			regexView.error = getString(R.string.automated_action_regex_required)
+			return
+		}
+		try {
+			Regex(pattern)
+		} catch (_: Exception) {
+			regexView.error = getString(R.string.automated_action_regex_invalid)
+			return
+		}
+		val isIntent = typeGroup.checkedRadioButtonId == R.id.action_type_intent
+		val newAction = if (isIntent) {
+			val urlTemplate = urlView.text.toString().trim()
+			if (urlTemplate.isEmpty()) {
+				urlView.error = getString(R.string.automated_action_url_required)
+				return
+			}
+			AutomatedAction(
+				pattern = pattern,
+				type = AutomatedAction.Type.Intent,
+				urlTemplate = urlTemplate
+			)
+		} else {
+			val intentUriTemplate = intentUriView.text.toString().trim()
+			if (intentUriTemplate.isEmpty()) {
+				intentUriView.error = getString(
+					R.string.automated_action_intent_uri_required
+				)
+				return
+			}
+			if (!intentUriTemplate.startsWith(
+					"intent:",
+					ignoreCase = true
+				)
+			) {
+				intentUriView.error = getString(
+					R.string.automated_action_intent_uri_invalid
+				)
+				return
+			}
+			AutomatedAction(
+				pattern = pattern,
+				type = AutomatedAction.Type.CustomIntent,
+				intentUriTemplate = intentUriTemplate
+			)
+		}
+		if (position == null) {
+			actions.add(newAction)
+		} else {
+			actions[position] = newAction
+		}
+		prefs.setAutomatedActions(actions)
+		adapter.notifyDataSetChanged()
+		dialog.dismiss()
 	}
 
 	private fun confirmRemoveAction(position: Int) {
