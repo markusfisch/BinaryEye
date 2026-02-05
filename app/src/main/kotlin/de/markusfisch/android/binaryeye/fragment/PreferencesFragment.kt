@@ -89,7 +89,9 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		findPreference(PROFILE).apply {
 			updateProfileSummary(this)
 			onPreferenceClickListener = Preference.OnPreferenceClickListener {
-				fragmentManager.addFragment(ProfilesFragment())
+				activity?.supportFragmentManager?.addFragment(
+					ProfilesFragment()
+				)
 				true
 			}
 		}
@@ -99,7 +101,9 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		findPreference(AUTOMATED_ACTIONS).apply {
 			updateAutomatedActionsSummary(this)
 			onPreferenceClickListener = Preference.OnPreferenceClickListener {
-				fragmentManager.addFragment(AutomatedActionsFragment())
+				activity?.supportFragmentManager?.addFragment(
+					AutomatedActionsFragment()
+				)
 				true
 			}
 		}
@@ -121,7 +125,9 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 				// From R+ we can query past network suggestions and
 				// make them editable.
 				setOnPreferenceClickListener {
-					fragmentManager.addFragment(NetworkSuggestionsFragment())
+					activity?.supportFragmentManager?.addFragment(
+						NetworkSuggestionsFragment()
+					)
 					true
 				}
 			} else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
