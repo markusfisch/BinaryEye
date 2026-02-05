@@ -2,6 +2,7 @@ package de.markusfisch.android.binaryeye.fragment
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -219,7 +220,7 @@ class AutomatedActionsFragment : Fragment() {
 	}
 
 	private class ActionsAdapter(
-		context: android.content.Context,
+		context: Context,
 		private val items: List<AutomatedAction>
 	) : ArrayAdapter<AutomatedAction>(
 		context,
@@ -234,32 +235,46 @@ class AutomatedActionsFragment : Fragment() {
 		): View {
 			val view = super.getView(position, convertView, parent)
 			val action = items[position]
-			val title = view.findViewById<TextView>(android.R.id.text1)
-			val subtitle = view.findViewById<TextView>(android.R.id.text2)
-			title.text = action.pattern
-			subtitle.text = when (action.type) {
-				AutomatedAction.Type.Intent -> if (!action.urlTemplate.isNullOrEmpty()) {
-					context.getString(
-						R.string.automated_action_list_intent,
-						action.urlTemplate
-					)
-				} else {
-					context.getString(R.string.automated_action_list_intent_empty)
-				}
-
-				AutomatedAction.Type.CustomIntent ->
-					if (!action.intentUriTemplate.isNullOrEmpty()) {
+			getViewHolder(view).apply {
+				title.text = action.pattern
+				subtitle.text = when (action.type) {
+					AutomatedAction.Type.Intent -> if (!action.urlTemplate.isNullOrEmpty()) {
 						context.getString(
-							R.string.automated_action_list_custom_intent,
-							action.intentUriTemplate
+							R.string.automated_action_list_intent,
+							action.urlTemplate
 						)
 					} else {
-						context.getString(
-							R.string.automated_action_list_custom_intent_empty
-						)
+						context.getString(R.string.automated_action_list_intent_empty)
 					}
+
+					AutomatedAction.Type.CustomIntent ->
+						if (!action.intentUriTemplate.isNullOrEmpty()) {
+							context.getString(
+								R.string.automated_action_list_custom_intent,
+								action.intentUriTemplate
+							)
+						} else {
+							context.getString(
+								R.string.automated_action_list_custom_intent_empty
+							)
+						}
+				}
 			}
 			return view
 		}
+
+		private fun getViewHolder(
+			view: View
+		): ViewHolder = view.tag as ViewHolder? ?: ViewHolder(
+			view.findViewById(android.R.id.text1),
+			view.findViewById(android.R.id.text2),
+		).also {
+			view.tag = it
+		}
+
+		private data class ViewHolder(
+			val title: TextView,
+			val subtitle: TextView,
+		)
 	}
 }
