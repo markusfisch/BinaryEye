@@ -85,6 +85,7 @@
 	<string name="profile_add">Añadir nuevo perfil</string>
 	<string name="profile_enter_name">Introduce el nombre del perfil</string>
 	<string name="profile_enter_name_hint">Nombre</string>
+	<string name="profile_invalid_name">Nombre de perfil no válido</string>
 	<string name="current_profile">Perfil: %s</string>
 	<string name="custom_locale">Idioma personalizado</string>
 	<string name="follow_system_settings">Seguir los ajustes del sistema</string>

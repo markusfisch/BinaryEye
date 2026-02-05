@@ -85,6 +85,7 @@
 	<string name="profile_add">Neues Profil hinzufügen</string>
 	<string name="profile_enter_name">Profilnamen eingeben</string>
 	<string name="profile_enter_name_hint">Name</string>
+	<string name="profile_invalid_name">Ungültiger Profilname</string>
 	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Spracheinstellung</string>
 	<string name="follow_system_settings">Systemeinstellung übernehmen</string>

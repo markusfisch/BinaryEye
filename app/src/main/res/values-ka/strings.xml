@@ -85,6 +85,7 @@
 	<string name="profile_add">ახალი პროფილის დამატება</string>
 	<string name="profile_enter_name">შეიყვანეთ პროფილის სახელი</string>
 	<string name="profile_enter_name_hint">სახელი</string>
+	<string name="profile_invalid_name">პროფილის სახელი არასწორია</string>
 	<string name="current_profile">პროფილი: %s</string>
 	<string name="custom_locale">შერჩეული ენა</string>
 	<string name="follow_system_settings">სისტემის პარამეტრების მინიჭება</string>

@@ -88,6 +88,7 @@
 	<string name="profile_add">Добавить новый профиль</string>
 	<string name="profile_enter_name">Введите имя профиля</string>
 	<string name="profile_enter_name_hint">Имя</string>
+	<string name="profile_invalid_name">Недопустимое имя профиля</string>
 	<string name="current_profile">Профиль: %s</string>
 	<string name="custom_locale">Выбрать язык</string>
 	<string name="follow_system_settings">Как в системе</string>

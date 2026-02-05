@@ -88,6 +88,7 @@
 	<string name="profile_add">Přidat nový profil</string>
 	<string name="profile_enter_name">Zadejte název profilu</string>
 	<string name="profile_enter_name_hint">Název</string>
+	<string name="profile_invalid_name">Neplatný název profilu</string>
 	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Nastavit jazyk</string>
 	<string name="follow_system_settings">Podle systému</string>

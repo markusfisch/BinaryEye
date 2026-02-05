@@ -90,6 +90,7 @@
 	<string name="profile_add">إضافة ملف شخصي جديد</string>
 	<string name="profile_enter_name">أدخل اسم الملف الشخصي</string>
 	<string name="profile_enter_name_hint">الاسم</string>
+	<string name="profile_invalid_name">اسم الملف الشخصي غير صالح</string>
 	<string name="current_profile">الملف الشخصي: %s</string>
 	<string name="custom_locale">تغيير اللغة</string>
 	<string name="follow_system_settings">اتبع إعدادات النظام</string>

@@ -251,7 +251,9 @@ class Preferences {
 	}
 
 	fun addProfile(name: String): Boolean {
-		if (profiles.contains(name)) {
+		if (!name.matches("^[a-zA-Z0-9_-]+$".toRegex()) ||
+			profiles.contains(name)
+		) {
 			return false
 		}
 		profiles.add(name)

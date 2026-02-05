@@ -85,6 +85,7 @@
 	<string name="profile_add">Nieuw profiel toevoegen</string>
 	<string name="profile_enter_name">Voer profielnaam in</string>
 	<string name="profile_enter_name_hint">Naam</string>
+	<string name="profile_invalid_name">Ongeldige profielnaam</string>
 	<string name="current_profile">Profiel: %s</string>
 	<string name="custom_locale">Taal instelling</string>
 	<string name="follow_system_settings">Systeeminstellingen volgen</string>

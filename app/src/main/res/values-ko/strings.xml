@@ -84,6 +84,7 @@
 	<string name="profile_add">새 프로필 추가</string>
 	<string name="profile_enter_name">프로필 이름 입력</string>
 	<string name="profile_enter_name_hint">이름</string>
+	<string name="profile_invalid_name">유효하지 않은 프로필 이름</string>
 	<string name="current_profile">프로필: %s</string>
 	<string name="custom_locale">사용자 정의 언어</string>
 	<string name="follow_system_settings">시스템 설정 따르기</string>

@@ -144,6 +144,8 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 				if (name.isNotEmpty() && prefs.addProfile(name)) {
 					prefs.load(activity, name)
 					loadPreferences()
+				} else {
+					activity?.toast(R.string.profile_invalid_name)
 				}
 			}
 			.show()

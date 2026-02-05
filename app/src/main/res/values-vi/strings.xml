@@ -84,6 +84,7 @@
 	<string name="profile_add">Thêm hồ sơ mới</string>
 	<string name="profile_enter_name">Nhập tên hồ sơ</string>
 	<string name="profile_enter_name_hint">Tên</string>
+	<string name="profile_invalid_name">Tên hồ sơ không hợp lệ</string>
 	<string name="current_profile">Hồ sơ: %s</string>
 	<string name="custom_locale">Tùy chọn ngôn ngữ</string>
 	<string name="follow_system_settings">Theo cài đặt của máy</string>

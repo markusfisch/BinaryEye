@@ -85,6 +85,7 @@
 	<string name="profile_add">Tilføj ny profil</string>
 	<string name="profile_enter_name">Indtast profilnavn</string>
 	<string name="profile_enter_name_hint">Navn</string>
+	<string name="profile_invalid_name">Ugyldigt profilnavn</string>
 	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Brugerdefineret sprog</string>
 	<string name="follow_system_settings">Følg systemindstillingerne</string>

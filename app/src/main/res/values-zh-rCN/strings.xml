@@ -84,6 +84,7 @@
 	<string name="profile_add">添加新配置文件</string>
 	<string name="profile_enter_name">输入配置文件名称</string>
 	<string name="profile_enter_name_hint">名称</string>
+	<string name="profile_invalid_name">无效的个人资料名称</string>
 	<string name="current_profile">配置文件：%s</string>
 	<string name="custom_locale">设定语言</string>
 	<string name="follow_system_settings">跟随系统设置</string>

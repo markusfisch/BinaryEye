@@ -84,6 +84,7 @@
 	<string name="profile_add">新增設定檔</string>
 	<string name="profile_enter_name">輸入設定檔名稱</string>
 	<string name="profile_enter_name_hint">名稱</string>
+	<string name="profile_invalid_name">無效的個人資料名稱</string>
 	<string name="current_profile">設定檔：%s</string>
 	<string name="custom_locale">設定語言</string>
 	<string name="follow_system_settings">跟隨系統設定</string>

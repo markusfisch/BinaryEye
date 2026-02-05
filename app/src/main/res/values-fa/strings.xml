@@ -85,6 +85,7 @@
 	<string name="profile_add">افزودن نمایهٔ جدید</string>
 	<string name="profile_enter_name">نام نمایه را وارد کنید</string>
 	<string name="profile_enter_name_hint">نام</string>
+	<string name="profile_invalid_name">نام نمایه نامعتبر است</string>
 	<string name="current_profile">نمایه: %s</string>
 	<string name="custom_locale">زبان سفارشی</string>
 	<string name="follow_system_settings">پیروی از زبان سامانه</string>

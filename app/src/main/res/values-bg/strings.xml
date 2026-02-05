@@ -85,6 +85,7 @@
 	<string name="profile_add">Добавяне на нов профил</string>
 	<string name="profile_enter_name">Въведете име на профила</string>
 	<string name="profile_enter_name_hint">Име</string>
+	<string name="profile_invalid_name">Невалидно име на профила</string>
 	<string name="current_profile">Профил: %s</string>
 	<string name="custom_locale">Персонализиран език</string>
 	<string name="follow_system_settings">Следване на системните настройки</string>
