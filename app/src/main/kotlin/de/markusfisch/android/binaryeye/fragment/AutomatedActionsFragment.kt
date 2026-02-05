@@ -102,12 +102,13 @@ class AutomatedActionsFragment : Fragment() {
 		typeGroup.setOnCheckedChangeListener { _, checkedId ->
 			updateTypeSections(checkedId)
 		}
-		val initialTypeId =
-			if (action?.type == AutomatedAction.Type.CustomIntent) {
-				R.id.action_type_custom_intent
-			} else {
-				R.id.action_type_intent
-			}
+		val initialTypeId = if (
+			action?.type == AutomatedAction.Type.CustomIntent
+		) {
+			R.id.action_type_custom_intent
+		} else {
+			R.id.action_type_intent
+		}
 		typeGroup.check(initialTypeId)
 		updateTypeSections(initialTypeId)
 
@@ -207,7 +208,6 @@ class AutomatedActionsFragment : Fragment() {
 
 	private fun confirmRemoveAction(position: Int) {
 		val ac = activity ?: return
-		val action = actions[position]
 		AlertDialog.Builder(ac)
 			.setMessage(R.string.automated_action_remove_confirm)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
