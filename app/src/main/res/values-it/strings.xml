@@ -88,7 +88,7 @@
 	<string name="profile_invalid_name">Nome profilo non valido</string>
 	<string name="profile_empty">Nessun profilo per ora</string>
 	<string name="profile_current">Profilo attuale</string>
-	<string name="profile_remove_confirm">Rimuovere questo profilo?</string>
+	<string name="profile_remove_confirm">Vuoi rimuovere questo profilo?</string>
 	<string name="current_profile">Profilo: %s</string>
 	<string name="custom_locale">Lingua personalizzata</string>
 	<string name="follow_system_settings">Usa impostazioni di sistema</string>
