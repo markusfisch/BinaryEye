@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.68.0
+* Add automated actions
+* Improve managing profiles
+
 ## 1.67.1
 * Fix opening file:// Uris
 * Fix auto-return/immediate opening
