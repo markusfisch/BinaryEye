@@ -42,11 +42,11 @@
 	<string name="error_flash">Ошибка при переключении вспышки</string>
 	<string name="share">Поделиться</string>
 	<string name="share_file">Поделиться файлом</string>
-	<string name="share_as">Поделиться как?</string>
-	<string name="copy_to_clipboard">Скопировать в буфер обмена</string>
-	<string name="copy_as_deeplink">Копировать как диплинк</string>
+	<string name="share_as">Поделиться…</string>
+	<string name="copy_to_clipboard">Копировать в буфер обмена</string>
+	<string name="copy_as_deeplink">Копировать как прямую ссылку</string>
 	<string name="copied_to_clipboard">Скопировано в буфер обмена</string>
-	<string name="copy_password">Скопировать пароль в буфер обмена</string>
+	<string name="copy_password">Копировать пароль в буфер обмена</string>
 	<string name="open_url">Открыть URL</string>
 	<string name="cannot_resolve_action">Не найдено приложение для этого действия</string>
 	<string name="pick_search_engine">Выберите поисковую систему</string>
@@ -143,7 +143,7 @@
 
 	<string name="automated_actions">Автоматические действия</string>
 	<string name="automated_actions_none">Нет автоматических действий</string>
-	<string name="automated_actions_empty">Пока нет автоматических действий</string>
+	<string name="automated_actions_empty">Автоматических действий пока нет</string>
 	<plurals name="automated_actions_count">
 		<item quantity="one">%d автоматическое действие</item>
 		<item quantity="few">%d автоматических действия</item>
@@ -151,9 +151,9 @@
 		<item quantity="other">%d автоматических действий</item>
 	</plurals>
 	<string name="automated_action_add">Добавить действие</string>
-	<string name="automated_action_edit">Редактировать действие</string>
+	<string name="automated_action_edit">Изменить действие</string>
 	<string name="automated_action_regex">Регулярное выражение</string>
-	<string name="automated_action_regex_hint">напр. ^https?://.*</string>
+	<string name="automated_action_regex_hint">например: ^https?://.*</string>
 	<string name="automated_action_regex_required">Требуется регулярное выражение</string>
 	<string name="automated_action_regex_invalid">Неверное регулярное выражение</string>
 	<string name="automated_action_type">Тип действия</string>
@@ -202,10 +202,10 @@
 	<string name="enter_name">Укажите название сканирования</string>
 	<string name="enter_name_hint">Название сканирования</string>
 	<string name="no_barcode_found">Штрих-код не найден</string>
-    <string name="pick_list_separator">Как разделять пункты списка?</string>
+    <string name="pick_list_separator">Разделение элементов списка</string>
 	<string name="separator_line_break">Разрыв строки</string>
 	<string name="separator_ruler">Горизонтальная линия</string>
-    <string name="save_as_file_name">Сохранить в папке скачиваний Downloads?</string>
+    <string name="save_as_file_name">Сохранить в файл с именем</string>
 	<string name="file_name">Имя файла</string>
 	<string name="error_saving_file">Невозможно сохранить файл</string>
 	<string name="error_file_exists">Файл уже существует</string>
@@ -228,12 +228,12 @@
 	<string name="add_to_history">Добавить в историю</string>
 	<string name="added_to_history">Добавлено в историю</string>
 	<string name="export_to_file">Экспортировать в файл</string>
-    <string name="export_as">Экспортировать как?</string>
+    <string name="export_as">Формат файла экспорта</string>
 	<string name="export_csv_comma">CSV (разделитель – запятая)</string>
 	<string name="export_csv_semicolon">CSV (разделитель – точка с запятой)</string>
 	<string name="export_json">JSON</string>
 	<string name="export_database">База данных SQLite</string>
-	<string name="saved_in_downloads">Сохранено в загрузках</string>
+	<string name="saved_in_downloads">Сохранено в папке Downloads</string>
 	<string name="rotate_image_cw">Повернуть изображение по часовой стрелке</string>
 	<string name="toggle_free_rotation">Переключить свободный поворот</string>
 	<string name="pick_file">Открыть файл</string>
@@ -260,12 +260,12 @@
 	<string name="email_subject">Тема</string>
 	<string name="email_body">Текст</string>
 	<string name="scheme">Схема</string>
-	<string name="host">Хост</string>
+	<string name="host">Узел</string>
 	<string name="query">Запрос</string>
 	<string name="automated_action_type_custom_intent">Пользовательский Intent</string>
 	<string name="automated_action_intent_uri_template">Шаблон URI Intent</string>
 	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
-	<string name="automated_action_intent_uri_required">URI Intent обязателен</string>
+	<string name="automated_action_intent_uri_required">Требуется URI Intent</string>
 	<string name="automated_action_intent_uri_invalid">Недопустимый URI Intent</string>
 	<string name="automated_action_list_custom_intent">Пользовательский Intent: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Пользовательский Intent</string>
