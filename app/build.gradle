@@ -78,7 +78,7 @@ dependencies {
 	// External
 	implementation 'com.github.markusfisch:CameraView:1.10.0'
 	implementation 'com.github.markusfisch:ScalingImageView:1.4.1'
-	implementation 'com.github.markusfisch:zxing-cpp:v2.3.0.4'
+	implementation 'com.github.markusfisch:zxing-cpp:v3.0.1.0'
 
 	// Testing
 	testImplementation 'junit:junit:4.13.2'
