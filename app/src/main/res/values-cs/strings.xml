@@ -70,7 +70,7 @@
 	<string name="find_code">Najít kód</string>
 	<string name="find_code_with_content">Co obsah?</string>
 	<string name="find_code_hint">Termín nebo regulární výraz</string>
-	<string name="does_not_match_search_term">Neodpovídá vyhledávacímu termínu</string>
+	<string name="does_not_match_search_term">Neodpovídá hledanému dotazu</string>
 	<string name="scan_for">Naskenovat %s</string>
 	<string name="quarter_second">Čtvrt sekundy</string>
 	<string name="half_second">Půl sekundy</string>
@@ -135,7 +135,7 @@
 	<string name="no_checksum">Žádný kontrolní součet</string>
 	<string name="show_recreation">Zobrazit zrekonstruovaný kód</string>
 	<string name="show_recreation_summary">Zrekonstruovat a zobrazit čárový kód z přečteného obrazu, pokud je to možné.</string>
-	<string name="close_automatically">Vrátit se po zkopírování/sdílení</string>
+	<string name="close_automatically">Vrátit se zpět po zkopírování/sdílení</string>
 	<string name="close_automatically_summary">Po zkopírovaní či sdílení se automaticky vrátí na skenovací obrazovku.</string>
 	<string name="default_search_engine">Nerozpoznaná data otevřít v</string>
 	<string name="always_ask">Vždy se zeptat</string>
