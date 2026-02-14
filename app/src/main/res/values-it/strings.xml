@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">Benvenuto!</string>
 	<string name="mode_expert">Avanzato</string>
@@ -12,13 +13,14 @@
 	<string name="binary_data">(dati binari)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d carattere, %1$s</item>
+		<item quantity="many"></item>
 		<item quantity="other">%2$d caratteri, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Livello correzione errori</string>
-	<string name="error_correction_level_l" formatted="false">Basso (correzione ~7&#37;)</string>
-	<string name="error_correction_level_m" formatted="false">Medio (correzione ~15&#37;)</string>
-	<string name="error_correction_level_q" formatted="false">Quartile (correzione ~25&#37;)</string>
-	<string name="error_correction_level_h" formatted="false">Alto (correzione ~30&#37;)</string>
+	<string name="error_correction_level_l" formatted="false">Basso (correzione ~7%)</string>
+	<string name="error_correction_level_m" formatted="false">Medio (correzione ~15%)</string>
+	<string name="error_correction_level_q" formatted="false">Quartile (correzione ~25%)</string>
+	<string name="error_correction_level_h" formatted="false">Alto (correzione ~30%)</string>
 	<string name="label">Etichetta</string>
 	<string name="colors">Colore primo piano/sfondo</string>
 	<string name="colors_black_on_white">Nero su bianco</string>
@@ -189,7 +191,7 @@
 	<string name="no_bluetooth_hosts_paired">Nessun host accoppiato</string>
 	<string name="bluetooth_connect_fail">Impossibile connettersi al dispositivo Bluetooth.</string>
 	<string name="bluetooth_send_fail">Impossibile inviare al dispositivo Bluetooth.</string>
-	<string name="bluetooth_send_success">Invio via Bluetooth completato.</string>
+	<string name="bluetooth_send_success">Invio via Bluetooth riuscito.</string>
 	<string name="generation_category">Generazione</string>
 	<string name="brighten_screen">Schiarisci schermo</string>
 	<string name="brighten_screen_summary">Imposta luminosità al massimo per migliorare la scansione di un codice a barre dallo schermo.</string>
@@ -262,5 +264,5 @@
 	<string name="email_body">Corpo</string>
 	<string name="scheme">Schema</string>
 	<string name="host">Host</string>
-	<string name="query">Richiesta</string>
+	<string name="query">Query</string>
 </resources>
