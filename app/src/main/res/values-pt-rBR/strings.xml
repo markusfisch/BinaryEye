@@ -139,7 +139,6 @@
 	<string name="default_search_engine">Abrir dados desconhecidos em</string>
 	<string name="always_ask">Sempre perguntar</string>
 	<string name="open_with_url">Abrir dados desconhecidos com URL</string>
-
 	<string name="automated_actions">Ações automatizadas</string>
 	<string name="automated_actions_none">Nenhuma ação automatizada</string>
 	<string name="automated_actions_empty">Ainda não há ações automatizadas</string>
@@ -266,5 +265,4 @@
 	<string name="automated_action_intent_uri_invalid">URI de Intent inválido</string>
 	<string name="automated_action_list_custom_intent">Intent personalizado: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Intent personalizado</string>
-
 </resources>
