@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">欢迎！</string>
 	<string name="mode_expert">高级</string>
@@ -136,7 +137,6 @@
 	<string name="default_search_engine">打开未知数据方式</string>
 	<string name="always_ask">总是询问</string>
 	<string name="open_with_url">使用 URL 打开未知数据</string>
-
 	<string name="automated_actions">自动操作</string>
 	<string name="automated_actions_none">没有自动操作</string>
 	<string name="automated_actions_empty">尚无自动操作</string>
@@ -263,5 +263,4 @@
 	<string name="automated_action_intent_uri_invalid">Intent URI 无效</string>
 	<string name="automated_action_list_custom_intent">自定义 Intent：%s</string>
 	<string name="automated_action_list_custom_intent_empty">自定义 Intent</string>
-
 </resources>
