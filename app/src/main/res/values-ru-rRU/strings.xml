@@ -6,7 +6,7 @@
 	<string name="mode_simple">Простой</string>
 	<string name="mode_simple_description">Я просто хочу сканировать штрих-коды и сразу их открывать.</string>
 	<string name="camera_error">Невозможно получить доступ к камере, попробуйте ещё раз</string>
-	<string name="scan_code">Сканировать штрих-код</string>
+	<string name="scan_code">Сканировать код</string>
 	<string name="compose_barcode">Создать штрих-код</string>
 	<string name="decode_barcode">Декодировать штрих-код</string>
 	<string name="content">Текст</string>
@@ -44,7 +44,7 @@
 	<string name="share_file">Поделиться файлом</string>
 	<string name="share_as">Поделиться как?</string>
 	<string name="copy_to_clipboard">Скопировать в буфер обмена</string>
-	<string name="copy_as_deeplink">Копировать как прямую ссылку</string>
+	<string name="copy_as_deeplink">Копировать как диплинк</string>
 	<string name="copied_to_clipboard">Скопировано в буфер обмена</string>
 	<string name="copy_password">Скопировать пароль в буфер обмена</string>
 	<string name="open_url">Открыть URL</string>
@@ -86,8 +86,8 @@
 	<string name="profile">Профиль</string>
 	<string name="profile_default">По умолчанию</string>
 	<string name="profile_add">Добавить новый профиль</string>
-	<string name="profile_enter_name">Введите имя профиля</string>
-	<string name="profile_enter_name_hint">Имя</string>
+	<string name="profile_enter_name">Введите название профиля</string>
+	<string name="profile_enter_name_hint">Название</string>
 	<string name="profile_invalid_name">Недопустимое имя профиля</string>
 	<string name="profile_empty">Профилей пока нет</string>
 	<string name="profile_current">Текущий профиль</string>
@@ -135,7 +135,7 @@
 	<string name="no_checksum">Нет контрольной суммы</string>
 	<string name="show_recreation">Показывать восстановленный штрих-код</string>
 	<string name="show_recreation_summary">Показывать штрих-код, восстановленный из считанного содержимого.</string>
-	<string name="close_automatically">Возврат после копирования/обмена</string>
+	<string name="close_automatically">Возврат после копирования или отправки</string>
 	<string name="close_automatically_summary">Автоматически возвращаться к экрану сканирования после копирования или передачу через функцию «Поделиться» считанного содержимого.</string>
 	<string name="default_search_engine">Поиск неизвестных данных</string>
 	<string name="always_ask">Всегда спрашивать</string>
