@@ -1,1 +1,1 @@
-Android için diğer bir barkod tarayıcı. Ücretsiz, reklamsız ve açık kaynak.
+Reklamsız QR kod okuyucusu ve barkod tarayıcısı
