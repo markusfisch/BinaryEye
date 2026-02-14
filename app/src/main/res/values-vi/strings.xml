@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">Chào mừng!</string>
 	<string name="mode_expert">Nâng cao</string>
@@ -14,10 +15,10 @@
 		<item quantity="other">%2$d ký tự, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Mức độ tự sửa mã</string>
-	<string name="error_correction_level_l" formatted="false">Thấp (sửa ~7&#37;)</string>
-	<string name="error_correction_level_m" formatted="false">Trung bình (sửa ~15&#37;)</string>
-	<string name="error_correction_level_q" formatted="false">Một phần tư (sửa ~25&#37;)</string>
-	<string name="error_correction_level_h" formatted="false">Cao (sửa ~30&#37;)</string>
+	<string name="error_correction_level_l" formatted="false">Thấp (sửa ~7%)</string>
+	<string name="error_correction_level_m" formatted="false">Trung bình (sửa ~15%)</string>
+	<string name="error_correction_level_q" formatted="false">Một phần tư (sửa ~25%)</string>
+	<string name="error_correction_level_h" formatted="false">Cao (sửa ~30%)</string>
 	<string name="label">Nhãn</string>
 	<string name="colors">Màu nền và màu chữ</string>
 	<string name="colors_black_on_white">Đen trên trắng</string>
@@ -136,7 +137,6 @@
 	<string name="default_search_engine">Mở dữ liệu không xác định bằng</string>
 	<string name="always_ask">Luôn hỏi</string>
 	<string name="open_with_url">Mở dữ liệu không xác định với URL</string>
-
 	<string name="automated_actions">Hành động tự động</string>
 	<string name="automated_actions_none">Không có hành động tự động</string>
 	<string name="automated_actions_empty">Chưa có hành động tự động</string>
@@ -263,5 +263,4 @@
 	<string name="automated_action_intent_uri_invalid">URI Intent không hợp lệ</string>
 	<string name="automated_action_list_custom_intent">Intent tuỳ chỉnh: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Intent tuỳ chỉnh</string>
-
 </resources>
