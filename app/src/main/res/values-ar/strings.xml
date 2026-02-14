@@ -115,7 +115,7 @@
 	<string name="beep_tone">نغمة الصفير</string>
 	<string name="tone_cdma_confirm">تأكيد CDMA</string>
 	<string name="tone_sup_confirm">تأكيد الإشراف على الاتصال</string>
-    <string name="tone_sup_radio_ack">إقرار مسار الراديو الإشرافي على الاتصال</string>
+	<string name="tone_sup_radio_ack">إقرار مسار الراديو الإشرافي على الاتصال</string>
 	<string name="tone_prop_ack">إقرار إيجابي</string>
 	<string name="tone_prop_beep">صوت صفير عام</string>
 	<string name="tone_prop_beep2">صوت صفير مزدوج عام</string>
@@ -142,7 +142,6 @@
 	<string name="default_search_engine">فتح البيانات المجهولة في</string>
 	<string name="always_ask">اسأل دائمًا</string>
 	<string name="open_with_url">فتح البيانات المجهولة باستخدام رابط</string>
-
 	<string name="automated_actions">الإجراءات الآلية</string>
 	<string name="automated_actions_none">لا توجد إجراءات آلية</string>
 	<string name="automated_actions_empty">لا توجد إجراءات آلية بعد</string>
@@ -180,8 +179,8 @@
 	<string name="send_scan_active_summary">قم بالتمكين لإعادة توجيه عمليات المسح إلى رابط معين.</string>
 	<string name="send_scan_url">الرابط المراد إعادة التوجيه إليه</string>
 	<string name="send_scan_type">نوع الطلب</string>
-    <string name="send_type_get_add_content">نوع GET وأضفه ببساطة</string>
-    <string name="send_type_get_query_string">نوع GET مع سلسلة الاستعلام الكاملة</string>
+	<string name="send_type_get_add_content">نوع GET وأضفه ببساطة</string>
+	<string name="send_type_get_query_string">نوع GET مع سلسلة الاستعلام الكاملة</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">فتح في متصفح خارجي</string>
@@ -273,5 +272,4 @@
 	<string name="automated_action_intent_uri_invalid">عنوان Intent غير صالح</string>
 	<string name="automated_action_list_custom_intent">Intent مخصص: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Intent مخصص</string>
-
 </resources>
