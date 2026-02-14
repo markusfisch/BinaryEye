@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">خوش آمدید!</string>
 	<string name="mode_expert">پیشرفته</string>
@@ -137,7 +138,6 @@
 	<string name="default_search_engine">گشودن دادهٔ نامشخص در</string>
 	<string name="always_ask">همیشه بپرس</string>
 	<string name="open_with_url">داده‌های ناشناخته را با URL باز کنید</string>
-
 	<string name="automated_actions">اقدام‌های خودکار</string>
 	<string name="automated_actions_none">هیچ اقدام خودکاری وجود ندارد</string>
 	<string name="automated_actions_empty">هنوز اقدام خودکاری وجود ندارد</string>
@@ -264,5 +264,4 @@
 	<string name="automated_action_intent_uri_invalid">URI Intent نامعتبر</string>
 	<string name="automated_action_list_custom_intent">Intent سفارشی: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Intent سفارشی</string>
-
 </resources>
