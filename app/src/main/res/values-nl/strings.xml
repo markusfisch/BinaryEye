@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">Welkom!</string>
 	<string name="mode_expert">Geavanceerd</string>
@@ -15,10 +16,10 @@
 		<item quantity="other">%2$d tekens, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Foutcorrectie niveau</string>
-	<string name="error_correction_level_l" formatted="false">Laag (~7&#37; correction)</string>
-	<string name="error_correction_level_m" formatted="false">Middelhoog (~15&#37; correction)</string>
-	<string name="error_correction_level_q" formatted="false">Kwartiel (~25&#37; correction)</string>
-	<string name="error_correction_level_h" formatted="false">Hoog (~30&#37; correction)</string>
+	<string name="error_correction_level_l" formatted="false">Laag (~7% correction)</string>
+	<string name="error_correction_level_m" formatted="false">Middelhoog (~15% correction)</string>
+	<string name="error_correction_level_q" formatted="false">Kwartiel (~25% correction)</string>
+	<string name="error_correction_level_h" formatted="false">Hoog (~30% correction)</string>
 	<string name="label">Label</string>
 	<string name="colors">Voor- en achtergrond</string>
 	<string name="colors_black_on_white">Zwart op wit</string>
@@ -137,7 +138,6 @@
 	<string name="default_search_engine">Onbekende data openen in</string>
 	<string name="always_ask">Altijd vragen</string>
 	<string name="open_with_url">URL om niet bekende data te openen</string>
-
 	<string name="automated_actions">Geautomatiseerde acties</string>
 	<string name="automated_actions_none">Geen geautomatiseerde acties</string>
 	<string name="automated_actions_empty">Nog geen geautomatiseerde acties</string>
@@ -264,5 +264,4 @@
 	<string name="automated_action_intent_uri_invalid">Ongeldige Intent-URI</string>
 	<string name="automated_action_list_custom_intent">Aangepaste intent: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Aangepaste intent</string>
-
 </resources>
