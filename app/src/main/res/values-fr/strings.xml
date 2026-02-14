@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">Bienvenue !</string>
 	<string name="mode_expert">Avancé</string>
@@ -12,6 +13,7 @@
 	<string name="binary_data">(données binaires)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d caractère, %1$s</item>
+		<item quantity="many"></item>
 		<item quantity="other">%2$d caractères, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Niveau de correction d\'erreur</string>
@@ -137,7 +139,6 @@
 	<string name="default_search_engine">Ouvrir les données inconnues dans</string>
 	<string name="always_ask">Toujours demander</string>
 	<string name="open_with_url">Ouvrir les données inconnues avec l\'URL</string>
-
 	<string name="automated_actions">Actions automatiques</string>
 	<string name="automated_actions_none">Aucune action automatique</string>
 	<string name="automated_actions_empty">Pas encore d’actions automatiques</string>
@@ -264,5 +265,4 @@
 	<string name="automated_action_intent_uri_invalid">URI d’Intent invalide</string>
 	<string name="automated_action_list_custom_intent">Intent personnalisé : %s</string>
 	<string name="automated_action_list_custom_intent_empty">Intent personnalisé</string>
-
 </resources>
