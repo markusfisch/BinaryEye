@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">მოგესალმებით!</string>
 	<string name="mode_expert">გაფართოებული</string>
@@ -15,10 +16,10 @@
 		<item quantity="other">%2$d სიმბოლო, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">შეცდომების კორექციის დონე</string>
-	<string name="error_correction_level_l" formatted="false">Low (~7&#37; correction)</string>
-	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; correction)</string>
-	<string name="error_correction_level_q" formatted="false">Quartile (~25&#37; correction)</string>
-	<string name="error_correction_level_h" formatted="false">High (~30&#37; correction)</string>
+	<string name="error_correction_level_l" formatted="false">Low (~7% correction)</string>
+	<string name="error_correction_level_m" formatted="false">Medium (~15% correction)</string>
+	<string name="error_correction_level_q" formatted="false">Quartile (~25% correction)</string>
+	<string name="error_correction_level_h" formatted="false">High (~30% correction)</string>
 	<string name="label">წარწერა</string>
 	<string name="colors">წინა და ფონი</string>
 	<string name="colors_black_on_white">შავი თეთრზე</string>
@@ -53,7 +54,7 @@
 	<string name="add_quiet_zone">დაამატეთ შესული ზონა</string>
 	<string name="input_content_here">შეიყვანეთ ტექსტი აქ</string>
 	<string name="unescape">ექსპანდირების გასადარები სიმბოლოები</string>
-	<string name="encode">შექმნა"</string>
+	<string name="encode">შექმნა</string>
 	<string name="error_no_content">მონაცემები არაა</string>
 	<string name="error_encoding_barcode">შტრიხ-კოდის შექმნა შეუძლებელია</string>
 	<string name="view_barcode">შტრიხ-კოდის ნახვა</string>
@@ -98,7 +99,7 @@
 	<string name="zoom_by_swiping">მასშტაბირება თითის მოძრაობით მაღლა/დაბლა</string>
 	<string name="zoom_by_swiping_summary">გაატარეთ თითი მაღლა ან დაბლა კამერის მასშტაბირების სამართავად.</string>
 	<string name="auto_rotate">1D ვერტიკალური შტრიხ-კოდების ამოცნობა</string>
-	<string name="auto_rotate_summary">კამერის ავტომატური შეტრიალება  ვერტიკალური 1D შტრიხ-კოდების ამოსაცნობად. მოწყობილობიდან გამომდინარე, შესაძლოა იმოქმედოს წარმადობაზე.</string>
+	<string name="auto_rotate_summary">კამერის ავტომატური შეტრიალება ვერტიკალური 1D შტრიხ-კოდების ამოსაცნობად. მოწყობილობიდან გამომდინარე, შესაძლოა იმოქმედოს წარმადობაზე.</string>
 	<string name="try_harder">წაკითხვის ოპტიმიზირება სიზუსტეზე და არა სისწრაფეზე</string>
 	<string name="try_harder_summary">ეს პარამეტრი ჩართეთ იმ შტრიხ-კოდებისთვის, რომელთა ამოცნობაც ძალიან ძნელია. მოქმედებს წარმადობაზე.</string>
 	<string name="show_toast_in_bulk_mode">მონაცემების ჩვენება მუდმივ რეჟიმში</string>
@@ -137,7 +138,6 @@
 	<string name="default_search_engine">გახსნის უცნობი მონაცემები</string>
 	<string name="always_ask">ყოველთვის კითხვა</string>
 	<string name="open_with_url">უცნობი მონაცემების ამ ბმულის საშუალებით გახსნა</string>
-
 	<string name="automated_actions">ავტომატური მოქმედებები</string>
 	<string name="automated_actions_none">ავტომატური მოქმედებები არ არის</string>
 	<string name="automated_actions_empty">ჯერ ავტომატური მოქმედებები არ არის</string>
@@ -264,5 +264,4 @@
 	<string name="automated_action_intent_uri_invalid">არასწორი Intent URI</string>
 	<string name="automated_action_list_custom_intent">კონფიგურირებადი Intent: %s</string>
 	<string name="automated_action_list_custom_intent_empty">კონფიგურირებადი Intent</string>
-
 </resources>
