@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">Hoş geldiniz!</string>
 	<string name="mode_expert">Gelişmiş</string>
@@ -15,10 +16,10 @@
 		<item quantity="other">%2$d karakter, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Hata düzeltme düzeyi</string>
-	<string name="error_correction_level_l" formatted="false">Düşük (~&#37;7 düzeltim)</string>
-	<string name="error_correction_level_m" formatted="false">Orta (~&#37;15 düzeltim)</string>
-	<string name="error_correction_level_q" formatted="false">Dörtte Bir (~&#37;25 düzeltim)</string>
-	<string name="error_correction_level_h" formatted="false">Yüksek (~&#37;30 düzeltim)</string>
+	<string name="error_correction_level_l" formatted="false">Düşük (~%7 düzeltim)</string>
+	<string name="error_correction_level_m" formatted="false">Orta (~%15 düzeltim)</string>
+	<string name="error_correction_level_q" formatted="false">Dörtte Bir (~%25 düzeltim)</string>
+	<string name="error_correction_level_h" formatted="false">Yüksek (~%30 düzeltim)</string>
 	<string name="label">Etiket</string>
 	<string name="colors">Ön ve arka plan</string>
 	<string name="colors_black_on_white">Beyaz üzerine siyah</string>
@@ -137,7 +138,6 @@
 	<string name="default_search_engine">Bilinmeyen verileri şurada aç</string>
 	<string name="always_ask">Her zaman sor</string>
 	<string name="open_with_url">URL\'si olan bilinmeyen veriyi aç</string>
-
 	<string name="automated_actions">Otomatik eylemler</string>
 	<string name="automated_actions_none">Otomatik eylem yok</string>
 	<string name="automated_actions_empty">Henüz otomatik eylem yok</string>
@@ -264,5 +264,4 @@
 	<string name="automated_action_intent_uri_invalid">Geçersiz Intent URI</string>
 	<string name="automated_action_list_custom_intent">Özel Intent: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Özel Intent</string>
-
 </resources>
