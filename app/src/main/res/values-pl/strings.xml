@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">Witamy!</string>
 	<string name="mode_expert">Zaawansowany</string>
@@ -147,7 +148,6 @@
 	<string name="default_search_engine">Otwórz nieznane dane w</string>
 	<string name="always_ask">Zawsze pytaj</string>
 	<string name="open_with_url">Otwieraj nieznane dane za pomocą adresu URL</string>
-
 	<string name="automated_actions">Automatyczne akcje</string>
 	<string name="automated_actions_none">Brak automatycznych akcji</string>
 	<string name="automated_actions_empty">Brak jeszcze automatycznych akcji</string>
@@ -268,5 +268,4 @@
 	<string name="automated_action_intent_uri_invalid">Nieprawidłowy URI Intent</string>
 	<string name="automated_action_list_custom_intent">Niestandardowy Intent: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Niestandardowy Intent</string>
-
 </resources>
