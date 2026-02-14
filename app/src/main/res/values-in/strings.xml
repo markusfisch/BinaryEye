@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">Selamat datang!</string>
 	<string name="mode_expert">Lanjutan</string>
@@ -14,10 +15,10 @@
 		<item quantity="other">%1$s, %2$d karakter</item>
 	</plurals>
 	<string name="error_correction_level">Level koreksi kesalahan</string>
-	<string name="error_correction_level_l" formatted="false">Rendah (~7&#37; koreksi)</string>
-	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; koreksi)</string>
-	<string name="error_correction_level_q" formatted="false">Kuartil (~25&#37; koreksi)</string>
-	<string name="error_correction_level_h" formatted="false">Tinggi (~30&#37; koreksi)</string>
+	<string name="error_correction_level_l" formatted="false">Rendah (~7% koreksi)</string>
+	<string name="error_correction_level_m" formatted="false">Medium (~15% koreksi)</string>
+	<string name="error_correction_level_q" formatted="false">Kuartil (~25% koreksi)</string>
+	<string name="error_correction_level_h" formatted="false">Tinggi (~30% koreksi)</string>
 	<string name="label">Etiqueta</string>
 	<string name="colors">Muka dan latar belakang</string>
 	<string name="colors_black_on_white">Hitam di atas putih</string>
@@ -136,7 +137,6 @@
 	<string name="default_search_engine">Buka data tak dikenal di</string>
 	<string name="always_ask">Selalu tanya</string>
 	<string name="open_with_url">Buka data tak dikenal dengan URL</string>
-
 	<string name="automated_actions">Tindakan otomatis</string>
 	<string name="automated_actions_none">Tidak ada tindakan otomatis</string>
 	<string name="automated_actions_empty">Belum ada tindakan otomatis</string>
@@ -263,5 +263,4 @@
 	<string name="automated_action_intent_uri_invalid">URI Intent tidak valid</string>
 	<string name="automated_action_list_custom_intent">Intent kustom: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Intent kustom</string>
-
 </resources>
