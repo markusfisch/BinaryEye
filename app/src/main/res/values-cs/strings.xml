@@ -147,7 +147,7 @@
 		<item quantity="one">%d automatizovaná akce</item>
 		<item quantity="few">%d automatizované akce</item>
 		<item quantity="many">%d automatizovaných akcí</item>
-		<item quantity="other">%d automatizované akce</item>
+		<item quantity="other">%d automatizovaných akcí</item>
 	</plurals>
 	<string name="automated_action_add">Přidat akci</string>
 	<string name="automated_action_edit">Upravit akci</string>
