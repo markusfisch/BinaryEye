@@ -450,6 +450,9 @@ class BarcodeFragment : Fragment() {
 
 	private fun brightenScreen() {
 		activity?.let {
+			if (!isAdded) {
+				return
+			}
 			currentBrightness = it.getScreenBrightness()
 			it.setScreenBrightness(1f)
 			brightenScreenItem.isChecked = true
@@ -457,7 +460,7 @@ class BarcodeFragment : Fragment() {
 	}
 
 	private fun restoreScreenBrightness() {
-		if (currentBrightness > -1f) {
+		if (currentBrightness > -1f && isAdded) {
 			activity?.setScreenBrightness(currentBrightness)
 			currentBrightness = -1f
 			brightenScreenItem.isChecked = false
