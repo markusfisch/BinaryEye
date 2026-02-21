@@ -148,11 +148,15 @@ class MainActivity : AppCompatActivity() {
 	}
 }
 
-private fun Intent.getScanExtra(name: String): Scan? = if (
-	Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU
-) {
-	@Suppress("DEPRECATION")
-	getParcelableExtra(name)
-} else {
-	getParcelableExtra(name, Scan::class.java)
+private fun Intent.getScanExtra(name: String): Scan? = try {
+	if (
+		Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU
+	) {
+		@Suppress("DEPRECATION")
+		getParcelableExtra(name)
+	} else {
+		getParcelableExtra(name, Scan::class.java)
+	}
+} catch (_: Throwable) {
+	null
 }
