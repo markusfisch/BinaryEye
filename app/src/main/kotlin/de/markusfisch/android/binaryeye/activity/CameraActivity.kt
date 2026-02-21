@@ -609,44 +609,48 @@ class CameraActivity : AppCompatActivity() {
 				)
 				var useLocalAverage = false
 				camera.setPreviewCallback { frameData, _ ->
-					if (decoding) {
-						useLocalAverage = useLocalAverage xor true
-						ZxingCpp.readByteArray(
-							frameData,
-							frameMetrics.width,
-							frameRoi.left, frameRoi.top,
-							frameRoi.width(), frameRoi.height(),
-							frameMetrics.orientation,
-							options.apply {
-								// By default, ZXing uses LOCAL_AVERAGE, but
-								// this does not work well with inverted
-								// barcodes on low-contrast backgrounds.
-								binarizer = if (useLocalAverage) {
-									Binarizer.LOCAL_AVERAGE
-								} else {
-									Binarizer.GLOBAL_HISTOGRAM
-								}
-								formats = formatsToRead
+					if (!decoding ||
+						frameData == null ||
+						frameData.isEmpty()
+					) {
+						return@setPreviewCallback
+					}
+					useLocalAverage = useLocalAverage xor true
+					ZxingCpp.readByteArray(
+						frameData,
+						frameMetrics.width,
+						frameRoi.left, frameRoi.top,
+						frameRoi.width(), frameRoi.height(),
+						frameMetrics.orientation,
+						options.apply {
+							// By default, ZXing uses LOCAL_AVERAGE, but
+							// this does not work well with inverted
+							// barcodes on low-contrast backgrounds.
+							binarizer = if (useLocalAverage) {
+								Binarizer.LOCAL_AVERAGE
+							} else {
+								Binarizer.GLOBAL_HISTOGRAM
 							}
-						)?.let { results ->
-							val result = results.first()
-							val text = result.text
-							if (text == ignoreNext) {
-								return@let
-							}
-							val term = searchTerm
-							if (term != null &&
-								!text.matches(term) &&
-								!text.contains(term)
-							) {
-								ignoreNext = text
-								errorFeedback()
-								toast(R.string.does_not_match_search_term)
-								return@let
-							}
-							postResult(result)
-							decoding = false
+							formats = formatsToRead
 						}
+					)?.let { results ->
+						val result = results.first()
+						val text = result.text
+						if (text == ignoreNext) {
+							return@let
+						}
+						val term = searchTerm
+						if (term != null &&
+							!text.matches(term) &&
+							!text.contains(term)
+						) {
+							ignoreNext = text
+							errorFeedback()
+							toast(R.string.does_not_match_search_term)
+							return@let
+						}
+						postResult(result)
+						decoding = false
 					}
 				}
 			}
