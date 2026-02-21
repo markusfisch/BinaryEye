@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">환영합니다!</string>
 	<string name="mode_expert">고급</string>
@@ -14,10 +15,10 @@
 		<item quantity="other">%2$d characters, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Error correction level</string>
-	<string name="error_correction_level_l" formatted="false">Low (~7&#37; correction)</string>
-	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; correction)</string>
-	<string name="error_correction_level_q" formatted="false">Quartile (~25&#37; correction)</string>
-	<string name="error_correction_level_h" formatted="false">High (~30&#37; correction)</string>
+	<string name="error_correction_level_l" formatted="false">Low (~7% correction)</string>
+	<string name="error_correction_level_m" formatted="false">Medium (~15% correction)</string>
+	<string name="error_correction_level_q" formatted="false">Quartile (~25% correction)</string>
+	<string name="error_correction_level_h" formatted="false">High (~30% correction)</string>
 	<string name="label">라벨</string>
 	<string name="colors">전경과 배경</string>
 	<string name="colors_black_on_white">흰색에 검정색</string>
@@ -136,7 +137,6 @@
 	<string name="default_search_engine">알 수 없는 데이터 열기:</string>
 	<string name="always_ask">항상 물어보기</string>
 	<string name="open_with_url">URL로 알려지지 않은 데이터 열기</string>
-
 	<string name="automated_actions">자동 작업</string>
 	<string name="automated_actions_none">자동 작업 없음</string>
 	<string name="automated_actions_empty">아직 자동 작업 없음</string>
@@ -263,5 +263,4 @@
 	<string name="automated_action_intent_uri_invalid">잘못된 Intent URI</string>
 	<string name="automated_action_list_custom_intent">맞춤 Intent: %s</string>
 	<string name="automated_action_list_custom_intent_empty">맞춤 Intent</string>
-
 </resources>

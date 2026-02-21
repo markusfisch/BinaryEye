@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">Добре дошли!</string>
 	<string name="mode_expert">Разширен</string>
@@ -15,10 +16,10 @@
 		<item quantity="other">%2$d символа, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Ниво на коригиране на грешки</string>
-	<string name="error_correction_level_l" formatted="false">Ниско (~7&#37; корекция)</string>
-	<string name="error_correction_level_m" formatted="false">Средно (~15&#37; корекция)</string>
-	<string name="error_correction_level_q" formatted="false">Четвъртично (~25&#37; корекция)</string>
-	<string name="error_correction_level_h" formatted="false">Високо (~30&#37; корекция)</string>
+	<string name="error_correction_level_l" formatted="false">Ниско (~7% корекция)</string>
+	<string name="error_correction_level_m" formatted="false">Средно (~15% корекция)</string>
+	<string name="error_correction_level_q" formatted="false">Четвъртично (~25% корекция)</string>
+	<string name="error_correction_level_h" formatted="false">Високо (~30% корекция)</string>
 	<string name="label">Етикет</string>
 	<string name="colors">Преден и заден план</string>
 	<string name="colors_black_on_white">Черно на бяло</string>
@@ -137,7 +138,6 @@
 	<string name="default_search_engine">Отворяй неизвестни данни в</string>
 	<string name="always_ask">Винаги питай</string>
 	<string name="open_with_url">Отворяне на неизвестни данни с URL</string>
-
 	<string name="automated_actions">Автоматизирани действия</string>
 	<string name="automated_actions_none">Няма автоматизирани действия</string>
 	<string name="automated_actions_empty">Все още няма автоматизирани действия</string>
@@ -264,5 +264,4 @@
 	<string name="automated_action_intent_uri_invalid">Невалиден Intent URI</string>
 	<string name="automated_action_list_custom_intent">Персонализиран Intent: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Персонализиран Intent</string>
-
 </resources>
