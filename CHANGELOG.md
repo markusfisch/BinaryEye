@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.68.1
+* Improve UI of search barcode dialog
+* Stability improvements
+* Update ZXingCpp
+* Update Russian translation
+
 ## 1.68.0
 * Add automated actions
 * Improve managing profiles
