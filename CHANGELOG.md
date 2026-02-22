@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.68.2
+* Fix barcode regeneration
+
 ## 1.68.1
 * Improve UI of search barcode dialog
 * Stability improvements
