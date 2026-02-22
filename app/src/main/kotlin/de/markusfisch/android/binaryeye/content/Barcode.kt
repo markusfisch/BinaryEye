@@ -108,7 +108,7 @@ class ContentBarcode<T>(
 	content: T,
 	format: BarcodeFormat,
 	val ecLevel: Int = -1,
-	val margin: Int = -1,
+	val margin: Int = 1,
 	colors: BarcodeColors = BarcodeColors.BLACK_ON_WHITE
 ) : Barcode<T>(content, format, colors) {
 	override fun toBitmap(size: Int) = ZxingCpp.encodeAsBitmap(
