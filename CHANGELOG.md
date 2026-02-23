@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.68.3
+* Stability improvement
+
 ## 1.68.2
 * Fix barcode regeneration
 
