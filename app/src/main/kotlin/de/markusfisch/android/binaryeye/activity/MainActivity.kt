@@ -150,15 +150,22 @@ class MainActivity : AppCompatActivity() {
 	}
 }
 
-private fun Intent.getScanExtra(name: String): Scan? = try {
-	if (
-		Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU
-	) {
-		@Suppress("DEPRECATION")
-		getParcelableExtra(name)
-	} else {
+@Suppress("DEPRECATION")
+private fun Intent.getScanExtra(name: String): Scan? = if (
+	Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+) {
+	try {
 		getParcelableExtra(name, Scan::class.java)
+	} catch (_: Throwable) {
+		// `getParcelableExtra(name, Class)` can throw on some versions
+		// of Android when the ClassLoader associated with the Bundle's
+		// lazy-decoded value is null in certain scenarios (e.g., after
+		// an activity restart where the system re-delivers the intent).
+		// Simply fallback to the "deprecated" `getParcelableExtra(name)`
+		// which works in this case, because it doesn't verify the
+		// parcelable's class against Scan::class.java.
+		null
 	}
-} catch (_: Throwable) {
+} else {
 	null
-}
+} ?: getParcelableExtra(name)
