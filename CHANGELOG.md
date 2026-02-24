@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.68.4
+* Fix generating 1D barcodes
+
 ## 1.68.3
 * Stability improvement
 

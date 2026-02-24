@@ -1,0 +1,2 @@
+* Fix generating 1D barcodes
+
