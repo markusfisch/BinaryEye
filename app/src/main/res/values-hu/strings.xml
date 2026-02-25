@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">Üdvözöljük!</string>
 	<string name="mode_expert">Haladó</string>
@@ -15,10 +16,10 @@
 		<item quantity="other">%2$d karakter, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Hibajavítási szint</string>
-	<string name="error_correction_level_l" formatted="false">Alacsony (~7&#37; javítás)</string>
-	<string name="error_correction_level_m" formatted="false">Közepes (~15&#37; javítás)</string>
-	<string name="error_correction_level_q" formatted="false">Kvartilis (~25&#37; javítás)</string>
-	<string name="error_correction_level_h" formatted="false">Magas (~30&#37; javítás)</string>
+	<string name="error_correction_level_l" formatted="false">Alacsony (~7% javítás)</string>
+	<string name="error_correction_level_m" formatted="false">Közepes (~15% javítás)</string>
+	<string name="error_correction_level_q" formatted="false">Kvartilis (~25% javítás)</string>
+	<string name="error_correction_level_h" formatted="false">Magas (~30% javítás)</string>
 	<string name="label">Címke</string>
 	<string name="colors">Háttér és előtér</string>
 	<string name="colors_black_on_white">Fekete fehér háttéren</string>
@@ -137,7 +138,6 @@
 	<string name="default_search_engine">Ismeretlen adatok megnyitása ebben</string>
 	<string name="always_ask">Mindig kérdezzen</string>
 	<string name="open_with_url">Ismeretlen adat megnyitása URL-lel</string>
-
 	<string name="automated_actions">Automatizált műveletek</string>
 	<string name="automated_actions_none">Nincsenek automatizált műveletek</string>
 	<string name="automated_actions_empty">Még nincsenek automatizált műveletek</string>
@@ -264,5 +264,4 @@
 	<string name="automated_action_intent_uri_invalid">Érvénytelen Intent URI</string>
 	<string name="automated_action_list_custom_intent">Egyéni intent: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Egyéni intent</string>
-
 </resources>

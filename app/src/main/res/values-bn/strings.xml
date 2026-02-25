@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">স্বাগতম!</string>
 	<string name="mode_expert">উন্নত</string>
@@ -15,10 +16,10 @@
 		<item quantity="other">%2$dটি অক্ষর, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">ত্রুটি ঠিককরণ পরিমাণ</string>
-	<string name="error_correction_level_l" formatted="false">কম (~৭&#37; ঠিককরণ)</string>
-	<string name="error_correction_level_m" formatted="false">মধ্যম (~১৫&#37; ঠিককরণ)</string>
-	<string name="error_correction_level_q" formatted="false">বেশি (~২৫&#37; ঠিককরণ)</string>
-	<string name="error_correction_level_h" formatted="false">অনেক বেশি (~৩০&#37; ঠিককরণ)</string>
+	<string name="error_correction_level_l" formatted="false">কম (~৭% ঠিককরণ)</string>
+	<string name="error_correction_level_m" formatted="false">মধ্যম (~১৫% ঠিককরণ)</string>
+	<string name="error_correction_level_q" formatted="false">বেশি (~২৫% ঠিককরণ)</string>
+	<string name="error_correction_level_h" formatted="false">অনেক বেশি (~৩০% ঠিককরণ)</string>
 	<string name="label">লেবেল</string>
 	<string name="colors">পূর্ববর্তী এবং সৃজনাধীন</string>
 	<string name="colors_black_on_white">সাদা উপরে কালো</string>
@@ -65,7 +66,7 @@
 	<string name="restrict_format">বিনিয়োগ বাধাগ্রস্ত ফরম্যাট</string>
 	<string name="remove_restriction">সীমাবদ্ধতা অপসারণ করুন</string>
 	<string name="find_code">কোড খুঁজুন</string>
-	<string name="find_code_with_content"> কী বিষয়টি? </string>
+	<string name="find_code_with_content">কী বিষয়টি?</string>
 	<string name="find_code_hint">শব্দ বা রেগুলার এক্সপ্রেশন</string>
 	<string name="does_not_match_search_term">অনুসন্ধান শর্তের সাথে মিলে না</string>
 	<string name="scan_for">স্ক্যান %s</string>
@@ -137,7 +138,6 @@
 	<string name="default_search_engine">অজানা ডেটা খোলুন</string>
 	<string name="always_ask">সবসময় জিজ্ঞাসা করুন</string>
 	<string name="open_with_url">অজানা ইউআরএল খুলো</string>
-
 	<string name="automated_actions">স্বয়ংক্রিয় ক্রিয়াসমূহ</string>
 	<string name="automated_actions_none">কোনো স্বয়ংক্রিয় ক্রিয়া নেই</string>
 	<string name="automated_actions_empty">এখনো কোনো স্বয়ংক্রিয় ক্রিয়া নেই</string>
@@ -264,5 +264,4 @@
 	<string name="automated_action_intent_uri_invalid">অবৈধ Intent URI</string>
 	<string name="automated_action_list_custom_intent">কাস্টম Intent: %s</string>
 	<string name="automated_action_list_custom_intent_empty">কাস্টম Intent</string>
-
 </resources>

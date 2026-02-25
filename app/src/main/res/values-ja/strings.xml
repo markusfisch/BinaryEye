@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">ようこそ！</string>
 	<string name="mode_expert">上級</string>
@@ -14,10 +15,10 @@
 		<item quantity="other">%2$d 文字, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">誤り訂正レベル</string>
-	<string name="error_correction_level_l" formatted="false">低 (~7&#37; の正確性)</string>
-	<string name="error_correction_level_m" formatted="false">中 (~15&#37; の正確性)</string>
-	<string name="error_correction_level_q" formatted="false">高 (~25&#37; の正確性)</string>
-	<string name="error_correction_level_h" formatted="false">最高 (~30&#37; の正確性)</string>
+	<string name="error_correction_level_l" formatted="false">低 (~7% の正確性)</string>
+	<string name="error_correction_level_m" formatted="false">中 (~15% の正確性)</string>
+	<string name="error_correction_level_q" formatted="false">高 (~25% の正確性)</string>
+	<string name="error_correction_level_h" formatted="false">最高 (~30% の正確性)</string>
 	<string name="label">ラベル</string>
 	<string name="colors">背面と前面</string>
 	<string name="colors_black_on_white">白地に黒色</string>
@@ -136,7 +137,6 @@
 	<string name="default_search_engine">未知のデータの表示方法</string>
 	<string name="always_ask">常に尋ねる</string>
 	<string name="open_with_url">未知のデータを次のURLから開く</string>
-
 	<string name="automated_actions">自動アクション</string>
 	<string name="automated_actions_none">自動アクションはありません</string>
 	<string name="automated_actions_empty">まだ自動アクションがありません</string>
@@ -263,5 +263,4 @@
 	<string name="automated_action_intent_uri_invalid">無効な Intent URI</string>
 	<string name="automated_action_list_custom_intent">カスタム Intent: %s</string>
 	<string name="automated_action_list_custom_intent_empty">カスタム Intent</string>
-
 </resources>
