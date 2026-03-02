@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">¡Bienvenido!</string>
 	<string name="mode_expert">Avanzado</string>
@@ -12,13 +13,14 @@
 	<string name="binary_data">(datos binarios)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d carácter, %1$s</item>
+		<item quantity="many"></item>
 		<item quantity="other">%2$d caracteres, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Nivel de corrección de errores</string>
-	<string name="error_correction_level_l" formatted="false">Bajo (~7&#37; de correción)</string>
-	<string name="error_correction_level_m" formatted="false">Medio (~15&#37; de correción)</string>
-	<string name="error_correction_level_q" formatted="false">Cuartil (~25&#37; de correción)</string>
-	<string name="error_correction_level_h" formatted="false">Alto (~30&#37; de correción)</string>
+	<string name="error_correction_level_l" formatted="false">Bajo (~7% de correción)</string>
+	<string name="error_correction_level_m" formatted="false">Medio (~15% de correción)</string>
+	<string name="error_correction_level_q" formatted="false">Cuartil (~25% de correción)</string>
+	<string name="error_correction_level_h" formatted="false">Alto (~30% de correción)</string>
 	<string name="label">Etiqueta</string>
 	<string name="colors">Color frontal y fondo</string>
 	<string name="colors_black_on_white">Negro sobre blanco</string>
@@ -102,7 +104,7 @@
 	<string name="try_harder">Optimizar la precisión del lector</string>
 	<string name="try_harder_summary">Active esta opción para códigos muy difíciles de leer. Esto afectará al rendimiento.</string>
 	<string name="show_toast_in_bulk_mode">Mostrar datos en el modo constante</string>
-	<string name="show_toast_in_bulk_mode_summary">Mostrar brevemente los datos escaneados al escanear constantemente. </string>
+	<string name="show_toast_in_bulk_mode_summary">Mostrar brevemente los datos escaneados al escanear constantemente.</string>
 	<string name="vibrate">Vibración al detectar</string>
 	<string name="vibrate_summary">El dispositivo vibra cuando se reconoce un código.</string>
 	<string name="beep">Sonido al detectar</string>
@@ -137,7 +139,6 @@
 	<string name="default_search_engine">Abrir datos desconocidos en</string>
 	<string name="always_ask">Preguntar siempre</string>
 	<string name="open_with_url">Abrir datos desconocidos en la URL</string>
-
 	<string name="automated_actions">Acciones automatizadas</string>
 	<string name="automated_actions_none">No hay acciones automatizadas</string>
 	<string name="automated_actions_empty">Aún no hay acciones automatizadas</string>
@@ -264,5 +265,4 @@
 	<string name="automated_action_intent_uri_invalid">URI de Intent no válida</string>
 	<string name="automated_action_list_custom_intent">Intent personalizado: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Intent personalizado</string>
-
 </resources>

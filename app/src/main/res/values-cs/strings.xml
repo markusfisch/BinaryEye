@@ -42,7 +42,7 @@
 	<string name="error_flash">Zapnutí/vypnutí blesku selhalo</string>
 	<string name="share">Sdílet</string>
 	<string name="share_file">Sdílet jako soubor</string>
-    <string name="share_as">Sdílet jako?</string>
+	<string name="share_as">Sdílet jako?</string>
 	<string name="copy_to_clipboard">Zkopírovat do schránky</string>
 	<string name="copy_as_deeplink">Kopírovat jako deeplink</string>
 	<string name="copied_to_clipboard">Zkopírováno do schránky</string>
@@ -70,7 +70,7 @@
 	<string name="find_code">Najít kód</string>
 	<string name="find_code_with_content">Co obsah?</string>
 	<string name="find_code_hint">Termín nebo regulární výraz</string>
-	<string name="does_not_match_search_term">Neodpovídá vyhledávacímu termínu</string>
+	<string name="does_not_match_search_term">Neodpovídá hledanému dotazu</string>
 	<string name="scan_for">Naskenovat %s</string>
 	<string name="quarter_second">Čtvrt sekundy</string>
 	<string name="half_second">Půl sekundy</string>
@@ -135,12 +135,11 @@
 	<string name="no_checksum">Žádný kontrolní součet</string>
 	<string name="show_recreation">Zobrazit zrekonstruovaný kód</string>
 	<string name="show_recreation_summary">Zrekonstruovat a zobrazit čárový kód z přečteného obrazu, pokud je to možné.</string>
-	<string name="close_automatically">Vrátit se po zkopírování/sdílení</string>
+	<string name="close_automatically">Vrátit se zpět po zkopírování/sdílení</string>
 	<string name="close_automatically_summary">Po zkopírovaní či sdílení se automaticky vrátí na skenovací obrazovku.</string>
 	<string name="default_search_engine">Nerozpoznaná data otevřít v</string>
 	<string name="always_ask">Vždy se zeptat</string>
 	<string name="open_with_url">Otevřít nerozpoznaná data pomocí URL</string>
-
 	<string name="automated_actions">Automatizované akce</string>
 	<string name="automated_actions_none">Žádné automatizované akce</string>
 	<string name="automated_actions_empty">Zatím žádné automatizované akce</string>
@@ -148,7 +147,7 @@
 		<item quantity="one">%d automatizovaná akce</item>
 		<item quantity="few">%d automatizované akce</item>
 		<item quantity="many">%d automatizovaných akcí</item>
-		<item quantity="other">%d automatizované akce</item>
+		<item quantity="other">%d automatizovaných akcí</item>
 	</plurals>
 	<string name="automated_action_add">Přidat akci</string>
 	<string name="automated_action_edit">Upravit akci</string>
@@ -173,7 +172,7 @@
 	<string name="clear_network_suggestions_nothing_to_remove">Nic ke smazání</string>
 	<string name="send_category">Předávání</string>
 	<string name="send_scan_active">Předávat skeny</string>
-    <string name="send_scan_active_summary">Zapnout předávání skenů na danou URL.</string>
+	<string name="send_scan_active_summary">Zapnout předávání skenů na danou URL.</string>
 	<string name="send_scan_url">Posílat každý sken na URL</string>
 	<string name="send_scan_type">Typ požadavku pro každý sken</string>
 	<string name="send_type_get_add_content">GET a simply add content</string>
@@ -205,7 +204,7 @@
 	<string name="pick_list_separator">Jak mají být odděleny položky?</string>
 	<string name="separator_line_break">Nový řádek</string>
 	<string name="separator_ruler">Svislice</string>
-    <string name="save_as_file_name">Uložit do složky Stahování?</string>
+	<string name="save_as_file_name">Uložit do složky Stahování?</string>
 	<string name="file_name">Název souboru</string>
 	<string name="error_saving_file">Soubor se nepodařilo uložit</string>
 	<string name="error_file_exists">Soubor již existuje</string>
@@ -228,7 +227,7 @@
 	<string name="add_to_history">Přidat do historie</string>
 	<string name="added_to_history">Přidáno do historie</string>
 	<string name="export_to_file">Exportovat do souboru</string>
-    <string name="export_as">Exportovat jako?</string>
+	<string name="export_as">Exportovat jako?</string>
 	<string name="export_csv_comma">CSV oddělené čárkami</string>
 	<string name="export_csv_semicolon">CSV oddělené středníky</string>
 	<string name="export_json">soubor JSON</string>
@@ -269,5 +268,4 @@
 	<string name="automated_action_intent_uri_invalid">Neplatné URI intentu</string>
 	<string name="automated_action_list_custom_intent">Vlastní intent: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Vlastní intent</string>
-
 </resources>
