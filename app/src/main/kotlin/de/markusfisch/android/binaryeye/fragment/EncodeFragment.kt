@@ -273,7 +273,7 @@ class EncodeFragment : Fragment() {
 					addQuietZoneSwitch.isChecked
 				) 1 else 0
 
-				else -> 0
+				else -> -1
 			},
 			if (format.canBeInverted()) {
 				colorsSpinner.selectedItemPosition

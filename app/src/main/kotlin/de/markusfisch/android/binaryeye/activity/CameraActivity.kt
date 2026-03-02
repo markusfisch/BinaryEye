@@ -604,6 +604,7 @@ class CameraActivity : AppCompatActivity() {
 					tryRotate = prefs.autoRotate,
 					tryInvert = true,
 					tryDownscale = true,
+					returnCodabarStartEnd = true,
 					maxNumberOfSymbols = 1,
 					textMode = TextMode.PLAIN
 				)
