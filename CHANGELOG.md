@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.68.5
+* Downgrade ZXingCpp for compatibilty
+
 ## 1.68.4
 * Fix generating 1D barcodes
 
