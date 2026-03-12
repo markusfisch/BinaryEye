@@ -1,8 +1,6 @@
 package de.markusfisch.android.binaryeye.database
 
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
 import android.text.format.DateFormat
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import de.markusfisch.android.zxingcpp.ZxingCpp.BitMatrix
@@ -29,7 +27,7 @@ data class Scan(
 	val dateTime: String = getDateTime(),
 	var id: Long = 0L,
 	val label: String? = null
-) : Parcelable {
+) {
 	// Needs to be overwritten manually, as ByteArray is an array and
 	// this isn't handled well by Kotlin.
 	override fun equals(other: Any?): Boolean {
@@ -82,39 +80,6 @@ data class Scan(
 		return result
 	}
 
-	override fun writeToParcel(parcel: Parcel, flags: Int) {
-		parcel.apply {
-			writeString(text)
-			writeSizedByteArray(raw)
-			writeString(format.name)
-			writeString(errorCorrectionLevel)
-			writeString(version)
-			writeInt(dataMask)
-			writeBitMatrix(symbol)
-			writeInt(sequenceSize)
-			writeInt(sequenceIndex)
-			writeString(sequenceId)
-			writeString(country)
-			writeString(addOn)
-			writeString(price)
-			writeString(issueNumber)
-			writeString(dateTime)
-			writeLong(id)
-			writeString(label)
-		}
-	}
-
-	override fun describeContents() = 0
-
-	companion object {
-		@JvmField
-		val CREATOR = object : Parcelable.Creator<Scan> {
-			override fun createFromParcel(parcel: Parcel) = readScanFromParcel(
-				parcel
-			)
-			override fun newArray(size: Int) = arrayOfNulls<Scan>(size)
-		}
-	}
 }
 
 fun Result.toScan(): Scan {
@@ -205,109 +170,6 @@ private fun getDateTime(
 	time % 1000
 )
 
-private fun readScanFromParcel(parcel: Parcel): Scan {
-	val text = parcel.readString() ?: ""
-	val raw = parcel.readSizedByteArray()
-	val format = parcel.readBarcodeFormat()
-	val errorCorrectionLevel = parcel.readString()
-	val version = parcel.readString()
-	val dataMask = parcel.readInt()
-	val tail = parcel.readScanParcelTail()
-	return Scan(
-		text = text,
-		raw = raw,
-		format = format,
-		errorCorrectionLevel = errorCorrectionLevel,
-		version = version,
-		dataMask = dataMask,
-		symbol = tail.symbol,
-		sequenceSize = tail.sequenceSize,
-		sequenceIndex = tail.sequenceIndex,
-		sequenceId = tail.sequenceId,
-		country = tail.country,
-		addOn = tail.addOn,
-		price = tail.price,
-		issueNumber = tail.issueNumber,
-		dateTime = tail.dateTime,
-		id = tail.id,
-		label = tail.label
-	)
-}
-
-private data class ScanParcelTail(
-	val symbol: BitMatrix?,
-	val sequenceSize: Int,
-	val sequenceIndex: Int,
-	val sequenceId: String,
-	val country: String?,
-	val addOn: String?,
-	val price: String?,
-	val issueNumber: String?,
-	val dateTime: String,
-	val id: Long,
-	val label: String?
-)
-
-private fun Parcel.readBarcodeFormat(): BarcodeFormat {
-	val formatName = (readString() ?: "").migrateBarcodeFormatName()
-	return BarcodeFormat.valueOf(formatName)
-}
-
-private fun Parcel.readScanParcelTail(): ScanParcelTail {
-	val position = dataPosition()
-	val tail = readCurrentScanParcelTail()
-	if (tail.isPlausible()) {
-		return tail
-	}
-	setDataPosition(position)
-	return readLegacyScanParcelTail()
-}
-
-private fun Parcel.readCurrentScanParcelTail() = ScanParcelTail(
-	symbol = readBitMatrix(),
-	sequenceSize = readInt(),
-	sequenceIndex = readInt(),
-	sequenceId = readString() ?: "",
-	country = readString(),
-	addOn = readString(),
-	price = readString(),
-	issueNumber = readString(),
-	dateTime = readString() ?: "",
-	id = readLong(),
-	label = readString()
-)
-
-private fun Parcel.readLegacyScanParcelTail() = ScanParcelTail(
-	symbol = null,
-	sequenceSize = readInt(),
-	sequenceIndex = readInt(),
-	sequenceId = readString() ?: "",
-	country = readString(),
-	addOn = readString(),
-	price = readString(),
-	issueNumber = readString(),
-	dateTime = readString() ?: "",
-	id = readLong(),
-	label = readString()
-)
-
-private fun ScanParcelTail.isPlausible(): Boolean {
-	if (!dateTime.matches(DATE_TIME_PATTERN)) {
-		return false
-	}
-	if (id < 0L) {
-		return false
-	}
-	if (sequenceSize < -1 || sequenceIndex < -1) {
-		return false
-	}
-	return true
-}
-
-private val DATE_TIME_PATTERN = Regex(
-	"""^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}:\d{3}$"""
-)
-
 private fun Bundle.getBitMatrix(): BitMatrix? {
 	val width = getInt(SCAN_SYMBOL_WIDTH, 0)
 	val height = getInt(SCAN_SYMBOL_HEIGHT, 0)
@@ -337,40 +199,3 @@ private const val SCAN_ISSUE_NUMBER = "issue_number"
 private const val SCAN_DATE_TIME = "date_time"
 private const val SCAN_ID = "id"
 private const val SCAN_LABEL = "label"
-
-private fun Parcel.writeSizedByteArray(array: ByteArray?) {
-	val size = array?.size ?: 0
-	writeInt(size)
-	if (size > 0) {
-		writeByteArray(array)
-	}
-}
-
-private fun Parcel.readSizedByteArray(): ByteArray? {
-	val size = readInt()
-	return if (size > 0) {
-		val array = ByteArray(size)
-		readByteArray(array)
-		array
-	} else {
-		null
-	}
-}
-
-private fun Parcel.writeBitMatrix(bm: BitMatrix?) {
-	writeInt(bm?.width ?: 0)
-	bm?.let {
-		writeInt(bm.height)
-		writeSizedByteArray(bm.data)
-	}
-}
-
-private fun Parcel.readBitMatrix(): BitMatrix? {
-	val width = readInt()
-	if (width < 1) {
-		return null
-	}
-	val height = readInt()
-	val data = readSizedByteArray() ?: return null
-	return BitMatrix(width, height, data)
-}

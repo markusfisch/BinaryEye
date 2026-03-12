@@ -143,7 +143,6 @@ class DecodeFragment : Fragment() {
 		closeAutomatically = prefs.closeAutomatically && justScanned
 
 		scan = arguments?.getBundle(SCAN_BUNDLE)?.toScan()
-			?: arguments?.getLegacyScan(SCAN)
 			?: throw IllegalArgumentException("DecodeFragment needs a Scan")
 
 		isBinary = scan.text.isEmpty()
@@ -667,7 +666,6 @@ class DecodeFragment : Fragment() {
 	}
 
 	companion object {
-		private const val SCAN = "scan"
 		private const val SCAN_BUNDLE = "scan_bundle"
 		private const val OPEN_DOCUMENT = 1
 		private const val SCHEME_FILE = "file://"
@@ -680,23 +678,6 @@ class DecodeFragment : Fragment() {
 			return fragment
 		}
 	}
-}
-
-@Suppress("DEPRECATION")
-private fun Bundle.getLegacyScan(name: String): Scan? = if (
-	Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
-) {
-	try {
-		getParcelable(name, Scan::class.java)
-	} catch (_: Throwable) {
-		null
-	}
-} else {
-	null
-} ?: try {
-	getParcelable(name)
-} catch (_: Throwable) {
-	null
 }
 
 private inline fun <T : View> T.showIf(

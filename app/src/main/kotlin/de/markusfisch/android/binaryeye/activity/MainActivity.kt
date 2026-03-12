@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -108,10 +107,6 @@ class MainActivity : AppCompatActivity() {
 				DecodeFragment.newInstance(it)
 			}
 
-			hasExtra(DECODED) -> getLegacyScanExtra(DECODED)?.let {
-				DecodeFragment.newInstance(it)
-			}
-
 			else -> PreferencesFragment()
 		}
 
@@ -152,30 +147,5 @@ class MainActivity : AppCompatActivity() {
 	}
 }
 
-@Suppress("DEPRECATION")
 private fun Intent.getScanBundleExtra(name: String) = getBundleExtra(name)
 	?.toScan()
-
-@Suppress("DEPRECATION")
-private fun Intent.getLegacyScanExtra(name: String): Scan? = if (
-	Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
-) {
-	try {
-		getParcelableExtra(name, Scan::class.java)
-	} catch (_: Throwable) {
-		// `getParcelableExtra(name, Class)` can throw on some versions
-		// of Android when the ClassLoader associated with the Bundle's
-		// lazy-decoded value is null in certain scenarios (e.g., after
-		// an activity restart where the system re-delivers the intent).
-		// Simply fallback to the "deprecated" `getParcelableExtra(name)`
-		// which works in this case, because it doesn't verify the
-		// parcelable's class against Scan::class.java.
-		null
-	}
-} else {
-	null
-} ?: try {
-	getParcelableExtra(name)
-} catch (_: Throwable) {
-	null
-}
