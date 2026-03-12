@@ -4,11 +4,11 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.WindowManager
 import android.widget.AbsListView
@@ -43,7 +43,7 @@ val systemBarRecyclerViewScrollListener = object : RecyclerView.OnScrollListener
 			layoutManager.findFirstCompletelyVisibleItemPosition() != 0
 		val scrollable = scrolled ||
 				layoutManager.findLastVisibleItemPosition() <
-				recyclerView.adapter.itemCount - 1
+				(recyclerView.adapter?.itemCount ?: 0) - 1
 		colorSystemAndToolBars(recyclerView.context, scrolled, scrollable)
 	}
 
@@ -71,15 +71,15 @@ fun AppCompatActivity.initBars() {
 				View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
 				View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 	colorSystemAndToolBars(this)
-	setPaddingFromWindowInsets(
-		findViewById(R.id.main),
-		(findViewById(R.id.toolbar) as Toolbar).apply {
-			setSupportActionBar(this)
-		},
-		findViewById(R.id.navbar)?.apply {
-			setBackgroundColor(translucentPrimaryColor)
-		}
-	)
+		setPaddingFromWindowInsets(
+			findViewById(R.id.main),
+			(findViewById(R.id.toolbar) as Toolbar).apply {
+				setSupportActionBar(this)
+			},
+			findViewById<View>(R.id.navbar)?.apply {
+				setBackgroundColor(translucentPrimaryColor)
+			}
+		)
 }
 
 private var statusBarColorLocked = false
@@ -119,10 +119,10 @@ fun colorSystemAndToolBars(
 			0
 		}
 	} else {
-		activity.findViewById(R.id.navbar)?.apply {
-			visibility = if (scrolled || scrollable) {
-				View.VISIBLE
-			} else {
+			activity.findViewById<View>(R.id.navbar)?.apply {
+				visibility = if (scrolled || scrollable) {
+					View.VISIBLE
+				} else {
 				View.GONE
 			}
 		}

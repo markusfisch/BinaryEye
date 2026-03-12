@@ -3,7 +3,6 @@ buildscript {
 		kotlin_version = '2.2.21'
 		tools_version = '9.0.1'
 		sdk_version = 36
-		support_version = '25.3.1'
 	}
 
 	repositories {

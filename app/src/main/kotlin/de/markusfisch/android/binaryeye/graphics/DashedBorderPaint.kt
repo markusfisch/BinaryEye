@@ -3,7 +3,7 @@ package de.markusfisch.android.binaryeye.graphics
 import android.content.Context
 import android.graphics.DashPathEffect
 import android.graphics.Paint
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import de.markusfisch.android.binaryeye.R
 
 fun Context.getDashedBorderPaint() = Paint(Paint.ANTI_ALIAS_FLAG).apply {

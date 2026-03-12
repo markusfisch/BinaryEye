@@ -12,8 +12,8 @@ import android.hardware.Camera
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
@@ -93,6 +93,11 @@ class CameraActivity : AppCompatActivity() {
 		permissions: Array<String>,
 		grantResults: IntArray
 	) {
+		super.onRequestPermissionsResult(
+			requestCode,
+			permissions,
+			grantResults
+		)
 		when (requestCode) {
 			PERMISSION_CAMERA -> if (grantResults.isNotEmpty() &&
 				grantResults[0] != PackageManager.PERMISSION_GRANTED
@@ -107,6 +112,7 @@ class CameraActivity : AppCompatActivity() {
 		resultCode: Int,
 		resultData: Intent?
 	) {
+		super.onActivityResult(requestCode, resultCode, resultData)
 		when (requestCode) {
 			PICK_FILE_RESULT_CODE -> {
 				if (resultCode == RESULT_OK && resultData != null) {

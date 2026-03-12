@@ -3,9 +3,9 @@ package de.markusfisch.android.binaryeye.activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuInflater
+import androidx.appcompat.app.AppCompatActivity
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.PERMISSION_LOCATION
 import de.markusfisch.android.binaryeye.app.PERMISSION_WRITE

@@ -21,7 +21,7 @@
 	<uses-feature android:name="android.hardware.camera"/>
 	<uses-feature android:name="android.hardware.camera.autofocus"
 		android:required="false" />
-	<uses-sdk tools:overrideLibrary="android.support.v14.preference"/>
+	<uses-sdk tools:overrideLibrary="androidx.preference"/>
 	<queries>
 		<intent>
 			<action android:name="android.intent.action.VIEW"/>
@@ -163,7 +163,7 @@
 			</intent-filter>
 		</service>
 		<provider
-			android:name="android.support.v4.content.FileProvider"
+			android:name="androidx.core.content.FileProvider"
 			android:authorities="${applicationId}.provider"
 			android:exported="false"
 			android:grantUriPermissions="true">

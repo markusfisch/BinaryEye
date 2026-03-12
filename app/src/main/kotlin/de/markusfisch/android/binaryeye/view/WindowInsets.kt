@@ -2,11 +2,11 @@ package de.markusfisch.android.binaryeye.view
 
 import android.graphics.Rect
 import android.os.Build
-import android.support.v4.view.ViewCompat
-import android.support.v4.view.WindowInsetsCompat
-import android.support.v7.widget.Toolbar
 import android.view.View
 import android.view.WindowInsets
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 
 private var toolbarHeight = 0
 fun setPaddingFromWindowInsets(

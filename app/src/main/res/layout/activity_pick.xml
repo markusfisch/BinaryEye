@@ -8,17 +8,17 @@
 		android:id="@+id/detector_view"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"/>
-	<android.support.design.widget.CoordinatorLayout
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
 		android:id="@+id/main"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:fitsSystemWindows="@bool/fitsSystemWindows">
 		<include layout="@layout/toolbar"/>
-		<android.support.design.widget.FloatingActionButton
+		<com.google.android.material.floatingactionbutton.FloatingActionButton
 			style="@style/FAB"
 			android:id="@+id/scan"
 			android:contentDescription="@string/scan_code"
 			android:src="@drawable/ic_action_next"/>
-	</android.support.design.widget.CoordinatorLayout>
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 	<include layout="@layout/navbar"/>
 </merge>

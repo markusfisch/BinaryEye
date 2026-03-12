@@ -9,7 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.DocumentsContract
-import android.support.design.widget.FloatingActionButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.text.Editable
 import android.text.Html
 import android.text.Spannable
@@ -105,6 +105,7 @@ class DecodeActivity : ScreenActivity() {
 		resultCode: Int,
 		resultData: Intent?
 	) {
+		super.onActivityResult(requestCode, resultCode, resultData)
 		when (requestCode) {
 			OPEN_DOCUMENT -> {
 				if (resultCode == Activity.RESULT_OK) {

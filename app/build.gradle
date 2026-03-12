@@ -70,10 +70,9 @@ dependencies {
 	implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2"
 
 	// Support
-	implementation "com.android.support:appcompat-v7:$support_version"
-	implementation "com.android.support:design:$support_version"
-	implementation "com.android.support:preference-v7:$support_version"
-	implementation "com.android.support:preference-v14:$support_version"
+	implementation "androidx.appcompat:appcompat:1.7.1"
+	implementation "com.google.android.material:material:1.12.0"
+	implementation "androidx.preference:preference:1.2.1"
 
 	// External
 	implementation 'com.github.markusfisch:CameraView:1.10.0'

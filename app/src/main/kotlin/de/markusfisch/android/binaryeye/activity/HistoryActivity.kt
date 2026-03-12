@@ -8,11 +8,6 @@ import android.database.Cursor
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.view.ActionMode
-import android.support.v7.widget.SearchView
-import android.support.v7.widget.SwitchCompat
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -21,6 +16,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ListView
+import androidx.appcompat.view.ActionMode
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.SwitchCompat
+import androidx.core.content.ContextCompat
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.ScansAdapter
 import de.markusfisch.android.binaryeye.app.alertDialog

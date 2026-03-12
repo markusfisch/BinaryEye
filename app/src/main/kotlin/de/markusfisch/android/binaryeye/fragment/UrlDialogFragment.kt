@@ -1,7 +1,7 @@
 package de.markusfisch.android.binaryeye.fragment
 
 import android.os.Bundle
-import android.support.v7.preference.PreferenceDialogFragmentCompat
+import androidx.preference.PreferenceDialogFragmentCompat
 import android.view.View
 import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
@@ -15,10 +15,10 @@ class UrlDialogFragment : PreferenceDialogFragmentCompat() {
 	private var urlView: TextView? = null
 	private var testButton: TextView? = null
 
-	override fun onBindDialogView(view: View?) {
+	override fun onBindDialogView(view: View) {
 		super.onBindDialogView(view)
-		urlView = view?.findViewById(R.id.url)
-		testButton = view?.findViewById(R.id.test_url)
+		urlView = view.findViewById(R.id.url)
+		testButton = view.findViewById(R.id.test_url)
 		testButton?.setOnClickListener {
 			testUrl(testButton)
 		}

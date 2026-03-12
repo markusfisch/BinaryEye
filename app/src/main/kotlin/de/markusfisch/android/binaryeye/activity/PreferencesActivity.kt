@@ -2,7 +2,7 @@ package de.markusfisch.android.binaryeye.activity
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.applyLocale
 import de.markusfisch.android.binaryeye.app.prefs

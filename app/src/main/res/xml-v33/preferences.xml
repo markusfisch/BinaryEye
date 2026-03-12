@@ -14,27 +14,27 @@
 			android:title="@string/barcode_formats"
 			android:entries="@array/barcode_formats_names"
 			android:entryValues="@array/barcode_formats_values"/>
-		<android.support.v7.preference.SwitchPreferenceCompat
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="show_crop_handle"
 			android:title="@string/show_crop_handle"
 			android:summary="@string/show_crop_handle_summary"/>
-		<android.support.v7.preference.SwitchPreferenceCompat
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="zoom_by_swiping"
 			android:title="@string/zoom_by_swiping"
 			android:summary="@string/zoom_by_swiping_summary"/>
-		<android.support.v7.preference.SwitchPreferenceCompat
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="auto_rotate"
 			android:title="@string/auto_rotate"
 			android:summary="@string/auto_rotate_summary"/>
-		<android.support.v7.preference.SwitchPreferenceCompat
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="try_harder"
 			android:title="@string/try_harder"
 			android:summary="@string/try_harder_summary"/>
-		<android.support.v7.preference.SwitchPreferenceCompat
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="bulk_mode"
 			android:title="@string/bulk_mode"
@@ -45,17 +45,17 @@
 			android:entries="@array/bulk_mode_delays_names"
 			android:entryValues="@array/bulk_mode_delays_values"
 			android:defaultValue="500"/>
-		<android.support.v7.preference.SwitchPreferenceCompat
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="show_toast_in_bulk_mode"
 			android:title="@string/show_toast_in_bulk_mode"
 			android:summary="@string/show_toast_in_bulk_mode_summary"/>
-		<android.support.v7.preference.SwitchPreferenceCompat
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="vibrate"
 			android:title="@string/vibrate"
 			android:summary="@string/vibrate_summary"/>
-		<android.support.v7.preference.SwitchPreferenceCompat
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="beep"
 			android:title="@string/beep"
@@ -66,7 +66,7 @@
 			android:entries="@array/beep_tones_names"
 			android:entryValues="@array/beep_tones_values"
 			android:defaultValue="tone_prop_beep"/>
-		<android.support.v7.preference.SwitchPreferenceCompat
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="use_history"
 			android:title="@string/use_history"
@@ -77,14 +77,14 @@
 			android:entries="@array/ignore_duplicates_names"
 			android:entryValues="@array/ignore_duplicates_values"
 			android:defaultValue="ignore_consecutive_duplicates"/>
-		<android.support.v7.preference.SwitchPreferenceCompat
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="copy_immediately"
 			android:title="@string/copy_immediately"
 			android:summary="@string/copy_immediately_summary"/>
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/send_category">
-		<android.support.v7.preference.SwitchPreferenceCompat
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="send_scan_active"
 			android:title="@string/send_scan_active"
@@ -98,7 +98,7 @@
 			android:entries="@array/send_type_names"
 			android:entryValues="@array/send_type_values"
 			android:defaultValue="0"/>
-		<android.support.v7.preference.SwitchPreferenceCompat
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="send_scan_bluetooth"
 			android:title="@string/send_scan_bluetooth"
@@ -111,17 +111,17 @@
 			android:defaultValue="@string/no_bluetooth_hosts_paired_value"/>
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/content_category">
-		<android.support.v7.preference.SwitchPreferenceCompat
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="open_immediately"
 			android:title="@string/open_immediately"
 			android:summary="@string/open_immediately_summary"/>
-		<android.support.v7.preference.SwitchPreferenceCompat
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="show_meta_data"
 			android:title="@string/show_meta_data"
 			android:summary="@string/show_meta_data_summary"/>
-		<android.support.v7.preference.SwitchPreferenceCompat
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="show_hex_dump"
 			android:title="@string/show_hex_dump"
@@ -132,12 +132,12 @@
 			android:entries="@array/checksum_names"
 			android:entryValues="@array/checksum_values"
 			android:defaultValue="@string/no_checksum"/>
-		<android.support.v7.preference.SwitchPreferenceCompat
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="show_recreation"
 			android:title="@string/show_recreation"
 			android:summary="@string/show_recreation_summary"/>
-		<android.support.v7.preference.SwitchPreferenceCompat
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="close_automatically"
 			android:title="@string/close_automatically"
@@ -161,7 +161,7 @@
 			android:summary="@string/clear_network_suggestions_summary"/>
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/generation_category">
-		<android.support.v7.preference.SwitchPreferenceCompat
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="brighten_screen"
 			android:title="@string/brighten_screen"

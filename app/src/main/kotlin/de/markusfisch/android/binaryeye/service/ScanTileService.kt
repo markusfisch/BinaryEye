@@ -5,7 +5,7 @@ import android.app.PendingIntent
 import android.content.Intent
 import android.os.Build
 import android.service.quicksettings.TileService
-import android.support.annotation.RequiresApi
+import androidx.annotation.RequiresApi
 import de.markusfisch.android.binaryeye.activity.CameraActivity
 
 @RequiresApi(Build.VERSION_CODES.N)

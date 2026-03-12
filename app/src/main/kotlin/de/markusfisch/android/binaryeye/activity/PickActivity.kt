@@ -9,9 +9,10 @@ import android.graphics.RectF
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.applyLocale
 import de.markusfisch.android.binaryeye.app.prefs
@@ -109,9 +110,9 @@ class PickActivity : AppCompatActivity() {
 			cropHandleName = "picker_crop_handle"
 		}
 
-		findViewById(R.id.scan).setOnClickListener {
-			showResult()
-		}
+			findViewById<View>(R.id.scan).setOnClickListener {
+				showResult()
+			}
 	}
 
 	private fun getBitmapFromIntent(): Bitmap? = if (

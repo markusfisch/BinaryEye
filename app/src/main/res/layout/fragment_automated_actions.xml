@@ -9,7 +9,7 @@
 		android:clipToPadding="false"
 		android:divider="@color/separator"
 		android:dividerHeight="1px"/>
-	<android.support.design.widget.CoordinatorLayout
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
 		android:id="@+id/inset_layout"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
@@ -22,10 +22,10 @@
 			android:gravity="center"
 			android:padding="32dp"
 			android:text="@string/automated_actions_empty"/>
-		<android.support.design.widget.FloatingActionButton
+		<com.google.android.material.floatingactionbutton.FloatingActionButton
 			style="@style/FAB"
 			android:id="@+id/add"
 			android:contentDescription="@string/automated_action_add"
 			android:src="@drawable/ic_action_create"/>
-	</android.support.design.widget.CoordinatorLayout>
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 </FrameLayout>

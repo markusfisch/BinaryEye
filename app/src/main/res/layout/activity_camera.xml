@@ -7,7 +7,7 @@
 		android:id="@+id/detector_view"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"/>
-	<android.support.design.widget.CoordinatorLayout
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
 		android:id="@+id/main"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
@@ -24,10 +24,10 @@
 			android:layout_marginLeft="16dp"
 			android:layout_marginStart="16dp"
 			android:padding="24dp"/>
-		<android.support.design.widget.FloatingActionButton
+		<com.google.android.material.floatingactionbutton.FloatingActionButton
 			style="@style/FAB"
 			android:id="@+id/flash"
 			android:contentDescription="@string/toggle_flash"
 			android:src="@drawable/ic_action_flash"/>
-	</android.support.design.widget.CoordinatorLayout>
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 </merge>
