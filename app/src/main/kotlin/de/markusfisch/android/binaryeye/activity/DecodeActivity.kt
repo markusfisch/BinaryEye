@@ -1,6 +1,8 @@
-package de.markusfisch.android.binaryeye.fragment
+package de.markusfisch.android.binaryeye.activity
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -8,7 +10,6 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.DocumentsContract
 import android.support.design.widget.FloatingActionButton
-import android.support.v4.app.Fragment
 import android.text.Editable
 import android.text.Html
 import android.text.Spannable
@@ -16,7 +17,6 @@ import android.text.SpannableString
 import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
 import android.text.style.TypefaceSpan
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -37,9 +37,7 @@ import de.markusfisch.android.binaryeye.actions.vtype.vevent.VEventAction
 import de.markusfisch.android.binaryeye.actions.web.WebAction
 import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
 import de.markusfisch.android.binaryeye.actions.wifi.WifiConnector
-import de.markusfisch.android.binaryeye.activity.MainActivity
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
-import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.hasLocationPermission
 import de.markusfisch.android.binaryeye.app.hasWritePermission
@@ -73,7 +71,7 @@ import java.io.File
 import java.security.MessageDigest
 import kotlin.math.roundToInt
 
-class DecodeFragment : Fragment() {
+class DecodeActivity : ScreenActivity() {
 	private lateinit var contentView: EditText
 	private lateinit var formatView: TextView
 	private lateinit var dataView: TableLayout
@@ -111,7 +109,7 @@ class DecodeFragment : Fragment() {
 			OPEN_DOCUMENT -> {
 				if (resultCode == Activity.RESULT_OK) {
 					val uri = resultData?.data ?: return
-					activity?.openPickedFile(uri)
+					openPickedFile(uri)
 				}
 			}
 		}
@@ -119,31 +117,20 @@ class DecodeFragment : Fragment() {
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
-		setHasOptionsMenu(true)
-	}
-
-	override fun onCreateView(
-		inflater: LayoutInflater,
-		container: ViewGroup?,
-		state: Bundle?
-	): View {
-		activity?.setTitle(R.string.content)
-
-		val view = inflater.inflate(
+		setTitle(R.string.content)
+		val frame = findViewById(R.id.content_frame) as ViewGroup
+		val view = layoutInflater.inflate(
 			R.layout.fragment_decode,
-			container,
+			frame,
 			false
 		)
+		frame.addView(view)
 
-		val justScanned = activity?.intent?.hasExtra(
-			MainActivity.DECODED
-		) == true || activity?.intent?.hasExtra(
-			MainActivity.DECODED_SCAN
-		) == true
+		val justScanned = intent.hasExtra(DECODED) || intent.hasExtra(DECODED_SCAN)
 		closeAutomatically = prefs.closeAutomatically && justScanned
 
-		scan = arguments?.getBundle(SCAN_BUNDLE)?.toScan()
-			?: throw IllegalArgumentException("DecodeFragment needs a Scan")
+		scan = intent?.extras?.getBundle(SCAN_BUNDLE)?.toScan()
+			?: throw IllegalArgumentException("DecodeActivity needs a Scan")
 
 		isBinary = scan.text.isEmpty()
 		originalBytes = scan.raw ?: scan.text.toByteArray()
@@ -180,8 +167,6 @@ class DecodeFragment : Fragment() {
 
 		initContentAndFab(justScanned)
 		updateViewsAndFab(scan.text, originalBytes)
-
-		return view
 	}
 
 	override fun onPause() {
@@ -312,8 +297,8 @@ class DecodeFragment : Fragment() {
 				v.setOnClickListener {
 					v.context.hideSoftKeyboard(contentView)
 					v.post {
-						fragmentManager?.addFragment(
-							BarcodeFragment.newInstance(barcode)
+						startActivity(
+							BarcodeActivity.newIntent(this, barcode)
 						)
 					}
 				}
@@ -480,7 +465,7 @@ class DecodeFragment : Fragment() {
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 		inflater.inflate(R.menu.fragment_decode, menu)
-		if (id > 0L) {
+		if (scan.id > 0L) {
 			menu.findItem(R.id.remove).isVisible = true
 		}
 		if (action is WifiAction) {
@@ -509,29 +494,26 @@ class DecodeFragment : Fragment() {
 			}
 
 			R.id.share -> {
-				context?.apply {
-					shareText(textOrHex())
-					maybeBackOrFinish()
-				}
+				shareText(textOrHex())
+				maybeBackOrFinish()
 				true
 			}
 
 			R.id.share_file -> {
-				context?.apply {
-					val (data, name) = if (isBinary) {
-						Pair(originalBytes, "barcode_content.bin")
-					} else {
-						Pair(content, "barcode_content.txt")
-					}
-					shareAsFile(data, name)
-					maybeBackOrFinish()
+				val (data, name) = if (isBinary) {
+					Pair(originalBytes, "barcode_content.bin")
+				} else {
+					Pair(content, "barcode_content.txt")
 				}
+				shareAsFile(data, name)
+				maybeBackOrFinish()
 				true
 			}
 
 			R.id.create -> {
-				fragmentManager?.addFragment(
-					EncodeFragment.newInstance(
+				startActivity(
+					EncodeActivity.newIntent(
+						this,
 						if (isBinary) originalBytes else content,
 						format
 					)
@@ -570,12 +552,10 @@ class DecodeFragment : Fragment() {
 	}
 
 	private fun copyToClipboard(text: String, isSensitive: Boolean = false) {
-		activity?.apply {
-			copyToClipboard(text, isSensitive)
-			// There's a clipboard popup from Android 13 on.
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-				toast(R.string.copied_to_clipboard)
-			}
+		(this as android.content.Context).copyToClipboard(text, isSensitive)
+		// There's a clipboard popup from Android 13 on.
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+			toast(R.string.copied_to_clipboard)
 		}
 	}
 
@@ -586,27 +566,21 @@ class DecodeFragment : Fragment() {
 	}
 
 	private fun backOrFinish() {
-		val fm = fragmentManager
-		if (fm != null && fm.backStackEntryCount > 0) {
-			fm.popBackStack()
-		} else {
-			activity?.finish()
-		}
+		finish()
 	}
 
 	private fun executeAction(str: String) {
-		val ac = activity ?: return
 		if (str.isEmpty() || openLocalDocument(str)) {
 			return
 		}
 		if (action is WifiAction &&
 			Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
-			!ac.hasLocationPermission { executeAction(str) }
+			!hasLocationPermission { executeAction(str) }
 		) {
 			return
 		}
 		scope.launch {
-			action.execute(ac, str.toByteArray())
+			action.execute(this@DecodeActivity, str.toByteArray())
 		}
 	}
 
@@ -642,40 +616,42 @@ class DecodeFragment : Fragment() {
 	}
 
 	private fun askForFileNameAndSave(raw: ByteArray) {
-		val ac = activity ?: return
 		// Write permission is only required before Android Q.
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
-			!ac.hasWritePermission { askForFileNameAndSave(raw) }
+			!hasWritePermission { askForFileNameAndSave(raw) }
 		) {
 			return
 		}
 		scope.launch(Dispatchers.Main) {
-			val name = ac.askForFileName() ?: return@launch
+			val name = askForFileName() ?: return@launch
 			withContext(Dispatchers.IO) {
-				val message = ac.writeExternalFile(
+				val message = writeExternalFile(
 					name,
 					"application/octet-stream"
 				) {
 					it.write(raw)
 				}.toSaveResult()
 				withContext(Dispatchers.Main) {
-					ac.toast(message)
+					toast(message)
 				}
 			}
 		}
 	}
 
 	companion object {
+		const val DECODED_SCAN = "decoded_scan"
+		const val DECODED = "decoded"
 		private const val SCAN_BUNDLE = "scan_bundle"
 		private const val OPEN_DOCUMENT = 1
 		private const val SCHEME_FILE = "file://"
 
-		fun newInstance(scan: Scan): Fragment {
+		fun newIntent(context: Context, scan: Scan): Intent {
 			val args = Bundle()
 			args.putBundle(SCAN_BUNDLE, scan.toBundle())
-			val fragment = DecodeFragment()
-			fragment.arguments = args
-			return fragment
+			return Intent(context, DecodeActivity::class.java).apply {
+				putExtra(DECODED_SCAN, true)
+				putExtras(args)
+			}
 		}
 	}
 }

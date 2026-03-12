@@ -16,8 +16,10 @@ import android.support.v7.preference.Preference
 import android.support.v7.preference.PreferenceFragmentCompat
 import android.support.v7.preference.PreferenceGroup
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.activity.AutomatedActionsActivity
+import de.markusfisch.android.binaryeye.activity.NetworkSuggestionsActivity
+import de.markusfisch.android.binaryeye.activity.ProfilesActivity
 import de.markusfisch.android.binaryeye.activity.SplashActivity
-import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.hasBluetoothPermission
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.bluetooth.setBluetoothHosts
@@ -89,9 +91,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		findPreference(PROFILE).apply {
 			updateProfileSummary(this)
 			onPreferenceClickListener = Preference.OnPreferenceClickListener {
-				activity?.supportFragmentManager?.addFragment(
-					ProfilesFragment()
-				)
+				startActivity(Intent(activity, ProfilesActivity::class.java))
 				true
 			}
 		}
@@ -101,8 +101,8 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		findPreference(AUTOMATED_ACTIONS).apply {
 			updateAutomatedActionsSummary(this)
 			onPreferenceClickListener = Preference.OnPreferenceClickListener {
-				activity?.supportFragmentManager?.addFragment(
-					AutomatedActionsFragment()
+				startActivity(
+					Intent(activity, AutomatedActionsActivity::class.java)
 				)
 				true
 			}
@@ -125,8 +125,8 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 				// From R+ we can query past network suggestions and
 				// make them editable.
 				setOnPreferenceClickListener {
-					activity?.supportFragmentManager?.addFragment(
-						NetworkSuggestionsFragment()
+					startActivity(
+						Intent(activity, NetworkSuggestionsActivity::class.java)
 					)
 					true
 				}

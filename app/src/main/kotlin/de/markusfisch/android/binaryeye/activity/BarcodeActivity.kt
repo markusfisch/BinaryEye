@@ -1,14 +1,13 @@
-package de.markusfisch.android.binaryeye.fragment
+package de.markusfisch.android.binaryeye.activity
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -55,7 +54,7 @@ import java.util.Locale
 import kotlin.math.max
 import kotlin.math.min
 
-class BarcodeFragment : Fragment() {
+class BarcodeActivity : ScreenActivity() {
 	private enum class FileType {
 		PNG, JPG, SVG, TXT
 	}
@@ -68,33 +67,27 @@ class BarcodeFragment : Fragment() {
 	private lateinit var addToHistoryItem: MenuItem
 	private lateinit var brightenScreenItem: MenuItem
 
+	private var contentView: View? = null
 	private var currentBrightness = -1f
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
-		setHasOptionsMenu(true)
-	}
-
-	override fun onCreateView(
-		inflater: LayoutInflater,
-		container: ViewGroup?,
-		state: Bundle?
-	): View? {
-		val ac = activity ?: return null
-		ac.setTitle(R.string.view_barcode)
-
-		val view = inflater.inflate(
+		setTitle(R.string.view_barcode)
+		val frame = findViewById(R.id.content_frame) as ViewGroup
+		val view = layoutInflater.inflate(
 			R.layout.fragment_barcode,
-			container,
+			frame,
 			false
 		)
+		frame.addView(view)
+		contentView = view
 
 		// Make `imageView` available for `onPause()`.
 		imageView = view.findViewById(R.id.barcode)
 
 		val bitmap: Bitmap
 		try {
-			barcode = arguments?.toBarcode() ?: throw IllegalArgumentException(
+			barcode = intent?.extras?.toBarcode() ?: throw IllegalArgumentException(
 				"Illegal arguments"
 			)
 			// Catch exceptions from encoding.
@@ -105,10 +98,10 @@ class BarcodeFragment : Fragment() {
 				message = getString(R.string.error_encoding_barcode)
 			}
 			message?.let {
-				ac.toast(message)
+				toast(message)
 			}
-			fragmentManager.popBackStack()
-			return null
+			finish()
+			return
 		}
 
 		imageView.setImageBitmap(bitmap)
@@ -140,8 +133,6 @@ class BarcodeFragment : Fragment() {
 		imageView.doOnApplyWindowInsets { _, insets ->
 			imageView.insets.set(insets)
 		}
-
-		return view
 	}
 
 	private fun Bundle.toBarcode(): Barcode<*> {
@@ -182,7 +173,7 @@ class BarcodeFragment : Fragment() {
 		super.onResume()
 		if (prefs.brightenScreen) {
 			// Post to make sure brightenScreenItem is initialized.
-			view?.post {
+			contentView?.post {
 				brightenScreen()
 			}
 		}
@@ -198,8 +189,8 @@ class BarcodeFragment : Fragment() {
 		}
 	}
 
-	override fun onDestroyView() {
-		super.onDestroyView()
+	override fun onDestroy() {
+		super.onDestroy()
 		parentJob.cancel()
 	}
 
@@ -217,7 +208,7 @@ class BarcodeFragment : Fragment() {
 					barcode.format
 				)
 				addToHistoryItem.isVisible = false
-				context.toast(R.string.added_to_history)
+				toast(R.string.added_to_history)
 				true
 			}
 
@@ -232,7 +223,7 @@ class BarcodeFragment : Fragment() {
 			}
 
 			R.id.export_to_file -> {
-				context.pickFileType(R.string.export_as) { fileType ->
+				pickFileType(R.string.export_as) { fileType ->
 					when (fileType) {
 						FileType.PNG,
 						FileType.JPG -> askForSize { size ->
@@ -261,10 +252,8 @@ class BarcodeFragment : Fragment() {
 	}
 
 	private fun copyToClipboard(text: String, isSensitive: Boolean = false) {
-		activity?.apply {
-			copyToClipboard(text, isSensitive)
-			toast(R.string.copied_to_clipboard)
-		}
+		(this as android.content.Context).copyToClipboard(text, isSensitive)
+		toast(R.string.copied_to_clipboard)
 	}
 
 	private fun deeplinkToCopy() = createEncodeDeeplink(
@@ -288,21 +277,20 @@ class BarcodeFragment : Fragment() {
 	// Dialogs do not have a parent view.
 	@SuppressLint("InflateParams")
 	private fun askForFileNameAndSave(fileType: FileType, bitmapSize: Int) {
-		val ac = activity ?: return
 		// Write permission is only required before Android Q.
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
-			!ac.hasWritePermission {
+			!hasWritePermission {
 				askForFileNameAndSave(fileType, bitmapSize)
 			}
 		) {
 			return
 		}
-		val view = ac.layoutInflater.inflate(R.layout.dialog_save_file, null)
+		val view = layoutInflater.inflate(R.layout.dialog_save_file, null)
 		val editText = view.findViewById<EditText>(R.id.file_name)
 		editText.setText(
 			encodeFileName("${barcode.format}_${barcode.content}")
 		)
-		AlertDialog.Builder(ac)
+		AlertDialog.Builder(this)
 			.setView(view)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				val fileName = editText.text.toString()
@@ -344,12 +332,11 @@ class BarcodeFragment : Fragment() {
 	// Dialogs do not have a parent view.
 	@SuppressLint("InflateParams")
 	private fun askForSize(write: (size: Int) -> Unit) {
-		val ac = activity ?: return
-		val view = ac.layoutInflater.inflate(R.layout.dialog_size, null)
+		val view = layoutInflater.inflate(R.layout.dialog_size, null)
 		val sizeView = view.findViewById<TextView>(R.id.size_display)
 		val sizeBarView = view.findViewById<SeekBar>(R.id.size_bar)
 		sizeBarView.initSizeBar(sizeView)
-		AlertDialog.Builder(ac)
+		AlertDialog.Builder(this)
 			.setView(view)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				write(getSize(sizeBarView.progress))
@@ -392,13 +379,12 @@ class BarcodeFragment : Fragment() {
 		mimeType: String,
 		write: (outputStream: OutputStream) -> Unit
 	) {
-		val ac = activity ?: return
 		scope.launch(Dispatchers.IO) {
-			val message = ac.writeExternalFile(
+			val message = writeExternalFile(
 				fileName, mimeType, write
 			).toSaveResult()
 			withContext(Dispatchers.Main) {
-				ac.toast(message)
+				toast(message)
 			}
 		}
 	}
@@ -449,19 +435,14 @@ class BarcodeFragment : Fragment() {
 	}
 
 	private fun brightenScreen() {
-		activity?.let {
-			if (!isAdded) {
-				return
-			}
-			currentBrightness = it.getScreenBrightness()
-			it.setScreenBrightness(1f)
-			brightenScreenItem.isChecked = true
-		}
+		currentBrightness = getScreenBrightness()
+		setScreenBrightness(1f)
+		brightenScreenItem.isChecked = true
 	}
 
 	private fun restoreScreenBrightness() {
-		if (currentBrightness > -1f && isAdded) {
-			activity?.setScreenBrightness(currentBrightness)
+		if (currentBrightness > -1f) {
+			setScreenBrightness(currentBrightness)
 			currentBrightness = -1f
 			brightenScreenItem.isChecked = false
 		}
@@ -482,10 +463,11 @@ class BarcodeFragment : Fragment() {
 		private const val MIME_SVG = "image/svg+xmg"
 		private const val MIME_TXT = "text/plain"
 
-		fun newInstance(
+		fun newIntent(
+			context: Context,
 			barcode: Barcode<*>,
 			colors: Int = 0
-		): Fragment {
+		): Intent {
 			val args = Bundle()
 			when (barcode) {
 				is ContentBarcode -> args.putEcLevelMargin(
@@ -504,24 +486,25 @@ class BarcodeFragment : Fragment() {
 				barcode.format,
 				colors
 			)
-			val fragment = BarcodeFragment()
-			fragment.arguments = args
-			return fragment
+			return Intent(context, BarcodeActivity::class.java).apply {
+				putExtras(args)
+			}
 		}
 
-		fun <T> newInstance(
+		fun <T> newIntent(
+			context: Context,
 			content: T,
 			format: BarcodeFormat,
 			ecLevel: Int = -1,
 			margin: Int = 0,
 			colors: Int = 0
-		): Fragment {
+		): Intent {
 			val args = Bundle()
 			args.putContentFormatColors(content, format, colors)
 			args.putEcLevelMargin(ecLevel, margin)
-			val fragment = BarcodeFragment()
-			fragment.arguments = args
-			return fragment
+			return Intent(context, BarcodeActivity::class.java).apply {
+				putExtras(args)
+			}
 		}
 
 		private fun <T> Bundle.putContentFormatColors(

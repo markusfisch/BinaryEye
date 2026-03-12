@@ -92,7 +92,6 @@ fun unlockStatusBarColor() {
 }
 
 private var translucentPrimaryColor = 0
-private val actionBarBackground = ColorDrawable()
 fun colorSystemAndToolBars(
 	context: Context,
 	scrolled: Boolean = false,
@@ -129,9 +128,7 @@ fun colorSystemAndToolBars(
 		}
 	}
 	activity.supportActionBar?.setBackgroundDrawable(
-		actionBarBackground.apply {
-			color = topColor
-		}
+		ColorDrawable(topColor)
 	)
 }
 

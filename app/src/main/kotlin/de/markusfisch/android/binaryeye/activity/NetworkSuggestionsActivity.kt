@@ -1,4 +1,4 @@
-package de.markusfisch.android.binaryeye.fragment
+package de.markusfisch.android.binaryeye.activity
 
 import android.content.Context
 import android.net.wifi.WifiManager
@@ -6,8 +6,6 @@ import android.net.wifi.WifiNetworkSuggestion
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -17,27 +15,24 @@ import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.systemBarListViewScrollListener
 import de.markusfisch.android.binaryeye.widget.toast
 
-class NetworkSuggestionsFragment : Fragment() {
+class NetworkSuggestionsActivity : ScreenActivity() {
 	@RequiresApi(Build.VERSION_CODES.R)
-	override fun onCreateView(
-		inflater: LayoutInflater,
-		container: ViewGroup?,
-		state: Bundle?
-	): View? {
-		val ac = activity ?: return null
-		ac.setTitle(R.string.network_suggestions)
-
-		val view = inflater.inflate(
+	override fun onCreate(state: Bundle?) {
+		super.onCreate(state)
+		setTitle(R.string.network_suggestions)
+		val frame = findViewById(R.id.content_frame) as ViewGroup
+		val view = layoutInflater.inflate(
 			R.layout.fragment_network_suggestions,
-			container,
+			frame,
 			false
 		)
+		frame.addView(view)
 
-		val wm = ac.applicationContext.getSystemService(
+		val wm = applicationContext.getSystemService(
 			Context.WIFI_SERVICE
 		) as WifiManager
 		val suggestionArrayAdapter = ArrayAdapter(
-			ac,
+			this,
 			android.R.layout.simple_list_item_checked,
 			wm.networkSuggestions.map {
 				Suggestion(
@@ -76,13 +71,11 @@ class NetworkSuggestionsFragment : Fragment() {
 				}
 				wm.removeNetworkSuggestions(removeList)
 			} else {
-				ac.toast(
+				toast(
 					R.string.clear_network_suggestions_nothing_to_remove
 				)
 			}
 		}
-
-		return view
 	}
 }
 

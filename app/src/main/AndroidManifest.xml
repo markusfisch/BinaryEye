@@ -112,7 +112,13 @@
 			android:name=".activity.WelcomeActivity"
 			android:exported="true"/>
 		<activity
-			android:name=".activity.MainActivity"
+			android:name=".activity.PreferencesActivity"
+			android:exported="true"/>
+		<activity
+			android:name=".activity.HistoryActivity"
+			android:exported="true"/>
+		<activity
+			android:name=".activity.EncodeActivity"
 			android:exported="true">
 			<intent-filter android:autoVerify="true">
 				<action android:name="android.intent.action.VIEW"/>
@@ -130,6 +136,21 @@
 				<data android:scheme="binaryeye" android:host="encode"/>
 			</intent-filter>
 		</activity>
+		<activity
+			android:name=".activity.DecodeActivity"
+			android:exported="false"/>
+		<activity
+			android:name=".activity.BarcodeActivity"
+			android:exported="false"/>
+		<activity
+			android:name=".activity.ProfilesActivity"
+			android:exported="false"/>
+		<activity
+			android:name=".activity.AutomatedActionsActivity"
+			android:exported="false"/>
+		<activity
+			android:name=".activity.NetworkSuggestionsActivity"
+			android:exported="false"/>
 		<service
 			android:name=".service.ScanTileService"
 			android:icon="@drawable/ic_action_scan"

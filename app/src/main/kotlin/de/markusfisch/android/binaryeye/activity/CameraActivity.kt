@@ -325,7 +325,7 @@ class CameraActivity : AppCompatActivity() {
 			}
 
 			R.id.history -> {
-				startActivity(MainActivity.getHistoryIntent(this))
+				startActivity(Intent(this, HistoryActivity::class.java))
 				true
 			}
 
@@ -365,7 +365,7 @@ class CameraActivity : AppCompatActivity() {
 			}
 
 			R.id.preferences -> {
-				startActivity(MainActivity.getPreferencesIntent(this))
+				startActivity(Intent(this, PreferencesActivity::class.java))
 				true
 			}
 
@@ -384,7 +384,7 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun createBarcode() {
-		startActivity(MainActivity.getEncodeIntent(this))
+		startActivity(EncodeActivity.newIntent<String>(this))
 	}
 
 	private fun switchCamera() {
@@ -473,7 +473,13 @@ class CameraActivity : AppCompatActivity() {
 		val text = intent.getStringExtra(Intent.EXTRA_TEXT)
 
 		if (text?.isEmpty() == false) {
-			startActivity(MainActivity.getEncodeIntent(this, text, true))
+			startActivity(EncodeActivity.newIntent(this, text).apply {
+				addFlags(
+					Intent.FLAG_ACTIVITY_NO_HISTORY or
+							Intent.FLAG_ACTIVITY_CLEAR_TASK or
+							Intent.FLAG_ACTIVITY_NEW_TASK
+				)
+			})
 			finish()
 			return
 		}
@@ -489,14 +495,18 @@ class CameraActivity : AppCompatActivity() {
 			if (file != null) {
 				val fs = FileInputStream(file.fileDescriptor)
 				val scn = Scanner(fs).useDelimiter("\\A")
-				if (scn.hasNext()) {
-					startActivity(
-						MainActivity.getEncodeIntent(
-							this, scn.next(), true
+					if (scn.hasNext()) {
+						startActivity(
+							EncodeActivity.newIntent(this, scn.next()).apply {
+								addFlags(
+									Intent.FLAG_ACTIVITY_NO_HISTORY or
+											Intent.FLAG_ACTIVITY_CLEAR_TASK or
+											Intent.FLAG_ACTIVITY_NEW_TASK
+								)
+							}
 						)
-					)
-					finish()
-				}
+						finish()
+					}
 				file.close()
 			}
 		}
@@ -895,9 +905,7 @@ fun Activity.showResult(
 		return
 	}
 	if (!bulkMode) {
-		startActivity(
-			MainActivity.getDecodeIntent(this, scan)
-		)
+		startActivity(DecodeActivity.newIntent(this, scan))
 	}
 }
 

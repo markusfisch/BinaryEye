@@ -1,4 +1,4 @@
-package de.markusfisch.android.binaryeye.fragment
+package de.markusfisch.android.binaryeye.activity
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -8,8 +8,6 @@ import android.database.Cursor
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.view.ActionMode
@@ -25,7 +23,6 @@ import android.widget.EditText
 import android.widget.ListView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.ScansAdapter
-import de.markusfisch.android.binaryeye.app.addFragment
 import de.markusfisch.android.binaryeye.app.alertDialog
 import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.hasWritePermission
@@ -52,7 +49,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HistoryFragment : Fragment() {
+class HistoryActivity : ScreenActivity() {
 	private lateinit var useHistorySwitch: SwitchCompat
 	private lateinit var listView: ListView
 	private lateinit var fab: View
@@ -72,7 +69,7 @@ class HistoryFragment : Fragment() {
 			// SDK35+ doesn't draw a status bar background anymore.
 			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM) {
 				lockStatusBarColor()
-				val ac = activity ?: return false
+				val ac = this@HistoryActivity
 				@Suppress("DEPRECATION")
 				ac.window.statusBarColor = ContextCompat.getColor(
 					ac,
@@ -93,7 +90,7 @@ class HistoryFragment : Fragment() {
 			mode: ActionMode,
 			item: MenuItem
 		): Boolean {
-			val ac = activity ?: return false
+			val ac = this@HistoryActivity
 			return when (item.itemId) {
 				R.id.copy_scan -> {
 					scansAdapter?.getSelectedContent("\n")?.let {
@@ -145,22 +142,10 @@ class HistoryFragment : Fragment() {
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
-		setHasOptionsMenu(true)
-	}
-
-	override fun onCreateView(
-		inflater: LayoutInflater,
-		container: ViewGroup?,
-		state: Bundle?
-	): View? {
-		val ac = activity ?: return null
-		ac.setTitle(R.string.history)
-
-		val view = inflater.inflate(
-			R.layout.fragment_history,
-			container,
-			false
-		)
+		setTitle(R.string.history)
+		val frame = findViewById(R.id.content_frame) as ViewGroup
+		val view = layoutInflater.inflate(R.layout.fragment_history, frame, false)
+		frame.addView(view)
 
 		useHistorySwitch = view.findViewById(
 			R.id.use_history
@@ -177,8 +162,8 @@ class HistoryFragment : Fragment() {
 		}
 		listView.setOnItemLongClickListener { _, v, position, id ->
 			scansAdapter?.select(v, id, position)
-			if (actionMode == null && ac is AppCompatActivity) {
-				actionMode = ac.delegate.startSupportActionMode(
+			if (actionMode == null) {
+				actionMode = delegate.startSupportActionMode(
 					actionModeCallback
 				)
 			}
@@ -197,8 +182,6 @@ class HistoryFragment : Fragment() {
 		listView.setPaddingFromWindowInsets()
 
 		update()
-
-		return view
 	}
 
 	override fun onDestroy() {
@@ -232,7 +215,7 @@ class HistoryFragment : Fragment() {
 
 	private fun initSearchView(item: MenuItem?) {
 		item ?: return
-		val ac = activity ?: return
+		val ac = this
 		val searchView = item.actionView as SearchView
 		val searchManager = ac.getSystemService(
 			Context.SEARCH_SERVICE
@@ -256,7 +239,7 @@ class HistoryFragment : Fragment() {
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return when (item.itemId) {
 			R.id.clear -> {
-				context.askToRemoveScans()
+				this.askToRemoveScans()
 				true
 			}
 
@@ -266,7 +249,7 @@ class HistoryFragment : Fragment() {
 			}
 
 			R.id.share_as_file -> {
-				context.pickListSeparatorAndShare(true)
+				this.pickListSeparatorAndShare(true)
 				true
 			}
 
@@ -293,13 +276,13 @@ class HistoryFragment : Fragment() {
 		scope.launch {
 			val cursor = db.getScans(filter)
 			withContext(Dispatchers.Main) {
-				val ac = activity ?: return@withContext
+				val ac = this@HistoryActivity
 				val hasScans = cursor.count > 0
 				if (filter == null) {
 					if (!hasScans) {
 						listView.emptyView = useHistorySwitch
 					}
-					ActivityCompat.invalidateOptionsMenu(ac)
+					ac.invalidateOptionsMenu()
 				}
 				enableMenuItems(hasScans)
 				fab.visibility = if (hasScans) {
@@ -337,7 +320,7 @@ class HistoryFragment : Fragment() {
 	private fun showScan(id: Long) = db.getScan(id)?.also { scan ->
 		closeActionMode()
 		try {
-			fragmentManager?.addFragment(DecodeFragment.newInstance(scan))
+			startActivity(DecodeActivity.newIntent(this, scan))
 		} catch (_: IllegalArgumentException) {
 			// Ignore, can never happen.
 		}
@@ -411,7 +394,7 @@ class HistoryFragment : Fragment() {
 
 	private fun askToExportToFile() {
 		scope.launch {
-			val ac = activity ?: return@launch
+			val ac = this@HistoryActivity
 			progressView.useVisibility {
 				// Write permission is only required before Android Q.
 				if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
@@ -483,12 +466,12 @@ class HistoryFragment : Fragment() {
 				text?.let {
 					withContext(Dispatchers.Main) {
 						if (asFile) {
-							context.shareAsFile(
+							this@HistoryActivity.shareAsFile(
 								it,
 								String.format("scans.%s", ext)
 							)
 						} else {
-							context.shareText(it)
+							this@HistoryActivity.shareText(it)
 						}
 					}
 				}

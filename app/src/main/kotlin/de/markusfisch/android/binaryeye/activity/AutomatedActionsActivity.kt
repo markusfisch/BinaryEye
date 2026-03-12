@@ -1,11 +1,9 @@
-package de.markusfisch.android.binaryeye.fragment
+package de.markusfisch.android.binaryeye.activity
 
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -19,31 +17,28 @@ import de.markusfisch.android.binaryeye.automation.AutomatedAction
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.systemBarListViewScrollListener
 
-class AutomatedActionsFragment : Fragment() {
+class AutomatedActionsActivity : ScreenActivity() {
 	private val actions = ArrayList<AutomatedAction>()
 
 	private lateinit var adapter: ActionsAdapter
 
-	override fun onCreateView(
-		inflater: LayoutInflater,
-		container: ViewGroup?,
-		state: Bundle?
-	): View? {
-		val ac = activity ?: return null
-		ac.setTitle(R.string.automated_actions)
-
-		val view = inflater.inflate(
+	override fun onCreate(state: Bundle?) {
+		super.onCreate(state)
+		setTitle(R.string.automated_actions)
+		val frame = findViewById(R.id.content_frame) as ViewGroup
+		val view = layoutInflater.inflate(
 			R.layout.fragment_automated_actions,
-			container,
+			frame,
 			false
 		)
+		frame.addView(view)
 
 		actions.clear()
 		actions.addAll(prefs.automatedActions)
 
 		val listView = view.findViewById<ListView>(R.id.actions)
 		listView.emptyView = view.findViewById(R.id.no_actions)
-		adapter = ActionsAdapter(ac, actions)
+		adapter = ActionsAdapter(this, actions)
 		listView.adapter = adapter
 		listView.setOnScrollListener(systemBarListViewScrollListener)
 		listView.setOnItemClickListener { _, _, position, _ ->
@@ -60,14 +55,11 @@ class AutomatedActionsFragment : Fragment() {
 
 		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
 		listView.setPaddingFromWindowInsets()
-
-		return view
 	}
 
 	private fun editAction(position: Int?) {
-		val ac = activity ?: return
 		val action = position?.let { actions[it] }
-		val view = ac.layoutInflater.inflate(
+		val view = layoutInflater.inflate(
 			R.layout.dialog_automated_action,
 			null
 		)
@@ -112,7 +104,7 @@ class AutomatedActionsFragment : Fragment() {
 		typeGroup.check(initialTypeId)
 		updateTypeSections(initialTypeId)
 
-		val dialog = AlertDialog.Builder(ac)
+		val dialog = AlertDialog.Builder(this)
 			.setTitle(
 				if (action == null) {
 					R.string.automated_action_add
@@ -207,8 +199,7 @@ class AutomatedActionsFragment : Fragment() {
 	}
 
 	private fun confirmRemoveAction(position: Int) {
-		val ac = activity ?: return
-		AlertDialog.Builder(ac)
+		AlertDialog.Builder(this)
 			.setMessage(R.string.automated_action_remove_confirm)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				actions.removeAt(position)

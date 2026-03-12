@@ -1,10 +1,8 @@
-package de.markusfisch.android.binaryeye.fragment
+package de.markusfisch.android.binaryeye.activity
 
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -17,30 +15,27 @@ import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.systemBarListViewScrollListener
 import de.markusfisch.android.binaryeye.widget.toast
 
-class ProfilesFragment : Fragment() {
+class ProfilesActivity : ScreenActivity() {
 	private val profiles = ArrayList<ProfileItem>()
 
 	private lateinit var adapter: ProfilesAdapter
 
-	override fun onCreateView(
-		inflater: LayoutInflater,
-		container: ViewGroup?,
-		state: Bundle?
-	): View? {
-		val ac = activity ?: return null
-		ac.setTitle(R.string.profile)
-
-		val view = inflater.inflate(
+	override fun onCreate(state: Bundle?) {
+		super.onCreate(state)
+		setTitle(R.string.profile)
+		val frame = findViewById(R.id.content_frame) as ViewGroup
+		val view = layoutInflater.inflate(
 			R.layout.fragment_profiles,
-			container,
+			frame,
 			false
 		)
+		frame.addView(view)
 
 		refreshProfiles()
 
 		val listView = view.findViewById<ListView>(R.id.profiles)
 		listView.emptyView = view.findViewById(R.id.no_profiles)
-		adapter = ProfilesAdapter(ac, profiles)
+		adapter = ProfilesAdapter(this, profiles)
 		listView.adapter = adapter
 		listView.setOnScrollListener(systemBarListViewScrollListener)
 		listView.setOnItemClickListener { _, _, position, _ ->
@@ -57,8 +52,6 @@ class ProfilesFragment : Fragment() {
 
 		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
 		listView.setPaddingFromWindowInsets()
-
-		return view
 	}
 
 	private fun refreshProfiles() {
@@ -78,48 +71,45 @@ class ProfilesFragment : Fragment() {
 	}
 
 	private fun selectProfile(position: Int) {
-		val ac = activity ?: return
 		val profile = profiles[position].name
 		if (prefs.profile == profile) {
 			return
 		}
-		prefs.load(ac, profile)
+		prefs.load(this, profile)
 		adapter.notifyDataSetChanged()
 	}
 
 	// Dialogs do not have a parent view.
 	@Suppress("InflateParams")
 	private fun addProfile() {
-		val ac = activity ?: return
-		val view = ac.layoutInflater.inflate(
+		val view = layoutInflater.inflate(
 			R.layout.dialog_profile_name, null
 		)
 		val editText = view.findViewById<EditText>(R.id.name)
-		AlertDialog.Builder(ac)
+		AlertDialog.Builder(this)
 			.setView(view)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				val name = editText.text.toString().trim()
 				if (name.isNotEmpty() && prefs.addProfile(name)) {
-					prefs.load(ac, name)
+					prefs.load(this, name)
 					refreshProfiles()
 				} else {
-					ac.toast(R.string.profile_invalid_name)
+					toast(R.string.profile_invalid_name)
 				}
 			}
 			.show()
 	}
 
 	private fun confirmRemoveProfile(position: Int) {
-		val ac = activity ?: return
 		val profile = profiles[position]
 		val profileName = profile.name ?: return
-		AlertDialog.Builder(ac)
+		AlertDialog.Builder(this)
 			.setMessage(R.string.profile_remove_confirm)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				val isCurrent = prefs.profile == profileName
 				prefs.removeProfile(profileName)
 				if (isCurrent) {
-					prefs.load(ac, null)
+					prefs.load(this, null)
 				}
 				refreshProfiles()
 			}
