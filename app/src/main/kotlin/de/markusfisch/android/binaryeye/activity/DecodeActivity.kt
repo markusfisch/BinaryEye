@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.DocumentsContract
+import androidx.core.net.toUri
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.text.Editable
 import android.text.Html
@@ -359,12 +360,12 @@ class DecodeActivity : ScreenActivity() {
 				)
 			}
 
-			is WebAction -> try {
-				items.putAll(
-					Uri.parse(text).run {
-						mapOf(
-							R.string.scheme to scheme,
-							R.string.host to host,
+				is WebAction -> try {
+					items.putAll(
+						text.toUri().run {
+							mapOf(
+								R.string.scheme to scheme,
+								R.string.host to host,
 							R.string.query to query
 						)
 					}

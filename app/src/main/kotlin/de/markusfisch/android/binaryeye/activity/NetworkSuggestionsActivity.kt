@@ -6,6 +6,7 @@ import android.net.wifi.WifiNetworkSuggestion
 import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
+import androidx.core.util.size
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -53,7 +54,7 @@ class NetworkSuggestionsActivity : ScreenActivity() {
 			val removeList = ArrayList<WifiNetworkSuggestion>()
 			val removeFromAdapter = ArrayList<Suggestion>()
 			val checked = listView.checkedItemPositions
-			val size = checked.size()
+			val size = checked.size
 			for (i in 0 until size) {
 				if (checked.valueAt(i)) {
 					val pos = checked.keyAt(i)

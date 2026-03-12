@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.net.toUri
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -316,7 +317,7 @@ class EncodeActivity : ScreenActivity() {
 		if (!isEncodeDeeplink(data)) {
 			return null
 		}
-		val uri = Uri.parse(data)
+		val uri = data.toUri()
 		return Bundle().apply {
 			uri.getQueryParameter("content")?.let {
 				putString(CONTENT_TEXT, it)

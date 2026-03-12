@@ -2,11 +2,11 @@ package de.markusfisch.android.binaryeye.view
 
 import android.content.Context
 import android.content.ContextWrapper
-import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
@@ -127,9 +127,7 @@ fun colorSystemAndToolBars(
 			}
 		}
 	}
-	activity.supportActionBar?.setBackgroundDrawable(
-		ColorDrawable(topColor)
-	)
+	activity.supportActionBar?.setBackgroundDrawable(topColor.toDrawable())
 }
 
 private fun getAppCompatActivity(context: Context): AppCompatActivity? {

@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.graphics.Point
 import android.media.ToneGenerator
 import android.preference.PreferenceManager
+import androidx.core.content.edit
 import de.markusfisch.android.binaryeye.automation.AutomatedAction
 import de.markusfisch.android.binaryeye.automation.AutomatedAction.Companion.fromJsonArray
 import de.markusfisch.android.binaryeye.automation.AutomatedAction.Companion.toJsonArray
@@ -21,7 +22,9 @@ class Preferences {
 
 	var profile: String? = null
 		set(value) {
-			defaultPreferences.edit().putString(PROFILE, value).apply()
+			defaultPreferences.edit {
+				putString(PROFILE, value)
+			}
 			field = value
 		}
 	var barcodeFormats = setOf(
@@ -275,10 +278,9 @@ class Preferences {
 	}
 
 	fun saveProfiles() {
-		defaultPreferences.edit().putString(
-			PROFILES,
-			JSONArray(profiles).toString()
-		).apply()
+		defaultPreferences.edit {
+			putString(PROFILES, JSONArray(profiles).toString())
+		}
 	}
 
 	fun loadProfiles() {
@@ -337,7 +339,9 @@ class Preferences {
 		// Map old setting to new one if it wasn't on default value.
 		val ignoreConsecutiveDuplicates = "ignore_consecutive_duplicates"
 		if (!preferences.getBoolean(ignoreConsecutiveDuplicates, true)) {
-			preferences.edit().remove(ignoreConsecutiveDuplicates).apply()
+			preferences.edit {
+				remove(ignoreConsecutiveDuplicates)
+			}
 			ignoreDuplicatesName = "accept_duplicates"
 		}
 
@@ -433,7 +437,9 @@ class Preferences {
 		for (format in formats) {
 			val name = "${format.name}_added"
 			if (!preferences.getBoolean(name, false)) {
-				preferences.edit().putBoolean(name, true).apply()
+				preferences.edit {
+					putBoolean(name, true)
+				}
 				add(format.name)
 			}
 		}
@@ -473,32 +479,41 @@ class Preferences {
 		else -> IgnoreDuplicates.Never
 	}
 
-	private fun put(label: String, value: Boolean) =
-		preferences.edit().putBoolean(label, value)
-
 	private fun apply(label: String, value: Boolean) {
-		put(label, value).apply()
+		preferences.edit {
+			putBoolean(label, value)
+		}
 	}
 
 	private fun apply(label: String, value: String) {
-		preferences.edit().putString(label, value).apply()
+		preferences.edit {
+			putString(label, value)
+		}
 	}
 
 	private fun apply(label: String, value: Int) {
-		preferences.edit().putInt(label, value).apply()
+		preferences.edit {
+			putInt(label, value)
+		}
 	}
 
 	private fun apply(label: String, value: Float) {
-		preferences.edit().putFloat(label, value).apply()
+		preferences.edit {
+			putFloat(label, value)
+		}
 	}
 
 	@SuppressLint("ApplySharedPref")
 	private fun commit(label: String, value: String) {
-		preferences.edit().putString(label, value).commit()
+		preferences.edit(true) {
+			putString(label, value)
+		}
 	}
 
 	private fun apply(label: String, value: Set<String>) {
-		preferences.edit().putStringSet(label, value).apply()
+		preferences.edit {
+			putStringSet(label, value)
+		}
 	}
 
 	companion object {

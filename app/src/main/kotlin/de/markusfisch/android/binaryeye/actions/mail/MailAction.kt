@@ -2,7 +2,7 @@ package de.markusfisch.android.binaryeye.actions.mail
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
+import androidx.core.net.toUri
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.IntentAction
 
@@ -24,7 +24,7 @@ object MailAction : IntentAction() {
 		)?.groupValues?.get(1) ?: return null
 		return Intent(
 			Intent.ACTION_SENDTO,
-			Uri.parse("mailto:$mailWithMessage")
+			"mailto:$mailWithMessage".toUri()
 		)
 	}
 }

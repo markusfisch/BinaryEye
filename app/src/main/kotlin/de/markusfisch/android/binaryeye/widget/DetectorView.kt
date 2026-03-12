@@ -8,6 +8,7 @@ import android.graphics.Path
 import android.graphics.Point
 import android.graphics.Rect
 import android.graphics.Region
+import androidx.core.graphics.withSave
 import android.os.Build
 import androidx.core.content.ContextCompat
 import android.util.AttributeSet
@@ -269,19 +270,19 @@ class DetectorView : View {
 			return
 		}
 		val radius = min(minDist / 2, cornerRadius).toFloat()
-		save()
-		clipOutPathCompat(
-			calculateRoundedRectPath(
-				roi.left.toFloat(),
-				roi.top.toFloat(),
-				roi.right.toFloat(),
-				roi.bottom.toFloat(),
-				radius,
-				radius
+		withSave {
+			clipOutPathCompat(
+				calculateRoundedRectPath(
+					roi.left.toFloat(),
+					roi.top.toFloat(),
+					roi.right.toFloat(),
+					roi.bottom.toFloat(),
+					radius,
+					radius
+				)
 			)
-		)
-		drawColor(shadeColor)
-		restore()
+			drawColor(shadeColor)
+		}
 	}
 
 	private fun Canvas.drawHandle() {

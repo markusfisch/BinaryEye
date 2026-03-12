@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import androidx.core.content.FileProvider
+import androidx.core.net.toUri
 import de.markusfisch.android.binaryeye.BuildConfig
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.widget.toast
@@ -54,7 +55,7 @@ fun Context.openUri(uri: Uri, silent: Boolean = false): Boolean {
 	}
 }
 
-fun String.parseAndNormalizeUri(): Uri = Uri.parse(this).let {
+fun String.parseAndNormalizeUri(): Uri = toUri().let {
 	it.normalizeScheme()
 }
 

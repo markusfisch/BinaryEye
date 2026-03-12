@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isNotEmpty
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.PERMISSION_LOCATION
 import de.markusfisch.android.binaryeye.app.PERMISSION_WRITE
@@ -56,7 +57,7 @@ abstract class ScreenActivity : AppCompatActivity() {
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
 		onCreateOptionsMenu(menu, menuInflater)
-		return menu.size() > 0 || super.onCreateOptionsMenu(menu)
+		return menu.isNotEmpty() || super.onCreateOptionsMenu(menu)
 	}
 
 	protected open fun onCreateOptionsMenu(

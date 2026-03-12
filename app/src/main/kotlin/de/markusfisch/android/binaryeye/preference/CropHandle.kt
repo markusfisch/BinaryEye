@@ -2,6 +2,7 @@ package de.markusfisch.android.binaryeye.preference
 
 import android.content.SharedPreferences
 import android.graphics.Point
+import androidx.core.content.edit
 import org.json.JSONObject
 
 fun SharedPreferences.storeCropHandle(
@@ -10,13 +11,15 @@ fun SharedPreferences.storeCropHandle(
 	viewHeight: Int,
 	cropHandle: Point
 ) {
-	edit().putString(
-		cropHandleKey(name, viewWidth, viewHeight),
-		JSONObject().apply {
-			put("x", cropHandle.x)
-			put("y", cropHandle.y)
-		}.toString()
-	).apply()
+	edit {
+		putString(
+			cropHandleKey(name, viewWidth, viewHeight),
+			JSONObject().apply {
+				put("x", cropHandle.x)
+				put("y", cropHandle.y)
+			}.toString()
+		)
+	}
 }
 
 fun SharedPreferences.restoreCropHandle(

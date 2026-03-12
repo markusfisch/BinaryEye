@@ -2,7 +2,7 @@ package de.markusfisch.android.binaryeye.actions.sms
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
+import androidx.core.net.toUri
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.IntentAction
 
@@ -27,7 +27,7 @@ object SmsAction : IntentAction() {
 		} ?: return null
 		return Intent(
 			Intent.ACTION_SENDTO,
-			Uri.parse("smsto:$number")
+			"smsto:$number".toUri()
 		).apply {
 			if (message.isNotEmpty()) {
 				putExtra("sms_body", message)

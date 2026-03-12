@@ -13,6 +13,8 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
+import androidx.core.net.toUri
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.view.Menu
 import android.view.MenuItem
@@ -188,7 +190,9 @@ class CameraActivity : AppCompatActivity() {
 		if (prefs.defaultPreferences.getBoolean(welcomeShownName, false)) {
 			return false
 		}
-		prefs.defaultPreferences.edit().putBoolean(welcomeShownName, true).apply()
+		prefs.defaultPreferences.edit {
+			putBoolean(welcomeShownName, true)
+		}
 		val packageInfo = packageManager.getPackageInfo(packageName, 0)
 		val installedSince = System.currentTimeMillis() -
 				packageInfo.firstInstallTime
@@ -449,7 +453,7 @@ class CameraActivity : AppCompatActivity() {
 	private fun openReadme() {
 		val intent = Intent(
 			Intent.ACTION_VIEW,
-			Uri.parse(getString(R.string.project_url))
+			getString(R.string.project_url).toUri()
 		)
 		execShareIntent(intent)
 	}
@@ -705,10 +709,10 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun storeZoomBarSettings() {
-		val editor = prefs.preferences.edit()
-		editor.putInt(ZOOM_MAX, zoomBar.max)
-		editor.putInt(ZOOM_LEVEL, zoomBar.progress)
-		editor.apply()
+		prefs.preferences.edit {
+			putInt(ZOOM_MAX, zoomBar.max)
+			putInt(ZOOM_LEVEL, zoomBar.progress)
+		}
 	}
 
 	private fun restoreZoomBarSettings() {
@@ -925,11 +929,11 @@ private fun getReturnIntent(result: Result) = Intent().apply {
 	}
 }
 
-private fun completeUrl(urlTemplate: String, result: Result) = Uri.parse(
+private fun completeUrl(urlTemplate: String, result: Result) = (
 	urlTemplate
 		.replace("{RESULT}", result.text.urlEncode())
 		.replace("{RESULT_BYTES}", result.rawBytes.toHexString())
 		.replace("{FORMAT}", result.format.name.urlEncode())
 		// And support {CODE} from the old ZXing app, too.
 		.replace("{CODE}", result.text.urlEncode())
-)
+).toUri()

@@ -2,12 +2,13 @@ package de.markusfisch.android.binaryeye.graphics
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import androidx.core.graphics.createBitmap
 
 fun Bitmap.fixTransparency(): Bitmap {
 	val result = analyzeTransparency()
 	val cfg = config
 	return if (cfg != null && result.hasTransparentPixels) {
-		val copy = Bitmap.createBitmap(
+		val copy = createBitmap(
 			width,
 			height,
 			cfg
