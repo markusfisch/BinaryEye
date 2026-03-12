@@ -62,16 +62,14 @@ private fun lastChildOutOfView(listView: AbsListView): Boolean {
 }
 
 fun AppCompatActivity.initBars() {
-	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-		// Keeps the soft keyboard from repositioning the layout.
-		window.setSoftInputMode(
-			WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
-		)
-		window.decorView.systemUiVisibility =
-			View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-					View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-					View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-	}
+	// Keeps the soft keyboard from repositioning the layout.
+	window.setSoftInputMode(
+		WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+	)
+	window.decorView.systemUiVisibility =
+		View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+				View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+				View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 	colorSystemAndToolBars(this)
 	setPaddingFromWindowInsets(
 		findViewById(R.id.main),
@@ -108,38 +106,31 @@ fun colorSystemAndToolBars(
 	}
 	val topColor = if (scrolled) translucentPrimaryColor else 0
 	val activity = getAppCompatActivity(context) ?: return
-	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-		// System bars no longer have a background from SDK35+.
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-			val window = activity.window
-			if (!statusBarColorLocked) {
-				@Suppress("DEPRECATION")
-				window.statusBarColor = topColor
-			}
+	// System bars no longer have a background from SDK35+.
+	if (Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+		val window = activity.window
+		if (!statusBarColorLocked) {
 			@Suppress("DEPRECATION")
-			window.navigationBarColor = if (scrolled || scrollable) {
-				translucentPrimaryColor
-			} else {
-				0
-			}
+			window.statusBarColor = topColor
+		}
+		@Suppress("DEPRECATION")
+		window.navigationBarColor = if (scrolled || scrollable) {
+			translucentPrimaryColor
 		} else {
-			activity.findViewById(R.id.navbar)?.apply {
-				visibility = if (scrolled || scrollable) {
-					View.VISIBLE
-				} else {
-					View.GONE
-				}
+			0
+		}
+	} else {
+		activity.findViewById(R.id.navbar)?.apply {
+			visibility = if (scrolled || scrollable) {
+				View.VISIBLE
+			} else {
+				View.GONE
 			}
 		}
 	}
 	activity.supportActionBar?.setBackgroundDrawable(
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			// Avoid allocation on Honeycomb and better.
-			actionBarBackground.color = topColor
-			actionBarBackground
-		} else {
-			// ColorDrawable.setColor() doesn't exist pre Honeycomb.
-			ColorDrawable(topColor)
+		actionBarBackground.apply {
+			color = topColor
 		}
 	)
 }

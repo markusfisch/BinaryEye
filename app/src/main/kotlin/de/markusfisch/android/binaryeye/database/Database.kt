@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.preference.Preferences
+import de.markusfisch.android.binaryeye.zxingcpp.migrateBarcodeFormatName
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 
 class Database {
@@ -123,7 +124,9 @@ class Database {
 			Scan(
 				it.getString(SCANS_TEXT),
 				it.getBlob(SCANS_RAW),
-				BarcodeFormat.valueOf(it.getString(SCANS_FORMAT)),
+				BarcodeFormat.valueOf(
+					it.getString(SCANS_FORMAT).migrateBarcodeFormatName()
+				),
 				it.getString(SCANS_ERROR_CORRECTION_LEVEL),
 				it.getString(SCANS_VERSION),
 				it.getInt(SCANS_DATA_MASK),
@@ -263,7 +266,7 @@ class Database {
 	}
 
 	private class OpenHelper(context: Context) :
-		SQLiteOpenHelper(context, FILE_NAME, null, 8) {
+		SQLiteOpenHelper(context, FILE_NAME, null, 9) {
 		override fun onCreate(db: SQLiteDatabase) {
 			db.createScans()
 		}
@@ -293,6 +296,9 @@ class Database {
 			}
 			if (oldVersion < 8) {
 				db.addSymbolColumns()
+			}
+			if (oldVersion < 9) {
+				db.migrateToNativeFormatNames()
 			}
 		}
 	}
@@ -389,6 +395,43 @@ class Database {
 			execSQL("UPDATE $SCANS SET $SCANS_GTIN_ADD_ON = $SCANS_UPC_EAN_EXTENSION")
 			execSQL("UPDATE $SCANS SET $SCANS_GTIN_PRICE = $SCANS_SUGGESTED_PRICE")
 			execSQL("UPDATE $SCANS SET $SCANS_GTIN_ISSUE_NUMBER = $SCANS_ISSUE_NUMBER")
+		}
+
+		private fun SQLiteDatabase.migrateToNativeFormatNames() {
+			val mappings = listOf(
+				"NONE" to "None",
+				"AZTEC" to "Aztec",
+				"CODABAR" to "Codabar",
+				"CODE_39" to "Code39",
+				"CODE_39_EXT" to "Code39Ext",
+				"CODE_32" to "Code32",
+				"PZN" to "PZN",
+				"CODE_93" to "Code93",
+				"CODE_128" to "Code128",
+				"DATA_BAR_OMNI" to "DataBarOmni",
+				"DATA_BAR_STK" to "DataBarStk",
+				"DATA_BAR_LTD" to "DataBarLtd",
+				"DATA_BAR_EXPANDED" to "DataBarExp",
+				"DATA_BAR_EXP_STK" to "DataBarExpStk",
+				"DATA_MATRIX" to "DataMatrix",
+				"DX_FILM_EDGE" to "DXFilmEdge",
+				"EAN_8" to "EAN8",
+				"EAN_13" to "EAN13",
+				"ITF" to "ITF",
+				"MAXICODE" to "MaxiCode",
+				"PDF_417" to "PDF417",
+				"QR_CODE" to "QRCode",
+				"MICRO_QR_CODE" to "MicroQRCode",
+				"RMQR_CODE" to "RMQRCode",
+				"UPC_A" to "UPCA",
+				"UPC_E" to "UPCE"
+			)
+			for ((oldName, newName) in mappings) {
+				execSQL(
+					"UPDATE $SCANS SET $SCANS_FORMAT = ? WHERE $SCANS_FORMAT = ?",
+					arrayOf(newName, oldName)
+				)
+			}
 		}
 
 		private fun SQLiteDatabase.migrateToVersionString() {

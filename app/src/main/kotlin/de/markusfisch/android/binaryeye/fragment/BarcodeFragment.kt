@@ -498,8 +498,6 @@ class BarcodeFragment : Fragment() {
 					args.putInt(BIT_MATRIX_HEIGHT, barcode.bitMatrix.height)
 					args.putByteArray(BIT_MATRIX_DATA, barcode.bitMatrix.data)
 				}
-
-				else -> throw IllegalArgumentException("unknown barcode")
 			}
 			args.putContentFormatColors(
 				barcode.content,
@@ -515,7 +513,7 @@ class BarcodeFragment : Fragment() {
 			content: T,
 			format: BarcodeFormat,
 			ecLevel: Int = -1,
-			margin: Int = -1,
+			margin: Int = 0,
 			colors: Int = 0
 		): Fragment {
 			val args = Bundle()

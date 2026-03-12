@@ -2,9 +2,7 @@ package de.markusfisch.android.binaryeye.actions.vtype.vevent
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.provider.CalendarContract
-import android.support.annotation.RequiresApi
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.IntentAction
 import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
@@ -21,14 +19,10 @@ object VEventAction : IntentAction() {
 		get() = R.string.vevent_failed
 
 	override fun canExecuteOn(data: ByteArray): Boolean {
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-			return false
-		}
 		val type = VTypeParser.parseVType(String(data))
 		return type == "VEVENT" || type == "VCALENDAR"
 	}
 
-	@RequiresApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 	override suspend fun createIntent(context: Context, data: ByteArray): Intent? {
 		val info = VTypeParser.parseMap(String(data))
 

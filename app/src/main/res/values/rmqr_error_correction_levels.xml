@@ -1,0 +1,6 @@
+<resources>
+	<string-array name="rmqr_error_correction_levels">
+		<item>@string/error_correction_level_m</item>
+		<item>@string/error_correction_level_h</item>
+	</string-array>
+</resources>

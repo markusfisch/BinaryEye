@@ -6,7 +6,7 @@
 		<item name="android:windowBackground">@drawable/background_window</item>
 		<item name="windowActionModeOverlay">true</item>
 		<item name="actionModeBackground">@color/accent</item>
-		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+		<item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
 	</style>
 	<style name="SplashTheme" parent="@style/AppTheme">
 		<item name="android:windowBackground">@drawable/background_splash</item>

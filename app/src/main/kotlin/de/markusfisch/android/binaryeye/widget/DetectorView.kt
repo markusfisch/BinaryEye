@@ -16,7 +16,6 @@ import android.view.View
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.graphics.getBitmapFromDrawable
-import de.markusfisch.android.binaryeye.graphics.getDashedBorderPaint
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
@@ -34,7 +33,6 @@ class DetectorView : View {
 		coordinatesLast = 0
 		invalidate()
 	}
-	private val roiPaint = context.getDashedBorderPaint()
 	private val dotPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
 		color = ContextCompat.getColor(context, R.color.dot)
 		style = Paint.Style.FILL
@@ -270,25 +268,20 @@ class DetectorView : View {
 		if (minDist < 1) {
 			return
 		}
-		// canvas.clipRect() doesn't work reliably below KITKAT.
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-			val radius = min(minDist / 2, cornerRadius).toFloat()
-			save()
-			clipOutPathCompat(
-				calculateRoundedRectPath(
-					roi.left.toFloat(),
-					roi.top.toFloat(),
-					roi.right.toFloat(),
-					roi.bottom.toFloat(),
-					radius,
-					radius
-				)
+		val radius = min(minDist / 2, cornerRadius).toFloat()
+		save()
+		clipOutPathCompat(
+			calculateRoundedRectPath(
+				roi.left.toFloat(),
+				roi.top.toFloat(),
+				roi.right.toFloat(),
+				roi.bottom.toFloat(),
+				radius,
+				radius
 			)
-			drawColor(shadeColor)
-			restore()
-		} else {
-			drawRect(roi, roiPaint)
-		}
+		)
+		drawColor(shadeColor)
+		restore()
 	}
 
 	private fun Canvas.drawHandle() {

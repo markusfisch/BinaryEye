@@ -113,34 +113,30 @@ object WifiConnector {
 			get() = inputMap["I"] ?: ""
 		internal val eapMethod: Int?
 			get() = if (inputMap["E"].isNullOrEmpty()) {
-				requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) {
-					WifiEnterpriseConfig.Eap.NONE
-				}
+				WifiEnterpriseConfig.Eap.NONE
 			} else when (inputMap["E"]?.uppercase()) {
-				"AKA" -> requireSdk(Build.VERSION_CODES.LOLLIPOP) { WifiEnterpriseConfig.Eap.AKA }
+				"AKA" -> WifiEnterpriseConfig.Eap.AKA
 				"AKA_PRIME" -> requireSdk(Build.VERSION_CODES.M) { WifiEnterpriseConfig.Eap.AKA_PRIME }
-				"NONE" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.NONE }
-				"PEAP" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.PEAP }
-				"PWD" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.PWD }
-				"SIM" -> requireSdk(Build.VERSION_CODES.LOLLIPOP) { WifiEnterpriseConfig.Eap.SIM }
-				"TLS" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.TLS }
-				"TTLS" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Eap.TTLS }
+				"NONE" -> WifiEnterpriseConfig.Eap.NONE
+				"PEAP" -> WifiEnterpriseConfig.Eap.PEAP
+				"PWD" -> WifiEnterpriseConfig.Eap.PWD
+				"SIM" -> WifiEnterpriseConfig.Eap.SIM
+				"TLS" -> WifiEnterpriseConfig.Eap.TLS
+				"TTLS" -> WifiEnterpriseConfig.Eap.TTLS
 				"UNAUTH_TLS" -> requireSdk(Build.VERSION_CODES.N) { WifiEnterpriseConfig.Eap.UNAUTH_TLS }
 				else -> null
 			}
 		internal val phase2Method: Int?
 			get() = if (inputMap["PH2"].isNullOrEmpty()) {
-				requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) {
-					WifiEnterpriseConfig.Phase2.NONE
-				}
+				WifiEnterpriseConfig.Phase2.NONE
 			} else when (inputMap["PH2"]?.uppercase()) {
 				"AKA" -> requireSdk(Build.VERSION_CODES.O) { WifiEnterpriseConfig.Phase2.AKA }
 				"AKA_PRIME" -> requireSdk(Build.VERSION_CODES.O) { WifiEnterpriseConfig.Phase2.AKA_PRIME }
-				"GTC" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.GTC }
-				"MSCHAP" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.MSCHAP }
-				"MSCHAPV2" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.MSCHAPV2 }
-				"NONE" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.NONE }
-				"PAP" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) { WifiEnterpriseConfig.Phase2.PAP }
+				"GTC" -> WifiEnterpriseConfig.Phase2.GTC
+				"MSCHAP" -> WifiEnterpriseConfig.Phase2.MSCHAP
+				"MSCHAPV2" -> WifiEnterpriseConfig.Phase2.MSCHAPV2
+				"NONE" -> WifiEnterpriseConfig.Phase2.NONE
+				"PAP" -> WifiEnterpriseConfig.Phase2.PAP
 				"SIM" -> requireSdk(Build.VERSION_CODES.O) { WifiEnterpriseConfig.Phase2.SIM }
 				else -> null
 			}
@@ -265,7 +261,7 @@ object WifiConnector {
 					allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP)
 				}
 
-				"WPA2-EAP" -> requireSdk(Build.VERSION_CODES.JELLY_BEAN_MR2) {
+				"WPA2-EAP" -> {
 					passwordWithQuotes?.let {
 						preSharedKey = it
 					} ?: return null
@@ -285,7 +281,7 @@ object WifiConnector {
 						data.eapMethod ?: return null // non valid eapMethod
 					enterpriseConfig.phase2Method =
 						data.phase2Method ?: return null // non valid phase2Method
-				} ?: return null // api isn't high enough
+				}
 			}
 			return this
 		}

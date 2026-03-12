@@ -270,12 +270,10 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 
 private fun Activity.restartApp() {
 	val intent = Intent(this, SplashActivity::class.java)
-	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-		intent.addFlags(
-			Intent.FLAG_ACTIVITY_NEW_TASK or
-					Intent.FLAG_ACTIVITY_CLEAR_TASK
-		)
-	}
+	intent.addFlags(
+		Intent.FLAG_ACTIVITY_NEW_TASK or
+				Intent.FLAG_ACTIVITY_CLEAR_TASK
+	)
 	startActivity(intent)
 	finish()
 	// Restart to begin with an unmodified Locale to follow system settings.

@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 				val uri = Uri.parse(dataString)
 				EncodeFragment.newInstance(
 					content = uri.getQueryParameter("content"),
-					format = uri.getQueryParameter("format")?.uppercase(),
+					format = uri.getQueryParameter("format"),
 					execute = uri.getQueryParameter("execute")
 						.let { it == "" || it.toBoolean() }
 				)
@@ -128,14 +128,9 @@ class MainActivity : AppCompatActivity() {
 			val intent = Intent(context, MainActivity::class.java)
 			intent.putExtra(ENCODE, text)
 			if (isExternal) {
-				val flagActivityClearTask = if (
-					Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB
-				) {
-					Intent.FLAG_ACTIVITY_CLEAR_TASK
-				} else 0
 				intent.addFlags(
 					Intent.FLAG_ACTIVITY_NO_HISTORY or
-							flagActivityClearTask or
+							Intent.FLAG_ACTIVITY_CLEAR_TASK or
 							Intent.FLAG_ACTIVITY_NEW_TASK
 				)
 			}

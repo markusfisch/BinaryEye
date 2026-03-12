@@ -418,7 +418,7 @@ class DecodeFragment : Fragment() {
 			R.string.gtin_issue_number to scan.issueNumber,
 		)
 		if (!scan.version.isNullOrBlank()) {
-			val versionString = if (scan.format.name == "QR_CODE") {
+			val versionString = if (scan.format == ZxingCpp.BarcodeFormat.QRCode) {
 				getString(
 					R.string.qr_version_and_modules,
 					scan.version,
@@ -433,7 +433,7 @@ class DecodeFragment : Fragment() {
 				)
 			)
 		}
-		if (scan.format == ZxingCpp.BarcodeFormat.QR_CODE &&
+		if (scan.format == ZxingCpp.BarcodeFormat.QRCode &&
 			scan.dataMask > -1
 		) {
 			items.putAll(
@@ -753,7 +753,7 @@ private fun generateDpTrackingLink(bytes: ByteArray, format: String): String? {
 	// Check for Deutsche Post Matrixcode stamp.
 	var isStamp = false
 	var rawData = bytes
-	if (format == "DATA_MATRIX" &&
+	if (format == ZxingCpp.BarcodeFormat.DataMatrix.name &&
 		bytes.toString(Charsets.ISO_8859_1).startsWith("DEA5")
 	) {
 		if (bytes.size == 47) {

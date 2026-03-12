@@ -31,6 +31,7 @@ import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import java.io.InputStream
 import kotlin.math.min
 
+
 class EncodeFragment : Fragment() {
 	private lateinit var formatView: Spinner
 	private lateinit var ecLabel: TextView
@@ -41,18 +42,33 @@ class EncodeFragment : Fragment() {
 	private lateinit var contentView: EditText
 	private lateinit var unescapeCheckBox: CheckBox
 
-	private val formats = arrayListOf(
-		BarcodeFormat.AZTEC,
-		BarcodeFormat.CODABAR,
-		BarcodeFormat.CODE_39,
-		BarcodeFormat.CODE_128,
-		BarcodeFormat.DATA_MATRIX,
-		BarcodeFormat.EAN_8,
-		BarcodeFormat.EAN_13,
+	private val writeableFormats = arrayListOf(
+		BarcodeFormat.Aztec,
+		BarcodeFormat.Codabar,
+		BarcodeFormat.Code39,
+		BarcodeFormat.Code39Ext,
+		BarcodeFormat.Code32,
+		BarcodeFormat.PZN,
+		BarcodeFormat.Code93,
+		BarcodeFormat.Code128,
+		BarcodeFormat.DataBar,
+		BarcodeFormat.DataBarOmni,
+		BarcodeFormat.DataBarStk,
+		BarcodeFormat.DataBarLtd,
+		BarcodeFormat.DataBarExp,
+		BarcodeFormat.DataBarExpStk,
+		BarcodeFormat.DataMatrix,
+		BarcodeFormat.DXFilmEdge,
+		BarcodeFormat.EAN8,
+		BarcodeFormat.EAN13,
 		BarcodeFormat.ITF,
-		BarcodeFormat.PDF_417,
-		BarcodeFormat.QR_CODE,
-		BarcodeFormat.UPC_A
+		BarcodeFormat.MaxiCode,
+		BarcodeFormat.PDF417,
+		BarcodeFormat.QRCode,
+		BarcodeFormat.MicroQRCode,
+		BarcodeFormat.RMQRCode,
+		BarcodeFormat.UPCA,
+		BarcodeFormat.UPCE,
 	)
 
 	private var bytes: ByteArray? = null
@@ -103,7 +119,7 @@ class EncodeFragment : Fragment() {
 		val formatAdapter = ArrayAdapter(
 			ac,
 			android.R.layout.simple_spinner_item,
-			formats.map { it.name.prettifyFormatName() }
+			writeableFormats.map { it.name.prettifyFormatName() }
 		)
 		formatAdapter.setDropDownViewResource(
 			android.R.layout.simple_spinner_dropdown_item
@@ -116,11 +132,13 @@ class EncodeFragment : Fragment() {
 				position: Int,
 				id: Long
 			) {
-				val format = formats[position]
+				val format = writeableFormats[position]
 				val arrayId = when (format) {
-					BarcodeFormat.AZTEC -> R.array.aztec_error_correction_levels
-					BarcodeFormat.QR_CODE -> R.array.qr_error_correction_levels
-					BarcodeFormat.PDF_417 -> R.array.pdf417_error_correction_levels
+					BarcodeFormat.Aztec -> R.array.aztec_error_correction_levels
+					BarcodeFormat.QRCode -> R.array.qr_error_correction_levels
+					BarcodeFormat.MicroQRCode -> R.array.mqr_error_correction_levels
+					BarcodeFormat.RMQRCode -> R.array.rmqr_error_correction_levels
+					BarcodeFormat.PDF417 -> R.array.pdf417_error_correction_levels
 					else -> 0
 				}
 				if (arrayId > 0) {
@@ -138,14 +156,6 @@ class EncodeFragment : Fragment() {
 				format.canBeInverted().setVisibilityFor(
 					colorsLabel, colorsSpinner
 				)
-				when (format) {
-					BarcodeFormat.AZTEC,
-					BarcodeFormat.DATA_MATRIX,
-					BarcodeFormat.QR_CODE,
-					BarcodeFormat.PDF_417 -> true
-
-					else -> false
-				}.setVisibilityFor(addQuietZoneSwitch)
 			}
 
 			override fun onNothingSelected(parentView: AdapterView<*>?) {}
@@ -160,7 +170,7 @@ class EncodeFragment : Fragment() {
 				position: Int,
 				id: Long
 			) {
-				val format = formats[formatView.selectedItemPosition]
+				val format = writeableFormats[formatView.selectedItemPosition]
 				prefs.indexOfLastSelectedEcLevel = format.packEcLevel(
 					prefs.indexOfLastSelectedEcLevel,
 					position
@@ -194,7 +204,7 @@ class EncodeFragment : Fragment() {
 		val barcodeFormat = args?.getString(FORMAT)
 		if (barcodeFormat != null) {
 			formatView.setSelection(
-				formats.indexOf(barcodeFormat.toFormat())
+				writeableFormats.indexOf(barcodeFormat.toFormat())
 			)
 		} else if (state == null) {
 			formatView.post {
@@ -260,20 +270,15 @@ class EncodeFragment : Fragment() {
 	}
 
 	private fun newEncodeFragment(content: Any): Fragment {
-		val format = formats[formatView.selectedItemPosition]
+		val format = writeableFormats[formatView.selectedItemPosition]
 		return BarcodeFragment.newInstance(
 			content,
 			format,
 			format.getErrorCorrectionLevel(ecSpinner.selectedItemPosition),
-			when (format) {
-				BarcodeFormat.AZTEC,
-				BarcodeFormat.DATA_MATRIX,
-				BarcodeFormat.QR_CODE,
-				BarcodeFormat.PDF_417 -> if (
-					addQuietZoneSwitch.isChecked
-				) 1 else 0
-
-				else -> -1
+			if (addQuietZoneSwitch.isChecked) {
+				1
+			} else {
+				0
 			},
 			if (format.canBeInverted()) {
 				colorsSpinner.selectedItemPosition
@@ -363,22 +368,26 @@ private fun BarcodeFormat.unpackEcLevel(packed: Int) =
 	(packed shr ecLevelShift()) and 15
 
 private fun BarcodeFormat.ecLevelShift() = when (this) {
-	BarcodeFormat.AZTEC -> 0
-	BarcodeFormat.QR_CODE -> 4
-	BarcodeFormat.PDF_417 -> 8
+	BarcodeFormat.Aztec -> 0
+	BarcodeFormat.QRCode -> 4
+	BarcodeFormat.MicroQRCode -> 3
+	BarcodeFormat.RMQRCode -> 2
+	BarcodeFormat.PDF417 -> 8
 	else -> throw IllegalArgumentException("$this does not have error levels")
 }
 
 private fun BarcodeFormat.canBeInverted() = when (this) {
-	BarcodeFormat.AZTEC,
-	BarcodeFormat.DATA_MATRIX,
-	BarcodeFormat.QR_CODE -> true
+	BarcodeFormat.Aztec,
+	BarcodeFormat.DataMatrix,
+	BarcodeFormat.QRCode,
+	BarcodeFormat.MicroQRCode,
+	BarcodeFormat.RMQRCode -> true
 
 	else -> false
 }
 
 private fun String.toFormat(
-	default: BarcodeFormat = BarcodeFormat.QR_CODE
+	default: BarcodeFormat = BarcodeFormat.QRCode
 ): BarcodeFormat = try {
 	BarcodeFormat.valueOf(this)
 } catch (_: IllegalArgumentException) {
@@ -386,9 +395,11 @@ private fun String.toFormat(
 }
 
 private fun BarcodeFormat.getErrorCorrectionLevel(position: Int) = when (this) {
-	BarcodeFormat.AZTEC -> position
-	BarcodeFormat.QR_CODE -> (position + 1) * 2
-	BarcodeFormat.PDF_417 -> position
+	BarcodeFormat.Aztec -> position
+	BarcodeFormat.QRCode,
+	BarcodeFormat.MicroQRCode -> (position + 1) * 2
+	BarcodeFormat.RMQRCode -> (position + 1) * 4
+	BarcodeFormat.PDF417 -> position
 	else -> 0
 }.coerceIn(0, 8)
 

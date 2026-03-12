@@ -3,15 +3,6 @@ package de.markusfisch.android.binaryeye.database
 import android.database.Cursor
 import de.markusfisch.android.zxingcpp.ZxingCpp
 
-// Overwrite Kotlin's ".use" function for Cursor because Cursor cannot
-// be cast to Closeable below API level 16. This should be removed when
-// the minSDK is increased to at least JELLY_BEAN (16).
-inline fun <R> Cursor.use(block: (Cursor) -> R): R = try {
-	block.invoke(this)
-} finally {
-	close()
-}
-
 fun Cursor.getInt(name: String): Int {
 	val idx = getColumnIndex(name)
 	return if (idx < 0) 0 else getInt(idx)

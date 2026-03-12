@@ -5,12 +5,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Point
 import android.media.ToneGenerator
-import android.os.Build
 import android.preference.PreferenceManager
-import android.support.annotation.RequiresApi
 import de.markusfisch.android.binaryeye.automation.AutomatedAction
 import de.markusfisch.android.binaryeye.automation.AutomatedAction.Companion.fromJsonArray
 import de.markusfisch.android.binaryeye.automation.AutomatedAction.Companion.toJsonArray
+import de.markusfisch.android.binaryeye.zxingcpp.migrateBarcodeFormatName
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import org.json.JSONArray
 
@@ -26,27 +25,33 @@ class Preferences {
 			field = value
 		}
 	var barcodeFormats = setOf(
-		BarcodeFormat.AZTEC.name,
-		BarcodeFormat.CODABAR.name,
-		BarcodeFormat.CODE_39.name,
-		BarcodeFormat.CODE_93.name,
-		BarcodeFormat.CODE_128.name,
-		BarcodeFormat.DATA_BAR.name,
-		BarcodeFormat.DATA_BAR_EXPANDED.name,
-		BarcodeFormat.DATA_MATRIX.name,
-		BarcodeFormat.DX_FILM_EDGE.name,
-		BarcodeFormat.EAN_8.name,
-		BarcodeFormat.EAN_13.name,
+		BarcodeFormat.Aztec.name,
+		BarcodeFormat.Codabar.name,
+		BarcodeFormat.Code39.name,
+		BarcodeFormat.Code39Ext.name,
+		BarcodeFormat.Code32.name,
+		BarcodeFormat.PZN.name,
+		BarcodeFormat.Code93.name,
+		BarcodeFormat.Code128.name,
+		BarcodeFormat.DataBar.name,
+		BarcodeFormat.DataBarOmni.name,
+		BarcodeFormat.DataBarStk.name,
+		BarcodeFormat.DataBarLtd.name,
+		BarcodeFormat.DataBarExp.name,
+		BarcodeFormat.DataBarExpStk.name,
+		BarcodeFormat.DataMatrix.name,
+		BarcodeFormat.DXFilmEdge.name,
+		BarcodeFormat.EAN8.name,
+		BarcodeFormat.EAN13.name,
 		BarcodeFormat.ITF.name,
-		BarcodeFormat.MAXICODE.name,
-		BarcodeFormat.PDF_417.name,
-		BarcodeFormat.QR_CODE.name,
-		BarcodeFormat.MICRO_QR_CODE.name,
-		BarcodeFormat.RMQR_CODE.name,
-		BarcodeFormat.UPC_A.name,
-		BarcodeFormat.UPC_E.name,
+		BarcodeFormat.MaxiCode.name,
+		BarcodeFormat.PDF417.name,
+		BarcodeFormat.QRCode.name,
+		BarcodeFormat.MicroQRCode.name,
+		BarcodeFormat.RMQRCode.name,
+		BarcodeFormat.UPCA.name,
+		BarcodeFormat.UPCE.name,
 	)
-		@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 		set(value) {
 			apply(BARCODE_FORMATS, value)
 			field = value
@@ -286,14 +291,24 @@ class Preferences {
 	}
 
 	fun update() {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			preferences.getStringSet(BARCODE_FORMATS, barcodeFormats)?.let {
-				barcodeFormats = addFormatsOnUpdate(
-					it,
-					BarcodeFormat.RMQR_CODE,
-					BarcodeFormat.DX_FILM_EDGE
-				)
+		preferences.getStringSet(BARCODE_FORMATS, barcodeFormats)?.let {
+			val migrated = migrateBarcodeFormats(it)
+			if (migrated != it) {
+				apply(BARCODE_FORMATS, migrated)
 			}
+			barcodeFormats = addFormatsOnUpdate(
+				migrated,
+				BarcodeFormat.Code39Ext,
+				BarcodeFormat.Code32,
+				BarcodeFormat.PZN,
+				BarcodeFormat.DataBarOmni,
+				BarcodeFormat.DataBarStk,
+				BarcodeFormat.DataBarLtd,
+				BarcodeFormat.DataBarExp,
+				BarcodeFormat.DataBarExpStk,
+				BarcodeFormat.RMQRCode,
+				BarcodeFormat.DXFilmEdge
+			)
 		}
 
 		showCropHandle = preferences.getBoolean(
@@ -424,6 +439,12 @@ class Preferences {
 		}
 	}
 
+	private fun migrateBarcodeFormats(formats: Set<String>): Set<String> {
+		return formats.mapTo(mutableSetOf()) { format ->
+			format.migrateBarcodeFormatName()
+		}
+	}
+
 	fun restoreCropHandle(
 		name: String,
 		viewWidth: Int,
@@ -476,7 +497,6 @@ class Preferences {
 		preferences.edit().putString(label, value).commit()
 	}
 
-	@RequiresApi(Build.VERSION_CODES.HONEYCOMB)
 	private fun apply(label: String, value: Set<String>) {
 		preferences.edit().putStringSet(label, value).apply()
 	}

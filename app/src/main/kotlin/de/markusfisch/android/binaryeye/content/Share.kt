@@ -55,11 +55,7 @@ fun Context.openUri(uri: Uri, silent: Boolean = false): Boolean {
 }
 
 fun String.parseAndNormalizeUri(): Uri = Uri.parse(this).let {
-	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-		it.normalizeScheme()
-	} else {
-		it
-	}
+	it.normalizeScheme()
 }
 
 fun Context.shareText(text: String, mimeType: String = "text/plain") {

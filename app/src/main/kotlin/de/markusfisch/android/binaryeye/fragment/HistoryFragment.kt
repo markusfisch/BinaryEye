@@ -38,7 +38,6 @@ import de.markusfisch.android.binaryeye.database.Database
 import de.markusfisch.android.binaryeye.database.exportCsv
 import de.markusfisch.android.binaryeye.database.exportDatabase
 import de.markusfisch.android.binaryeye.database.exportJson
-import de.markusfisch.android.binaryeye.database.use
 import de.markusfisch.android.binaryeye.io.askForFileName
 import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.view.lockStatusBarColor
@@ -70,10 +69,8 @@ class HistoryFragment : Fragment() {
 				R.menu.fragment_history_edit,
 				menu
 			)
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP &&
-				// SDK35+ doesn't draw a status bar background anymore.
-				Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM
-			) {
+			// SDK35+ doesn't draw a status bar background anymore.
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM) {
 				lockStatusBarColor()
 				val ac = activity ?: return false
 				@Suppress("DEPRECATION")
@@ -235,29 +232,25 @@ class HistoryFragment : Fragment() {
 
 	private fun initSearchView(item: MenuItem?) {
 		item ?: return
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-			item.isVisible = false
-		} else {
-			val ac = activity ?: return
-			val searchView = item.actionView as SearchView
-			val searchManager = ac.getSystemService(
-				Context.SEARCH_SERVICE
-			) as SearchManager
-			searchView.setSearchableInfo(
-				searchManager.getSearchableInfo(ac.componentName)
-			)
-			searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-				override fun onQueryTextSubmit(query: String): Boolean {
-					update(query)
-					return false
-				}
+		val ac = activity ?: return
+		val searchView = item.actionView as SearchView
+		val searchManager = ac.getSystemService(
+			Context.SEARCH_SERVICE
+		) as SearchManager
+		searchView.setSearchableInfo(
+			searchManager.getSearchableInfo(ac.componentName)
+		)
+		searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+			override fun onQueryTextSubmit(query: String): Boolean {
+				update(query)
+				return false
+			}
 
-				override fun onQueryTextChange(query: String): Boolean {
-					update(query)
-					return false
-				}
-			})
-		}
+			override fun onQueryTextChange(query: String): Boolean {
+				update(query)
+				return false
+			}
+		})
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -49,6 +49,7 @@ import de.markusfisch.android.binaryeye.view.scanFeedback
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
+import de.markusfisch.android.binaryeye.zxingcpp.migrateBarcodeFormatName
 import de.markusfisch.android.cameraview.widget.CameraView
 import de.markusfisch.android.zxingcpp.ZxingCpp
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
@@ -195,12 +196,7 @@ class CameraActivity : AppCompatActivity() {
 		shouldStoreSettings = false
 		zoomBar.max = 0 // Reset zoom when there are no preferences yet.
 		currentProfile = prefs.profile
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			recreate()
-		} else {
-			finish()
-			startActivity(Intent(this, CameraActivity::class.java))
-		}
+		recreate()
 		return true
 	}
 
@@ -604,7 +600,6 @@ class CameraActivity : AppCompatActivity() {
 					tryRotate = prefs.autoRotate,
 					tryInvert = true,
 					tryDownscale = true,
-					returnCodabarStartEnd = true,
 					maxNumberOfSymbols = 1,
 					textMode = TextMode.PLAIN
 				)
@@ -837,7 +832,7 @@ class CameraActivity : AppCompatActivity() {
 }
 
 fun Set<String>.toFormatSet(): Set<BarcodeFormat> = map {
-	BarcodeFormat.valueOf(it)
+	BarcodeFormat.valueOf(it.migrateBarcodeFormatName())
 }.toSet()
 
 fun Activity.showResult(

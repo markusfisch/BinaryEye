@@ -139,7 +139,11 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 	)
 }
 
+private val formatWordBoundary =
+	"(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|(?<=[A-Za-z])(?=\\d)|(?<=\\d)(?=[A-Za-z])".toRegex()
+
 fun String.prettifyFormatName() = replace("_", " ")
+	.replace(formatWordBoundary, " ")
 
 private fun formatDateTime(rfc: String): String {
 	try {

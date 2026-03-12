@@ -2,7 +2,6 @@ package de.markusfisch.android.binaryeye.view
 
 import android.graphics.Rect
 import android.os.Build
-import android.support.annotation.RequiresApi
 import android.support.v4.view.ViewCompat
 import android.support.v4.view.WindowInsetsCompat
 import android.support.v7.widget.Toolbar
@@ -53,19 +52,15 @@ fun View.setPaddingFromWindowInsets() {
 // For the original post see here:
 // https://medium.com/androiddevelopers/windowinsets-listeners-to-layouts-8f9ccc8fa4d1
 fun View.doOnApplyWindowInsets(f: (View, Rect) -> Unit) {
-	if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-		f(this, insetsWithToolbar())
-	} else {
-		ViewCompat.setOnApplyWindowInsetsListener(this) { v, insets ->
-			f(v, insetsWithToolbar(insets))
-			insets
-		}
-		// It's important to explicitly request the insets (again) in
-		// case the view was created in Fragment.onCreateView() because
-		// setOnApplyWindowInsetsListener() won't fire when the view
-		// isn't attached.
-		requestApplyInsetsWhenAttached()
+	ViewCompat.setOnApplyWindowInsetsListener(this) { v, insets ->
+		f(v, insetsWithToolbar(insets))
+		insets
 	}
+	// It's important to explicitly request the insets (again) in
+	// case the view was created in Fragment.onCreateView() because
+	// setOnApplyWindowInsetsListener() won't fire when the view
+	// isn't attached.
+	requestApplyInsetsWhenAttached()
 }
 
 private fun insetsWithToolbar(insets: WindowInsetsCompat? = null) = Rect(
@@ -75,7 +70,6 @@ private fun insetsWithToolbar(insets: WindowInsetsCompat? = null) = Rect(
 	insets?.systemWindowInsetBottom ?: 0
 )
 
-@RequiresApi(Build.VERSION_CODES.KITKAT)
 private fun View.requestApplyInsetsWhenAttached() {
 	if (isAttachedToWindow) {
 		ViewCompat.requestApplyInsets(this)

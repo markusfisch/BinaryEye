@@ -8,16 +8,11 @@ import android.os.PersistableBundle
 
 fun Context.copyToClipboard(text: String, isSensitive: Boolean = false) {
 	val service = getSystemService(Context.CLIPBOARD_SERVICE)
-	if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-		@Suppress("DEPRECATION")
-		(service as android.text.ClipboardManager).text = text
-	} else {
-		(service as android.content.ClipboardManager).setPrimaryClip(
-			ClipData.newPlainText("plain text", text).apply {
-				setSensitive(isSensitive)
-			}
-		)
-	}
+	(service as android.content.ClipboardManager).setPrimaryClip(
+		ClipData.newPlainText("plain text", text).apply {
+			setSensitive(isSensitive)
+		}
+	)
 }
 
 private fun ClipData.setSensitive(isSensitive: Boolean) {

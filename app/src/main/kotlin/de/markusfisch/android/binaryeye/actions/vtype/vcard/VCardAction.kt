@@ -3,7 +3,6 @@ package de.markusfisch.android.binaryeye.actions.vtype.vcard
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.provider.ContactsContract
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.IntentAction
@@ -98,38 +97,36 @@ object VCardAction : IntentAction() {
 				}
 				putExtra(ContactsContract.Intents.Insert.POSTAL, addr.value.locationFormat)
 			}
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-				val urls = info["URL"]?.mapNotNull {
-					it.value.takeIf { url -> url.isNotBlank() }?.let { url ->
-						ContentValues(2).apply {
-							put(
-								ContactsContract.Data.MIMETYPE,
-								ContactsContract.CommonDataKinds.Website.CONTENT_ITEM_TYPE
-							)
-							put(ContactsContract.CommonDataKinds.Website.URL, url)
-						}
+			val urls = info["URL"]?.mapNotNull {
+				it.value.takeIf { url -> url.isNotBlank() }?.let { url ->
+					ContentValues(2).apply {
+						put(
+							ContactsContract.Data.MIMETYPE,
+							ContactsContract.CommonDataKinds.Website.CONTENT_ITEM_TYPE
+						)
+						put(ContactsContract.CommonDataKinds.Website.URL, url)
 					}
 				}
-				val bDays = info["BDAY"]?.mapNotNull {
-					it.value.takeIf { day -> day.isNotBlank() }?.let { day ->
-						ContentValues(3).apply {
-							put(
-								ContactsContract.Data.MIMETYPE,
-								ContactsContract.CommonDataKinds.Event.CONTENT_ITEM_TYPE
-							)
-							put(
-								ContactsContract.CommonDataKinds.Event.TYPE,
-								ContactsContract.CommonDataKinds.Event.TYPE_BIRTHDAY
-							)
-							put(ContactsContract.CommonDataKinds.Event.START_DATE, day)
-						}
-					}
-				}
-				putParcelableArrayListExtra(
-					ContactsContract.Intents.Insert.DATA,
-					ArrayList(listOfNotNull(urls, bDays).flatten())
-				)
 			}
+			val bDays = info["BDAY"]?.mapNotNull {
+				it.value.takeIf { day -> day.isNotBlank() }?.let { day ->
+					ContentValues(3).apply {
+						put(
+							ContactsContract.Data.MIMETYPE,
+							ContactsContract.CommonDataKinds.Event.CONTENT_ITEM_TYPE
+						)
+						put(
+							ContactsContract.CommonDataKinds.Event.TYPE,
+							ContactsContract.CommonDataKinds.Event.TYPE_BIRTHDAY
+						)
+						put(ContactsContract.CommonDataKinds.Event.START_DATE, day)
+					}
+				}
+			}
+			putParcelableArrayListExtra(
+				ContactsContract.Intents.Insert.DATA,
+				ArrayList(listOfNotNull(urls, bDays).flatten())
+			)
 		}
 	}
 

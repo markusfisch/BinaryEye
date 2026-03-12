@@ -1,0 +1,7 @@
+<resources>
+	<string-array name="mqr_error_correction_levels">
+		<item>@string/error_correction_level_l</item>
+		<item>@string/error_correction_level_m</item>
+		<item>@string/error_correction_level_q</item>
+	</string-array>
+</resources>

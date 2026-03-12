@@ -5,7 +5,7 @@ android {
 	compileSdk sdk_version
 
 	defaultConfig {
-		minSdk 9
+		minSdk 21
 		targetSdk sdk_version
 
 		versionCode 159
@@ -78,7 +78,7 @@ dependencies {
 	// External
 	implementation 'com.github.markusfisch:CameraView:1.10.0'
 	implementation 'com.github.markusfisch:ScalingImageView:1.4.3'
-	implementation 'com.github.markusfisch:zxing-cpp:v2.3.0.4'
+	implementation 'com.github.markusfisch:zxing-cpp:v3.0.2.1'
 
 	// Testing
 	testImplementation 'junit:junit:4.13.2'

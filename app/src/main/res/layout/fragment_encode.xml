@@ -66,7 +66,6 @@
 				android:layout_marginBottom="16dp"
 				android:entries="@array/colors"/>
 			<android.support.v7.widget.SwitchCompat
-				android:visibility="gone"
 				android:id="@+id/add_quiet_zone"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"

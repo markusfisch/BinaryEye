@@ -49,7 +49,6 @@ class PickActivity : AppCompatActivity() {
 		tryRotate = true,
 		tryInvert = true,
 		tryDownscale = true,
-		returnCodabarStartEnd = true,
 		maxNumberOfSymbols = 1,
 		formats = prefs.barcodeFormats.toFormatSet()
 	)
