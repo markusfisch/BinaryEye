@@ -54,6 +54,8 @@ import de.markusfisch.android.binaryeye.content.toBarcode
 import de.markusfisch.android.binaryeye.content.toErrorCorrectionInt
 import de.markusfisch.android.binaryeye.content.wipeLastShareFile
 import de.markusfisch.android.binaryeye.database.Scan
+import de.markusfisch.android.binaryeye.database.toBundle
+import de.markusfisch.android.binaryeye.database.toScan
 import de.markusfisch.android.binaryeye.io.askForFileName
 import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.io.writeExternalFile
@@ -135,15 +137,14 @@ class DecodeFragment : Fragment() {
 
 		val justScanned = activity?.intent?.hasExtra(
 			MainActivity.DECODED
+		) == true || activity?.intent?.hasExtra(
+			MainActivity.DECODED_SCAN
 		) == true
 		closeAutomatically = prefs.closeAutomatically && justScanned
 
-		scan = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-			arguments?.getParcelable(SCAN, Scan::class.java)
-		} else {
-			@Suppress("DEPRECATION")
-			arguments?.getParcelable(SCAN)
-		} ?: throw IllegalArgumentException("DecodeFragment needs a Scan")
+		scan = arguments?.getBundle(SCAN_BUNDLE)?.toScan()
+			?: arguments?.getLegacyScan(SCAN)
+			?: throw IllegalArgumentException("DecodeFragment needs a Scan")
 
 		isBinary = scan.text.isEmpty()
 		originalBytes = scan.raw ?: scan.text.toByteArray()
@@ -667,17 +668,35 @@ class DecodeFragment : Fragment() {
 
 	companion object {
 		private const val SCAN = "scan"
+		private const val SCAN_BUNDLE = "scan_bundle"
 		private const val OPEN_DOCUMENT = 1
 		private const val SCHEME_FILE = "file://"
 
 		fun newInstance(scan: Scan): Fragment {
 			val args = Bundle()
-			args.putParcelable(SCAN, scan)
+			args.putBundle(SCAN_BUNDLE, scan.toBundle())
 			val fragment = DecodeFragment()
 			fragment.arguments = args
 			return fragment
 		}
 	}
+}
+
+@Suppress("DEPRECATION")
+private fun Bundle.getLegacyScan(name: String): Scan? = if (
+	Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+) {
+	try {
+		getParcelable(name, Scan::class.java)
+	} catch (_: Throwable) {
+		null
+	}
+} else {
+	null
+} ?: try {
+	getParcelable(name)
+} catch (_: Throwable) {
+	null
 }
 
 private inline fun <T : View> T.showIf(

@@ -16,6 +16,8 @@ import de.markusfisch.android.binaryeye.app.permissionGrantedCallback
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.app.setFragment
 import de.markusfisch.android.binaryeye.database.Scan
+import de.markusfisch.android.binaryeye.database.toBundle
+import de.markusfisch.android.binaryeye.database.toScan
 import de.markusfisch.android.binaryeye.fragment.DecodeFragment
 import de.markusfisch.android.binaryeye.fragment.EncodeFragment
 import de.markusfisch.android.binaryeye.fragment.HistoryFragment
@@ -81,6 +83,7 @@ class MainActivity : AppCompatActivity() {
 		private const val PREFERENCES = "preferences"
 		private const val HISTORY = "history"
 		private const val ENCODE = "encode"
+		const val DECODED_SCAN = "decoded_scan"
 		const val DECODED = "decoded"
 
 		private fun Intent.getFragmentForIntent(): Fragment? = when {
@@ -101,7 +104,11 @@ class MainActivity : AppCompatActivity() {
 				getStringExtra(ENCODE)
 			)
 
-			hasExtra(DECODED) -> getScanExtra(DECODED)?.let {
+			hasExtra(DECODED_SCAN) -> getScanBundleExtra(DECODED_SCAN)?.let {
+				DecodeFragment.newInstance(it)
+			}
+
+			hasExtra(DECODED) -> getLegacyScanExtra(DECODED)?.let {
 				DecodeFragment.newInstance(it)
 			}
 
@@ -139,14 +146,18 @@ class MainActivity : AppCompatActivity() {
 
 		fun getDecodeIntent(context: Context, scan: Scan): Intent {
 			val intent = Intent(context, MainActivity::class.java)
-			intent.putExtra(DECODED, scan)
+			intent.putExtra(DECODED_SCAN, scan.toBundle())
 			return intent
 		}
 	}
 }
 
 @Suppress("DEPRECATION")
-private fun Intent.getScanExtra(name: String): Scan? = if (
+private fun Intent.getScanBundleExtra(name: String) = getBundleExtra(name)
+	?.toScan()
+
+@Suppress("DEPRECATION")
+private fun Intent.getLegacyScanExtra(name: String): Scan? = if (
 	Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
 ) {
 	try {
@@ -163,4 +174,8 @@ private fun Intent.getScanExtra(name: String): Scan? = if (
 	}
 } else {
 	null
-} ?: getParcelableExtra(name)
+} ?: try {
+	getParcelableExtra(name)
+} catch (_: Throwable) {
+	null
+}
