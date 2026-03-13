@@ -524,13 +524,24 @@ class DecodeActivity : ScreenActivity() {
 			}
 
 			R.id.remove -> {
-				db.removeScan(scan.id)
-				backOrFinish()
+				askToRemoveScan(scan.id)
 				true
 			}
 
 			else -> super.onOptionsItemSelected(item)
 		}
+	}
+
+	private fun askToRemoveScan(id: Long) {
+		AlertDialog.Builder(this)
+			.setMessage(R.string.really_remove_scan)
+			.setPositiveButton(android.R.string.ok) { _, _ ->
+				db.removeScan(id)
+				backOrFinish()
+			}
+			.setNegativeButton(android.R.string.cancel) { _, _ ->
+			}
+			.show()
 	}
 
 	private fun textOrHex() = if (isBinary) {
