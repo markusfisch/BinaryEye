@@ -141,7 +141,6 @@
 	<string name="automated_actions_none">自動アクションはありません</string>
 	<string name="automated_actions_empty">まだ自動アクションがありません</string>
 	<plurals name="automated_actions_count">
-		<item quantity="one">%d 件の自動アクション</item>
 		<item quantity="other">%d 件の自動アクション</item>
 	</plurals>
 	<string name="automated_action_add">アクションを追加</string>

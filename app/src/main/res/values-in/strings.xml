@@ -141,7 +141,6 @@
 	<string name="automated_actions_none">Tidak ada tindakan otomatis</string>
 	<string name="automated_actions_empty">Belum ada tindakan otomatis</string>
 	<plurals name="automated_actions_count">
-		<item quantity="one">%d tindakan otomatis</item>
 		<item quantity="other">%d tindakan otomatis</item>
 	</plurals>
 	<string name="automated_action_add">Tambah tindakan</string>

@@ -141,7 +141,6 @@
 	<string name="automated_actions_none">Không có hành động tự động</string>
 	<string name="automated_actions_empty">Chưa có hành động tự động</string>
 	<plurals name="automated_actions_count">
-		<item quantity="one">%d hành động tự động</item>
 		<item quantity="other">%d hành động tự động</item>
 	</plurals>
 	<string name="automated_action_add">Thêm hành động</string>

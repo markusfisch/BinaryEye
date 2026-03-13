@@ -141,7 +141,6 @@
 	<string name="automated_actions_none">자동 작업 없음</string>
 	<string name="automated_actions_empty">아직 자동 작업 없음</string>
 	<plurals name="automated_actions_count">
-		<item quantity="one">%d개의 자동 작업</item>
 		<item quantity="other">%d개의 자동 작업</item>
 	</plurals>
 	<string name="automated_action_add">작업 추가</string>

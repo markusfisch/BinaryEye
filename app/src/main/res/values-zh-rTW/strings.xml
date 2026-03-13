@@ -141,7 +141,6 @@
 	<string name="automated_actions_none">沒有自動操作</string>
 	<string name="automated_actions_empty">尚無自動操作</string>
 	<plurals name="automated_actions_count">
-		<item quantity="one">%d 個自動操作</item>
 		<item quantity="other">%d 個自動操作</item>
 	</plurals>
 	<string name="automated_action_add">新增操作</string>
