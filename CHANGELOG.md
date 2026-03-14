@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.68.6
+* Update ZXingCpp
+* Ask for confirmation before deleting a scan from the result screen
+
 ## 1.68.5
 * Downgrade ZXingCpp for compatibilty
 

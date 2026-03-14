@@ -1,0 +1,3 @@
+* Update ZXingCpp
+* Ask for confirmation before deleting a scan from the result screen
+
