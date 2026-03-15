@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">Velkommen!</string>
 	<string name="mode_expert">Avanceret</string>
@@ -15,10 +16,10 @@
 		<item quantity="other">%2$d karakterer, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Fejlkorrektionsniveau</string>
-	<string name="error_correction_level_l" formatted="false">Lav (~7&#37; korrigering)</string>
-	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; korrigering)</string>
-	<string name="error_correction_level_q" formatted="false">Kvartil (~25&#37; korrigering)</string>
-	<string name="error_correction_level_h" formatted="false">Høj (~30&#37; korrigering)</string>
+	<string name="error_correction_level_l" formatted="false">Lav (~7% korrigering)</string>
+	<string name="error_correction_level_m" formatted="false">Medium (~15% korrigering)</string>
+	<string name="error_correction_level_q" formatted="false">Kvartil (~25% korrigering)</string>
+	<string name="error_correction_level_h" formatted="false">Høj (~30% korrigering)</string>
 	<string name="label">Mærke</string>
 	<string name="colors">For- og baggrund</string>
 	<string name="colors_black_on_white">Sort på hvidt</string>
@@ -137,7 +138,6 @@
 	<string name="default_search_engine">Åbn ukendte data i</string>
 	<string name="always_ask">Spørg altid</string>
 	<string name="open_with_url">Åbn ukendte data med URL</string>
-
 	<string name="automated_actions">Automatiserede handlinger</string>
 	<string name="automated_actions_none">Ingen automatiserede handlinger</string>
 	<string name="automated_actions_empty">Ingen automatiserede handlinger endnu</string>
@@ -264,5 +264,4 @@
 	<string name="automated_action_intent_uri_invalid">Ugyldig Intent-URI</string>
 	<string name="automated_action_list_custom_intent">Brugerdefineret intent: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Brugerdefineret intent</string>
-
 </resources>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">Willkommen!</string>
 	<string name="mode_expert">Erweitert</string>
@@ -15,10 +16,10 @@
 		<item quantity="other">%2$d Zeichen, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Fehlerkorrektur-Level</string>
-	<string name="error_correction_level_l" formatted="false">Low (~7&#37; wiederherstellbar)</string>
-	<string name="error_correction_level_m" formatted="false">Medium (~15&#37; wiederherstellbar)</string>
-	<string name="error_correction_level_q" formatted="false">Quartile (~25&#37; wiederherstellbar)</string>
-	<string name="error_correction_level_h" formatted="false">High (~30&#37; wiederherstellbar)</string>
+	<string name="error_correction_level_l" formatted="false">Low (~7% wiederherstellbar)</string>
+	<string name="error_correction_level_m" formatted="false">Medium (~15% wiederherstellbar)</string>
+	<string name="error_correction_level_q" formatted="false">Quartile (~25% wiederherstellbar)</string>
+	<string name="error_correction_level_h" formatted="false">High (~30% wiederherstellbar)</string>
 	<string name="label">Bezeichnung</string>
 	<string name="colors">Vor und Hintergrund</string>
 	<string name="colors_black_on_white">Schwarz auf Weiß</string>
@@ -137,7 +138,6 @@
 	<string name="default_search_engine">Unbekannte Daten öffnen mit</string>
 	<string name="always_ask">Immer fragen</string>
 	<string name="open_with_url">URL zum Öffnen unbekannter Daten</string>
-
 	<string name="automated_actions">Automatisierte Aktionen</string>
 	<string name="automated_actions_none">Keine automatisierten Aktionen</string>
 	<string name="automated_actions_empty">Noch keine automatisierten Aktionen</string>
@@ -264,5 +264,4 @@
 	<string name="automated_action_intent_uri_invalid">Ungültige Intent-URI</string>
 	<string name="automated_action_list_custom_intent">Benutzerdefinierter Intent: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Benutzerdefinierter Intent</string>
-
 </resources>
