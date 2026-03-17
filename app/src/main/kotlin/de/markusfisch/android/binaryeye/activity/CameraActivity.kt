@@ -19,9 +19,6 @@ import android.view.ViewConfiguration
 import android.widget.EditText
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
-import android.hardware.camera2.CameraMetadata
-import android.hardware.camera2.CaptureRequest
-import androidx.camera.camera2.interop.Camera2Interop
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.FocusMeteringAction
@@ -31,6 +28,7 @@ import androidx.camera.core.Preview
 import androidx.camera.core.TorchState
 import androidx.camera.core.resolutionselector.AspectRatioStrategy
 import androidx.camera.core.resolutionselector.ResolutionSelector
+import androidx.camera.core.resolutionselector.ResolutionStrategy
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
@@ -677,39 +675,30 @@ class CameraActivity : AppCompatActivity() {
 			}
 			cameraProvider = provider
 			val resolutionSelector = ResolutionSelector.Builder()
+				.setResolutionStrategy(
+					ResolutionStrategy.HIGHEST_AVAILABLE_STRATEGY
+				)
 				.setAspectRatioStrategy(
 					AspectRatioStrategy.RATIO_16_9_FALLBACK_AUTO_STRATEGY
 				)
+				.setAllowedResolutionMode(
+					ResolutionSelector.PREFER_HIGHER_RESOLUTION_OVER_CAPTURE_RATE
+				)
 				.build()
-			val previewBuilder = Preview.Builder()
+			val preview = Preview.Builder()
 				.setResolutionSelector(resolutionSelector)
-			val analysisBuilder = ImageAnalysis.Builder()
+				.build()
+			val imageAnalysis = ImageAnalysis.Builder()
 				.setResolutionSelector(resolutionSelector)
 				.setBackpressureStrategy(
 					ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST
 				)
-			for (extender in listOf(
-				Camera2Interop.Extender(previewBuilder),
-				Camera2Interop.Extender(analysisBuilder)
-			)) {
-				extender.setCaptureRequestOption(
-					CaptureRequest.CONTROL_MODE,
-					CameraMetadata.CONTROL_MODE_USE_SCENE_MODE
-				)
-				extender.setCaptureRequestOption(
-					CaptureRequest.CONTROL_SCENE_MODE,
-					CameraMetadata.CONTROL_SCENE_MODE_BARCODE
-				)
-				extender.setCaptureRequestOption(
-					CaptureRequest.CONTROL_AF_MODE,
-					CameraMetadata.CONTROL_AF_MODE_CONTINUOUS_PICTURE
-				)
-			}
-			val preview = previewBuilder.build()
-			val imageAnalysis = analysisBuilder.build()
+				.build()
+
 			imageAnalysis.setAnalyzer(analyzerExecutor) { image ->
 				analyzeImage(image)
 			}
+
 			val cameraSelector = CameraSelector.Builder()
 				.requireLensFacing(
 					if (frontFacing) {
@@ -719,6 +708,7 @@ class CameraActivity : AppCompatActivity() {
 					}
 				)
 				.build()
+
 			try {
 				provider.unbindAll()
 				camera = provider.bindToLifecycle(
