@@ -1,8 +1,11 @@
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
-	<de.markusfisch.android.cameraview.widget.CameraView
+<merge
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+	<androidx.camera.view.PreviewView
 		android:id="@+id/camera_view"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"/>
+		android:layout_height="match_parent"
+		app:scaleType="fillCenter"/>
 	<de.markusfisch.android.binaryeye.widget.DetectorView
 		android:id="@+id/detector_view"
 		android:layout_width="match_parent"
