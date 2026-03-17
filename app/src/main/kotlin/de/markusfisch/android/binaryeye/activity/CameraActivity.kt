@@ -15,6 +15,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewConfiguration
 import android.widget.EditText
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
@@ -76,6 +77,7 @@ import java.io.FileInputStream
 import java.util.Scanner
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -553,17 +555,22 @@ class CameraActivity : AppCompatActivity() {
 			updateFrameRoiAndMappingMatrix()
 		}
 		@Suppress("ClickableViewAccessibility")
+		val touchSlop = ViewConfiguration.get(this).scaledTouchSlop
 		cameraView.setOnTouchListener(object : View.OnTouchListener {
+			var downY = -1f
 			var offset = -1f
 			var progress = 0
+			var hasSwiped = false
 
 			override fun onTouch(v: View?, event: MotionEvent?): Boolean {
 				event ?: return false
 				val pos = event.y
 				when (event.actionMasked) {
 					MotionEvent.ACTION_DOWN -> {
+						downY = pos
 						offset = pos
 						progress = zoomBar.progress
+						hasSwiped = false
 						return true
 					}
 
@@ -578,18 +585,28 @@ class CameraActivity : AppCompatActivity() {
 								maxValue,
 								max(progress + change.roundToInt(), 0)
 							)
+							if (abs(pos - downY) > touchSlop) {
+								hasSwiped = true
+							}
 							return true
 						}
 					}
 
 					MotionEvent.ACTION_UP -> {
-						val pointFactory = cameraView.meteringPointFactory
-						val point = pointFactory.createPoint(event.x, event.y)
-						val action = FocusMeteringAction.Builder(point).build()
-						camera?.cameraControl?.startFocusAndMetering(action)
-						if (v != null) {
-							v.performClick()
+						if (!hasSwiped) {
+							camera?.cameraControl?.apply {
+								cancelFocusAndMetering()
+								startFocusAndMetering(
+									FocusMeteringAction.Builder(
+										cameraView.meteringPointFactory.createPoint(
+											event.x,
+											event.y
+										)
+									).build()
+								)
+							}
 						}
+						v?.performClick()
 						return true
 					}
 				}
