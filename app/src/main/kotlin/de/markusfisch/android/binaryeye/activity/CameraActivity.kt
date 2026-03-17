@@ -624,7 +624,11 @@ class CameraActivity : AppCompatActivity() {
 				progress: Int,
 				fromUser: Boolean
 			) {
-				camera?.cameraControl?.setLinearZoom(progress / 100f)
+				val maxRatio = camera?.cameraInfo?.zoomState?.value
+					?.maxZoomRatio ?: return
+				camera?.cameraControl?.setZoomRatio(
+					1f + progress / 100f * (maxRatio - 1f)
+				)
 			}
 
 			override fun onStartTrackingTouch(seekBar: SeekBar) {
