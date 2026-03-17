@@ -683,6 +683,10 @@ class CameraActivity : AppCompatActivity() {
 					CaptureRequest.CONTROL_SCENE_MODE,
 					CameraMetadata.CONTROL_SCENE_MODE_BARCODE
 				)
+				extender.setCaptureRequestOption(
+					CaptureRequest.CONTROL_AF_MODE,
+					CameraMetadata.CONTROL_AF_MODE_CONTINUOUS_PICTURE
+				)
 			}
 			val preview = previewBuilder.build()
 			val imageAnalysis = analysisBuilder.build()
