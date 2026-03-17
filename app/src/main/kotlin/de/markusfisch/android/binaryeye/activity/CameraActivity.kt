@@ -722,7 +722,7 @@ class CameraActivity : AppCompatActivity() {
 				decoding = true
 				useLocalAverage = false
 				updateZoomState()
-				updateFlashFab(!(camera?.cameraInfo?.hasFlashUnit() ?: false))
+				updateFlashFab(camera?.cameraInfo?.hasFlashUnit() ?: false)
 				updateFrameRoiAndMappingMatrix()
 			} catch (_: Exception) {
 				camera = null
@@ -826,13 +826,13 @@ class CameraActivity : AppCompatActivity() {
 		matrix.setFrameToView(frameMetrics, previewRect, viewRoi)
 	}
 
-	private fun updateFlashFab(unavailable: Boolean) {
-		if (unavailable) {
-			flashFab.setImageResource(R.drawable.ic_action_create)
-			flashFab.setOnClickListener { createBarcode() }
-		} else {
+	private fun updateFlashFab(available: Boolean) {
+		if (available) {
 			flashFab.setImageResource(R.drawable.ic_action_flash)
 			flashFab.setOnClickListener { toggleTorchMode() }
+		} else {
+			flashFab.setImageResource(R.drawable.ic_action_create)
+			flashFab.setOnClickListener { createBarcode() }
 		}
 	}
 
