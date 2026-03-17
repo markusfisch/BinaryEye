@@ -237,7 +237,7 @@ class CameraActivity : AppCompatActivity() {
 			return false
 		}
 		shouldStoreSettings = false
-		zoomBar.progress = 10
+		zoomBar.progress = INITIAL_ZOOM
 		currentProfile = prefs.profile
 		recreate()
 		return true
@@ -615,7 +615,7 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun initZoomBar() {
 		zoomBar.max = 100
-		zoomBar.progress = 10
+		zoomBar.progress = INITIAL_ZOOM
 		restoreZoomBarSettings()
 		zoomBar.setOnSeekBarChangeListener(object :
 			SeekBar.OnSeekBarChangeListener {
@@ -949,7 +949,8 @@ class CameraActivity : AppCompatActivity() {
 
 	companion object {
 		private const val PICK_FILE_RESULT_CODE = 1
-		private const val ZOOM_LEVEL = "zoom_level"
+		private const val INITIAL_ZOOM = 0
+		private const val ZOOM_LEVEL = "zoom"
 		private const val FRONT_FACING = "front_facing"
 		private const val BULK_MODE = "bulk_mode"
 		private const val RESTRICT_FORMAT = "restrict_format"
