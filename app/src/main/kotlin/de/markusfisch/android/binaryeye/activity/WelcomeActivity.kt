@@ -10,11 +10,11 @@ class WelcomeActivity : AppCompatActivity() {
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
 		setContentView(R.layout.activity_welcome)
-			findViewById<View>(R.id.expert).setOnClickListener {
-				finish()
-			}
-			findViewById<View>(R.id.simple).setOnClickListener {
-				prefs.apply {
+		findViewById<View>(R.id.expert).setOnClickListener {
+			finish()
+		}
+		findViewById<View>(R.id.simple).setOnClickListener {
+			prefs.apply {
 				showCropHandle = false
 				zoomBySwiping = false
 				beep = true

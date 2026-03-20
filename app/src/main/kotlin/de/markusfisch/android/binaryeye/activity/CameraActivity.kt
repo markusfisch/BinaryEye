@@ -228,7 +228,7 @@ class CameraActivity : AppCompatActivity() {
 		}
 		val packageInfo = packageManager.getPackageInfo(packageName, 0)
 		val installedSince = System.currentTimeMillis() -
-			packageInfo.firstInstallTime
+				packageInfo.firstInstallTime
 		return installedSince < 86400000
 	}
 
@@ -512,8 +512,8 @@ class CameraActivity : AppCompatActivity() {
 			startActivity(EncodeActivity.newIntent(this, text).apply {
 				addFlags(
 					Intent.FLAG_ACTIVITY_NO_HISTORY or
-						Intent.FLAG_ACTIVITY_CLEAR_TASK or
-						Intent.FLAG_ACTIVITY_NEW_TASK
+							Intent.FLAG_ACTIVITY_CLEAR_TASK or
+							Intent.FLAG_ACTIVITY_NEW_TASK
 				)
 			})
 			finish()
@@ -536,8 +536,8 @@ class CameraActivity : AppCompatActivity() {
 						EncodeActivity.newIntent(this, scn.next()).apply {
 							addFlags(
 								Intent.FLAG_ACTIVITY_NO_HISTORY or
-									Intent.FLAG_ACTIVITY_CLEAR_TASK or
-									Intent.FLAG_ACTIVITY_NEW_TASK
+										Intent.FLAG_ACTIVITY_CLEAR_TASK or
+										Intent.FLAG_ACTIVITY_NEW_TASK
 							)
 						}
 					)
@@ -578,7 +578,7 @@ class CameraActivity : AppCompatActivity() {
 							val dist = offset - pos
 							val maxValue = zoomBar.max
 							val change = maxValue /
-								v.height.toFloat() * 2f * dist
+									v.height.toFloat() * 2f * dist
 							zoomBar.progress = min(
 								maxValue,
 								max(progress + change.roundToInt(), 0)
@@ -1043,10 +1043,10 @@ private fun getReturnIntent(result: Result) = Intent().apply {
 }
 
 private fun completeUrl(urlTemplate: String, result: Result) = (
-	urlTemplate
-		.replace("{RESULT}", result.text.urlEncode())
-		.replace("{RESULT_BYTES}", result.rawBytes.toHexString())
-		.replace("{FORMAT}", result.format.name.urlEncode())
-		// And support {CODE} from the old ZXing app, too.
-		.replace("{CODE}", result.text.urlEncode())
-).toUri()
+		urlTemplate
+			.replace("{RESULT}", result.text.urlEncode())
+			.replace("{RESULT_BYTES}", result.rawBytes.toHexString())
+			.replace("{FORMAT}", result.format.name.urlEncode())
+			// And support {CODE} from the old ZXing app, too.
+			.replace("{CODE}", result.text.urlEncode())
+		).toUri()

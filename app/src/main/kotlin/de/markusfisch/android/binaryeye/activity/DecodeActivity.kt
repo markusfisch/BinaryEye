@@ -9,8 +9,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.DocumentsContract
-import androidx.core.net.toUri
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.text.Editable
 import android.text.Html
 import android.text.Spannable
@@ -28,6 +26,8 @@ import android.widget.ImageView
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
+import androidx.core.net.toUri
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
 import de.markusfisch.android.binaryeye.actions.mail.MatMsg
@@ -361,12 +361,12 @@ class DecodeActivity : ScreenActivity() {
 				)
 			}
 
-				is WebAction -> try {
-					items.putAll(
-						text.toUri().run {
-							mapOf(
-								R.string.scheme to scheme,
-								R.string.host to host,
+			is WebAction -> try {
+				items.putAll(
+					text.toUri().run {
+						mapOf(
+							R.string.scheme to scheme,
+							R.string.host to host,
 							R.string.query to query
 						)
 					}

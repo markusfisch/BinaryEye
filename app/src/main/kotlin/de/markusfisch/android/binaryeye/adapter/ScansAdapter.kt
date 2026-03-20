@@ -2,12 +2,12 @@ package de.markusfisch.android.binaryeye.adapter
 
 import android.content.Context
 import android.database.Cursor
-import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CursorAdapter
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.database.Database
 import java.text.DateFormat

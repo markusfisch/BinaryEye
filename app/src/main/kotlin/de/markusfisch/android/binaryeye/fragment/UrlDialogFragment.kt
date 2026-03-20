@@ -1,9 +1,9 @@
 package de.markusfisch.android.binaryeye.fragment
 
 import android.os.Bundle
-import androidx.preference.PreferenceDialogFragmentCompat
 import android.view.View
 import android.widget.TextView
+import androidx.preference.PreferenceDialogFragmentCompat
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.database.Scan

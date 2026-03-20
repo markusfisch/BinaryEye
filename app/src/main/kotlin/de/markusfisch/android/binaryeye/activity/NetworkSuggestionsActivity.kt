@@ -5,12 +5,12 @@ import android.net.wifi.WifiManager
 import android.net.wifi.WifiNetworkSuggestion
 import android.os.Build
 import android.os.Bundle
-import androidx.annotation.RequiresApi
-import androidx.core.util.size
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import androidx.annotation.RequiresApi
+import androidx.core.util.size
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.systemBarListViewScrollListener

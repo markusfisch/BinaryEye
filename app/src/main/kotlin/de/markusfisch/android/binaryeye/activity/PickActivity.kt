@@ -110,9 +110,9 @@ class PickActivity : AppCompatActivity() {
 			cropHandleName = "picker_crop_handle"
 		}
 
-			findViewById<View>(R.id.scan).setOnClickListener {
-				showResult()
-			}
+		findViewById<View>(R.id.scan).setOnClickListener {
+			showResult()
+		}
 	}
 
 	private fun getBitmapFromIntent(): Bitmap? = if (

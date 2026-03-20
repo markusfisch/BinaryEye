@@ -2,11 +2,11 @@ package de.markusfisch.android.binaryeye.database
 
 import android.os.Bundle
 import android.text.format.DateFormat
+import de.markusfisch.android.binaryeye.zxingcpp.migrateBarcodeFormatName
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import de.markusfisch.android.zxingcpp.ZxingCpp.BitMatrix
 import de.markusfisch.android.zxingcpp.ZxingCpp.ContentType
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
-import de.markusfisch.android.binaryeye.zxingcpp.migrateBarcodeFormatName
 import java.util.Locale
 
 data class Scan(

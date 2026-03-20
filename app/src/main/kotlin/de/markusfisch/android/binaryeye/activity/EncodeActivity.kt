@@ -3,10 +3,7 @@ package de.markusfisch.android.binaryeye.activity
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import androidx.appcompat.widget.SwitchCompat
-import androidx.core.net.toUri
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -18,6 +15,8 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.appcompat.widget.SwitchCompat
+import androidx.core.net.toUri
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
 import de.markusfisch.android.binaryeye.app.prefs
@@ -412,6 +411,7 @@ private fun BarcodeFormat.getErrorCorrectionLevel(position: Int) = when (this) {
 	BarcodeFormat.Aztec -> position
 	BarcodeFormat.QRCode,
 	BarcodeFormat.MicroQRCode -> (position + 1) * 2
+
 	BarcodeFormat.RMQRCode -> (position + 1) * 4
 	BarcodeFormat.PDF417 -> position
 	else -> 0

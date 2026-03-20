@@ -6,8 +6,8 @@ import android.content.Context
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
-import androidx.annotation.MainThread
 import android.widget.EditText
+import androidx.annotation.MainThread
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.alertDialog
 import java.io.File

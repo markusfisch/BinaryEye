@@ -8,12 +8,12 @@ import android.graphics.Path
 import android.graphics.Point
 import android.graphics.Rect
 import android.graphics.Region
-import androidx.core.graphics.withSave
 import android.os.Build
-import androidx.core.content.ContextCompat
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.withSave
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.graphics.getBitmapFromDrawable
