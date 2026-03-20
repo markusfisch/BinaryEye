@@ -48,7 +48,8 @@ fun Scan.toBarcode(): Barcode<*> {
 		ContentBarcode(
 			content,
 			format,
-			errorCorrectionLevel.toErrorCorrectionInt()
+			errorCorrectionLevel.toErrorCorrectionInt(),
+			margin = 1
 		)
 	}
 }

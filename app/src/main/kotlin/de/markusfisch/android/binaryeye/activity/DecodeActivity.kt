@@ -291,7 +291,8 @@ class DecodeActivity : ScreenActivity() {
 				ContentBarcode(
 					content,
 					scan.format,
-					scan.errorCorrectionLevel.toErrorCorrectionInt()
+					scan.errorCorrectionLevel.toErrorCorrectionInt(),
+					margin = 1
 				)
 			}
 			try {
