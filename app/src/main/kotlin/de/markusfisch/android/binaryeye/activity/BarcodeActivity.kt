@@ -64,10 +64,10 @@ class BarcodeActivity : ScreenActivity() {
 
 	private lateinit var imageView: ConfinedScalingImageView
 	private lateinit var barcode: Barcode<*>
-	private lateinit var addToHistoryItem: MenuItem
-	private lateinit var brightenScreenItem: MenuItem
 
 	private var contentView: View? = null
+	private var addToHistoryItem: MenuItem? = null
+	private var brightenScreenItem: MenuItem? = null
 	private var currentBrightness = -1f
 
 	override fun onCreate(state: Bundle?) {
@@ -173,9 +173,9 @@ class BarcodeActivity : ScreenActivity() {
 		super.onResume()
 		if (prefs.brightenScreen) {
 			// Post to make sure brightenScreenItem is initialized.
-			contentView?.post {
+			contentView?.postDelayed({
 				brightenScreen()
-			}
+			}, 500)
 		}
 	}
 
@@ -207,7 +207,7 @@ class BarcodeActivity : ScreenActivity() {
 					barcode.bitmap(),
 					barcode.format
 				)
-				addToHistoryItem.isVisible = false
+				addToHistoryItem?.isVisible = false
 				toast(R.string.added_to_history)
 				true
 			}
@@ -435,16 +435,19 @@ class BarcodeActivity : ScreenActivity() {
 	}
 
 	private fun brightenScreen() {
+		if (isFinishing || isDestroyed) {
+			return
+		}
 		currentBrightness = getScreenBrightness()
 		setScreenBrightness(1f)
-		brightenScreenItem.isChecked = true
+		brightenScreenItem?.isChecked = true
 	}
 
 	private fun restoreScreenBrightness() {
 		if (currentBrightness > -1f) {
 			setScreenBrightness(currentBrightness)
 			currentBrightness = -1f
-			brightenScreenItem.isChecked = false
+			brightenScreenItem?.isChecked = false
 		}
 	}
 
