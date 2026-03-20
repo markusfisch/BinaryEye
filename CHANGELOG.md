@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.68.7
+* Add icons to preferences screen
+* Update history listing on resume
+* Fix quiet zone for recreated barcodes
+* Fix automatic screen brightening
+* Migrate to CameraX
+
 ## 1.68.6
 * Update ZXingCpp
 * Ask for confirmation before deleting a scan from the result screen

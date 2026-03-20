@@ -1,0 +1,6 @@
+* Add icons to preferences screen
+* Update history listing on resume
+* Fix quiet zone for recreated barcodes
+* Fix automatic screen brightening
+* Migrate to CameraX
+
