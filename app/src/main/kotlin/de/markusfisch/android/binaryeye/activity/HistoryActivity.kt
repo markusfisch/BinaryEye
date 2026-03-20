@@ -179,8 +179,6 @@ class HistoryActivity : ScreenActivity() {
 
 		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
 		listView.setPaddingFromWindowInsets()
-
-		update()
 	}
 
 	override fun onDestroy() {
@@ -188,6 +186,11 @@ class HistoryActivity : ScreenActivity() {
 		scansAdapter?.changeCursor(null)
 		parentJob.cancel()
 		wipeLastShareFile()
+	}
+
+	override fun onResume() {
+		super.onResume()
+		update()
 	}
 
 	override fun onPause() {
