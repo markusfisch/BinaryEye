@@ -80,6 +80,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		preferenceScreen.sharedPreferences
 			?.registerOnSharedPreferenceChangeListener(changeListener)
 		setSummaries(preferenceScreen)
+		setIcons()
 
 		wireProfiles()
 		wireAutomatedActions()
@@ -242,6 +243,45 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 				setSummaries(preference)
 			}
 		}
+	}
+
+	private fun setIcons() {
+		setIcon(PROFILE, R.drawable.ic_action_profile)
+		setIcon("formats", R.drawable.ic_action_restrict_format)
+		setIcon("show_crop_handle", R.drawable.ic_action_scan)
+		setIcon("zoom_by_swiping", R.drawable.ic_action_search)
+		setIcon("auto_rotate", R.drawable.ic_action_rotation_unlocked)
+		setIcon("try_harder", R.drawable.ic_action_search)
+		setIcon("bulk_mode", R.drawable.ic_action_bulk_mode)
+		setIcon("bulk_mode_delay", R.drawable.ic_action_bulk_mode)
+		setIcon("show_toast_in_bulk_mode", R.drawable.ic_action_bulk_mode)
+		setIcon("vibrate", R.drawable.ic_action_info)
+		setIcon("beep", R.drawable.ic_action_info)
+		setIcon("beep_tone_name", R.drawable.ic_action_info)
+		setIcon("use_history", R.drawable.ic_action_history)
+		setIcon("ignore_duplicates_name", R.drawable.ic_action_remove)
+		setIcon("copy_immediately", R.drawable.ic_action_copy)
+		setIcon("send_scan_active", R.drawable.ic_action_share)
+		setIcon("send_scan_url", R.drawable.ic_action_link)
+		setIcon("send_scan_type", R.drawable.ic_action_share)
+		setIcon("send_scan_bluetooth", R.drawable.ic_action_wifi)
+		setIcon("send_scan_bluetooth_host", R.drawable.ic_action_wifi)
+		setIcon("open_immediately", R.drawable.ic_action_open)
+		setIcon("show_meta_data", R.drawable.ic_action_info)
+		setIcon("show_hex_dump", R.drawable.ic_action_info)
+		setIcon("show_checksum", R.drawable.ic_action_info)
+		setIcon("show_recreation", R.drawable.ic_action_create)
+		setIcon("close_automatically", R.drawable.ic_action_remove)
+		setIcon("default_search_url", R.drawable.ic_action_search)
+		setIcon("open_with_url", R.drawable.ic_action_link)
+		setIcon(AUTOMATED_ACTIONS, R.drawable.ic_action_create)
+		setIcon("clear_network_suggestions", R.drawable.ic_action_wifi)
+		setIcon("brighten_screen", R.drawable.ic_action_bright)
+		setIcon("custom_locale", R.drawable.ic_action_preferences)
+	}
+
+	private fun setIcon(key: String, iconResId: Int) {
+		findPreference<Preference>(key)?.setIcon(iconResId)
 	}
 
 	private fun updateAutomatedActionsSummary(preference: Preference) {
