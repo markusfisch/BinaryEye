@@ -97,9 +97,7 @@ class BarcodeActivity : ScreenActivity() {
 			if (message.isNullOrEmpty()) {
 				message = getString(R.string.error_encoding_barcode)
 			}
-			message?.let {
-				toast(message)
-			}
+			toast(message)
 			finish()
 			return
 		}
