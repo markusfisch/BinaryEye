@@ -1,0 +1,3 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="24dp" android:tint="#FFFFFF" android:viewportHeight="960" android:viewportWidth="960" android:width="24dp">
+    <path android:fillColor="@android:color/white" android:pathData="M320 840q-33 0-56.5-23.5T240 760V200q0-33 23.5-56.5T320 120h320q33 0 56.5 23.5T720 200v560q0 33-23.5 56.5T640 840H320zm320-80V200H320v560h320zM508.5 308.5Q520 297 520 280t-11.5-28.5Q497 240 480 240t-28.5 11.5Q440 263 440 280t11.5 28.5Q463 320 480 320t28.5-11.5zM0 600V360h80v240H0zm120 80V280h80v400h-80zm760-80V360h80v240h-80zm-120 80V280h80v400h-80zm-440 80V200v560z"/>
+</vector>

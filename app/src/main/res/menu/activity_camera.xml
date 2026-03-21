@@ -30,7 +30,7 @@
 	<item
 		android:id="@+id/restrict_format"
 		android:title="@string/restrict_format"
-		android:icon="@drawable/ic_action_restrict_format"
+		android:icon="@drawable/ic_action_scan"
 		material:showAsAction="ifRoom"/>
 	<item
 		android:id="@+id/find_code"
