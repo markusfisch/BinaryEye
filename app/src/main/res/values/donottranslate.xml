@@ -1,13 +1,14 @@
 <resources>
-	<string name="app_name" translatable="false">Binary Eye</string>
-	<string name="url_hint" translatable="false">http://example.com/</string>
-	<string name="url_hint_add_content" translatable="false">http://example.com/?content=</string>
-	<string name="project_url" translatable="false">https://github.com/markusfisch/BinaryEye</string>
-	<string name="no_bluetooth_hosts_paired_value" translatable="false" />
-	<string name="crc4" translatable="false">CRC4</string>
-	<string name="md5" translatable="false">MD5</string>
-	<string name="sha1" translatable="false">SHA1</string>
-	<string name="sha256" translatable="false">SHA256</string>
+	<string name="app_name">Binary Eye</string>
+	<string name="url_hint">http://example.com/</string>
+	<string name="url_hint_add_content">http://example.com/?content=</string>
+	<string name="project_url">https://github.com/markusfisch/BinaryEye</string>
+	<string name="no_bluetooth_hosts_paired_value" />
+	<string name="crc4">CRC4</string>
+	<string name="md5">MD5</string>
+	<string name="sha1">SHA1</string>
+	<string name="sha256">SHA256</string>
+	<string name="scan_meta_data">%1$s • %2$s</string>
 	<string name="idl_vehicle_class">Vehicle Class</string>
 	<string name="idl_restriction_codes">Restriction Codes</string>
 	<string name="idl_endorsement_codes">Endorsement Codes</string>

@@ -222,6 +222,8 @@
 	<string name="search_scan">Търсещо сканиране</string>
 	<string name="add_to_history">Добави към историята</string>
 	<string name="added_to_history">Добавено към историята</string>
+	<string name="pin_item">Закрепи</string>
+	<string name="unpin_item">Премахни закрепването</string>
 	<string name="export_to_file">Извеждане в файл</string>
 	<string name="export_as">Извеждане като?</string>
 	<string name="export_csv_comma">CSV файл със запетаи</string>

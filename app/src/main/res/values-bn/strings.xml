@@ -222,6 +222,8 @@
 	<string name="search_scan">আগেরগুলোতে খুঁজো</string>
 	<string name="add_to_history">ইতিহাসে যোগ করুন</string>
 	<string name="added_to_history">ইতিহাসে যোগ করা হয়েছে</string>
+	<string name="pin_item">পিন করুন</string>
+	<string name="unpin_item">আনপিন করুন</string>
 	<string name="export_to_file">নথিতে রপ্তানি করো</string>
 	<string name="export_as">রপ্তানির ধরণ?</string>
 	<string name="export_csv_comma">কমাসহ সিএসভি(.csv) নথি</string>

@@ -228,6 +228,8 @@
 	<string name="search_scan">Cerca scansione</string>
 	<string name="add_to_history">Aggiungi alla cronologia</string>
 	<string name="added_to_history">Aggiunto alla cronologia</string>
+	<string name="pin_item">Fissa in alto</string>
+	<string name="unpin_item">Rimuovi dall\'alto</string>
 	<string name="export_to_file">Esporta in un file</string>
 	<string name="export_as">Esportare come?</string>
 	<string name="export_csv_comma">CSV con virgole</string>

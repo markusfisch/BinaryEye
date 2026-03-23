@@ -220,6 +220,8 @@
 	<string name="search_scan">スキャン結果を検索</string>
 	<string name="add_to_history">履歴に追加</string>
 	<string name="added_to_history">履歴に追加されました</string>
+	<string name="pin_item">固定する</string>
+	<string name="unpin_item">固定を解除</string>
 	<string name="export_to_file">ファイルにエクスポート</string>
 	<string name="export_as">ファイル形式を選択</string>
 	<string name="export_csv_comma">コンマ区切りのCSVファイル</string>

@@ -20,19 +20,21 @@ class Database {
 	fun getScans(query: String? = null): Cursor = db.rawQuery(
 		"""SELECT
 			$SCANS_ID,
+			$SCANS_PINNED,
 			$SCANS_DATETIME,
 			$SCANS_NAME,
 			$SCANS_TEXT,
 			$SCANS_FORMAT
 			FROM $SCANS
 			${getWhereClause(query)}
-			ORDER BY $SCANS_DATETIME DESC
+			ORDER BY $SCANS_PINNED DESC, $SCANS_DATETIME DESC
 		""".trimMargin(), getWhereArguments(query)
 	)
 
 	fun getScansDetailed(query: String? = null): Cursor = db.rawQuery(
 		"""SELECT
 			$SCANS_ID,
+			$SCANS_PINNED,
 			$SCANS_DATETIME,
 			$SCANS_NAME,
 			$SCANS_TEXT,
@@ -49,7 +51,7 @@ class Database {
 			$SCANS_GTIN_ISSUE_NUMBER
 			FROM $SCANS
 			${getWhereClause(query)}
-			ORDER BY $SCANS_DATETIME DESC
+			ORDER BY $SCANS_PINNED DESC, $SCANS_DATETIME DESC
 		""".trimMargin(), getWhereArguments(query)
 	)
 
@@ -75,6 +77,7 @@ class Database {
 	fun getScansDetailed(ids: LongArray): Cursor = db.rawQuery(
 		"""SELECT
 			$SCANS_ID,
+			$SCANS_PINNED,
 			$SCANS_DATETIME,
 			$SCANS_NAME,
 			$SCANS_TEXT,
@@ -91,13 +94,14 @@ class Database {
 			$SCANS_GTIN_ISSUE_NUMBER
 			FROM $SCANS
 			WHERE $SCANS_ID IN (${ids.joinToString(",")})
-			ORDER BY $SCANS_DATETIME DESC
+			ORDER BY $SCANS_PINNED DESC, $SCANS_DATETIME DESC
 		""".trimMargin(), null
 	)
 
 	fun getScan(id: Long): Scan? = db.rawQuery(
 		"""SELECT
 			$SCANS_ID,
+			$SCANS_PINNED,
 			$SCANS_DATETIME,
 			$SCANS_NAME,
 			$SCANS_TEXT,
@@ -145,6 +149,7 @@ class Database {
 				it.getString(SCANS_DATETIME),
 				it.getLong(SCANS_ID),
 				it.getString(SCANS_NAME),
+				it.getInt(SCANS_PINNED) != 0
 			)
 		} else {
 			null
@@ -200,6 +205,7 @@ class Database {
 				scan.addOn?.let { put(SCANS_GTIN_ADD_ON, it) }
 				scan.price?.let { put(SCANS_GTIN_PRICE, it) }
 				scan.issueNumber?.let { put(SCANS_GTIN_ISSUE_NUMBER, it) }
+				put(SCANS_PINNED, if (scan.pinned) 1 else 0)
 			}
 		)
 	}
@@ -265,8 +271,14 @@ class Database {
 		db.update(SCANS, cv, "$SCANS_ID = ?", arrayOf("$id"))
 	}
 
+	fun setPinned(id: Long, pinned: Boolean) {
+		val cv = ContentValues()
+		cv.put(SCANS_PINNED, if (pinned) 1 else 0)
+		db.update(SCANS, cv, "$SCANS_ID = ?", arrayOf("$id"))
+	}
+
 	private class OpenHelper(context: Context) :
-		SQLiteOpenHelper(context, FILE_NAME, null, 9) {
+		SQLiteOpenHelper(context, FILE_NAME, null, 10) {
 		override fun onCreate(db: SQLiteDatabase) {
 			db.createScans()
 		}
@@ -299,6 +311,9 @@ class Database {
 			}
 			if (oldVersion < 9) {
 				db.migrateToNativeFormatNames()
+			}
+			if (oldVersion < 10) {
+				db.addPinnedColumn()
 			}
 		}
 	}
@@ -333,6 +348,7 @@ class Database {
 		const val SCANS_GTIN_ADD_ON = "gtin_add_on"
 		const val SCANS_GTIN_PRICE = "gtin_price"
 		const val SCANS_GTIN_ISSUE_NUMBER = "gtin_issue_number"
+		const val SCANS_PINNED = "pinned"
 
 		private fun SQLiteDatabase.createScans() {
 			execSQL("DROP TABLE IF EXISTS $SCANS".trimMargin())
@@ -356,7 +372,8 @@ class Database {
 					$SCANS_GTIN_COUNTRY TEXT,
 					$SCANS_GTIN_ADD_ON TEXT,
 					$SCANS_GTIN_PRICE TEXT,
-					$SCANS_GTIN_ISSUE_NUMBER TEXT
+					$SCANS_GTIN_ISSUE_NUMBER TEXT,
+					$SCANS_PINNED INTEGER NOT NULL DEFAULT 0
 				)""".trimMargin()
 			)
 		}
@@ -448,6 +465,12 @@ class Database {
 			execSQL("ALTER TABLE $SCANS ADD $SCANS_SYMBOL_WIDTH INTEGER")
 			execSQL("ALTER TABLE $SCANS ADD $SCANS_SYMBOL_HEIGHT INTEGER")
 			execSQL("ALTER TABLE $SCANS ADD $SCANS_SYMBOL_DATA BLOB")
+		}
+
+		private fun SQLiteDatabase.addPinnedColumn() {
+			execSQL(
+				"ALTER TABLE $SCANS ADD COLUMN $SCANS_PINNED INTEGER NOT NULL DEFAULT 0"
+			)
 		}
 	}
 }

@@ -222,6 +222,8 @@
 	<string name="search_scan">Buscar escaneo</string>
 	<string name="add_to_history">Añadir al historial</string>
 	<string name="added_to_history">Añadido al historial</string>
+	<string name="pin_item">Fijar</string>
+	<string name="unpin_item">Desfijar</string>
 	<string name="export_to_file">Exportar a archivo</string>
 	<string name="export_as">¿Exportar como?</string>
 	<string name="export_csv_comma">Archivo CSV con comas</string>

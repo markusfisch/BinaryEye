@@ -231,6 +231,8 @@
 	<string name="search_scan">البحث عن عملية مسح</string>
 	<string name="add_to_history">إضافة إلى التاريخ</string>
 	<string name="added_to_history">تمت الإضافة إلى التاريخ</string>
+	<string name="pin_item">تثبيت</string>
+	<string name="unpin_item">إلغاء التثبيت</string>
 	<string name="export_to_file">تصدير إلى ملف</string>
 	<string name="export_as">تصدير كـ؟</string>
 	<string name="export_csv_comma">ملف CSV مع فواصل</string>

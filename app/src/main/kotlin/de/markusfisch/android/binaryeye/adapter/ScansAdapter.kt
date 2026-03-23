@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CursorAdapter
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import de.markusfisch.android.binaryeye.R
@@ -15,9 +16,14 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class ScansAdapter(context: Context, cursor: Cursor) :
+class ScansAdapter(
+	context: Context,
+	cursor: Cursor,
+	private val onPinClick: (Long, Boolean) -> Unit
+) :
 	CursorAdapter(context, cursor, false) {
 	private val idIndex = cursor.getColumnIndex(Database.SCANS_ID)
+	private val pinnedIndex = cursor.getColumnIndex(Database.SCANS_PINNED)
 	private val timeIndex = cursor.getColumnIndex(Database.SCANS_DATETIME)
 	private val nameIndex = cursor.getColumnIndex(Database.SCANS_NAME)
 	private val textIndex = cursor.getColumnIndex(Database.SCANS_TEXT)
@@ -89,8 +95,14 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 		context: Context,
 		cursor: Cursor
 	) {
+		val id = cursor.getLong(idIndex)
+		val pinned = cursor.getInt(pinnedIndex) != 0
 		getViewHolder(view).apply {
-			timeView.text = formatDateTime(cursor.getString(timeIndex))
+			metaView.text = context.getString(
+				R.string.scan_meta_data,
+				formatDateTime(cursor.getString(timeIndex)),
+				cursor.getString(formatIndex).prettifyFormatName()
+			)
 			val name = cursor.getString(nameIndex)
 			val text = cursor.getString(textIndex)
 			var icon = 0
@@ -109,9 +121,27 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 			contentView.setCompoundDrawablesWithIntrinsicBounds(
 				icon, 0, 0, 0
 			)
-			formatView.text = cursor.getString(formatIndex).prettifyFormatName()
+			pinView.apply {
+				setImageResource(
+					if (pinned) {
+						R.drawable.ic_action_pin
+					} else {
+						R.drawable.ic_action_pin_outline
+					}
+				)
+				contentDescription = context.getString(
+					if (pinned) {
+						R.string.unpin_item
+					} else {
+						R.string.pin_item
+					}
+				)
+				setOnClickListener {
+					onPinClick(id, !pinned)
+				}
+			}
 		}
-		val selected = selections[cursor.getLong(idIndex)] != null
+		val selected = selections[id] != null
 		view.post {
 			// Needs to be put on the queue to work.
 			view.select(selected)
@@ -125,17 +155,17 @@ class ScansAdapter(context: Context, cursor: Cursor) :
 	private fun getViewHolder(
 		view: View
 	): ViewHolder = view.tag as ViewHolder? ?: ViewHolder(
-		view.findViewById(R.id.time),
+		view.findViewById(R.id.meta),
 		view.findViewById(R.id.content),
-		view.findViewById(R.id.format)
+		view.findViewById(R.id.pin)
 	).also {
 		view.tag = it
 	}
 
 	private data class ViewHolder(
-		val timeView: TextView,
+		val metaView: TextView,
 		val contentView: TextView,
-		val formatView: TextView
+		val pinView: ImageButton
 	)
 }
 

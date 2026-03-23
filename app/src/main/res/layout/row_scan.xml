@@ -1,31 +1,41 @@
 <RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:background="@drawable/list_selector"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:descendantFocusability="blocksDescendants"
 	android:padding="16dp">
 	<TextView
 		style="@style/SecondaryText"
-		android:id="@+id/time"
+		android:id="@+id/meta"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_alignParentStart="true"
 		android:layout_alignParentTop="true"/>
-	<TextView
-		style="@style/SecondaryText"
-		android:id="@+id/format"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:gravity="end"
-		android:layout_toEndOf="@+id/time"
+	<ImageButton
+		android:id="@+id/pin"
+		android:layout_width="48dp"
+		android:layout_height="48dp"
 		android:layout_alignParentEnd="true"
-		android:layout_alignParentTop="true"/>
+		android:layout_centerVertical="true"
+		android:layout_marginStart="8dp"
+		android:background="?android:attr/selectableItemBackgroundBorderless"
+		android:focusable="false"
+		android:focusableInTouchMode="false"
+		android:contentDescription="@string/pin_item"
+		android:padding="8dp"
+		android:scaleType="centerInside"
+		android:src="@drawable/ic_action_pin_outline"
+		app:tint="@color/accent"/>
 	<TextView
 		android:id="@+id/content"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_below="@+id/time"
+		android:layout_below="@+id/meta"
+		android:layout_toStartOf="@+id/pin"
 		android:layout_marginTop="4dp"
+		android:layout_marginEnd="8dp"
 		android:maxLines="1"
 		android:ellipsize="end"
 		android:drawablePadding="16dp"

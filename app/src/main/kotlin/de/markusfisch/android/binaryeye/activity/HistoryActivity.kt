@@ -295,7 +295,16 @@ class HistoryActivity : ScreenActivity() {
 				cursor.let { cursor ->
 					// Close previous cursor.
 					scansAdapter?.also { it.changeCursor(null) }
-					scansAdapter = ScansAdapter(ac, cursor)
+					scansAdapter = ScansAdapter(ac, cursor) { id, pinned ->
+						if (actionMode == null) {
+							scope.launch {
+								db.setPinned(id, pinned)
+								withContext(Dispatchers.Main) {
+									update()
+								}
+							}
+						}
+					}
 					listView.adapter = scansAdapter
 					listViewState?.also {
 						listView.onRestoreInstanceState(it)

@@ -225,6 +225,8 @@
 	<string name="search_scan">Шукати сканування</string>
 	<string name="add_to_history">Додати до історії</string>
 	<string name="added_to_history">Додано до історії</string>
+	<string name="pin_item">Закріпити</string>
+	<string name="unpin_item">Відкріпити</string>
 	<string name="export_to_file">Експортувати в файл</string>
 	<string name="export_as">Експортувати як?</string>
 	<string name="export_csv_comma">CSV із комами</string>

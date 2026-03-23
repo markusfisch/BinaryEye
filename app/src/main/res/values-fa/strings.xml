@@ -222,6 +222,8 @@
 	<string name="search_scan">جست‌وجوی پویش</string>
 	<string name="add_to_history">اضافه به تاریخچه</string>
 	<string name="added_to_history">اضافه شد به تاریخچه</string>
+	<string name="pin_item">سنجاق کردن</string>
+	<string name="unpin_item">برداشتن سنجاق</string>
 	<string name="export_to_file">برون‌ریزی به پرونده</string>
 	<string name="export_as">برون‌ریزی به عنوان؟</string>
 	<string name="export_csv_comma">پروندهٔ سی‌اس‌وی با ویرگول</string>

@@ -222,6 +222,8 @@
 	<string name="search_scan">სკანირების ძიება</string>
 	<string name="add_to_history">დაამატე ისტორიაში</string>
 	<string name="added_to_history">დაემატა ისტორიაში</string>
+	<string name="pin_item">მიმაგრება</string>
+	<string name="unpin_item">მიმაგრების მოხსნა</string>
 	<string name="export_to_file">ექსპორტი ფაილში</string>
 	<string name="export_as">შესანახი ფაილის ფორმატი</string>
 	<string name="export_csv_comma">CSV (გამყოფი - მძიმე)</string>

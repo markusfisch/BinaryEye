@@ -220,6 +220,8 @@
 	<string name="search_scan">검색 스캔</string>
 	<string name="add_to_history">히스토리에 추가</string>
 	<string name="added_to_history">역사에 추가되었습니다</string>
+	<string name="pin_item">상단에 고정</string>
+	<string name="unpin_item">고정 해제</string>
 	<string name="export_to_file">파일로 내보내기</string>
 	<string name="export_as">내보내기?</string>
 	<string name="export_csv_comma">쉼표가 있는 CSV 파일</string>

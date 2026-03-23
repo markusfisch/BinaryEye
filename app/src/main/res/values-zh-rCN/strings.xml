@@ -220,6 +220,8 @@
 	<string name="search_scan">搜索扫描记录</string>
 	<string name="add_to_history">添加到历史记录</string>
 	<string name="added_to_history">已添加到历史记录</string>
+	<string name="pin_item">置顶</string>
+	<string name="unpin_item">取消置顶</string>
 	<string name="export_to_file">导出为文件</string>
 	<string name="export_as">另存为？</string>
 	<string name="export_csv_comma">逗号分隔的 CSV</string>

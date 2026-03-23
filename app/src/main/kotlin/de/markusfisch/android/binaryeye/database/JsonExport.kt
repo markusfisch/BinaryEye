@@ -21,6 +21,7 @@ fun Cursor.exportJson(): String? {
 		return null
 	}
 	val columns = arrayOf(
+		Database.SCANS_PINNED,
 		Database.SCANS_DATETIME,
 		Database.SCANS_FORMAT,
 		Database.SCANS_NAME,

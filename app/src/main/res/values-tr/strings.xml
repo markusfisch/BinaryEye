@@ -222,6 +222,8 @@
 	<string name="search_scan">Taramayı ara</string>
 	<string name="add_to_history">Geçmişe ekle</string>
 	<string name="added_to_history">Geçmişe eklendi</string>
+	<string name="pin_item">Sabitle</string>
+	<string name="unpin_item">Sabitlemeyi kaldır</string>
 	<string name="export_to_file">Dosyaya dışa aktar</string>
 	<string name="export_as">Ne olarak dışa aktarılsın?</string>
 	<string name="export_csv_comma">Virgüller ile CSV</string>
