@@ -122,6 +122,19 @@
 	<string name="ignore_consecutive_duplicates">Duplicati consecutivi</string>
 	<string name="ignore_any_duplicates">Qualsiasi duplicato</string>
 	<string name="accept_duplicates">Accetta duplicati</string>
+	<string name="ignore_codes">Codici da escludere dalla cronologia</string>
+	<string name="ignore_codes_none">No ignored codes</string>
+	<string name="ignore_codes_empty">No ignored codes yet</string>
+	<plurals name="ignore_codes_count">
+		<item quantity="one">%d ignored code</item>
+		<item quantity="other">%d ignored codes</item>
+	</plurals>
+	<string name="ignore_code_add">Add code</string>
+	<string name="ignore_code_edit">Edit code</string>
+	<string name="ignore_code_regex_hint">e.g. ^FIDO://.*</string>
+	<string name="ignore_code_regex_required">Regex required</string>
+	<string name="ignore_code_regex_invalid">Invalid regex</string>
+	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
 	<string name="open_immediately">Apri subito</string>
 	<string name="open_immediately_summary">Salta l\'ispezione e apri i contenuti immediatamente. Se abilitato può aprire contenuti dannosi.</string>
 	<string name="copy_immediately">Copia negli Appunti</string>

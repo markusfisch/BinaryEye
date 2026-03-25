@@ -124,6 +124,9 @@ class Preferences {
 			apply(IGNORE_DUPLICATES_NAME, value)
 			field = value
 		}
+	var ignoreCodes = mutableListOf(DEFAULT_IGNORE_CODE_PATTERN)
+		private set
+	private var compiledIgnorePatterns: List<Regex> = emptyList()
 	var copyImmediately = false
 		set(value) {
 			apply(COPY_IMMEDIATELY, value)
@@ -360,6 +363,13 @@ class Preferences {
 		)?.also {
 			ignoreDuplicatesName = it
 		}
+		ignoreCodes = fromStringJsonArray(
+			preferences.getString(
+				IGNORE_CODES,
+				JSONArray(listOf(DEFAULT_IGNORE_CODE_PATTERN)).toString()
+			) ?: "[]"
+		)
+		compiledIgnorePatterns = compileIgnorePatterns(ignoreCodes)
 		copyImmediately = preferences.getBoolean(
 			COPY_IMMEDIATELY,
 			copyImmediately
@@ -439,6 +449,15 @@ class Preferences {
 		apply(AUTOMATED_ACTIONS, toJsonArray(actions))
 	}
 
+	fun setIgnoreCodes(patterns: List<String>) {
+		ignoreCodes = patterns.toMutableList()
+		compiledIgnorePatterns = compileIgnorePatterns(ignoreCodes)
+		apply(IGNORE_CODES, toStringJsonArray(patterns))
+	}
+
+	fun shouldIgnoreHistoryContent(content: String): Boolean =
+		compiledIgnorePatterns.any { it.containsMatchIn(content) }
+
 	private fun addFormatsOnUpdate(
 		restored: Set<String>,
 		vararg formats: BarcodeFormat
@@ -459,6 +478,39 @@ class Preferences {
 			format.migrateBarcodeFormatName()
 		}
 	}
+
+	private fun fromStringJsonArray(json: String): MutableList<String> {
+		val items = mutableListOf<String>()
+		val array = try {
+			JSONArray(json)
+		} catch (_: Exception) {
+			JSONArray()
+		}
+		for (i in 0 until array.length()) {
+			val item = array.optString(i).trim()
+			if (item.isNotEmpty()) {
+				items.add(item)
+			}
+		}
+		return items
+	}
+
+	private fun toStringJsonArray(items: List<String>): String {
+		val array = JSONArray()
+		items.forEach { item ->
+			array.put(item)
+		}
+		return array.toString()
+	}
+
+	private fun compileIgnorePatterns(patterns: List<String>): List<Regex> =
+		patterns.mapNotNull { pattern ->
+			try {
+				Regex(pattern)
+			} catch (_: Exception) {
+				null
+			}
+		}
 
 	fun restoreCropHandle(
 		name: String,
@@ -546,6 +598,7 @@ class Preferences {
 		private const val BEEP_TONE_NAME = "beep_tone_name"
 		private const val USE_HISTORY = "use_history"
 		private const val IGNORE_DUPLICATES_NAME = "ignore_duplicates_name"
+		private const val IGNORE_CODES = "ignore_codes"
 		private const val OPEN_IMMEDIATELY = "open_immediately"
 		private const val COPY_IMMEDIATELY = "copy_immediately"
 		private const val SHOW_META_DATA = "show_meta_data"
@@ -569,5 +622,6 @@ class Preferences {
 		private const val BRIGHTEN_SCREEN = "brighten_screen"
 		private const val PREVIEW_SCALE = "preview_scale"
 		private const val AUTOMATED_ACTIONS = "automated_actions"
+		private const val DEFAULT_IGNORE_CODE_PATTERN = "^FIDO://.*"
 	}
 }

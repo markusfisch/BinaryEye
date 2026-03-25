@@ -17,6 +17,7 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceGroup
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.activity.AutomatedActionsActivity
+import de.markusfisch.android.binaryeye.activity.IgnoreCodesActivity
 import de.markusfisch.android.binaryeye.activity.NetworkSuggestionsActivity
 import de.markusfisch.android.binaryeye.activity.ProfilesActivity
 import de.markusfisch.android.binaryeye.activity.SplashActivity
@@ -84,6 +85,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 
 		wireProfiles()
 		wireAutomatedActions()
+		wireIgnoreCodes()
 		setBluetoothResources()
 		wireClearNetworkPreferences()
 	}
@@ -104,6 +106,18 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 			onPreferenceClickListener = Preference.OnPreferenceClickListener {
 				startActivity(
 					Intent(activity, AutomatedActionsActivity::class.java)
+				)
+				true
+			}
+		}
+	}
+
+	private fun wireIgnoreCodes() {
+		findPreference<Preference>(IGNORE_CODES)?.apply {
+			updateIgnoreCodesSummary(this)
+			onPreferenceClickListener = Preference.OnPreferenceClickListener {
+				startActivity(
+					Intent(activity, IgnoreCodesActivity::class.java)
 				)
 				true
 			}
@@ -136,10 +150,10 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 				// Note that previous versions of this app allowed
 				// adding network suggestions on Q as well, so we
 				// need to keep this option.
-					setOnPreferenceClickListener {
-						context?.askToClearNetworkSuggestions()
-						true
-					}
+				setOnPreferenceClickListener {
+					context?.askToClearNetworkSuggestions()
+					true
+				}
 			} else {
 				// There are no network suggestions below Q.
 				isVisible = false
@@ -179,6 +193,9 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		activity?.setTitle(R.string.preferences)
 		findPreference<Preference>(AUTOMATED_ACTIONS)?.let {
 			updateAutomatedActionsSummary(it)
+		}
+		findPreference<Preference>(IGNORE_CODES)?.let {
+			updateIgnoreCodesSummary(it)
 		}
 		findPreference<Preference>(PROFILE)?.let {
 			updateProfileSummary(it)
@@ -224,6 +241,10 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 			updateAutomatedActionsSummary(preference)
 			return
 		}
+		if (preference.key == IGNORE_CODES) {
+			updateIgnoreCodesSummary(preference)
+			return
+		}
 		when (preference) {
 			is UrlPreference -> {
 				preference.summary = preference.getUrl()
@@ -261,6 +282,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		setIcon("beep_tone_name", R.drawable.ic_action_notification_sound)
 		setIcon("use_history", R.drawable.ic_action_history)
 		setIcon("ignore_duplicates_name", R.drawable.ic_action_remove)
+		setIcon(IGNORE_CODES, R.drawable.ic_action_remove)
 		setIcon("copy_immediately", R.drawable.ic_action_copy)
 		setIcon("send_scan_active", R.drawable.ic_action_forward)
 		setIcon("send_scan_url", R.drawable.ic_action_link)
@@ -298,6 +320,19 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		}
 	}
 
+	private fun updateIgnoreCodesSummary(preference: Preference) {
+		val count = prefs.ignoreCodes.size
+		preference.summary = if (count == 0) {
+			getString(R.string.ignore_codes_none)
+		} else {
+			resources.getQuantityString(
+				R.plurals.ignore_codes_count,
+				count,
+				count
+			)
+		}
+	}
+
 	private fun updateProfileSummary(preference: Preference) {
 		preference.summary = prefs.profile ?: getString(R.string.profile_default)
 		lastProfile = prefs.profile
@@ -306,6 +341,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 	companion object {
 		private const val PROFILE = "profile"
 		private const val AUTOMATED_ACTIONS = "automated_actions"
+		private const val IGNORE_CODES = "ignore_codes"
 	}
 }
 

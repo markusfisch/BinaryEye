@@ -121,6 +121,19 @@
 	<string name="ignore_consecutive_duplicates">不儲存重複歷史記錄</string>
 	<string name="ignore_any_duplicates">略過任何重複項目</string>
 	<string name="accept_duplicates">接受重複</string>
+	<string name="ignore_codes">從歷史記錄排除的代碼</string>
+	<string name="ignore_codes_none">No ignored codes</string>
+	<string name="ignore_codes_empty">No ignored codes yet</string>
+	<plurals name="ignore_codes_count">
+		<item quantity="one">%d ignored code</item>
+		<item quantity="other">%d ignored codes</item>
+	</plurals>
+	<string name="ignore_code_add">Add code</string>
+	<string name="ignore_code_edit">Edit code</string>
+	<string name="ignore_code_regex_hint">e.g. ^FIDO://.*</string>
+	<string name="ignore_code_regex_required">Regex required</string>
+	<string name="ignore_code_regex_invalid">Invalid regex</string>
+	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
 	<string name="open_immediately">立即開啟</string>
 	<string name="open_immediately_summary">跳過檢查並立即開啟。可能會開啟有害內容</string>
 	<string name="copy_immediately">自動複製掃描結果到剪貼簿</string>

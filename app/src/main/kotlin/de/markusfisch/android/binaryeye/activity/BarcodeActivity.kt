@@ -592,7 +592,10 @@ private fun readAndAddToHistory(
 			formats = setOf(format)
 		)
 	)?.first {
-		db.insertScan(it.toScan())
+		val scan = it.toScan()
+		if (!prefs.shouldIgnoreHistoryContent(scan.text)) {
+			db.insertScan(scan)
+		}
 		true
 	}
 }

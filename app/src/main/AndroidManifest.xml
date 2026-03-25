@@ -149,6 +149,9 @@
 			android:name=".activity.AutomatedActionsActivity"
 			android:exported="false"/>
 		<activity
+			android:name=".activity.IgnoreCodesActivity"
+			android:exported="false"/>
+		<activity
 			android:name=".activity.NetworkSuggestionsActivity"
 			android:exported="false"/>
 		<service

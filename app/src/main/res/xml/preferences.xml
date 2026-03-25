@@ -82,6 +82,10 @@
 			android:entries="@array/ignore_duplicates_names"
 			android:entryValues="@array/ignore_duplicates_values"
 			android:defaultValue="ignore_consecutive_duplicates"/>
+		<Preference
+			android:key="ignore_codes"
+			android:title="@string/ignore_codes"
+			android:summary="@string/ignore_codes_none"/>
 		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="copy_immediately"
