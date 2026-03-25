@@ -20,7 +20,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TableLayout
@@ -72,7 +71,7 @@ import java.io.File
 import java.security.MessageDigest
 import kotlin.math.roundToInt
 
-class DecodeActivity : ScreenActivity() {
+class DecodeActivity : AbstractBaseActivity() {
 	private lateinit var contentView: EditText
 	private lateinit var formatView: TextView
 	private lateinit var dataView: TableLayout
@@ -119,14 +118,8 @@ class DecodeActivity : ScreenActivity() {
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
+		setScreenContentView(R.layout.activity_decode)
 		setTitle(R.string.content)
-		val frame = findViewById(R.id.content_frame) as ViewGroup
-		val view = layoutInflater.inflate(
-			R.layout.fragment_decode,
-			frame,
-			false
-		)
-		frame.addView(view)
 
 		val justScanned = intent.hasExtra(DECODED) || intent.hasExtra(DECODED_SCAN)
 		closeAutomatically = prefs.closeAutomatically && justScanned
@@ -139,15 +132,15 @@ class DecodeActivity : ScreenActivity() {
 		format = scan.format.name
 		recreationSize = (200f * dp).roundToInt()
 
-		contentView = view.findViewById(R.id.content)
-		formatView = view.findViewById(R.id.format)
-		dataView = view.findViewById(R.id.data)
-		metaView = view.findViewById(R.id.meta)
-		hexView = view.findViewById(R.id.hex)
-		stampView = view.findViewById(R.id.stamp)
-		recreationView = view.findViewById(R.id.recreation)
-		labelView = view.findViewById(R.id.label)
-		fab = view.findViewById(R.id.open)
+		contentView = findViewById(R.id.content)
+		formatView = findViewById(R.id.format)
+		dataView = findViewById(R.id.data)
+		metaView = findViewById(R.id.meta)
+		hexView = findViewById(R.id.hex)
+		stampView = findViewById(R.id.stamp)
+		recreationView = findViewById(R.id.recreation)
+		labelView = findViewById(R.id.label)
+		fab = findViewById(R.id.open)
 
 		if (prefs.showMetaData) {
 			metaView.fillMetaView(scan)
@@ -164,8 +157,8 @@ class DecodeActivity : ScreenActivity() {
 			labelView.visibility = View.GONE
 		}
 
-		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
-		view.findViewById<View>(R.id.scroll_view).setPaddingFromWindowInsets()
+		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
+		findViewById<View>(R.id.scroll_view).setPaddingFromWindowInsets()
 
 		initContentAndFab(justScanned)
 		updateViewsAndFab(scan.text, originalBytes)

@@ -2,12 +2,11 @@ package de.markusfisch.android.binaryeye.activity
 
 import android.content.Context
 import android.content.pm.PackageManager
-import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isNotEmpty
-import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.PERMISSION_LOCATION
 import de.markusfisch.android.binaryeye.app.PERMISSION_WRITE
 import de.markusfisch.android.binaryeye.app.applyLocale
@@ -15,15 +14,14 @@ import de.markusfisch.android.binaryeye.app.permissionGrantedCallback
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.view.initBars
 
-abstract class ScreenActivity : AppCompatActivity() {
+abstract class AbstractBaseActivity : AppCompatActivity() {
 	override fun attachBaseContext(base: Context?) {
 		base?.applyLocale(prefs.customLocale)
 		super.attachBaseContext(base)
 	}
 
-	override fun onCreate(state: Bundle?) {
-		super.onCreate(state)
-		setContentView(R.layout.activity_main)
+	protected fun setScreenContentView(@LayoutRes layoutId: Int) {
+		setContentView(layoutId)
 		initBars()
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 	}
@@ -63,6 +61,5 @@ abstract class ScreenActivity : AppCompatActivity() {
 	protected open fun onCreateOptionsMenu(
 		menu: Menu,
 		inflater: MenuInflater
-	) {
-	}
+	) = Unit
 }

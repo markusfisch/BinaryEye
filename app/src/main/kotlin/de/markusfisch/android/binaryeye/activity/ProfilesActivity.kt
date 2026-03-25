@@ -15,26 +15,20 @@ import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.systemBarListViewScrollListener
 import de.markusfisch.android.binaryeye.widget.toast
 
-class ProfilesActivity : ScreenActivity() {
+class ProfilesActivity : AbstractBaseActivity() {
 	private val profiles = ArrayList<ProfileItem>()
 
 	private lateinit var adapter: ProfilesAdapter
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
+		setScreenContentView(R.layout.activity_profiles)
 		setTitle(R.string.profile)
-		val frame = findViewById(R.id.content_frame) as ViewGroup
-		val view = layoutInflater.inflate(
-			R.layout.fragment_profiles,
-			frame,
-			false
-		)
-		frame.addView(view)
 
 		refreshProfiles()
 
-		val listView = view.findViewById<ListView>(R.id.profiles)
-		listView.emptyView = view.findViewById(R.id.no_profiles)
+		val listView = findViewById<ListView>(R.id.profiles)
+		listView.emptyView = findViewById(R.id.no_profiles)
 		adapter = ProfilesAdapter(this, profiles)
 		listView.adapter = adapter
 		listView.setOnScrollListener(systemBarListViewScrollListener)
@@ -46,11 +40,11 @@ class ProfilesActivity : ScreenActivity() {
 			true
 		}
 
-		view.findViewById<View>(R.id.add).setOnClickListener {
+		findViewById<View>(R.id.add).setOnClickListener {
 			addProfile()
 		}
 
-		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
+		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
 		listView.setPaddingFromWindowInsets()
 	}
 

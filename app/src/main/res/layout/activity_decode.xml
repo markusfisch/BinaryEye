@@ -1,8 +1,6 @@
-<FrameLayout
+<merge
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	xmlns:tools="http://schemas.android.com/tools">
 	<de.markusfisch.android.binaryeye.widget.ConfinedScrollView
 		android:id="@+id/scroll_view"
 		android:clipToPadding="false"
@@ -57,8 +55,8 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="16dp"
-				android:typeface="monospace"
 				android:textSize="12sp"
+				android:typeface="monospace"
 				tools:text="54 65 73 74 20 51 52 20  Test QR\n43 6F 64 65              Code"/>
 			<TextView
 				android:id="@+id/stamp"
@@ -71,20 +69,28 @@
 				android:id="@+id/recreation"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_marginBottom="16dp"
 				android:layout_gravity="center"
+				android:layout_marginBottom="16dp"
 				android:adjustViewBounds="true"
 				android:contentDescription="@string/view_barcode"/>
 		</LinearLayout>
 	</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>
 	<androidx.coordinatorlayout.widget.CoordinatorLayout
-		android:id="@+id/inset_layout"
+		android:id="@+id/main"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
-		<com.google.android.material.floatingactionbutton.FloatingActionButton
-			style="@style/FAB"
-			android:id="@+id/open"
-			android:contentDescription="@string/open_url"
-			android:src="@drawable/ic_action_open"/>
+		android:layout_height="match_parent"
+		android:fitsSystemWindows="@bool/fitsSystemWindows">
+		<include layout="@layout/toolbar"/>
+		<androidx.coordinatorlayout.widget.CoordinatorLayout
+			android:id="@+id/inset_layout"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+			<com.google.android.material.floatingactionbutton.FloatingActionButton
+				style="@style/FAB"
+				android:id="@+id/open"
+				android:contentDescription="@string/open_url"
+				android:src="@drawable/ic_action_open"/>
+		</androidx.coordinatorlayout.widget.CoordinatorLayout>
 	</androidx.coordinatorlayout.widget.CoordinatorLayout>
-</FrameLayout>
+	<include layout="@layout/navbar"/>
+</merge>

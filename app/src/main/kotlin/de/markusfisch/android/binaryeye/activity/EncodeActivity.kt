@@ -8,7 +8,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
@@ -30,7 +29,7 @@ import java.io.InputStream
 import kotlin.math.min
 
 
-class EncodeActivity : ScreenActivity() {
+class EncodeActivity : AbstractBaseActivity() {
 	private lateinit var formatView: Spinner
 	private lateinit var ecLabel: TextView
 	private lateinit var ecSpinner: Spinner
@@ -96,16 +95,10 @@ class EncodeActivity : ScreenActivity() {
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
+		setScreenContentView(R.layout.activity_encode)
 		setTitle(R.string.compose_barcode)
-		val frame = findViewById(R.id.content_frame) as ViewGroup
-		val view = layoutInflater.inflate(
-			R.layout.fragment_encode,
-			frame,
-			false
-		)
-		frame.addView(view)
 
-		formatView = view.findViewById(R.id.format)
+		formatView = findViewById(R.id.format)
 		val formatAdapter = ArrayAdapter(
 			this,
 			android.R.layout.simple_spinner_item,
@@ -151,8 +144,8 @@ class EncodeActivity : ScreenActivity() {
 			override fun onNothingSelected(parentView: AdapterView<*>?) {}
 		}
 
-		ecLabel = view.findViewById(R.id.error_correction_label)
-		ecSpinner = view.findViewById(R.id.error_correction_level)
+		ecLabel = findViewById(R.id.error_correction_label)
+		ecSpinner = findViewById(R.id.error_correction_level)
 		ecSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 			override fun onItemSelected(
 				parentView: AdapterView<*>?,
@@ -170,13 +163,13 @@ class EncodeActivity : ScreenActivity() {
 			override fun onNothingSelected(parentView: AdapterView<*>?) {}
 		}
 
-		colorsLabel = view.findViewById(R.id.colors_label)
-		colorsSpinner = view.findViewById(R.id.colors)
-		addQuietZoneSwitch = view.findViewById(R.id.add_quiet_zone)
+		colorsLabel = findViewById(R.id.colors_label)
+		colorsSpinner = findViewById(R.id.colors)
+		addQuietZoneSwitch = findViewById(R.id.add_quiet_zone)
 		addQuietZoneSwitch.isChecked = prefs.addQuietZone
 
-		contentView = view.findViewById(R.id.content)
-		unescapeCheckBox = view.findViewById(R.id.unescape)
+		contentView = findViewById(R.id.content)
+		unescapeCheckBox = findViewById(R.id.unescape)
 		unescapeCheckBox.isChecked = prefs.expandEscapeSequences
 
 		var complete = false
@@ -202,18 +195,18 @@ class EncodeActivity : ScreenActivity() {
 			}
 		}
 
-		view.findViewById<View>(R.id.encode).setOnClickListener {
+		findViewById<View>(R.id.encode).setOnClickListener {
 			it.context.encode()
 		}
 
-		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
-		view.findViewById<View>(R.id.scroll_view).setPaddingFromWindowInsets()
+		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
+		findViewById<View>(R.id.scroll_view).setPaddingFromWindowInsets()
 
 		if (complete &&
 			args?.getBoolean(EXECUTE, false) == true
 		) {
-			view.post {
-				val content = view.context.getContent() ?: return@post
+			contentView.post {
+				val content = contentView.context.getContent() ?: return@post
 				startActivity(newBarcodeIntent(content))
 				finish()
 			}

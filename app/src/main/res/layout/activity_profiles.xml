@@ -1,0 +1,36 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+	<ListView
+		android:id="@+id/profiles"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:clipToPadding="false"
+		android:divider="@color/separator"
+		android:dividerHeight="1px"/>
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
+		android:id="@+id/main"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:fitsSystemWindows="@bool/fitsSystemWindows">
+		<include layout="@layout/toolbar"/>
+		<androidx.coordinatorlayout.widget.CoordinatorLayout
+			android:id="@+id/inset_layout"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+			<TextView
+				android:visibility="gone"
+				android:id="@+id/no_profiles"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:gravity="center"
+				android:padding="32dp"
+				android:text="@string/profile_empty"/>
+			<com.google.android.material.floatingactionbutton.FloatingActionButton
+				style="@style/FAB"
+				android:id="@+id/add"
+				android:contentDescription="@string/profile_add"
+				android:src="@drawable/ic_action_create"/>
+		</androidx.coordinatorlayout.widget.CoordinatorLayout>
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
+	<include layout="@layout/navbar"/>
+</merge>

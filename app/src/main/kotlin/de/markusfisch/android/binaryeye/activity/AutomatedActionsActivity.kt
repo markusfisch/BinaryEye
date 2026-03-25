@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.ListView
-import android.widget.Spinner
 import android.widget.RadioGroup
+import android.widget.Spinner
 import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
@@ -19,27 +19,21 @@ import de.markusfisch.android.binaryeye.automation.AutomatedAction
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.systemBarListViewScrollListener
 
-class AutomatedActionsActivity : ScreenActivity() {
+class AutomatedActionsActivity : AbstractBaseActivity() {
 	private val actions = ArrayList<AutomatedAction>()
 
 	private lateinit var adapter: ActionsAdapter
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
+		setScreenContentView(R.layout.activity_automated_actions)
 		setTitle(R.string.automated_actions)
-		val frame = findViewById(R.id.content_frame) as ViewGroup
-		val view = layoutInflater.inflate(
-			R.layout.fragment_automated_actions,
-			frame,
-			false
-		)
-		frame.addView(view)
 
 		actions.clear()
 		actions.addAll(prefs.automatedActions)
 
-		val listView = view.findViewById<ListView>(R.id.actions)
-		listView.emptyView = view.findViewById(R.id.no_actions)
+		val listView = findViewById<ListView>(R.id.actions)
+		listView.emptyView = findViewById(R.id.no_actions)
 		adapter = ActionsAdapter(this, actions)
 		listView.adapter = adapter
 		listView.setOnScrollListener(systemBarListViewScrollListener)
@@ -51,11 +45,11 @@ class AutomatedActionsActivity : ScreenActivity() {
 			true
 		}
 
-		view.findViewById<View>(R.id.add).setOnClickListener {
+		findViewById<View>(R.id.add).setOnClickListener {
 			editAction(null)
 		}
 
-		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
+		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
 		listView.setPaddingFromWindowInsets()
 	}
 

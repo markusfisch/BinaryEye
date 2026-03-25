@@ -17,7 +17,7 @@ data class IgnoreCode(
 
 	fun matches(content: String, format: String): Boolean =
 		(this.format == null || this.format == format) &&
-			compiledRegex?.containsMatchIn(content) == true
+				compiledRegex?.containsMatchIn(content) == true
 
 	fun toJson(): JSONObject = JSONObject().apply {
 		put(KEY_PATTERN, pattern)

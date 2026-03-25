@@ -10,11 +10,10 @@ import androidx.core.content.edit
 import de.markusfisch.android.binaryeye.automation.AutomatedAction
 import de.markusfisch.android.binaryeye.automation.AutomatedAction.Companion.fromJsonArray
 import de.markusfisch.android.binaryeye.automation.AutomatedAction.Companion.toJsonArray
-import de.markusfisch.android.binaryeye.preference.IgnoreCode
-import de.markusfisch.android.binaryeye.preference.IgnoreCode.Companion.fromJsonArray as ignoreCodesFromJsonArray
-import de.markusfisch.android.binaryeye.preference.IgnoreCode.Companion.toJsonArray as ignoreCodesToJsonArray
 import de.markusfisch.android.binaryeye.zxingcpp.migrateBarcodeFormatName
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
+import de.markusfisch.android.binaryeye.preference.IgnoreCode.Companion.fromJsonArray as ignoreCodesFromJsonArray
+import de.markusfisch.android.binaryeye.preference.IgnoreCode.Companion.toJsonArray as ignoreCodesToJsonArray
 
 class Preferences {
 	lateinit var defaultPreferences: SharedPreferences

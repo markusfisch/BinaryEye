@@ -19,7 +19,7 @@ data class AutomatedAction(
 
 	fun matches(content: String, format: String): Boolean = try {
 		(this.format == null || this.format == format) &&
-			Regex(pattern).matches(content)
+				Regex(pattern).matches(content)
 	} catch (_: Exception) {
 		false
 	}

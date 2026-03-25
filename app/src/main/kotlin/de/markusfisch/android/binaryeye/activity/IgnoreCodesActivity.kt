@@ -19,27 +19,21 @@ import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.systemBarListViewScrollListener
 import de.markusfisch.android.binaryeye.widget.toast
 
-class IgnoreCodesActivity : ScreenActivity() {
+class IgnoreCodesActivity : AbstractBaseActivity() {
 	private val patterns = ArrayList<IgnoreCode>()
 
 	private lateinit var adapter: PatternsAdapter
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
+		setScreenContentView(R.layout.activity_ignore_codes)
 		setTitle(R.string.ignore_codes)
-		val frame = findViewById(R.id.content_frame) as ViewGroup
-		val view = layoutInflater.inflate(
-			R.layout.fragment_automated_actions,
-			frame,
-			false
-		)
-		frame.addView(view)
 
 		patterns.addAll(prefs.ignoreCodes)
 
-		val listView = view.findViewById<ListView>(R.id.actions)
-		listView.emptyView = view.findViewById(R.id.no_actions)
-		view.findViewById<TextView>(R.id.no_actions).setText(
+		val listView = findViewById<ListView>(R.id.actions)
+		listView.emptyView = findViewById(R.id.no_actions)
+		findViewById<TextView>(R.id.no_actions).setText(
 			R.string.ignore_codes_empty
 		)
 		adapter = PatternsAdapter(patterns)
@@ -53,14 +47,14 @@ class IgnoreCodesActivity : ScreenActivity() {
 			true
 		}
 
-		view.findViewById<View>(R.id.add).apply {
+		findViewById<View>(R.id.add).apply {
 			contentDescription = getString(R.string.ignore_code_add)
 			setOnClickListener {
 				editPattern(null)
 			}
 		}
 
-		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
+		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
 		listView.setPaddingFromWindowInsets()
 	}
 

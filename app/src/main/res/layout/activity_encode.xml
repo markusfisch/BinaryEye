@@ -1,8 +1,6 @@
-<FrameLayout
+<merge
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	xmlns:tools="http://schemas.android.com/tools">
 	<de.markusfisch.android.binaryeye.widget.ConfinedScrollView
 		android:id="@+id/scroll_view"
 		android:clipToPadding="false"
@@ -24,11 +22,11 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="start|top"
-				android:typeface="monospace"
-				android:imeOptions="flagNoExtractUi"
-				android:inputType="textMultiLine"
 				android:hint="@string/input_content_here"
-				android:importantForAutofill="no"/>
+				android:imeOptions="flagNoExtractUi"
+				android:importantForAutofill="no"
+				android:inputType="textMultiLine"
+				android:typeface="monospace"/>
 			<CheckBox
 				android:id="@+id/unescape"
 				android:layout_width="match_parent"
@@ -73,13 +71,21 @@
 		</LinearLayout>
 	</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>
 	<androidx.coordinatorlayout.widget.CoordinatorLayout
-		android:id="@+id/inset_layout"
+		android:id="@+id/main"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
-		<com.google.android.material.floatingactionbutton.FloatingActionButton
-			style="@style/FAB"
-			android:id="@+id/encode"
-			android:contentDescription="@string/encode"
-			android:src="@drawable/ic_action_next"/>
+		android:layout_height="match_parent"
+		android:fitsSystemWindows="@bool/fitsSystemWindows">
+		<include layout="@layout/toolbar"/>
+		<androidx.coordinatorlayout.widget.CoordinatorLayout
+			android:id="@+id/inset_layout"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+			<com.google.android.material.floatingactionbutton.FloatingActionButton
+				style="@style/FAB"
+				android:id="@+id/encode"
+				android:contentDescription="@string/encode"
+				android:src="@drawable/ic_action_next"/>
+		</androidx.coordinatorlayout.widget.CoordinatorLayout>
 	</androidx.coordinatorlayout.widget.CoordinatorLayout>
-</FrameLayout>
+	<include layout="@layout/navbar"/>
+</merge>

@@ -13,7 +13,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ListView
 import androidx.appcompat.view.ActionMode
@@ -48,7 +47,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HistoryActivity : ScreenActivity() {
+class HistoryActivity : AbstractBaseActivity() {
 	private lateinit var useHistorySwitch: SwitchCompat
 	private lateinit var listView: ListView
 	private lateinit var fab: View
@@ -141,17 +140,15 @@ class HistoryActivity : ScreenActivity() {
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
+		setScreenContentView(R.layout.activity_history)
 		setTitle(R.string.history)
-		val frame = findViewById(R.id.content_frame) as ViewGroup
-		val view = layoutInflater.inflate(R.layout.fragment_history, frame, false)
-		frame.addView(view)
 
-		useHistorySwitch = view.findViewById(
+		useHistorySwitch = findViewById(
 			R.id.use_history
 		)
 		initHistorySwitch(useHistorySwitch)
 
-		listView = view.findViewById(R.id.scans)
+		listView = findViewById(R.id.scans)
 		listView.setOnItemClickListener { _, v, position, id ->
 			if (actionMode != null) {
 				scansAdapter?.select(v, id, position)
@@ -170,14 +167,14 @@ class HistoryActivity : ScreenActivity() {
 		}
 		listView.setOnScrollListener(systemBarListViewScrollListener)
 
-		fab = view.findViewById(R.id.share)
+		fab = findViewById(R.id.share)
 		fab.setOnClickListener { v ->
 			v.context.pickListSeparatorAndShare(false)
 		}
 
-		progressView = view.findViewById(R.id.progress_view)
+		progressView = findViewById(R.id.progress_view)
 
-		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
+		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
 		listView.setPaddingFromWindowInsets()
 	}
 

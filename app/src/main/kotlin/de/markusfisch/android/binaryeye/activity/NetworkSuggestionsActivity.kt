@@ -6,7 +6,6 @@ import android.net.wifi.WifiNetworkSuggestion
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.annotation.RequiresApi
@@ -16,18 +15,12 @@ import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.systemBarListViewScrollListener
 import de.markusfisch.android.binaryeye.widget.toast
 
-class NetworkSuggestionsActivity : ScreenActivity() {
+class NetworkSuggestionsActivity : AbstractBaseActivity() {
 	@RequiresApi(Build.VERSION_CODES.R)
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
+		setScreenContentView(R.layout.activity_network_suggestions)
 		setTitle(R.string.network_suggestions)
-		val frame = findViewById(R.id.content_frame) as ViewGroup
-		val view = layoutInflater.inflate(
-			R.layout.fragment_network_suggestions,
-			frame,
-			false
-		)
-		frame.addView(view)
 
 		val wm = applicationContext.getSystemService(
 			Context.WIFI_SERVICE
@@ -43,14 +36,14 @@ class NetworkSuggestionsActivity : ScreenActivity() {
 			}
 		)
 
-		val listView = view.findViewById<ListView>(R.id.suggestions)
-		listView.emptyView = view.findViewById(R.id.no_suggestions)
+		val listView = findViewById<ListView>(R.id.suggestions)
+		listView.emptyView = findViewById(R.id.no_suggestions)
 		listView.adapter = suggestionArrayAdapter
 		listView.setOnScrollListener(systemBarListViewScrollListener)
-		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
+		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
 		listView.setPaddingFromWindowInsets()
 
-		view.findViewById<View>(R.id.remove).setOnClickListener {
+		findViewById<View>(R.id.remove).setOnClickListener {
 			val removeList = ArrayList<WifiNetworkSuggestion>()
 			val removeFromAdapter = ArrayList<Suggestion>()
 			val checked = listView.checkedItemPositions

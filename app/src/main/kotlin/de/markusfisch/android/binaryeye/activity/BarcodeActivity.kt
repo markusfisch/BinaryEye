@@ -12,7 +12,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.SeekBar
@@ -54,7 +53,7 @@ import java.util.Locale
 import kotlin.math.max
 import kotlin.math.min
 
-class BarcodeActivity : ScreenActivity() {
+class BarcodeActivity : AbstractBaseActivity() {
 	private enum class FileType {
 		PNG, JPG, SVG, TXT
 	}
@@ -72,18 +71,12 @@ class BarcodeActivity : ScreenActivity() {
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
+		setScreenContentView(R.layout.activity_barcode)
 		setTitle(R.string.view_barcode)
-		val frame = findViewById(R.id.content_frame) as ViewGroup
-		val view = layoutInflater.inflate(
-			R.layout.fragment_barcode,
-			frame,
-			false
-		)
-		frame.addView(view)
-		contentView = view
+		contentView = findViewById(android.R.id.content)
 
 		// Make `imageView` available for `onPause()`.
-		imageView = view.findViewById(R.id.barcode)
+		imageView = findViewById(R.id.barcode)
 
 		val bitmap: Bitmap
 		try {
@@ -119,7 +112,7 @@ class BarcodeActivity : ScreenActivity() {
 			)
 		}
 
-		view.findViewById<View>(R.id.share).setOnClickListener {
+		findViewById<View>(R.id.share).setOnClickListener {
 			it.context?.apply {
 				pickFileType(R.string.share_as) { fileType ->
 					shareAs(fileType)
@@ -127,7 +120,7 @@ class BarcodeActivity : ScreenActivity() {
 			}
 		}
 
-		view.findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
+		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
 		imageView.doOnApplyWindowInsets { _, insets ->
 			imageView.insets.set(insets)
 		}
