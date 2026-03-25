@@ -9,6 +9,7 @@ import java.util.Locale
 data class AutomatedAction(
 	val pattern: String,
 	val type: Type,
+	val format: String? = null,
 	val urlTemplate: String? = null,
 	val intentUriTemplate: String? = null
 ) {
@@ -16,8 +17,9 @@ data class AutomatedAction(
 		Intent, CustomIntent
 	}
 
-	fun matches(content: String): Boolean = try {
-		Regex(pattern).matches(content)
+	fun matches(content: String, format: String): Boolean = try {
+		(this.format == null || this.format == format) &&
+			Regex(pattern).matches(content)
 	} catch (_: Exception) {
 		false
 	}
@@ -25,6 +27,7 @@ data class AutomatedAction(
 	fun toJson(): JSONObject = JSONObject().apply {
 		put(KEY_PATTERN, pattern)
 		put(KEY_TYPE, type.name.lowercase(Locale.ROOT))
+		put(KEY_FORMAT, format ?: "")
 		put(KEY_URL_TEMPLATE, urlTemplate ?: "")
 		put(KEY_INTENT_URI_TEMPLATE, intentUriTemplate ?: "")
 	}
@@ -32,6 +35,7 @@ data class AutomatedAction(
 	companion object {
 		private const val KEY_PATTERN = "pattern"
 		private const val KEY_TYPE = "type"
+		private const val KEY_FORMAT = "format"
 		private const val KEY_URL_TEMPLATE = "url_template"
 		private const val KEY_INTENT_URI_TEMPLATE = "intent_uri_template"
 
@@ -46,6 +50,7 @@ data class AutomatedAction(
 				"html" -> return null
 				else -> Type.Intent
 			}
+			val format = obj.optString(KEY_FORMAT, "").trim()
 			val urlTemplate = obj.optString(KEY_URL_TEMPLATE, "").trim()
 			val intentUriTemplate = obj.optString(
 				KEY_INTENT_URI_TEMPLATE,
@@ -54,6 +59,7 @@ data class AutomatedAction(
 			return AutomatedAction(
 				pattern = pattern,
 				type = type,
+				format = format.ifEmpty { null },
 				urlTemplate = urlTemplate.ifEmpty { null },
 				intentUriTemplate = intentUriTemplate.ifEmpty { null }
 			)

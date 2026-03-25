@@ -16,7 +16,6 @@ import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
-import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.SeekBar
 import android.widget.Spinner
@@ -39,6 +38,7 @@ import androidx.core.net.toUri
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
+import de.markusfisch.android.binaryeye.adapter.setupFormatSpinner
 import de.markusfisch.android.binaryeye.app.PERMISSION_CAMERA
 import de.markusfisch.android.binaryeye.app.applyLocale
 import de.markusfisch.android.binaryeye.app.db
@@ -454,25 +454,7 @@ class CameraActivity : AppCompatActivity() {
 		val view = layoutInflater.inflate(R.layout.dialog_search_term, null)
 		val editText = view.findViewById<EditText>(R.id.term)
 		val formatView = view.findViewById<Spinner>(R.id.format)
-		val names = resources.getStringArray(
-			R.array.barcode_formats_names
-		).toMutableList().apply {
-			add(0, getString(R.string.all_formats))
-		}
-		val values = resources.getStringArray(
-			R.array.barcode_formats_values
-		).toMutableList().apply {
-			add(0, "")
-		}
-		formatView.adapter = ArrayAdapter(
-			this,
-			android.R.layout.simple_spinner_item,
-			names
-		).apply {
-			setDropDownViewResource(
-				android.R.layout.simple_spinner_dropdown_item
-			)
-		}
+		val values = setupFormatSpinner(formatView)
 		searchTerm?.let {
 			editText.setText(it.toString())
 		}
@@ -1004,7 +986,7 @@ fun Activity.showResult(
 	}
 	val scan = result.toScan()
 	if (prefs.useHistory &&
-		!prefs.shouldIgnoreHistoryContent(scan.text)
+		!prefs.shouldIgnoreHistoryContent(scan.text, scan.format.name)
 	) {
 		scan.id = db.insertScan(scan)
 	}

@@ -17,5 +17,14 @@
 			android:layout_height="wrap_content"
 			android:hint="@string/ignore_code_regex_hint"
 			android:inputType="text"/>
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingTop="12dp"
+			android:text="@string/format"/>
+		<Spinner
+			android:id="@+id/format"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
 	</LinearLayout>
 </ScrollView>

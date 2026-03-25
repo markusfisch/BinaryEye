@@ -5,8 +5,10 @@ import android.database.Cursor
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.CursorAdapter
 import android.widget.ImageButton
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import de.markusfisch.android.binaryeye.R
@@ -171,6 +173,29 @@ class ScansAdapter(
 
 private val formatWordBoundary =
 	"(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|(?<=[A-Za-z])(?=\\d)|(?<=\\d)(?=[A-Za-z])".toRegex()
+
+fun Context.setupFormatSpinner(spinner: Spinner): List<String> {
+	val names = resources.getStringArray(
+		R.array.barcode_formats_names
+	).toMutableList().apply {
+		add(0, getString(R.string.all_formats))
+	}
+	val values = resources.getStringArray(
+		R.array.barcode_formats_values
+	).toMutableList().apply {
+		add(0, "")
+	}
+	spinner.adapter = ArrayAdapter(
+		this,
+		android.R.layout.simple_spinner_item,
+		names
+	).apply {
+		setDropDownViewResource(
+			android.R.layout.simple_spinner_dropdown_item
+		)
+	}
+	return values
+}
 
 fun String.prettifyFormatName() = replace("_", " ")
 	.replace(formatWordBoundary, " ")

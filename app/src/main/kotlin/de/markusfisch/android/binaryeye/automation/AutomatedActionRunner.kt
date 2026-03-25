@@ -19,7 +19,7 @@ fun Context.runAutomatedActions(scan: Scan): Boolean {
 		return false
 	}
 	for (action in actions) {
-		if (action.matches(content)) {
+		if (action.matches(content, scan.format.name)) {
 			return when (action.type) {
 				AutomatedAction.Type.Intent -> {
 					val url = action.urlTemplate?.buildUrl(scan)

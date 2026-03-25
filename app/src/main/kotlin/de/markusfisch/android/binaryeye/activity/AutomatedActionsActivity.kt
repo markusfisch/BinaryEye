@@ -9,9 +9,11 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.ListView
+import android.widget.Spinner
 import android.widget.RadioGroup
 import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.automation.AutomatedAction
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
@@ -64,6 +66,7 @@ class AutomatedActionsActivity : ScreenActivity() {
 			null
 		)
 		val regexView = view.findViewById<EditText>(R.id.regex)
+		val formatView = view.findViewById<Spinner>(R.id.format)
 		val urlView = view.findViewById<EditText>(R.id.url_template)
 		val typeGroup = view.findViewById<RadioGroup>(R.id.action_type)
 		val urlSection = view.findViewById<View>(R.id.url_section)
@@ -71,9 +74,31 @@ class AutomatedActionsActivity : ScreenActivity() {
 		val intentUriView = view.findViewById<EditText>(
 			R.id.intent_uri_template
 		)
+		val names = resources.getStringArray(
+			R.array.barcode_formats_names
+		).toMutableList().apply {
+			add(0, getString(R.string.all_formats))
+		}
+		val values = resources.getStringArray(
+			R.array.barcode_formats_values
+		).toMutableList().apply {
+			add(0, "")
+		}
+		formatView.adapter = ArrayAdapter(
+			this,
+			android.R.layout.simple_spinner_item,
+			names
+		).apply {
+			setDropDownViewResource(
+				android.R.layout.simple_spinner_dropdown_item
+			)
+		}
 
 		if (action != null) {
 			regexView.setText(action.pattern)
+			formatView.setSelection(
+				values.indexOf(action.format ?: "").coerceAtLeast(0)
+			)
 			when (action.type) {
 				AutomatedAction.Type.Intent -> {
 					urlView.setText(action.urlTemplate ?: "")
@@ -83,6 +108,8 @@ class AutomatedActionsActivity : ScreenActivity() {
 					intentUriView.setText(action.intentUriTemplate ?: "")
 				}
 			}
+		} else {
+			formatView.setSelection(0)
 		}
 
 		fun updateTypeSections(checkedId: Int) {
@@ -122,6 +149,8 @@ class AutomatedActionsActivity : ScreenActivity() {
 				addOrUpdateAction(
 					position,
 					regexView,
+					formatView,
+					values,
 					urlView,
 					typeGroup,
 					intentUriView,
@@ -136,6 +165,8 @@ class AutomatedActionsActivity : ScreenActivity() {
 	private fun addOrUpdateAction(
 		position: Int?,
 		regexView: EditText,
+		formatView: Spinner,
+		values: List<String>,
 		urlView: EditText,
 		typeGroup: RadioGroup,
 		intentUriView: EditText,
@@ -153,6 +184,9 @@ class AutomatedActionsActivity : ScreenActivity() {
 			return
 		}
 		val isIntent = typeGroup.checkedRadioButtonId == R.id.action_type_intent
+		val format = formatView.selectedItemPosition.let {
+			values[it].ifEmpty { null }
+		}
 		val newAction = if (isIntent) {
 			val urlTemplate = urlView.text.toString().trim()
 			if (urlTemplate.isEmpty()) {
@@ -162,6 +196,7 @@ class AutomatedActionsActivity : ScreenActivity() {
 			AutomatedAction(
 				pattern = pattern,
 				type = AutomatedAction.Type.Intent,
+				format = format,
 				urlTemplate = urlTemplate
 			)
 		} else {
@@ -185,6 +220,7 @@ class AutomatedActionsActivity : ScreenActivity() {
 			AutomatedAction(
 				pattern = pattern,
 				type = AutomatedAction.Type.CustomIntent,
+				format = format,
 				intentUriTemplate = intentUriTemplate
 			)
 		}
@@ -249,6 +285,9 @@ class AutomatedActionsActivity : ScreenActivity() {
 								R.string.automated_action_list_custom_intent_empty
 							)
 						}
+				}
+				action.format?.let { format ->
+					subtitle.text = "${subtitle.text} (${format.prettifyFormatName()})"
 				}
 			}
 			return view

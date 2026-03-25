@@ -10,9 +10,11 @@ import androidx.core.content.edit
 import de.markusfisch.android.binaryeye.automation.AutomatedAction
 import de.markusfisch.android.binaryeye.automation.AutomatedAction.Companion.fromJsonArray
 import de.markusfisch.android.binaryeye.automation.AutomatedAction.Companion.toJsonArray
+import de.markusfisch.android.binaryeye.preference.IgnoreCode
+import de.markusfisch.android.binaryeye.preference.IgnoreCode.Companion.fromJsonArray as ignoreCodesFromJsonArray
+import de.markusfisch.android.binaryeye.preference.IgnoreCode.Companion.toJsonArray as ignoreCodesToJsonArray
 import de.markusfisch.android.binaryeye.zxingcpp.migrateBarcodeFormatName
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
-import org.json.JSONArray
 
 class Preferences {
 	lateinit var defaultPreferences: SharedPreferences
@@ -124,9 +126,8 @@ class Preferences {
 			apply(IGNORE_DUPLICATES_NAME, value)
 			field = value
 		}
-	var ignoreCodes = mutableListOf(DEFAULT_IGNORE_CODE_PATTERN)
+	var ignoreCodes = mutableListOf(IgnoreCode(DEFAULT_IGNORE_CODE_PATTERN))
 		private set
-	private var compiledIgnorePatterns: List<Regex> = emptyList()
 	var copyImmediately = false
 		set(value) {
 			apply(COPY_IMMEDIATELY, value)
@@ -287,13 +288,13 @@ class Preferences {
 
 	fun saveProfiles() {
 		defaultPreferences.edit {
-			putString(PROFILES, JSONArray(profiles).toString())
+			putString(PROFILES, org.json.JSONArray(profiles).toString())
 		}
 	}
 
 	fun loadProfiles() {
 		profiles.clear()
-		JSONArray(
+		org.json.JSONArray(
 			defaultPreferences.getString(PROFILES, "[]")
 		).let {
 			profiles.addAll(Array(it.length()) { i -> it.getString(i) })
@@ -363,13 +364,14 @@ class Preferences {
 		)?.also {
 			ignoreDuplicatesName = it
 		}
-		ignoreCodes = fromStringJsonArray(
+		ignoreCodes = ignoreCodesFromJsonArray(
 			preferences.getString(
 				IGNORE_CODES,
-				JSONArray(listOf(DEFAULT_IGNORE_CODE_PATTERN)).toString()
+				ignoreCodesToJsonArray(
+					listOf(IgnoreCode(DEFAULT_IGNORE_CODE_PATTERN))
+				)
 			) ?: "[]"
 		)
-		compiledIgnorePatterns = compileIgnorePatterns(ignoreCodes)
 		copyImmediately = preferences.getBoolean(
 			COPY_IMMEDIATELY,
 			copyImmediately
@@ -449,14 +451,13 @@ class Preferences {
 		apply(AUTOMATED_ACTIONS, toJsonArray(actions))
 	}
 
-	fun setIgnoreCodes(patterns: List<String>) {
+	fun setIgnoreCodes(patterns: List<IgnoreCode>) {
 		ignoreCodes = patterns.toMutableList()
-		compiledIgnorePatterns = compileIgnorePatterns(ignoreCodes)
-		apply(IGNORE_CODES, toStringJsonArray(patterns))
+		apply(IGNORE_CODES, ignoreCodesToJsonArray(patterns))
 	}
 
-	fun shouldIgnoreHistoryContent(content: String): Boolean =
-		compiledIgnorePatterns.any { it.containsMatchIn(content) }
+	fun shouldIgnoreHistoryContent(content: String, format: String): Boolean =
+		ignoreCodes.any { it.matches(content, format) }
 
 	private fun addFormatsOnUpdate(
 		restored: Set<String>,
@@ -478,39 +479,6 @@ class Preferences {
 			format.migrateBarcodeFormatName()
 		}
 	}
-
-	private fun fromStringJsonArray(json: String): MutableList<String> {
-		val items = mutableListOf<String>()
-		val array = try {
-			JSONArray(json)
-		} catch (_: Exception) {
-			JSONArray()
-		}
-		for (i in 0 until array.length()) {
-			val item = array.optString(i).trim()
-			if (item.isNotEmpty()) {
-				items.add(item)
-			}
-		}
-		return items
-	}
-
-	private fun toStringJsonArray(items: List<String>): String {
-		val array = JSONArray()
-		items.forEach { item ->
-			array.put(item)
-		}
-		return array.toString()
-	}
-
-	private fun compileIgnorePatterns(patterns: List<String>): List<Regex> =
-		patterns.mapNotNull { pattern ->
-			try {
-				Regex(pattern)
-			} catch (_: Exception) {
-				null
-			}
-		}
 
 	fun restoreCropHandle(
 		name: String,
