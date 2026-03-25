@@ -95,6 +95,8 @@
 	<string name="follow_system_settings">Дотримуватись системних налаштувань</string>
 	<string name="show_crop_handle">Обмежити область сканування</string>
 	<string name="show_crop_handle_summary">Обмежити сканування до налаштованої області.</string>
+	<string name="show_crosshairs">Показувати перехрестя</string>
+	<string name="show_crosshairs_summary">Показувати перехрестя в межах області сканування або на весь екран.</string>
 	<string name="barcode_formats">Формати штрих-коду</string>
 	<string name="zoom_by_swiping">Проведіть пальцем вгору/вниз, для масштабування</string>
 	<string name="zoom_by_swiping_summary">Проведіть пальцем вгору або вниз по екрану камери, щоб керувати масштабуванням камери.</string>

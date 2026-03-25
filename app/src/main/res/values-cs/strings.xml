@@ -97,6 +97,8 @@
 	<string name="follow_system_settings">Podle systému</string>
 	<string name="show_crop_handle">Zobrazovat hrany výřezu</string>
 	<string name="show_crop_handle_summary">Omezí skenování na zvolenou oblast.</string>
+	<string name="show_crosshairs">Zobrazovat zaměřovací kříž</string>
+	<string name="show_crosshairs_summary">Zobrazit zaměřovací kříž přes oblast výřezu nebo přes celou obrazovku.</string>
 	<string name="barcode_formats">Formáty čárových kódů</string>
 	<string name="zoom_by_swiping">Potáhnutím nahoru/dolů přiblížit</string>
 	<string name="zoom_by_swiping_summary">Přetáhnutím nahoru nebo dolů se zvětší / zmenší úroveň přiblížení.</string>

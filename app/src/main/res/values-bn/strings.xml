@@ -94,6 +94,8 @@
 	<string name="follow_system_settings">ব্যবস্থার পছন্দসমূহ অনুসরণ করো</string>
 	<string name="show_crop_handle">ছাটার সীমা দেখাও</string>
 	<string name="show_crop_handle_summary">পরিবর্তনযোগ্য জায়গায়ই শুধু খুঁজো।</string>
+	<string name="show_crosshairs">ক্রসহেয়ার দেখাও</string>
+	<string name="show_crosshairs_summary">ক্রসহেয়ারকে কাটার অংশ বা পুরো পর্দাজুড়ে দেখাও।</string>
 	<string name="barcode_formats">বারকোড বিন্যাস</string>
 	<string name="zoom_by_swiping">ওপরে/নিচে টানো বড়ো করার জন্য</string>
 	<string name="zoom_by_swiping_summary">ক্যামেরার ছোটো-বড় নিয়ন্ত্রণের জন্য উপরে-নিচে টানো।</string>

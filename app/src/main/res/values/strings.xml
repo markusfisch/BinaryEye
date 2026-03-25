@@ -94,6 +94,8 @@
 	<string name="follow_system_settings">Follow system settings</string>
 	<string name="show_crop_handle">Show cropping limiter</string>
 	<string name="show_crop_handle_summary">Restrict scanning to a customizable region.</string>
+	<string name="show_crosshairs">Show crosshairs</string>
+	<string name="show_crosshairs_summary">Show crosshairs over the crop window or full screen.</string>
 	<string name="barcode_formats">Barcode formats</string>
 	<string name="zoom_by_swiping">Swipe up/down to zoom</string>
 	<string name="zoom_by_swiping_summary">Swipe up or down in camera screen to control the camera zoom.</string>

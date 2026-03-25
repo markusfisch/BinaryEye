@@ -94,6 +94,8 @@
 	<string name="follow_system_settings">სისტემის პარამეტრების მინიჭება</string>
 	<string name="show_crop_handle">სკანირების არეალის ჩვენება</string>
 	<string name="show_crop_handle_summary">სკანირების შეზღუდვა შერჩეული არეალით.</string>
+	<string name="show_crosshairs">სამიზნის ჯვრის ჩვენება</string>
+	<string name="show_crosshairs_summary">სამიზნის ჯვარი გამოჩნდეს ამოჭრის არეზე ან მთელ ეკრანზე.</string>
 	<string name="barcode_formats">შტრიხ-კოდის ფორმატები</string>
 	<string name="zoom_by_swiping">მასშტაბირება თითის მოძრაობით მაღლა/დაბლა</string>
 	<string name="zoom_by_swiping_summary">გაატარეთ თითი მაღლა ან დაბლა კამერის მასშტაბირების სამართავად.</string>

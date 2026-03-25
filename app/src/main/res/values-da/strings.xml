@@ -94,6 +94,8 @@
 	<string name="follow_system_settings">Følg systemindstillingerne</string>
 	<string name="show_crop_handle">Vis beskæringsbegrænser</string>
 	<string name="show_crop_handle_summary">Begræns scanning til et område, der kan tilpasses.</string>
+	<string name="show_crosshairs">Vis trådkors</string>
+	<string name="show_crosshairs_summary">Vis et trådkors over beskæringsområdet eller hele skærmen.</string>
 	<string name="barcode_formats">Stregkode formater</string>
 	<string name="zoom_by_swiping">Stryg op/ned for at zoome</string>
 	<string name="zoom_by_swiping_summary">Stryg op eller ned på kameraskærmen for at styre kameraets zoom.</string>

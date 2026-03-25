@@ -20,6 +20,11 @@
 			android:title="@string/show_crop_handle"
 			android:summary="@string/show_crop_handle_summary"/>
 		<androidx.preference.SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="show_crosshairs"
+			android:title="@string/show_crosshairs"
+			android:summary="@string/show_crosshairs_summary"/>
+		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="zoom_by_swiping"
 			android:title="@string/zoom_by_swiping"

@@ -138,6 +138,8 @@
 	<string name="copy_immediately_summary">Automatycznie skopiuj zeskanowaną zawartość do schowka. Pamiętaj, że inne aplikacje mogą szpiegować Twój schowek w tle.</string>
 	<string name="show_crop_handle">Pokazuj ogranicznik przycinania</string>
 	<string name="show_crop_handle_summary">Ogranicz skanowanie do konfigurowalnego regionu.</string>
+	<string name="show_crosshairs">Pokazuj krzyż celowniczy</string>
+	<string name="show_crosshairs_summary">Pokazuj krzyż celowniczy w obszarze przycinania lub na całym ekranie.</string>
 	<string name="barcode_formats">Formaty kodów</string>
 	<string name="search_web">Szukaj w sieci</string>
 	<string name="search_scan">Szukaj skanu</string>

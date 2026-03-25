@@ -94,6 +94,8 @@
 	<string name="follow_system_settings">Systemeinstellung übernehmen</string>
 	<string name="show_crop_handle">Ausschnitt verkleinern anzeigen</string>
 	<string name="show_crop_handle_summary">Scannen auf einen anpassbaren Bereich einschränken.</string>
+	<string name="show_crosshairs">Fadenkreuz anzeigen</string>
+	<string name="show_crosshairs_summary">Fadenkreuz über dem Scanbereich oder Vollbild anzeigen.</string>
 	<string name="barcode_formats">Barcode Formate</string>
 	<string name="zoom_by_swiping">Geste für Kamerazoom</string>
 	<string name="zoom_by_swiping_summary">Im Kamerabildschirm nach oben oder unten streichen, um den Kamerazoom zu steuern.</string>

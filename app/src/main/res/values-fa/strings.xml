@@ -94,6 +94,8 @@
 	<string name="follow_system_settings">پیروی از زبان سامانه</string>
 	<string name="show_crop_handle">نمایش محدود کننده برش</string>
 	<string name="show_crop_handle_summary">پویش را به یک منطقه قابل تنظیم محدود می‌کند.</string>
+	<string name="show_crosshairs">نمایش نشانهٔ هدف</string>
+	<string name="show_crosshairs_summary">نشانهٔ هدف را روی ناحیهٔ برش یا تمام صفحه نمایش بده.</string>
 	<string name="barcode_formats">قالب‌های بارکد</string>
 	<string name="zoom_by_swiping">برای بزرگنمایی به بالا یا پایین بکشید</string>
 	<string name="zoom_by_swiping_summary">برای کنترل بزرگنمایی دوربین، در صفحهٔ دوربین به بالا یا پایین بکشید.</string>

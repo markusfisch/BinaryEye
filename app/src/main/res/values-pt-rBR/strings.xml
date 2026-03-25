@@ -95,6 +95,8 @@
 	<string name="follow_system_settings">Seguir configurações do sistema</string>
 	<string name="show_crop_handle">Mostrar limitador customizável</string>
 	<string name="show_crop_handle_summary">Permite limitar a digitalização à uma área específica.</string>
+	<string name="show_crosshairs">Mostrar mira</string>
+	<string name="show_crosshairs_summary">Mostrar uma mira sobre a área de recorte ou na tela inteira.</string>
 	<string name="barcode_formats">Formatos de código de barras</string>
 	<string name="zoom_by_swiping">Deslize para ajustar o zoom</string>
 	<string name="zoom_by_swiping_summary">Deslize para baixo/cima na tela para ajustar zoom da câmera.</string>

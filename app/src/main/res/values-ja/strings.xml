@@ -93,6 +93,8 @@
 	<string name="follow_system_settings">システム設定に従う</string>
 	<string name="show_crop_handle">トリミングツールを表示</string>
 	<string name="show_crop_handle_summary">スキャンする範囲を制限するトリミングツールを表示します。</string>
+	<string name="show_crosshairs">十字線を表示</string>
+	<string name="show_crosshairs_summary">トリミング領域または画面全体に十字線を表示します。</string>
 	<string name="barcode_formats">バーコード形式</string>
 	<string name="zoom_by_swiping">スワイプでズーム調節</string>
 	<string name="zoom_by_swiping_summary">上下にスワイプすることで、カメラのズームを調節できるようにします。</string>

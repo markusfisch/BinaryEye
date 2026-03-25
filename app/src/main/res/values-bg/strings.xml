@@ -94,6 +94,8 @@
 	<string name="follow_system_settings">Следване на системните настройки</string>
 	<string name="show_crop_handle">Показване на ограничителя за изрязване</string>
 	<string name="show_crop_handle_summary">Ограничете сканирането до персонализирана област.</string>
+	<string name="show_crosshairs">Показване на мерник</string>
+	<string name="show_crosshairs_summary">Показване на мерник върху областта за изрязване или върху целия екран.</string>
 	<string name="barcode_formats">Баркодови формати</string>
 	<string name="zoom_by_swiping">Плъзване нагоре/надолу, за да увеличите</string>
 	<string name="zoom_by_swiping_summary">Плъзнете нагоре или надолу в екрана на камерата, за да контролирате приближаването на камерата.</string>

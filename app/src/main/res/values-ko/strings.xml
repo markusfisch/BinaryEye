@@ -93,6 +93,8 @@
 	<string name="follow_system_settings">시스템 설정 따르기</string>
 	<string name="show_crop_handle">크롭 제한기 표시</string>
 	<string name="show_crop_handle_summary">사용자 지정 가능한 영역으로 스캔을 제한합니다.</string>
+	<string name="show_crosshairs">십자선 표시</string>
+	<string name="show_crosshairs_summary">자르기 영역 또는 전체 화면에 십자선을 표시합니다.</string>
 	<string name="barcode_formats">바코드 형식</string>
 	<string name="zoom_by_swiping">위아래로 스와이프하여 확대/축소</string>
 	<string name="zoom_by_swiping_summary">카메라 화면에서 위 또는 아래로 스와이프하여 카메라 줌을 제어합니다.</string>

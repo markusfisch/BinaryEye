@@ -93,6 +93,8 @@
 	<string name="follow_system_settings">Theo cài đặt của máy</string>
 	<string name="show_crop_handle">Hiện giới hạn cắt hình</string>
 	<string name="show_crop_handle_summary">Giới hạn vùng quét.</string>
+	<string name="show_crosshairs">Hiện tâm ngắm</string>
+	<string name="show_crosshairs_summary">Hiển thị tâm ngắm trên vùng cắt hoặc toàn màn hình.</string>
 	<string name="barcode_formats">Các định dạng mã vạch</string>
 	<string name="zoom_by_swiping">Vuốt lên/xuống để phóng to/thu nhỏ</string>
 	<string name="zoom_by_swiping_summary">Vuốt lên/xuống ở màn hình camera để điều chỉnh độ phóng.</string>

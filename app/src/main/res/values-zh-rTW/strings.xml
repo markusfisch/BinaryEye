@@ -93,6 +93,8 @@
 	<string name="follow_system_settings">跟隨系統設定</string>
 	<string name="show_crop_handle">顯示裁切範圍選擇器</string>
 	<string name="show_crop_handle_summary">將掃描區域限制在指定範圍內</string>
+	<string name="show_crosshairs">顯示十字線</string>
+	<string name="show_crosshairs_summary">在裁切範圍或整個畫面上顯示十字線。</string>
 	<string name="barcode_formats">條碼格式</string>
 	<string name="zoom_by_swiping">上下滑動縮放</string>
 	<string name="zoom_by_swiping_summary">透過上下滑動在掃描介面控制相機縮放</string>

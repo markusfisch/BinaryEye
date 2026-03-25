@@ -245,6 +245,7 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun loadPreferences() {
 		detectorView.updateCropHandlePos()
+		detectorView.invalidate()
 		updateHintsAndTitle()
 		if (prefs.bulkMode && bulkMode != prefs.bulkMode) {
 			bulkMode = prefs.bulkMode

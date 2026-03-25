@@ -249,6 +249,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		setIcon(PROFILE, R.drawable.ic_action_profile)
 		setIcon("formats", R.drawable.ic_action_scan)
 		setIcon("show_crop_handle", R.drawable.ic_action_crop)
+		setIcon("show_crosshairs", R.drawable.ic_action_search)
 		setIcon("zoom_by_swiping", R.drawable.ic_action_search)
 		setIcon("auto_rotate", R.drawable.ic_action_down)
 		setIcon("try_harder", R.drawable.ic_action_search)

@@ -64,6 +64,11 @@ class Preferences {
 			apply(SHOW_CROP_HANDLE, value)
 			field = value
 		}
+	var showCrosshairs = false
+		set(value) {
+			apply(SHOW_CROSSHAIRS, value)
+			field = value
+		}
 	var zoomBySwiping = true
 		set(value) {
 			apply(ZOOM_BY_SWIPING, value)
@@ -317,6 +322,10 @@ class Preferences {
 			SHOW_CROP_HANDLE,
 			showCropHandle
 		)
+		showCrosshairs = preferences.getBoolean(
+			SHOW_CROSSHAIRS,
+			showCrosshairs
+		)
 		zoomBySwiping = preferences.getBoolean(ZOOM_BY_SWIPING, zoomBySwiping)
 		autoRotate = preferences.getBoolean(AUTO_ROTATE, autoRotate)
 		tryHarder = preferences.getBoolean(TRY_HARDER, tryHarder)
@@ -525,6 +534,7 @@ class Preferences {
 		private const val PROFILE = "profile"
 		private const val BARCODE_FORMATS = "formats"
 		private const val SHOW_CROP_HANDLE = "show_crop_handle"
+		private const val SHOW_CROSSHAIRS = "show_crosshairs"
 		private const val ZOOM_BY_SWIPING = "zoom_by_swiping"
 		private const val AUTO_ROTATE = "auto_rotate"
 		private const val TRY_HARDER = "try_harder"

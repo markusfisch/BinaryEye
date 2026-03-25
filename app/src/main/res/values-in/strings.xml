@@ -93,6 +93,8 @@
 	<string name="follow_system_settings">Ikuti pengaturan sistem</string>
 	<string name="show_crop_handle">Tampilkan pembatas pemotongan</string>
 	<string name="show_crop_handle_summary">Batasi pemindaian ke batas area tertentu.</string>
+	<string name="show_crosshairs">Tampilkan garis bidik</string>
+	<string name="show_crosshairs_summary">Tampilkan garis bidik pada area potong atau seluruh layar.</string>
 	<string name="barcode_formats">Format barcode</string>
 	<string name="zoom_by_swiping">Geser ke atas/bawah untuk memperbesar</string>
 	<string name="zoom_by_swiping_summary">Geser layar kamera ke atas atau ke bawah untuk mengontrol perbesaran gambar.</string>

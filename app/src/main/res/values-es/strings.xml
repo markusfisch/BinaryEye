@@ -94,6 +94,8 @@
 	<string name="follow_system_settings">Seguir los ajustes del sistema</string>
 	<string name="show_crop_handle">Mostrar delimitador de recorte</string>
 	<string name="show_crop_handle_summary">Permite personalizar la región a escanear.</string>
+	<string name="show_crosshairs">Mostrar mira</string>
+	<string name="show_crosshairs_summary">Mostrar una mira sobre el área de recorte o toda la pantalla.</string>
 	<string name="barcode_formats">Formatos de códigos de barras</string>
 	<string name="zoom_by_swiping">Ampliar deslizando arriba/abajo</string>
 	<string name="zoom_by_swiping_summary">Deslice el dedo hacia arriba o abajo sobre la pantalla para controlar el zoom de la cámara.</string>

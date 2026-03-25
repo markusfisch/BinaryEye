@@ -94,6 +94,8 @@
 	<string name="follow_system_settings">Usa impostazioni di sistema</string>
 	<string name="show_crop_handle">Visualizza riquadro limite</string>
 	<string name="show_crop_handle_summary">Limita scansione ad una regione personalizzata.</string>
+	<string name="show_crosshairs">Mostra mirino</string>
+	<string name="show_crosshairs_summary">Mostra un mirino sulla finestra di ritaglio o su tutto lo schermo.</string>
 	<string name="barcode_formats">Formati codici a barre</string>
 	<string name="zoom_by_swiping">Zoom fotocamera scorrendo su/giù</string>
 	<string name="zoom_by_swiping_summary">Scorri su o giù per controllare lo zoom della fotocamera.</string>

@@ -94,6 +94,8 @@
 	<string name="follow_system_settings">Rendszerbeállítások követése</string>
 	<string name="show_crop_handle">Levágási korlátozó megjelenítése</string>
 	<string name="show_crop_handle_summary">Beolvasás korlátozása egy személyre szabható területre.</string>
+	<string name="show_crosshairs">Célkereszt megjelenítése</string>
+	<string name="show_crosshairs_summary">Célkereszt megjelenítése a kivágási területen vagy a teljes képernyőn.</string>
 	<string name="barcode_formats">Vonalkód formátumok</string>
 	<string name="zoom_by_swiping">Kamera nagyítása fel/le pöccintéssel</string>
 	<string name="zoom_by_swiping_summary">Pöccintsen fel vagy le a kamera képernyőjén a kamera nagyításának vezérléséhez.</string>

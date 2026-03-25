@@ -97,6 +97,8 @@
 	<string name="follow_system_settings">Как в системе</string>
 	<string name="show_crop_handle">Показывать область сканирования</string>
 	<string name="show_crop_handle_summary">Ограничить сканирование изменяемой областью.</string>
+	<string name="show_crosshairs">Показывать перекрестие</string>
+	<string name="show_crosshairs_summary">Показывать перекрестие в области сканирования или на весь экран.</string>
 	<string name="barcode_formats">Форматы штрих-кодов</string>
 	<string name="zoom_by_swiping">Масштабировать жестом вверх/вниз</string>
 	<string name="zoom_by_swiping_summary">Жест пальцем вверх или вниз для управления масштабированием камеры.</string>

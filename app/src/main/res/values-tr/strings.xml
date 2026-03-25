@@ -94,6 +94,8 @@
 	<string name="follow_system_settings">Sistem ayarlarını izle</string>
 	<string name="show_crop_handle">Kırpım kısıtlayıcıyı göster</string>
 	<string name="show_crop_handle_summary">Taramayı özelleştirilebilir bölgeyle sınırla.</string>
+	<string name="show_crosshairs">Nişangahı göster</string>
+	<string name="show_crosshairs_summary">Nişangahı kırpma penceresi veya tam ekran üzerinde göster.</string>
 	<string name="barcode_formats">Barkod biçimleri</string>
 	<string name="zoom_by_swiping">Aşağı/yukarı kaydırarak yakınlaştır</string>
 	<string name="zoom_by_swiping_summary">Kamera yakınlığını denetlemek için kamera ekranında aşağı veya yukarı kaydır.</string>

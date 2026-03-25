@@ -38,6 +38,11 @@ class DetectorView : View {
 		color = ContextCompat.getColor(context, R.color.dot)
 		style = Paint.Style.FILL
 	}
+	private val crosshairPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+		color = ContextCompat.getColor(context, R.color.dot)
+		style = Paint.Style.STROKE
+		strokeWidth = context.resources.displayMetrics.density
+	}
 	private val dotRadius: Float
 	private val handleBitmap = resources.getBitmapFromDrawable(
 		R.drawable.button_crop
@@ -247,6 +252,9 @@ class DetectorView : View {
 		if (handleActive) {
 			canvas.drawClip()
 		}
+		if (prefs.showCrosshairs) {
+			canvas.drawCrosshairs()
+		}
 		canvas.drawDots()
 		if (prefs.showCropHandle) {
 			canvas.drawHandle()
@@ -292,6 +300,28 @@ class DetectorView : View {
 			(handlePos.y - handleYRadius).toFloat(),
 			null
 		)
+	}
+
+	private fun Canvas.drawCrosshairs() {
+		val left: Float
+		val top: Float
+		val right: Float
+		val bottom: Float
+		if (handleActive) {
+			left = roi.left.toFloat()
+			top = roi.top.toFloat()
+			right = roi.right.toFloat()
+			bottom = roi.bottom.toFloat()
+		} else {
+			left = 0f
+			top = 0f
+			right = viewWidth.toFloat()
+			bottom = viewHeight.toFloat()
+		}
+		val cx = (left + right) * .5f
+		val cy = (top + bottom) * .5f
+		drawLine(cx, top, cx, bottom, crosshairPaint)
+		drawLine(left, cy, right, cy, crosshairPaint)
 	}
 
 	private fun updateClipRect() {

@@ -94,6 +94,8 @@
 	<string name="follow_system_settings">Suivre les réglages du système</string>
 	<string name="show_crop_handle">Afficher le contrôle du cadrage</string>
 	<string name="show_crop_handle_summary">Restreindre le scan à une zone personnalisée.</string>
+	<string name="show_crosshairs">Afficher le réticule</string>
+	<string name="show_crosshairs_summary">Afficher le réticule sur la zone de cadrage ou sur tout l\'écran.</string>
 	<string name="barcode_formats">Formats de codes-barres</string>
 	<string name="zoom_by_swiping">Balayage haut/bas pour zoomer</string>
 	<string name="zoom_by_swiping_summary">Balayer vers le haut ou vers le bas de l\'écran pour contrôler le niveau de zoom de la caméra.</string>

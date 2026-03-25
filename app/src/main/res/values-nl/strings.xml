@@ -94,6 +94,8 @@
 	<string name="follow_system_settings">Systeeminstellingen volgen</string>
 	<string name="show_crop_handle">Bijsnijd-begrenzer tonen</string>
 	<string name="show_crop_handle_summary">Scannen beperken tot een aanpasbaar gebied</string>
+	<string name="show_crosshairs">Dradenkruis tonen</string>
+	<string name="show_crosshairs_summary">Toon een dradenkruis over het uitsnedevenster of het hele scherm.</string>
 	<string name="barcode_formats">Barcode formaten</string>
 	<string name="zoom_by_swiping">Camera zoomen door omhoog/omlaag te vegen</string>
 	<string name="zoom_by_swiping_summary">De zoom van de camera bedienen door in het camerascherm omhoog of omlaag te vegen.</string>

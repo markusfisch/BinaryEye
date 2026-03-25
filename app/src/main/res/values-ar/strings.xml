@@ -99,6 +99,8 @@
 	<string name="follow_system_settings">اتبع إعدادات النظام</string>
 	<string name="show_crop_handle">عرض محدد الاقتصاص</string>
 	<string name="show_crop_handle_summary">حصر المسح في منطقة قابلة للتخصيص.</string>
+	<string name="show_crosshairs">إظهار خطوط التصويب</string>
+	<string name="show_crosshairs_summary">إظهار خطوط التصويب فوق منطقة الاقتصاص أو على كامل الشاشة.</string>
 	<string name="barcode_formats">تنسيقات Barcode</string>
 	<string name="zoom_by_swiping">مرر لأعلى أو لأسفل للتكبير/التصغير</string>
 	<string name="zoom_by_swiping_summary">مرر لأعلى أو لأسفل على واجهة الكاميرا للتحكم في التكبير/التصغير لها.</string>
