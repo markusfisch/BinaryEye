@@ -65,7 +65,7 @@
 	<string name="restrict_format">Formátum korlátozása</string>
 	<string name="remove_restriction">Korlátozás eltávolítása</string>
 	<string name="find_code">Kód keresése</string>
-	<string name="find_code_with_content">Mi a tartalom?</string>
+	<string name="find_barcode_with_content">Mi a tartalom?</string>
 	<string name="find_code_hint">Kifejezés vagy reguláris kifejezés</string>
 	<string name="does_not_match_search_term">Nem egyezik a keresőkifejezéssel</string>
 	<string name="scan_for">%s beolvasása</string>

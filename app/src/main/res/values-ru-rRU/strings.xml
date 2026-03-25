@@ -68,7 +68,7 @@
 	<string name="restrict_format">Исключить формат</string>
 	<string name="remove_restriction">Включить формат</string>
 	<string name="find_code">Поиск кода</string>
-	<string name="find_code_with_content">Что искать?</string>
+	<string name="find_barcode_with_content">Что искать?</string>
 	<string name="find_code_hint">Термин или регулярное выражение</string>
 	<string name="does_not_match_search_term">Не соответствует поисковому запросу</string>
 	<string name="scan_for">Сканировать %s</string>

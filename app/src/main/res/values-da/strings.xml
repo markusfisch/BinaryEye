@@ -65,7 +65,7 @@
 	<string name="restrict_format">Begræns format</string>
 	<string name="remove_restriction">Fjern begrænsningen</string>
 	<string name="find_code">Find kode</string>
-	<string name="find_code_with_content">Hvad indhold?</string>
+	<string name="find_barcode_with_content">Hvad indhold?</string>
 	<string name="find_code_hint">Term eller regulært udtryk</string>
 	<string name="does_not_match_search_term">Stemmer ikke overens med søgeterm</string>
 	<string name="scan_for">Scan %s</string>

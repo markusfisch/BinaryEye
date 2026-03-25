@@ -99,7 +99,7 @@
 	<string name="restrict_format">Ogranicz format</string>
 	<string name="remove_restriction">Usuń ograniczenie</string>
 	<string name="find_code">Znajdź kod</string>
-	<string name="find_code_with_content">Jaki treść?</string>
+	<string name="find_barcode_with_content">Jaki treść?</string>
 	<string name="find_code_hint">Termin lub wyrażenie regularne</string>
 	<string name="does_not_match_search_term">Nie pasuje do wyszukiwania</string>
 	<string name="scan_for">Skan %s</string>

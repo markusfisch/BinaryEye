@@ -64,7 +64,7 @@
 	<string name="restrict_format">Hạn chế định dạng</string>
 	<string name="remove_restriction">Xóa hạn chế</string>
 	<string name="find_code">Tìm mã</string>
-	<string name="find_code_with_content">Nội dung là gì?</string>
+	<string name="find_barcode_with_content">Nội dung là gì?</string>
 	<string name="find_code_hint">Thuật ngữ hoặc biểu thức chính quy</string>
 	<string name="does_not_match_search_term">Không khớp với thuật ngữ tìm kiếm</string>
 	<string name="scan_for">Quét %s</string>

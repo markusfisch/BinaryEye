@@ -64,7 +64,7 @@
 	<string name="restrict_format">严格模式（扫描指定编码格式）</string>
 	<string name="remove_restriction">解除限制</string>
 	<string name="find_code">找码</string>
-	<string name="find_code_with_content">什么内容？</string>
+	<string name="find_barcode_with_content">什么内容？</string>
 	<string name="find_code_hint">术语或正则表达式</string>
 	<string name="does_not_match_search_term">与搜索词不匹配</string>
 	<string name="scan_for">扫描 %s</string>

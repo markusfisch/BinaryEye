@@ -68,7 +68,7 @@
 	<string name="restrict_format">Omezit na formát</string>
 	<string name="remove_restriction">Zrušit omezení formátu</string>
 	<string name="find_code">Najít kód</string>
-	<string name="find_code_with_content">Co obsah?</string>
+	<string name="find_barcode_with_content">Co obsah?</string>
 	<string name="find_code_hint">Termín nebo regulární výraz</string>
 	<string name="does_not_match_search_term">Neodpovídá vyhledávacímu termínu</string>
 	<string name="scan_for">Naskenovat %s</string>

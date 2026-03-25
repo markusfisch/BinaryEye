@@ -64,7 +64,7 @@
 	<string name="restrict_format">限制格式</string>
 	<string name="remove_restriction">移除限制</string>
 	<string name="find_code">尋找代碼</string>
-	<string name="find_code_with_content">什麼內容？</string>
+	<string name="find_barcode_with_content">什麼內容？</string>
 	<string name="find_code_hint">術語或正規表達式</string>
 	<string name="does_not_match_search_term">與搜尋詞不符</string>
 	<string name="scan_for">掃描 %s</string>

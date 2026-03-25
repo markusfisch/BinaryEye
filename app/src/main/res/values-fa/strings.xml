@@ -65,7 +65,7 @@
 	<string name="restrict_format">محدود کردن قالب</string>
 	<string name="remove_restriction">برداشتن محدودیت</string>
 	<string name="find_code">کد را پیدا کنید</string>
-	<string name="find_code_with_content">چه محتوا؟</string>
+	<string name="find_barcode_with_content">چه محتوا؟</string>
 	<string name="find_code_hint">عبارت یا عبارت منظم</string>
 	<string name="does_not_match_search_term">با عبارت جستجو مطابقت ندارد</string>
 	<string name="scan_for">پویش %s</string>

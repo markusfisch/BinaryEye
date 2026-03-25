@@ -65,7 +65,7 @@
 	<string name="restrict_format">Beperk formaat</string>
 	<string name="remove_restriction">Verwijder beperking</string>
 	<string name="find_code">Vind code</string>
-	<string name="find_code_with_content">Wat voor inhoud?</string>
+	<string name="find_barcode_with_content">Wat voor inhoud?</string>
 	<string name="find_code_hint">Zoekterm of reguliere expressie</string>
 	<string name="does_not_match_search_term">Komt niet overeen met zoekterm</string>
 	<string name="scan_for">Scan %s</string>

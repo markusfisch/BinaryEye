@@ -70,7 +70,7 @@
 	<string name="restrict_format">تحديد التنسيق</string>
 	<string name="remove_restriction">إزالة التحديد</string>
 	<string name="find_code">العثور على الرمز</string>
-	<string name="find_code_with_content">ما المحتوى؟</string>
+	<string name="find_barcode_with_content">ما المحتوى؟</string>
 	<string name="find_code_hint">مصطلح أو تعبير عادي</string>
 	<string name="does_not_match_search_term">لا يطابق مصطلح البحث</string>
 	<string name="scan_for">مسح %s</string>

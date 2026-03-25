@@ -65,7 +65,7 @@
 	<string name="restrict_format">ფორმატის შეზღუდვა</string>
 	<string name="remove_restriction">შეასწორე შეზღუდვა</string>
 	<string name="find_code">კოდის პოვნა</string>
-	<string name="find_code_with_content">რა შინაა?</string>
+	<string name="find_barcode_with_content">რა შინაა?</string>
 	<string name="find_code_hint">ტერმინი ან რეგულარული გამოთქმა</string>
 	<string name="does_not_match_search_term">არ შეესაბამება ძიების ტერმინს</string>
 	<string name="scan_for">სკანირე %s</string>

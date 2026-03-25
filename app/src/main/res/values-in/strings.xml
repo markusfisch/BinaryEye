@@ -64,7 +64,7 @@
 	<string name="restrict_format">Batasi format</string>
 	<string name="remove_restriction">Hapus pembatasan</string>
 	<string name="find_code">Trouver le code</string>
-	<string name="find_code_with_content">Quel contenu?</string>
+	<string name="find_barcode_with_content">Quel contenu?</string>
 	<string name="find_code_hint">Istilah atau ekspresi reguler</string>
 	<string name="does_not_match_search_term">Tidak cocok dengan istilah pencarian</string>
 	<string name="scan_for">Pindai %s</string>

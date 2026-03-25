@@ -64,7 +64,7 @@
 	<string name="restrict_format">フォーマットの制限</string>
 	<string name="remove_restriction">制限を解除</string>
 	<string name="find_code">コードを検索</string>
-	<string name="find_code_with_content">何の内容ですか？</string>
+	<string name="find_barcode_with_content">何の内容ですか？</string>
 	<string name="find_code_hint">検索ワードまたは正規表現</string>
 	<string name="does_not_match_search_term">検索ワードと一致しません</string>
 	<string name="scan_for">%sをスキャン</string>

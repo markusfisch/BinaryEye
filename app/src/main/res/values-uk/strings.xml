@@ -66,7 +66,7 @@
 	<string name="restrict_format">Обмежити формат</string>
 	<string name="remove_restriction">Скасувати обмеження</string>
 	<string name="find_code">Знайти код</string>
-	<string name="find_code_with_content">Що саме вміст?</string>
+	<string name="find_barcode_with_content">Що саме вміст?</string>
 	<string name="find_code_hint">Термін або регулярний вираз</string>
 	<string name="does_not_match_search_term">Не відповідає пошуковому терміну</string>
 	<string name="scan_for">Сканувати %s</string>

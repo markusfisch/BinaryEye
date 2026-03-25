@@ -66,7 +66,7 @@
 	<string name="restrict_format">Restringir formato</string>
 	<string name="remove_restriction">Remover restrição</string>
 	<string name="find_code">Encontrar código</string>
-	<string name="find_code_with_content">Qual conteúdo?</string>
+	<string name="find_barcode_with_content">Qual conteúdo?</string>
 	<string name="find_code_hint">Termo ou expressão regular</string>
 	<string name="does_not_match_search_term">Não corresponde ao termo de busca</string>
 	<string name="scan_for">Digitalizar %s</string>

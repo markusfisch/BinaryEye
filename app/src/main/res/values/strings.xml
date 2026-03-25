@@ -65,7 +65,7 @@
 	<string name="restrict_format">Restrict format</string>
 	<string name="remove_restriction">Remove restriction</string>
 	<string name="find_code">Find code</string>
-	<string name="find_code_with_content">What content?</string>
+	<string name="find_barcode_with_content">What content?</string>
 	<string name="find_code_hint">Term or regular expression</string>
 	<string name="does_not_match_search_term">Does not match search term</string>
 	<string name="scan_for">Scan %s</string>

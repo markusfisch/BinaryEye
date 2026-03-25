@@ -391,7 +391,7 @@ class CameraActivity : AppCompatActivity() {
 			}
 
 			R.id.find_code -> {
-				askForCode()
+				askForSearchTerm()
 				true
 			}
 
@@ -448,8 +448,8 @@ class CameraActivity : AppCompatActivity() {
 
 	// Dialogs do not have a parent view.
 	@SuppressLint("InflateParams")
-	private fun askForCode() {
-		val view = layoutInflater.inflate(R.layout.dialog_find_code, null)
+	private fun askForSearchTerm() {
+		val view = layoutInflater.inflate(R.layout.dialog_search_term, null)
 		val editText = view.findViewById<EditText>(R.id.term)
 		searchTerm?.let {
 			editText.setText(it.toString())

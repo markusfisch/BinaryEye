@@ -65,7 +65,7 @@
 	<string name="restrict_format">Biçimi kısıtla</string>
 	<string name="remove_restriction">Kısıtlamayı kaldır</string>
 	<string name="find_code">Kod bul</string>
-	<string name="find_code_with_content">Ne içerik?</string>
+	<string name="find_barcode_with_content">Ne içerik?</string>
 	<string name="find_code_hint">Terim veya düzenli ifade</string>
 	<string name="does_not_match_search_term">Arama terimiyle eşleşmiyor</string>
 	<string name="scan_for">%s tara</string>
