@@ -9,7 +9,7 @@ private var errorToneGenerator: ToneGenerator? = null
 
 fun beepConfirm() {
 	val tg = confirmToneGenerator ?: ToneGenerator(
-		AudioManager.STREAM_NOTIFICATION,
+		AudioManager.STREAM_MUSIC,
 		ToneGenerator.MAX_VOLUME
 	)
 	confirmToneGenerator = tg
