@@ -162,7 +162,6 @@
 	<string name="default_search_engine">فتح البيانات المجهولة في</string>
 	<string name="always_ask">اسأل دائمًا</string>
 	<string name="open_with_url">فتح البيانات المجهولة باستخدام رابط</string>
-
 	<string name="automated_actions">الإجراءات الآلية</string>
 	<string name="automated_actions_none">لا توجد إجراءات آلية</string>
 	<string name="automated_actions_empty">لا توجد إجراءات آلية بعد</string>
@@ -295,5 +294,4 @@
 	<string name="automated_action_intent_uri_invalid">عنوان Intent غير صالح</string>
 	<string name="automated_action_list_custom_intent">Intent مخصص: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Intent مخصص</string>
-
 </resources>
