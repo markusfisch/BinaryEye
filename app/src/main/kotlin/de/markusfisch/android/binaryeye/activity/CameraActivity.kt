@@ -1040,6 +1040,9 @@ private fun getReturnIntent(result: Result) = Intent().apply {
 	if (result.rawBytes.isNotEmpty()) {
 		putExtra("SCAN_RESULT_BYTES", result.rawBytes)
 	}
+
+	// Required for ODK
+	putExtra("value", result.text)
 }
 
 private fun completeUrl(urlTemplate: String, result: Result) = (
