@@ -48,6 +48,7 @@
 	<string name="cannot_resolve_action">খোলার মতো অ্যাপ নেই</string>
 	<string name="pick_search_engine">একটা সার্চ ইঞ্জিন নাও</string>
 	<string name="format">ধরণ</string>
+	<string name="all_formats">সব ফরম্যাট</string>
 	<string name="size_width_by_height">পিক্সেলে আকা:%1$d×%2$d</string>
 	<string name="size_no_magnification">কোনো বৃদ্ধি নেই</string>
 	<string name="add_quiet_zone">শান্তি জোন যোগ করুন</string>

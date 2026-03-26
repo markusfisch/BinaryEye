@@ -51,6 +51,7 @@
 	<string name="cannot_resolve_action">Nemáte aplikaci, která by toto uměla otevřít</string>
 	<string name="pick_search_engine">Zvolte vyhledávač</string>
 	<string name="format">Formát</string>
+	<string name="all_formats">Všechny formáty</string>
 	<string name="size_width_by_height">Velikost v pixelech: %1$d×%2$d</string>
 	<string name="size_no_magnification">Žádné zvětšení</string>
 	<string name="add_quiet_zone">Přidat tichou zónu</string>

@@ -22,6 +22,7 @@
 	<string name="compose_barcode">Utwórz kod kreskowy</string>
 	<string name="history">Historia</string>
 	<string name="format">Format</string>
+	<string name="all_formats">Wszystkie formaty</string>
 	<string name="add_to_history">Dodaj do historii</string>
 	<string name="added_to_history">Dodano do historii</string>
 	<string name="pin_item">Przypnij</string>

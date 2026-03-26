@@ -19,4 +19,13 @@
 		android:maxLines="1"
 		android:maxLength="1024"
 		android:importantForAutofill="no"/>
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="12dp"
+		android:text="@string/format"/>
+	<Spinner
+		android:id="@+id/format"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
 </LinearLayout>

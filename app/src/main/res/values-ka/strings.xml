@@ -48,6 +48,7 @@
 	<string name="cannot_resolve_action">ამ მოქმედებისთვის აპლიკაცია ნაპოვნი არაა</string>
 	<string name="pick_search_engine">აირჩიეთ საძიებო სისტემა</string>
 	<string name="format">ფორმატი</string>
+	<string name="all_formats">ყველა ფორმატი</string>
 	<string name="size_width_by_height">ზომა პიქსელებში: %1$d×%2$d</string>
 	<string name="size_no_magnification">არ არის დიდება</string>
 	<string name="add_quiet_zone">დაამატეთ შესული ზონა</string>

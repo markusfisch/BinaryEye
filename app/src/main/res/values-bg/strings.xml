@@ -48,6 +48,7 @@
 	<string name="cannot_resolve_action">Няма приложение което може да отвори това</string>
 	<string name="pick_search_engine">Изберете търсачка</string>
 	<string name="format">Формат</string>
+	<string name="all_formats">Всички формати</string>
 	<string name="size_width_by_height">Размер в пиксели: %1$d×%2$d</string>
 	<string name="size_no_magnification">Без увеличение</string>
 	<string name="add_quiet_zone">Добавяне на тиха зона</string>

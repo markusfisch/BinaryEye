@@ -47,6 +47,7 @@
 	<string name="cannot_resolve_action">開くためのアプリがありません！</string>
 	<string name="pick_search_engine">検索エンジンを選択</string>
 	<string name="format">フォーマット</string>
+	<string name="all_formats">すべての形式</string>
 	<string name="size_width_by_height">大きさ（ピクセル）: %1$d×%2$d</string>
 	<string name="size_no_magnification">拡大なし</string>
 	<string name="add_quiet_zone">外側に余白（クワイエットゾーン）を追加する</string>

@@ -51,6 +51,7 @@
 	<string name="cannot_resolve_action">Не найдено приложение для этого действия</string>
 	<string name="pick_search_engine">Выберите поисковую систему</string>
 	<string name="format">Формат</string>
+	<string name="all_formats">Все форматы</string>
 	<string name="size_width_by_height">Размер в пикселях: %1$d×%2$d</string>
 	<string name="size_no_magnification">Без увеличения</string>
 	<string name="add_quiet_zone">Добавить отступы</string>

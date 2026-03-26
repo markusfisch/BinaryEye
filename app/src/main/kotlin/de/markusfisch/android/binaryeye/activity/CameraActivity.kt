@@ -16,8 +16,10 @@ import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.SeekBar
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
@@ -451,20 +453,46 @@ class CameraActivity : AppCompatActivity() {
 	private fun askForSearchTerm() {
 		val view = layoutInflater.inflate(R.layout.dialog_search_term, null)
 		val editText = view.findViewById<EditText>(R.id.term)
+		val formatView = view.findViewById<Spinner>(R.id.format)
+		val names = resources.getStringArray(
+			R.array.barcode_formats_names
+		).toMutableList().apply {
+			add(0, getString(R.string.all_formats))
+		}
+		val values = resources.getStringArray(
+			R.array.barcode_formats_values
+		).toMutableList().apply {
+			add(0, "")
+		}
+		formatView.adapter = ArrayAdapter(
+			this,
+			android.R.layout.simple_spinner_item,
+			names
+		).apply {
+			setDropDownViewResource(
+				android.R.layout.simple_spinner_dropdown_item
+			)
+		}
 		searchTerm?.let {
 			editText.setText(it.toString())
 		}
+		formatView.setSelection(
+			values.indexOf(restrictFormat ?: "").coerceAtLeast(0)
+		)
 		AlertDialog.Builder(this)
 			.setView(view)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				val term = editText.text.toString().trim()
+				restrictFormat = values[formatView.selectedItemPosition].ifEmpty {
+					null
+				}
 				if (!term.isEmpty()) {
 					searchTerm = term.toRegex()
 				} else {
 					searchTerm = null
 				}
 				ignoreNext = null
-				updateTitle()
+				updateHintsAndTitle()
 			}
 			.setNegativeButton(android.R.string.cancel) { _, _ ->
 				// do not change anything on cancel

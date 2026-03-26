@@ -47,6 +47,7 @@
 	<string name="cannot_resolve_action">어떤 앱도 열 수 없습니다</string>
 	<string name="pick_search_engine">검색 엔진을 선택하세요</string>
 	<string name="format">형식</string>
+	<string name="all_formats">모든 형식</string>
 	<string name="size_width_by_height">크기(픽셀): %1$d×%2$d</string>
 	<string name="size_no_magnification">확대하지 않음</string>
 	<string name="add_quiet_zone">조용한 지역 추가</string>
