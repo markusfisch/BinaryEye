@@ -15,6 +15,7 @@
 		<item quantity="one">%2$d символ, %1$s</item>
 		<item quantity="few">%2$d символи, %1$s</item>
 		<item quantity="many">%2$d символів, %1$s</item>
+		<item quantity="other">%2$d символів, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Рівень виправлення помилок</string>
 	<string name="error_correction_level_l" formatted="false">Низький (~7% виправлення)</string>

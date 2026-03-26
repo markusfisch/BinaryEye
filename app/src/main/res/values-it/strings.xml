@@ -191,7 +191,7 @@
 	<string name="no_bluetooth_hosts_paired">Nessun host accoppiato</string>
 	<string name="bluetooth_connect_fail">Impossibile connettersi al dispositivo Bluetooth.</string>
 	<string name="bluetooth_send_fail">Impossibile inviare al dispositivo Bluetooth.</string>
-	<string name="bluetooth_send_success">Invio via Bluetooth completato.</string>
+	<string name="bluetooth_send_success">Invio via Bluetooth riuscito.</string>
 	<string name="generation_category">Generazione</string>
 	<string name="brighten_screen">Schiarisci schermo</string>
 	<string name="brighten_screen_summary">Imposta luminosità al massimo per migliorare la scansione di un codice a barre dallo schermo.</string>

@@ -104,7 +104,7 @@
 	<string name="try_harder">Optimizar la precisión del lector</string>
 	<string name="try_harder_summary">Active esta opción para códigos muy difíciles de leer. Esto afectará al rendimiento.</string>
 	<string name="show_toast_in_bulk_mode">Mostrar datos en el modo constante</string>
-	<string name="show_toast_in_bulk_mode_summary">Mostrar brevemente los datos escaneados al escanear constantemente. </string>
+	<string name="show_toast_in_bulk_mode_summary">Mostrar brevemente los datos escaneados al escanear constantemente.</string>
 	<string name="vibrate">Vibración al detectar</string>
 	<string name="vibrate_summary">El dispositivo vibra cuando se reconoce un código.</string>
 	<string name="beep">Sonido al detectar</string>
