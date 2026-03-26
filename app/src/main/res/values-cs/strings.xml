@@ -140,7 +140,6 @@
 	<string name="default_search_engine">Nerozpoznaná data otevřít v</string>
 	<string name="always_ask">Vždy se zeptat</string>
 	<string name="open_with_url">Otevřít nerozpoznaná data pomocí URL</string>
-
 	<string name="automated_actions">Automatizované akce</string>
 	<string name="automated_actions_none">Žádné automatizované akce</string>
 	<string name="automated_actions_empty">Zatím žádné automatizované akce</string>
@@ -271,5 +270,4 @@
 	<string name="automated_action_intent_uri_invalid">Neplatné URI intentu</string>
 	<string name="automated_action_list_custom_intent">Vlastní intent: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Vlastní intent</string>
-
 </resources>

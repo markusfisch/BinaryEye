@@ -140,7 +140,6 @@
 	<string name="default_search_engine">Поиск неизвестных данных</string>
 	<string name="always_ask">Всегда спрашивать</string>
 	<string name="open_with_url">Открывать неизвестные данные по URL</string>
-
 	<string name="automated_actions">Автоматические действия</string>
 	<string name="automated_actions_none">Нет автоматических действий</string>
 	<string name="automated_actions_empty">Автоматических действий пока нет</string>
@@ -271,5 +270,4 @@
 	<string name="automated_action_intent_uri_invalid">Недопустимый URI Intent</string>
 	<string name="automated_action_list_custom_intent">Пользовательский Intent: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Пользовательский Intent</string>
-
 </resources>
