@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.69.1
+* Update translations
+
 ## 1.69.0
 * Add an option to show crosshairs
 * Add preference for codes that should not be saved
