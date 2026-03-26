@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.69.0
+* Add an option to show crosshairs
+* Add preference for codes that should not be saved
+* Add option to restrict searching to a specific format
+* Pin history items
+* Improve preference icons
+* Optimize vector drawables
+* Fix beeping when phone is set to Vibrate mode
+
 ## 1.68.7
 * Add icons to preferences screen
 * Update history listing on resume
