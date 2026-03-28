@@ -73,4 +73,5 @@
 	<string name="share_as">Kopīgot kā?</string>
 	<string name="copy_password">Kopēt paroli starpliktuvē</string>
 	<string name="profile_remove_confirm">Vai tiešām vēlaties noņemt šo profilu?</string>
+	<string name="automated_action_regex">Regulāra izteiksme</string>
 </resources>
