@@ -13,7 +13,7 @@
 	<string name="binary_data">(dati binari)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d carattere, %1$s</item>
-		<item quantity="many"></item>
+		<item quantity="many"/>
 		<item quantity="other">%2$d caratteri, %1$s</item>
 	</plurals>
 	<string name="error_correction_level">Livello correzione errori</string>
@@ -84,7 +84,7 @@
 	<string name="profile_category">Profilo</string>
 	<string name="profile">Profilo</string>
 	<string name="profile_default">Predefinito</string>
-	<string name="profile_add">Aggiungi nuovo profilo</string>
+	<string name="profile_add">Aggiungi un nuovo profilo</string>
 	<string name="profile_enter_name">Inserisci nome profilo</string>
 	<string name="profile_enter_name_hint">Nome</string>
 	<string name="profile_invalid_name">Nome profilo non valido</string>
@@ -158,18 +158,19 @@
 	<string name="open_with_url">Apri dati sconosciuti con URL</string>
 	<string name="automated_actions">Azioni automatizzate</string>
 	<string name="automated_actions_none">Nessuna azione automatizzata</string>
-	<string name="automated_actions_empty">Nessuna azione automatizzata ancora</string>
+	<string name="automated_actions_empty">Ancora nessuna azione automatizzata</string>
 	<plurals name="automated_actions_count">
 		<item quantity="one">%d azione automatizzata</item>
-		<item quantity="other">%d azioni automatizzate</item>
+		<item quantity="many">%d azioni automatizzate</item>
+		<item quantity="other"></item>
 	</plurals>
 	<string name="automated_action_add">Aggiungi azione</string>
 	<string name="automated_action_edit">Modifica azione</string>
 	<string name="automated_action_regex">Espressione regolare</string>
 	<string name="automated_action_regex_hint">es. ^https?://.*</string>
-	<string name="automated_action_regex_required">Richiesta espressione regolare</string>
+	<string name="automated_action_regex_required">Espressione regolare richiesta</string>
 	<string name="automated_action_regex_invalid">Espressione regolare non valida</string>
-	<string name="automated_action_type">Tipo azione</string>
+	<string name="automated_action_type">Tipo di azione</string>
 	<string name="automated_action_type_intent">Apri URL</string>
 	<string name="automated_action_type_custom_intent">Intento personalizzato</string>
 	<string name="automated_action_url_template">Modello URL</string>
@@ -204,7 +205,7 @@
 	<string name="send_scan_bluetooth">Inoltra scansioni con Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Abilita per inoltrare le scansioni ad un determinato host Bluetooth.</string>
 	<string name="send_scan_bluetooth_host">Host</string>
-	<string name="no_bluetooth_hosts_paired">Nessun host accoppiato</string>
+	<string name="no_bluetooth_hosts_paired">Nessun host associato</string>
 	<string name="bluetooth_connect_fail">Impossibile connettersi al dispositivo Bluetooth.</string>
 	<string name="bluetooth_send_fail">Impossibile inviare al dispositivo Bluetooth.</string>
 	<string name="bluetooth_send_success">Invio via Bluetooth completato.</string>
@@ -245,8 +246,8 @@
 	<string name="search_scan">Cerca scansione</string>
 	<string name="add_to_history">Aggiungi alla cronologia</string>
 	<string name="added_to_history">Aggiunto alla cronologia</string>
-	<string name="pin_item">Fissa in alto</string>
-	<string name="unpin_item">Rimuovi dall\'alto</string>
+	<string name="pin_item">Fissa elemento</string>
+	<string name="unpin_item">Rimuovi l\'elemento dall\'alto della lista</string>
 	<string name="export_to_file">Esporta in un file</string>
 	<string name="export_as">Esportare come?</string>
 	<string name="export_csv_comma">CSV con virgole</string>
