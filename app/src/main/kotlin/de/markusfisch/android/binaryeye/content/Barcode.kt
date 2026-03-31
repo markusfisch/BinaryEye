@@ -49,7 +49,7 @@ fun Scan.toBarcode(): Barcode<*> {
 			content,
 			format,
 			errorCorrectionLevel.toErrorCorrectionInt(),
-			margin = 1
+			addQuietZone = true
 		)
 	}
 }
@@ -109,21 +109,21 @@ class ContentBarcode<T>(
 	content: T,
 	format: BarcodeFormat,
 	val ecLevel: Int = -1,
-	val margin: Int = 0,
+	val addQuietZone: Boolean = false,
 	colors: BarcodeColors = BarcodeColors.BLACK_ON_WHITE
 ) : Barcode<T>(content, format, colors) {
 	override fun toBitmap(size: Int) = ZxingCpp.encodeAsBitmap(
-		content, format, size, format.height(size), margin, ecLevel,
+		content, format, size, format.height(size), addQuietZone, ecLevel,
 		setColor = colors.foregroundColor(),
 		unsetColor = colors.backgroundColor()
 	)
 
 	override fun toSvg() = ZxingCpp.encodeAsSvg(
-		content, format, margin, ecLevel
+		content, format, addQuietZone, ecLevel
 	)
 
 	override fun toText() = ZxingCpp.encodeAsText(
-		content, format, margin, ecLevel,
+		content, format, addQuietZone, ecLevel,
 		inverted = colors == BarcodeColors.BLACK_ON_WHITE
 	)
 }

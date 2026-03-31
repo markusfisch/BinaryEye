@@ -154,7 +154,7 @@ class BarcodeActivity : AbstractBaseActivity() {
 				content,
 				barcodeFormat,
 				getInt(EC_LEVEL),
-				getInt(MARGIN),
+				getBoolean(ADD_QUIET_ZONE),
 				colors
 			)
 		}
@@ -450,7 +450,7 @@ class BarcodeActivity : AbstractBaseActivity() {
 		private const val CONTENT_RAW = "content_raw"
 		private const val FORMAT = "format"
 		private const val EC_LEVEL = "ec_level"
-		private const val MARGIN = "margin"
+		private const val ADD_QUIET_ZONE = "add_quiet_zone"
 		private const val COLORS = "colors"
 		private const val MIME_PNG = "image/png"
 		private const val MIME_JPG = "image/jpeg"
@@ -464,9 +464,9 @@ class BarcodeActivity : AbstractBaseActivity() {
 		): Intent {
 			val args = Bundle()
 			when (barcode) {
-				is ContentBarcode -> args.putEcLevelMargin(
+				is ContentBarcode -> args.putEcLevelQuietZone(
 					barcode.ecLevel,
-					barcode.margin
+					barcode.addQuietZone
 				)
 
 				is BitMatrixBarcode -> {
@@ -490,12 +490,12 @@ class BarcodeActivity : AbstractBaseActivity() {
 			content: T,
 			format: BarcodeFormat,
 			ecLevel: Int = -1,
-			margin: Int = 0,
+			addQuietZone: Boolean = false,
 			colors: Int = 0
 		): Intent {
 			val args = Bundle()
 			args.putContentFormatColors(content, format, colors)
-			args.putEcLevelMargin(ecLevel, margin)
+			args.putEcLevelQuietZone(ecLevel, addQuietZone)
 			return Intent(context, BarcodeActivity::class.java).apply {
 				putExtras(args)
 			}
@@ -525,12 +525,12 @@ class BarcodeActivity : AbstractBaseActivity() {
 			putInt(COLORS, colors)
 		}
 
-		private fun Bundle.putEcLevelMargin(
+		private fun Bundle.putEcLevelQuietZone(
 			ecLevel: Int,
-			margin: Int
+			addQuietZone: Boolean
 		) {
 			putInt(EC_LEVEL, ecLevel)
-			putInt(MARGIN, margin)
+			putBoolean(ADD_QUIET_ZONE, addQuietZone)
 		}
 	}
 }

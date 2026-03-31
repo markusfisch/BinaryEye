@@ -28,7 +28,6 @@ import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import java.io.InputStream
 import kotlin.math.min
 
-
 class EncodeActivity : AbstractBaseActivity() {
 	private lateinit var formatView: Spinner
 	private lateinit var ecLabel: TextView
@@ -258,11 +257,7 @@ class EncodeActivity : AbstractBaseActivity() {
 			content,
 			format,
 			format.getErrorCorrectionLevel(ecSpinner.selectedItemPosition),
-			if (addQuietZoneSwitch.isChecked) {
-				1
-			} else {
-				0
-			},
+			addQuietZoneSwitch.isChecked,
 			if (format.canBeInverted()) {
 				colorsSpinner.selectedItemPosition
 			} else 0

@@ -285,7 +285,7 @@ class DecodeActivity : AbstractBaseActivity() {
 					content,
 					scan.format,
 					scan.errorCorrectionLevel.toErrorCorrectionInt(),
-					margin = 1
+					addQuietZone = true
 				)
 			}
 			try {
