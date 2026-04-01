@@ -60,4 +60,16 @@
 	<string name="idl_under_21_until_date">Under 21 Until Date</string>
 	<string name="idl_organ_donor_indicator">Organ Donor Indicator</string>
 	<string name="idl_veteran_indicator">Veteran Indicator</string>
+	<string name="epc_service_tag">Service Tag</string>
+	<string name="epc_version">Version</string>
+	<string name="epc_charset">Character Set</string>
+	<string name="epc_identification">Identification</string>
+	<string name="epc_bic">BIC</string>
+	<string name="epc_name">Name</string>
+	<string name="epc_iban">IBAN</string>
+	<string name="epc_amount">Amount</string>
+	<string name="epc_purpose">Purpose</string>
+	<string name="epc_reference">Remittance Reference</string>
+	<string name="epc_text">Remittance Text</string>
+	<string name="epc_information">Information</string>
 </resources>
