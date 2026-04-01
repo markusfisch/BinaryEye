@@ -96,15 +96,29 @@ object IdlParser {
 		val data = findSubType(s, idlInfo)
 		val len = data.length
 		var start = 0
+		var skipSubtype = false
 
 		for (p in 0..len) {
 			if (p < len && data[p] > '\u001f') {
 				continue
 			}
 
-			if (p - start > 3) {
-				val vp = start + 3
-				val key = data.substring(start, vp)
+			// Per spec, CR (0x0d) is the subfile boundary marker. The segment
+			// immediately following a CR may begin with a 2-char subfile type
+			// identifier (e.g. "ZV", "ZI") prepended to the first field.
+			// Detect this by checking that the marker matches the key prefix
+			// (jurisdiction fields always share their 2-char subfile prefix).
+			val seg = if (skipSubtype && p - start >= 4 &&
+					data[start] == data[start + 2] &&
+					data[start + 1] == data[start + 3]) {
+				start + 2
+			} else {
+				start
+			}
+
+			if (p - seg > 3) {
+				val vp = seg + 3
+				val key = data.substring(seg, vp)
 
 				if (key.matches(Regex("[DZ][A-Z]{2}"))) {
 					var value = data.substring(vp, p)
@@ -114,6 +128,7 @@ object IdlParser {
 					idlInfo.elements[key] = value.trim()
 				}
 			}
+			skipSubtype = p < len && data[p] == '\r'
 			start = p + 1
 		}
 
