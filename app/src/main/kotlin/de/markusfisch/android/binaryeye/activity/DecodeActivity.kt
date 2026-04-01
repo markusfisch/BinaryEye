@@ -252,15 +252,14 @@ class DecodeActivity : AbstractBaseActivity() {
 	}
 
 	private fun updateViews(text: String, bytes: ByteArray) {
+		dataView.fillDataView(text, bytes)
+		stampView.setTrackingLink(bytes, format)
 		formatView.text = resources.getQuantityString(
 			R.plurals.barcode_info,
 			bytes.size,
 			format.prettifyFormatName(),
 			bytes.size
 		)
-		hexView.showIf(prefs.showHexDump) { v ->
-			v.text = hexDump(bytes)
-		}
 		recreationView.showIf(prefs.showRecreation) { v ->
 			val unmodified: Boolean
 			val content = if (isBinary) {
@@ -302,8 +301,9 @@ class DecodeActivity : AbstractBaseActivity() {
 				clearRecreation()
 			}
 		}
-		dataView.fillDataView(text, bytes)
-		stampView.setTrackingLink(bytes, format)
+		hexView.showIf(prefs.showHexDump) { v ->
+			v.text = hexDump(bytes)
+		}
 	}
 
 	private fun clearRecreation() {

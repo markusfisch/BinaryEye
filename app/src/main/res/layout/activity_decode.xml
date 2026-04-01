@@ -11,6 +11,18 @@
 			android:layout_height="wrap_content"
 			android:orientation="vertical"
 			android:padding="16dp">
+			<TableLayout
+				android:id="@+id/data"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="16dp"/>
+			<TextView
+				android:id="@+id/stamp"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="16dp"
+				android:textSize="12sp"
+				android:typeface="monospace"/>
 			<EditText
 				android:id="@+id/label"
 				android:layout_width="match_parent"
@@ -40,11 +52,14 @@
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="16dp"
 				android:gravity="end|top"/>
-			<TableLayout
-				android:id="@+id/data"
-				android:layout_width="match_parent"
+			<ImageView
+				android:id="@+id/recreation"
+				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_marginBottom="16dp"/>
+				android:layout_gravity="center"
+				android:layout_marginBottom="16dp"
+				android:adjustViewBounds="true"
+				android:contentDescription="@string/view_barcode"/>
 			<TableLayout
 				android:id="@+id/meta"
 				android:layout_width="match_parent"
@@ -58,21 +73,6 @@
 				android:textSize="12sp"
 				android:typeface="monospace"
 				tools:text="54 65 73 74 20 51 52 20  Test QR\n43 6F 64 65              Code"/>
-			<TextView
-				android:id="@+id/stamp"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="16dp"
-				android:textSize="12sp"
-				android:typeface="monospace"/>
-			<ImageView
-				android:id="@+id/recreation"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:layout_marginBottom="16dp"
-				android:adjustViewBounds="true"
-				android:contentDescription="@string/view_barcode"/>
 		</LinearLayout>
 	</de.markusfisch.android.binaryeye.widget.ConfinedScrollView>
 	<androidx.coordinatorlayout.widget.CoordinatorLayout
