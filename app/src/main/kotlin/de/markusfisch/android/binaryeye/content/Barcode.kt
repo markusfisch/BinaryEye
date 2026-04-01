@@ -1,6 +1,7 @@
 package de.markusfisch.android.binaryeye.content
 
 import android.graphics.Bitmap
+import android.util.Size
 import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.graphics.COLOR_BLACK
 import de.markusfisch.android.binaryeye.graphics.COLOR_WHITE
@@ -112,11 +113,14 @@ class ContentBarcode<T>(
 	val addQuietZone: Boolean = false,
 	colors: BarcodeColors = BarcodeColors.BLACK_ON_WHITE
 ) : Barcode<T>(content, format, colors) {
-	override fun toBitmap(size: Int) = ZxingCpp.encodeAsBitmap(
-		content, format, size, format.height(size), addQuietZone, ecLevel,
-		setColor = colors.foregroundColor(),
-		unsetColor = colors.backgroundColor()
-	)
+	override fun toBitmap(size: Int): Bitmap {
+		val s = format.resolveSize(size)
+		return ZxingCpp.encodeAsBitmap(
+			content, format, s.width, s.height, addQuietZone, ecLevel,
+			setColor = colors.foregroundColor(),
+			unsetColor = colors.backgroundColor()
+		)
+	}
 
 	override fun toSvg() = ZxingCpp.encodeAsSvg(
 		content, format, addQuietZone, ecLevel
@@ -185,7 +189,7 @@ private fun BitMatrix.inflate(
 	return scaled
 }
 
-private fun BarcodeFormat.height(size: Int) = when (this) {
+private fun BarcodeFormat.resolveSize(size: Int): Size = when (this) {
 	// 1D barcodes don't need as much vertical space.
 	BarcodeFormat.Codabar,
 	BarcodeFormat.Code39,
@@ -204,7 +208,10 @@ private fun BarcodeFormat.height(size: Int) = when (this) {
 	BarcodeFormat.EAN13,
 	BarcodeFormat.ITF,
 	BarcodeFormat.UPCA,
-	BarcodeFormat.UPCE -> size / 3
+	BarcodeFormat.UPCE -> Size(size, size / 3)
 
-	else -> size
+	// PDF417 requires more horizontal space.
+	BarcodeFormat.PDF417 -> Size(size * 3, size / 2)
+
+	else -> Size(size, size)
 }
