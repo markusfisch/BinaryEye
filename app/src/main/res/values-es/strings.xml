@@ -113,6 +113,9 @@
 	<string name="beep">Sonido al detectar</string>
 	<string name="beep_summary">El dispositivo emite un sonido cuando se reconoce un código.</string>
 	<string name="beep_tone">Sonido</string>
+	<string name="beep_stream">Canal de audio del pitido</string>
+	<string name="stream_music">Multimedia</string>
+	<string name="stream_notification">Notificaciones</string>
 	<string name="tone_cdma_confirm">Confirmar CDMA</string>
 	<string name="tone_sup_confirm">Confirmar llamada de supervisión</string>
 	<string name="tone_sup_radio_ack">Reconocer ruta de radio de llamada de supervisión</string>

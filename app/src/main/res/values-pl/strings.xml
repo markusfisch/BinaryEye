@@ -128,6 +128,9 @@
 	<string name="beep">Sygnał dźwiękowy po wykryciu</string>
 	<string name="beep_summary">Włącz tę opcję, jeśli chcesz, aby urządzenie emitowało sygnał dźwiękowy po rozpoznaniu kodu.</string>
 	<string name="beep_tone">Sygnał dźwiękowy</string>
+	<string name="beep_stream">Strumień audio sygnału</string>
+	<string name="stream_music">Multimedia</string>
+	<string name="stream_notification">Powiadomienia</string>
 	<string name="tone_cdma_confirm">Potwierdzenie CDMA</string>
 	<string name="tone_sup_confirm">Potwierdzenie odbioru połączenia</string>
 	<string name="tone_sup_radio_ack">Potwierdzenie ścieżki radiowej nadzoru połączenia</string>

@@ -1,0 +1,10 @@
+<resources>
+	<string-array name="beep_streams_names">
+		<item>@string/stream_music</item>
+		<item>@string/stream_notification</item>
+	</string-array>
+	<string-array name="beep_streams_values">
+		<item>stream_music</item>
+		<item>stream_notification</item>
+	</string-array>
+</resources>

@@ -49,7 +49,8 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 					return
 				}
 
-				"beep_tone_name" -> beepConfirm()
+				"beep_tone_name",
+				"beep_stream_name" -> beepConfirm()
 
 				"send_scan_bluetooth" -> if (
 					prefs.sendScanBluetooth &&
@@ -280,6 +281,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		setIcon("vibrate", R.drawable.ic_action_vibrate)
 		setIcon("beep", R.drawable.ic_action_beep)
 		setIcon("beep_tone_name", R.drawable.ic_action_notification_sound)
+		setIcon("beep_stream_name", R.drawable.ic_action_notification_sound)
 		setIcon("use_history", R.drawable.ic_action_history)
 		setIcon("ignore_duplicates_name", R.drawable.ic_action_remove)
 		setIcon(IGNORE_CODES, R.drawable.ic_action_remove)

@@ -112,6 +112,9 @@
 	<string name="beep">Звуков сигнал при сканиране</string>
 	<string name="beep_summary">Активирайте това, ако искате вашето устройство да издава звуков сигнал при разпознаване на код.</string>
 	<string name="beep_tone">Звуков сигнал</string>
+	<string name="beep_stream">Аудио поток за сигнала</string>
+	<string name="stream_music">Медия</string>
+	<string name="stream_notification">Известия</string>
 	<string name="tone_cdma_confirm">CDMA потвърждение</string>
 	<string name="tone_sup_confirm">Потвърждение на надзорния разговор</string>
 	<string name="tone_sup_radio_ack">Потвърждение на контролния радиопът на повикване</string>

@@ -113,6 +113,9 @@
 	<string name="beep">Biper à la détection</string>
 	<string name="beep_summary">Émettre un son lorsqu\'un code est détecté.</string>
 	<string name="beep_tone">Tonalité du signal sonore</string>
+	<string name="beep_stream">Canal audio du bip</string>
+	<string name="stream_music">Média</string>
+	<string name="stream_notification">Notifications</string>
 	<string name="tone_cdma_confirm">Confirmation CDMA</string>
 	<string name="tone_sup_confirm">Confirmation de la supervision de l\'appel</string>
 	<string name="tone_sup_radio_ack">Accusé de réception du chemin radio de supervision d\'appel</string>

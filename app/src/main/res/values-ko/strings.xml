@@ -111,6 +111,9 @@
 	<string name="beep">감지 시 비프음</string>
 	<string name="beep_summary">코드가 인식되면 장치에서 소리가 나게 하려면 이 기능을 활성화하세요.</string>
 	<string name="beep_tone">소리</string>
+	<string name="beep_stream">비프 오디오 스트림</string>
+	<string name="stream_music">미디어</string>
+	<string name="stream_notification">알림</string>
 	<string name="tone_cdma_confirm">CDMA 확인</string>
 	<string name="tone_sup_confirm">통화 감독 확인</string>
 	<string name="tone_sup_radio_ack">통화 감독 무선 경로 응답</string>

@@ -71,6 +71,12 @@
 			android:entries="@array/beep_tones_names"
 			android:entryValues="@array/beep_tones_values"
 			android:defaultValue="tone_prop_beep"/>
+		<ListPreference
+			android:key="beep_stream_name"
+			android:title="@string/beep_stream"
+			android:entries="@array/beep_streams_names"
+			android:entryValues="@array/beep_streams_values"
+			android:defaultValue="stream_music"/>
 		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="use_history"

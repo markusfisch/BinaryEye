@@ -112,6 +112,9 @@
 	<string name="beep">Bip ved registrering</string>
 	<string name="beep_summary">Aktiver dette, hvis du vil have din enhed til at bippe, når en kode genkendes.</string>
 	<string name="beep_tone">Bip tone</string>
+	<string name="beep_stream">Lydkanal for bip</string>
+	<string name="stream_music">Medier</string>
+	<string name="stream_notification">Notifikationer</string>
 	<string name="tone_cdma_confirm">CDMA bekræftelse</string>
 	<string name="tone_sup_confirm">Opkald tilsyn bekræft</string>
 	<string name="tone_sup_radio_ack">Opkald tilsynsradio sti anerkendelse</string>

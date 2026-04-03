@@ -112,6 +112,9 @@
 	<string name="beep">Piep bij detectie</string>
 	<string name="beep_summary">Schakel dit in als je wilt dat je apparaat piept wanneer een code wordt herkend.</string>
 	<string name="beep_tone">Pieptoon</string>
+	<string name="beep_stream">Audiokanaal voor piep</string>
+	<string name="stream_music">Media</string>
+	<string name="stream_notification">Meldingen</string>
 	<string name="tone_cdma_confirm">CDMA bevestigen</string>
 	<string name="tone_sup_confirm">Beltoezicht bevestigen</string>
 	<string name="tone_sup_radio_ack">Oproep toezichtradio pad bevestiging</string>

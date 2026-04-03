@@ -112,6 +112,9 @@
 	<string name="beep">Jelzés hanggal</string>
 	<string name="beep_summary">Engedélyezze ezt, ha azt szeretné, hogy eszköze pittyegjen, amikor egy kód felismerésre kerül.</string>
 	<string name="beep_tone">Hangjelzés</string>
+	<string name="beep_stream">Hangjelzés hangfolyama</string>
+	<string name="stream_music">Média</string>
+	<string name="stream_notification">Értesítések</string>
 	<string name="tone_cdma_confirm">CDMA megerősítés</string>
 	<string name="tone_sup_confirm">Hívás felügyeleti megerősítés</string>
 	<string name="tone_sup_radio_ack">Hívás felügyeleti rádió útvonal megerősítés</string>

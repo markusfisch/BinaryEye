@@ -112,6 +112,9 @@
 	<string name="beep">صدای بیپ در شناسایی</string>
 	<string name="beep_summary">اگر می‌خواهید دستگاه شما هنگام شناسایی یک کد صدا کند، این را فعال کنید.</string>
 	<string name="beep_tone">صدای بیپ</string>
+	<string name="beep_stream">جریان صوتی بیپ</string>
+	<string name="stream_music">رسانه</string>
+	<string name="stream_notification">اعلان‌ها</string>
 	<string name="tone_cdma_confirm">تأیید CDMA</string>
 	<string name="tone_sup_confirm">تماس نظارتی تأیید کنید</string>
 	<string name="tone_sup_radio_ack">تائید مسیر رادیویی نظارت تماس</string>

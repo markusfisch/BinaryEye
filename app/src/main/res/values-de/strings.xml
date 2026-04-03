@@ -112,6 +112,9 @@
 	<string name="beep">Signalton bei Erkennung</string>
 	<string name="beep_summary">Bei Erkennung eines Codes soll ein Signalton abgespielt werden.</string>
 	<string name="beep_tone">Signalton</string>
+	<string name="beep_stream">Audiokanal für Signalton</string>
+	<string name="stream_music">Medien</string>
+	<string name="stream_notification">Benachrichtigungen</string>
 	<string name="tone_cdma_confirm">CDMA bestätigen</string>
 	<string name="tone_sup_confirm">Anrufaufsicht bestätigen</string>
 	<string name="tone_sup_radio_ack">Anrufüberwachungsfunkpfadbestätigung</string>

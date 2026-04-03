@@ -111,6 +111,9 @@
 	<string name="beep">Âm thanh khi phát hiện</string>
 	<string name="beep_summary">Bật tính năng này nếu bạn muốn thiết bị phát ra tiếng beep khi một mã được nhận diện.</string>
 	<string name="beep_tone">Âm thanh bíp</string>
+	<string name="beep_stream">Luồng âm thanh bíp</string>
+	<string name="stream_music">Phương tiện</string>
+	<string name="stream_notification">Thông báo</string>
 	<string name="tone_cdma_confirm">Xác nhận CDMA</string>
 	<string name="tone_sup_confirm">Xác nhận giám sát cuộc gọi</string>
 	<string name="tone_sup_radio_ack">Xác nhận đường truyền radio giám sát cuộc gọi</string>

@@ -112,6 +112,9 @@
 	<string name="beep">Tocar um \'beep\' ao reconhecer</string>
 	<string name="beep_summary">Ative esta opção se quiser se quer que seu dispositivo faça um som de \'beep\' ao reconhecer um código.</string>
 	<string name="beep_tone">Tom do beep</string>
+	<string name="beep_stream">Canal de áudio do beep</string>
+	<string name="stream_music">Mídia</string>
+	<string name="stream_notification">Notificações</string>
 	<string name="tone_cdma_confirm">Confirmação CDMA</string>
 	<string name="tone_sup_confirm">Confirmação de supervisão de chamada</string>
 	<string name="tone_sup_radio_ack">Reconhecimento de caminho de rádio de supervisão de chamada</string>

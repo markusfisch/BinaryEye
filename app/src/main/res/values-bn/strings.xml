@@ -112,6 +112,9 @@
 	<string name="beep">প্রকোপে বিপ দিন</string>
 	<string name="beep_summary">যদি আপনি চান যে আপনার ডিভাইসটি কোড প্রাপ্ত হলে বিপ শব্দ করে।</string>
 	<string name="beep_tone">বিপ টোন</string>
+	<string name="beep_stream">বিপ অডিও স্ট্রিম</string>
+	<string name="stream_music">মিডিয়া</string>
+	<string name="stream_notification">বিজ্ঞপ্তি</string>
 	<string name="tone_cdma_confirm">সিডিএমএ নিশ্চিত করুন</string>
 	<string name="tone_sup_confirm">কল সুপারভাইজরী কনফার্ম</string>
 	<string name="tone_sup_radio_ack">কল সুপারভাইজরি রেডিও পাথ স্বীকৃতি</string>

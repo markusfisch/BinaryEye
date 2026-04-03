@@ -111,6 +111,9 @@
 	<string name="beep">偵測音效</string>
 	<string name="beep_summary">若您希望裝置識別條碼時提醒，請啟用這個選項</string>
 	<string name="beep_tone">提示音調</string>
+	<string name="beep_stream">提示音音訊串流</string>
+	<string name="stream_music">媒體</string>
+	<string name="stream_notification">通知</string>
 	<string name="tone_cdma_confirm">CDMA 確認</string>
 	<string name="tone_sup_confirm">呼叫監控確認</string>
 	<string name="tone_sup_radio_ack">呼叫監控無線電台應答</string>

@@ -111,6 +111,9 @@
 	<string name="beep">Beep on detection</string>
 	<string name="beep_summary">Enable this if you want your device to beep when a code is recognized.</string>
 	<string name="beep_tone">Beep tone</string>
+	<string name="beep_stream">Aliran audio bip</string>
+	<string name="stream_music">Media</string>
+	<string name="stream_notification">Notifikasi</string>
 	<string name="tone_cdma_confirm">CDMA 확인</string>
 	<string name="tone_sup_confirm">تأكيد الإشراف على المكالمة</string>
 	<string name="tone_sup_radio_ack">Llamada de supervisión de la ruta de radio de confirmación</string>

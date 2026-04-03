@@ -111,6 +111,9 @@
 	<string name="beep">検出時にビープ音を鳴らす</string>
 	<string name="beep_summary">コードが認識されたときにデバイスがビープする場合は、これを有効にしてください。</string>
 	<string name="beep_tone">ビープ音</string>
+	<string name="beep_stream">ビープ音のオーディオストリーム</string>
+	<string name="stream_music">メディア</string>
+	<string name="stream_notification">通知</string>
 	<string name="tone_cdma_confirm">CDMA 確認</string>
 	<string name="tone_sup_confirm">コール監督確認</string>
 	<string name="tone_sup_radio_ack">コール監督ラジオ経路確認</string>

@@ -115,6 +115,11 @@ class Preferences {
 			apply(BEEP_TONE_NAME, value)
 			field = value
 		}
+	var beepStreamName = "stream_music"
+		set(value) {
+			apply(BEEP_STREAM_NAME, value)
+			field = value
+		}
 	var useHistory = false
 		set(value) {
 			apply(USE_HISTORY, value)
@@ -346,6 +351,9 @@ class Preferences {
 		preferences.getString(BEEP_TONE_NAME, beepToneName)?.also {
 			beepToneName = it
 		}
+		preferences.getString(BEEP_STREAM_NAME, beepStreamName)?.also {
+			beepStreamName = it
+		}
 		useHistory = preferences.getBoolean(USE_HISTORY, useHistory)
 
 		// Map old setting to new one if it wasn't on default value.
@@ -501,6 +509,11 @@ class Preferences {
 		else -> ToneGenerator.TONE_PROP_BEEP
 	}
 
+	fun beepStream() = when (beepStreamName) {
+		"stream_notification" -> android.media.AudioManager.STREAM_NOTIFICATION
+		else -> android.media.AudioManager.STREAM_MUSIC
+	}
+
 	fun ignoreDuplicates() = when (ignoreDuplicatesName) {
 		"ignore_consecutive_duplicates" -> IgnoreDuplicates.Consecutive
 		"ignore_any_duplicates" -> IgnoreDuplicates.Any
@@ -563,6 +576,7 @@ class Preferences {
 		private const val VIBRATE = "vibrate"
 		private const val BEEP = "beep"
 		private const val BEEP_TONE_NAME = "beep_tone_name"
+		private const val BEEP_STREAM_NAME = "beep_stream_name"
 		private const val USE_HISTORY = "use_history"
 		private const val IGNORE_DUPLICATES_NAME = "ignore_duplicates_name"
 		private const val IGNORE_CODES = "ignore_codes"

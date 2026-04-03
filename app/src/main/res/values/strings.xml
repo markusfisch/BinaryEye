@@ -111,6 +111,9 @@
 	<string name="beep">Beep on detection</string>
 	<string name="beep_summary">Enable this if you want your device to beep when a code is recognized.</string>
 	<string name="beep_tone">Beep tone</string>
+	<string name="beep_stream">Beep audio stream</string>
+	<string name="stream_music">Media</string>
+	<string name="stream_notification">Notifications</string>
 	<string name="tone_cdma_confirm">CDMA confirm</string>
 	<string name="tone_sup_confirm">Call supervisory confirm</string>
 	<string name="tone_sup_radio_ack">Call supervisory radio path acknowledgment</string>

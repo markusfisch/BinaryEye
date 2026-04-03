@@ -114,6 +114,9 @@
 	<string name="beep">Звук при виявленні</string>
 	<string name="beep_summary">Увімкніть це, якщо хочете, щоб пристрій подавав звуковий сигнал, коли код розпізнано.</string>
 	<string name="beep_tone">Тон звуку</string>
+	<string name="beep_stream">Аудіопотік сигналу</string>
+	<string name="stream_music">Медіа</string>
+	<string name="stream_notification">Сповіщення</string>
 	<string name="tone_cdma_confirm">Підтвердження CDMA</string>
 	<string name="tone_sup_confirm">Підтвердження диспетчерського виклику</string>
 	<string name="tone_sup_radio_ack">Підтвердження прийому по радіоканалу</string>

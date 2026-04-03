@@ -112,6 +112,9 @@
 	<string name="beep">ამოხსნაზე სიჩქარე</string>
 	<string name="beep_summary">აქტივირებეთ ეს, თუ გსურთ, რომ თქვენი მოწყობილობა შემირჩიეთ კოდის აღცილების დროს.</string>
 	<string name="beep_tone">ბიპ ტონი</string>
+	<string name="beep_stream">ბიპის აუდიო ნაკადი</string>
+	<string name="stream_music">მედია</string>
+	<string name="stream_notification">შეტყობინებები</string>
 	<string name="tone_cdma_confirm">CDMA დადასტუდება</string>
 	<string name="tone_sup_confirm">ზარის წესის დადასტურება</string>
 	<string name="tone_sup_radio_ack">ზარის სუპერვიზორების რადიო გზის დადასტურება</string>

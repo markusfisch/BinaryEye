@@ -112,6 +112,9 @@
 	<string name="beep">Tanıyınca ses çal</string>
 	<string name="beep_summary">Kod tanındığında aygıtınızın bip sesi çıkarmasını istiyorsanız bunu etkinleştirin.</string>
 	<string name="beep_tone">Ses tonu</string>
+	<string name="beep_stream">Bip ses akışı</string>
+	<string name="stream_music">Medya</string>
+	<string name="stream_notification">Bildirimler</string>
 	<string name="tone_cdma_confirm">CDMA onaylaması</string>
 	<string name="tone_sup_confirm">Çağrı denetleme onayı</string>
 	<string name="tone_sup_radio_ack">Çağrı denetleme radyo yolu onayı</string>

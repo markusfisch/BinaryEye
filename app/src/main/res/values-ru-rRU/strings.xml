@@ -114,6 +114,9 @@
 	<string name="beep">Звук при обнаружении</string>
 	<string name="beep_summary">Если включено, устройство издаст звуковой сигнал после распознавания штрих-кода.</string>
 	<string name="beep_tone">Тон звука</string>
+	<string name="beep_stream">Аудиопоток сигнала</string>
+	<string name="stream_music">Медиа</string>
+	<string name="stream_notification">Уведомления</string>
 	<string name="tone_cdma_confirm">Подтверждение CDMA</string>
 	<string name="tone_sup_confirm">Подтверждение диспетчерского вызова</string>
 	<string name="tone_sup_radio_ack">Подтверждение приёма по радиоканалу</string>

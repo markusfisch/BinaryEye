@@ -116,6 +116,9 @@
 	<string name="beep">صوت صفير عند الكشف</string>
 	<string name="beep_summary">قم بتمكين هذا إذا كنت تريد أن يصدر جهازك صوتًا عند التعرف على رمز.</string>
 	<string name="beep_tone">نغمة الصفير</string>
+	<string name="beep_stream">مجرى صوت الصفير</string>
+	<string name="stream_music">الوسائط</string>
+	<string name="stream_notification">الإشعارات</string>
 	<string name="tone_cdma_confirm">تأكيد CDMA</string>
 	<string name="tone_sup_confirm">تأكيد الإشراف على الاتصال</string>
     <string name="tone_sup_radio_ack">إقرار مسار الراديو الإشرافي على الاتصال</string>

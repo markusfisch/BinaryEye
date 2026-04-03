@@ -111,6 +111,9 @@
 	<string name="beep">识别时的蜂鸣声</string>
 	<string name="beep_summary">如果你希望在识别到条码后发出蜂鸣声，请启用该选项。</string>
 	<string name="beep_tone">选择蜂鸣声</string>
+	<string name="beep_stream">蜂鸣声音频流</string>
+	<string name="stream_music">媒体</string>
+	<string name="stream_notification">通知</string>
 	<string name="tone_cdma_confirm">CDMA 确认</string>
 	<string name="tone_sup_confirm">呼叫主管确认</string>
 	<string name="tone_sup_radio_ack">呼叫主管无线电路径确认</string>
