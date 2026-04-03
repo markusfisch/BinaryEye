@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.CursorAdapter
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -99,12 +100,14 @@ class ScansAdapter(
 	) {
 		val id = cursor.getLong(idIndex)
 		val pinned = cursor.getInt(pinnedIndex) != 0
+		val format = cursor.getString(formatIndex)
 		getViewHolder(view).apply {
 			metaView.text = context.getString(
 				R.string.scan_meta_data,
 				formatDateTime(cursor.getString(timeIndex)),
-				cursor.getString(formatIndex).prettifyFormatName()
+				format.prettifyFormatName()
 			)
+			formatIconView.setImageResource(format.toBarcodeIcon())
 			val name = cursor.getString(nameIndex)
 			val text = cursor.getString(textIndex)
 			var icon = 0
@@ -157,6 +160,7 @@ class ScansAdapter(
 	private fun getViewHolder(
 		view: View
 	): ViewHolder = view.tag as ViewHolder? ?: ViewHolder(
+		view.findViewById(R.id.format_icon),
 		view.findViewById(R.id.meta),
 		view.findViewById(R.id.content),
 		view.findViewById(R.id.pin)
@@ -165,6 +169,7 @@ class ScansAdapter(
 	}
 
 	private data class ViewHolder(
+		val formatIconView: ImageView,
 		val metaView: TextView,
 		val contentView: TextView,
 		val pinView: ImageButton
@@ -199,6 +204,21 @@ fun Context.setupFormatSpinner(spinner: Spinner): List<String> {
 
 fun String.prettifyFormatName() = replace("_", " ")
 	.replace(formatWordBoundary, " ")
+
+private fun String?.toBarcodeIcon(): Int = when (this) {
+	"QRCode",
+	"RMQRCode" -> R.drawable.ic_barcode_qr_code
+
+	"MicroQRCode" -> R.drawable.ic_barcode_micro_qr
+
+	"Aztec" -> R.drawable.ic_barcode_aztec
+	"DataMatrix",
+	"MaxiCode" -> R.drawable.ic_barcode_data_matrix
+
+	"PDF417" -> R.drawable.ic_barcode_data_matrix
+
+	else -> R.drawable.ic_barcode_linear
+}
 
 private fun formatDateTime(rfc: String): String {
 	try {
