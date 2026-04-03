@@ -113,7 +113,7 @@
 	<string name="beep">Beep al rilevamento</string>
 	<string name="beep_summary">Abilita questa opzione se vuoi che il dispositivo emetta un beep quando viene riconosciuto un codice.</string>
 	<string name="beep_tone">Tono beep</string>
-	<string name="beep_stream">Canale audio del beep</string>
+	<string name="beep_stream">Canale audio beep</string>
 	<string name="stream_music">Multimedia</string>
 	<string name="stream_notification">Notifiche</string>
 	<string name="tone_cdma_confirm">Conferma CDMA</string>
