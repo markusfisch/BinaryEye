@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.70.0
+* Add barcode format icons in history
+* Add beep audio stream preference
+* Parse EPC-QR codes and show the data
+* Improve layout of decode screen
+* Fix parsing first field of subfile in IDLParser
+* Use quiet zone from ZXingCpp
+* Italian language update
+
 ## 1.69.1
 * Update translations
 
