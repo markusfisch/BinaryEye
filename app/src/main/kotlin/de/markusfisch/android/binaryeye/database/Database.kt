@@ -60,7 +60,8 @@ class Database {
 		prefix: String = "WHERE"
 	) = if (query?.isNotEmpty() == true) {
 		"""$prefix $SCANS_TEXT LIKE ?
-			OR $SCANS_NAME LIKE ?"""
+			OR $SCANS_NAME LIKE ?
+			OR $SCANS_FORMAT LIKE ?"""
 	} else {
 		""
 	}
@@ -69,7 +70,7 @@ class Database {
 		query: String?
 	) = if (query?.isNotEmpty() == true) {
 		val instr = "%$query%"
-		arrayOf(instr, instr)
+		arrayOf(instr, instr, instr)
 	} else {
 		null
 	}
