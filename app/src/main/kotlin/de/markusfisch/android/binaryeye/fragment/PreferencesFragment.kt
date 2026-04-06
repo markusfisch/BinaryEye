@@ -238,32 +238,19 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 	}
 
 	private fun setSummary(preference: Preference) {
-		if (preference.key == AUTOMATED_ACTIONS) {
-			updateAutomatedActionsSummary(preference)
-			return
-		}
-		if (preference.key == IGNORE_CODES) {
-			updateIgnoreCodesSummary(preference)
-			return
+		when (preference.key) {
+			AUTOMATED_ACTIONS -> return updateAutomatedActionsSummary(preference)
+			IGNORE_CODES -> return updateIgnoreCodesSummary(preference)
 		}
 		when (preference) {
-			is UrlPreference -> {
-				preference.summary = preference.getUrl()
-			}
-
-			is ListPreference -> {
-				preference.setSummary(preference.entry)
-			}
-
-			is MultiSelectListPreference -> {
-				preference.summary = preference.values.joinToString(", ") {
+			is UrlPreference -> preference.summary = preference.getUrl()
+			is ListPreference -> preference.setSummary(preference.entry)
+			is MultiSelectListPreference -> preference.summary =
+				preference.values.joinToString(", ") {
 					it.replace(Regex("_"), " ")
 				}
-			}
 
-			is PreferenceGroup -> {
-				setSummaries(preference)
-			}
+			is PreferenceGroup -> setSummaries(preference)
 		}
 	}
 
