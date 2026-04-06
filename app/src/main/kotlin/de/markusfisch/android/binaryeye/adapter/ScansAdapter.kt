@@ -215,7 +215,7 @@ private fun String?.toBarcodeIcon(): Int = when (this) {
 	"DataMatrix",
 	"MaxiCode" -> R.drawable.ic_barcode_data_matrix
 
-	"PDF417" -> R.drawable.ic_barcode_data_matrix
+	"PDF417" -> R.drawable.ic_barcode_pdf417
 
 	else -> R.drawable.ic_barcode_linear
 }
