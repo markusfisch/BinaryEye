@@ -181,28 +181,7 @@ class EncodeActivity : AbstractBaseActivity() {
 		unescapeCheckBox = findViewById(R.id.unescape)
 		unescapeCheckBox.isChecked = prefs.expandEscapeSequences
 
-		var complete = false
-		val args = intent?.extras ?: getExtrasFromDeeplink()
-		args?.getString(CONTENT_TEXT)?.let {
-			contentView.setText(it)
-			complete = it.isNotEmpty()
-		}
-		args?.getByteArray(CONTENT_RAW)?.let {
-			bytes = it
-			complete = it.isNotEmpty()
-			setEncodeByteArray()
-		}
-
-		val barcodeFormat = args?.getString(FORMAT)
-		if (barcodeFormat != null) {
-			formatView.setSelection(
-				writeableFormats.indexOf(barcodeFormat.toFormat())
-			)
-		} else if (state == null) {
-			formatView.post {
-				formatView.setSelection(prefs.indexOfLastSelectedFormat)
-			}
-		}
+		applyIntent(state == null)
 
 		findViewById<View>(R.id.encode).setOnClickListener {
 			it.context.encode()
@@ -210,16 +189,12 @@ class EncodeActivity : AbstractBaseActivity() {
 
 		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
 		findViewById<View>(R.id.scroll_view).setPaddingFromWindowInsets()
+	}
 
-		if (complete &&
-			args?.getBoolean(EXECUTE, false) == true
-		) {
-			contentView.post {
-				val content = contentView.context.getContent() ?: return@post
-				startActivity(newBarcodeIntent(content))
-				finish()
-			}
-		}
+	override fun onNewIntent(intent: Intent) {
+		super.onNewIntent(intent)
+		setIntent(intent)
+		applyIntent(true)
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -250,6 +225,56 @@ class EncodeActivity : AbstractBaseActivity() {
 		prefs.indexOfLastSelectedFormat = formatView.selectedItemPosition
 		prefs.expandEscapeSequences = unescapeCheckBox.isChecked
 		prefs.addQuietZone = addQuietZoneSwitch.isChecked
+	}
+
+	private fun applyIntent(applyDefaultFormat: Boolean) {
+		val args = intent?.extras ?: getExtrasFromDeeplink()
+		val hasTextContent = args?.containsKey(CONTENT_TEXT) == true
+		val hasRawContent = args?.containsKey(CONTENT_RAW) == true
+		var complete = bytes?.isNotEmpty() == true ||
+			contentView.text?.isNotEmpty() == true
+
+		if (hasTextContent || hasRawContent) {
+			bytes = null
+			contentView.isEnabled = true
+			contentView.hint = null
+			unescapeCheckBox.isEnabled = true
+		}
+
+		if (hasTextContent) {
+			args.getString(CONTENT_TEXT)?.let {
+				contentView.setText(it)
+				complete = it.isNotEmpty()
+			}
+		}
+		if (hasRawContent) {
+			args.getByteArray(CONTENT_RAW)?.let {
+				bytes = it
+				complete = it.isNotEmpty()
+				setEncodeByteArray()
+			}
+		}
+
+		val barcodeFormat = args?.getString(FORMAT)
+		if (barcodeFormat != null) {
+			formatView.setSelection(
+				writeableFormats.indexOf(barcodeFormat.toFormat())
+			)
+		} else if (applyDefaultFormat) {
+			formatView.post {
+				formatView.setSelection(prefs.indexOfLastSelectedFormat)
+			}
+		}
+
+		if (complete &&
+			args?.getBoolean(EXECUTE, false) == true
+		) {
+			contentView.post {
+				val content = contentView.context.getContent() ?: return@post
+				startActivity(newBarcodeIntent(content))
+				finish()
+			}
+		}
 	}
 
 	private fun Context.encode() {
