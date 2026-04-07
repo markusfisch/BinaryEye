@@ -1,36 +1,36 @@
 package de.markusfisch.android.binaryeye.zxingcpp
 
+val oldToNewFormatNames = mapOf(
+	"NONE" to "None",
+	"AZTEC" to "Aztec",
+	"CODABAR" to "Codabar",
+	"CODE_39" to "Code39",
+	"CODE_39_EXT" to "Code39Ext",
+	"CODE_32" to "Code32",
+	"PZN" to "PZN",
+	"CODE_93" to "Code93",
+	"CODE_128" to "Code128",
+	"DATA_BAR_OMNI" to "DataBarOmni",
+	"DATA_BAR_STK" to "DataBarStk",
+	"DATA_BAR_LTD" to "DataBarLtd",
+	"DATA_BAR_EXPANDED" to "DataBarExp",
+	"DATA_BAR_EXP_STK" to "DataBarExpStk",
+	"DATA_MATRIX" to "DataMatrix",
+	"DX_FILM_EDGE" to "DXFilmEdge",
+	"EAN_8" to "EAN8",
+	"EAN_13" to "EAN13",
+	"ITF" to "ITF",
+	"MAXICODE" to "MaxiCode",
+	"PDF_417" to "PDF417",
+	"QR_CODE" to "QRCode",
+	"MICRO_QR_CODE" to "MicroQRCode",
+	"RMQR_CODE" to "RMQRCode",
+	"UPC_A" to "UPCA",
+	"UPC_E" to "UPCE"
+)
+
 /**
  * Translate legacy barcode format names from ZXingC++ before 3.x
  * to current BarcodeFormat enum names.
  */
-fun String.migrateBarcodeFormatName() = when (this) {
-	"NONE" -> "None"
-	"AZTEC" -> "Aztec"
-	"CODABAR" -> "Codabar"
-	"CODE_39" -> "Code39"
-	"CODE_39_EXT" -> "Code39Ext"
-	"CODE_32" -> "Code32"
-	"PZN" -> "PZN"
-	"CODE_93" -> "Code93"
-	"CODE_128" -> "Code128"
-	"DATA_BAR" -> "DataBar"
-	"DATA_BAR_OMNI" -> "DataBarOmni"
-	"DATA_BAR_STK" -> "DataBarStk"
-	"DATA_BAR_LTD" -> "DataBarLtd"
-	"DATA_BAR_EXPANDED" -> "DataBarExp"
-	"DATA_BAR_EXP_STK" -> "DataBarExpStk"
-	"DATA_MATRIX" -> "DataMatrix"
-	"DX_FILM_EDGE" -> "DXFilmEdge"
-	"EAN_8" -> "EAN8"
-	"EAN_13" -> "EAN13"
-	"ITF" -> "ITF"
-	"MAXICODE" -> "MaxiCode"
-	"PDF_417" -> "PDF417"
-	"QR_CODE" -> "QRCode"
-	"MICRO_QR_CODE" -> "MicroQRCode"
-	"RMQR_CODE" -> "RMQRCode"
-	"UPC_A" -> "UPCA"
-	"UPC_E" -> "UPCE"
-	else -> this
-}
+fun String.migrateBarcodeFormatName() = oldToNewFormatNames[this] ?: this

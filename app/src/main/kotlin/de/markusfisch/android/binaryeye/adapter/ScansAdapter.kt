@@ -208,7 +208,8 @@ fun String.prettifyFormatName() = replace("_", " ")
 fun String.toFormatDescriptionResId(): Int = when (this) {
 	"Aztec" -> R.string.format_description_aztec
 	"Codabar" -> R.string.format_description_codabar
-	"Code39" -> R.string.format_description_code39
+	"Code39",
+	"Code39Std" -> R.string.format_description_code39
 	"Code39Ext" -> R.string.format_description_code39ext
 	"Code32" -> R.string.format_description_code32
 	"PZN" -> R.string.format_description_pzn
