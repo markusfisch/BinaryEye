@@ -205,6 +205,36 @@ fun Context.setupFormatSpinner(spinner: Spinner): List<String> {
 fun String.prettifyFormatName() = replace("_", " ")
 	.replace(formatWordBoundary, " ")
 
+fun String.toFormatDescriptionResId(): Int = when (this) {
+	"Aztec" -> R.string.format_description_aztec
+	"Codabar" -> R.string.format_description_codabar
+	"Code39" -> R.string.format_description_code39
+	"Code39Ext" -> R.string.format_description_code39ext
+	"Code32" -> R.string.format_description_code32
+	"PZN" -> R.string.format_description_pzn
+	"Code93" -> R.string.format_description_code93
+	"Code128" -> R.string.format_description_code128
+	"DataBar" -> R.string.format_description_databar
+	"DataBarOmni" -> R.string.format_description_databar_omni
+	"DataBarStk" -> R.string.format_description_databar_stk
+	"DataBarLtd" -> R.string.format_description_databar_ltd
+	"DataBarExp" -> R.string.format_description_databar_exp
+	"DataBarExpStk" -> R.string.format_description_databar_exp_stk
+	"DataMatrix" -> R.string.format_description_data_matrix
+	"DXFilmEdge" -> R.string.format_description_dx_film_edge
+	"EAN8" -> R.string.format_description_ean8
+	"EAN13" -> R.string.format_description_ean13
+	"ITF" -> R.string.format_description_itf
+	"MaxiCode" -> R.string.format_description_maxicode
+	"PDF417" -> R.string.format_description_pdf417
+	"QRCode" -> R.string.format_description_qr_code
+	"MicroQRCode" -> R.string.format_description_micro_qr_code
+	"RMQRCode" -> R.string.format_description_rmqr_code
+	"UPCA" -> R.string.format_description_upca
+	"UPCE" -> R.string.format_description_upce
+	else -> 0
+}
+
 private fun String?.toBarcodeIcon(): Int = when (this) {
 	"QRCode",
 	"RMQRCode" -> R.drawable.ic_barcode_qr_code

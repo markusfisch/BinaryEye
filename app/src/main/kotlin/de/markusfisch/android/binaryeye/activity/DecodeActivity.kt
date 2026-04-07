@@ -38,6 +38,7 @@ import de.markusfisch.android.binaryeye.actions.web.WebAction
 import de.markusfisch.android.binaryeye.actions.wifi.WifiAction
 import de.markusfisch.android.binaryeye.actions.wifi.WifiConnector
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
+import de.markusfisch.android.binaryeye.adapter.toFormatDescriptionResId
 import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.hasLocationPermission
 import de.markusfisch.android.binaryeye.app.hasWritePermission
@@ -79,6 +80,7 @@ class DecodeActivity : AbstractBaseActivity() {
 	private lateinit var dataView: TableLayout
 	private lateinit var metaView: TableLayout
 	private lateinit var hexView: TextView
+	private lateinit var formatDescriptionView: TextView
 	private lateinit var stampView: TextView
 	private lateinit var recreationView: ImageView
 	private lateinit var labelView: EditText
@@ -139,14 +141,22 @@ class DecodeActivity : AbstractBaseActivity() {
 		dataView = findViewById(R.id.data)
 		metaView = findViewById(R.id.meta)
 		hexView = findViewById(R.id.hex)
+		formatDescriptionView = findViewById(R.id.format_description)
 		stampView = findViewById(R.id.stamp)
 		recreationView = findViewById(R.id.recreation)
 		labelView = findViewById(R.id.label)
 		fab = findViewById(R.id.open)
 
 		if (prefs.showMetaData) {
+			val descResId = format.toFormatDescriptionResId()
+			if (descResId != 0) {
+				formatDescriptionView.setText(descResId)
+			} else {
+				formatDescriptionView.visibility = View.GONE
+			}
 			metaView.fillMetaView(scan)
 		} else {
+			formatDescriptionView.visibility = View.GONE
 			metaView.visibility = View.GONE
 		}
 

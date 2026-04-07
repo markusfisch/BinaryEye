@@ -60,6 +60,12 @@
 				android:layout_marginBottom="16dp"
 				android:adjustViewBounds="true"
 				android:contentDescription="@string/view_barcode"/>
+			<TextView
+				style="@style/SecondaryText"
+				android:id="@+id/format_description"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="8dp"/>
 			<TableLayout
 				android:id="@+id/meta"
 				android:layout_width="match_parent"

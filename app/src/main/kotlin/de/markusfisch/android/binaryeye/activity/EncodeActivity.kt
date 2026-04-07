@@ -18,6 +18,7 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.core.net.toUri
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
+import de.markusfisch.android.binaryeye.adapter.toFormatDescriptionResId
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.net.isEncodeDeeplink
 import de.markusfisch.android.binaryeye.text.unescape
@@ -30,6 +31,7 @@ import kotlin.math.min
 
 class EncodeActivity : AbstractBaseActivity() {
 	private lateinit var formatView: Spinner
+	private lateinit var formatDescriptionView: TextView
 	private lateinit var ecLabel: TextView
 	private lateinit var ecSpinner: Spinner
 	private lateinit var colorsLabel: TextView
@@ -98,6 +100,7 @@ class EncodeActivity : AbstractBaseActivity() {
 		setTitle(R.string.compose_barcode)
 
 		formatView = findViewById(R.id.format)
+		formatDescriptionView = findViewById(R.id.format_description)
 		val formatAdapter = ArrayAdapter(
 			this,
 			android.R.layout.simple_spinner_item,
@@ -115,6 +118,13 @@ class EncodeActivity : AbstractBaseActivity() {
 				id: Long
 			) {
 				val format = writeableFormats[position]
+				val descResId = format.name.toFormatDescriptionResId()
+				if (descResId != 0) {
+					formatDescriptionView.setText(descResId)
+					formatDescriptionView.visibility = View.VISIBLE
+				} else {
+					formatDescriptionView.visibility = View.GONE
+				}
 				val arrayId = when (format) {
 					BarcodeFormat.Aztec -> R.array.aztec_error_correction_levels
 					BarcodeFormat.QRCode -> R.array.qr_error_correction_levels
