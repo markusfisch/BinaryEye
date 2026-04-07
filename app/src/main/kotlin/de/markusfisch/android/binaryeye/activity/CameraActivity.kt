@@ -53,6 +53,7 @@ import de.markusfisch.android.binaryeye.content.openUrl
 import de.markusfisch.android.binaryeye.database.toScan
 import de.markusfisch.android.binaryeye.graphics.FrameMetrics
 import de.markusfisch.android.binaryeye.graphics.mapPosition
+import de.markusfisch.android.binaryeye.graphics.mapViewYToFrame
 import de.markusfisch.android.binaryeye.graphics.setFrameRoi
 import de.markusfisch.android.binaryeye.graphics.setFrameToView
 import de.markusfisch.android.binaryeye.media.releaseToneGenerators
@@ -802,8 +803,24 @@ class CameraActivity : AppCompatActivity() {
 			}
 			return
 		}
+		if (prefs.showCrosshairs &&
+			!resultTouchesHorizontalCrosshair(result)
+		) {
+			return
+		}
 		decoding = false
 		postResult(result)
+	}
+
+	private fun resultTouchesHorizontalCrosshair(result: Result): Boolean {
+		val crosshairY = matrix.mapViewYToFrame(detectorView.getHorizontalCrosshairY())
+		val pos = result.position
+		val minY = minOf(pos.topLeft.y, pos.topRight.y, pos.bottomLeft.y, pos.bottomRight.y)
+		val maxY = maxOf(pos.topLeft.y, pos.topRight.y, pos.bottomLeft.y, pos.bottomRight.y)
+		val centerY = (minY + maxY) / 2f
+		val halfHeight = (maxY - minY) / 2f
+		val halfWidth = abs(pos.topRight.x - pos.topLeft.x) / 2f
+		return abs(centerY - crosshairY) <= maxOf(halfHeight, halfWidth / 3f)
 	}
 
 	private fun updateZoomState() {

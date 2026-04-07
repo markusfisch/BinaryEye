@@ -88,3 +88,14 @@ fun Matrix.mapPosition(
 	mapPoints(coords)
 	return i
 }
+
+fun Matrix.mapViewYToFrame(viewY: Float): Float {
+	val values = FloatArray(9)
+	getValues(values)
+	val scaleY = values[Matrix.MSCALE_Y]
+	return if (scaleY != 0f) {
+		(viewY - values[Matrix.MTRANS_Y]) / scaleY
+	} else {
+		viewY
+	}
+}

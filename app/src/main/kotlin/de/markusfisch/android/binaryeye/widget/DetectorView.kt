@@ -261,6 +261,12 @@ class DetectorView : View {
 		}
 	}
 
+	fun getHorizontalCrosshairY() = if (handleActive) {
+		(roi.top + roi.bottom) * .5f
+	} else {
+		viewHeight * .5f
+	}
+
 	private fun Canvas.drawDots() {
 		var i = 0
 		while (i < coordinatesLast) {
