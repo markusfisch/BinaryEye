@@ -113,7 +113,7 @@
 	<string name="beep">Pípnout při rozpoznání</string>
 	<string name="beep_summary">Povolte, pokud chcete pípnutí při rozpoznání kódu.</string>
 	<string name="beep_tone">Tón pípnutí</string>
-	<string name="beep_stream">Zvukový kanál pípnutí</string>
+	<string name="beep_stream">Zvukový stream pípnutí</string>
 	<string name="stream_music">Média</string>
 	<string name="stream_notification">Oznámení</string>
 	<string name="tone_cdma_confirm">Potvrzení CDMA</string>
