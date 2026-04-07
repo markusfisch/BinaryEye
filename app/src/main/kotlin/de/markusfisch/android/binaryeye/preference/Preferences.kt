@@ -31,7 +31,7 @@ class Preferences {
 	var barcodeFormats = setOf(
 		BarcodeFormat.Aztec.name,
 		BarcodeFormat.Codabar.name,
-		BarcodeFormat.Code39.name,
+		BarcodeFormat.Code39Std.name,
 		BarcodeFormat.Code39Ext.name,
 		BarcodeFormat.Code32.name,
 		BarcodeFormat.PZN.name,
@@ -307,12 +307,13 @@ class Preferences {
 
 	fun update() {
 		preferences.getStringSet(BARCODE_FORMATS, barcodeFormats)?.let {
-			val migrated = migrateBarcodeFormats(it)
+			val migrated = migrateCode39ToCode39Std(migrateBarcodeFormats(it))
 			if (migrated != it) {
 				apply(BARCODE_FORMATS, migrated)
 			}
 			barcodeFormats = addFormatsOnUpdate(
 				migrated,
+				BarcodeFormat.Code39Std,
 				BarcodeFormat.Code39Ext,
 				BarcodeFormat.Code32,
 				BarcodeFormat.PZN,
@@ -477,6 +478,18 @@ class Preferences {
 					putBoolean(name, true)
 				}
 				add(format.name)
+			}
+		}
+	}
+
+	private fun migrateCode39ToCode39Std(
+		restored: Set<String>
+	) = restored.toMutableSet().apply {
+		// Migrate Code39 to the more specific Code39Std.
+		if (contains(BarcodeFormat.Code39.name)) {
+			remove(BarcodeFormat.Code39.name)
+			if (!contains(BarcodeFormat.Code39Std.name)) {
+				add(BarcodeFormat.Code39Std.name)
 			}
 		}
 	}

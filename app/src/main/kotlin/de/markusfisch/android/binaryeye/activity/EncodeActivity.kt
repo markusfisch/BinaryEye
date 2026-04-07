@@ -43,7 +43,7 @@ class EncodeActivity : AbstractBaseActivity() {
 	private val writeableFormats = arrayListOf(
 		BarcodeFormat.Aztec,
 		BarcodeFormat.Codabar,
-		BarcodeFormat.Code39,
+		BarcodeFormat.Code39Std,
 		BarcodeFormat.Code39Ext,
 		BarcodeFormat.Code32,
 		BarcodeFormat.PZN,

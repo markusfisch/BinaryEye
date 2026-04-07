@@ -193,6 +193,7 @@ private fun BarcodeFormat.resolveSize(size: Int): Size = when (this) {
 	// 1D barcodes don't need as much vertical space.
 	BarcodeFormat.Codabar,
 	BarcodeFormat.Code39,
+	BarcodeFormat.Code39Std,
 	BarcodeFormat.Code39Ext,
 	BarcodeFormat.Code32,
 	BarcodeFormat.PZN,
