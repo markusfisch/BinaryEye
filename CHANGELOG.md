@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.71.0
+* Parse VDS and IDB barcodes
+* Restrict scanning to horizontal crosshair if set
+* Include barcode format in history search
+* Add a dedicated barcode icon for PDF417
+* Add barcode format descriptions
+* Fix handling deep links
+* Fix detecting web URLs
+
 ## 1.70.0
 * Add barcode format icons in history
 * Add beep audio stream preference
