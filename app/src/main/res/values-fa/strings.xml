@@ -37,7 +37,6 @@
 	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
 	<string name="qr_data_mask">ماسک داده</string>
 	<string name="toggle_flash">روشن/خاموش کردن چراغ</string>
-	<string name="error_flash">خطا هنگام روشن/خاموش کردن چراغ</string>
 	<string name="share">هم‌رسانی</string>
 	<string name="share_file">اشتراک گذاری به عنوان فایل</string>
 	<string name="share_as">هم‌رسانی به عنوان؟</string>
@@ -116,7 +115,6 @@
 	<string name="stream_music">رسانه</string>
 	<string name="stream_notification">اعلان‌ها</string>
 	<string name="tone_cdma_confirm">تأیید CDMA</string>
-	<string name="tone_sup_confirm">تماس نظارتی تأیید کنید</string>
 	<string name="tone_sup_radio_ack">تائید مسیر رادیویی نظارت تماس</string>
 	<string name="tone_prop_ack">تایید مثبت</string>
 	<string name="tone_prop_beep">صدای عمومی</string>
@@ -179,7 +177,6 @@
 	<string name="automated_action_remove_confirm">این اقدام حذف شود؟</string>
 	<string name="automated_action_list_intent">باز کردن URL: %s</string>
 	<string name="automated_action_list_intent_empty">باز کردن URL</string>
-	<string name="automated_action_webview_title">اقدام خودکار</string>
 	<string name="clear_network_suggestions">پاک کردن پیشنهادات شبکه</string>
 	<string name="clear_network_suggestions_summary">همه پیشنهادات شبکه را که قبلاً توسط این برنامه ارائه شده است حذف کنید.</string>
 	<string name="really_remove_all_networks">واقعاً همه شبکه‌ها را حذف می‌کنید؟</string>
@@ -222,7 +219,6 @@
 	<string name="save_as_file_name">به عنوان پرونده در بارگیری‌ها ذخیره شود؟</string>
 	<string name="file_name">نام پرونده</string>
 	<string name="error_saving_file">نمی‌توان پرونده را ذخیره کرد</string>
-	<string name="error_file_exists">پرونده هم‌اکنون وجود دارد</string>
 	<string name="connect_to_wifi">اتّصال به وای‌فای</string>
 	<string name="wifi_config_failed">نمی‌توان وای‌فای را پیکربندی کرد</string>
 	<string name="wifi_added">وای‌فای اضافه شد</string>
@@ -374,4 +370,21 @@
 	<string name="epc_reference">مرجع پرداخت</string>
 	<string name="epc_text">متن پرداخت</string>
 	<string name="epc_information">اطلاعات</string>
+	<string name="idb_verification">تأیید</string>
+	<string name="idb_certificate_reference">مرجع گواهی</string>
+	<string name="idb_signer_certificate_subject">موضوع گواهی امضا</string>
+	<string name="idb_signer_certificate_issuer">صادرکننده گواهی امضا</string>
+	<string name="idb_signature_verification">تأیید امضا</string>
+	<string name="idb_verification_unsigned">بدون امضا</string>
+	<string name="idb_verification_missing_signer_certificate">گواهی امضا وجود ندارد</string>
+	<string name="idb_verification_invalid_signer_certificate">گواهی امضای نامعتبر</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">صادرکننده گواهی امضا در فهرست اصلی پیدا نشد</string>
+	<string name="idb_verification_verified">تأیید شد</string>
+	<string name="idb_verification_signature_invalid">امضای نامعتبر</string>
+	<string name="idb_verification_error">خطای تأیید</string>
+	<string name="idb_yes">بله</string>
+	<string name="idb_no">خیر</string>
+	<string name="vds_document_type">نوع سند</string>
+	<string name="vds_issuing_country">کشور صادرکننده</string>
+	<string name="vds_signing_date">تاریخ امضا</string>
 </resources>

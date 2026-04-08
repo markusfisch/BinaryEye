@@ -37,7 +37,6 @@
 	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
 	<string name="qr_data_mask">Gegevensmasker</string>
 	<string name="toggle_flash">Zaklamp aan/uit</string>
-	<string name="error_flash">Fout bij het wisselen van flits</string>
 	<string name="share">Delen</string>
 	<string name="share_file">Delen als bestand</string>
 	<string name="share_as">Delen als?</string>
@@ -116,7 +115,6 @@
 	<string name="stream_music">Media</string>
 	<string name="stream_notification">Meldingen</string>
 	<string name="tone_cdma_confirm">CDMA bevestigen</string>
-	<string name="tone_sup_confirm">Beltoezicht bevestigen</string>
 	<string name="tone_sup_radio_ack">Oproep toezichtradio pad bevestiging</string>
 	<string name="tone_prop_ack">Positieve bevestiging</string>
 	<string name="tone_prop_beep">Algemene piep</string>
@@ -179,7 +177,6 @@
 	<string name="automated_action_remove_confirm">Deze actie verwijderen?</string>
 	<string name="automated_action_list_intent">URL openen: %s</string>
 	<string name="automated_action_list_intent_empty">URL openen</string>
-	<string name="automated_action_webview_title">Geautomatiseerde actie</string>
 	<string name="clear_network_suggestions">Network suggesties wissen</string>
 	<string name="clear_network_suggestions_summary">Verwijder alle netwerksuggesties die eerder door deze app werden gegeven.</string>
 	<string name="really_remove_all_networks">Echt alle netwerken verwijderen?</string>
@@ -222,7 +219,6 @@
 	<string name="save_as_file_name">Opslaan in Downloads als?</string>
 	<string name="file_name">Bestandsnaam</string>
 	<string name="error_saving_file">Kan bestand niet opslaan</string>
-	<string name="error_file_exists">Bestand bestaat al</string>
 	<string name="connect_to_wifi">Verbinden met WiFi</string>
 	<string name="wifi_config_failed">Kan WiFi niet configureren</string>
 	<string name="wifi_added">WiFi toegevoegd</string>
@@ -374,4 +370,21 @@
 	<string name="epc_reference">Betalingsreferentie</string>
 	<string name="epc_text">Betalingstekst</string>
 	<string name="epc_information">Informatie</string>
+	<string name="idb_verification">Verificatie</string>
+	<string name="idb_certificate_reference">Certificaatreferentie</string>
+	<string name="idb_signer_certificate_subject">Onderwerp van het ondertekeningscertificaat</string>
+	<string name="idb_signer_certificate_issuer">Uitgever van het ondertekeningscertificaat</string>
+	<string name="idb_signature_verification">Handtekeningverificatie</string>
+	<string name="idb_verification_unsigned">Niet ondertekend</string>
+	<string name="idb_verification_missing_signer_certificate">Ondertekeningscertificaat ontbreekt</string>
+	<string name="idb_verification_invalid_signer_certificate">Ongeldig ondertekeningscertificaat</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">Uitgever van ondertekeningscertificaat niet gevonden in masterlijst</string>
+	<string name="idb_verification_verified">Geverifieerd</string>
+	<string name="idb_verification_signature_invalid">Ongeldige handtekening</string>
+	<string name="idb_verification_error">Verificatiefout</string>
+	<string name="idb_yes">Ja</string>
+	<string name="idb_no">Nee</string>
+	<string name="vds_document_type">Documenttype</string>
+	<string name="vds_issuing_country">Uitgevend land</string>
+	<string name="vds_signing_date">Ondertekeningsdatum</string>
 </resources>

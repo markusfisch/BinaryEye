@@ -39,7 +39,6 @@
 	<string name="qr_version_and_modules">%1$s (%2$d modulů)</string>
 	<string name="qr_data_mask">Maska dat</string>
 	<string name="toggle_flash">Přepnout blesk</string>
-	<string name="error_flash">Zapnutí/vypnutí blesku selhalo</string>
 	<string name="share">Sdílet</string>
 	<string name="share_file">Sdílet jako soubor</string>
     <string name="share_as">Sdílet jako?</string>
@@ -118,7 +117,6 @@
 	<string name="stream_music">Média</string>
 	<string name="stream_notification">Oznámení</string>
 	<string name="tone_cdma_confirm">Potvrzení CDMA</string>
-	<string name="tone_sup_confirm">Potvrzení dohledu volání</string>
 	<string name="tone_sup_radio_ack">Hovor na dohledové rádiové cestě potvrzení</string>
 	<string name="tone_prop_ack">Kladné potvrzení příjmu</string>
 	<string name="tone_prop_beep">Obecné pípnutí</string>
@@ -185,7 +183,6 @@
 	<string name="automated_action_remove_confirm">Odstranit tuto akci?</string>
 	<string name="automated_action_list_intent">Otevřít URL: %s</string>
 	<string name="automated_action_list_intent_empty">Otevřít URL</string>
-	<string name="automated_action_webview_title">Automatizovaná akce</string>
 	<string name="clear_network_suggestions">Smazat navrhované sítě</string>
 	<string name="clear_network_suggestions_summary">Smazat všechny sítě, které byly navrženy touto aplikací.</string>
 	<string name="really_remove_all_networks">Opravdu smazat všechny sítě?</string>
@@ -228,7 +225,6 @@
     <string name="save_as_file_name">Uložit do složky Stahování?</string>
 	<string name="file_name">Název souboru</string>
 	<string name="error_saving_file">Soubor se nepodařilo uložit</string>
-	<string name="error_file_exists">Soubor již existuje</string>
 	<string name="connect_to_wifi">Připojit k Wi-Fi</string>
 	<string name="wifi_config_failed">Nepodařilo se nastavit Wi-Fi</string>
 	<string name="wifi_added">Wi-Fi přidána</string>
@@ -380,4 +376,21 @@
 	<string name="epc_reference">Reference platby</string>
 	<string name="epc_text">Text platby</string>
 	<string name="epc_information">Informace</string>
+	<string name="idb_verification">Ověření</string>
+	<string name="idb_certificate_reference">Reference certifikátu</string>
+	<string name="idb_signer_certificate_subject">Subjekt podpisového certifikátu</string>
+	<string name="idb_signer_certificate_issuer">Vydavatel podpisového certifikátu</string>
+	<string name="idb_signature_verification">Ověření podpisu</string>
+	<string name="idb_verification_unsigned">Nepodepsáno</string>
+	<string name="idb_verification_missing_signer_certificate">Chybí podpisový certifikát</string>
+	<string name="idb_verification_invalid_signer_certificate">Neplatný podpisový certifikát</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">Vydavatel podpisového certifikátu nebyl nalezen v hlavním seznamu</string>
+	<string name="idb_verification_verified">Ověřeno</string>
+	<string name="idb_verification_signature_invalid">Neplatný podpis</string>
+	<string name="idb_verification_error">Chyba ověření</string>
+	<string name="idb_yes">Ano</string>
+	<string name="idb_no">Ne</string>
+	<string name="vds_document_type">Typ dokumentu</string>
+	<string name="vds_issuing_country">Vydávající země</string>
+	<string name="vds_signing_date">Datum podpisu</string>
 </resources>

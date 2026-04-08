@@ -37,7 +37,6 @@
 	<string name="qr_version_and_modules">%1$s (%2$d модули)</string>
 	<string name="qr_data_mask">Маска за данни</string>
 	<string name="toggle_flash">Превключване на светкавицата</string>
-	<string name="error_flash">Грешка при превключването на светкавицата</string>
 	<string name="share">Сподели</string>
 	<string name="share_file">Споделяне като файл</string>
 	<string name="share_as">Сподели като?</string>
@@ -116,7 +115,6 @@
 	<string name="stream_music">Медия</string>
 	<string name="stream_notification">Известия</string>
 	<string name="tone_cdma_confirm">CDMA потвърждение</string>
-	<string name="tone_sup_confirm">Потвърждение на надзорния разговор</string>
 	<string name="tone_sup_radio_ack">Потвърждение на контролния радиопът на повикване</string>
 	<string name="tone_prop_ack">Положително признание</string>
 	<string name="tone_prop_beep">Общ звуков сигнал</string>
@@ -179,7 +177,6 @@
 	<string name="automated_action_remove_confirm">Да се премахне ли това действие?</string>
 	<string name="automated_action_list_intent">Отваряне на URL: %s</string>
 	<string name="automated_action_list_intent_empty">Отваряне на URL</string>
-	<string name="automated_action_webview_title">Автоматизирано действие</string>
 	<string name="clear_network_suggestions">Премахнете мрежовите предложения</string>
 	<string name="clear_network_suggestions_summary">Премахване на мрежовите предложения, които преди са били добавени с това приложение.</string>
 	<string name="really_remove_all_networks">Наистина ли искате да премахнете всички мрежи?</string>
@@ -222,7 +219,6 @@
 	<string name="save_as_file_name">Запазване в папка за изтегляния?</string>
 	<string name="file_name">Име на файл</string>
 	<string name="error_saving_file">Неуспешно запазване на Файлът</string>
-	<string name="error_file_exists">Файлът вече съществува</string>
 	<string name="connect_to_wifi">Свържи се към Wi-Fi</string>
 	<string name="wifi_config_failed">Неуспешно конфигуриране на Wi-Fi</string>
 	<string name="wifi_added">Wi-Fi успешно добавен</string>
@@ -374,4 +370,21 @@
 	<string name="epc_reference">Референция за плащане</string>
 	<string name="epc_text">Текст на плащането</string>
 	<string name="epc_information">Информация</string>
+	<string name="idb_verification">Проверка</string>
+	<string name="idb_certificate_reference">Референция на сертификата</string>
+	<string name="idb_signer_certificate_subject">Субект на сертификата за подпис</string>
+	<string name="idb_signer_certificate_issuer">Издател на сертификата за подпис</string>
+	<string name="idb_signature_verification">Проверка на подписа</string>
+	<string name="idb_verification_unsigned">Неподписан</string>
+	<string name="idb_verification_missing_signer_certificate">Липсва сертификат за подпис</string>
+	<string name="idb_verification_invalid_signer_certificate">Невалиден сертификат за подпис</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">Издателят на сертификата за подпис не е намерен в главния списък</string>
+	<string name="idb_verification_verified">Потвърдено</string>
+	<string name="idb_verification_signature_invalid">Невалиден подпис</string>
+	<string name="idb_verification_error">Грешка при проверката</string>
+	<string name="idb_yes">Да</string>
+	<string name="idb_no">Не</string>
+	<string name="vds_document_type">Тип документ</string>
+	<string name="vds_issuing_country">Издаваща държава</string>
+	<string name="vds_signing_date">Дата на подписване</string>
 </resources>

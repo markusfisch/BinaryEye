@@ -37,7 +37,6 @@
 	<string name="qr_version_and_modules">%1$s (%2$d modül)</string>
 	<string name="qr_data_mask">Veri maskesi</string>
 	<string name="toggle_flash">Flaşı aç</string>
-	<string name="error_flash">Flaş açılırken hata oluştu</string>
 	<string name="share">Paylaş</string>
 	<string name="share_file">Dosya olarak paylaş</string>
 	<string name="share_as">Şöyle paylaş:</string>
@@ -116,7 +115,6 @@
 	<string name="stream_music">Medya</string>
 	<string name="stream_notification">Bildirimler</string>
 	<string name="tone_cdma_confirm">CDMA onaylaması</string>
-	<string name="tone_sup_confirm">Çağrı denetleme onayı</string>
 	<string name="tone_sup_radio_ack">Çağrı denetleme radyo yolu onayı</string>
 	<string name="tone_prop_ack">Olumlu onay</string>
 	<string name="tone_prop_beep">Genel bip sesi</string>
@@ -179,7 +177,6 @@
 	<string name="automated_action_remove_confirm">Bu eylem kaldırılsın mı?</string>
 	<string name="automated_action_list_intent">URL aç: %s</string>
 	<string name="automated_action_list_intent_empty">URL aç</string>
-	<string name="automated_action_webview_title">Otomatik eylem</string>
 	<string name="clear_network_suggestions">Ağ önerilerini temizle</string>
 	<string name="clear_network_suggestions_summary">Bu uygulama tarafından daha önce sağlanan tüm ağ önerilerini kaldır.</string>
 	<string name="really_remove_all_networks">Tüm ağlar gerçekten kaldırılsın mı?</string>
@@ -222,7 +219,6 @@
 	<string name="save_as_file_name">Hangi adla İndirilenler\'e kaydedilsin?</string>
 	<string name="file_name">Dosya adı</string>
 	<string name="error_saving_file">Dosya kaydedilemedi</string>
-	<string name="error_file_exists">Dosya zaten var</string>
 	<string name="connect_to_wifi">WiFi\'ye bağlan</string>
 	<string name="wifi_config_failed">WiFi yapılandırılamadı</string>
 	<string name="wifi_added">WiFi eklendi</string>
@@ -374,4 +370,21 @@
 	<string name="epc_reference">Ödeme referansı</string>
 	<string name="epc_text">Ödeme metni</string>
 	<string name="epc_information">Bilgi</string>
+	<string name="idb_verification">Doğrulama</string>
+	<string name="idb_certificate_reference">Sertifika Referansı</string>
+	<string name="idb_signer_certificate_subject">İmzalayan Sertifika Konusu</string>
+	<string name="idb_signer_certificate_issuer">İmzalayan Sertifika Veren</string>
+	<string name="idb_signature_verification">İmza Doğrulaması</string>
+	<string name="idb_verification_unsigned">İmzalanmamış</string>
+	<string name="idb_verification_missing_signer_certificate">İmzalayan sertifika eksik</string>
+	<string name="idb_verification_invalid_signer_certificate">Geçersiz imzalayan sertifika</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">İmzalayan sertifika veren ana listede bulunamadı</string>
+	<string name="idb_verification_verified">Doğrulandı</string>
+	<string name="idb_verification_signature_invalid">Geçersiz imza</string>
+	<string name="idb_verification_error">Doğrulama hatası</string>
+	<string name="idb_yes">Evet</string>
+	<string name="idb_no">Hayır</string>
+	<string name="vds_document_type">Belge türü</string>
+	<string name="vds_issuing_country">Düzenleyen ülke</string>
+	<string name="vds_signing_date">İmza tarihi</string>
 </resources>

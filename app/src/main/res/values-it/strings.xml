@@ -38,7 +38,6 @@
 	<string name="qr_version_and_modules">%1$s (%2$d moduli)</string>
 	<string name="qr_data_mask">Maschera dati</string>
 	<string name="toggle_flash">Attiva/disattiva flash</string>
-	<string name="error_flash">Errore durante attivazione/disattivazione flash</string>
 	<string name="share">Condividi</string>
 	<string name="share_file">Condividi come file</string>
 	<string name="share_as">Condividi come?</string>
@@ -117,7 +116,6 @@
 	<string name="stream_music">Multimedia</string>
 	<string name="stream_notification">Notifiche</string>
 	<string name="tone_cdma_confirm">Conferma CDMA</string>
-	<string name="tone_sup_confirm">Conferma supervisione chiamata</string>
 	<string name="tone_sup_radio_ack">Riconoscimento percorso radio supervisione chiamata</string>
 	<string name="tone_prop_ack">Riconoscimento positivo</string>
 	<string name="tone_prop_beep">Beep generale</string>
@@ -187,7 +185,6 @@
 	<string name="automated_action_list_intent_empty">Apri URL</string>
 	<string name="automated_action_list_custom_intent">Intento personalizzato: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Intento personalizzato</string>
-	<string name="automated_action_webview_title">Azione automatizzata</string>
 	<string name="clear_network_suggestions">Cancella suggerimenti di rete</string>
 	<string name="clear_network_suggestions_summary">Cancella tutti i suggerimenti di rete precedentemente forniti da questa app.</string>
 	<string name="really_remove_all_networks">Vuoi rimuovere tutte le reti?</string>
@@ -230,7 +227,6 @@
 	<string name="save_as_file_name">Salva come file nei download?</string>
 	<string name="file_name">Nome file</string>
 	<string name="error_saving_file">Impossibile salvare il file</string>
-	<string name="error_file_exists">Il file esiste già</string>
 	<string name="connect_to_wifi">Connetti al WiFi</string>
 	<string name="wifi_config_failed">Impossibile configurare il WiFi</string>
 	<string name="wifi_added">WiFi aggiunto</string>
@@ -375,4 +371,21 @@
 	<string name="epc_reference">Riferimento del pagamento</string>
 	<string name="epc_text">Testo del pagamento</string>
 	<string name="epc_information">Informazioni</string>
+	<string name="idb_verification">Verifica</string>
+	<string name="idb_certificate_reference">Riferimento del certificato</string>
+	<string name="idb_signer_certificate_subject">Soggetto del certificato di firma</string>
+	<string name="idb_signer_certificate_issuer">Emittente del certificato di firma</string>
+	<string name="idb_signature_verification">Verifica della firma</string>
+	<string name="idb_verification_unsigned">Non firmato</string>
+	<string name="idb_verification_missing_signer_certificate">Certificato di firma mancante</string>
+	<string name="idb_verification_invalid_signer_certificate">Certificato di firma non valido</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">"L'emittente del certificato di firma non è stato trovato nella lista master"</string>
+	<string name="idb_verification_verified">Verificato</string>
+	<string name="idb_verification_signature_invalid">Firma non valida</string>
+	<string name="idb_verification_error">Errore di verifica</string>
+	<string name="idb_yes">Sì</string>
+	<string name="idb_no">No</string>
+	<string name="vds_document_type">Tipo di documento</string>
+	<string name="vds_issuing_country">Paese emittente</string>
+	<string name="vds_signing_date">Data di firma</string>
 </resources>

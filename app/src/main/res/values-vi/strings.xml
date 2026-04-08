@@ -36,7 +36,6 @@
 	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
 	<string name="qr_data_mask">Mặt nạ dữ liệu</string>
 	<string name="toggle_flash">Bật/tắt đèn</string>
-	<string name="error_flash">Lỗi khi chuyển đổi đèn flash</string>
 	<string name="share">Chia sẻ</string>
 	<string name="share_file">Chia sẻ dưới dạng tập tin</string>
 	<string name="share_as">Chia sẻ dưới định dạng?</string>
@@ -115,7 +114,6 @@
 	<string name="stream_music">Phương tiện</string>
 	<string name="stream_notification">Thông báo</string>
 	<string name="tone_cdma_confirm">Xác nhận CDMA</string>
-	<string name="tone_sup_confirm">Xác nhận giám sát cuộc gọi</string>
 	<string name="tone_sup_radio_ack">Xác nhận đường truyền radio giám sát cuộc gọi</string>
 	<string name="tone_prop_ack">Phản hồi tích cực</string>
 	<string name="tone_prop_beep">Âm thanh chung</string>
@@ -177,7 +175,6 @@
 	<string name="automated_action_remove_confirm">Xóa hành động này?</string>
 	<string name="automated_action_list_intent">Mở URL: %s</string>
 	<string name="automated_action_list_intent_empty">Mở URL</string>
-	<string name="automated_action_webview_title">Hành động tự động</string>
 	<string name="clear_network_suggestions">Xoá gợi ý mạng</string>
 	<string name="clear_network_suggestions_summary">Xoá tất cả trang mạng được gợi ý bởi ứng dụng này.</string>
 	<string name="really_remove_all_networks">Thật sự xoá tất cả trang mạng?</string>
@@ -220,7 +217,6 @@
 	<string name="save_as_file_name">Lưu vào Downloads?</string>
 	<string name="file_name">Tên tệp</string>
 	<string name="error_saving_file">Không thể lưu tệp</string>
-	<string name="error_file_exists">Tệp đã tồn tại</string>
 	<string name="connect_to_wifi">Kết nối WiFi</string>
 	<string name="wifi_config_failed">Không thể thiết lập WiFi</string>
 	<string name="wifi_added">Đã thêm WiFi</string>
@@ -372,4 +368,21 @@
 	<string name="epc_reference">Tham chiếu thanh toán</string>
 	<string name="epc_text">Nội dung thanh toán</string>
 	<string name="epc_information">Thông tin</string>
+	<string name="idb_verification">Xác minh</string>
+	<string name="idb_certificate_reference">Tham chiếu chứng chỉ</string>
+	<string name="idb_signer_certificate_subject">Chủ thể của chứng chỉ ký</string>
+	<string name="idb_signer_certificate_issuer">Tổ chức cấp chứng chỉ ký</string>
+	<string name="idb_signature_verification">Xác minh chữ ký</string>
+	<string name="idb_verification_unsigned">Chưa ký</string>
+	<string name="idb_verification_missing_signer_certificate">Thiếu chứng chỉ ký</string>
+	<string name="idb_verification_invalid_signer_certificate">Chứng chỉ ký không hợp lệ</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">Không tìm thấy tổ chức cấp chứng chỉ ký trong danh sách chính</string>
+	<string name="idb_verification_verified">Đã xác minh</string>
+	<string name="idb_verification_signature_invalid">Chữ ký không hợp lệ</string>
+	<string name="idb_verification_error">Lỗi xác minh</string>
+	<string name="idb_yes">Có</string>
+	<string name="idb_no">Không</string>
+	<string name="vds_document_type">Loại tài liệu</string>
+	<string name="vds_issuing_country">Quốc gia cấp</string>
+	<string name="vds_signing_date">Ngày ký</string>
 </resources>

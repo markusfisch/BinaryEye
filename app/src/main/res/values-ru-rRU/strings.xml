@@ -39,7 +39,6 @@
 	<string name="qr_version_and_modules">%1$s (модули: %2$d)</string>
 	<string name="qr_data_mask">Маска данных</string>
 	<string name="toggle_flash">Включить вспышку</string>
-	<string name="error_flash">Ошибка при переключении вспышки</string>
 	<string name="share">Поделиться</string>
 	<string name="share_file">Поделиться файлом</string>
 	<string name="share_as">Поделиться…</string>
@@ -118,7 +117,6 @@
 	<string name="stream_music">Медиа</string>
 	<string name="stream_notification">Уведомления</string>
 	<string name="tone_cdma_confirm">Подтверждение CDMA</string>
-	<string name="tone_sup_confirm">Подтверждение диспетчерского вызова</string>
 	<string name="tone_sup_radio_ack">Подтверждение приёма по радиоканалу</string>
 	<string name="tone_prop_ack">Положительное подтверждение</string>
 	<string name="tone_prop_beep">Обычный сигнал</string>
@@ -185,7 +183,6 @@
 	<string name="automated_action_remove_confirm">Удалить это действие?</string>
 	<string name="automated_action_list_intent">Открыть URL: %s</string>
 	<string name="automated_action_list_intent_empty">Открыть URL</string>
-	<string name="automated_action_webview_title">Автоматическое действие</string>
 	<string name="clear_network_suggestions">Удалить сетевые предложения</string>
 	<string name="clear_network_suggestions_summary">Удалить все сетевые предложения, ранее добавленные этим приложением.</string>
 	<string name="really_remove_all_networks">Удалить все сетевые предложения?</string>
@@ -228,7 +225,6 @@
 	<string name="save_as_file_name">Сохранить в папке скачиваний Downloads?</string>
 	<string name="file_name">Имя файла</string>
 	<string name="error_saving_file">Невозможно сохранить файл</string>
-	<string name="error_file_exists">Файл уже существует</string>
 	<string name="connect_to_wifi">Подключиться к Wi-Fi</string>
 	<string name="wifi_config_failed">Невозможно настроить Wi-Fi</string>
 	<string name="wifi_added">Wi-Fi добавлен</string>
@@ -380,4 +376,21 @@
 	<string name="epc_reference">Платежная ссылка</string>
 	<string name="epc_text">Текст платежа</string>
 	<string name="epc_information">Информация</string>
+	<string name="idb_verification">Проверка</string>
+	<string name="idb_certificate_reference">Ссылка на сертификат</string>
+	<string name="idb_signer_certificate_subject">Субъект сертификата подписи</string>
+	<string name="idb_signer_certificate_issuer">Издатель сертификата подписи</string>
+	<string name="idb_signature_verification">Проверка подписи</string>
+	<string name="idb_verification_unsigned">Не подписано</string>
+	<string name="idb_verification_missing_signer_certificate">Отсутствует сертификат подписи</string>
+	<string name="idb_verification_invalid_signer_certificate">Недействительный сертификат подписи</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">Издатель сертификата подписи не найден в мастер-списке</string>
+	<string name="idb_verification_verified">Проверено</string>
+	<string name="idb_verification_signature_invalid">Недействительная подпись</string>
+	<string name="idb_verification_error">Ошибка проверки</string>
+	<string name="idb_yes">Да</string>
+	<string name="idb_no">Нет</string>
+	<string name="vds_document_type">Тип документа</string>
+	<string name="vds_issuing_country">Страна выдачи</string>
+	<string name="vds_signing_date">Дата подписи</string>
 </resources>

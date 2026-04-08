@@ -41,7 +41,6 @@
 	<string name="qr_version_and_modules" tools:ignore="PluralsCandidate">%1$s (%2$d وحدات)</string>
 	<string name="qr_data_mask">قناع البيانات</string>
 	<string name="toggle_flash">تشغيل/إيقاف الوميض</string>
-	<string name="error_flash">خطأ في تشغيل الوميض</string>
 	<string name="share">مشاركة</string>
 	<string name="share_file">مشاركة كملف</string>
 	<string name="share_as">مشاركة كـ؟</string>
@@ -120,7 +119,6 @@
 	<string name="stream_music">الوسائط</string>
 	<string name="stream_notification">الإشعارات</string>
 	<string name="tone_cdma_confirm">تأكيد CDMA</string>
-	<string name="tone_sup_confirm">تأكيد الإشراف على الاتصال</string>
     <string name="tone_sup_radio_ack">إقرار مسار الراديو الإشرافي على الاتصال</string>
 	<string name="tone_prop_ack">إقرار إيجابي</string>
 	<string name="tone_prop_beep">صوت صفير عام</string>
@@ -191,7 +189,6 @@
 	<string name="automated_action_remove_confirm">إزالة هذا الإجراء؟</string>
 	<string name="automated_action_list_intent">فتح URL: %s</string>
 	<string name="automated_action_list_intent_empty">فتح URL</string>
-	<string name="automated_action_webview_title">إجراء آلي</string>
 	<string name="clear_network_suggestions">إزالة الشبكات المقترحة</string>
 	<string name="clear_network_suggestions_summary">إزالة الشبكات المقترحة التي تمت إضافتها مسبقًا من خلال هذا التطبيق.</string>
 	<string name="really_remove_all_networks">هل تريد حقًا إزالة جميع الشبكات؟</string>
@@ -234,7 +231,6 @@
 	<string name="save_as_file_name">حفظ في مجلد التنزيلات؟</string>
 	<string name="file_name">اسم الملف</string>
 	<string name="error_saving_file">يتعذر حفظ الملف</string>
-	<string name="error_file_exists">الملف موجود بالفعل</string>
 	<string name="connect_to_wifi">الاتصال بشبكة Wi-Fi</string>
 	<string name="wifi_config_failed">تعذر تهيئة شبكة Wi-Fi</string>
 	<string name="wifi_added">تمت إضافة شبكة Wi-Fi</string>
@@ -386,4 +382,21 @@
 	<string name="epc_reference">مرجع الحوالة</string>
 	<string name="epc_text">نص الحوالة</string>
 	<string name="epc_information">معلومات</string>
+	<string name="idb_verification">التحقق</string>
+	<string name="idb_certificate_reference">مرجع الشهادة</string>
+	<string name="idb_signer_certificate_subject">موضوع شهادة التوقيع</string>
+	<string name="idb_signer_certificate_issuer">جهة إصدار شهادة التوقيع</string>
+	<string name="idb_signature_verification">التحقق من التوقيع</string>
+	<string name="idb_verification_unsigned">غير موقّع</string>
+	<string name="idb_verification_missing_signer_certificate">شهادة التوقيع مفقودة</string>
+	<string name="idb_verification_invalid_signer_certificate">شهادة التوقيع غير صالحة</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">جهة إصدار شهادة التوقيع غير موجودة في القائمة الرئيسية</string>
+	<string name="idb_verification_verified">تم التحقق</string>
+	<string name="idb_verification_signature_invalid">التوقيع غير صالح</string>
+	<string name="idb_verification_error">خطأ في التحقق</string>
+	<string name="idb_yes">نعم</string>
+	<string name="idb_no">لا</string>
+	<string name="vds_document_type">نوع المستند</string>
+	<string name="vds_issuing_country">بلد الإصدار</string>
+	<string name="vds_signing_date">تاريخ التوقيع</string>
 </resources>

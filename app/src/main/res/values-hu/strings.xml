@@ -37,7 +37,6 @@
 	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
 	<string name="qr_data_mask">Adatmaszk</string>
 	<string name="toggle_flash">Vaku be- vagy kikapcsolása</string>
-	<string name="error_flash">Hiba a vaku be- vagy kikapcsolásakor</string>
 	<string name="share">Megosztás</string>
 	<string name="share_file">Fájlként megosztás</string>
 	<string name="share_as">Megosztja másként?</string>
@@ -116,7 +115,6 @@
 	<string name="stream_music">Média</string>
 	<string name="stream_notification">Értesítések</string>
 	<string name="tone_cdma_confirm">CDMA megerősítés</string>
-	<string name="tone_sup_confirm">Hívás felügyeleti megerősítés</string>
 	<string name="tone_sup_radio_ack">Hívás felügyeleti rádió útvonal megerősítés</string>
 	<string name="tone_prop_ack">Pozitív visszaigazolás</string>
 	<string name="tone_prop_beep">Általános csipogás</string>
@@ -179,7 +177,6 @@
 	<string name="automated_action_remove_confirm">Törli ezt a műveletet?</string>
 	<string name="automated_action_list_intent">URL megnyitása: %s</string>
 	<string name="automated_action_list_intent_empty">URL megnyitása</string>
-	<string name="automated_action_webview_title">Automatizált művelet</string>
 	<string name="clear_network_suggestions">Hálózati javaslatok törlése</string>
 	<string name="clear_network_suggestions_summary">Az alkalmazás által korábban biztosított összes hálózati javaslat eltávolítása.</string>
 	<string name="really_remove_all_networks">Valóban eltávolítja az összes hálózatot?</string>
@@ -222,7 +219,6 @@
 	<string name="save_as_file_name">Menti fájlként?</string>
 	<string name="file_name">Fájlnév</string>
 	<string name="error_saving_file">Nem lehet elmenteni a fájlt</string>
-	<string name="error_file_exists">A fájl már létezik</string>
 	<string name="connect_to_wifi">Kapcsolódás Wi-Fi-hez</string>
 	<string name="wifi_config_failed">Nem sikerült beállítani a Wi-Fi-t</string>
 	<string name="wifi_added">Wi-Fi hozzáadva</string>
@@ -374,4 +370,21 @@
 	<string name="epc_reference">Átutalási hivatkozás</string>
 	<string name="epc_text">Átutalási szöveg</string>
 	<string name="epc_information">Információ</string>
+	<string name="idb_verification">Ellenőrzés</string>
+	<string name="idb_certificate_reference">Tanúsítványhivatkozás</string>
+	<string name="idb_signer_certificate_subject">Az aláíró tanúsítvány tárgya</string>
+	<string name="idb_signer_certificate_issuer">Az aláíró tanúsítvány kibocsátója</string>
+	<string name="idb_signature_verification">Aláírás-ellenőrzés</string>
+	<string name="idb_verification_unsigned">Nincs aláírva</string>
+	<string name="idb_verification_missing_signer_certificate">Hiányzik az aláíró tanúsítvány</string>
+	<string name="idb_verification_invalid_signer_certificate">Érvénytelen aláíró tanúsítvány</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">Az aláíró tanúsítvány kibocsátója nem található a mesterlistában</string>
+	<string name="idb_verification_verified">Ellenőrizve</string>
+	<string name="idb_verification_signature_invalid">Érvénytelen aláírás</string>
+	<string name="idb_verification_error">Ellenőrzési hiba</string>
+	<string name="idb_yes">Igen</string>
+	<string name="idb_no">Nem</string>
+	<string name="vds_document_type">Dokumentumtípus</string>
+	<string name="vds_issuing_country">Kibocsátó ország</string>
+	<string name="vds_signing_date">Aláírás dátuma</string>
 </resources>

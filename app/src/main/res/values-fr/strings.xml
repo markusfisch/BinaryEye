@@ -38,7 +38,6 @@
 	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
 	<string name="qr_data_mask">Masquage</string>
 	<string name="toggle_flash">Activer/Désactiver le flash</string>
-	<string name="error_flash">Erreur de changement d\'état du flash</string>
 	<string name="share">Partager</string>
 	<string name="share_file">Partager en tant que fichier</string>
 	<string name="share_as">Partager en tant que ?</string>
@@ -117,7 +116,6 @@
 	<string name="stream_music">Média</string>
 	<string name="stream_notification">Notifications</string>
 	<string name="tone_cdma_confirm">Confirmation CDMA</string>
-	<string name="tone_sup_confirm">Confirmation de la supervision de l\'appel</string>
 	<string name="tone_sup_radio_ack">Accusé de réception du chemin radio de supervision d\'appel</string>
 	<string name="tone_prop_ack">Accusé de réception positif</string>
 	<string name="tone_prop_beep">Bip simple</string>
@@ -180,7 +178,6 @@
 	<string name="automated_action_remove_confirm">Supprimer cette action ?</string>
 	<string name="automated_action_list_intent">Ouvrir l’URL : %s</string>
 	<string name="automated_action_list_intent_empty">Ouvrir l’URL</string>
-	<string name="automated_action_webview_title">Action automatique</string>
 	<string name="clear_network_suggestions">Supprimer les suggestions de réseau</string>
 	<string name="clear_network_suggestions_summary">Supprimer toutes les suggestions de réseau précédemment fournies par cette application.</string>
 	<string name="really_remove_all_networks">Vraiment supprimer tous les réseaux ?</string>
@@ -223,7 +220,6 @@
 	<string name="save_as_file_name">Sauvegarder dans les Téléchargements ?</string>
 	<string name="file_name">Nom du fichier</string>
 	<string name="error_saving_file">Impossible de sauvegarder le fichier</string>
-	<string name="error_file_exists">Fichier déjà existant</string>
 	<string name="connect_to_wifi">Connecter au Wi-Fi</string>
 	<string name="wifi_config_failed">Impossible de configurer le Wi-Fi</string>
 	<string name="wifi_added">Wi-Fi ajouté</string>
@@ -375,4 +371,21 @@
 	<string name="epc_reference">Référence de paiement</string>
 	<string name="epc_text">Texte de paiement</string>
 	<string name="epc_information">Informations</string>
+	<string name="idb_verification">Vérification</string>
+	<string name="idb_certificate_reference">Référence du certificat</string>
+	<string name="idb_signer_certificate_subject">Sujet du certificat de signature</string>
+	<string name="idb_signer_certificate_issuer">Émetteur du certificat de signature</string>
+	<string name="idb_signature_verification">Vérification de la signature</string>
+	<string name="idb_verification_unsigned">Non signé</string>
+	<string name="idb_verification_missing_signer_certificate">Certificat de signature manquant</string>
+	<string name="idb_verification_invalid_signer_certificate">Certificat de signature invalide</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">"L'émetteur du certificat de signature est introuvable dans la liste maîtresse"</string>
+	<string name="idb_verification_verified">Vérifié</string>
+	<string name="idb_verification_signature_invalid">Signature invalide</string>
+	<string name="idb_verification_error">Erreur de vérification</string>
+	<string name="idb_yes">Oui</string>
+	<string name="idb_no">Non</string>
+	<string name="vds_document_type">Type de document</string>
+	<string name="vds_issuing_country">Pays émetteur</string>
+	<string name="vds_signing_date">Date de signature</string>
 </resources>

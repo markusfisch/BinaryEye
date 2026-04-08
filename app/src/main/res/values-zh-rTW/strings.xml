@@ -36,7 +36,6 @@
 	<string name="qr_version_and_modules">%1$s (%2$d 模組)</string>
 	<string name="qr_data_mask">資料遮罩</string>
 	<string name="toggle_flash">控制閃光燈</string>
-	<string name="error_flash">控制閃光燈時發生錯誤</string>
 	<string name="share">分享</string>
 	<string name="share_file">分享檔案</string>
 	<string name="share_as">您要以何種方式分享？</string>
@@ -115,7 +114,6 @@
 	<string name="stream_music">媒體</string>
 	<string name="stream_notification">通知</string>
 	<string name="tone_cdma_confirm">CDMA 確認</string>
-	<string name="tone_sup_confirm">呼叫監控確認</string>
 	<string name="tone_sup_radio_ack">呼叫監控無線電台應答</string>
 	<string name="tone_prop_ack">積極應答</string>
 	<string name="tone_prop_beep">標準嗶聲</string>
@@ -177,7 +175,6 @@
 	<string name="automated_action_remove_confirm">刪除此操作？</string>
 	<string name="automated_action_list_intent">開啟 URL：%s</string>
 	<string name="automated_action_list_intent_empty">開啟 URL</string>
-	<string name="automated_action_webview_title">自動操作</string>
 	<string name="clear_network_suggestions">清除網路建議</string>
 	<string name="clear_network_suggestions_summary">移除應用程式先前提供的所有網路建議</string>
 	<string name="really_remove_all_networks">您確定要移除所有網路嗎？</string>
@@ -220,7 +217,6 @@
 	<string name="save_as_file_name">在下載資料夾儲存為檔案？</string>
 	<string name="file_name">檔案名稱</string>
 	<string name="error_saving_file">無法儲存檔案</string>
-	<string name="error_file_exists">檔案已存在</string>
 	<string name="connect_to_wifi">連線到 Wi-Fi</string>
 	<string name="wifi_config_failed">無法配置 Wi-Fi</string>
 	<string name="wifi_added">已加入 Wi-Fi</string>
@@ -372,4 +368,21 @@
 	<string name="epc_reference">匯款參考</string>
 	<string name="epc_text">匯款文字</string>
 	<string name="epc_information">資訊</string>
+	<string name="idb_verification">驗證</string>
+	<string name="idb_certificate_reference">憑證參照</string>
+	<string name="idb_signer_certificate_subject">簽章憑證主體</string>
+	<string name="idb_signer_certificate_issuer">簽章憑證簽發者</string>
+	<string name="idb_signature_verification">簽章驗證</string>
+	<string name="idb_verification_unsigned">未簽署</string>
+	<string name="idb_verification_missing_signer_certificate">缺少簽章憑證</string>
+	<string name="idb_verification_invalid_signer_certificate">簽章憑證無效</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">主清單中找不到簽章憑證簽發者</string>
+	<string name="idb_verification_verified">已驗證</string>
+	<string name="idb_verification_signature_invalid">簽章無效</string>
+	<string name="idb_verification_error">驗證錯誤</string>
+	<string name="idb_yes">是</string>
+	<string name="idb_no">否</string>
+	<string name="vds_document_type">文件類型</string>
+	<string name="vds_issuing_country">簽發國家</string>
+	<string name="vds_signing_date">簽署日期</string>
 </resources>

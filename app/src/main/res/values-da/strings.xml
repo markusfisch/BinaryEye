@@ -37,7 +37,6 @@
 	<string name="qr_version_and_modules">%1$s (%2$d moduler)</string>
 	<string name="qr_data_mask">Data mask</string>
 	<string name="toggle_flash">Slå blitz til/fra</string>
-	<string name="error_flash">Der opstod en fejl ved at slå blitz til/fra</string>
 	<string name="share">Del</string>
 	<string name="share_file">Del som fil</string>
 	<string name="share_as">Del som?</string>
@@ -116,7 +115,6 @@
 	<string name="stream_music">Medier</string>
 	<string name="stream_notification">Notifikationer</string>
 	<string name="tone_cdma_confirm">CDMA bekræftelse</string>
-	<string name="tone_sup_confirm">Opkald tilsyn bekræft</string>
 	<string name="tone_sup_radio_ack">Opkald tilsynsradio sti anerkendelse</string>
 	<string name="tone_prop_ack">Positiv anerkendelse</string>
 	<string name="tone_prop_beep">Generelt bip</string>
@@ -179,7 +177,6 @@
 	<string name="automated_action_remove_confirm">Fjern denne handling?</string>
 	<string name="automated_action_list_intent">Åbn URL: %s</string>
 	<string name="automated_action_list_intent_empty">Åbn URL</string>
-	<string name="automated_action_webview_title">Automatiseret handling</string>
 	<string name="clear_network_suggestions">Fjern netværksforslag</string>
 	<string name="clear_network_suggestions_summary">Fjern netværksforslag, der tidligere blev tilføjet med denne app.</string>
 	<string name="really_remove_all_networks">Vil du virkelig fjerne alle netværk?</string>
@@ -222,7 +219,6 @@
 	<string name="save_as_file_name">Vil du gemme som i downloads?</string>
 	<string name="file_name">Filnavn</string>
 	<string name="error_saving_file">Kan ikke gemme filen</string>
-	<string name="error_file_exists">Filen findes allerede</string>
 	<string name="connect_to_wifi">Opret forbindelse til WiFi</string>
 	<string name="wifi_config_failed">Kunne ikke konfigurere WiFi</string>
 	<string name="wifi_added">WiFi tilføjet</string>
@@ -374,4 +370,21 @@
 	<string name="epc_reference">Betalingsreference</string>
 	<string name="epc_text">Betalingstekst</string>
 	<string name="epc_information">Information</string>
+	<string name="idb_verification">Verifikation</string>
+	<string name="idb_certificate_reference">Certifikatreference</string>
+	<string name="idb_signer_certificate_subject">Emne for signeringscertifikat</string>
+	<string name="idb_signer_certificate_issuer">Udsteder af signeringscertifikat</string>
+	<string name="idb_signature_verification">Signaturverifikation</string>
+	<string name="idb_verification_unsigned">Usigneret</string>
+	<string name="idb_verification_missing_signer_certificate">Mangler signeringscertifikat</string>
+	<string name="idb_verification_invalid_signer_certificate">Ugyldigt signeringscertifikat</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">Udsteder af signeringscertifikatet blev ikke fundet i masterlisten</string>
+	<string name="idb_verification_verified">Verificeret</string>
+	<string name="idb_verification_signature_invalid">Ugyldig signatur</string>
+	<string name="idb_verification_error">Verifikationsfejl</string>
+	<string name="idb_yes">Ja</string>
+	<string name="idb_no">Nej</string>
+	<string name="vds_document_type">Dokumenttype</string>
+	<string name="vds_issuing_country">Udstedende land</string>
+	<string name="vds_signing_date">Signeringsdato</string>
 </resources>

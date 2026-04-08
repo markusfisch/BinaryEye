@@ -37,7 +37,6 @@
 	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
 	<string name="qr_data_mask">ডেটা মাস্ক</string>
 	<string name="toggle_flash">আলো</string>
-	<string name="error_flash">ফ্ল্যাশ টগল করার সময় ত্রুটি</string>
 	<string name="share">ভাগ করো</string>
 	<string name="share_file">ফাইল হিসেবে ভাগাভাগি</string>
 	<string name="share_as">ভাগ করার মাধ্যম</string>
@@ -116,7 +115,6 @@
 	<string name="stream_music">মিডিয়া</string>
 	<string name="stream_notification">বিজ্ঞপ্তি</string>
 	<string name="tone_cdma_confirm">সিডিএমএ নিশ্চিত করুন</string>
-	<string name="tone_sup_confirm">কল সুপারভাইজরী কনফার্ম</string>
 	<string name="tone_sup_radio_ack">কল সুপারভাইজরি রেডিও পাথ স্বীকৃতি</string>
 	<string name="tone_prop_ack">ধন্যবাদ</string>
 	<string name="tone_prop_beep">সাধারণ বিপ</string>
@@ -179,7 +177,6 @@
 	<string name="automated_action_remove_confirm">এই ক্রিয়াটি সরাবেন?</string>
 	<string name="automated_action_list_intent">URL খুলুন: %s</string>
 	<string name="automated_action_list_intent_empty">URL খুলুন</string>
-	<string name="automated_action_webview_title">স্বয়ংক্রিয় ক্রিয়া</string>
 	<string name="clear_network_suggestions">Clear network suggestions</string>
 	<string name="clear_network_suggestions_summary">Remove all of the network suggestions that were previously provided by this app.</string>
 	<string name="really_remove_all_networks">সব নেটওয়ার্ক সত্যিই সরান?</string>
@@ -222,7 +219,6 @@
 	<string name="save_as_file_name">ডাউনলোডে নথি হিসেবে সংরক্ষণ করবে?</string>
 	<string name="file_name">নথির নাম</string>
 	<string name="error_saving_file">নথি সংরক্ষণ করা যায়নি</string>
-	<string name="error_file_exists">নথি আগে থেকে আছে</string>
 	<string name="connect_to_wifi">ওয়াইফাইর সাথে যুক্ত করো</string>
 	<string name="wifi_config_failed">ওয়াইফাইয়ে ঠিক করে যুক্ত হওয়া যায়নি</string>
 	<string name="wifi_added">ওয়াইফাই যোগকৃত</string>
@@ -374,4 +370,21 @@
 	<string name="epc_reference">রেমিট্যান্স রেফারেন্স</string>
 	<string name="epc_text">রেমিট্যান্স টেক্সট</string>
 	<string name="epc_information">তথ্য</string>
+	<string name="idb_verification">Verification</string>
+	<string name="idb_certificate_reference">Certificate Reference</string>
+	<string name="idb_signer_certificate_subject">Signer Certificate Subject</string>
+	<string name="idb_signer_certificate_issuer">Signer Certificate Issuer</string>
+	<string name="idb_signature_verification">Signature Verification</string>
+	<string name="idb_verification_unsigned">Unsigned</string>
+	<string name="idb_verification_missing_signer_certificate">Missing signer certificate</string>
+	<string name="idb_verification_invalid_signer_certificate">Invalid signer certificate</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">Signer certificate issuer not found in master list</string>
+	<string name="idb_verification_verified">Verified</string>
+	<string name="idb_verification_signature_invalid">Signature invalid</string>
+	<string name="idb_verification_error">Verification error</string>
+	<string name="idb_yes">Yes</string>
+	<string name="idb_no">No</string>
+	<string name="vds_document_type">Document Type</string>
+	<string name="vds_issuing_country">Issuing Country</string>
+	<string name="vds_signing_date">Signing Date</string>
 </resources>

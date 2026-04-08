@@ -57,7 +57,6 @@
 	<string name="export_csv_comma">CSV z przecinkami</string>
 	<string name="export_csv_semicolon">CSV ze średnikami</string>
 	<string name="shortcut_encode">Stwórz kod kreskowy</string>
-	<string name="error_file_exists">Plik już istnieje</string>
 	<string name="no_barcode_found">Nie znaleziono kodu kreskowego</string>
 	<string name="tel_dial">Wybierz numer</string>
 	<string name="connect_to_wifi">Połącz z Wi-Fi</string>
@@ -111,7 +110,6 @@
 	<string name="two_seconds">Dwie sekundy</string>
 	<string name="five_seconds">Pięć sekund</string>
 	<string name="toggle_flash">Przełącz lampę błyskową</string>
-	<string name="error_flash">Błąd przełączania lampy błyskowej</string>
 	<string name="wifi_added">Wi-Fi dodane</string>
 	<string name="zoom_by_swiping">Przybliżaj kamerę, przesuwając w górę/dół</string>
 	<string name="zoom_by_swiping_summary">Przesuń palcem w górę lub w dół na ekranie aparatu, aby sterować powiększeniem aparatu.</string>
@@ -132,7 +130,6 @@
 	<string name="stream_music">Multimedia</string>
 	<string name="stream_notification">Powiadomienia</string>
 	<string name="tone_cdma_confirm">Potwierdzenie CDMA</string>
-	<string name="tone_sup_confirm">Potwierdzenie odbioru połączenia</string>
 	<string name="tone_sup_radio_ack">Potwierdzenie ścieżki radiowej nadzoru połączenia</string>
 	<string name="tone_prop_ack">Pozytywne potwierdzenie</string>
 	<string name="tone_prop_beep">Ogólny sygnał dźwiękowy</string>
@@ -195,7 +192,6 @@
 	<string name="automated_action_remove_confirm">Usunąć tę akcję?</string>
 	<string name="automated_action_list_intent">Otwórz URL: %s</string>
 	<string name="automated_action_list_intent_empty">Otwórz URL</string>
-	<string name="automated_action_webview_title">Automatyczna akcja</string>
 	<string name="clear_network_suggestions">Wyczyść sugestie z sieci</string>
 	<string name="clear_network_suggestions_summary">Usuń wszystkie sugestie z sieci, które były wcześniej dostarczane przez tę aplikację.</string>
 	<string name="really_remove_all_networks">Naprawdę usunąć wszystkie sieci?</string>
@@ -380,4 +376,21 @@
 	<string name="epc_reference">Referencja płatności</string>
 	<string name="epc_text">Opis płatności</string>
 	<string name="epc_information">Informacje</string>
+	<string name="idb_verification">Weryfikacja</string>
+	<string name="idb_certificate_reference">Odniesienie do certyfikatu</string>
+	<string name="idb_signer_certificate_subject">Podmiot certyfikatu podpisującego</string>
+	<string name="idb_signer_certificate_issuer">Wystawca certyfikatu podpisującego</string>
+	<string name="idb_signature_verification">Weryfikacja podpisu</string>
+	<string name="idb_verification_unsigned">Niepodpisane</string>
+	<string name="idb_verification_missing_signer_certificate">Brak certyfikatu podpisującego</string>
+	<string name="idb_verification_invalid_signer_certificate">Nieprawidłowy certyfikat podpisujący</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">Nie znaleziono wystawcy certyfikatu podpisującego na liście głównej</string>
+	<string name="idb_verification_verified">Zweryfikowano</string>
+	<string name="idb_verification_signature_invalid">Nieprawidłowy podpis</string>
+	<string name="idb_verification_error">Błąd weryfikacji</string>
+	<string name="idb_yes">Tak</string>
+	<string name="idb_no">Nie</string>
+	<string name="vds_document_type">Typ dokumentu</string>
+	<string name="vds_issuing_country">Kraj wydający</string>
+	<string name="vds_signing_date">Data podpisu</string>
 </resources>

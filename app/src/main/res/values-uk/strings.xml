@@ -39,7 +39,6 @@
 	<string name="qr_version_and_modules">%1$s (%2$d модулі)</string>
 	<string name="qr_data_mask">Маска даних</string>
 	<string name="toggle_flash">Увімкнути спалах</string>
-	<string name="error_flash">Помилка під час увімкнення спалаху</string>
 	<string name="share">Поділитися</string>
 	<string name="share_file">Поділитися файлом</string>
 	<string name="share_as">Поділитися як?</string>
@@ -118,7 +117,6 @@
 	<string name="stream_music">Медіа</string>
 	<string name="stream_notification">Сповіщення</string>
 	<string name="tone_cdma_confirm">Підтвердження CDMA</string>
-	<string name="tone_sup_confirm">Підтвердження диспетчерського виклику</string>
 	<string name="tone_sup_radio_ack">Підтвердження прийому по радіоканалу</string>
 	<string name="tone_prop_ack">Позитивне підтвердження</string>
 	<string name="tone_prop_beep">Звичайний сигнал</string>
@@ -185,7 +183,6 @@
 	<string name="automated_action_remove_confirm">Видалити цю дію?</string>
 	<string name="automated_action_list_intent">Відкрити URL: %s</string>
 	<string name="automated_action_list_intent_empty">Відкрити URL</string>
-	<string name="automated_action_webview_title">Автоматична дія</string>
 	<string name="clear_network_suggestions">Очистити мережеві пропозиції</string>
 	<string name="clear_network_suggestions_summary">Видалити усі мережеві пропозиції, які раніше надавала ця програма.</string>
 	<string name="really_remove_all_networks">Ви впевнені, що хочете видалити всі мережі?</string>
@@ -228,7 +225,6 @@
 	<string name="save_as_file_name">Як зберегти файл у Завантаженнях?</string>
 	<string name="file_name">Ім\'я файлу</string>
 	<string name="error_saving_file">Не вдалося зберегти файл</string>
-	<string name="error_file_exists">Файл вже існує</string>
 	<string name="connect_to_wifi">Підключитися до WiFi</string>
 	<string name="wifi_config_failed">Не вдалося налаштувати WiFi</string>
 	<string name="wifi_added">WiFi додано</string>
@@ -380,4 +376,21 @@
 	<string name="epc_reference">Платіжне посилання</string>
 	<string name="epc_text">Текст платежу</string>
 	<string name="epc_information">Інформація</string>
+	<string name="idb_verification">Перевірка</string>
+	<string name="idb_certificate_reference">Посилання на сертифікат</string>
+	<string name="idb_signer_certificate_subject">Суб’єкт сертифіката підписувача</string>
+	<string name="idb_signer_certificate_issuer">Видавець сертифіката підписувача</string>
+	<string name="idb_signature_verification">Перевірка підпису</string>
+	<string name="idb_verification_unsigned">Не підписано</string>
+	<string name="idb_verification_missing_signer_certificate">Відсутній сертифікат підписувача</string>
+	<string name="idb_verification_invalid_signer_certificate">Недійсний сертифікат підписувача</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">Видавця сертифіката підписувача не знайдено в головному списку</string>
+	<string name="idb_verification_verified">Перевірено</string>
+	<string name="idb_verification_signature_invalid">Недійсний підпис</string>
+	<string name="idb_verification_error">Помилка перевірки</string>
+	<string name="idb_yes">Так</string>
+	<string name="idb_no">Ні</string>
+	<string name="vds_document_type">Тип документа</string>
+	<string name="vds_issuing_country">Країна видачі</string>
+	<string name="vds_signing_date">Дата підпису</string>
 </resources>

@@ -36,7 +36,6 @@
 	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
 	<string name="qr_data_mask">데이터 마스크</string>
 	<string name="toggle_flash">플래시 전환</string>
-	<string name="error_flash">플래시 전환 오류</string>
 	<string name="share">공유</string>
 	<string name="share_file">파일로 공유</string>
 	<string name="share_as">공유할까요?</string>
@@ -115,7 +114,6 @@
 	<string name="stream_music">미디어</string>
 	<string name="stream_notification">알림</string>
 	<string name="tone_cdma_confirm">CDMA 확인</string>
-	<string name="tone_sup_confirm">통화 감독 확인</string>
 	<string name="tone_sup_radio_ack">통화 감독 무선 경로 응답</string>
 	<string name="tone_prop_ack">긍정적인 인식</string>
 	<string name="tone_prop_beep">일반적인 비프음</string>
@@ -177,7 +175,6 @@
 	<string name="automated_action_remove_confirm">이 작업을 제거할까요?</string>
 	<string name="automated_action_list_intent">URL 열기: %s</string>
 	<string name="automated_action_list_intent_empty">URL 열기</string>
-	<string name="automated_action_webview_title">자동 작업</string>
 	<string name="clear_network_suggestions">네트워크 제안 사항 제거</string>
 	<string name="clear_network_suggestions_summary">이 앱을 통해 이전에 추가된 네트워크 제안을 제거합니다.</string>
 	<string name="really_remove_all_networks">모든 네트워크를 정말로 삭제하시겠습니까?</string>
@@ -220,7 +217,6 @@
 	<string name="save_as_file_name">Save as in Downloads file?</string>
 	<string name="file_name">파일 이름</string>
 	<string name="error_saving_file">파일을 저장할 수 없습니다</string>
-	<string name="error_file_exists">파일이 이미 존재합니다</string>
 	<string name="connect_to_wifi">Connect to WiFi</string>
 	<string name="wifi_config_failed">Could not configure WiFi</string>
 	<string name="wifi_added">WiFi added</string>
@@ -372,4 +368,21 @@
 	<string name="epc_reference">송금 참조</string>
 	<string name="epc_text">송금 텍스트</string>
 	<string name="epc_information">정보</string>
+	<string name="idb_verification">검증</string>
+	<string name="idb_certificate_reference">인증서 참조</string>
+	<string name="idb_signer_certificate_subject">서명 인증서 주체</string>
+	<string name="idb_signer_certificate_issuer">서명 인증서 발급자</string>
+	<string name="idb_signature_verification">서명 검증</string>
+	<string name="idb_verification_unsigned">서명되지 않음</string>
+	<string name="idb_verification_missing_signer_certificate">서명 인증서가 없음</string>
+	<string name="idb_verification_invalid_signer_certificate">유효하지 않은 서명 인증서</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">서명 인증서 발급자를 마스터 목록에서 찾을 수 없음</string>
+	<string name="idb_verification_verified">검증됨</string>
+	<string name="idb_verification_signature_invalid">유효하지 않은 서명</string>
+	<string name="idb_verification_error">검증 오류</string>
+	<string name="idb_yes">예</string>
+	<string name="idb_no">아니요</string>
+	<string name="vds_document_type">문서 유형</string>
+	<string name="vds_issuing_country">발행 국가</string>
+	<string name="vds_signing_date">서명 날짜</string>
 </resources>

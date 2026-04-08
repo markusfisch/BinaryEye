@@ -36,7 +36,6 @@
 	<string name="qr_version_and_modules">%1$s (%2$d modul)</string>
 	<string name="qr_data_mask">Maschera dati</string>
 	<string name="toggle_flash">Nyala/matikan blitz</string>
-	<string name="error_flash">Galat nyala/matikan blitz</string>
 	<string name="share">Bagikan</string>
 	<string name="share_file">Dijeli kao datoteku</string>
 	<string name="share_as">Bagikan sebagai?</string>
@@ -115,7 +114,6 @@
 	<string name="stream_music">Media</string>
 	<string name="stream_notification">Notifikasi</string>
 	<string name="tone_cdma_confirm">CDMA 확인</string>
-	<string name="tone_sup_confirm">تأكيد الإشراف على المكالمة</string>
 	<string name="tone_sup_radio_ack">Llamada de supervisión de la ruta de radio de confirmación</string>
 	<string name="tone_prop_ack">Positive acknowledgment</string>
 	<string name="tone_prop_beep">Generale segnale acustico</string>
@@ -177,7 +175,6 @@
 	<string name="automated_action_remove_confirm">Hapus tindakan ini?</string>
 	<string name="automated_action_list_intent">Buka URL: %s</string>
 	<string name="automated_action_list_intent_empty">Buka URL</string>
-	<string name="automated_action_webview_title">Tindakan otomatis</string>
 	<string name="clear_network_suggestions">Hapus saran jaringan</string>
 	<string name="clear_network_suggestions_summary">Hapus semua saran jaringan yang sebelumnya disediakan oleh aplikasi ini.</string>
 	<string name="really_remove_all_networks">Yakin menghapus semua jaringan?</string>
@@ -220,7 +217,6 @@
 	<string name="save_as_file_name">Simpan sebagai berkas Unduhan?</string>
 	<string name="file_name">Nama berkas</string>
 	<string name="error_saving_file">Tidak bisa menyimpan berkas</string>
-	<string name="error_file_exists">Berkas sudah ada</string>
 	<string name="connect_to_wifi">Sambungkan ke WiFi</string>
 	<string name="wifi_config_failed">Tidak bisa mengelola WiFi</string>
 	<string name="wifi_added">WiFi ditambahkan</string>
@@ -372,4 +368,21 @@
 	<string name="epc_reference">Referensi pembayaran</string>
 	<string name="epc_text">Teks pembayaran</string>
 	<string name="epc_information">Informasi</string>
+	<string name="idb_verification">Verifikasi</string>
+	<string name="idb_certificate_reference">Referensi sertifikat</string>
+	<string name="idb_signer_certificate_subject">Subjek sertifikat penanda tangan</string>
+	<string name="idb_signer_certificate_issuer">Penerbit sertifikat penanda tangan</string>
+	<string name="idb_signature_verification">Verifikasi tanda tangan</string>
+	<string name="idb_verification_unsigned">Tidak ditandatangani</string>
+	<string name="idb_verification_missing_signer_certificate">Sertifikat penanda tangan tidak ada</string>
+	<string name="idb_verification_invalid_signer_certificate">Sertifikat penanda tangan tidak valid</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">Penerbit sertifikat penanda tangan tidak ditemukan dalam daftar master</string>
+	<string name="idb_verification_verified">Terverifikasi</string>
+	<string name="idb_verification_signature_invalid">Tanda tangan tidak valid</string>
+	<string name="idb_verification_error">Kesalahan verifikasi</string>
+	<string name="idb_yes">Ya</string>
+	<string name="idb_no">Tidak</string>
+	<string name="vds_document_type">Jenis dokumen</string>
+	<string name="vds_issuing_country">Negara penerbit</string>
+	<string name="vds_signing_date">Tanggal penandatanganan</string>
 </resources>

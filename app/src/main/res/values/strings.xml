@@ -36,7 +36,6 @@
 	<string name="qr_version_and_modules" tools:ignore="PluralsCandidate">%1$s (%2$d modules)</string>
 	<string name="qr_data_mask">Data mask</string>
 	<string name="toggle_flash">Toggle flash</string>
-	<string name="error_flash">Error toggling flash</string>
 	<string name="share">Share</string>
 	<string name="share_file">Share as file</string>
 	<string name="share_as">Share as?</string>
@@ -115,7 +114,6 @@
 	<string name="stream_music">Media</string>
 	<string name="stream_notification">Notifications</string>
 	<string name="tone_cdma_confirm">CDMA confirm</string>
-	<string name="tone_sup_confirm">Call supervisory confirm</string>
 	<string name="tone_sup_radio_ack">Call supervisory radio path acknowledgment</string>
 	<string name="tone_prop_ack">Positive acknowledgment</string>
 	<string name="tone_prop_beep">General beep</string>
@@ -185,7 +183,6 @@
 	<string name="automated_action_list_intent_empty">Open URL</string>
 	<string name="automated_action_list_custom_intent">Custom intent: %s</string>
 	<string name="automated_action_list_custom_intent_empty">Custom intent</string>
-	<string name="automated_action_webview_title">Automated action</string>
 	<string name="clear_network_suggestions">Remove network suggestions</string>
 	<string name="clear_network_suggestions_summary">Remove network suggestions that were previously added with this app.</string>
 	<string name="really_remove_all_networks">Really remove all networks?</string>
@@ -228,7 +225,6 @@
 	<string name="save_as_file_name">Save in Downloads folder?</string>
 	<string name="file_name">File name</string>
 	<string name="error_saving_file">Cannot save file</string>
-	<string name="error_file_exists">File already exists</string>
 	<string name="connect_to_wifi">Connect to Wi-Fi</string>
 	<string name="wifi_config_failed">Could not configure Wi-Fi</string>
 	<string name="wifi_added">Wi-Fi added</string>
@@ -373,4 +369,21 @@
 	<string name="epc_reference">Remittance Reference</string>
 	<string name="epc_text">Remittance Text</string>
 	<string name="epc_information">Information</string>
+	<string name="idb_verification">Verification</string>
+	<string name="idb_certificate_reference">Certificate Reference</string>
+	<string name="idb_signer_certificate_subject">Signer Certificate Subject</string>
+	<string name="idb_signer_certificate_issuer">Signer Certificate Issuer</string>
+	<string name="idb_signature_verification">Signature Verification</string>
+	<string name="idb_verification_unsigned">Unsigned</string>
+	<string name="idb_verification_missing_signer_certificate">Missing signer certificate</string>
+	<string name="idb_verification_invalid_signer_certificate">Invalid signer certificate</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">Signer certificate issuer not found in master list</string>
+	<string name="idb_verification_verified">Verified</string>
+	<string name="idb_verification_signature_invalid">Signature invalid</string>
+	<string name="idb_verification_error">Verification error</string>
+	<string name="idb_yes">Yes</string>
+	<string name="idb_no">No</string>
+	<string name="vds_document_type">Document Type</string>
+	<string name="vds_issuing_country">Issuing Country</string>
+	<string name="vds_signing_date">Signing Date</string>
 </resources>

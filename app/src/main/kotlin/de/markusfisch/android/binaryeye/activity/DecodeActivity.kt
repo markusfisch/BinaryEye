@@ -46,7 +46,7 @@ import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.content.ContentBarcode
 import de.markusfisch.android.binaryeye.content.EpcQrParser
 import de.markusfisch.android.binaryeye.content.IdlParser
-import de.markusfisch.android.binaryeye.content.VdsParser
+import de.markusfisch.android.binaryeye.content.SealParser
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.epcQrToRes
 import de.markusfisch.android.binaryeye.content.idlToRes
@@ -340,7 +340,7 @@ class DecodeActivity : AbstractBaseActivity() {
 				items.add(Field(context.idlToRes(id), value))
 			}
 		}
-		VdsParser.parse(bytes)?.forEach { vf ->
+		SealParser.parse(context, bytes)?.forEach { vf ->
 			items.add(Field(vf.name, vf.value, vf.indent))
 		}
 		EpcQrParser.parse(text)?.let {
