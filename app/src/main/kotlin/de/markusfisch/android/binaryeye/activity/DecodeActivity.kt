@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -22,10 +23,12 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.core.net.toUri
+import androidx.core.widget.TextViewCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
@@ -78,7 +81,7 @@ import kotlin.math.roundToInt
 class DecodeActivity : AbstractBaseActivity() {
 	private lateinit var contentView: EditText
 	private lateinit var formatView: TextView
-	private lateinit var dataView: TableLayout
+	private lateinit var dataView: LinearLayout
 	private lateinit var metaView: TableLayout
 	private lateinit var hexView: TextView
 	private lateinit var formatDescriptionView: TextView
@@ -326,7 +329,7 @@ class DecodeActivity : AbstractBaseActivity() {
 		}
 	}
 
-	private fun TableLayout.fillDataView(text: String, bytes: ByteArray) {
+	private fun LinearLayout.fillDataView(text: String, bytes: ByteArray) {
 		val items = mutableListOf<Field>()
 		when (prefs.showChecksum) {
 			"CRC4" -> items.add(Field(R.string.crc4, String.format("%X", crc4(bytes))))
@@ -382,7 +385,7 @@ class DecodeActivity : AbstractBaseActivity() {
 				items.add(Field(R.string.wifi_phase2, wifiData["PH2"]))
 			}
 		}
-		fill(items)
+		fillDataItems(items)
 	}
 
 	private fun TableLayout.fillMetaView(scan: Scan) {
@@ -413,10 +416,10 @@ class DecodeActivity : AbstractBaseActivity() {
 		) {
 			items.add(Field(R.string.qr_data_mask, scan.dataMask.toString()))
 		}
-		fill(items)
+		fillTable(items)
 	}
 
-	private fun TableLayout.fill(items: List<Field>) {
+	private fun TableLayout.fillTable(items: List<Field>) {
 		removeAllViews()
 		visibility = if (items.isEmpty()) View.GONE else {
 			val ctx = context
@@ -449,6 +452,72 @@ class DecodeActivity : AbstractBaseActivity() {
 			}
 			View.VISIBLE
 		}
+	}
+
+	private fun LinearLayout.fillDataItems(items: List<Field>) {
+		removeAllViews()
+		if (items.isEmpty()) {
+			visibility = View.GONE
+			return
+		}
+		val ctx = context
+		val spaceBetween = (16f * dp).roundToInt()
+		for (item in items) {
+			val text = item.value
+			if (text.isNullOrBlank()) {
+				continue
+			}
+			val rowView = LinearLayout(ctx).apply {
+				orientation = LinearLayout.VERTICAL
+				if (item.indent > 0) {
+					setPadding(item.indent * spaceBetween, 0, 0, 0)
+				}
+				layoutParams = LinearLayout.LayoutParams(
+					LinearLayout.LayoutParams.MATCH_PARENT,
+					LinearLayout.LayoutParams.WRAP_CONTENT
+				).apply {
+					bottomMargin = spaceBetween
+				}
+			}
+			val keyView = TextView(ctx).apply {
+				TextViewCompat.setTextAppearance(
+					this,
+					R.style.SecondaryText
+				)
+				when (val key = item.key) {
+					is Int -> setText(key)
+					is String -> this.text = key
+					else -> this.text = key.toString()
+				}
+			}
+			val valueView = TextView(ctx).apply {
+				TextViewCompat.setTextAppearance(
+					this,
+					android.R.style.TextAppearance_Medium
+				)
+				setTextColor(
+					ColorStateList.valueOf(
+						ctx.obtainStyledAttributes(
+							intArrayOf(android.R.attr.textColorPrimary)
+						).run {
+							try {
+								getColor(0, currentTextColor)
+							} finally {
+								recycle()
+							}
+						}
+					)
+				)
+				this.text = text
+				setOnClickListener {
+					copyToClipboard(text.toString())
+				}
+			}
+			rowView.addView(keyView)
+			rowView.addView(valueView)
+			addView(rowView)
+		}
+		visibility = View.VISIBLE
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
