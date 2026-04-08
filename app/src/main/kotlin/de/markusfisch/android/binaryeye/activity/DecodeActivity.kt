@@ -105,6 +105,8 @@ class DecodeActivity : AbstractBaseActivity() {
 	private var action = ActionRegistry.DEFAULT_ACTION
 	private var isBinary = false
 	private var originalBytes: ByteArray = ByteArray(0)
+	private var lastParsedDataItems: List<Field> = emptyList()
+	private var showingDimmed = false
 	private var label: String? = null
 	private var recreationSize = 0
 
@@ -268,7 +270,7 @@ class DecodeActivity : AbstractBaseActivity() {
 	}
 
 	private fun updateViews(text: String, bytes: ByteArray) {
-		dataView.fillDataView(text, bytes)
+		dataView.fillDataView(text, bytes, text != scan.text)
 		stampView.setTrackingLink(bytes, format)
 		formatView.text = resources.getQuantityString(
 			R.plurals.barcode_info,
@@ -329,7 +331,11 @@ class DecodeActivity : AbstractBaseActivity() {
 		}
 	}
 
-	private fun LinearLayout.fillDataView(text: String, bytes: ByteArray) {
+	private fun LinearLayout.fillDataView(
+		text: String,
+		bytes: ByteArray,
+		isEditing: Boolean
+	) {
 		val items = mutableListOf<Field>()
 		when (prefs.showChecksum) {
 			"CRC4" -> items.add(Field(R.string.crc4, String.format("%X", crc4(bytes))))
@@ -337,18 +343,40 @@ class DecodeActivity : AbstractBaseActivity() {
 			"SHA1" -> items.add(Field(R.string.sha1, bytes.sha1().toHexString().fold()))
 			"SHA256" -> items.add(Field(R.string.sha256, bytes.sha256().toHexString().fold()))
 		}
+		val count = items.count()
+		parseData(items, text, bytes)
+		if (items.count() > count) {
+			lastParsedDataItems = items
+			fillDataItems(items, false)
+			return
+		}
+		if (isEditing && lastParsedDataItems.isNotEmpty()) {
+			if (!showingDimmed) {
+				fillDataItems(lastParsedDataItems, true)
+			}
+			return
+		}
+		fillDataItems(items, false)
+	}
+
+	private fun parseData(
+		items: MutableList<Field>,
+		text: String,
+		bytes: ByteArray
+	) {
+		val ctx = this
 		IdlParser.parse(String(bytes))?.let {
 			items.add(Field("IIN", it.iin))
 			it.elements.forEach { (id, value) ->
-				items.add(Field(context.idlToRes(id), value))
+				items.add(Field(ctx.idlToRes(id), value))
 			}
 		}
-		SealParser.parse(context, bytes)?.forEach { vf ->
+		SealParser.parse(ctx, bytes)?.forEach { vf ->
 			items.add(Field(vf.name, vf.value))
 		}
 		EpcQrParser.parse(text)?.let {
 			items.addAll(it.map { (id, value) ->
-				Field(context.epcQrToRes(id), value)
+				Field(ctx.epcQrToRes(id), value)
 			})
 		}
 		when (action) {
@@ -385,7 +413,6 @@ class DecodeActivity : AbstractBaseActivity() {
 				items.add(Field(R.string.wifi_phase2, wifiData["PH2"]))
 			}
 		}
-		fillDataItems(items)
 	}
 
 	private fun TableLayout.fillMetaView(scan: Scan) {
@@ -451,7 +478,11 @@ class DecodeActivity : AbstractBaseActivity() {
 		}
 	}
 
-	private fun LinearLayout.fillDataItems(items: List<Field>) {
+	private fun LinearLayout.fillDataItems(
+		items: List<Field>,
+		dimmed: Boolean
+	) {
+		showingDimmed = dimmed
 		removeAllViews()
 		if (items.isEmpty()) {
 			visibility = View.GONE
@@ -507,6 +538,9 @@ class DecodeActivity : AbstractBaseActivity() {
 					copyToClipboard(text.toString())
 				}
 			}
+			val alpha = if (dimmed) 0.5f else 1f
+			keyView.alpha = alpha
+			valueView.alpha = alpha
 			rowView.addView(keyView)
 			rowView.addView(valueView)
 			addView(rowView)
