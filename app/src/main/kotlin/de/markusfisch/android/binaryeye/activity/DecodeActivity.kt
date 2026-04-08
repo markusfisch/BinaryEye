@@ -344,7 +344,7 @@ class DecodeActivity : AbstractBaseActivity() {
 			}
 		}
 		SealParser.parse(context, bytes)?.forEach { vf ->
-			items.add(Field(vf.name, vf.value, vf.indent))
+			items.add(Field(vf.name, vf.value))
 		}
 		EpcQrParser.parse(text)?.let {
 			items.addAll(it.map { (id, value) ->
@@ -429,9 +429,6 @@ class DecodeActivity : AbstractBaseActivity() {
 				if (!text.isNullOrBlank()) {
 					val tr = TableRow(ctx)
 					val keyView = TextView(ctx).apply {
-						if (item.indent > 0) {
-							setPadding(item.indent * spaceBetween, 0, 0, 0)
-						}
 						when (val key = item.key) {
 							is Int -> setText(key)
 							is String -> this.text = key
@@ -469,9 +466,6 @@ class DecodeActivity : AbstractBaseActivity() {
 			}
 			val rowView = LinearLayout(ctx).apply {
 				orientation = LinearLayout.VERTICAL
-				if (item.indent > 0) {
-					setPadding(item.indent * spaceBetween, 0, 0, 0)
-				}
 				layoutParams = LinearLayout.LayoutParams(
 					LinearLayout.LayoutParams.MATCH_PARENT,
 					LinearLayout.LayoutParams.WRAP_CONTENT
@@ -724,7 +718,7 @@ class DecodeActivity : AbstractBaseActivity() {
 	}
 }
 
-private data class Field(val key: Any, val value: CharSequence?, val indent: Int = 0)
+private data class Field(val key: Any, val value: CharSequence?)
 
 private inline fun <T : View> T.showIf(
 	visible: Boolean,

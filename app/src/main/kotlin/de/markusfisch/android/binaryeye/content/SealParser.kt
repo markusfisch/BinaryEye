@@ -6,7 +6,7 @@ import de.tsenger.vdstools.generic.MessageValue
 import de.tsenger.vdstools.generic.Seal
 import de.tsenger.vdstools.idb.IdbSeal
 
-data class SealField(val name: Any, val value: String, val indent: Int = 0)
+data class SealField(val name: Any, val value: String)
 
 object SealParser {
 	fun parse(
