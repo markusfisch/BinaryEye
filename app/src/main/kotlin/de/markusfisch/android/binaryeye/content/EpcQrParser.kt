@@ -5,10 +5,6 @@ enum class EpcQrElement {
 	BIC, NAME, IBAN, AMOUNT, PURPOSE, REFERENCE, TEXT, INFORMATION
 }
 
-data class EpcQrInfo(
-	val elements: Map<EpcQrElement, String>
-)
-
 object EpcQrParser {
 	private val BIC_REGEX = Regex("[A-Z0-9]{8}([A-Z0-9]{3})?")
 	private val IBAN_REGEX = Regex("[A-Z]{2}[0-9A-Z]{13,32}")
@@ -61,7 +57,7 @@ object EpcQrParser {
 		return value.matches(AMOUNT_REGEX)
 	}
 
-	fun parse(s: String?): EpcQrInfo? {
+	fun parse(s: String?): Map<EpcQrElement, String>? {
 		if (s.isNullOrEmpty()) {
 			return null
 		}
@@ -127,21 +123,19 @@ object EpcQrParser {
 			return null
 		}
 
-		return EpcQrInfo(
-			linkedMapOf(
-				EpcQrElement.SERVICE_TAG to lines[0],
-				EpcQrElement.VERSION to lines[1],
-				EpcQrElement.CHARSET to (charsetMap[lines[2]] ?: lines[2]),
-				EpcQrElement.IDENTIFICATION to lines[3],
-				EpcQrElement.BIC to bic,
-				EpcQrElement.NAME to recipient,
-				EpcQrElement.IBAN to iban,
-				EpcQrElement.AMOUNT to amount.removePrefix("EUR"),
-				EpcQrElement.PURPOSE to purpose,
-				EpcQrElement.REFERENCE to remittanceReference,
-				EpcQrElement.TEXT to remittanceText,
-				EpcQrElement.INFORMATION to information
-			)
+		return linkedMapOf(
+			EpcQrElement.SERVICE_TAG to lines[0],
+			EpcQrElement.VERSION to lines[1],
+			EpcQrElement.CHARSET to (charsetMap[lines[2]] ?: lines[2]),
+			EpcQrElement.IDENTIFICATION to lines[3],
+			EpcQrElement.BIC to bic,
+			EpcQrElement.NAME to recipient,
+			EpcQrElement.IBAN to iban,
+			EpcQrElement.AMOUNT to amount.removePrefix("EUR"),
+			EpcQrElement.PURPOSE to purpose,
+			EpcQrElement.REFERENCE to remittanceReference,
+			EpcQrElement.TEXT to remittanceText,
+			EpcQrElement.INFORMATION to information
 		)
 	}
 }

@@ -344,7 +344,7 @@ class DecodeActivity : AbstractBaseActivity() {
 			items.add(Field(vf.name, vf.value, vf.indent))
 		}
 		EpcQrParser.parse(text)?.let {
-			items.addAll(it.elements.map { (id, value) ->
+			items.addAll(it.map { (id, value) ->
 				Field(context.epcQrToRes(id), value)
 			})
 		}
