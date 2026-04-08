@@ -46,6 +46,7 @@ import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.content.ContentBarcode
 import de.markusfisch.android.binaryeye.content.EpcQrParser
 import de.markusfisch.android.binaryeye.content.IdlParser
+import de.markusfisch.android.binaryeye.content.VdsParser
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.epcQrToRes
 import de.markusfisch.android.binaryeye.content.idlToRes
@@ -326,92 +327,74 @@ class DecodeActivity : AbstractBaseActivity() {
 	}
 
 	private fun TableLayout.fillDataView(text: String, bytes: ByteArray) {
-		val items = LinkedHashMap<Any, CharSequence?>()
+		val items = mutableListOf<Field>()
 		when (prefs.showChecksum) {
-			"CRC4" -> items[R.string.crc4] = String.format("%X", crc4(bytes))
-			"MD5" -> items[R.string.md5] = bytes.md5().toHexString().fold()
-			"SHA1" -> items[R.string.sha1] = bytes.sha1().toHexString().fold()
-			"SHA256" -> items[R.string.sha256] =
-				bytes.sha256().toHexString().fold()
-
-			else -> Unit
+			"CRC4" -> items.add(Field(R.string.crc4, String.format("%X", crc4(bytes))))
+			"MD5" -> items.add(Field(R.string.md5, bytes.md5().toHexString().fold()))
+			"SHA1" -> items.add(Field(R.string.sha1, bytes.sha1().toHexString().fold()))
+			"SHA256" -> items.add(Field(R.string.sha256, bytes.sha256().toHexString().fold()))
 		}
 		IdlParser.parse(String(bytes))?.let {
-			items.putAll(mapOf("IIN" to it.iin))
-			items.putAll(
-				it.elements.entries.associate { (id, value) ->
-					context.idlToRes(id) to value
-				}
-			)
+			items.add(Field("IIN", it.iin))
+			it.elements.forEach { (id, value) ->
+				items.add(Field(context.idlToRes(id), value))
+			}
+		}
+		VdsParser.parse(bytes)?.forEach { vf ->
+			items.add(Field(vf.name, vf.value, vf.indent))
 		}
 		EpcQrParser.parse(text)?.let {
-			items.putAll(it.elements.mapKeys { (id, _) -> context.epcQrToRes(id) })
+			items.addAll(it.elements.map { (id, value) ->
+				Field(context.epcQrToRes(id), value)
+			})
 		}
 		when (action) {
-			is MatMsgAction -> items.putAll(
-				MatMsg(text).run {
-					mapOf(
-						R.string.email_to to to,
-						R.string.email_subject to sub,
-						R.string.email_body to body
-					)
-				}
-			)
+			is MatMsgAction -> MatMsg(text).run {
+				items.add(Field(R.string.email_to, to))
+				items.add(Field(R.string.email_subject, sub))
+				items.add(Field(R.string.email_body, body))
+			}
 
 			is VCardAction,
-			is VEventAction -> VTypeParser.parseMap(text).let { vData ->
-				items.putAll(
-					vData.map { item ->
-						item.key to item.value.joinToString("\n") {
-							it.value
-						}
-					}.toMap()
-				)
+			is VEventAction -> VTypeParser.parseMap(text).forEach { item ->
+				items.add(Field(item.key, item.value.joinToString("\n") { it.value }))
 			}
 
 			is WebAction -> try {
-				items.putAll(
-					text.toUri().run {
-						mapOf(
-							R.string.scheme to scheme,
-							R.string.host to host,
-							R.string.query to query
-						)
-					}
-				)
+				text.toUri().run {
+					items.add(Field(R.string.scheme, scheme))
+					items.add(Field(R.string.host, host))
+					items.add(Field(R.string.query, query))
+				}
 			} catch (_: Exception) {
 				// Ignore
 			}
 
 			is WifiAction -> WifiConnector.parseMap(text)?.let { wifiData ->
-				items.putAll(
-					linkedMapOf(
-						R.string.entry_type to getString(R.string.wifi_network),
-						R.string.wifi_ssid to wifiData["S"],
-						R.string.wifi_password to wifiData["P"],
-						R.string.wifi_type to wifiData["T"],
-						R.string.wifi_hidden to wifiData["H"],
-						R.string.wifi_eap to wifiData["E"],
-						R.string.wifi_identity to wifiData["I"],
-						R.string.wifi_anonymous_identity to wifiData["A"],
-						R.string.wifi_phase2 to wifiData["PH2"]
-					)
-				)
+				items.add(Field(R.string.entry_type, getString(R.string.wifi_network)))
+				items.add(Field(R.string.wifi_ssid, wifiData["S"]))
+				items.add(Field(R.string.wifi_password, wifiData["P"]))
+				items.add(Field(R.string.wifi_type, wifiData["T"]))
+				items.add(Field(R.string.wifi_hidden, wifiData["H"]))
+				items.add(Field(R.string.wifi_eap, wifiData["E"]))
+				items.add(Field(R.string.wifi_identity, wifiData["I"]))
+				items.add(Field(R.string.wifi_anonymous_identity, wifiData["A"]))
+				items.add(Field(R.string.wifi_phase2, wifiData["PH2"]))
 			}
 		}
 		fill(items)
 	}
 
 	private fun TableLayout.fillMetaView(scan: Scan) {
-		val items = linkedMapOf<Any, CharSequence?>(
-			R.string.error_correction_level to scan.errorCorrectionLevel,
-			R.string.sequence_size to scan.sequenceSize.positiveToString(),
-			R.string.sequence_index to scan.sequenceIndex.positiveToString(),
-			R.string.sequence_id to scan.sequenceId,
-			R.string.gtin_country to scan.country,
-			R.string.gtin_add_on to scan.addOn,
-			R.string.gtin_price to scan.price,
-			R.string.gtin_issue_number to scan.issueNumber,
+		val items = mutableListOf(
+			Field(R.string.error_correction_level, scan.errorCorrectionLevel),
+			Field(R.string.sequence_size, scan.sequenceSize.positiveToString()),
+			Field(R.string.sequence_index, scan.sequenceIndex.positiveToString()),
+			Field(R.string.sequence_id, scan.sequenceId),
+			Field(R.string.gtin_country, scan.country),
+			Field(R.string.gtin_add_on, scan.addOn),
+			Field(R.string.gtin_price, scan.price),
+			Field(R.string.gtin_issue_number, scan.issueNumber),
 		)
 		if (!scan.version.isNullOrBlank()) {
 			val versionString = if (scan.format == ZxingCpp.BarcodeFormat.QRCode) {
@@ -423,27 +406,17 @@ class DecodeActivity : AbstractBaseActivity() {
 			} else {
 				scan.version
 			}
-			items.putAll(
-				linkedMapOf(
-					R.string.barcode_version_number to versionString
-				)
-			)
+			items.add(Field(R.string.barcode_version_number, versionString))
 		}
 		if (scan.format == ZxingCpp.BarcodeFormat.QRCode &&
 			scan.dataMask > -1
 		) {
-			items.putAll(
-				linkedMapOf(
-					R.string.qr_data_mask to scan.dataMask.toString()
-				)
-			)
+			items.add(Field(R.string.qr_data_mask, scan.dataMask.toString()))
 		}
 		fill(items)
 	}
 
-	private fun TableLayout.fill(
-		items: LinkedHashMap<Any, CharSequence?>
-	) {
+	private fun TableLayout.fill(items: List<Field>) {
 		removeAllViews()
 		visibility = if (items.isEmpty()) View.GONE else {
 			val ctx = context
@@ -452,11 +425,15 @@ class DecodeActivity : AbstractBaseActivity() {
 				val text = item.value
 				if (!text.isNullOrBlank()) {
 					val tr = TableRow(ctx)
-					val keyView = TextView(ctx)
-					when (val key = item.key) {
-						is Int -> keyView.setText(key)
-						is String -> keyView.text = key
-						else -> keyView.text = key.toString()
+					val keyView = TextView(ctx).apply {
+						if (item.indent > 0) {
+							setPadding(item.indent * spaceBetween, 0, 0, 0)
+						}
+						when (val key = item.key) {
+							is Int -> setText(key)
+							is String -> this.text = key
+							else -> this.text = key.toString()
+						}
 					}
 					val valueView = TextView(ctx).apply {
 						setPadding(spaceBetween, 0, 0, 0)
@@ -677,6 +654,8 @@ class DecodeActivity : AbstractBaseActivity() {
 		}
 	}
 }
+
+private data class Field(val key: Any, val value: CharSequence?, val indent: Int = 0)
 
 private inline fun <T : View> T.showIf(
 	visible: Boolean,
