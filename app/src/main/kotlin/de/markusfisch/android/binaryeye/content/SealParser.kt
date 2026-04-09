@@ -37,9 +37,6 @@ object SealParser {
 	private fun Context.buildFields(seal: Seal): List<SealField> = buildList {
 		add(SealField(R.string.vds_document_type, seal.documentType))
 		add(SealField(R.string.vds_issuing_country, seal.issuingCountry))
-		seal.signatureInfo?.signingDate?.let {
-			add(SealField(R.string.vds_signing_date, it.toString()))
-		}
 		if (seal is IdbSeal) {
 			addAll(IdbVerifier.verify(this@buildFields, seal))
 		}
