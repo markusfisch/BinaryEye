@@ -40,6 +40,15 @@ fun Rect.setFrameRoi(
 			frameRoiF.bottom.roundToInt()
 		)
 	}
+	val clampedLeft = left.coerceIn(0, frameMetrics.width)
+	val clampedTop = top.coerceIn(0, frameMetrics.height)
+	val clampedRight = right.coerceIn(0, frameMetrics.width)
+	val clampedBottom = bottom.coerceIn(0, frameMetrics.height)
+	if (clampedLeft >= clampedRight || clampedTop >= clampedBottom) {
+		setEmpty()
+	} else {
+		set(clampedLeft, clampedTop, clampedRight, clampedBottom)
+	}
 }
 
 fun Matrix.setFrameToView(
