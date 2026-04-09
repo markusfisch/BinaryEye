@@ -495,6 +495,7 @@ class DecodeActivity : AbstractBaseActivity() {
 			if (text.isNullOrBlank()) {
 				continue
 			}
+
 			val rowView = LinearLayout(ctx).apply {
 				orientation = LinearLayout.VERTICAL
 				layoutParams = LinearLayout.LayoutParams(
@@ -503,7 +504,12 @@ class DecodeActivity : AbstractBaseActivity() {
 				).apply {
 					bottomMargin = spaceBetween
 				}
+				setBackgroundResource(R.drawable.list_selector)
+				setOnClickListener {
+					copyToClipboard(text.toString())
+				}
 			}
+
 			val keyView = TextView(ctx).apply {
 				TextViewCompat.setTextAppearance(
 					this,
@@ -515,6 +521,7 @@ class DecodeActivity : AbstractBaseActivity() {
 					else -> this.text = key.toString()
 				}
 			}
+
 			val valueView = TextView(ctx).apply {
 				TextViewCompat.setTextAppearance(
 					this,
@@ -534,13 +541,12 @@ class DecodeActivity : AbstractBaseActivity() {
 					)
 				)
 				this.text = text
-				setOnClickListener {
-					copyToClipboard(text.toString())
-				}
 			}
+
 			val alpha = if (dimmed) 0.5f else 1f
 			keyView.alpha = alpha
 			valueView.alpha = alpha
+
 			rowView.addView(keyView)
 			rowView.addView(valueView)
 			addView(rowView)
