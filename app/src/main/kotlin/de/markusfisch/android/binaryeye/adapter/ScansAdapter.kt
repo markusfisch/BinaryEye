@@ -210,6 +210,7 @@ fun String.toFormatDescriptionResId(): Int = when (this) {
 	"Codabar" -> R.string.format_description_codabar
 	"Code39",
 	"Code39Std" -> R.string.format_description_code39
+
 	"Code39Ext" -> R.string.format_description_code39ext
 	"Code32" -> R.string.format_description_code32
 	"PZN" -> R.string.format_description_pzn

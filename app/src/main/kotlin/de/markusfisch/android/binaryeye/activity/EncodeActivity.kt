@@ -232,7 +232,7 @@ class EncodeActivity : AbstractBaseActivity() {
 		val hasTextContent = args?.containsKey(CONTENT_TEXT) == true
 		val hasRawContent = args?.containsKey(CONTENT_RAW) == true
 		var complete = bytes?.isNotEmpty() == true ||
-			contentView.text?.isNotEmpty() == true
+				contentView.text?.isNotEmpty() == true
 
 		if (hasTextContent || hasRawContent) {
 			bytes = null
