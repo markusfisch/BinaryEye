@@ -74,6 +74,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.json.JSONException
+import org.json.JSONObject
 import java.io.File
 import java.security.MessageDigest
 import kotlin.math.roundToInt
@@ -365,6 +367,12 @@ class DecodeActivity : AbstractBaseActivity() {
 		bytes: ByteArray
 	) {
 		val ctx = this
+		try {
+			items.add(Field(R.string.json, JSONObject(text).toString(2)))
+			return
+		} catch (_: JSONException) {
+			// Ignore
+		}
 		IdlParser.parse(String(bytes))?.let {
 			items.add(Field("IIN", it.iin))
 			it.elements.forEach { (id, value) ->
