@@ -385,4 +385,23 @@
 	<string name="vds_document_type">Jenis dokumen</string>
 	<string name="vds_issuing_country">Negara penerbit</string>
 	<string name="vds_signing_date">Tanggal penandatanganan</string>
+	<string name="section_parsed_data">Data terurai</string>
+	<string name="section_raw_barcode_content">Konten barcode</string>
+	<string name="section_raw_barcode_content_editable">Konten barcode (dapat diedit)</string>
+	<string name="section_format_details">Format: %1$s</string>
+	<string name="section_hex_dump">Dump heksadesimal</string>
+	<plurals name="character_count">
+		<item quantity="one">%d karakter</item>
+		<item quantity="other">%d karakter</item>
+	</plurals>
+	<string name="parsed_type_json">JSON</string>
+	<string name="parsed_type_international_driver_license">Surat Izin Mengemudi Internasional</string>
+	<string name="parsed_type_digital_seal">Segel digital</string>
+	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
+	<string name="parsed_type_email">Email</string>
+	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_contact_card">Kartu kontak</string>
+	<string name="parsed_type_calendar_event">Acara kalender</string>
+	<string name="parsed_type_wifi_network">Jaringan Wi-Fi</string>
+	<string name="formatted_json">JSON terformat</string>
 </resources>

@@ -11,6 +11,14 @@
 			android:layout_height="wrap_content"
 			android:orientation="vertical"
 			android:padding="16dp">
+			<TextView
+				style="@style/SecondaryText"
+				android:id="@+id/data_headline"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="8dp"
+				android:textStyle="bold"
+				android:visibility="gone"/>
 			<LinearLayout
 				android:id="@+id/data"
 				android:layout_width="match_parent"
@@ -24,17 +32,33 @@
 				android:layout_marginBottom="16dp"
 				android:textSize="12sp"
 				android:typeface="monospace"/>
+			<TextView
+				style="@style/SecondaryText"
+				android:id="@+id/label_headline"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="8dp"
+				android:text="@string/label"
+				android:textStyle="bold"
+				android:visibility="gone"/>
 			<EditText
 				android:id="@+id/label"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="16dp"
 				android:gravity="start|top"
-				android:hint="@string/label"
+				android:hint="@string/enter_name_hint"
 				android:imeOptions="flagNoExtractUi"
 				android:importantForAutofill="no"
 				android:inputType="text"
 				tools:ignore="UnusedAttribute"/>
+			<TextView
+				style="@style/SecondaryText"
+				android:id="@+id/content_headline"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="8dp"
+				android:textStyle="bold"/>
 			<EditText
 				android:id="@+id/content"
 				android:layout_width="match_parent"
@@ -48,7 +72,7 @@
 				tools:ignore="UnusedAttribute"/>
 			<TextView
 				style="@style/SecondaryText"
-				android:id="@+id/format"
+				android:id="@+id/character_count"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="16dp"
@@ -63,6 +87,14 @@
 				android:contentDescription="@string/view_barcode"/>
 			<TextView
 				style="@style/SecondaryText"
+				android:id="@+id/format_headline"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="8dp"
+				android:textStyle="bold"
+				android:visibility="gone"/>
+			<TextView
+				style="@style/SecondaryText"
 				android:id="@+id/format_description"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -72,6 +104,15 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="16dp"/>
+			<TextView
+				style="@style/SecondaryText"
+				android:id="@+id/hex_headline"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="8dp"
+				android:text="@string/section_hex_dump"
+				android:textStyle="bold"
+				android:visibility="gone"/>
 			<TextView
 				android:id="@+id/hex"
 				android:layout_width="match_parent"

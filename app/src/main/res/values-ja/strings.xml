@@ -385,4 +385,23 @@
 	<string name="vds_document_type">文書の種類</string>
 	<string name="vds_issuing_country">発行国</string>
 	<string name="vds_signing_date">署名日</string>
+	<string name="section_parsed_data">解析データ</string>
+	<string name="section_raw_barcode_content">バーコード内容</string>
+	<string name="section_raw_barcode_content_editable">バーコード内容（編集可）</string>
+	<string name="section_format_details">形式: %1$s</string>
+	<string name="section_hex_dump">16進ダンプ</string>
+	<plurals name="character_count">
+		<item quantity="one">%d 文字</item>
+		<item quantity="other">%d 文字</item>
+	</plurals>
+	<string name="parsed_type_json">JSON</string>
+	<string name="parsed_type_international_driver_license">国際運転免許証</string>
+	<string name="parsed_type_digital_seal">デジタルシール</string>
+	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
+	<string name="parsed_type_email">メール</string>
+	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_contact_card">連絡先カード</string>
+	<string name="parsed_type_calendar_event">カレンダーイベント</string>
+	<string name="parsed_type_wifi_network">Wi-Fi ネットワーク</string>
+	<string name="formatted_json">整形済み JSON</string>
 </resources>

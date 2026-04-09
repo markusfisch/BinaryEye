@@ -385,4 +385,23 @@
 	<string name="vds_document_type">Loại tài liệu</string>
 	<string name="vds_issuing_country">Quốc gia cấp</string>
 	<string name="vds_signing_date">Ngày ký</string>
+	<string name="section_parsed_data">Dữ liệu đã phân tích</string>
+	<string name="section_raw_barcode_content">Nội dung mã vạch</string>
+	<string name="section_raw_barcode_content_editable">Nội dung mã vạch (có thể chỉnh sửa)</string>
+	<string name="section_format_details">Định dạng: %1$s</string>
+	<string name="section_hex_dump">Bản dump hệ thập lục phân</string>
+	<plurals name="character_count">
+		<item quantity="one">%d ký tự</item>
+		<item quantity="other">%d ký tự</item>
+	</plurals>
+	<string name="parsed_type_json">JSON</string>
+	<string name="parsed_type_international_driver_license">Giấy phép lái xe quốc tế</string>
+	<string name="parsed_type_digital_seal">Dấu số</string>
+	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
+	<string name="parsed_type_email">Email</string>
+	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_contact_card">Thẻ liên hệ</string>
+	<string name="parsed_type_calendar_event">Sự kiện lịch</string>
+	<string name="parsed_type_wifi_network">Mạng Wi-Fi</string>
+	<string name="formatted_json">JSON đã định dạng</string>
 </resources>

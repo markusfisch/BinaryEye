@@ -82,11 +82,16 @@ import kotlin.math.roundToInt
 
 class DecodeActivity : AbstractBaseActivity() {
 	private lateinit var contentView: EditText
-	private lateinit var formatView: TextView
+	private lateinit var contentHeadlineView: TextView
+	private lateinit var characterCountView: TextView
+	private lateinit var dataHeadlineView: TextView
+	private lateinit var formatHeadlineView: TextView
 	private lateinit var dataView: LinearLayout
+	private lateinit var hexHeadlineView: TextView
 	private lateinit var metaView: TableLayout
 	private lateinit var hexView: TextView
 	private lateinit var formatDescriptionView: TextView
+	private lateinit var labelHeadlineView: TextView
 	private lateinit var stampView: TextView
 	private lateinit var recreationView: ImageView
 	private lateinit var labelView: EditText
@@ -108,6 +113,7 @@ class DecodeActivity : AbstractBaseActivity() {
 	private var isBinary = false
 	private var originalBytes: ByteArray = ByteArray(0)
 	private var lastParsedDataItems: List<Field> = emptyList()
+	private var lastParsedDataTitleResId = 0
 	private var showingDimmed = false
 	private var label: String? = null
 	private var recreationSize = 0
@@ -145,18 +151,36 @@ class DecodeActivity : AbstractBaseActivity() {
 		recreationSize = (200f * dp).roundToInt()
 
 		contentView = findViewById(R.id.content)
-		formatView = findViewById(R.id.format)
+		contentHeadlineView = findViewById(R.id.content_headline)
+		characterCountView = findViewById(R.id.character_count)
+		dataHeadlineView = findViewById(R.id.data_headline)
+		formatHeadlineView = findViewById(R.id.format_headline)
 		dataView = findViewById(R.id.data)
+		hexHeadlineView = findViewById(R.id.hex_headline)
 		metaView = findViewById(R.id.meta)
 		hexView = findViewById(R.id.hex)
 		formatDescriptionView = findViewById(R.id.format_description)
+		labelHeadlineView = findViewById(R.id.label_headline)
 		stampView = findViewById(R.id.stamp)
 		recreationView = findViewById(R.id.recreation)
 		labelView = findViewById(R.id.label)
 		fab = findViewById(R.id.open)
 
+		contentHeadlineView.setText(
+			if (isBinary) {
+				R.string.section_raw_barcode_content
+			} else {
+				R.string.section_raw_barcode_content_editable
+			}
+		)
+
 		if (prefs.showMetaData) {
 			val descResId = format.toFormatDescriptionResId()
+			formatHeadlineView.text = getString(
+				R.string.section_format_details,
+				format.prettifyFormatName()
+			)
+			formatHeadlineView.visibility = View.VISIBLE
 			if (descResId != 0) {
 				formatDescriptionView.setText(descResId)
 			} else {
@@ -164,16 +188,19 @@ class DecodeActivity : AbstractBaseActivity() {
 			}
 			metaView.fillMetaView(scan)
 		} else {
+			formatHeadlineView.visibility = View.GONE
 			formatDescriptionView.visibility = View.GONE
 			metaView.visibility = View.GONE
 		}
 
 		if (scan.id > 0) {
+			labelHeadlineView.visibility = View.VISIBLE
 			scan.label?.let {
 				labelView.setText(it)
 				label = it
 			}
 		} else {
+			labelHeadlineView.visibility = View.GONE
 			labelView.visibility = View.GONE
 		}
 
@@ -274,10 +301,9 @@ class DecodeActivity : AbstractBaseActivity() {
 	private fun updateViews(text: String, bytes: ByteArray) {
 		dataView.fillDataView(text, bytes, text != scan.text)
 		stampView.setTrackingLink(bytes, format)
-		formatView.text = resources.getQuantityString(
-			R.plurals.barcode_info,
+		characterCountView.text = resources.getQuantityString(
+			R.plurals.character_count,
 			bytes.size,
-			format.prettifyFormatName(),
 			bytes.size
 		)
 		recreationView.showIf(prefs.showRecreation) { v ->
@@ -322,7 +348,11 @@ class DecodeActivity : AbstractBaseActivity() {
 			}
 		}
 		hexView.showIf(prefs.showHexDump) { v ->
+			hexHeadlineView.visibility = View.VISIBLE
 			v.text = hexDump(bytes)
+		}
+		if (!prefs.showHexDump) {
+			hexHeadlineView.visibility = View.GONE
 		}
 	}
 
@@ -346,30 +376,37 @@ class DecodeActivity : AbstractBaseActivity() {
 			"SHA256" -> items.add(Field(R.string.sha256, bytes.sha256().toHexString().fold()))
 		}
 		val count = items.count()
-		parseData(items, text, bytes)
+		val parsedDataTitleResId = parseData(items, text, bytes)
 		if (items.count() > count) {
 			lastParsedDataItems = items
-			fillDataItems(items, false)
+			lastParsedDataTitleResId = parsedDataTitleResId
+				.takeIf { it != 0 } ?: R.string.section_parsed_data
+			fillDataItems(items, false, lastParsedDataTitleResId)
 			return
 		}
 		if (isEditing && lastParsedDataItems.isNotEmpty()) {
 			if (!showingDimmed) {
-				fillDataItems(lastParsedDataItems, true)
+				fillDataItems(lastParsedDataItems, true, lastParsedDataTitleResId)
 			}
 			return
 		}
-		fillDataItems(items, false)
+		val titleResId = if (items.isNotEmpty()) {
+			R.string.section_parsed_data
+		} else {
+			0
+		}
+		fillDataItems(items, false, titleResId)
 	}
 
 	private fun parseData(
 		items: MutableList<Field>,
 		text: String,
 		bytes: ByteArray
-	) {
+	): Int {
 		val ctx = this
 		try {
-			items.add(Field(R.string.json, JSONObject(text).toString(2)))
-			return
+			items.add(Field(R.string.formatted_json, JSONObject(text).toString(2)))
+			return R.string.parsed_type_json
 		} catch (_: JSONException) {
 			// Ignore
 		}
@@ -378,25 +415,38 @@ class DecodeActivity : AbstractBaseActivity() {
 			it.elements.forEach { (id, value) ->
 				items.add(Field(ctx.idlToRes(id), value))
 			}
+			return R.string.parsed_type_international_driver_license
 		}
-		SealParser.parse(ctx, bytes)?.forEach { vf ->
-			items.add(Field(vf.name, vf.value))
+		SealParser.parse(ctx, bytes)?.let { sealFields ->
+			sealFields.forEach { vf ->
+				items.add(Field(vf.name, vf.value))
+			}
+			return R.string.parsed_type_digital_seal
 		}
 		EpcQrParser.parse(text)?.let {
 			items.addAll(it.map { (id, value) ->
 				Field(ctx.epcQrToRes(id), value)
 			})
+			return R.string.parsed_type_sepa_epc_qr
 		}
 		when (action) {
 			is MatMsgAction -> MatMsg(text).run {
 				items.add(Field(R.string.email_to, to))
 				items.add(Field(R.string.email_subject, sub))
 				items.add(Field(R.string.email_body, body))
+				return R.string.parsed_type_email
 			}
 
 			is VCardAction,
-			is VEventAction -> VTypeParser.parseMap(text).forEach { item ->
-				items.add(Field(item.key, item.value.joinToString("\n") { it.value }))
+			is VEventAction -> VTypeParser.parseMap(text).let { parsedMap ->
+				parsedMap.forEach { item ->
+					items.add(Field(item.key, item.value.joinToString("\n") { it.value }))
+				}
+				return if (action is VCardAction) {
+					R.string.parsed_type_contact_card
+				} else {
+					R.string.parsed_type_calendar_event
+				}
 			}
 
 			is WebAction -> try {
@@ -405,6 +455,7 @@ class DecodeActivity : AbstractBaseActivity() {
 					items.add(Field(R.string.host, host))
 					items.add(Field(R.string.query, query))
 				}
+				return R.string.parsed_type_url
 			} catch (_: Exception) {
 				// Ignore
 			}
@@ -419,8 +470,10 @@ class DecodeActivity : AbstractBaseActivity() {
 				items.add(Field(R.string.wifi_identity, wifiData["I"]))
 				items.add(Field(R.string.wifi_anonymous_identity, wifiData["A"]))
 				items.add(Field(R.string.wifi_phase2, wifiData["PH2"]))
+				return R.string.parsed_type_wifi_network
 			}
 		}
+		return 0
 	}
 
 	private fun TableLayout.fillMetaView(scan: Scan) {
@@ -488,13 +541,21 @@ class DecodeActivity : AbstractBaseActivity() {
 
 	private fun LinearLayout.fillDataItems(
 		items: List<Field>,
-		dimmed: Boolean
+		dimmed: Boolean,
+		titleResId: Int
 	) {
 		showingDimmed = dimmed
 		removeAllViews()
 		if (items.isEmpty()) {
+			dataHeadlineView.visibility = View.GONE
 			visibility = View.GONE
 			return
+		}
+		if (titleResId != 0) {
+			dataHeadlineView.setText(titleResId)
+			dataHeadlineView.visibility = View.VISIBLE
+		} else {
+			dataHeadlineView.visibility = View.GONE
 		}
 		val ctx = context
 		val spaceBetween = (16f * dp).roundToInt()
@@ -829,6 +890,7 @@ private fun Int.positiveToString() = if (this > -1) this.toString() else ""
 private fun TextView.setTrackingLink(bytes: ByteArray, format: String) {
 	val trackingLink = generateDpTrackingLink(bytes, format)
 	if (trackingLink != null) {
+		visibility = View.VISIBLE
 		text = trackingLink.fromHtml()
 		isClickable = true
 		movementMethod = LinkMovementMethod.getInstance()

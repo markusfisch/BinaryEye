@@ -387,4 +387,23 @@
 	<string name="vds_document_type">نوع سند</string>
 	<string name="vds_issuing_country">کشور صادرکننده</string>
 	<string name="vds_signing_date">تاریخ امضا</string>
+	<string name="section_parsed_data">داده‌های تجزیه‌شده</string>
+	<string name="section_raw_barcode_content">محتوای بارکد</string>
+	<string name="section_raw_barcode_content_editable">محتوای بارکد (قابل ویرایش)</string>
+	<string name="section_format_details">قالب: %1$s</string>
+	<string name="section_hex_dump">خروجی هگز</string>
+	<plurals name="character_count">
+		<item quantity="one">%d نویسه</item>
+		<item quantity="other">%d نویسه</item>
+	</plurals>
+	<string name="parsed_type_json">JSON</string>
+	<string name="parsed_type_international_driver_license">گواهینامه بین‌المللی رانندگی</string>
+	<string name="parsed_type_digital_seal">مهر دیجیتال</string>
+	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
+	<string name="parsed_type_email">ایمیل</string>
+	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_contact_card">کارت مخاطب</string>
+	<string name="parsed_type_calendar_event">رویداد تقویم</string>
+	<string name="parsed_type_wifi_network">شبکه Wi-Fi</string>
+	<string name="formatted_json">JSON قالب‌بندی‌شده</string>
 </resources>

@@ -393,4 +393,25 @@
 	<string name="vds_document_type">Typ dokumentu</string>
 	<string name="vds_issuing_country">Vydávající země</string>
 	<string name="vds_signing_date">Datum podpisu</string>
+	<string name="section_parsed_data">Parsovaná data</string>
+	<string name="section_raw_barcode_content">Obsah čárového kódu</string>
+	<string name="section_raw_barcode_content_editable">Obsah čárového kódu (upravitelné)</string>
+	<string name="section_format_details">Formát: %1$s</string>
+	<string name="section_hex_dump">Hexadecimální výpis</string>
+	<plurals name="character_count">
+		<item quantity="one">%d znak</item>
+		<item quantity="few">%d znaky</item>
+		<item quantity="many">%d znaku</item>
+		<item quantity="other">%d znaky</item>
+	</plurals>
+	<string name="parsed_type_json">JSON</string>
+	<string name="parsed_type_international_driver_license">Mezinárodní řidičský průkaz</string>
+	<string name="parsed_type_digital_seal">Digitální pečeť</string>
+	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
+	<string name="parsed_type_email">E-mail</string>
+	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_contact_card">Kontaktní karta</string>
+	<string name="parsed_type_calendar_event">Událost kalendáře</string>
+	<string name="parsed_type_wifi_network">Síť Wi-Fi</string>
+	<string name="formatted_json">Formátovaný JSON</string>
 </resources>

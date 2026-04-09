@@ -387,4 +387,23 @@
 	<string name="vds_document_type">Dokumentumtípus</string>
 	<string name="vds_issuing_country">Kibocsátó ország</string>
 	<string name="vds_signing_date">Aláírás dátuma</string>
+	<string name="section_parsed_data">Értelmezett adatok</string>
+	<string name="section_raw_barcode_content">Vonalkódtartalom</string>
+	<string name="section_raw_barcode_content_editable">Vonalkódtartalom (szerkeszthető)</string>
+	<string name="section_format_details">Formátum: %1$s</string>
+	<string name="section_hex_dump">Hexadecimális kiírás</string>
+	<plurals name="character_count">
+		<item quantity="one">%d karakter</item>
+		<item quantity="other">%d karakter</item>
+	</plurals>
+	<string name="parsed_type_json">JSON</string>
+	<string name="parsed_type_international_driver_license">Nemzetközi vezetői engedély</string>
+	<string name="parsed_type_digital_seal">Digitális pecsét</string>
+	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
+	<string name="parsed_type_email">E-mail</string>
+	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_contact_card">Névjegy</string>
+	<string name="parsed_type_calendar_event">Naptári esemény</string>
+	<string name="parsed_type_wifi_network">Wi-Fi hálózat</string>
+	<string name="formatted_json">Formázott JSON</string>
 </resources>

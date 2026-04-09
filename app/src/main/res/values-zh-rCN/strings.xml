@@ -385,4 +385,23 @@
 	<string name="vds_document_type">文档类型</string>
 	<string name="vds_issuing_country">签发国家</string>
 	<string name="vds_signing_date">签名日期</string>
+	<string name="section_parsed_data">解析后的数据</string>
+	<string name="section_raw_barcode_content">条码内容</string>
+	<string name="section_raw_barcode_content_editable">条码内容（可编辑）</string>
+	<string name="section_format_details">格式：%1$s</string>
+	<string name="section_hex_dump">十六进制转储</string>
+	<plurals name="character_count">
+		<item quantity="one">%d 个字符</item>
+		<item quantity="other">%d 个字符</item>
+	</plurals>
+	<string name="parsed_type_json">JSON</string>
+	<string name="parsed_type_international_driver_license">国际驾驶执照</string>
+	<string name="parsed_type_digital_seal">数字印章</string>
+	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
+	<string name="parsed_type_email">电子邮件</string>
+	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_contact_card">联系人卡片</string>
+	<string name="parsed_type_calendar_event">日历事件</string>
+	<string name="parsed_type_wifi_network">Wi-Fi 网络</string>
+	<string name="formatted_json">格式化的 JSON</string>
 </resources>

@@ -9,5 +9,4 @@
 	<string name="sha1">SHA1</string>
 	<string name="sha256">SHA256</string>
 	<string name="scan_meta_data">%1$s • %2$s</string>
-	<string name="json">JSON</string>
 </resources>

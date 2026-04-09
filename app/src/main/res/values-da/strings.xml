@@ -387,4 +387,23 @@
 	<string name="vds_document_type">Dokumenttype</string>
 	<string name="vds_issuing_country">Udstedende land</string>
 	<string name="vds_signing_date">Signeringsdato</string>
+	<string name="section_parsed_data">Fortolkede data</string>
+	<string name="section_raw_barcode_content">Stregkodeindhold</string>
+	<string name="section_raw_barcode_content_editable">Stregkodeindhold (redigerbart)</string>
+	<string name="section_format_details">Format: %1$s</string>
+	<string name="section_hex_dump">Hex-dump</string>
+	<plurals name="character_count">
+		<item quantity="one">%d tegn</item>
+		<item quantity="other">%d tegn</item>
+	</plurals>
+	<string name="parsed_type_json">JSON</string>
+	<string name="parsed_type_international_driver_license">Internationalt kørekort</string>
+	<string name="parsed_type_digital_seal">Digitalt segl</string>
+	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
+	<string name="parsed_type_email">E-mail</string>
+	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_contact_card">Kontaktkort</string>
+	<string name="parsed_type_calendar_event">Kalenderbegivenhed</string>
+	<string name="parsed_type_wifi_network">Wi-Fi-netværk</string>
+	<string name="formatted_json">Formatteret JSON</string>
 </resources>

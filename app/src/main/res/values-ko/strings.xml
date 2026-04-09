@@ -385,4 +385,23 @@
 	<string name="vds_document_type">문서 유형</string>
 	<string name="vds_issuing_country">발행 국가</string>
 	<string name="vds_signing_date">서명 날짜</string>
+	<string name="section_parsed_data">분석된 데이터</string>
+	<string name="section_raw_barcode_content">바코드 내용</string>
+	<string name="section_raw_barcode_content_editable">바코드 내용(편집 가능)</string>
+	<string name="section_format_details">형식: %1$s</string>
+	<string name="section_hex_dump">16진 덤프</string>
+	<plurals name="character_count">
+		<item quantity="one">%d자</item>
+		<item quantity="other">%d자</item>
+	</plurals>
+	<string name="parsed_type_json">JSON</string>
+	<string name="parsed_type_international_driver_license">국제 운전 면허증</string>
+	<string name="parsed_type_digital_seal">디지털 봉인</string>
+	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
+	<string name="parsed_type_email">이메일</string>
+	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_contact_card">연락처 카드</string>
+	<string name="parsed_type_calendar_event">캘린더 이벤트</string>
+	<string name="parsed_type_wifi_network">Wi-Fi 네트워크</string>
+	<string name="formatted_json">서식이 지정된 JSON</string>
 </resources>

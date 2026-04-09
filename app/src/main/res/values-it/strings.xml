@@ -388,4 +388,23 @@
 	<string name="vds_document_type">Tipo di documento</string>
 	<string name="vds_issuing_country">Paese emittente</string>
 	<string name="vds_signing_date">Data di firma</string>
+	<string name="section_parsed_data">Dati analizzati</string>
+	<string name="section_raw_barcode_content">Contenuto del codice a barre</string>
+	<string name="section_raw_barcode_content_editable">Contenuto del codice a barre (modificabile)</string>
+	<string name="section_format_details">Formato: %1$s</string>
+	<string name="section_hex_dump">Dump esadecimale</string>
+	<plurals name="character_count">
+		<item quantity="one">%d carattere</item>
+		<item quantity="other">%d caratteri</item>
+	</plurals>
+	<string name="parsed_type_json">JSON</string>
+	<string name="parsed_type_international_driver_license">Patente di guida internazionale</string>
+	<string name="parsed_type_digital_seal">Sigillo digitale</string>
+	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
+	<string name="parsed_type_email">E-mail</string>
+	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_contact_card">Scheda contatto</string>
+	<string name="parsed_type_calendar_event">Evento del calendario</string>
+	<string name="parsed_type_wifi_network">Rete Wi-Fi</string>
+	<string name="formatted_json">JSON formattato</string>
 </resources>

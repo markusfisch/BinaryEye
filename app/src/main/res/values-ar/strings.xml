@@ -399,4 +399,27 @@
 	<string name="vds_document_type">نوع المستند</string>
 	<string name="vds_issuing_country">بلد الإصدار</string>
 	<string name="vds_signing_date">تاريخ التوقيع</string>
+	<string name="section_parsed_data">البيانات المحللة</string>
+	<string name="section_raw_barcode_content">محتوى الباركود</string>
+	<string name="section_raw_barcode_content_editable">محتوى الباركود (قابل للتحرير)</string>
+	<string name="section_format_details">التنسيق: %1$s</string>
+	<string name="section_hex_dump">تفريغ سداسي عشري</string>
+	<plurals name="character_count">
+		<item quantity="zero">%d أحرف</item>
+		<item quantity="one">%d حرف</item>
+		<item quantity="two">%d حرفان</item>
+		<item quantity="few">%d أحرف</item>
+		<item quantity="many">%d حرفًا</item>
+		<item quantity="other">%d أحرف</item>
+	</plurals>
+	<string name="parsed_type_json">JSON</string>
+	<string name="parsed_type_international_driver_license">رخصة قيادة دولية</string>
+	<string name="parsed_type_digital_seal">ختم رقمي</string>
+	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
+	<string name="parsed_type_email">بريد إلكتروني</string>
+	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_contact_card">بطاقة جهة اتصال</string>
+	<string name="parsed_type_calendar_event">حدث تقويمي</string>
+	<string name="parsed_type_wifi_network">شبكة واي فاي</string>
+	<string name="formatted_json">JSON منسق</string>
 </resources>

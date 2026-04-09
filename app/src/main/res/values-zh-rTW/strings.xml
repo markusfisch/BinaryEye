@@ -385,4 +385,23 @@
 	<string name="vds_document_type">文件類型</string>
 	<string name="vds_issuing_country">簽發國家</string>
 	<string name="vds_signing_date">簽署日期</string>
+	<string name="section_parsed_data">解析後的資料</string>
+	<string name="section_raw_barcode_content">條碼內容</string>
+	<string name="section_raw_barcode_content_editable">條碼內容（可編輯）</string>
+	<string name="section_format_details">格式：%1$s</string>
+	<string name="section_hex_dump">十六進位傾印</string>
+	<plurals name="character_count">
+		<item quantity="one">%d 個字元</item>
+		<item quantity="other">%d 個字元</item>
+	</plurals>
+	<string name="parsed_type_json">JSON</string>
+	<string name="parsed_type_international_driver_license">國際駕駛執照</string>
+	<string name="parsed_type_digital_seal">數位印章</string>
+	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
+	<string name="parsed_type_email">電子郵件</string>
+	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_contact_card">聯絡人卡片</string>
+	<string name="parsed_type_calendar_event">行事曆事件</string>
+	<string name="parsed_type_wifi_network">Wi-Fi 網路</string>
+	<string name="formatted_json">格式化的 JSON</string>
 </resources>

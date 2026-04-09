@@ -387,4 +387,23 @@
 	<string name="vds_document_type">Document Type</string>
 	<string name="vds_issuing_country">Issuing Country</string>
 	<string name="vds_signing_date">Signing Date</string>
+	<string name="section_parsed_data">পার্স করা ডেটা</string>
+	<string name="section_raw_barcode_content">বারকোড কনটেন্ট</string>
+	<string name="section_raw_barcode_content_editable">বারকোড কনটেন্ট (সম্পাদনাযোগ্য)</string>
+	<string name="section_format_details">ফরম্যাট: %1$s</string>
+	<string name="section_hex_dump">হেক্স ডাম্প</string>
+	<plurals name="character_count">
+		<item quantity="one">%d অক্ষর</item>
+		<item quantity="other">%d অক্ষর</item>
+	</plurals>
+	<string name="parsed_type_json">JSON</string>
+	<string name="parsed_type_international_driver_license">আন্তর্জাতিক ড্রাইভার লাইসেন্স</string>
+	<string name="parsed_type_digital_seal">ডিজিটাল সিল</string>
+	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
+	<string name="parsed_type_email">ইমেইল</string>
+	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_contact_card">কনট্যাক্ট কার্ড</string>
+	<string name="parsed_type_calendar_event">ক্যালেন্ডার ইভেন্ট</string>
+	<string name="parsed_type_wifi_network">Wi-Fi নেটওয়ার্ক</string>
+	<string name="formatted_json">ফরম্যাট করা JSON</string>
 </resources>

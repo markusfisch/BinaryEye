@@ -387,4 +387,23 @@
 	<string name="vds_document_type">Belge türü</string>
 	<string name="vds_issuing_country">Düzenleyen ülke</string>
 	<string name="vds_signing_date">İmza tarihi</string>
+	<string name="section_parsed_data">Ayrıştırılmış veriler</string>
+	<string name="section_raw_barcode_content">Barkod içeriği</string>
+	<string name="section_raw_barcode_content_editable">Barkod içeriği (düzenlenebilir)</string>
+	<string name="section_format_details">Biçim: %1$s</string>
+	<string name="section_hex_dump">Onaltılık döküm</string>
+	<plurals name="character_count">
+		<item quantity="one">%d karakter</item>
+		<item quantity="other">%d karakter</item>
+	</plurals>
+	<string name="parsed_type_json">JSON</string>
+	<string name="parsed_type_international_driver_license">Uluslararası sürücü belgesi</string>
+	<string name="parsed_type_digital_seal">Dijital mühür</string>
+	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
+	<string name="parsed_type_email">E-posta</string>
+	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_contact_card">Kişi kartı</string>
+	<string name="parsed_type_calendar_event">Takvim etkinliği</string>
+	<string name="parsed_type_wifi_network">Wi-Fi ağı</string>
+	<string name="formatted_json">Biçimlendirilmiş JSON</string>
 </resources>

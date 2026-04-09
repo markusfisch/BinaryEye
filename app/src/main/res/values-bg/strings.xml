@@ -387,4 +387,23 @@
 	<string name="vds_document_type">Тип документ</string>
 	<string name="vds_issuing_country">Издаваща държава</string>
 	<string name="vds_signing_date">Дата на подписване</string>
+	<string name="section_parsed_data">Парсирани данни</string>
+	<string name="section_raw_barcode_content">Съдържание на баркода</string>
+	<string name="section_raw_barcode_content_editable">Съдържание на баркода (редактируемо)</string>
+	<string name="section_format_details">Формат: %1$s</string>
+	<string name="section_hex_dump">Шестнадесетичен дъмп</string>
+	<plurals name="character_count">
+		<item quantity="one">%d знак</item>
+		<item quantity="other">%d знака</item>
+	</plurals>
+	<string name="parsed_type_json">JSON</string>
+	<string name="parsed_type_international_driver_license">Международна шофьорска книжка</string>
+	<string name="parsed_type_digital_seal">Цифров печат</string>
+	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
+	<string name="parsed_type_email">Имейл</string>
+	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_contact_card">Карта за контакт</string>
+	<string name="parsed_type_calendar_event">Събитие в календара</string>
+	<string name="parsed_type_wifi_network">Wi-Fi мрежа</string>
+	<string name="formatted_json">Форматиран JSON</string>
 </resources>

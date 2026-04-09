@@ -393,4 +393,25 @@
 	<string name="vds_document_type">Тип документа</string>
 	<string name="vds_issuing_country">Страна выдачи</string>
 	<string name="vds_signing_date">Дата подписи</string>
+	<string name="section_parsed_data">Разобранные данные</string>
+	<string name="section_raw_barcode_content">Содержимое штрихкода</string>
+	<string name="section_raw_barcode_content_editable">Содержимое штрихкода (редактируемое)</string>
+	<string name="section_format_details">Формат: %1$s</string>
+	<string name="section_hex_dump">Шестнадцатеричный дамп</string>
+	<plurals name="character_count">
+		<item quantity="one">%d символ</item>
+		<item quantity="few">%d символа</item>
+		<item quantity="many">%d символов</item>
+		<item quantity="other">%d символов</item>
+	</plurals>
+	<string name="parsed_type_json">JSON</string>
+	<string name="parsed_type_international_driver_license">Международное водительское удостоверение</string>
+	<string name="parsed_type_digital_seal">Цифровая печать</string>
+	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
+	<string name="parsed_type_email">Эл. почта</string>
+	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_contact_card">Карточка контакта</string>
+	<string name="parsed_type_calendar_event">Событие календаря</string>
+	<string name="parsed_type_wifi_network">Сеть Wi-Fi</string>
+	<string name="formatted_json">Форматированный JSON</string>
 </resources>

@@ -9,10 +9,19 @@
 	<string name="compose_barcode">Compose barcode</string>
 	<string name="decode_barcode">Decode barcode</string>
 	<string name="content">Content</string>
+	<string name="section_parsed_data">Parsed data</string>
+	<string name="section_raw_barcode_content">Barcode content</string>
+	<string name="section_raw_barcode_content_editable">Barcode content (editable)</string>
+	<string name="section_format_details">Format: %1$s</string>
+	<string name="section_hex_dump">Hex dump</string>
 	<string name="binary_data">(binary data)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d character, %1$s</item>
 		<item quantity="other">%2$d characters, %1$s</item>
+	</plurals>
+	<plurals name="character_count">
+		<item quantity="one">%d character</item>
+		<item quantity="other">%d characters</item>
 	</plurals>
 	<string name="error_correction_level">Error correction level</string>
 	<string name="error_correction_level_l" formatted="false">Low (~7&#37; correction)</string>
@@ -280,6 +289,15 @@
 	<string name="scheme">Scheme</string>
 	<string name="host">Host</string>
 	<string name="query">Query</string>
+	<string name="parsed_type_json">JSON</string>
+	<string name="parsed_type_international_driver_license">International Driver License</string>
+	<string name="parsed_type_digital_seal">Digital Seal</string>
+	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
+	<string name="parsed_type_email">Email</string>
+	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_contact_card">Contact Card</string>
+	<string name="parsed_type_calendar_event">Calendar Event</string>
+	<string name="parsed_type_wifi_network">Wi-Fi network</string>
 	<string name="format_description_aztec">A 2D matrix barcode that can be read without a quiet zone around it. Often used in transport tickets and boarding passes.</string>
 	<string name="format_description_codabar">A linear barcode used in libraries, blood banks, and FedEx air bills since 1972. Encodes numeric digits and a few special characters.</string>
 	<string name="format_description_code39">A variable-length linear barcode encoding uppercase letters, digits, and a few symbols. Widely used in automotive and defense.</string>
@@ -386,4 +404,5 @@
 	<string name="vds_document_type">Document Type</string>
 	<string name="vds_issuing_country">Issuing Country</string>
 	<string name="vds_signing_date">Signing Date</string>
+	<string name="formatted_json">Formatted JSON</string>
 </resources>
