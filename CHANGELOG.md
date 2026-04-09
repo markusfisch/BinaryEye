@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.72.0
+* Improve result screen
+* Update vdstools
+* Fix camera initialization
+
 ## 1.71.0
 * Parse VDS and IDB barcodes
 * Restrict scanning to horizontal crosshair if set
