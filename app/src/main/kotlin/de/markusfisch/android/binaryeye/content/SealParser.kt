@@ -2,7 +2,7 @@ package de.markusfisch.android.binaryeye.content
 
 import android.content.Context
 import de.markusfisch.android.binaryeye.R
-import de.tsenger.vdstools.DataEncoder
+import de.tsenger.vdstools.asn1.DerTlv
 import de.tsenger.vdstools.generic.Message
 import de.tsenger.vdstools.generic.MessageCoding
 import de.tsenger.vdstools.generic.MessageValue
@@ -10,6 +10,7 @@ import de.tsenger.vdstools.generic.Seal
 import de.tsenger.vdstools.idb.IdbSeal
 import org.json.JSONArray
 import org.json.JSONObject
+import de.tsenger.vdstools.generic.SealParser as VdsSealParser
 
 data class SealField(val name: Any, val value: String)
 private data class IdbChildMessageDefinition(
@@ -27,7 +28,7 @@ object SealParser {
 		bytes: ByteArray
 	): List<SealField>? = try {
 		context.buildFields(
-			Seal.fromString(bytes.toString(Charsets.ISO_8859_1))
+			VdsSealParser().parse(bytes.toString(Charsets.ISO_8859_1))
 		)
 	} catch (_: Exception) {
 		null
@@ -66,7 +67,7 @@ object SealParser {
 	private fun Message.childMessages(): List<Message> {
 		val childDefinitionsByTag = idbChildMessagesByName[name] ?: return emptyList()
 		return runCatching {
-			DataEncoder.parseDerTLvs(value.rawBytes).mapNotNull { derTlv ->
+			DerTlv.parseAll(value.rawBytes).mapNotNull { derTlv ->
 				val childTag = derTlv.tag.toInt() and 0xff
 				val childDefinition = childDefinitionsByTag[childTag]
 					?: return@mapNotNull null

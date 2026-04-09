@@ -17,10 +17,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider
 import java.security.Provider
 import java.security.Security
 import java.security.cert.X509Certificate
-import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.Locale
-import java.util.TimeZone
 
 object IdbVerifier {
 	private const val MASTER_LIST_ASSET = "DE_ML_2026-01-08-12-20-54.ml"
@@ -44,32 +41,25 @@ object IdbVerifier {
 					context.getString(R.string.idb_verification_unsigned)
 				)
 			)
-		val headerCertificateReference = seal.payLoad.idbHeader.certificateReference
-		val embeddedSignerCertificate = seal.payLoad.idbSignerCertificate
-			?.certBytes
-			?.let {
-				parseCertificate(it)
-			}
-		if (seal.payLoad.idbSignerCertificate != null && embeddedSignerCertificate == null) {
-			return listOf(
-				SealField(
-					R.string.idb_verification,
-					context.getString(
-						R.string.idb_verification_invalid_signer_certificate
-					)
-				)
-			)
-		}
-		val signerCertificate = embeddedSignerCertificate
-			?: context.findCertificateByReference(headerCertificateReference)
+		val headerCertificateReference = seal.signerCertReference
+			?.hexToByteArrayOrNull()
+		val signerCertificate = context.findCertificateByReference(
+			headerCertificateReference
+		)
 		val curveName = signerCertificate?.let {
 			curveNameFrom(it)
 		}
-		val signatureResult = if (signerCertificate == null || curveName.isNullOrBlank()) {
+		val signedBytes = seal.signedBytes
+		val signatureResult = if (
+			signerCertificate == null ||
+			curveName.isNullOrBlank() ||
+			signedBytes == null
+		) {
 			Verifier.Result.VerifyError
 		} else {
 			Verifier(
-				seal,
+				signedBytes,
+				signatureInfo.plainSignatureBytes,
 				signerCertificate.publicKey.encoded,
 				curveName
 			).verify()
@@ -113,9 +103,7 @@ object IdbVerifier {
 			),
 			SealField(
 				R.string.vds_signing_date,
-				parseSigningDate(
-					signatureInfo.signingDate.toString()
-				).toString()
+				signatureInfo.signingDate.toString()
 			),
 			SealField(
 				R.string.idb_signature_verification,
@@ -139,12 +127,14 @@ object IdbVerifier {
 		return fields
 	}
 
-	private fun parseSigningDate(value: String): Date? {
+	private fun String.hexToByteArrayOrNull(): ByteArray? {
+		if (length % 2 != 0) {
+			return null
+		}
 		return runCatching {
-			SimpleDateFormat("yyyy-MM-dd", Locale.US).apply {
-				isLenient = false
-				timeZone = TimeZone.getTimeZone("UTC")
-			}.parse(value)
+			ByteArray(length / 2) { index ->
+				substring(index * 2, index * 2 + 2).toInt(16).toByte()
+			}
 		}.getOrNull()
 	}
 
@@ -170,14 +160,6 @@ object IdbVerifier {
 			cachedMasterListCertificates = certificates
 			return certificates
 		}
-	}
-
-	private fun parseCertificate(certificateBytes: ByteArray): X509Certificate? {
-		return runCatching {
-			JcaX509CertificateConverter()
-				.setProvider(provider)
-				.getCertificate(X509CertificateHolder(certificateBytes))
-		}.getOrNull()
 	}
 
 	private fun Context.findCertificateByReference(

@@ -109,8 +109,9 @@ object IdlParser {
 			// Detect this by checking that the marker matches the key prefix
 			// (jurisdiction fields always share their 2-char subfile prefix).
 			val seg = if (skipSubtype && p - start >= 4 &&
-					data[start] == data[start + 2] &&
-					data[start + 1] == data[start + 3]) {
+				data[start] == data[start + 2] &&
+				data[start + 1] == data[start + 3]
+			) {
 				start + 2
 			} else {
 				start
