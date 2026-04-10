@@ -319,10 +319,10 @@
 	<string name="idl_restriction_codes">Kódy omezení</string>
 	<string name="idl_endorsement_codes">Kódy oprávnění</string>
 	<string name="idl_date_of_expiry">Datum platnosti</string>
-	<string name="idl_customer_family_name">Příjmení</string>
-	<string name="idl_customer_first_name">Jméno</string>
-	<string name="idl_customer_first_name_alt">Alternativní jméno</string>
-	<string name="idl_customer_middle_name">Prostřední jméno</string>
+	<string name="idl_customer_family_name">Příjmení zákazníka</string>
+	<string name="idl_customer_first_name">Jméno zákazníka</string>
+	<string name="idl_customer_first_name_alt">Alternativní jméno zákazníka</string>
+	<string name="idl_customer_middle_name">Prostřední jméno zákazníka</string>
 	<string name="idl_date_of_issue">Datum vydání</string>
 	<string name="idl_date_of_birth">Datum narození</string>
 	<string name="idl_sex">Pohlaví</string>
@@ -343,9 +343,9 @@
 	<string name="idl_place_of_birth">Místo narození</string>
 	<string name="idl_audit_information">Auditní informace</string>
 	<string name="idl_inventory_control_number">Číslo kontroly inventáře</string>
-	<string name="idl_alias_family_name">Příjmení aliasu</string>
-	<string name="idl_alias_given_name">Jméno aliasu</string>
-	<string name="idl_alias_suffix_name">Přípona aliasu</string>
+	<string name="idl_alias_family_name">Alias příjmení</string>
+	<string name="idl_alias_given_name">Alias jména</string>
+	<string name="idl_alias_suffix_name">Alias přípony</string>
 	<string name="idl_name_suffix">Přípona jména</string>
 	<string name="idl_weight_range">Rozsah hmotnosti</string>
 	<string name="idl_ethnicity">Etnický původ</string>
@@ -395,7 +395,7 @@
 	<string name="vds_document_type">Typ dokumentu</string>
 	<string name="vds_issuing_country">Vydávající země</string>
 	<string name="vds_signing_date">Datum podpisu</string>
-	<string name="section_parsed_data">Parsovaná data</string>
+	<string name="section_parsed_data">Zpracovaná data</string>
 	<string name="section_raw_barcode_content">Obsah čárového kódu</string>
 	<string name="section_raw_barcode_content_editable">Obsah čárového kódu (upravitelné)</string>
 	<string name="section_format_details">Formát: %1$s</string>
@@ -403,15 +403,15 @@
 	<plurals name="character_count">
 		<item quantity="one">%d znak</item>
 		<item quantity="few">%d znaky</item>
-		<item quantity="many">%d znaku</item>
-		<item quantity="other">%d znaky</item>
+		<item quantity="many">%d znaků</item>
+		<item quantity="other">%d znaků</item>
 	</plurals>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Mezinárodní řidičský průkaz</string>
 	<string name="parsed_type_digital_seal">Digitální pečeť</string>
 	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
 	<string name="parsed_type_email">E-mail</string>
-	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_url">Adresa URL</string>
 	<string name="parsed_type_contact_card">Kontaktní karta</string>
 	<string name="parsed_type_calendar_event">Událost kalendáře</string>
 	<string name="parsed_type_wifi_network">Síť Wi-Fi</string>
