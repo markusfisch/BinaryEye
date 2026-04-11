@@ -74,4 +74,15 @@
 	<string name="copy_password">Kopēt paroli starpliktuvē</string>
 	<string name="profile_remove_confirm">Vai tiešām vēlaties noņemt šo profilu?</string>
 	<string name="automated_action_regex">Regulāra izteiksme</string>
+	<plurals name="barcode_info">
+		<item quantity="zero">%2$d rakstzīmes, %1$s</item>
+		<item quantity="one">%2$d rakstzīme, %1$s</item>
+		<item quantity="other">%2$d rakstzīmes, %1$s</item>
+	</plurals>
+	<plurals name="ignore_codes_count">
+		<item quantity="zero">%d ignorēti kodi</item>
+		<item quantity="one">%d ignorēts kods</item>
+		<item quantity="other">%d ignorēti kodi</item>
+	</plurals>
+	<string name="automated_action_url_hint">https://piemērs.lv/?q={RESULT}</string>
 </resources>
