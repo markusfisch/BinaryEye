@@ -10,6 +10,7 @@ val oldToNewFormatNames = mapOf(
 	"PZN" to "PZN",
 	"CODE_93" to "Code93",
 	"CODE_128" to "Code128",
+	"DATA_BAR" to "DataBar",
 	"DATA_BAR_OMNI" to "DataBarOmni",
 	"DATA_BAR_STK" to "DataBarStk",
 	"DATA_BAR_LTD" to "DataBarLtd",
