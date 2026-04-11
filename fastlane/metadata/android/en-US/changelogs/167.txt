@@ -1,0 +1,3 @@
+* Fix migrating DATA_BAR entries
+* Italian language update
+

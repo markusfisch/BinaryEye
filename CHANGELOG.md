@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.72.1
+* Fix migrating DATA_BAR entries
+* Italian language update
+
 ## 1.72.0
 * Improve result screen
 * Update vdstools
