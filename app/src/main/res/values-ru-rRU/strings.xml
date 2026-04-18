@@ -43,7 +43,7 @@
 	<string name="share_file">Поделиться файлом</string>
 	<string name="share_as">Поделиться…</string>
 	<string name="copy_to_clipboard">Скопировать в буфер обмена</string>
-	<string name="copy_as_deeplink">Копировать как диплинк ссылку</string>
+	<string name="copy_as_deeplink">Копировать как прямую ссылку</string>
 	<string name="copied_to_clipboard">Скопировано в буфер обмена</string>
 	<string name="copy_password">Скопировать пароль в буфер обмена</string>
 	<string name="open_url">Открыть URL</string>
@@ -68,7 +68,7 @@
 	<string name="restrict_format">Исключить формат</string>
 	<string name="remove_restriction">Включить формат</string>
 	<string name="find_code">Поиск кода</string>
-	<string name="find_barcode_with_content">Что искать?</string>
+	<string name="find_barcode_with_content">Какой контент?</string>
 	<string name="find_code_hint">Термин или регулярное выражение</string>
 	<string name="does_not_match_search_term">Не соответствует поисковому запросу</string>
 	<string name="scan_for">Сканировать %s</string>
@@ -88,8 +88,8 @@
 	<string name="profile_add">Добавить новый профиль</string>
 	<string name="profile_enter_name">Введите название профиля</string>
 	<string name="profile_enter_name_hint">Название</string>
-	<string name="profile_invalid_name">Недопустимое имя профиля</string>
-	<string name="profile_empty">Профилей пока нет</string>
+	<string name="profile_invalid_name">Недопустимо имя профиля</string>
+	<string name="profile_empty">Пока нет профилей</string>
 	<string name="profile_current">Текущий профиль</string>
 	<string name="profile_remove_confirm">Удалить этот профиль?</string>
 	<string name="current_profile">Профиль: %s</string>
@@ -97,8 +97,8 @@
 	<string name="follow_system_settings">Как в системе</string>
 	<string name="show_crop_handle">Показывать область сканирования</string>
 	<string name="show_crop_handle_summary">Ограничить сканирование изменяемой областью.</string>
-	<string name="show_crosshairs">Показывать перекрестие</string>
-	<string name="show_crosshairs_summary">Показывать перекрестие в области сканирования или на весь экран.</string>
+	<string name="show_crosshairs">Показать прицел ✛</string>
+	<string name="show_crosshairs_summary">Отобразить прицел ✛ в окне обрезки или на весь экран.</string>
 	<string name="barcode_formats">Форматы штрих-кодов</string>
 	<string name="zoom_by_swiping">Масштабировать жестом вверх/вниз</string>
 	<string name="zoom_by_swiping_summary">Жест пальцем вверх или вниз для управления масштабированием камеры.</string>
@@ -246,7 +246,7 @@
 	<string name="pin_item">Закрепить</string>
 	<string name="unpin_item">Открепить</string>
 	<string name="export_to_file">Экспортировать в файл</string>
-    <string name="export_as">Формат файла экспорта</string>
+	<string name="export_as">Формат файла экспорта</string>
 	<string name="export_csv_comma">CSV (разделитель – запятая)</string>
 	<string name="export_csv_semicolon">CSV (разделитель – точка с запятой)</string>
 	<string name="export_json">JSON</string>
@@ -393,11 +393,11 @@
 	<string name="vds_document_type">Тип документа</string>
 	<string name="vds_issuing_country">Страна выдачи</string>
 	<string name="vds_signing_date">Дата подписи</string>
-	<string name="section_parsed_data">Разобранные данные</string>
+	<string name="section_parsed_data">Проанализированы данные</string>
 	<string name="section_raw_barcode_content">Содержимое штрихкода</string>
-	<string name="section_raw_barcode_content_editable">Содержимое штрихкода (редактируемое)</string>
+	<string name="section_raw_barcode_content_editable">Содержимое штрихкода (редактируемый)</string>
 	<string name="section_format_details">Формат: %1$s</string>
-	<string name="section_hex_dump">Шестнадцатеричный дамп</string>
+	<string name="section_hex_dump">Hex дамп</string>
 	<plurals name="character_count">
 		<item quantity="one">%d символ</item>
 		<item quantity="few">%d символа</item>
