@@ -1,9 +1,10 @@
-Працює в книжковій та альбомній орієнтації, може читати перевернуті коди,
-інтерфейс Material Design, а також може генерувати штрих-коди.
+Працює в портретній та альбомній орієнтації, може зчитувати інвертовані коди,
+має Material Дизайн і також може генерувати штрихкоди.
 
-Використовує бібліотеку сканування штрих-коду ZXing ("Zebra Crossing").
-Підтримувані формати штрих-коду: AZTEC, CODABAR, CODE 39, CODE 93, CODE 128,
+Використовує ZXing-C++ ("Zebra Crossing") бібліотека сканування штрихкодів.
+Підтримувані формати штрихкодів: AZTEC, CODABAR, CODE 39, CODE 93, CODE 128,
 DATA MATRIX, EAN 8, EAN 13, ITF, PDF417, QR CODE, RSS 14, RSS EXPANDED,
 UPC A, UPC E and UPC EAN EXTENSION.
 
-Код додатку: https://github.com/markusfisch/BinaryEye
+Це проект із відкритим вихідним кодом:
+https://github.com/markusfisch/BinaryEye
