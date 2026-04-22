@@ -130,6 +130,7 @@ class ProfilesActivity : AbstractBaseActivity() {
 			val item = items[position]
 			val isCurrent = item.name == prefs.profile
 			getViewHolder(view).apply {
+				current = item
 				title.text = item.label
 				if (isCurrent) {
 					subtitle.text = context.getString(R.string.profile_current)
@@ -137,16 +138,6 @@ class ProfilesActivity : AbstractBaseActivity() {
 				} else {
 					subtitle.text = ""
 					subtitle.visibility = View.GONE
-				}
-				shareQr.setOnClickListener {
-					context.startActivity(
-						BarcodeActivity.newIntent(
-							context,
-							prefs.toJson(context, item.name),
-							BarcodeFormat.QRCode,
-							addQuietZone = true
-						)
-					)
 				}
 			}
 			return view
@@ -158,15 +149,28 @@ class ProfilesActivity : AbstractBaseActivity() {
 			view.findViewById(R.id.title),
 			view.findViewById(R.id.subtitle),
 			view.findViewById(R.id.share_qr),
-		).also {
-			view.tag = it
+		).also { holder ->
+			holder.shareQr.setOnClickListener {
+				val item = holder.current ?: return@setOnClickListener
+				context.startActivity(
+					BarcodeActivity.newIntent(
+						context,
+						prefs.toJson(context, item.name),
+						BarcodeFormat.QRCode,
+						addQuietZone = true
+					)
+				)
+			}
+			view.tag = holder
 		}
 
-		private data class ViewHolder(
+		private class ViewHolder(
 			val title: TextView,
 			val subtitle: TextView,
 			val shareQr: View,
-		)
+		) {
+			var current: ProfileItem? = null
+		}
 	}
 }
 
