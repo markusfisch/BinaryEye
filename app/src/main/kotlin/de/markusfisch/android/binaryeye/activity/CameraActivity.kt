@@ -54,6 +54,7 @@ import de.markusfisch.android.binaryeye.database.toScan
 import de.markusfisch.android.binaryeye.graphics.FrameMetrics
 import de.markusfisch.android.binaryeye.graphics.mapPosition
 import de.markusfisch.android.binaryeye.graphics.mapViewYToFrame
+import de.markusfisch.android.binaryeye.graphics.setCovered
 import de.markusfisch.android.binaryeye.graphics.setFrameRoi
 import de.markusfisch.android.binaryeye.graphics.setFrameToView
 import de.markusfisch.android.binaryeye.media.releaseToneGenerators
@@ -933,49 +934,6 @@ class CameraActivity : AppCompatActivity() {
 		val currentState = camera?.cameraInfo?.torchState?.value ?: return
 		camera?.cameraControl?.enableTorch(
 			currentState != TorchState.ON
-		)
-	}
-
-	private fun Rect.setCovered(
-		viewWidth: Int,
-		viewHeight: Int,
-		frameMetrics: FrameMetrics
-	) {
-		val frameWidth: Int
-		val frameHeight: Int
-		when (frameMetrics.orientation) {
-			90, 270 -> {
-				frameWidth = frameMetrics.height
-				frameHeight = frameMetrics.width
-			}
-
-			else -> {
-				frameWidth = frameMetrics.width
-				frameHeight = frameMetrics.height
-			}
-		}
-		if (frameWidth < 1 || frameHeight < 1) {
-			set(0, 0, 0, 0)
-			return
-		}
-		var coveredWidth = frameWidth
-		var coveredHeight = frameHeight
-		if (viewWidth.toLong() * coveredWidth <
-			viewHeight.toLong() * coveredHeight
-		) {
-			coveredWidth = coveredWidth * viewHeight / coveredHeight
-			coveredHeight = viewHeight
-		} else {
-			coveredHeight = coveredHeight * viewWidth / coveredWidth
-			coveredWidth = viewWidth
-		}
-		val left = (viewWidth - coveredWidth) / 2
-		val top = (viewHeight - coveredHeight) / 2
-		set(
-			left,
-			top,
-			left + coveredWidth,
-			top + coveredHeight
 		)
 	}
 
