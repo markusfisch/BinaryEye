@@ -106,6 +106,8 @@ class CameraActivity : AppCompatActivity() {
 
 	private var cameraProvider: ProcessCameraProvider? = null
 	private var camera: Camera? = null
+	private var preview: Preview? = null
+	private var imageAnalysis: ImageAnalysis? = null
 	private var currentProfile = prefs.profile
 	private var shouldStoreSettings = true
 	private var formatsToRead = setOf<BarcodeFormat>()
@@ -305,6 +307,10 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun unbindCameraUseCases() {
 		decoding = false
+		imageAnalysis?.clearAnalyzer()
+		imageAnalysis = null
+		preview?.surfaceProvider = null
+		preview = null
 		cameraProvider?.unbindAll()
 		camera = null
 	}
@@ -734,6 +740,8 @@ class CameraActivity : AppCompatActivity() {
 					imageAnalysis
 				)
 				preview.surfaceProvider = cameraView.surfaceProvider
+				this.preview = preview
+				this.imageAnalysis = imageAnalysis
 				ignoreNext = null
 				decoding = true
 				useLocalAverage = false
