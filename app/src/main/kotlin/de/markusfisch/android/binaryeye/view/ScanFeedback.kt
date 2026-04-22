@@ -29,10 +29,14 @@ fun Context.errorFeedback() {
 
 private fun Context.isSilent(): Boolean {
 	val am = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-	return when (am.ringerMode) {
-		AudioManager.RINGER_MODE_SILENT,
-		AudioManager.RINGER_MODE_VIBRATE -> true
+	return if (prefs.beepStream() == AudioManager.STREAM_MUSIC) {
+		am.getStreamVolume(AudioManager.STREAM_MUSIC) == 0
+	} else {
+		when (am.ringerMode) {
+			AudioManager.RINGER_MODE_SILENT,
+			AudioManager.RINGER_MODE_VIBRATE -> true
 
-		else -> false
+			else -> false
+		}
 	}
 }
