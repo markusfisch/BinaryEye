@@ -54,11 +54,11 @@ class ProfilesActivity : AbstractBaseActivity() {
 		profiles.add(
 			ProfileItem(
 				null,
-				getString(R.string.profile_default)
+				prefs.profileLabel(this, null)
 			)
 		)
 		prefs.profiles.forEach { name ->
-			profiles.add(ProfileItem(name, name))
+			profiles.add(ProfileItem(name, prefs.profileLabel(this, name)))
 		}
 		if (this::adapter.isInitialized) {
 			adapter.notifyDataSetChanged()

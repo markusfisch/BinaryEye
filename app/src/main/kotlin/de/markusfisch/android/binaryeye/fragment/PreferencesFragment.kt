@@ -340,7 +340,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 	}
 
 	private fun updateProfileSummary(preference: Preference) {
-		preference.summary = prefs.profile ?: getString(R.string.profile_default)
+		preference.summary = prefs.profileLabel(requireContext(), prefs.profile)
 		lastProfile = prefs.profile
 	}
 

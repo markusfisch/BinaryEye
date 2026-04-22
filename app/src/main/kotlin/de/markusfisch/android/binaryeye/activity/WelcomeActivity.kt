@@ -11,22 +11,11 @@ class WelcomeActivity : AppCompatActivity() {
 		super.onCreate(state)
 		setContentView(R.layout.activity_welcome)
 		findViewById<View>(R.id.expert).setOnClickListener {
+			prefs.loadExpertProfile(this)
 			finish()
 		}
 		findViewById<View>(R.id.simple).setOnClickListener {
-			prefs.apply {
-				showCropHandle = false
-				zoomBySwiping = false
-				beep = true
-				copyImmediately = true
-				openImmediately = true
-				showMetaData = false
-				showHexDump = false
-				defaultSearchUrl = "https://www.google.com/search?q="
-				openWithUrl = defaultSearchUrl
-				expandEscapeSequences = false
-				brightenScreen = true
-			}
+			prefs.loadSimpleProfile(this)
 			finish()
 		}
 	}

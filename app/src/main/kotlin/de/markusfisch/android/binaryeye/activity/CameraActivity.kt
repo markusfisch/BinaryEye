@@ -371,7 +371,7 @@ class CameraActivity : AppCompatActivity() {
 		menu.findItem(R.id.bulk_mode).isChecked = bulkMode
 		menu.findItem(R.id.profile).title = getString(
 			R.string.current_profile,
-			prefs.profile ?: getString(R.string.profile_default)
+			prefs.profileLabel(this, prefs.profile)
 		)
 		return true
 	}
@@ -517,21 +517,14 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun pickProfile() {
-		val profiles = arrayOf(
-			getString(R.string.profile_default),
-		) + prefs.profiles
+		val profiles = arrayOf<String?>(null) + prefs.profiles
+		val labels = profiles.map {
+			prefs.profileLabel(this, it)
+		}.toTypedArray()
 		AlertDialog.Builder(this)
 			.setTitle(R.string.profile)
-			.setItems(profiles) { _, which ->
-				val newProfile = when (which) {
-					0 -> {
-						null
-					}
-
-					else -> {
-						profiles[which]
-					}
-				}
+			.setItems(labels) { _, which ->
+				val newProfile = profiles[which]
 				if (currentProfile != newProfile) {
 					switchProfile(newProfile)
 				}

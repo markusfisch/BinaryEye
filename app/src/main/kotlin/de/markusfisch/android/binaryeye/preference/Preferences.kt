@@ -7,6 +7,7 @@ import android.graphics.Point
 import android.media.ToneGenerator
 import android.preference.PreferenceManager
 import androidx.core.content.edit
+import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.automation.AutomatedAction
 import de.markusfisch.android.binaryeye.automation.AutomatedAction.Companion.fromJsonArray
 import de.markusfisch.android.binaryeye.automation.AutomatedAction.Companion.toJsonArray
@@ -259,6 +260,7 @@ class Preferences {
 		defaultPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
 		loadProfiles()
+		addPredefinedProfiles(context)
 		load(context, defaultPreferences.getString(PROFILE, null))
 	}
 
@@ -308,6 +310,21 @@ class Preferences {
 		).let {
 			profiles.addAll(Array(it.length()) { i -> it.getString(i) })
 		}
+	}
+
+	fun profileLabel(context: Context, name: String?) = when (name) {
+		null -> context.getString(R.string.profile_default)
+		PROFILE_EXPERT -> context.getString(R.string.mode_expert)
+		PROFILE_SIMPLE -> context.getString(R.string.mode_simple)
+		else -> name
+	}
+
+	fun loadExpertProfile(context: Context) {
+		load(context, PROFILE_EXPERT)
+	}
+
+	fun loadSimpleProfile(context: Context) {
+		load(context, PROFILE_SIMPLE)
 	}
 
 	fun toJson(context: Context, name: String?): String {
@@ -615,7 +632,7 @@ class Preferences {
 			previewScale
 		)
 		automatedActions = fromJsonArray(
-			preferences.getString(AUTOMATED_ACTIONS, "[]") ?: "[]"
+			preferences.getString(AUTOMATED_ACTIONS, null) ?: "[]"
 		)
 	}
 
@@ -698,6 +715,90 @@ class Preferences {
 		}
 	}
 
+	private fun addPredefinedProfiles(context: Context) {
+		val name = "predefined_profiles_added"
+		if (defaultPreferences.getBoolean(name, false)) {
+			return
+		}
+		defaultPreferences.edit {
+			putBoolean(name, true)
+		}
+
+		profiles.add(PROFILE_EXPERT)
+		context.getSharedPreferences(PROFILE_EXPERT, Context.MODE_PRIVATE)
+			.edit {
+				clear()
+				applyExpertProfileSettings()
+			}
+
+		profiles.add(PROFILE_SIMPLE)
+		context.getSharedPreferences(PROFILE_SIMPLE, Context.MODE_PRIVATE)
+			.edit {
+				clear()
+				applySimpleProfileSettings()
+			}
+
+		saveProfiles()
+	}
+
+	private fun SharedPreferences.Editor.applyExpertProfileSettings() {
+		val defaults = Preferences()
+		putStringSet(BARCODE_FORMATS, defaults.barcodeFormats)
+		putBoolean(SHOW_CROP_HANDLE, defaults.showCropHandle)
+		putBoolean(SHOW_CROSSHAIRS, defaults.showCrosshairs)
+		putBoolean(ZOOM_BY_SWIPING, defaults.zoomBySwiping)
+		putBoolean(AUTO_ROTATE, defaults.autoRotate)
+		putBoolean(TRY_HARDER, defaults.tryHarder)
+		putBoolean(BULK_MODE, defaults.bulkMode)
+		putString(BULK_MODE_DELAY, defaults.bulkModeDelay)
+		putBoolean(SHOW_TOAST_IN_BULK_MODE, defaults.showToastInBulkMode)
+		putBoolean(VIBRATE, defaults.vibrate)
+		putBoolean(BEEP, defaults.beep)
+		putString(BEEP_TONE_NAME, defaults.beepToneName)
+		putString(BEEP_STREAM_NAME, defaults.beepStreamName)
+		putBoolean(USE_HISTORY, defaults.useHistory)
+		putString(IGNORE_DUPLICATES_NAME, defaults.ignoreDuplicatesName)
+		putString(IGNORE_CODES, ignoreCodesToJsonArray(defaults.ignoreCodes))
+		putBoolean(COPY_IMMEDIATELY, defaults.copyImmediately)
+		putBoolean(OPEN_IMMEDIATELY, defaults.openImmediately)
+		putBoolean(SHOW_META_DATA, defaults.showMetaData)
+		putBoolean(SHOW_HEX_DUMP, defaults.showHexDump)
+		putString(SHOW_CHECKSUM, defaults.showChecksum)
+		putBoolean(SHOW_RECREATION, defaults.showRecreation)
+		putBoolean(CLOSE_AUTOMATICALLY, defaults.closeAutomatically)
+		putString(DEFAULT_SEARCH_URL, defaults.defaultSearchUrl)
+		putString(OPEN_WITH_URL, defaults.openWithUrl)
+		putBoolean(SEND_SCAN_ACTIVE, defaults.sendScanActive)
+		putString(SEND_SCAN_URL, defaults.sendScanUrl)
+		putString(SEND_SCAN_TYPE, defaults.sendScanType)
+		putBoolean(SEND_SCAN_BLUETOOTH, defaults.sendScanBluetooth)
+		putString(SEND_SCAN_BLUETOOTH_HOST, defaults.sendScanBluetoothHost)
+		putString(CUSTOM_LOCALE, defaults.customLocale)
+		putInt(INDEX_OF_LAST_SELECTED_FORMAT, defaults.indexOfLastSelectedFormat)
+		putInt(INDEX_OF_LAST_SELECTED_EC_LEVEL, defaults.indexOfLastSelectedEcLevel)
+		putBoolean(FREE_ROTATION, defaults.freeRotation)
+		putBoolean(EXPAND_ESCAPE_SEQUENCES, defaults.expandEscapeSequences)
+		putBoolean(ADD_QUIET_ZONE, defaults.addQuietZone)
+		putBoolean(BRIGHTEN_SCREEN, defaults.brightenScreen)
+		putFloat(PREVIEW_SCALE, defaults.previewScale)
+		putString(AUTOMATED_ACTIONS, toJsonArray(defaults.automatedActions))
+	}
+
+	private fun SharedPreferences.Editor.applySimpleProfileSettings() {
+		applyExpertProfileSettings()
+		putBoolean(SHOW_CROP_HANDLE, false)
+		putBoolean(ZOOM_BY_SWIPING, false)
+		putBoolean(BEEP, true)
+		putBoolean(COPY_IMMEDIATELY, true)
+		putBoolean(OPEN_IMMEDIATELY, true)
+		putBoolean(SHOW_META_DATA, false)
+		putBoolean(SHOW_HEX_DUMP, false)
+		putString(DEFAULT_SEARCH_URL, SIMPLE_SEARCH_URL)
+		putString(OPEN_WITH_URL, SIMPLE_SEARCH_URL)
+		putBoolean(EXPAND_ESCAPE_SEQUENCES, false)
+		putBoolean(BRIGHTEN_SCREEN, true)
+	}
+
 	private fun apply(label: String, value: Boolean) {
 		preferences.edit {
 			putBoolean(label, value)
@@ -743,6 +844,9 @@ class Preferences {
 		private const val PROFILE_EXPORT_TYPE = "binaryeye_profile"
 		private const val PROFILES = "profiles"
 		private const val PROFILE = "profile"
+		private const val PROFILE_EXPERT = "builtin:expert"
+		private const val PROFILE_SIMPLE = "builtin:simple"
+		private const val SIMPLE_SEARCH_URL = "https://www.google.com/search?q="
 		private const val BARCODE_FORMATS = "formats"
 		private const val SHOW_CROP_HANDLE = "show_crop_handle"
 		private const val SHOW_CROSSHAIRS = "show_crosshairs"
