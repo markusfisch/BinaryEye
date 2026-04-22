@@ -84,10 +84,6 @@ import kotlin.math.min
 import kotlin.math.roundToInt
 
 class CameraActivity : AppCompatActivity() {
-	private val frameRoi = Rect()
-	private val previewRect = Rect()
-	private val viewBounds = Rect()
-	private val matrix = Matrix()
 	private val analyzerExecutor: ExecutorService =
 		Executors.newSingleThreadExecutor()
 	private val readerOptions = ReaderOptions(
@@ -111,7 +107,6 @@ class CameraActivity : AppCompatActivity() {
 	private var currentProfile = prefs.profile
 	private var shouldStoreSettings = true
 	private var formatsToRead = setOf<BarcodeFormat>()
-	private var frameMetrics = FrameMetrics()
 	private var decoding = true
 	private var returnResult = false
 	private var returnUrlTemplate: String? = null
@@ -123,6 +118,29 @@ class CameraActivity : AppCompatActivity() {
 	private var ignoreNext: String? = null
 	private var requestCameraPermission = true
 	private var useLocalAverage = false
+
+	@Volatile
+	private var cameraViewSnapshot = CameraViewSnapshot()
+
+	private data class CameraViewSnapshot(
+		val viewWidth: Int = 0,
+		val viewHeight: Int = 0,
+		val roiLeft: Int = 0,
+		val roiTop: Int = 0,
+		val roiRight: Int = 0,
+		val roiBottom: Int = 0,
+		val horizontalCrosshairY: Float = 0f
+	) {
+		fun isValid() = viewWidth > 0 && viewHeight > 0
+
+		fun toViewRoi() = Rect(roiLeft, roiTop, roiRight, roiBottom)
+	}
+
+	private data class CameraFrameMapping(
+		val frameRoi: Rect,
+		val matrix: Matrix,
+		val horizontalCrosshairY: Float
+	)
 
 	override fun onRequestPermissionsResult(
 		requestCode: Int,
@@ -572,7 +590,7 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun initPreviewView() {
 		cameraView.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
-			updateFrameRoiAndMappingMatrix()
+			updateCameraViewSnapshot()
 		}
 		@Suppress("ClickableViewAccessibility")
 		val touchSlop = ViewConfiguration.get(this).scaledTouchSlop
@@ -681,7 +699,7 @@ class CameraActivity : AppCompatActivity() {
 		}
 		detectorView.onRoiChanged = {
 			decoding = true
-			updateFrameRoiAndMappingMatrix()
+			updateCameraViewSnapshot()
 		}
 		detectorView.setPaddingFromWindowInsets()
 		detectorView.cropHandleName = "camera_crop_handle"
@@ -751,7 +769,7 @@ class CameraActivity : AppCompatActivity() {
 				useLocalAverage = false
 				updateZoomState()
 				updateFlashFab(camera?.cameraInfo?.hasFlashUnit() ?: false)
-				updateFrameRoiAndMappingMatrix()
+				updateCameraViewSnapshot()
 			} catch (_: Exception) {
 				camera = null
 				toast(R.string.camera_error)
@@ -764,21 +782,18 @@ class CameraActivity : AppCompatActivity() {
 			if (!decoding) {
 				return
 			}
-			frameMetrics = FrameMetrics(
+			val frameMetrics = FrameMetrics(
 				image.width,
 				image.height,
 				image.imageInfo.rotationDegrees
 			)
-			updateFrameRoiAndMappingMatrix()
-			if (frameRoi.width() < 1 || frameRoi.height() < 1) {
-				return
-			}
+			val frameMapping = getFrameMapping(frameMetrics) ?: return
 			useLocalAverage = useLocalAverage xor true
 			val yPlane = image.planes[0]
 			ZxingCpp.readYBuffer(
 				yPlane.buffer,
 				yPlane.rowStride,
-				frameRoi,
+				frameMapping.frameRoi,
 				frameMetrics.orientation,
 				readerOptions.apply {
 					binarizer = if (useLocalAverage) {
@@ -791,14 +806,17 @@ class CameraActivity : AppCompatActivity() {
 					tryRotate = prefs.autoRotate
 				}
 			)?.firstOrNull()?.let { result ->
-				handleDecodeResult(result)
+				handleDecodeResult(result, frameMapping)
 			}
 		} finally {
 			image.close()
 		}
 	}
 
-	private fun handleDecodeResult(result: Result) {
+	private fun handleDecodeResult(
+		result: Result,
+		frameMapping: CameraFrameMapping
+	) {
 		val text = result.text
 		if (text == ignoreNext) {
 			return
@@ -816,16 +834,21 @@ class CameraActivity : AppCompatActivity() {
 			return
 		}
 		if (prefs.showCrosshairs &&
-			!resultTouchesHorizontalCrosshair(result)
+			!resultTouchesHorizontalCrosshair(result, frameMapping)
 		) {
 			return
 		}
 		decoding = false
-		postResult(result)
+		postResult(result, frameMapping)
 	}
 
-	private fun resultTouchesHorizontalCrosshair(result: Result): Boolean {
-		val crosshairY = matrix.mapViewYToFrame(detectorView.getHorizontalCrosshairY())
+	private fun resultTouchesHorizontalCrosshair(
+		result: Result,
+		frameMapping: CameraFrameMapping
+	): Boolean {
+		val crosshairY = frameMapping.matrix.mapViewYToFrame(
+			frameMapping.horizontalCrosshairY
+		)
 		val pos = result.position
 		val minY = minOf(pos.topLeft.y, pos.topRight.y, pos.bottomLeft.y, pos.bottomRight.y)
 		val maxY = maxOf(pos.topLeft.y, pos.topRight.y, pos.bottomLeft.y, pos.bottomRight.y)
@@ -845,29 +868,55 @@ class CameraActivity : AppCompatActivity() {
 		}
 	}
 
-	private fun updateFrameRoiAndMappingMatrix() {
-		viewBounds.set(0, 0, cameraView.width, cameraView.height)
-		if (viewBounds.width() < 1 ||
-			viewBounds.height() < 1 ||
-			!frameMetrics.isValid()
-		) {
-			return
-		}
-		previewRect.setCovered(
-			viewBounds.width(),
-			viewBounds.height(),
-			frameMetrics
-		)
+	private fun updateCameraViewSnapshot() {
 		val viewRoi = if (
 			detectorView.roi.width() < 1 ||
 			detectorView.roi.height() < 1
 		) {
-			viewBounds
+			Rect(0, 0, cameraView.width, cameraView.height)
 		} else {
 			detectorView.roi
 		}
-		frameRoi.setFrameRoi(frameMetrics, previewRect, viewRoi)
-		matrix.setFrameToView(frameMetrics, previewRect, viewRoi)
+		cameraViewSnapshot = CameraViewSnapshot(
+			cameraView.width,
+			cameraView.height,
+			viewRoi.left,
+			viewRoi.top,
+			viewRoi.right,
+			viewRoi.bottom,
+			detectorView.getHorizontalCrosshairY()
+		)
+	}
+
+	private fun getFrameMapping(
+		frameMetrics: FrameMetrics
+	): CameraFrameMapping? {
+		val snapshot = cameraViewSnapshot
+		if (!snapshot.isValid() || !frameMetrics.isValid()) {
+			return null
+		}
+		val previewRect = Rect().apply {
+			setCovered(
+				snapshot.viewWidth,
+				snapshot.viewHeight,
+				frameMetrics
+			)
+		}
+		val viewRoi = snapshot.toViewRoi()
+		val frameRoi = Rect().apply {
+			setFrameRoi(frameMetrics, previewRect, viewRoi)
+		}
+		if (frameRoi.width() < 1 || frameRoi.height() < 1) {
+			return null
+		}
+		val matrix = Matrix().apply {
+			setFrameToView(frameMetrics, previewRect, viewRoi)
+		}
+		return CameraFrameMapping(
+			frameRoi,
+			matrix,
+			snapshot.horizontalCrosshairY
+		)
 	}
 
 	private fun updateFlashFab(available: Boolean) {
@@ -930,10 +979,13 @@ class CameraActivity : AppCompatActivity() {
 		)
 	}
 
-	private fun postResult(result: Result) {
+	private fun postResult(
+		result: Result,
+		frameMapping: CameraFrameMapping
+	) {
 		cameraView.post {
 			detectorView.update(
-				matrix.mapPosition(
+				frameMapping.matrix.mapPosition(
 					result.position,
 					detectorView.coordinates
 				)
