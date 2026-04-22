@@ -234,6 +234,8 @@
 	<string name="profile_empty">Brak profili</string>
 	<string name="profile_current">Bieżący profil</string>
 	<string name="profile_remove_confirm">Usunąć ten profil?</string>
+	<string name="profile_share_qr">Udostępnij profil jako kod QR</string>
+	<string name="profile_import_set_default">Profil \"%s\" zaimportowany. Ustawić jako aktywny profil?</string>
 	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Język niestandardowy</string>
 	<string name="follow_system_settings">Zgodny z ustawieniami systemu</string>

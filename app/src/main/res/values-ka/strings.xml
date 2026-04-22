@@ -90,6 +90,8 @@
 	<string name="profile_empty">პროფილები ჯერ არ არის</string>
 	<string name="profile_current">მიმდინარე პროფილი</string>
 	<string name="profile_remove_confirm">წაიშალოს ეს პროფილი?</string>
+	<string name="profile_share_qr">პროფილის QR კოდად გაზიარება</string>
+	<string name="profile_import_set_default">პროფილი \"%s\" დაიმპორტდა. დაყენდეს აქტიურ პროფილად?</string>
 	<string name="current_profile">პროფილი: %s</string>
 	<string name="custom_locale">შერჩეული ენა</string>
 	<string name="follow_system_settings">სისტემის პარამეტრების მინიჭება</string>

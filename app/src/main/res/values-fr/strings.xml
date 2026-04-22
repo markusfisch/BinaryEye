@@ -91,6 +91,8 @@
 	<string name="profile_empty">Aucun profil pour le moment</string>
 	<string name="profile_current">Profil actuel</string>
 	<string name="profile_remove_confirm">Supprimer ce profil ?</string>
+	<string name="profile_share_qr">Partager le profil comme code QR</string>
+	<string name="profile_import_set_default">Profil \"%s\" importé. Définir comme profil actif ?</string>
 	<string name="current_profile">Profil : %s</string>
 	<string name="custom_locale">Langue personnalisée</string>
 	<string name="follow_system_settings">Suivre les réglages du système</string>

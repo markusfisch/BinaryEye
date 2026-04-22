@@ -90,6 +90,8 @@
 	<string name="profile_empty">هنوز هیچ نمایه‌ای نیست</string>
 	<string name="profile_current">نمایهٔ فعلی</string>
 	<string name="profile_remove_confirm">این نمایه حذف شود؟</string>
+	<string name="profile_share_qr">اشتراک‌گذاری نمایه به‌صورت کد QR</string>
+	<string name="profile_import_set_default">نمایه \"%s\" وارد شد. به‌عنوان نمایه فعال تنظیم شود؟</string>
 	<string name="current_profile">نمایه: %s</string>
 	<string name="custom_locale">زبان سفارشی</string>
 	<string name="follow_system_settings">پیروی از زبان سامانه</string>

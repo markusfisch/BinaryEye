@@ -90,6 +90,8 @@
 	<string name="profile_empty">Все още няма профили</string>
 	<string name="profile_current">Текущ профил</string>
 	<string name="profile_remove_confirm">Премахване на този профил?</string>
+	<string name="profile_share_qr">Сподели профил като QR код</string>
+	<string name="profile_import_set_default">Профил \"%s\" е импортиран. Да се зададе като активен профил?</string>
 	<string name="current_profile">Профил: %s</string>
 	<string name="custom_locale">Персонализиран език</string>
 	<string name="follow_system_settings">Следване на системните настройки</string>

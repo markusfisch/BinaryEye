@@ -90,6 +90,8 @@
 	<string name="profile_empty">Még nincs profil</string>
 	<string name="profile_current">Aktuális profil</string>
 	<string name="profile_remove_confirm">Eltávolítja ezt a profilt?</string>
+	<string name="profile_share_qr">Profil megosztása QR-kódként</string>
+	<string name="profile_import_set_default">A(z) \"%s\" profil importálva. Beállítja aktív profilnak?</string>
 	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Egyéni nyelv</string>
 	<string name="follow_system_settings">Rendszerbeállítások követése</string>

@@ -12,6 +12,11 @@ import de.markusfisch.android.binaryeye.automation.AutomatedAction.Companion.fro
 import de.markusfisch.android.binaryeye.automation.AutomatedAction.Companion.toJsonArray
 import de.markusfisch.android.binaryeye.zxingcpp.migrateBarcodeFormatName
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
+import org.json.JSONArray
+import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import de.markusfisch.android.binaryeye.preference.IgnoreCode.Companion.fromJsonArray as ignoreCodesFromJsonArray
 import de.markusfisch.android.binaryeye.preference.IgnoreCode.Companion.toJsonArray as ignoreCodesToJsonArray
 
@@ -305,14 +310,174 @@ class Preferences {
 		}
 	}
 
+	fun toJson(context: Context, name: String?): String {
+		val defaults = Preferences()
+		val p = if (name.isNullOrEmpty()) {
+			defaultPreferences
+		} else {
+			context.getSharedPreferences(name, Context.MODE_PRIVATE)
+		}
+
+		val json = JSONObject()
+		json.put("type", PROFILE_EXPORT_TYPE)
+		json.put("name", name ?: "")
+		json.put(BARCODE_FORMATS, JSONArray().apply {
+			(p.getStringSet(BARCODE_FORMATS, null) ?: defaults.barcodeFormats).forEach {
+				put(it)
+			}
+		})
+		json.put(SHOW_CROP_HANDLE, p, defaults.showCropHandle)
+		json.put(SHOW_CROSSHAIRS, p, defaults.showCrosshairs)
+		json.put(ZOOM_BY_SWIPING, p, defaults.zoomBySwiping)
+		json.put(AUTO_ROTATE, p, defaults.autoRotate)
+		json.put(TRY_HARDER, p, defaults.tryHarder)
+		json.put(BULK_MODE, p, defaults.bulkMode)
+		json.put(BULK_MODE_DELAY, p, defaults.bulkModeDelay)
+		json.put(SHOW_TOAST_IN_BULK_MODE, p, defaults.showToastInBulkMode)
+		json.put(VIBRATE, p, defaults.vibrate)
+		json.put(BEEP, p, defaults.beep)
+		json.put(BEEP_TONE_NAME, p, defaults.beepToneName)
+		json.put(BEEP_STREAM_NAME, p, defaults.beepStreamName)
+		json.put(USE_HISTORY, p, defaults.useHistory)
+		json.put(IGNORE_DUPLICATES_NAME, p, defaults.ignoreDuplicatesName)
+		json.put(IGNORE_CODES, p, ignoreCodesToJsonArray(defaults.ignoreCodes))
+		json.put(COPY_IMMEDIATELY, p, defaults.copyImmediately)
+		json.put(OPEN_IMMEDIATELY, p, defaults.openImmediately)
+		json.put(SHOW_META_DATA, p, defaults.showMetaData)
+		json.put(SHOW_HEX_DUMP, p, defaults.showHexDump)
+		json.put(SHOW_CHECKSUM, p, defaults.showChecksum)
+		json.put(SHOW_RECREATION, p, defaults.showRecreation)
+		json.put(CLOSE_AUTOMATICALLY, p, defaults.closeAutomatically)
+		json.put(DEFAULT_SEARCH_URL, p, defaults.defaultSearchUrl)
+		json.put(OPEN_WITH_URL, p, defaults.openWithUrl)
+		json.put(SEND_SCAN_ACTIVE, p, defaults.sendScanActive)
+		json.put(SEND_SCAN_URL, p, defaults.sendScanUrl)
+		json.put(SEND_SCAN_TYPE, p, defaults.sendScanType)
+		json.put(SEND_SCAN_BLUETOOTH, p, defaults.sendScanBluetooth)
+		json.put(SEND_SCAN_BLUETOOTH_HOST, p, defaults.sendScanBluetoothHost)
+		json.put(CUSTOM_LOCALE, p, defaults.customLocale)
+		json.put(INDEX_OF_LAST_SELECTED_FORMAT, p, defaults.indexOfLastSelectedFormat)
+		json.put(INDEX_OF_LAST_SELECTED_EC_LEVEL, p, defaults.indexOfLastSelectedEcLevel)
+		json.put(FREE_ROTATION, p, defaults.freeRotation)
+		json.put(EXPAND_ESCAPE_SEQUENCES, p, defaults.expandEscapeSequences)
+		json.put(ADD_QUIET_ZONE, p, defaults.addQuietZone)
+		json.put(BRIGHTEN_SCREEN, p, defaults.brightenScreen)
+		json.put(PREVIEW_SCALE, p, defaults.previewScale)
+		json.put(AUTOMATED_ACTIONS, p.getString(AUTOMATED_ACTIONS, null) ?: "[]")
+
+		return json.toString()
+	}
+
+	fun importProfile(context: Context, text: String): String? {
+		val json = try {
+			JSONObject(text)
+		} catch (_: Exception) {
+			return null
+		}
+
+		if (json.optString("type") != PROFILE_EXPORT_TYPE) {
+			return null
+		}
+
+		var sanitized = json.optString("name").ifEmpty {
+			"imported"
+		}.replace(Regex("[^a-zA-Z0-9_-]+"), "_")
+			.trim('_')
+		if (sanitized.isEmpty()) {
+			sanitized = "imported"
+		}
+
+		val name = if (profiles.contains(sanitized)) {
+			val timestamp = SimpleDateFormat(
+				"yyyyMMdd_HHmmss",
+				Locale.US
+			).format(Date())
+			"${sanitized}_$timestamp"
+		} else {
+			sanitized
+		}
+		if (!addProfile(name)) {
+			return null
+		}
+
+		val target = context.getSharedPreferences(
+			name,
+			Context.MODE_PRIVATE
+		)
+		try {
+			target.edit {
+				val formatsArray = json.optJSONArray(BARCODE_FORMATS)
+				if (formatsArray != null) {
+					val formats = mutableSetOf<String>()
+					for (i in 0 until formatsArray.length()) {
+						val format = formatsArray.getString(i)
+							.migrateBarcodeFormatName()
+						try {
+							formats.add(BarcodeFormat.valueOf(format).name)
+						} catch (_: IllegalArgumentException) {
+							// Ignore unknown formats.
+						}
+					}
+					if (formats.isNotEmpty()) {
+						putStringSet(BARCODE_FORMATS, formats)
+					}
+				}
+				putBoolean(SHOW_CROP_HANDLE, json)
+				putBoolean(SHOW_CROSSHAIRS, json)
+				putBoolean(ZOOM_BY_SWIPING, json)
+				putBoolean(AUTO_ROTATE, json)
+				putBoolean(TRY_HARDER, json)
+				putBoolean(BULK_MODE, json)
+				putString(BULK_MODE_DELAY, json)
+				putBoolean(SHOW_TOAST_IN_BULK_MODE, json)
+				putBoolean(VIBRATE, json)
+				putBoolean(BEEP, json)
+				putString(BEEP_TONE_NAME, json)
+				putString(BEEP_STREAM_NAME, json)
+				putBoolean(USE_HISTORY, json)
+				putString(IGNORE_DUPLICATES_NAME, json)
+				putString(IGNORE_CODES, json)
+				putBoolean(COPY_IMMEDIATELY, json)
+				putBoolean(OPEN_IMMEDIATELY, json)
+				putBoolean(SHOW_META_DATA, json)
+				putBoolean(SHOW_HEX_DUMP, json)
+				putString(SHOW_CHECKSUM, json)
+				putBoolean(SHOW_RECREATION, json)
+				putBoolean(CLOSE_AUTOMATICALLY, json)
+				putString(DEFAULT_SEARCH_URL, json)
+				putString(OPEN_WITH_URL, json)
+				putBoolean(SEND_SCAN_ACTIVE, json)
+				putString(SEND_SCAN_URL, json)
+				putString(SEND_SCAN_TYPE, json)
+				putBoolean(SEND_SCAN_BLUETOOTH, json)
+				putString(SEND_SCAN_BLUETOOTH_HOST, json)
+				putString(CUSTOM_LOCALE, json)
+				putInt(INDEX_OF_LAST_SELECTED_FORMAT, json)
+				putInt(INDEX_OF_LAST_SELECTED_EC_LEVEL, json)
+				putBoolean(FREE_ROTATION, json)
+				putBoolean(EXPAND_ESCAPE_SEQUENCES, json)
+				putBoolean(ADD_QUIET_ZONE, json)
+				putBoolean(BRIGHTEN_SCREEN, json)
+				putFloat(PREVIEW_SCALE, json)
+				putString(AUTOMATED_ACTIONS, json)
+			}
+		} catch (_: Exception) {
+			removeProfile(name)
+			target.edit {
+				clear()
+			}
+			return null
+		}
+
+		return name
+	}
+
 	fun update() {
 		preferences.getStringSet(BARCODE_FORMATS, barcodeFormats)?.let {
-			val migrated = migrateCode39ToCode39Std(migrateBarcodeFormats(it))
-			if (migrated != it) {
-				apply(BARCODE_FORMATS, migrated)
-			}
 			barcodeFormats = addFormatsOnUpdate(
-				migrated,
+				migrateCode39ToCode39Std(
+					migrateBarcodeFormatNames(it)
+				),
 				BarcodeFormat.Code39Std,
 				BarcodeFormat.Code39Ext,
 				BarcodeFormat.Code32,
@@ -467,39 +632,6 @@ class Preferences {
 	fun shouldIgnoreHistoryContent(content: String, format: String): Boolean =
 		ignoreCodes.any { it.matches(content, format) }
 
-	private fun addFormatsOnUpdate(
-		restored: Set<String>,
-		vararg formats: BarcodeFormat
-	) = restored.toMutableSet().apply {
-		for (format in formats) {
-			val name = "${format.name}_added"
-			if (!preferences.getBoolean(name, false)) {
-				preferences.edit {
-					putBoolean(name, true)
-				}
-				add(format.name)
-			}
-		}
-	}
-
-	private fun migrateCode39ToCode39Std(
-		restored: Set<String>
-	) = restored.toMutableSet().apply {
-		// Migrate Code39 to the more specific Code39Std.
-		if (contains(BarcodeFormat.Code39.name)) {
-			remove(BarcodeFormat.Code39.name)
-			if (!contains(BarcodeFormat.Code39Std.name)) {
-				add(BarcodeFormat.Code39Std.name)
-			}
-		}
-	}
-
-	private fun migrateBarcodeFormats(formats: Set<String>): Set<String> {
-		return formats.mapTo(mutableSetOf()) { format ->
-			format.migrateBarcodeFormatName()
-		}
-	}
-
 	fun restoreCropHandle(
 		name: String,
 		viewWidth: Int,
@@ -531,6 +663,39 @@ class Preferences {
 		"ignore_consecutive_duplicates" -> IgnoreDuplicates.Consecutive
 		"ignore_any_duplicates" -> IgnoreDuplicates.Any
 		else -> IgnoreDuplicates.Never
+	}
+
+	private fun migrateCode39ToCode39Std(
+		restored: Set<String>
+	) = restored.toMutableSet().apply {
+		// Migrate Code39 to the more specific Code39Std.
+		if (contains(BarcodeFormat.Code39.name)) {
+			remove(BarcodeFormat.Code39.name)
+			if (!contains(BarcodeFormat.Code39Std.name)) {
+				add(BarcodeFormat.Code39Std.name)
+			}
+		}
+	}
+
+	private fun migrateBarcodeFormatNames(formats: Set<String>): Set<String> {
+		return formats.mapTo(mutableSetOf()) { format ->
+			format.migrateBarcodeFormatName()
+		}
+	}
+
+	private fun addFormatsOnUpdate(
+		restored: Set<String>,
+		vararg formats: BarcodeFormat
+	) = restored.toMutableSet().apply {
+		for (format in formats) {
+			val name = "${format.name}_added"
+			if (!preferences.getBoolean(name, false)) {
+				preferences.edit {
+					putBoolean(name, true)
+				}
+				add(format.name)
+			}
+		}
 	}
 
 	private fun apply(label: String, value: Boolean) {
@@ -575,6 +740,7 @@ class Preferences {
 			Consecutive, Any, Never
 		}
 
+		private const val PROFILE_EXPORT_TYPE = "binaryeye_profile"
 		private const val PROFILES = "profiles"
 		private const val PROFILE = "profile"
 		private const val BARCODE_FORMATS = "formats"
@@ -617,5 +783,45 @@ class Preferences {
 		private const val PREVIEW_SCALE = "preview_scale"
 		private const val AUTOMATED_ACTIONS = "automated_actions"
 		private const val DEFAULT_IGNORE_CODE_PATTERN = "^FIDO://.*"
+	}
+}
+
+private fun JSONObject.put(key: String, p: SharedPreferences, default: Boolean) {
+	put(key, p.getBoolean(key, default))
+}
+
+private fun JSONObject.put(key: String, p: SharedPreferences, default: String) {
+	put(key, p.getString(key, null) ?: default)
+}
+
+private fun JSONObject.put(key: String, p: SharedPreferences, default: Int) {
+	put(key, p.getInt(key, default))
+}
+
+private fun JSONObject.put(key: String, p: SharedPreferences, default: Float) {
+	put(key, p.getFloat(key, default))
+}
+
+private fun SharedPreferences.Editor.putBoolean(key: String, json: JSONObject) {
+	if (json.has(key)) {
+		putBoolean(key, json.getBoolean(key))
+	}
+}
+
+private fun SharedPreferences.Editor.putString(key: String, json: JSONObject) {
+	if (json.has(key)) {
+		putString(key, json.getString(key))
+	}
+}
+
+private fun SharedPreferences.Editor.putInt(key: String, json: JSONObject) {
+	if (json.has(key)) {
+		putInt(key, json.getInt(key))
+	}
+}
+
+private fun SharedPreferences.Editor.putFloat(key: String, json: JSONObject) {
+	if (json.has(key)) {
+		putFloat(key, json.getDouble(key).toFloat())
 	}
 }

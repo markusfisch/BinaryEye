@@ -90,6 +90,8 @@
 	<string name="profile_empty">Henüz profil yok</string>
 	<string name="profile_current">Geçerli profil</string>
 	<string name="profile_remove_confirm">Bu profil kaldırılsın mı?</string>
+	<string name="profile_share_qr">Profili QR kodu olarak paylaş</string>
+	<string name="profile_import_set_default">Profil \"%s\" içe aktarıldı. Etkin profil olarak ayarlansın mı?</string>
 	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Özel yerel</string>
 	<string name="follow_system_settings">Sistem ayarlarını izle</string>

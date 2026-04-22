@@ -89,6 +89,8 @@
 	<string name="profile_empty">尚無設定檔</string>
 	<string name="profile_current">目前的設定檔</string>
 	<string name="profile_remove_confirm">刪除此設定檔？</string>
+	<string name="profile_share_qr">將設定檔分享為 QR 碼</string>
+	<string name="profile_import_set_default">設定檔\"%s\"已匯入。設為活動設定檔？</string>
 	<string name="current_profile">設定檔：%s</string>
 	<string name="custom_locale">設定語言</string>
 	<string name="follow_system_settings">跟隨系統設定</string>

@@ -90,6 +90,8 @@
 	<string name="profile_empty">এখনও কোনো প্রোফাইল নেই</string>
 	<string name="profile_current">বর্তমান প্রোফাইল</string>
 	<string name="profile_remove_confirm">এই প্রোফাইলটি সরাবেন?</string>
+	<string name="profile_share_qr">প্রোফাইলটি QR কোড হিসেবে শেয়ার করুন</string>
+	<string name="profile_import_set_default">প্রোফাইল \"%s\" আমদানি হয়েছে। সক্রিয় প্রোফাইল হিসেবে সেট করবেন?</string>
 	<string name="current_profile">প্রোফাইল: %s</string>
 	<string name="custom_locale">আলাদা ভাষা</string>
 	<string name="follow_system_settings">ব্যবস্থার পছন্দসমূহ অনুসরণ করো</string>

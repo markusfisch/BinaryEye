@@ -90,6 +90,8 @@
 	<string name="profile_empty">Ingen profiler endnu</string>
 	<string name="profile_current">Nuværende profil</string>
 	<string name="profile_remove_confirm">Fjern denne profil?</string>
+	<string name="profile_share_qr">Del profil som QR-kode</string>
+	<string name="profile_import_set_default">Profil \"%s\" importeret. Angiv som aktiv profil?</string>
 	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Brugerdefineret sprog</string>
 	<string name="follow_system_settings">Følg systemindstillingerne</string>

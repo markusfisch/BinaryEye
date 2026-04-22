@@ -89,6 +89,8 @@
 	<string name="profile_empty">Chưa có hồ sơ nào</string>
 	<string name="profile_current">Hồ sơ hiện tại</string>
 	<string name="profile_remove_confirm">Xóa hồ sơ này?</string>
+	<string name="profile_share_qr">Chia sẻ hồ sơ dưới dạng mã QR</string>
+	<string name="profile_import_set_default">Hồ sơ \"%s\" đã được nhập. Đặt làm hồ sơ đang hoạt động?</string>
 	<string name="current_profile">Hồ sơ: %s</string>
 	<string name="custom_locale">Tùy chọn ngôn ngữ</string>
 	<string name="follow_system_settings">Theo cài đặt của máy</string>

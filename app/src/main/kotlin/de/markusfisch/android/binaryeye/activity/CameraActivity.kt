@@ -514,13 +514,17 @@ class CameraActivity : AppCompatActivity() {
 					}
 				}
 				if (currentProfile != newProfile) {
-					storeSettings()
-					prefs.load(this, newProfile)
-					loadPreferences()
-					refreshIfProfileChanged()
+					switchProfile(newProfile)
 				}
 			}
 			.show()
+	}
+
+	private fun switchProfile(name: String?) {
+		storeSettings()
+		prefs.load(this, name)
+		loadPreferences()
+		refreshIfProfileChanged()
 	}
 
 	private fun handleSendText(intent: Intent) {
@@ -958,6 +962,9 @@ class CameraActivity : AppCompatActivity() {
 				}
 
 				else -> {
+					if (importProfile(result.text)) {
+						return@post
+					}
 					showResult(result, bulkMode)
 					// If this app was invoked via a deep link but without
 					// a return URI, we probably don't want to return to
@@ -985,6 +992,21 @@ class CameraActivity : AppCompatActivity() {
 				}, prefs.bulkModeDelay.toLong())
 			}
 		}
+	}
+
+	private fun importProfile(text: String): Boolean {
+		val name = prefs.importProfile(this, text) ?: return false
+		AlertDialog.Builder(this)
+			.setMessage(getString(R.string.profile_import_set_default, name))
+			.setPositiveButton(android.R.string.ok) { _, _ ->
+				switchProfile(name)
+			}
+			.setNegativeButton(android.R.string.cancel, null)
+			.setOnDismissListener {
+				decoding = true
+			}
+			.show()
+		return true
 	}
 
 	companion object {

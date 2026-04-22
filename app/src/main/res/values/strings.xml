@@ -98,6 +98,8 @@
 	<string name="profile_empty">No profiles yet</string>
 	<string name="profile_current">Current profile</string>
 	<string name="profile_remove_confirm">Remove this profile?</string>
+	<string name="profile_share_qr">Share profile as QR code</string>
+	<string name="profile_import_set_default">Profile \"%s\" imported. Set as active profile?</string>
 	<string name="current_profile">Profile: %s</string>
 	<string name="custom_locale">Custom language</string>
 	<string name="follow_system_settings">Follow system settings</string>

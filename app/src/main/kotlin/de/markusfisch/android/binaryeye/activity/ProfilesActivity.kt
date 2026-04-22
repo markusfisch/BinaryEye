@@ -14,6 +14,7 @@ import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.systemBarListViewScrollListener
 import de.markusfisch.android.binaryeye.widget.toast
+import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 
 class ProfilesActivity : AbstractBaseActivity() {
 	private val profiles = ArrayList<ProfileItem>()
@@ -116,8 +117,8 @@ class ProfilesActivity : AbstractBaseActivity() {
 		private val items: List<ProfileItem>
 	) : ArrayAdapter<ProfileItem>(
 		context,
-		android.R.layout.simple_list_item_2,
-		android.R.id.text1,
+		R.layout.row_profile,
+		R.id.title,
 		items
 	) {
 		override fun getView(
@@ -137,6 +138,16 @@ class ProfilesActivity : AbstractBaseActivity() {
 					subtitle.text = ""
 					subtitle.visibility = View.GONE
 				}
+				shareQr.setOnClickListener {
+					context.startActivity(
+						BarcodeActivity.newIntent(
+							context,
+							prefs.toJson(context, item.name),
+							BarcodeFormat.QRCode,
+							addQuietZone = true
+						)
+					)
+				}
 			}
 			return view
 		}
@@ -144,8 +155,9 @@ class ProfilesActivity : AbstractBaseActivity() {
 		private fun getViewHolder(
 			view: View
 		): ViewHolder = view.tag as ViewHolder? ?: ViewHolder(
-			view.findViewById(android.R.id.text1),
-			view.findViewById(android.R.id.text2),
+			view.findViewById(R.id.title),
+			view.findViewById(R.id.subtitle),
+			view.findViewById(R.id.share_qr),
 		).also {
 			view.tag = it
 		}
@@ -153,6 +165,7 @@ class ProfilesActivity : AbstractBaseActivity() {
 		private data class ViewHolder(
 			val title: TextView,
 			val subtitle: TextView,
+			val shareQr: View,
 		)
 	}
 }

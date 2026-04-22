@@ -90,6 +90,8 @@
 	<string name="profile_empty">Nog geen profielen</string>
 	<string name="profile_current">Huidig profiel</string>
 	<string name="profile_remove_confirm">Dit profiel verwijderen?</string>
+	<string name="profile_share_qr">Profiel delen als QR-code</string>
+	<string name="profile_import_set_default">Profiel \"%s\" geïmporteerd. Instellen als actief profiel?</string>
 	<string name="current_profile">Profiel: %s</string>
 	<string name="custom_locale">Taal instelling</string>
 	<string name="follow_system_settings">Systeeminstellingen volgen</string>

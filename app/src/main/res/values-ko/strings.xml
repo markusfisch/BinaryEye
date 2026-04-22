@@ -89,6 +89,8 @@
 	<string name="profile_empty">아직 프로필 없음</string>
 	<string name="profile_current">현재 프로필</string>
 	<string name="profile_remove_confirm">이 프로필을 제거할까요?</string>
+	<string name="profile_share_qr">프로필을 QR 코드로 공유</string>
+	<string name="profile_import_set_default">프로필 \"%s\"을(를) 가져왔습니다. 활성 프로필로 설정하시겠습니까?</string>
 	<string name="current_profile">프로필: %s</string>
 	<string name="custom_locale">사용자 정의 언어</string>
 	<string name="follow_system_settings">시스템 설정 따르기</string>
