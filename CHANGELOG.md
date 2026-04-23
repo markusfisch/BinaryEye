@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.72.2
+* Import/export preferences using QR codes
+* Add predefined expert and simple profiles
+* Update ZXingCpp library
+* Fix beeping on scans
+
 ## 1.72.1
 * Fix migrating DATA_BAR entries
 * Italian language update

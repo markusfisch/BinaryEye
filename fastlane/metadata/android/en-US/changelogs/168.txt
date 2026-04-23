@@ -1,0 +1,5 @@
+* Import/export preferences using QR codes
+* Add predefined expert and simple profiles
+* Update ZXingCpp library
+* Fix beeping on scans
+
