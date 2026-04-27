@@ -150,8 +150,8 @@
 	<string name="copy_immediately_summary">Автоматически копировать содержимое считанного штрих-кода в буфер обмена. Имейте в виду, что другие приложения могут иметь доступ к буферу обмена в фоне.</string>
 	<string name="show_meta_data">Показывать метаданные</string>
 	<string name="show_meta_data_summary">Показывать дополнительную информацию о считанных штрих-кодах.</string>
-	<string name="show_hex_dump">Показывать шестнадцатеричный дамп</string>
-	<string name="show_hex_dump_summary">Показывать шестнадцатеричный дамп содержимого считанного штрих-кода.</string>
+	<string name="show_hex_dump">Показывать hex дамп</string>
+	<string name="show_hex_dump_summary">Показать hex дамп отсканированного содержимого.</string>
 	<string name="show_checksum">Показывать контрольную сумму</string>
 	<string name="no_checksum">Нет контрольной суммы</string>
 	<string name="show_recreation">Показывать восстановленный штрих-код</string>
