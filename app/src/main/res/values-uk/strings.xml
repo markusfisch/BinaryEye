@@ -93,7 +93,7 @@
 	<string name="profile_current">Поточний профіль</string>
 	<string name="profile_remove_confirm">Видалити цей профіль?</string>
 	<string name="profile_share_qr">Поділитися профілем як QR код</string>
-	<string name="profile_import_set_default">Профіль \"%s\" імпортовано. Встановити активним профілем?</string>
+	<string name="profile_import_set_default">Профіль \"%s\" імпортовано. Встановити як активний профіль?</string>
 	<string name="current_profile">Профіль: %s</string>
 	<string name="custom_locale">Вибрати мову</string>
 	<string name="follow_system_settings">Дотримуватись системних налаштувань</string>
