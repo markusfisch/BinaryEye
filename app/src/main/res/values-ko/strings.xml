@@ -233,6 +233,13 @@
 	<string name="vevent_add">일정에 추가</string>
 	<string name="vevent_failed">캘린더에 추가할 수 없습니다</string>
 	<string name="otpauth_add">2FA 추가</string>
+	<string name="otp_account">Account</string>
+	<string name="otp_issuer">Issuer</string>
+	<string name="otp_algorithm">Algorithm</string>
+	<string name="otp_digits">Digits</string>
+	<string name="otp_period">Period (s)</string>
+	<string name="otp_counter">Counter</string>
+	<string name="parsed_type_otp">One-Time Password</string>
 	<string name="search_web">웹 검색</string>
 	<string name="search_scan">검색 스캔</string>
 	<string name="add_to_history">히스토리에 추가</string>

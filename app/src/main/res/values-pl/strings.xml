@@ -116,6 +116,13 @@
 	<string name="view_barcode">Wyświetl kod kreskowy</string>
 	<string name="error_encoding_barcode">Nie można utworzyć kodu kreskowego</string>
 	<string name="otpauth_add">Dodaj 2FA</string>
+	<string name="otp_account">Account</string>
+	<string name="otp_issuer">Issuer</string>
+	<string name="otp_algorithm">Algorithm</string>
+	<string name="otp_digits">Digits</string>
+	<string name="otp_period">Period (s)</string>
+	<string name="otp_counter">Counter</string>
+	<string name="parsed_type_otp">One-Time Password</string>
 	<string name="remove_scan">Usuń skan</string>
 	<string name="separator_line_break">Przerwanie linii</string>
 	<string name="shortcut_decode">Zeskanuj kod kreskowy</string>

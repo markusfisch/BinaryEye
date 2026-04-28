@@ -233,6 +233,13 @@
 	<string name="vevent_add">加入日曆</string>
 	<string name="vevent_failed">無法加入日曆</string>
 	<string name="otpauth_add">加入雙重驗證 (2FA)</string>
+	<string name="otp_account">Account</string>
+	<string name="otp_issuer">Issuer</string>
+	<string name="otp_algorithm">Algorithm</string>
+	<string name="otp_digits">Digits</string>
+	<string name="otp_period">Period (s)</string>
+	<string name="otp_counter">Counter</string>
+	<string name="parsed_type_otp">One-Time Password</string>
 	<string name="search_web">在網路上搜尋</string>
 	<string name="search_scan">搜尋掃描記錄</string>
 	<string name="add_to_history">儲存記錄</string>

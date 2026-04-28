@@ -241,6 +241,13 @@
 	<string name="vevent_add">Vložit do kalendáře</string>
 	<string name="vevent_failed">Nepodařilo se vložit do kalendáře</string>
 	<string name="otpauth_add">Přidat 2FA</string>
+	<string name="otp_account">Account</string>
+	<string name="otp_issuer">Issuer</string>
+	<string name="otp_algorithm">Algorithm</string>
+	<string name="otp_digits">Digits</string>
+	<string name="otp_period">Period (s)</string>
+	<string name="otp_counter">Counter</string>
+	<string name="parsed_type_otp">One-Time Password</string>
 	<string name="search_web">Vyhledat na webu</string>
 	<string name="search_scan">Vyhledat sken</string>
 	<string name="add_to_history">Přidat do historie</string>

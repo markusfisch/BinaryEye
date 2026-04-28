@@ -235,6 +235,13 @@
 	<string name="vevent_add">افزودن به تقویم</string>
 	<string name="vevent_failed">نمی‌توان به تقویم اضافه کرد</string>
 	<string name="otpauth_add">افزودن احراز هویت چندعاملی(2FA)</string>
+	<string name="otp_account">Account</string>
+	<string name="otp_issuer">Issuer</string>
+	<string name="otp_algorithm">Algorithm</string>
+	<string name="otp_digits">Digits</string>
+	<string name="otp_period">Period (s)</string>
+	<string name="otp_counter">Counter</string>
+	<string name="parsed_type_otp">One-Time Password</string>
 	<string name="search_web">جست‌وجوی وب</string>
 	<string name="search_scan">جست‌وجوی پویش</string>
 	<string name="add_to_history">اضافه به تاریخچه</string>

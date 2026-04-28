@@ -233,6 +233,13 @@
 	<string name="vevent_add">Tambahkan ke kalender</string>
 	<string name="vevent_failed">Tidak bisa menambahkan ke kalender</string>
 	<string name="otpauth_add">Tambahkan 2FA</string>
+	<string name="otp_account">Account</string>
+	<string name="otp_issuer">Issuer</string>
+	<string name="otp_algorithm">Algorithm</string>
+	<string name="otp_digits">Digits</string>
+	<string name="otp_period">Period (s)</string>
+	<string name="otp_counter">Counter</string>
+	<string name="parsed_type_otp">One-Time Password</string>
 	<string name="search_web">Cari secara daring</string>
 	<string name="search_scan">Cari pindaian</string>
 	<string name="add_to_history">Aggiungi alla cronologia</string>

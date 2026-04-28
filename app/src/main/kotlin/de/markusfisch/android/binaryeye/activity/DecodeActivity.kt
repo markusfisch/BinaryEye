@@ -35,6 +35,7 @@ import de.markusfisch.android.binaryeye.actions.ActionRegistry
 import de.markusfisch.android.binaryeye.actions.mail.MatMsg
 import de.markusfisch.android.binaryeye.actions.mail.MatMsgAction
 import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
+import de.markusfisch.android.binaryeye.actions.otpauth.OtpauthAction
 import de.markusfisch.android.binaryeye.actions.vtype.vcard.VCardAction
 import de.markusfisch.android.binaryeye.actions.vtype.vevent.VEventAction
 import de.markusfisch.android.binaryeye.actions.web.WebAction
@@ -456,6 +457,39 @@ class DecodeActivity : AbstractBaseActivity() {
 					items.add(Field(R.string.query, query))
 				}
 				return R.string.parsed_type_url
+			} catch (_: Exception) {
+				// Ignore
+			}
+
+			is OtpauthAction -> try {
+				text.toUri().run {
+					val label = pathSegments.firstOrNull()?.let {
+						Uri.decode(it)
+					} ?: ""
+					val colonIdx = label.indexOf(':')
+					val issuerFromLabel = if (colonIdx >= 0) {
+						label.substring(0, colonIdx)
+					} else {
+						null
+					}
+					val account = if (colonIdx >= 0) {
+						label.substring(colonIdx + 1).trim()
+					} else {
+						label
+					}
+					val issuer = getQueryParameter("issuer") ?: issuerFromLabel
+					items.add(Field(R.string.entry_type, host?.uppercase()))
+					items.add(Field(R.string.otp_account, account))
+					items.add(Field(R.string.otp_issuer, issuer))
+					items.add(Field(R.string.otp_algorithm, getQueryParameter("algorithm")))
+					items.add(Field(R.string.otp_digits, getQueryParameter("digits")))
+					if (host == "totp") {
+						items.add(Field(R.string.otp_period, getQueryParameter("period")))
+					} else {
+						items.add(Field(R.string.otp_counter, getQueryParameter("counter")))
+					}
+				}
+				return R.string.parsed_type_otp
 			} catch (_: Exception) {
 				// Ignore
 			}

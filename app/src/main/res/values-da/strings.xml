@@ -235,6 +235,13 @@
 	<string name="vevent_add">Tilføj til kalender</string>
 	<string name="vevent_failed">Kunne ikke føje til kalenderen</string>
 	<string name="otpauth_add">Tilføj 2FA</string>
+	<string name="otp_account">Account</string>
+	<string name="otp_issuer">Issuer</string>
+	<string name="otp_algorithm">Algorithm</string>
+	<string name="otp_digits">Digits</string>
+	<string name="otp_period">Period (s)</string>
+	<string name="otp_counter">Counter</string>
+	<string name="parsed_type_otp">One-Time Password</string>
 	<string name="search_web">Søg på nettet</string>
 	<string name="search_scan">Søg scanning</string>
 	<string name="add_to_history">Tilføj til historik</string>

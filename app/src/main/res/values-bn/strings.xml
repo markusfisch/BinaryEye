@@ -235,6 +235,13 @@
 	<string name="vevent_add">বর্ষপঞ্জিকায় যোগ করো</string>
 	<string name="vevent_failed">বর্ষপঞ্জিকায় যোগ করা যায়নি</string>
 	<string name="otpauth_add">২এফএ যোগ করো</string>
+	<string name="otp_account">Account</string>
+	<string name="otp_issuer">Issuer</string>
+	<string name="otp_algorithm">Algorithm</string>
+	<string name="otp_digits">Digits</string>
+	<string name="otp_period">Period (s)</string>
+	<string name="otp_counter">Counter</string>
+	<string name="parsed_type_otp">One-Time Password</string>
 	<string name="search_web">ওয়েবে খুঁজো</string>
 	<string name="search_scan">আগেরগুলোতে খুঁজো</string>
 	<string name="add_to_history">ইতিহাসে যোগ করুন</string>
