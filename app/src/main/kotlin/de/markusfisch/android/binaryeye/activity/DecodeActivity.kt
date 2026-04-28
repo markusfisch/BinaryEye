@@ -405,12 +405,14 @@ class DecodeActivity : AbstractBaseActivity() {
 		bytes: ByteArray
 	): Int {
 		val ctx = this
+
 		try {
 			items.add(Field(R.string.formatted_json, JSONObject(text).toString(2)))
 			return R.string.parsed_type_json
 		} catch (_: JSONException) {
 			// Ignore
 		}
+
 		IdlParser.parse(String(bytes))?.let {
 			items.add(Field("IIN", it.iin))
 			it.elements.forEach { (id, value) ->
@@ -418,18 +420,21 @@ class DecodeActivity : AbstractBaseActivity() {
 			}
 			return R.string.parsed_type_international_driver_license
 		}
+
 		SealParser.parse(ctx, bytes)?.let { sealFields ->
 			sealFields.forEach { vf ->
 				items.add(Field(vf.name, vf.value))
 			}
 			return R.string.parsed_type_digital_seal
 		}
+
 		EpcQrParser.parse(text)?.let {
 			items.addAll(it.map { (id, value) ->
 				Field(ctx.epcQrToRes(id), value)
 			})
 			return R.string.parsed_type_sepa_epc_qr
 		}
+
 		when (action) {
 			is MatMsgAction -> MatMsg(text).run {
 				items.add(Field(R.string.email_to, to))
