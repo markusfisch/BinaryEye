@@ -1,0 +1,7 @@
+Läuft in Hoch- und Quer-Format, kann invertierte Codes lesen, ist in Material Design und kann auch Barcodes generieren.
+
+Nutzt die ZXing-C++ ("Zebra Crossing") barcode scanning library.
+Unterstütze Barcode Formate sind: AZTEC, CODABAR, CODE 39, CODE 93, CODE 128, DATA MATRIX, EAN 8, EAN 13, ITF, PDF417, QR CODE, RSS 14, RSS EXPANDED, UPC A, UPC E und UPC EAN EXTENSION.
+
+Diese App ist open source:
+https://github.com/markusfisch/BinaryEye
