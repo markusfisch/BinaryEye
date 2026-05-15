@@ -43,6 +43,38 @@ fun Context.openUrl(url: String, silent: Boolean = false): Boolean {
 }
 
 fun Context.openUri(uri: Uri, silent: Boolean = false): Boolean {
+	if (silent) {
+		return launchUri(uri, silent = true)
+	}
+	val scheme = uri.scheme?.lowercase()
+	val needsExplicitConsent = when (scheme) {
+		"tel", "sms", "smsto", "mms", "mmsto", "mailto" -> true
+		"http", "https", "content", "file", null -> false
+		else -> true
+	}
+	if (!needsExplicitConsent) {
+		return launchUri(uri, silent = false)
+	}
+	val activity = this as? android.app.Activity ?: return launchUri(uri, silent = false)
+	val schemeLabel = when (scheme) {
+		"tel" -> activity.getString(R.string.scheme_label_tel)
+		"sms", "smsto" -> activity.getString(R.string.scheme_label_sms)
+		"mms", "mmsto" -> activity.getString(R.string.scheme_label_mms)
+		"mailto" -> activity.getString(R.string.scheme_label_mailto)
+		else -> activity.getString(R.string.scheme_label_other, scheme ?: "?")
+	}
+	androidx.appcompat.app.AlertDialog.Builder(activity)
+		.setTitle(R.string.scheme_dialog_title)
+		.setMessage(activity.getString(R.string.scheme_dialog_body, schemeLabel, uri.toString()))
+		.setNegativeButton(android.R.string.cancel, null)
+		.setPositiveButton(R.string.scheme_dialog_open) { _, _ ->
+			launchUri(uri, silent = false)
+		}
+		.show()
+	return true
+}
+
+private fun Context.launchUri(uri: Uri, silent: Boolean): Boolean {
 	val intent = Intent(Intent.ACTION_VIEW, uri).apply {
 		if (uri.scheme == "content") {
 			addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
