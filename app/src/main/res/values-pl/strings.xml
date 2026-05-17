@@ -423,4 +423,13 @@
 	<string name="parsed_type_calendar_event">Wydarzenie kalendarza</string>
 	<string name="parsed_type_wifi_network">Sieć Wi-Fi</string>
 	<string name="formatted_json">Sformatowany JSON</string>
+
+	<string name="scheme_dialog_title">Zezwolić na tę akcję?</string>
+	<string name="scheme_dialog_body">Ten kod QR chce otworzyć %1$s z:\n\n%2$s</string>
+	<string name="scheme_dialog_open">Otwórz</string>
+	<string name="scheme_label_tel">telefoniczny wybierak</string>
+	<string name="scheme_label_sms">edytor SMS</string>
+	<string name="scheme_label_mms">edytor MMS</string>
+	<string name="scheme_label_mailto">edytor e-mail</string>
+	<string name="scheme_label_other">zewnętrzna aplikacja (%1$s)</string>
 </resources>

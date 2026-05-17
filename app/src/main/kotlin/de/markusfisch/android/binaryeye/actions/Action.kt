@@ -3,6 +3,7 @@ package de.markusfisch.android.binaryeye.actions
 import android.content.Context
 import android.content.Intent
 import de.markusfisch.android.binaryeye.content.execShareIntent
+import de.markusfisch.android.binaryeye.content.execShareIntentWithConsent
 import de.markusfisch.android.binaryeye.content.openUrl
 import de.markusfisch.android.binaryeye.widget.toast
 
@@ -24,7 +25,7 @@ abstract class IntentAction : Action() {
 		if (intent == null) {
 			context.toast(errorMsg)
 		} else {
-			fired = context.execShareIntent(intent)
+			fired = context.execShareIntentWithConsent(intent)
 		}
 	}
 

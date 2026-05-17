@@ -415,4 +415,13 @@
 	<string name="parsed_type_calendar_event">Kalenderbegivenhed</string>
 	<string name="parsed_type_wifi_network">Wi-Fi-netværk</string>
 	<string name="formatted_json">Formatteret JSON</string>
+
+	<string name="scheme_dialog_title">Tillad denne handling?</string>
+	<string name="scheme_dialog_body">Denne QR-kode vil åbne %1$s med:\n\n%2$s</string>
+	<string name="scheme_dialog_open">Åbn</string>
+	<string name="scheme_label_tel">telefonopkald</string>
+	<string name="scheme_label_sms">SMS-editor</string>
+	<string name="scheme_label_mms">MMS-editor</string>
+	<string name="scheme_label_mailto">e-mail-editor</string>
+	<string name="scheme_label_other">ekstern app (%1$s)</string>
 </resources>

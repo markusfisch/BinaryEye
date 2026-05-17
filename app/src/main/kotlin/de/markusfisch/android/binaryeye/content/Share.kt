@@ -43,6 +43,61 @@ fun Context.openUrl(url: String, silent: Boolean = false): Boolean {
 }
 
 fun Context.openUri(uri: Uri, silent: Boolean = false): Boolean {
+	if (silent) {
+		return launchUri(uri, silent = true)
+	}
+	val scheme = uri.scheme?.lowercase()
+	if (!schemeNeedsConsent(scheme)) {
+		return launchUri(uri, silent = false)
+	}
+	val activity = this as? android.app.Activity ?: return launchUri(uri, silent = false)
+	confirmSensitiveAction(activity, scheme, uri.toString()) {
+		launchUri(uri, silent = false)
+	}
+	return true
+}
+
+fun Context.execShareIntentWithConsent(intent: Intent): Boolean {
+	val uri = intent.data
+	val scheme = uri?.scheme?.lowercase()
+	if (uri == null || !schemeNeedsConsent(scheme)) {
+		return execShareIntent(intent)
+	}
+	val activity = this as? android.app.Activity ?: return execShareIntent(intent)
+	confirmSensitiveAction(activity, scheme, uri.toString()) {
+		execShareIntent(intent)
+	}
+	return true
+}
+
+private fun schemeNeedsConsent(scheme: String?): Boolean = when (scheme) {
+	"tel", "sms", "smsto", "mms", "mmsto", "mailto" -> true
+	"http", "https", "content", "file", null -> false
+	else -> true
+}
+
+private fun confirmSensitiveAction(
+	activity: android.app.Activity,
+	scheme: String?,
+	uriShown: String,
+	onConfirm: () -> Unit
+) {
+	val schemeLabel = when (scheme) {
+		"tel" -> activity.getString(R.string.scheme_label_tel)
+		"sms", "smsto" -> activity.getString(R.string.scheme_label_sms)
+		"mms", "mmsto" -> activity.getString(R.string.scheme_label_mms)
+		"mailto" -> activity.getString(R.string.scheme_label_mailto)
+		else -> activity.getString(R.string.scheme_label_other, scheme ?: "?")
+	}
+	androidx.appcompat.app.AlertDialog.Builder(activity)
+		.setTitle(R.string.scheme_dialog_title)
+		.setMessage(activity.getString(R.string.scheme_dialog_body, schemeLabel, uriShown))
+		.setNegativeButton(android.R.string.cancel, null)
+		.setPositiveButton(R.string.scheme_dialog_open) { _, _ -> onConfirm() }
+		.show()
+}
+
+private fun Context.launchUri(uri: Uri, silent: Boolean): Boolean {
 	val intent = Intent(Intent.ACTION_VIEW, uri).apply {
 		if (uri.scheme == "content") {
 			addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)

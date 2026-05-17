@@ -413,4 +413,13 @@
 	<string name="parsed_type_calendar_event">カレンダーイベント</string>
 	<string name="parsed_type_wifi_network">Wi-Fi ネットワーク</string>
 	<string name="formatted_json">整形済み JSON</string>
+
+	<string name="scheme_dialog_title">この操作を許可しますか？</string>
+	<string name="scheme_dialog_body">このQRコードは%1$sを開こうとしています:\n\n%2$s</string>
+	<string name="scheme_dialog_open">開く</string>
+	<string name="scheme_label_tel">電話アプリ</string>
+	<string name="scheme_label_sms">SMS作成画面</string>
+	<string name="scheme_label_mms">MMS作成画面</string>
+	<string name="scheme_label_mailto">メール作成画面</string>
+	<string name="scheme_label_other">外部アプリ (%1$s)</string>
 </resources>

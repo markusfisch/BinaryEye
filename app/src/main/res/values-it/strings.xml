@@ -417,4 +417,13 @@
 	<string name="parsed_type_calendar_event">Evento calendario</string>
 	<string name="parsed_type_wifi_network">Rete Wi-Fi</string>
 	<string name="formatted_json">JSON formattato</string>
+
+	<string name="scheme_dialog_title">Consentire questa azione?</string>
+	<string name="scheme_dialog_body">Questo codice QR vuole aprire %1$s con:\n\n%2$s</string>
+	<string name="scheme_dialog_open">Apri</string>
+	<string name="scheme_label_tel">dialer del telefono</string>
+	<string name="scheme_label_sms">editor SMS</string>
+	<string name="scheme_label_mms">editor MMS</string>
+	<string name="scheme_label_mailto">editor email</string>
+	<string name="scheme_label_other">app esterna (%1$s)</string>
 </resources>
