@@ -413,4 +413,13 @@
 	<string name="parsed_type_calendar_event">行事曆事件</string>
 	<string name="parsed_type_wifi_network">Wi-Fi 網路</string>
 	<string name="formatted_json">格式化的 JSON</string>
+
+	<string name="scheme_dialog_title">允許此操作？</string>
+	<string name="scheme_dialog_body">此 QR 條碼想要開啟%1$s:\n\n%2$s</string>
+	<string name="scheme_dialog_open">開啟</string>
+	<string name="scheme_label_tel">電話撥號器</string>
+	<string name="scheme_label_sms">簡訊編輯器</string>
+	<string name="scheme_label_mms">彩信編輯器</string>
+	<string name="scheme_label_mailto">郵件編輯器</string>
+	<string name="scheme_label_other">外部應用程式 (%1$s)</string>
 </resources>

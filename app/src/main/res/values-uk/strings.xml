@@ -423,4 +423,13 @@
 	<string name="parsed_type_calendar_event">Подія календаря</string>
 	<string name="parsed_type_wifi_network">Мережа Wi-Fi</string>
 	<string name="formatted_json">Відформатований JSON</string>
+
+	<string name="scheme_dialog_title">Дозволити цю дію?</string>
+	<string name="scheme_dialog_body">Цей QR-код хоче відкрити %1$s з:\n\n%2$s</string>
+	<string name="scheme_dialog_open">Відкрити</string>
+	<string name="scheme_label_tel">телефонний набиральник</string>
+	<string name="scheme_label_sms">редактор SMS</string>
+	<string name="scheme_label_mms">редактор MMS</string>
+	<string name="scheme_label_mailto">редактор електронної пошти</string>
+	<string name="scheme_label_other">зовнішня програма (%1$s)</string>
 </resources>
