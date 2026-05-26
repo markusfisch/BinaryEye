@@ -24,6 +24,6 @@ object WebAction : Action() {
 		if (!url.startsWith("http") && !url.startsWith("ftp")) {
 			url = "http://${url}"
 		}
-		fired = context.openUrl(url)
+		executed = context.openUrl(url)
 	}
 }

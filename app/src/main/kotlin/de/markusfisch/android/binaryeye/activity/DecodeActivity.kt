@@ -222,7 +222,7 @@ class DecodeActivity : AbstractBaseActivity() {
 				label = newLabel
 			}
 		}
-		if (action.fired) {
+		if (action.executed) {
 			maybeBackOrFinish()
 		}
 	}

@@ -15,7 +15,7 @@ object OpenOrSearchAction : Action() {
 	override fun canExecuteOn(data: ByteArray): Boolean = false
 
 	override suspend fun execute(context: Context, data: ByteArray) {
-		fired = openUrlOrSearch(context, String(data))
+		executed = openUrlOrSearch(context, String(data))
 	}
 }
 

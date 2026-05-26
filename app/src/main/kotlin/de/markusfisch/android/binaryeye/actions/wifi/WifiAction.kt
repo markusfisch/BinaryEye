@@ -23,12 +23,12 @@ object WifiAction : Action() {
 
 	override suspend fun execute(context: Context, data: ByteArray) {
 		withContext(Dispatchers.IO) {
-			fired = WifiConnector.parse(String(data))?.let {
+			executed = WifiConnector.parse(String(data))?.let {
 				WifiConnector.addNetwork(context, it)
 			} ?: false
 			withContext(Dispatchers.Main) {
 				context.toast(
-					if (fired) {
+					if (executed) {
 						R.string.wifi_added
 					} else {
 						R.string.wifi_config_failed
