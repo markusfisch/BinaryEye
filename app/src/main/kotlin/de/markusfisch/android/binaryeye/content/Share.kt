@@ -43,8 +43,9 @@ fun Context.openUrl(url: String, silent: Boolean = false): Boolean {
 }
 
 fun Context.openUri(uri: Uri, silent: Boolean = false): Boolean {
-	val intent = Intent(Intent.ACTION_VIEW, uri).apply {
-		if (uri.scheme == "content") {
+	val cleaned = UrlSanitizer.stripTrackingParams(uri)
+	val intent = Intent(Intent.ACTION_VIEW, cleaned).apply {
+		if (cleaned.scheme == "content") {
 			addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
 		}
 	}
