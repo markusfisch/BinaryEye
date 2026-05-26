@@ -34,8 +34,8 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.actions.ActionRegistry
 import de.markusfisch.android.binaryeye.actions.mail.MatMsg
 import de.markusfisch.android.binaryeye.actions.mail.MatMsgAction
-import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
 import de.markusfisch.android.binaryeye.actions.otpauth.OtpauthAction
+import de.markusfisch.android.binaryeye.actions.vtype.VTypeParser
 import de.markusfisch.android.binaryeye.actions.vtype.vcard.VCardAction
 import de.markusfisch.android.binaryeye.actions.vtype.vevent.VEventAction
 import de.markusfisch.android.binaryeye.actions.web.WebAction
