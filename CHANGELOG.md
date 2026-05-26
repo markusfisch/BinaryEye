@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.73.0
+* Support Material You and Dynamic Colors
+* Strip common tracking parameters before opening scanned URLs
+* Parse and display otpauth:// code fields
+* Update Italian and Latvian language
+* Update BouncyCastle and vdstools library
+* Fix deeplink argument parsing
+
 ## 1.72.2
 * Import/export preferences using QR codes
 * Add predefined expert and simple profiles

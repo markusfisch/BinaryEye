@@ -1,0 +1,7 @@
+* Support Material You and Dynamic Colors
+* Strip common tracking parameters before opening scanned URLs
+* Parse and display otpauth:// code fields
+* Update Italian and Latvian language
+* Update BouncyCastle and vdstools library
+* Fix deeplink argument parsing
+
