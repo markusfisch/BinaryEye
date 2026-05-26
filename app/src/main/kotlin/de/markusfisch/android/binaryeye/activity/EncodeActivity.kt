@@ -228,7 +228,10 @@ class EncodeActivity : AbstractBaseActivity() {
 	}
 
 	private fun applyIntent(applyDefaultFormat: Boolean) {
-		val args = intent?.extras ?: getExtrasFromDeeplink()
+		val args = Bundle().apply {
+			intent?.extras?.let { putAll(it) }
+			getExtrasFromDeeplink()?.let { putAll(it) }
+		}.takeIf { !it.isEmpty }
 		val hasTextContent = args?.containsKey(CONTENT_TEXT) == true
 		val hasRawContent = args?.containsKey(CONTENT_RAW) == true
 		var complete = bytes?.isNotEmpty() == true ||
