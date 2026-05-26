@@ -4,8 +4,8 @@ import android.content.Context
 import android.content.Intent
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.prefs
-import de.markusfisch.android.binaryeye.content.execShareIntent
 import de.markusfisch.android.binaryeye.content.openUrl
+import de.markusfisch.android.binaryeye.content.startIntentOrToast
 import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.widget.toast
 
@@ -55,5 +55,5 @@ private fun Context.execCustomIntent(
 		toast(R.string.automated_action_intent_uri_invalid)
 		return false
 	}
-	return execShareIntent(intent)
+	return startIntentOrToast(intent)
 }
