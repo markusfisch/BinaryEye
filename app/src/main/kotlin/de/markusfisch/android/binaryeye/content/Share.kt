@@ -56,9 +56,7 @@ fun Context.openUri(uri: Uri, silent: Boolean = false): Boolean {
 	}
 }
 
-fun String.parseAndNormalizeUri(): Uri = toUri().let {
-	it.normalizeScheme()
-}
+fun String.parseAndNormalizeUri(): Uri = toUri().normalizeScheme()
 
 fun Context.shareText(text: String, mimeType: String = "text/plain") {
 	execShareIntent(Intent(Intent.ACTION_SEND).apply {
