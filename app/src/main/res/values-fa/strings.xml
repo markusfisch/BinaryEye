@@ -417,4 +417,7 @@
 	<string name="parsed_type_calendar_event">رویداد تقویم</string>
 	<string name="parsed_type_wifi_network">شبکه Wi-Fi</string>
 	<string name="formatted_json">JSON قالب‌بندی‌شده</string>
+	<string name="appearance_category">ظاهر</string>
+	<string name="dynamic_colors">رنگ‌های پویا</string>
+	<string name="dynamic_colors_summary">استفاده از رنگ‌های سیستم برای پوسته برنامه. نیاز به Android 12 یا بالاتر دارد.</string>
 </resources>

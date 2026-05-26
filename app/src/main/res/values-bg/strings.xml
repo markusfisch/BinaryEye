@@ -417,4 +417,7 @@
 	<string name="parsed_type_calendar_event">Събитие в календара</string>
 	<string name="parsed_type_wifi_network">Wi-Fi мрежа</string>
 	<string name="formatted_json">Форматиран JSON</string>
+	<string name="appearance_category">Външен вид</string>
+	<string name="dynamic_colors">Динамични цветове</string>
+	<string name="dynamic_colors_summary">Използване на системните цветове за темата на приложението. Изисква Android 12 или по-нова версия.</string>
 </resources>

@@ -1,8 +1,10 @@
 <androidx.appcompat.widget.Toolbar
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	tools:ignore="Overdraw"
 	android:id="@+id/toolbar"
 	android:layout_width="match_parent"
 	android:layout_height="?attr/actionBarSize"
-	android:background="@android:color/transparent"/>
+	android:background="@android:color/transparent"
+	app:popupTheme="@style/ThemeOverlay.Material3.Dark"/>

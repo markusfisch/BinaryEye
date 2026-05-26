@@ -417,4 +417,7 @@
 	<string name="parsed_type_calendar_event">Naptári esemény</string>
 	<string name="parsed_type_wifi_network">Wi-Fi hálózat</string>
 	<string name="formatted_json">Formázott JSON</string>
+	<string name="appearance_category">Megjelenés</string>
+	<string name="dynamic_colors">Dinamikus színek</string>
+	<string name="dynamic_colors_summary">Rendszerszínek használata az alkalmazás témájához. Android 12 vagy újabb szükséges.</string>
 </resources>

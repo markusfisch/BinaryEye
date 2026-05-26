@@ -1,15 +1,40 @@
 <resources>
-	<style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-		<item name="colorPrimary">@color/primary</item>
-		<item name="colorPrimaryDark">@android:color/transparent</item>
-		<item name="colorAccent">@color/accent</item>
+	<style name="AppTheme" parent="Theme.Material3.Dark.NoActionBar">
 		<item name="android:windowBackground">@drawable/background_window</item>
+		<item name="android:statusBarColor">@android:color/transparent</item>
+		<item name="android:navigationBarColor">@android:color/transparent</item>
+		<item name="colorPrimary">@color/legacy_accent</item>
+		<item name="colorOnPrimary">@color/legacy_surface</item>
+		<item name="colorPrimaryContainer">@color/legacy_accent_dark</item>
+		<item name="colorOnPrimaryContainer">@color/legacy_on_dark</item>
+		<item name="colorSecondary">@color/legacy_accent</item>
+		<item name="colorOnSecondary">@color/legacy_on_dark</item>
+		<item name="colorSecondaryContainer">@color/legacy_accent</item>
+		<item name="colorOnSecondaryContainer">@color/legacy_on_dark</item>
+		<item name="colorTertiary">@color/legacy_accent_dark</item>
+		<item name="colorOnTertiary">@color/legacy_on_dark</item>
+		<item name="colorTertiaryContainer">@color/legacy_accent_dark</item>
+		<item name="colorOnTertiaryContainer">@color/legacy_on_dark</item>
+		<item name="colorSurface">@color/legacy_surface</item>
+		<item name="colorOnSurface">@color/legacy_on_dark</item>
+		<item name="colorSurfaceVariant">@color/legacy_surface_variant</item>
+		<item name="colorOnSurfaceVariant">@color/legacy_on_dark_secondary</item>
+		<item name="colorSurfaceContainer">@color/legacy_surface_variant</item>
+		<item name="colorSurfaceContainerHigh">@color/legacy_surface_variant</item>
+		<item name="colorOutlineVariant">@color/legacy_outline</item>
+		<item name="colorControlNormal">@color/legacy_on_dark</item>
+		<item name="actionBarStyle">@style/AppToolbar</item>
 		<item name="windowActionModeOverlay">true</item>
-		<item name="actionModeBackground">@color/accent</item>
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
 	</style>
 	<style name="SplashTheme" parent="@style/AppTheme">
 		<item name="android:windowBackground">@drawable/background_splash</item>
+	</style>
+	<style name="AppToolbar" parent="Widget.Material3.Toolbar">
+		<item name="android:background">@android:color/transparent</item>
+		<item name="background">@android:color/transparent</item>
+		<item name="titleTextColor">?attr/colorOnSurface</item>
+		<item name="subtitleTextColor">?attr/colorOnSurfaceVariant</item>
 	</style>
 	<style name="SecondaryText" parent="@android:style/Widget.TextView">
 		<item name="android:textSize">12sp</item>
@@ -19,7 +44,7 @@
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:background">@drawable/button_raised</item>
-		<item name="android:textColor">@color/button_text</item>
+		<item name="android:textColor">?attr/colorOnSecondary</item>
 		<item name="android:textStyle">bold</item>
 		<item name="android:paddingLeft">@dimen/button_padding</item>
 		<item name="android:paddingRight">@dimen/button_padding</item>
@@ -36,6 +61,7 @@
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginBottom">8dp</item>
 		<item name="android:gravity">center</item>
+		<item name="android:textColor">?attr/colorOnSecondaryContainer</item>
 		<item name="android:textStyle">bold</item>
 		<item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
 	</style>
@@ -43,6 +69,7 @@
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:gravity">center</item>
+		<item name="android:textColor">?attr/colorOnSecondaryContainer</item>
 		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
 	</style>
 	<style name="Spinner">
@@ -58,6 +85,8 @@
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_margin">20dp</item>
 		<item name="android:layout_gravity">bottom|end</item>
+		<item name="backgroundTint">?attr/colorSecondaryContainer</item>
+		<item name="tint">?attr/colorOnSecondaryContainer</item>
 		<item name="elevation">4dp</item>
 	</style>
 </resources>

@@ -1,6 +1,5 @@
 package de.markusfisch.android.binaryeye.activity
 
-import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
@@ -12,6 +11,8 @@ import android.widget.ListView
 import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
 import de.markusfisch.android.binaryeye.app.prefs
@@ -125,7 +126,7 @@ class AutomatedActionsActivity : AbstractBaseActivity() {
 		typeGroup.check(initialTypeId)
 		updateTypeSections(initialTypeId)
 
-		val dialog = AlertDialog.Builder(this)
+		val dialog = MaterialAlertDialogBuilder(this)
 			.setTitle(
 				if (action == null) {
 					R.string.automated_action_add
@@ -229,7 +230,7 @@ class AutomatedActionsActivity : AbstractBaseActivity() {
 	}
 
 	private fun confirmRemoveAction(position: Int) {
-		AlertDialog.Builder(this)
+		MaterialAlertDialogBuilder(this)
 			.setMessage(R.string.automated_action_remove_confirm)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				actions.removeAt(position)

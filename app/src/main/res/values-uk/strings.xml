@@ -425,4 +425,7 @@
 	<string name="parsed_type_calendar_event">Подія календаря</string>
 	<string name="parsed_type_wifi_network">Мережа Wi-Fi</string>
 	<string name="formatted_json">Відформатований JSON</string>
+	<string name="appearance_category">Зовнішній вигляд</string>
+	<string name="dynamic_colors">Динамічні кольори</string>
+	<string name="dynamic_colors_summary">Використовувати системні кольори для теми додатку. Потрібен Android 12 або новіший.</string>
 </resources>

@@ -36,7 +36,7 @@
 		android:padding="8dp"
 		android:scaleType="centerInside"
 		android:src="@drawable/ic_action_pin_outline"
-		app:tint="@color/accent"/>
+		app:tint="?attr/colorPrimary"/>
 	<TextView
 		android:id="@+id/content"
 		android:layout_width="match_parent"

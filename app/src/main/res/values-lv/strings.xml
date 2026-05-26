@@ -421,4 +421,7 @@
 	<string name="vds_issuing_country">Izdevējvalsts</string>
 	<string name="vds_signing_date">Parakstīšanas datums</string>
 	<string name="formatted_json">Formatēts JSON</string>
+	<string name="appearance_category">Izskats</string>
+	<string name="dynamic_colors">Dinamiskas krāsas</string>
+	<string name="dynamic_colors_summary">Izmantot sistēmas krāsas lietotnes motīvam. Nepieciešams Android 12 vai jaunāks.</string>
 </resources>

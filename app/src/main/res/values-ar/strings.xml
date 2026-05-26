@@ -433,4 +433,7 @@
 	<string name="parsed_type_calendar_event">حدث تقويمي</string>
 	<string name="parsed_type_wifi_network">شبكة واي فاي</string>
 	<string name="formatted_json">JSON منسق</string>
+	<string name="appearance_category">المظهر</string>
+	<string name="dynamic_colors">الألوان الديناميكية</string>
+	<string name="dynamic_colors_summary">استخدام ألوان النظام لسمة التطبيق. يتطلب Android 12 أو أحدث.</string>
 </resources>

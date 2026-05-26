@@ -1,7 +1,6 @@
 package de.markusfisch.android.binaryeye.fragment
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -15,6 +14,7 @@ import androidx.preference.MultiSelectListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceGroup
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.activity.AutomatedActionsActivity
 import de.markusfisch.android.binaryeye.activity.IgnoreCodesActivity
@@ -45,7 +45,8 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 				prefs.update()
 			}
 			when (preference.key) {
-				"custom_locale" -> {
+				"custom_locale",
+				"dynamic_colors" -> {
 					activity?.restartApp()
 					return
 				}
@@ -90,6 +91,9 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		wireIgnoreCodes()
 		setBluetoothResources()
 		wireClearNetworkPreferences()
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+			findPreference<PreferenceGroup>("appearance_category")?.isVisible = false
+		}
 	}
 
 	private fun wireProfiles() {
@@ -165,7 +169,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 
 	@RequiresApi(Build.VERSION_CODES.Q)
 	private fun Context.askToClearNetworkSuggestions() {
-		AlertDialog.Builder(this)
+		MaterialAlertDialogBuilder(this)
 			.setMessage(R.string.really_remove_all_networks)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				clearNetworkSuggestions()
@@ -308,6 +312,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		setIcon("clear_network_suggestions", R.drawable.ic_action_wifi)
 		setIcon("brighten_screen", R.drawable.ic_action_bright)
 		setIcon("custom_locale", R.drawable.ic_action_preferences)
+		setIcon("dynamic_colors", R.drawable.ic_action_preferences)
 	}
 
 	private fun setIcon(key: String, iconResId: Int) {

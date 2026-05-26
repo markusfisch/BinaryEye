@@ -3,6 +3,7 @@ package de.markusfisch.android.binaryeye.widget
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.Point
@@ -12,8 +13,9 @@ import android.os.Build
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import androidx.core.content.ContextCompat
+import androidx.core.graphics.ColorUtils
 import androidx.core.graphics.withSave
+import com.google.android.material.color.MaterialColors
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.graphics.getBitmapFromDrawable
@@ -34,18 +36,27 @@ class DetectorView : View {
 		coordinatesLast = 0
 		invalidate()
 	}
+	private val overlayColor = ColorUtils.setAlphaComponent(
+		MaterialColors.getColor(
+			context,
+			com.google.android.material.R.attr.colorSecondaryContainer,
+			Color.WHITE
+		),
+		0x99
+	)
 	private val dotPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-		color = ContextCompat.getColor(context, R.color.dot)
+		color = overlayColor
 		style = Paint.Style.FILL
 	}
 	private val crosshairPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-		color = ContextCompat.getColor(context, R.color.dot)
+		color = overlayColor
 		style = Paint.Style.STROKE
 		strokeWidth = context.resources.displayMetrics.density
 	}
 	private val dotRadius: Float
 	private val handleBitmap = resources.getBitmapFromDrawable(
-		R.drawable.button_crop
+		R.drawable.button_crop,
+		context.theme
 	)
 	private val handleXRadius = handleBitmap.width / 2
 	private val handleYRadius = handleBitmap.height / 2

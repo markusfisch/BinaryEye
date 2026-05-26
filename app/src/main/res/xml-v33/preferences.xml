@@ -187,4 +187,13 @@
 			android:title="@string/brighten_screen"
 			android:summary="@string/brighten_screen_summary"/>
 	</PreferenceCategory>
+	<PreferenceCategory
+		android:key="appearance_category"
+		android:title="@string/appearance_category">
+		<androidx.preference.SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:key="dynamic_colors"
+			android:title="@string/dynamic_colors"
+			android:summary="@string/dynamic_colors_summary"/>
+	</PreferenceCategory>
 </PreferenceScreen>

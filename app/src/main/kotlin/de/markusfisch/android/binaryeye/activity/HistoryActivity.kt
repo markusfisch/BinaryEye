@@ -1,10 +1,10 @@
 package de.markusfisch.android.binaryeye.activity
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.app.SearchManager
 import android.content.Context
 import android.database.Cursor
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
@@ -18,7 +18,8 @@ import android.widget.ListView
 import androidx.appcompat.view.ActionMode
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SwitchCompat
-import androidx.core.content.ContextCompat
+import com.google.android.material.color.MaterialColors
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.ScansAdapter
 import de.markusfisch.android.binaryeye.app.alertDialog
@@ -69,9 +70,10 @@ class HistoryActivity : AbstractBaseActivity() {
 				lockStatusBarColor()
 				val ac = this@HistoryActivity
 				@Suppress("DEPRECATION")
-				ac.window.statusBarColor = ContextCompat.getColor(
+				ac.window.statusBarColor = MaterialColors.getColor(
 					ac,
-					R.color.accent_dark
+					com.google.android.material.R.attr.colorSecondaryContainer,
+					Color.TRANSPARENT
 				)
 			}
 			return true
@@ -342,7 +344,7 @@ class HistoryActivity : AbstractBaseActivity() {
 		)
 		val nameView = view.findViewById<EditText>(R.id.name)
 		nameView.setText(text)
-		AlertDialog.Builder(this)
+		MaterialAlertDialogBuilder(this)
 			.setTitle(
 				if (content.isNullOrEmpty()) {
 					getString(R.string.binary_data)
@@ -361,7 +363,7 @@ class HistoryActivity : AbstractBaseActivity() {
 	}
 
 	private fun Context.askToRemoveScans(ids: List<Long>) {
-		AlertDialog.Builder(this)
+		MaterialAlertDialogBuilder(this)
 			.setMessage(
 				if (ids.size > 1) {
 					R.string.really_remove_selected_scans
@@ -383,7 +385,7 @@ class HistoryActivity : AbstractBaseActivity() {
 	}
 
 	private fun Context.askToRemoveScans() {
-		AlertDialog.Builder(this)
+		MaterialAlertDialogBuilder(this)
 			.setMessage(
 				if (filter == null) {
 					R.string.really_remove_all_scans
@@ -448,7 +450,7 @@ class HistoryActivity : AbstractBaseActivity() {
 		val separators = resources.getStringArray(
 			R.array.list_separators_values
 		)
-		AlertDialog.Builder(this)
+		MaterialAlertDialogBuilder(this)
 			.setTitle(R.string.pick_list_separator)
 			.setItems(R.array.list_separators_names) { _, which ->
 				shareScans(separators[which], asFile)

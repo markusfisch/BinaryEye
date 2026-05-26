@@ -2,7 +2,6 @@ package de.markusfisch.android.binaryeye.activity
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -35,6 +34,7 @@ import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.core.net.toUri
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
@@ -464,7 +464,7 @@ class CameraActivity : AppCompatActivity() {
 			names.add(0, getString(R.string.remove_restriction))
 			formats.add(0, null)
 		}
-		AlertDialog.Builder(this).apply {
+		MaterialAlertDialogBuilder(this).apply {
 			setTitle(R.string.restrict_format)
 			setItems(names.toTypedArray()) { _, which ->
 				restrictFormat = formats[which]
@@ -487,7 +487,7 @@ class CameraActivity : AppCompatActivity() {
 		formatView.setSelection(
 			values.indexOf(restrictFormat ?: "").coerceAtLeast(0)
 		)
-		AlertDialog.Builder(this)
+		MaterialAlertDialogBuilder(this)
 			.setView(view)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				val term = editText.text.toString().trim()
@@ -521,7 +521,7 @@ class CameraActivity : AppCompatActivity() {
 		val labels = profiles.map {
 			prefs.profileLabel(this, it)
 		}.toTypedArray()
-		AlertDialog.Builder(this)
+		MaterialAlertDialogBuilder(this)
 			.setTitle(R.string.profile)
 			.setItems(labels) { _, which ->
 				val newProfile = profiles[which]
@@ -999,7 +999,7 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun importProfile(text: String): Boolean {
 		val name = prefs.importProfile(this, text) ?: return false
-		AlertDialog.Builder(this)
+		MaterialAlertDialogBuilder(this)
 			.setMessage(getString(R.string.profile_import_set_default, name))
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				switchProfile(name)

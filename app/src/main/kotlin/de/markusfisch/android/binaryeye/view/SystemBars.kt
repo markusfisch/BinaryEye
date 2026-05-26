@@ -2,16 +2,18 @@ package de.markusfisch.android.binaryeye.view
 
 import android.content.Context
 import android.content.ContextWrapper
+import android.graphics.Color
 import android.os.Build
 import android.view.View
 import android.view.WindowManager
 import android.widget.AbsListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
+import androidx.core.graphics.ColorUtils
 import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.color.MaterialColors
 import de.markusfisch.android.binaryeye.R
 
 val systemBarListViewScrollListener = object : AbsListView.OnScrollListener {
@@ -77,7 +79,7 @@ fun AppCompatActivity.initBars() {
 			setSupportActionBar(this)
 		},
 		findViewById<View>(R.id.navbar)?.apply {
-			setBackgroundColor(translucentPrimaryColor)
+			setBackgroundColor(getTranslucentPrimaryColor(this@initBars))
 		}
 	)
 }
@@ -91,18 +93,23 @@ fun unlockStatusBarColor() {
 	statusBarColorLocked = false
 }
 
-private var translucentPrimaryColor = 0
+private fun getTranslucentPrimaryColor(context: Context): Int {
+	return ColorUtils.setAlphaComponent(
+		MaterialColors.getColor(
+			context,
+			com.google.android.material.R.attr.colorSurfaceContainerHigh,
+			Color.BLACK
+		),
+		0xd8
+	)
+}
+
 fun colorSystemAndToolBars(
 	context: Context,
 	scrolled: Boolean = false,
 	scrollable: Boolean = false
 ) {
-	if (translucentPrimaryColor == 0) {
-		translucentPrimaryColor = ContextCompat.getColor(
-			context,
-			R.color.primary_translucent
-		)
-	}
+	val translucentPrimaryColor = getTranslucentPrimaryColor(context)
 	val topColor = if (scrolled) translucentPrimaryColor else 0
 	val activity = getAppCompatActivity(context) ?: return
 	// System bars no longer have a background from SDK35+.
@@ -125,6 +132,7 @@ fun colorSystemAndToolBars(
 			} else {
 				View.GONE
 			}
+			setBackgroundColor(translucentPrimaryColor)
 		}
 	}
 	activity.supportActionBar?.setBackgroundDrawable(topColor.toDrawable())

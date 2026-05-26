@@ -417,4 +417,7 @@
 	<string name="parsed_type_calendar_event">Kalenderbegivenhed</string>
 	<string name="parsed_type_wifi_network">Wi-Fi-netværk</string>
 	<string name="formatted_json">Formatteret JSON</string>
+	<string name="appearance_category">Udseende</string>
+	<string name="dynamic_colors">Dynamiske farver</string>
+	<string name="dynamic_colors_summary">Brug systemfarver til appens tema. Kræver Android 12 eller nyere.</string>
 </resources>

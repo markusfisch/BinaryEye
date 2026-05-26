@@ -1,6 +1,5 @@
 package de.markusfisch.android.binaryeye.activity
 
-import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.View
@@ -9,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.TextView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
@@ -81,7 +81,7 @@ class ProfilesActivity : AbstractBaseActivity() {
 			R.layout.dialog_profile_name, null
 		)
 		val editText = view.findViewById<EditText>(R.id.name)
-		AlertDialog.Builder(this)
+		MaterialAlertDialogBuilder(this)
 			.setView(view)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				val name = editText.text.toString().trim()
@@ -98,7 +98,7 @@ class ProfilesActivity : AbstractBaseActivity() {
 	private fun confirmRemoveProfile(position: Int) {
 		val profile = profiles[position]
 		val profileName = profile.name ?: return
-		AlertDialog.Builder(this)
+		MaterialAlertDialogBuilder(this)
 			.setMessage(R.string.profile_remove_confirm)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				val isCurrent = prefs.profile == profileName

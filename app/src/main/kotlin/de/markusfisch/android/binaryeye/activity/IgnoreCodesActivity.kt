@@ -1,6 +1,5 @@
 package de.markusfisch.android.binaryeye.activity
 
-import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.view.View
@@ -10,6 +9,8 @@ import android.widget.EditText
 import android.widget.ListView
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
 import de.markusfisch.android.binaryeye.adapter.setupFormatSpinner
@@ -74,7 +75,7 @@ class IgnoreCodesActivity : AbstractBaseActivity() {
 			formatView.setSelection(0)
 		}
 
-		val dialog = AlertDialog.Builder(this)
+		val dialog = MaterialAlertDialogBuilder(this)
 			.setTitle(
 				if (pattern == null) {
 					R.string.ignore_code_add
@@ -133,7 +134,7 @@ class IgnoreCodesActivity : AbstractBaseActivity() {
 	}
 
 	private fun confirmRemovePattern(position: Int) {
-		AlertDialog.Builder(this)
+		MaterialAlertDialogBuilder(this)
 			.setMessage(R.string.ignore_code_remove_confirm)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				patterns.removeAt(position)

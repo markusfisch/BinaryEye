@@ -11,7 +11,6 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.database.Database
 import java.text.DateFormat
@@ -32,10 +31,6 @@ class ScansAdapter(
 	private val textIndex = cursor.getColumnIndex(Database.SCANS_TEXT)
 	private val formatIndex = cursor.getColumnIndex(Database.SCANS_FORMAT)
 	private val selections = mutableMapOf<Long, Int>()
-	private val selectedColor = ContextCompat.getColor(
-		context, R.color.selected_row
-	)
-
 	fun select(view: View, id: Long, position: Int) {
 		view.select(
 			if (selections[id] == null) {
@@ -154,7 +149,8 @@ class ScansAdapter(
 	}
 
 	private fun View.select(selected: Boolean) {
-		setBackgroundColor(if (selected) selectedColor else 0)
+		isActivated = selected
+		refreshDrawableState()
 	}
 
 	private fun getViewHolder(

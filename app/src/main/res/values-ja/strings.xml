@@ -415,4 +415,7 @@
 	<string name="parsed_type_calendar_event">カレンダーイベント</string>
 	<string name="parsed_type_wifi_network">Wi-Fi ネットワーク</string>
 	<string name="formatted_json">整形済み JSON</string>
+	<string name="appearance_category">外観</string>
+	<string name="dynamic_colors">ダイナミックカラー</string>
+	<string name="dynamic_colors_summary">アプリのテーマにシステムカラーを使用します。Android 12以降が必要です。</string>
 </resources>

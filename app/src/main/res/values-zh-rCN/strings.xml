@@ -415,4 +415,7 @@
 	<string name="parsed_type_calendar_event">日历事件</string>
 	<string name="parsed_type_wifi_network">Wi-Fi 网络</string>
 	<string name="formatted_json">格式化的 JSON</string>
+	<string name="appearance_category">外观</string>
+	<string name="dynamic_colors">动态颜色</string>
+	<string name="dynamic_colors_summary">使用系统颜色作为应用主题。需要 Android 12 或更高版本。</string>
 </resources>

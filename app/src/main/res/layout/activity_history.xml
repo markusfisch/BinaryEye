@@ -5,7 +5,7 @@
 		android:layout_height="match_parent"
 		android:choiceMode="multipleChoice"
 		android:clipToPadding="false"
-		android:divider="@color/separator"
+		android:divider="?attr/colorOutlineVariant"
 		android:dividerHeight="1px"/>
 	<androidx.coordinatorlayout.widget.CoordinatorLayout
 		android:id="@+id/main"

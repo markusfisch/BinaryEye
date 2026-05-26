@@ -1,7 +1,6 @@
 package de.markusfisch.android.binaryeye.activity
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -16,6 +15,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.db
 import de.markusfisch.android.binaryeye.app.hasWritePermission
@@ -257,7 +257,7 @@ class BarcodeActivity : AbstractBaseActivity() {
 		action: (FileType) -> Unit
 	) {
 		val fileTypes = FileType.entries.toTypedArray()
-		AlertDialog.Builder(this)
+		MaterialAlertDialogBuilder(this)
 			.setTitle(title)
 			.setItems(fileTypes.map { it.name }.toTypedArray()) { _, which ->
 				action(fileTypes[which])
@@ -281,7 +281,7 @@ class BarcodeActivity : AbstractBaseActivity() {
 		editText.setText(
 			encodeFileName("${barcode.format}_${barcode.content}")
 		)
-		AlertDialog.Builder(this)
+		MaterialAlertDialogBuilder(this)
 			.setView(view)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				val fileName = editText.text.toString()
@@ -327,7 +327,7 @@ class BarcodeActivity : AbstractBaseActivity() {
 		val sizeView = view.findViewById<TextView>(R.id.size_display)
 		val sizeBarView = view.findViewById<SeekBar>(R.id.size_bar)
 		sizeBarView.initSizeBar(sizeView)
-		AlertDialog.Builder(this)
+		MaterialAlertDialogBuilder(this)
 			.setView(view)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
 				write(getSize(sizeBarView.progress))

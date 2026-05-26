@@ -417,4 +417,7 @@
 	<string name="parsed_type_calendar_event">Takvim etkinliği</string>
 	<string name="parsed_type_wifi_network">Wi-Fi ağı</string>
 	<string name="formatted_json">Biçimlendirilmiş JSON</string>
+	<string name="appearance_category">Görünüm</string>
+	<string name="dynamic_colors">Dinamik renkler</string>
+	<string name="dynamic_colors_summary">Uygulama teması için sistem renklerini kullan. Android 12 veya daha yeni gerektirir.</string>
 </resources>

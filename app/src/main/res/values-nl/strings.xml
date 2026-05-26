@@ -417,4 +417,7 @@
 	<string name="parsed_type_calendar_event">Agenda-afspraak</string>
 	<string name="parsed_type_wifi_network">Wi-Fi-netwerk</string>
 	<string name="formatted_json">Opgemaakte JSON</string>
+	<string name="appearance_category">Uiterlijk</string>
+	<string name="dynamic_colors">Dynamische kleuren</string>
+	<string name="dynamic_colors_summary">Systeemkleuren gebruiken voor het app-thema. Vereist Android 12 of hoger.</string>
 </resources>

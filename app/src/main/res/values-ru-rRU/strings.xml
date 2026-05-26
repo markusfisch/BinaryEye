@@ -425,4 +425,7 @@
 	<string name="parsed_type_calendar_event">Событие календаря</string>
 	<string name="parsed_type_wifi_network">Сеть Wi-Fi</string>
 	<string name="formatted_json">Отформатированный JSON</string>
+	<string name="appearance_category">Внешний вид</string>
+	<string name="dynamic_colors">Динамические цвета</string>
+	<string name="dynamic_colors_summary">Использовать системные цвета для темы приложения. Требуется Android 12 или новее.</string>
 </resources>

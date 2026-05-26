@@ -417,4 +417,7 @@
 	<string name="parsed_type_calendar_event">ক্যালেন্ডার ইভেন্ট</string>
 	<string name="parsed_type_wifi_network">Wi-Fi নেটওয়ার্ক</string>
 	<string name="formatted_json">ফরম্যাট করা JSON</string>
+	<string name="appearance_category">চেহারা</string>
+	<string name="dynamic_colors">ডাইনামিক রং</string>
+	<string name="dynamic_colors_summary">অ্যাপের থিমের জন্য সিস্টেম রং ব্যবহার করুন। Android 12 বা তার পরবর্তী সংস্করণ প্রয়োজন।</string>
 </resources>

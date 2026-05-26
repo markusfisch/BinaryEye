@@ -425,4 +425,7 @@
 	<string name="parsed_type_calendar_event">Událost kalendáře</string>
 	<string name="parsed_type_wifi_network">Síť Wi-Fi</string>
 	<string name="formatted_json">Formátovaný JSON</string>
+	<string name="appearance_category">Vzhled</string>
+	<string name="dynamic_colors">Dynamické barvy</string>
+	<string name="dynamic_colors_summary">Používat systémové barvy pro motiv aplikace. Vyžaduje Android 12 nebo novější.</string>
 </resources>

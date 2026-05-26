@@ -255,6 +255,11 @@ class Preferences {
 			apply(PREVIEW_SCALE, value)
 			field = value
 		}
+	var dynamicColors = true
+		set(value) {
+			apply(DYNAMIC_COLORS, value)
+			field = value
+		}
 	var automatedActions = mutableListOf<AutomatedAction>()
 		private set
 
@@ -642,6 +647,7 @@ class Preferences {
 			PREVIEW_SCALE,
 			previewScale
 		)
+		dynamicColors = preferences.getBoolean(DYNAMIC_COLORS, dynamicColors)
 		automatedActions = fromJsonArray(
 			preferences.getString(AUTOMATED_ACTIONS, null) ?: "[]"
 		)
@@ -899,6 +905,7 @@ class Preferences {
 		private const val BRIGHTEN_SCREEN = "brighten_screen"
 		private const val PREVIEW_SCALE = "preview_scale"
 		private const val AUTOMATED_ACTIONS = "automated_actions"
+		private const val DYNAMIC_COLORS = "dynamic_colors"
 		private const val DEFAULT_IGNORE_CODE_PATTERN = "^FIDO://.*"
 	}
 }

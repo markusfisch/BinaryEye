@@ -417,4 +417,7 @@
 	<string name="parsed_type_calendar_event">Kalenderereignis</string>
 	<string name="parsed_type_wifi_network">WLAN-Netzwerk</string>
 	<string name="formatted_json">Formatiertes JSON</string>
+	<string name="appearance_category">Erscheinungsbild</string>
+	<string name="dynamic_colors">Dynamische Farben</string>
+	<string name="dynamic_colors_summary">Systemfarben für das App-Design verwenden. Erfordert Android 12 oder höher.</string>
 </resources>

@@ -1,16 +1,10 @@
-<selector
+<ripple
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:constantSize="true">
-	<item android:state_pressed="false">
+	android:color="?attr/colorControlHighlight">
+	<item>
 		<shape android:shape="rectangle">
 			<corners android:radius="2dp"/>
-			<solid android:color="@color/selected_row"/>
+			<solid android:color="?attr/colorSecondaryContainer"/>
 		</shape>
 	</item>
-	<item android:state_pressed="true">
-		<shape android:shape="rectangle">
-			<corners android:radius="2dp"/>
-			<solid android:color="@color/pressed_row"/>
-		</shape>
-	</item>
-</selector>
+</ripple>

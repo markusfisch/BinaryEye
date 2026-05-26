@@ -415,4 +415,7 @@
 	<string name="parsed_type_calendar_event">Sự kiện lịch</string>
 	<string name="parsed_type_wifi_network">Mạng Wi-Fi</string>
 	<string name="formatted_json">JSON đã định dạng</string>
+	<string name="appearance_category">Giao diện</string>
+	<string name="dynamic_colors">Màu động</string>
+	<string name="dynamic_colors_summary">Sử dụng màu hệ thống cho giao diện ứng dụng. Yêu cầu Android 12 trở lên.</string>
 </resources>

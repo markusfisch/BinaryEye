@@ -1,5 +1,5 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:drawable="@color/primary"/>
+	<item android:drawable="?attr/colorSurface"/>
 	<item>
 		<bitmap
 			android:gravity="center"

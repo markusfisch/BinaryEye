@@ -416,4 +416,7 @@
 	<string name="vds_issuing_country">Issuing Country</string>
 	<string name="vds_signing_date">Signing Date</string>
 	<string name="formatted_json">Formatted JSON</string>
+	<string name="appearance_category">Appearance</string>
+	<string name="dynamic_colors">Dynamic colors</string>
+	<string name="dynamic_colors_summary">Use system colors for the app theme. Requires Android 12 or later.</string>
 </resources>

@@ -417,4 +417,7 @@
 	<string name="parsed_type_calendar_event">კალენდრის მოვლენა</string>
 	<string name="parsed_type_wifi_network">Wi-Fi ქსელი</string>
 	<string name="formatted_json">დაფორმატებული JSON</string>
+	<string name="appearance_category">გარეგნობა</string>
+	<string name="dynamic_colors">დინამიური ფერები</string>
+	<string name="dynamic_colors_summary">გამოიყენეთ სისტემის ფერები აპლიკაციის თემისთვის. საჭიროა Android 12 ან უფრო ახალი.</string>
 </resources>

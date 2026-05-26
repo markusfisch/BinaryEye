@@ -419,4 +419,7 @@
 	<string name="parsed_type_calendar_event">Evento calendario</string>
 	<string name="parsed_type_wifi_network">Rete Wi-Fi</string>
 	<string name="formatted_json">JSON formattato</string>
+	<string name="appearance_category">Aspetto</string>
+	<string name="dynamic_colors">Colori dinamici</string>
+	<string name="dynamic_colors_summary">Usa i colori di sistema per il tema dell\'app. Richiede Android 12 o versioni successive.</string>
 </resources>
