@@ -142,6 +142,8 @@
 	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
 	<string name="open_immediately">گشودن بلافاصله</string>
 	<string name="open_immediately_summary">بازرسی را رها کنید و محتویات را فورا باز کنید. در صورت فعال بودن ممکن است محتوای مضر را باز کند.</string>
+	<string name="strip_tracking_params">حذف پارامترهای ردیابی</string>
+	<string name="strip_tracking_params_summary">پارامترهای ردیابی شناخته‌شده (utm_*، fbclid، …) را قبل از باز کردن از URL حذف می‌کند.</string>
 	<string name="copy_immediately">قرار دادن در تخته‌گیره</string>
 	<string name="copy_immediately_summary">به طور خودکار محتوای پویش شده را در تخته‌گیره رونوشت می‌کند. لطفاً توجه داشته باشید که برنامه‌های دیگر ممکن است در پس‌زمینه تخته‌گیرهٔ شما را شنود کنند.</string>
 	<string name="show_meta_data">نمایش فراداده</string>

@@ -142,6 +142,8 @@
 	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
 	<string name="open_immediately">Inhoud direct tonen, zonder inspectie</string>
 	<string name="open_immediately_summary">Sla inspectie over en open meteen de inhoud. Indien geactiveerd, kan schadelijke inhoud worden geopend.</string>
+	<string name="strip_tracking_params">Trackingparameters verwijderen</string>
+	<string name="strip_tracking_params_summary">Verwijdert bekende trackingparameters (utm_*, fbclid, …) uit URL\'s voor het openen.</string>
 	<string name="copy_immediately">Meteen op klembord zetten</string>
 	<string name="copy_immediately_summary">Kopieer de gescande inhoud automatisch naar het klembord. Let op: andere apps kunnen mogelijk meelezen op de achtergrond.</string>
 	<string name="show_meta_data">Metadata tonen</string>

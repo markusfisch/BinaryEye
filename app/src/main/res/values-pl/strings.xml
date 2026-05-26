@@ -143,6 +143,8 @@
 	<string name="tone_prop_beep2">Ogólny podwójny sygnał dźwiękowy</string>
 	<string name="open_immediately">Pomiń kontrolę i natychmiast otwórz zawartość</string>
 	<string name="open_immediately_summary">Pomiń kontrolę i natychmiast otwórz zawartość. Może otwierać szkodliwą zawartość, jeśli jest włączona.</string>
+	<string name="strip_tracking_params">Usuń parametry śledzenia</string>
+	<string name="strip_tracking_params_summary">Usuwa znane parametry śledzenia (utm_*, fbclid, …) z adresów URL przed otwarciem.</string>
 	<string name="copy_immediately">Automatycznie skopiuj zawartość do schowka</string>
 	<string name="copy_immediately_summary">Automatycznie skopiuj zeskanowaną zawartość do schowka. Pamiętaj, że inne aplikacje mogą szpiegować Twój schowek w tle.</string>
 	<string name="show_crop_handle">Pokazuj ogranicznik przycinania</string>

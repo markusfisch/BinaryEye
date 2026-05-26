@@ -143,6 +143,8 @@
 	<string name="ignore_code_remove_confirm">Vuoi rimuovere questo codice ignorato?</string>
 	<string name="open_immediately">Apri subito</string>
 	<string name="open_immediately_summary">Salta l\'ispezione e apri i contenuti immediatamente. Se abilitato può aprire contenuti dannosi.</string>
+	<string name="strip_tracking_params">Rimuovi parametri di tracciamento</string>
+	<string name="strip_tracking_params_summary">Rimuove i parametri di tracciamento noti (utm_*, fbclid, …) dagli URL prima dell\'apertura.</string>
 	<string name="copy_immediately">Copia negli Appunti</string>
 	<string name="copy_immediately_summary">Copia automaticamente i contenuti scansionati negli Appunti. Nota che altre app potrebbero leggere gli Appunti in secondo piano.</string>
 	<string name="show_meta_data">Visualizza metadati</string>

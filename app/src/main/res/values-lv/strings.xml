@@ -189,6 +189,8 @@
 	<string name="ignore_code_regex_invalid">Nederīga regulārā izteiksme</string>
 	<string name="ignore_code_remove_confirm">Vai noņemt šo ignorēto kodu?</string>
 	<string name="open_immediately_summary">Izlaist pārbaudi un nekavējoties atvērt saturu. Ja iespējots, var atvērt kaitīgu saturu.</string>
+	<string name="strip_tracking_params">Noņemt izsekošanas parametrus</string>
+	<string name="strip_tracking_params_summary">Pirms atvēršanas noņem zināmos izsekošanas parametrus (utm_*, fbclid, …) no URL.</string>
 	<string name="copy_immediately_summary">Automātiski kopēt noskenēto saturu starpliktuvē. Ņemiet vērā, ka citas lietotnes fonā var piekļūt jūsu starpliktuvei.</string>
 	<string name="show_meta_data_summary">Rādīt papildu datus par noskenēto svītrkodu.</string>
 	<string name="show_hex_dump">Rādīt heksadecimālo izgāzumu</string>

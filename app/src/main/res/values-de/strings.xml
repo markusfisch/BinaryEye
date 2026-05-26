@@ -142,6 +142,8 @@
 	<string name="ignore_code_remove_confirm">Diesen ignorierten Code entfernen?</string>
 	<string name="open_immediately">Inhalte sofort öffnen</string>
 	<string name="open_immediately_summary">Inspektion überspringen und Inhalt sofort öffnen. Kann schädliche Inhalte öffnen, wenn aktiviert.</string>
+	<string name="strip_tracking_params">Tracking-Parameter entfernen</string>
+	<string name="strip_tracking_params_summary">Bekannte Tracking-Parameter (utm_*, fbclid, …) vor dem Öffnen aus URLs entfernen.</string>
 	<string name="copy_immediately">Automatisch in Zwischenablage</string>
 	<string name="copy_immediately_summary">Eingelesene Inhalte werden automatisch in die Zwischenablage kopiert. Bitte beachten Sie, dass andere Anwendungen die Zwischenablage im Hintergrund auslesen können.</string>
 	<string name="show_meta_data">Meta Daten anzeigen</string>

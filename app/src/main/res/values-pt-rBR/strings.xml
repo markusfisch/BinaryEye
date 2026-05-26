@@ -142,6 +142,8 @@
 	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
 	<string name="open_immediately">Abrir imediatamente</string>
 	<string name="open_immediately_summary">Pular a inspeção e abrir um conteúdo instantaneamente. Pode abrir conteúdo malicioso se ativado.</string>
+	<string name="strip_tracking_params">Remover parâmetros de rastreamento</string>
+	<string name="strip_tracking_params_summary">Remove os parâmetros de rastreamento conhecidos (utm_*, fbclid, …) das URLs antes de abri-las.</string>
 	<string name="copy_immediately">Botar na área de transferência</string>
 	<string name="copy_immediately_summary">Copiar automaticamente para a área de transferência o conteúdo digitalizado. Note que outros apps podem examinar sua área de transferência em segundo plano.</string>
 	<string name="show_meta_data">Mostrar metadados</string>

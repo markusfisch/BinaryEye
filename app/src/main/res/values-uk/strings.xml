@@ -146,6 +146,8 @@
 	<string name="ignore_code_remove_confirm">Видалити цей проігнорований код?</string>
 	<string name="open_immediately">Відкривати негайно</string>
 	<string name="open_immediately_summary">Пропустити перегляд та негайно відкрити вміст. Якщо увімкнено, може відкрити шкідливий вміст.</string>
+	<string name="strip_tracking_params">Видаляти параметри відстеження</string>
+	<string name="strip_tracking_params_summary">Видаляє відомі параметри відстеження (utm_*, fbclid, …) з URL-адрес перед відкриттям.</string>
 	<string name="copy_immediately">Помістити в буфер обміну</string>
 	<string name="copy_immediately_summary">Автоматично копіювати відсканований вміст у буфер обміну. Зверніть увагу, що інші програми можуть стежити за буфером обміну в фоновому режимі.</string>
 	<string name="show_meta_data">Показувати метадані</string>

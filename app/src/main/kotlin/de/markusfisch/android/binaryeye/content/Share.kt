@@ -9,6 +9,7 @@ import androidx.core.content.FileProvider
 import androidx.core.net.toUri
 import de.markusfisch.android.binaryeye.BuildConfig
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.widget.toast
 import java.io.File
 import java.io.FileOutputStream
@@ -43,7 +44,11 @@ fun Context.openUrl(url: String, silent: Boolean = false): Boolean {
 }
 
 fun Context.openUri(uri: Uri, silent: Boolean = false): Boolean {
-	val cleaned = uri.stripTrackingParams()
+	val cleaned = if (prefs.stripTrackingParams) {
+		uri.stripTrackingParams()
+	} else {
+		uri
+	}
 	val intent = Intent(Intent.ACTION_VIEW, cleaned).apply {
 		if (cleaned.scheme == "content") {
 			addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)

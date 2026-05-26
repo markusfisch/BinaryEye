@@ -141,6 +141,8 @@
 	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
 	<string name="open_immediately">Mở ngay</string>
 	<string name="open_immediately_summary">Bỏ qua kiểm tra và mở ngay nội dung. Có thể mở nội dung nguy hiểm nếu kích hoạt.</string>
+	<string name="strip_tracking_params">Xóa tham số theo dõi</string>
+	<string name="strip_tracking_params_summary">Xóa các tham số theo dõi đã biết (utm_*, fbclid, …) khỏi URL trước khi mở.</string>
 	<string name="copy_immediately">Sao chép kết quả</string>
 	<string name="copy_immediately_summary">Tự động sao chép kết quả. Lưu ý: ứng dụng khác có thể xem nội dung bạn đã sao chép.</string>
 	<string name="show_meta_data">Hiện dữ liệu</string>

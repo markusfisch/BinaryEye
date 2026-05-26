@@ -146,6 +146,8 @@
 	<string name="ignore_code_remove_confirm">Odstranit tento ignorovaný kód?</string>
 	<string name="open_immediately">Otevírat okamžitě</string>
 	<string name="open_immediately_summary">Přeskočí kontrolu a otevře obsah okamžitě. Může otevřít škodlivý obsah.</string>
+	<string name="strip_tracking_params">Odstranit sledovací parametry</string>
+	<string name="strip_tracking_params_summary">Před otevřením odstraní z URL adresy známé sledovací parametry (utm_*, fbclid, …).</string>
 	<string name="copy_immediately">Vložit do schránky</string>
 	<string name="copy_immediately_summary">Automaticky zkopírovat naskenovaný obsah do schránky. Pozor, jiné aplikace jej mohou ze schránky přečíst, i když neběží.</string>
 	<string name="show_meta_data">Zobrazit metadata</string>

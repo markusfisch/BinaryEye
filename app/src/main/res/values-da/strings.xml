@@ -142,6 +142,8 @@
 	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
 	<string name="open_immediately">Åbn straks</string>
 	<string name="open_immediately_summary">Spring inspektion over og åbn indholdet med det samme. Kan åbne skadeligt indhold, hvis det er aktiveret.</string>
+	<string name="strip_tracking_params">Fjern sporingsparametre</string>
+	<string name="strip_tracking_params_summary">Fjerner kendte sporingsparametre (utm_*, fbclid, …) fra URL\'er inden åbning.</string>
 	<string name="copy_immediately">Læg i udklipsholderen</string>
 	<string name="copy_immediately_summary">Kopier automatisk scannet indhold til udklipsholder. Bemærk at andre apps kan holde øje med din udklipsholder i baggrunden.</string>
 	<string name="show_meta_data">Vis metadata</string>

@@ -143,6 +143,8 @@
 	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
 	<string name="open_immediately">Ouvrir immédiatement</string>
 	<string name="open_immediately_summary">Ignorer l\'inspection et ouvrir le contenu immédiatement. Si cette option est activée, cela peut ouvrir un contenu nocif.</string>
+	<string name="strip_tracking_params">Supprimer les paramètres de suivi</string>
+	<string name="strip_tracking_params_summary">Supprime les paramètres de suivi connus (utm_*, fbclid, …) des URL avant ouverture.</string>
 	<string name="copy_immediately">Copier dans le presse-papiers</string>
 	<string name="copy_immediately_summary">Copier automatiquement les contenus scannés dans le presse-papiers. Veuillez noter que d\'autres applications peuvent lire dans votre presse-papiers en arrière-plan.</string>
 	<string name="show_meta_data">Afficher les métadonnées</string>

@@ -141,6 +141,8 @@
 	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
 	<string name="open_immediately">すぐにコンテンツを開く</string>
 	<string name="open_immediately_summary">確認画面なしでコンテンツをすぐに開くようにします。有害なコンテンツを開いてしまうリスクがあります。</string>
+	<string name="strip_tracking_params">トラッキングパラメータを除去</string>
+	<string name="strip_tracking_params_summary">URLを開く前に既知のトラッキングパラメータ（utm_*、fbclid、…）を除去します。</string>
 	<string name="copy_immediately">自動的にクリップボードにコピー</string>
 	<string name="copy_immediately_summary">スキャンされたコンテンツを自動的にクリップボードにコピーします。他のアプリはクリップボードの内容を見ることができることにご注意ください。</string>
 	<string name="show_meta_data">メタデータを表示</string>

@@ -296,6 +296,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		setIcon("send_scan_bluetooth", R.drawable.ic_action_bluetooth)
 		setIcon("send_scan_bluetooth_host", R.drawable.ic_action_bluetooth)
 		setIcon("open_immediately", R.drawable.ic_action_open)
+		setIcon("strip_tracking_params", R.drawable.ic_action_remove)
 		setIcon("show_meta_data", R.drawable.ic_action_info)
 		setIcon("show_hex_dump", R.drawable.ic_action_info)
 		setIcon("show_checksum", R.drawable.ic_action_info)

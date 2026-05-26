@@ -142,6 +142,8 @@
 	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
 	<string name="open_immediately">Отваряй внезапно</string>
 	<string name="open_immediately_summary">Пропуска проверката и внезапно отваря съдържанието. Може да отвори вредно съдържание, ако е активирано.</string>
+	<string name="strip_tracking_params">Премахване на проследяващи параметри</string>
+	<string name="strip_tracking_params_summary">Премахва известните параметри за проследяване (utm_*, fbclid, …) от URL адресите преди отваряне.</string>
 	<string name="copy_immediately">Поставяй в клипборда</string>
 	<string name="copy_immediately_summary">Автоматично копира сканираното съдържание в клипборда. Моля, имайте предвид, че други приложения може да подслушват вашия клипборд във фонов режим.</string>
 	<string name="show_meta_data">Показване на метаданни</string>

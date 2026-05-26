@@ -133,6 +133,11 @@
 			android:summary="@string/open_immediately_summary"/>
 		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="true"
+			android:key="strip_tracking_params"
+			android:title="@string/strip_tracking_params"
+			android:summary="@string/strip_tracking_params_summary"/>
+		<androidx.preference.SwitchPreferenceCompat
+			android:defaultValue="true"
 			android:key="show_meta_data"
 			android:title="@string/show_meta_data"
 			android:summary="@string/show_meta_data_summary"/>

@@ -146,6 +146,8 @@
 	<string name="ignore_code_remove_confirm">Удалить этот игнорируемый код?</string>
 	<string name="open_immediately">Сразу открывать содержимое</string>
 	<string name="open_immediately_summary">Пропускать проверку и сразу открыть содержимое. Может привести к открытию небезопасного содержимого.</string>
+	<string name="strip_tracking_params">Удалять параметры отслеживания</string>
+	<string name="strip_tracking_params_summary">Удаляет известные параметры отслеживания (utm_*, fbclid, …) из URL-адресов перед открытием.</string>
 	<string name="copy_immediately">Автокопирование в буфер обмена</string>
 	<string name="copy_immediately_summary">Автоматически копировать содержимое считанного штрих-кода в буфер обмена. Имейте в виду, что другие приложения могут иметь доступ к буферу обмена в фоне.</string>
 	<string name="show_meta_data">Показывать метаданные</string>

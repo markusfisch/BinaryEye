@@ -141,6 +141,8 @@
 	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
 	<string name="open_immediately">立即開啟</string>
 	<string name="open_immediately_summary">跳過檢查並立即開啟。可能會開啟有害內容</string>
+	<string name="strip_tracking_params">移除追蹤參數</string>
+	<string name="strip_tracking_params_summary">開啟前從URL中移除已知的追蹤參數（utm_*、fbclid……）。</string>
 	<string name="copy_immediately">自動複製掃描結果到剪貼簿</string>
 	<string name="copy_immediately_summary">自動將掃描內容複製到剪貼簿。請注意，其他應用程式可能會在背景監控剪貼簿</string>
 	<string name="show_meta_data">顯示中繼資料</string>

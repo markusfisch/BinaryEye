@@ -143,6 +143,8 @@
 	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
 	<string name="open_immediately">Abrir inmediatamente</string>
 	<string name="open_immediately_summary">Omite la inspección y abre el contenido inmediatamente. Podría abrir contenido dañino si está activado.</string>
+	<string name="strip_tracking_params">Eliminar parámetros de seguimiento</string>
+	<string name="strip_tracking_params_summary">Elimina los parámetros de seguimiento conocidos (utm_*, fbclid, …) de las URL antes de abrirlas.</string>
 	<string name="copy_immediately">Copiar en el portapapeles</string>
 	<string name="copy_immediately_summary">Copia automáticamente el contenido al portapapeles. Ten en cuenta que otras aplicaciones pueden husmear en tu portapapeles en segundo plano.</string>
 	<string name="show_meta_data">Mostrar metadatos</string>

@@ -150,6 +150,8 @@
 	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
 	<string name="open_immediately">Open immediately</string>
 	<string name="open_immediately_summary">Skip inspection and open contents immediately. May open harmful content if enabled.</string>
+	<string name="strip_tracking_params">Strip tracking parameters</string>
+	<string name="strip_tracking_params_summary">Remove known tracking parameters (utm_*, fbclid, …) from URLs before opening.</string>
 	<string name="copy_immediately">Put into clipboard</string>
 	<string name="copy_immediately_summary">Automatically copy scanned contents into clipboard. Please note that other apps may snoop on your clipboard in the background.</string>
 	<string name="show_meta_data">Show metadata</string>

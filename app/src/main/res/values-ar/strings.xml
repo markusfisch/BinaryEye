@@ -150,6 +150,8 @@
 	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
 	<string name="open_immediately">فتح مباشرةً</string>
 	<string name="open_immediately_summary">تخطي الفحص وفتح المحتويات على الفور. قد يتم فتح محتويات ضارة إذا تم تمكينه.</string>
+	<string name="strip_tracking_params">إزالة معاملات التتبع</string>
+	<string name="strip_tracking_params_summary">إزالة معاملات التتبع المعروفة (utm_*، fbclid، …) من عناوين URL قبل فتحها.</string>
 	<string name="copy_immediately">نسخ تلقائي إلى الحافظة</string>
 	<string name="copy_immediately_summary">نسخ المحتويات الممسوحة إلى الحافظة تلقائيًا. يرجى ملاحظة أن التطبيقات الأخرى قد تتطفل على الحافظة الخاصة بك في الخلفية.</string>
 	<string name="show_meta_data">عرض البيانات الوصفية</string>

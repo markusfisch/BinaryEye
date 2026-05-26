@@ -142,6 +142,8 @@
 	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
 	<string name="open_immediately">Vizsgálat kihagyása és a tartalom azonnali megnyitása</string>
 	<string name="open_immediately_summary">Vizsgálat kihagyása és a tartalom azonnali megnyitása. Ártalmas tartalmat is megnyithat, ha engedélyezve van.</string>
+	<string name="strip_tracking_params">Nyomkövetési paraméterek eltávolítása</string>
+	<string name="strip_tracking_params_summary">Az ismert nyomkövetési paramétereket (utm_*, fbclid, …) eltávolítja az URL-ekből megnyitás előtt.</string>
 	<string name="copy_immediately">Tartalom automatikus másolása a vágólapra</string>
 	<string name="copy_immediately_summary">Beolvasott tartalom automatikus másolása a vágólapra. Ne feledje, hogy más alkalmazások megfigyelhetik a vágólapját a háttérben.</string>
 	<string name="show_meta_data">Metaadatok megjelenítése</string>
