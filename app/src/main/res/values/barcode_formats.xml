@@ -20,6 +20,9 @@
 		<item>ITF</item>
 		<item>MaxiCode</item>
 		<item>PDF 417</item>
+		<item>Telepen</item>
+		<item>Telepen Alpha</item>
+		<item>Telepen Numeric</item>
 		<item>QR CODE</item>
 		<item>MICRO QR CODE</item>
 		<item>rMQR CODE</item>
@@ -47,6 +50,9 @@
 		<item>ITF</item>
 		<item>MaxiCode</item>
 		<item>PDF417</item>
+		<item>Telepen</item>
+		<item>TelepenAlpha</item>
+		<item>TelepenNumeric</item>
 		<item>QRCode</item>
 		<item>MicroQRCode</item>
 		<item>RMQRCode</item>

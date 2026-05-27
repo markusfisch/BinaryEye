@@ -308,6 +308,9 @@
 	<string name="format_description_databar_exp_stk">DataBar Expanded Stacked, en to-rækkers version af DataBar Expanded. Designet til smalle etiketter.</string>
 	<string name="format_description_data_matrix">En 2D-matrixstregkode, der koder store mængder data på et lille område. Udbredt inden for elektronik, sundhedsvæsen og posttjenester.</string>
 	<string name="format_description_dx_film_edge">En stregkode trykt langs kanten af fotografisk film. Koder filmtype, lysfølsomhed (ISO) og antal eksponeringer.</string>
+	<string name="format_description_telepen">En lineær stregkode med ASCII- og numeriske tilstande, ofte brugt i biblioteker, sundhedsvæsen og lagersystemer.</string>
+	<string name="format_description_telepen_alpha">Telepen Alpha koder ASCII-tekst i en kompakt lineær stregkode.</string>
+	<string name="format_description_telepen_numeric">Telepen Numeric koder par af cifre i en kompakt lineær stregkode.</string>
 	<string name="format_description_ean8">En kompakt 8-cifret stregkode til små detailhandelsvarer, hvor en fuld EAN-13 ikke passer.</string>
 	<string name="format_description_ean13">Den standard 13-cifrede detailhandelsstregkode, der bruges verden over. De fleste produkter solgt i butikker har en EAN-13 på deres emballage.</string>
 	<string name="format_description_itf">Interleaved 2 of 5, en kun-numerisk lineær stregkode, der koder par af cifre. Bruges ofte på ydre kartoner og i lagerlogistik.</string>

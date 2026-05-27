@@ -330,6 +330,9 @@
 	<string name="format_description_databar_exp_stk">DataBar Expanded Stacked, DataBar Expanded divrindu versija. Paredzēta šaurām etiķetēm.</string>
 	<string name="format_description_data_matrix">2D matricas svītrkods, kas nelielā laukumā kodē lielu datu apjomu. Plaši izmantots elektronikā, veselības aprūpē un pasta pakalpojumos.</string>
 	<string name="format_description_dx_film_edge">Svītrkods, kas drukāts gar fotofilmas malu. Kodē filmas tipu, jutību (ISO) un ekspozīciju skaitu.</string>
+	<string name="format_description_telepen">Lineārs svītrkods ar ASCII un ciparu režīmiem, ko bieži izmanto bibliotēkās, veselības aprūpē un inventāra sistēmās.</string>
+	<string name="format_description_telepen_alpha">Telepen Alpha kodē ASCII tekstu kompaktā lineārā svītrkodā.</string>
+	<string name="format_description_telepen_numeric">Telepen Numeric kodē ciparu pārus kompaktā lineārā svītrkodā.</string>
 	<string name="format_description_ean8">Kompakts 8 ciparu svītrkods mazām mazumtirdzniecības precēm, kur pilns EAN-13 neietilptu.</string>
 	<string name="format_description_ean13">Standarta 13 ciparu mazumtirdzniecības svītrkods, ko izmanto visā pasaulē. Lielākajai daļai veikalu preču uz iepakojuma ir EAN-13.</string>
 	<string name="format_description_itf">Interleaved 2 of 5, tikai ciparu lineārs svītrkods, kas kodē ciparu pārus. Bieži izmantots uz ārējiem kartoniem un noliktavu loģistikā.</string>

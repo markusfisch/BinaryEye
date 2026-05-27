@@ -59,6 +59,7 @@ ZXing can read the following barcode formats:
 * [ITF][itf]
 * [MAXICODE][maxicode] (partial)
 * [PDF417][pdf417]
+* [Telepen][telepen]
 * [QR CODE][qr_code]
 * [Micro QR Code][micro_qr_code]
 * [rMQR Code][rmqr_code]
@@ -207,6 +208,7 @@ In order to set up Bluetooth forwarding to a computer:
 [itf]: https://en.wikipedia.org/wiki/Interleaved_2_of_5
 [maxicode]: https://en.wikipedia.org/wiki/MaxiCode
 [pdf417]: https://en.wikipedia.org/wiki/PDF417
+[telepen]: https://en.wikipedia.org/wiki/Telepen
 [qr_code]: https://en.wikipedia.org/wiki/QR_code
 [micro_qr_code]: https://en.wikipedia.org/wiki/QR_code#Micro_QR_code
 [rmqr_code]: https://www.qrcode.com/en/codes/rmqr.html

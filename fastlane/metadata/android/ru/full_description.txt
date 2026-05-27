@@ -4,7 +4,7 @@
 Использует ZXing-C++ (Zebra Crossing) библиотека сканирования штрихкодов.
 Поддерживаемые форматы штрихкодов: AZTEC, CODABAR, CODE 39, CODE 93,
 CODE 128, DATA MATRIX, EAN 8, EAN 13, ITF, PDF417, QR CODE, RSS 14,
-RSS EXPANDED, UPC A, UPC E и UPC EAN EXTENSION.
+RSS EXPANDED, Telepen, UPC A, UPC E и UPC EAN EXTENSION.
 
 Это проект с открытым исходным кодом:
 https://github.com/markusfisch/BinaryEye

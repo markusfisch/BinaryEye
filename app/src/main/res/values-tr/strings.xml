@@ -308,6 +308,9 @@
 	<string name="format_description_databar_exp_stk">DataBar Expanded\'ın iki sıralı versiyonu olan DataBar Expanded Stacked. Dar etiketler için tasarlanmıştır.</string>
 	<string name="format_description_data_matrix">Küçük bir alanda büyük miktarda veri kodlayan 2B matris barkodu. Elektronik, sağlık ve posta hizmetlerinde yaygın olarak kullanılır.</string>
 	<string name="format_description_dx_film_edge">Fotoğraf filminin kenarına basılan barkod. Film türünü, hızını (ISO) ve pozlama sayısını kodlar.</string>
+	<string name="format_description_telepen">ASCII ve sayısal modlara sahip doğrusal barkod. Kütüphanelerde, sağlık hizmetlerinde ve envanter sistemlerinde yaygın olarak kullanılır.</string>
+	<string name="format_description_telepen_alpha">Telepen Alpha, ASCII metni kompakt bir doğrusal barkodda kodlar.</string>
+	<string name="format_description_telepen_numeric">Telepen Numeric, rakam çiftlerini kompakt bir doğrusal barkodda kodlar.</string>
 	<string name="format_description_ean8">Tam EAN-13\'ün sığmayacağı küçük perakende ürünler için kompakt 8 haneli barkod.</string>
 	<string name="format_description_ean13">Dünya genelinde kullanılan standart 13 haneli perakende barkodu. Mağazalarda satılan ürünlerin çoğu ambalajlarında EAN-13 taşır.</string>
 	<string name="format_description_itf">Rakam çiftlerini kodlayan yalnızca sayısal doğrusal barkod olan Interleaved 2 of 5. Sıklıkla dış kartonlarda ve depo lojistiğinde kullanılır.</string>

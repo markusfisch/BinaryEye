@@ -306,6 +306,9 @@
 	<string name="format_description_databar_exp_stk">DataBar Expanded Stacked는 DataBar Expanded의 2행 버전입니다. 좁은 라벨을 위해 설계되었습니다.</string>
 	<string name="format_description_data_matrix">작은 영역에 많은 양의 데이터를 인코딩하는 2D 매트릭스 바코드입니다. 전자 제품, 의료, 우편 서비스에서 널리 사용됩니다.</string>
 	<string name="format_description_dx_film_edge">사진 필름의 가장자리에 인쇄된 바코드입니다. 필름 유형, 감도(ISO), 노출 수를 인코딩합니다.</string>
+	<string name="format_description_telepen">ASCII 및 숫자 모드를 지원하는 1차원 바코드로, 도서관, 의료, 재고 관리 시스템에서 자주 사용됩니다.</string>
+	<string name="format_description_telepen_alpha">Telepen Alpha는 ASCII 텍스트를 compact한 1차원 바코드로 인코딩합니다.</string>
+	<string name="format_description_telepen_numeric">Telepen Numeric은 숫자 쌍을 compact한 1차원 바코드로 인코딩합니다.</string>
 	<string name="format_description_ean8">전체 EAN-13이 맞지 않는 소형 소매 품목을 위한 컴팩트한 8자리 바코드입니다.</string>
 	<string name="format_description_ean13">전 세계에서 사용되는 표준 13자리 소매 바코드입니다. 매장에서 판매되는 대부분의 제품 포장에 EAN-13이 있습니다.</string>
 	<string name="format_description_itf">숫자만 인코딩하는 Interleaved 2 of 5로, 숫자 쌍을 인코딩하는 선형 바코드입니다. 외부 박스 및 창고 물류에 자주 사용됩니다.</string>

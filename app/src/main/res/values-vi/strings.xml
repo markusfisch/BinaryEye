@@ -306,6 +306,9 @@
 	<string name="format_description_databar_exp_stk">DataBar Expanded Stacked, phiên bản hai hàng của DataBar Expanded. Được thiết kế cho nhãn hẹp.</string>
 	<string name="format_description_data_matrix">Mã vạch ma trận 2D mã hóa lượng lớn dữ liệu trong diện tích nhỏ. Được sử dụng rộng rãi trong điện tử, y tế và dịch vụ bưu chính.</string>
 	<string name="format_description_dx_film_edge">Mã vạch in dọc theo cạnh phim ảnh. Mã hóa loại phim, tốc độ (ISO) và số lần phơi sáng.</string>
+	<string name="format_description_telepen">Mã vạch tuyến tính có chế độ ASCII và số, thường dùng trong thư viện, y tế và hệ thống kiểm kê.</string>
+	<string name="format_description_telepen_alpha">Telepen Alpha mã hóa văn bản ASCII trong một mã vạch tuyến tính nhỏ gọn.</string>
+	<string name="format_description_telepen_numeric">Telepen Numeric mã hóa các cặp chữ số trong một mã vạch tuyến tính nhỏ gọn.</string>
 	<string name="format_description_ean8">Mã vạch 8 chữ số nhỏ gọn dành cho các mặt hàng bán lẻ nhỏ không đủ chỗ cho EAN-13 đầy đủ.</string>
 	<string name="format_description_ean13">Mã vạch bán lẻ 13 chữ số tiêu chuẩn được sử dụng trên toàn thế giới. Hầu hết các sản phẩm bán trong cửa hàng đều có EAN-13 trên bao bì.</string>
 	<string name="format_description_itf">Interleaved 2 of 5, mã vạch tuyến tính chỉ dùng số mã hóa các cặp chữ số. Thường được dùng trên thùng carton ngoài và trong logistics kho bãi.</string>

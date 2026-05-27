@@ -306,6 +306,9 @@
 	<string name="format_description_databar_exp_stk">DataBar拡張積み重ね（DataBar Expanded Stacked）は、DataBar拡張版の2行バージョンです。細長いラベル向けに設計されています。</string>
 	<string name="format_description_data_matrix">小さな面積に大量のデータを符号化できる2Dマトリックスバーコードです。電子部品、医療、郵便サービスで広く使われています。</string>
 	<string name="format_description_dx_film_edge">写真フィルムの端に印刷されたバーコードです。フィルムの種類、感度（ISO）、コマ数を符号化します。</string>
+	<string name="format_description_telepen">ASCIIモードと数字モードを持つ一次元バーコードです。図書館、医療、在庫管理システムでよく使われます。</string>
+	<string name="format_description_telepen_alpha">Telepen AlphaはASCIIテキストをコンパクトな一次元バーコードにエンコードします。</string>
+	<string name="format_description_telepen_numeric">Telepen Numericは数字のペアをコンパクトな一次元バーコードにエンコードします。</string>
 	<string name="format_description_ean8">EAN-13が入らないような小さな小売商品向けのコンパクトな8桁バーコードです。</string>
 	<string name="format_description_ean13">世界中で使われている標準的な13桁の小売バーコードです。店舗で販売されるほとんどの商品のパッケージにEAN-13が付いています。</string>
 	<string name="format_description_itf">数字のみを符号化するインタリーブド2of5（Interleaved 2 of 5）は、数字を2桁ずつペアで符号化する線形バーコードです。外部ダンボール箱や倉庫のロジスティクスによく使われます。</string>

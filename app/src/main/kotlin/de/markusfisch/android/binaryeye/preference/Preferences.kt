@@ -56,6 +56,9 @@ class Preferences {
 		BarcodeFormat.ITF.name,
 		BarcodeFormat.MaxiCode.name,
 		BarcodeFormat.PDF417.name,
+		BarcodeFormat.Telepen.name,
+		BarcodeFormat.TelepenAlpha.name,
+		BarcodeFormat.TelepenNumeric.name,
 		BarcodeFormat.QRCode.name,
 		BarcodeFormat.MicroQRCode.name,
 		BarcodeFormat.RMQRCode.name,
@@ -517,7 +520,10 @@ class Preferences {
 				BarcodeFormat.DataBarExp,
 				BarcodeFormat.DataBarExpStk,
 				BarcodeFormat.RMQRCode,
-				BarcodeFormat.DXFilmEdge
+				BarcodeFormat.DXFilmEdge,
+				BarcodeFormat.Telepen,
+				BarcodeFormat.TelepenAlpha,
+				BarcodeFormat.TelepenNumeric
 			)
 		}
 

@@ -310,6 +310,9 @@
 	<string name="format_description_databar_exp_stk">DataBar espanso impilato, una versione a due righe di DataBar Espanso. Progettato per etichette strette.</string>
 	<string name="format_description_data_matrix">Un codice a barre matriciale 2D che codifica grandi quantità di dati in uno spazio ridotto. Ampiamente usato in elettronica, sanità e servizi postali.</string>
 	<string name="format_description_dx_film_edge">Un codice a barre stampato lungo il bordo della pellicola fotografica. Codifica il tipo di pellicola, la sensibilità (ISO) e il numero di esposizioni.</string>
+	<string name="format_description_telepen">Un codice a barre lineare con modalità ASCII e numerica, usato spesso in biblioteche, sanità e sistemi di inventario.</string>
+	<string name="format_description_telepen_alpha">Telepen Alpha codifica testo ASCII in un codice a barre lineare compatto.</string>
+	<string name="format_description_telepen_numeric">Telepen Numeric codifica coppie di cifre in un codice a barre lineare compatto.</string>
 	<string name="format_description_ean8">Un codice a barre compatto a 8 cifre per piccoli articoli al dettaglio dove non entra un EAN-13 completo.</string>
 	<string name="format_description_ean13">Il codice a barre al dettaglio standard a 13 cifre usato in tutto il mondo. La maggior parte dei prodotti venduti nei negozi riporta un EAN-13 sulla confezione.</string>
 	<string name="format_description_itf">Interleaved 2 of 5, un codice a barre lineare solo numerico che codifica coppie di cifre. Spesso usato su cartoni esterni e nella logistica di magazzino.</string>

@@ -320,6 +320,9 @@
 	<string name="format_description_databar_exp_stk">DataBar Expanded Stacked، نسخة مزدوجة الصف من DataBar Expanded. مصمم للتسميات الضيقة.</string>
 	<string name="format_description_data_matrix">رمز شريطي ثنائي الأبعاد يُرمّز كميات كبيرة من البيانات في مساحة صغيرة. يُستخدم على نطاق واسع في الإلكترونيات والرعاية الصحية والخدمات البريدية.</string>
 	<string name="format_description_dx_film_edge">رمز شريطي مطبوع على حافة الأفلام الفوتوغرافية. يُرمّز نوع الفيلم وسرعته (ISO) وعدد مرات التعريض للضوء.</string>
+	<string name="format_description_telepen">رمز شريطي خطي يدعم وضعي ASCII والأرقام، ويُستخدم عادةً في المكتبات والرعاية الصحية وأنظمة المخزون.</string>
+	<string name="format_description_telepen_alpha">يرمز Telepen Alpha نص ASCII في رمز شريطي خطي مضغوط.</string>
+	<string name="format_description_telepen_numeric">يرمز Telepen Numeric أزواج الأرقام في رمز شريطي خطي مضغوط.</string>
 	<string name="format_description_ean8">رمز شريطي مضغوط مكون من 8 أرقام لعناصر التجزئة الصغيرة التي لا تتسع لرمز EAN-13 الكامل.</string>
 	<string name="format_description_ean13">الرمز الشريطي التجاري القياسي المكون من 13 رقمًا والمستخدم في جميع أنحاء العالم. تحمل معظم المنتجات المباعة في المتاجر رمز EAN-13 على عبواتها.</string>
 	<string name="format_description_itf">Interleaved 2 of 5، رمز شريطي خطي رقمي فقط يُرمّز أزواجًا من الأرقام. يُستخدم كثيرًا على الكراتين الخارجية وفي لوجستيات المستودعات.</string>

@@ -308,6 +308,9 @@
 	<string name="format_description_databar_exp_stk">DataBar Expanded Stacked, DataBar Expanded-এর দুই-সারির সংস্করণ। সরু লেবেলের জন্য ডিজাইন করা হয়েছে।</string>
 	<string name="format_description_data_matrix">ছোট এলাকায় প্রচুর পরিমাণ ডেটা এনকোড করা একটি 2D ম্যাট্রিক্স বারকোড। ইলেকট্রনিক্স, স্বাস্থ্যসেবা এবং ডাক সেবায় ব্যাপকভাবে ব্যবহৃত হয়।</string>
 	<string name="format_description_dx_film_edge">ফটোগ্রাফিক ফিল্মের প্রান্তে মুদ্রিত একটি বারকোড। ফিল্মের ধরন, গতি (ISO) এবং এক্সপোজারের সংখ্যা এনকোড করে।</string>
+	<string name="format_description_telepen">ASCII ও সংখ্যাসূচক মোডসহ একটি রৈখিক বারকোড, যা সাধারণত গ্রন্থাগার, স্বাস্থ্যসেবা ও ইনভেন্টরি ব্যবস্থায় ব্যবহৃত হয়।</string>
+	<string name="format_description_telepen_alpha">Telepen Alpha একটি কমপ্যাক্ট রৈখিক বারকোডে ASCII টেক্সট এনকোড করে।</string>
+	<string name="format_description_telepen_numeric">Telepen Numeric একটি কমপ্যাক্ট রৈখিক বারকোডে জোড়া জোড়া অঙ্ক এনকোড করে।</string>
 	<string name="format_description_ean8">ছোট খুচরা পণ্যের জন্য কমপ্যাক্ট ৮-অঙ্কের বারকোড যেখানে সম্পূর্ণ EAN-13 ফিট হবে না।</string>
 	<string name="format_description_ean13">বিশ্বব্যাপী ব্যবহৃত আদর্শ ১৩-অঙ্কের খুচরা বারকোড। দোকানে বিক্রিত বেশিরভাগ পণ্যের প্যাকেজিংয়ে EAN-13 থাকে।</string>
 	<string name="format_description_itf">Interleaved 2 of 5, কেবল সংখ্যা এনকোড করা লিনিয়ার বারকোড যা সংখ্যার জোড়া এনকোড করে। প্রায়ই বাইরের কার্টন এবং গুদাম লজিস্টিকসে ব্যবহৃত হয়।</string>

@@ -314,6 +314,9 @@
 	<string name="format_description_databar_exp_stk">DataBar Expanded Stacked, dvouřádková verze DataBar Expanded. Určen pro úzké štítky.</string>
 	<string name="format_description_data_matrix">2D maticový čárový kód kódující velké množství dat na malé ploše. Hojně se používá v elektronice, zdravotnictví a poštovních službách.</string>
 	<string name="format_description_dx_film_edge">Čárový kód tištěný podél okraje fotografického filmu. Kóduje typ filmu, citlivost (ISO) a počet expozic.</string>
+	<string name="format_description_telepen">Lineární čárový kód s režimy ASCII a čísel, běžně používaný v knihovnách, zdravotnictví a skladových systémech.</string>
+	<string name="format_description_telepen_alpha">Telepen Alpha kóduje text ASCII do kompaktního lineárního čárového kódu.</string>
+	<string name="format_description_telepen_numeric">Telepen Numeric kóduje dvojice číslic do kompaktního lineárního čárového kódu.</string>
 	<string name="format_description_ean8">Kompaktní 8místný čárový kód pro malé maloobchodní položky, kde by se celý EAN-13 nevešel.</string>
 	<string name="format_description_ean13">Standardní 13místný maloobchodní čárový kód používaný po celém světě. Většina produktů prodávaných v obchodech nese na obalu EAN-13.</string>
 	<string name="format_description_itf">Interleaved 2 of 5, lineární čárový kód pouze pro číslice kódující páry číslic. Často se používá na vnějších kartonech a ve skladové logistice.</string>

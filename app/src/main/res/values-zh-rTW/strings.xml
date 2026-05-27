@@ -306,6 +306,9 @@
 	<string name="format_description_databar_exp_stk">DataBar擴充堆疊型，是DataBar擴充型的雙行版本。專為窄標籤設計。</string>
 	<string name="format_description_data_matrix">在小面積內編碼大量資料的2D矩陣條碼。廣泛用於電子產品、醫療保健和郵政服務。</string>
 	<string name="format_description_dx_film_edge">印刷在攝影底片邊緣的條碼。編碼底片類型、感光度（ISO）和曝光數量。</string>
+	<string name="format_description_telepen">一種具有 ASCII 與數字模式的一維條碼，常用於圖書館、醫療保健與庫存系統。</string>
+	<string name="format_description_telepen_alpha">Telepen Alpha 將 ASCII 文字編碼為精簡的一維條碼。</string>
+	<string name="format_description_telepen_numeric">Telepen Numeric 將成對數字編碼為精簡的一維條碼。</string>
 	<string name="format_description_ean8">適用於放不下完整EAN-13之小型零售商品的緊湊型8位條碼。</string>
 	<string name="format_description_ean13">全球通用的標準13位零售條碼。大多數在商店銷售的產品包裝上都帶有EAN-13。</string>
 	<string name="format_description_itf">交叉二五碼（Interleaved 2 of 5），僅編碼數字的線性條碼，成對編碼數字。常用於外箱和倉儲物流。</string>

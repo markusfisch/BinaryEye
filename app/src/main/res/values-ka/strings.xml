@@ -308,6 +308,9 @@
 	<string name="format_description_databar_exp_stk">DataBar Expanded Stacked — DataBar Expanded-ის ორ-რიგიანი ვერსია. განკუთვნილია ვიწრო ეტიკეტებისთვის.</string>
 	<string name="format_description_data_matrix">2D მატრიცული შტრიხ-კოდი, რომელიც მცირე ფართობზე კოდირებს დიდი რაოდენობის მონაცემებს. ფართოდ გამოიყენება ელექტრონიკაში, ჯანდაცვასა და საფოსტო სამსახურებში.</string>
 	<string name="format_description_dx_film_edge">შტრიხ-კოდი, დაბეჭდილი ფოტოგრაფიული ფირის კიდეზე. კოდირებს ფირის ტიპს, მგრძნობელობას (ISO) და კადრების რაოდენობას.</string>
+	<string name="format_description_telepen">ხაზოვანი შტრიხკოდი ASCII და ციფრული რეჟიმებით, რომელიც ხშირად გამოიყენება ბიბლიოთეკებში, ჯანდაცვასა და ინვენტარის სისტემებში.</string>
+	<string name="format_description_telepen_alpha">Telepen Alpha ASCII ტექსტს კოდირებს კომპაქტურ ხაზოვან შტრიხკოდში.</string>
+	<string name="format_description_telepen_numeric">Telepen Numeric ციფრების წყვილებს კოდირებს კომპაქტურ ხაზოვან შტრიხკოდში.</string>
 	<string name="format_description_ean8">კომპაქტური 8-ციფრიანი შტრიხ-კოდი მცირე საცალო ნივთებისთვის, სადაც სრული EAN-13 ვერ ეტევა.</string>
 	<string name="format_description_ean13">სტანდარტული 13-ციფრიანი საცალო შტრიხ-კოდი, გამოიყენება მსოფლიოს მასშტაბით. მაღაზიებში გაყიდული პროდუქტების უმეტეს შეფუთვაზე EAN-13 ფიგურირებს.</string>
 	<string name="format_description_itf">Interleaved 2 of 5 — მხოლოდ ციფრების ხაზოვანი შტრიხ-კოდი, რომელიც ციფრთა წყვილებს კოდირებს. ხშირად გამოიყენება გარე ყუთებზე და საწყობის ლოჯისტიკაში.</string>

@@ -225,6 +225,9 @@ fun String.toFormatDescriptionResId(): Int = when (this) {
 	"ITF" -> R.string.format_description_itf
 	"MaxiCode" -> R.string.format_description_maxicode
 	"PDF417" -> R.string.format_description_pdf417
+	"Telepen" -> R.string.format_description_telepen
+	"TelepenAlpha" -> R.string.format_description_telepen_alpha
+	"TelepenNumeric" -> R.string.format_description_telepen_numeric
 	"QRCode" -> R.string.format_description_qr_code
 	"MicroQRCode" -> R.string.format_description_micro_qr_code
 	"RMQRCode" -> R.string.format_description_rmqr_code

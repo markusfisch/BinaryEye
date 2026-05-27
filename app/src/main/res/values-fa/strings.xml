@@ -308,6 +308,9 @@
 	<string name="format_description_databar_exp_stk">DataBar Expanded Stacked، نسخه دو ردیفه DataBar Expanded. برای برچسب‌های باریک طراحی شده است.</string>
 	<string name="format_description_data_matrix">یک بارکد ماتریسی دوبعدی که مقادیر زیادی داده را در فضای کوچک رمزگذاری می‌کند. به طور گسترده در الکترونیک، مراقبت‌های بهداشتی و خدمات پستی استفاده می‌شود.</string>
 	<string name="format_description_dx_film_edge">یک بارکد چاپ‌شده در امتداد لبه فیلم عکاسی. نوع فیلم، سرعت (ISO) و تعداد نوردهی‌ها را رمزگذاری می‌کند.</string>
+	<string name="format_description_telepen">یک بارکد خطی با حالت‌های ASCII و عددی که معمولاً در کتابخانه‌ها، مراقبت‌های بهداشتی و سامانه‌های موجودی استفاده می‌شود.</string>
+	<string name="format_description_telepen_alpha">Telepen Alpha متن ASCII را در یک بارکد خطی فشرده کدگذاری می‌کند.</string>
+	<string name="format_description_telepen_numeric">Telepen Numeric جفت‌های رقم را در یک بارکد خطی فشرده کدگذاری می‌کند.</string>
 	<string name="format_description_ean8">یک بارکد فشرده ۸ رقمی برای اقلام خرده‌فروشی کوچکی که EAN-13 کامل در آن‌ها جا نمی‌شود.</string>
 	<string name="format_description_ean13">بارکد خرده‌فروشی استاندارد ۱۳ رقمی که در سراسر جهان استفاده می‌شود. اکثر محصولات فروخته‌شده در فروشگاه‌ها EAN-13 را روی بسته‌بندی خود دارند.</string>
 	<string name="format_description_itf">Interleaved 2 of 5، یک بارکد خطی فقط عددی که جفت ارقام را رمزگذاری می‌کند. اغلب روی کارتن‌های خارجی و در لجستیک انبار استفاده می‌شود.</string>

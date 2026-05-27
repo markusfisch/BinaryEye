@@ -208,6 +208,9 @@ private fun BarcodeFormat.resolveSize(size: Int): Size = when (this) {
 	BarcodeFormat.EAN8,
 	BarcodeFormat.EAN13,
 	BarcodeFormat.ITF,
+	BarcodeFormat.Telepen,
+	BarcodeFormat.TelepenAlpha,
+	BarcodeFormat.TelepenNumeric,
 	BarcodeFormat.UPCA,
 	BarcodeFormat.UPCE -> Size(size, size / 3)
 

@@ -314,6 +314,9 @@
 	<string name="format_description_databar_exp_stk">DataBar Expanded Stacked, dwurzędowa wersja DataBar Expanded. Przeznaczony dla wąskich etykiet.</string>
 	<string name="format_description_data_matrix">Dwuwymiarowy kod matrycowy kodujący duże ilości danych na małej powierzchni. Powszechnie stosowany w elektronice, ochronie zdrowia i usługach pocztowych.</string>
 	<string name="format_description_dx_film_edge">Kod kreskowy drukowany wzdłuż krawędzi filmu fotograficznego. Koduje typ filmu, czułość (ISO) i liczbę ekspozycji.</string>
+	<string name="format_description_telepen">Liniowy kod kreskowy z trybami ASCII i numerycznym, często używany w bibliotekach, ochronie zdrowia i systemach magazynowych.</string>
+	<string name="format_description_telepen_alpha">Telepen Alpha koduje tekst ASCII w kompaktowym liniowym kodzie kreskowym.</string>
+	<string name="format_description_telepen_numeric">Telepen Numeric koduje pary cyfr w kompaktowym liniowym kodzie kreskowym.</string>
 	<string name="format_description_ean8">Kompaktowy 8-cyfrowy kod kreskowy dla małych artykułów detalicznych, gdzie pełny EAN-13 by się nie zmieścił.</string>
 	<string name="format_description_ean13">Standardowy 13-cyfrowy kod detaliczny stosowany na całym świecie. Większość produktów sprzedawanych w sklepach posiada EAN-13 na opakowaniu.</string>
 	<string name="format_description_itf">Interleaved 2 of 5, tylko numeryczny liniowy kod kreskowy kodujący pary cyfr. Często stosowany na zewnętrznych kartonach i w logistyce magazynowej.</string>

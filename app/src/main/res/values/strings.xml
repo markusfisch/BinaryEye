@@ -325,6 +325,9 @@
 	<string name="format_description_databar_exp_stk">DataBar Expanded Stacked, a two-row version of DataBar Expanded. Designed for narrow labels.</string>
 	<string name="format_description_data_matrix">A 2D matrix barcode encoding large amounts of data in a small area. Widely used in electronics, healthcare, and postal services.</string>
 	<string name="format_description_dx_film_edge">A barcode printed along the edge of photographic film. Encodes film type, speed (ISO), and the number of exposures.</string>
+	<string name="format_description_telepen">A linear barcode with ASCII and numeric modes, commonly used in libraries, healthcare, and inventory systems.</string>
+	<string name="format_description_telepen_alpha">Telepen Alpha encodes ASCII text in a compact linear barcode.</string>
+	<string name="format_description_telepen_numeric">Telepen Numeric encodes pairs of digits in a compact linear barcode.</string>
 	<string name="format_description_ean8">A compact 8-digit barcode for small retail items where a full EAN-13 would not fit.</string>
 	<string name="format_description_ean13">The standard 13-digit retail barcode used worldwide. Most products sold in stores carry an EAN-13 on their packaging.</string>
 	<string name="format_description_itf">Interleaved 2 of 5, a numeric-only linear barcode encoding pairs of digits. Often used on outer cartons and in warehouse logistics.</string>

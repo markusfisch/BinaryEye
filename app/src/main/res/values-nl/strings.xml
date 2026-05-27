@@ -308,6 +308,9 @@
 	<string name="format_description_databar_exp_stk">DataBar Uitgebreid Gestapeld, een twee-rijen versie van DataBar Uitgebreid. Ontworpen voor smalle etiketten.</string>
 	<string name="format_description_data_matrix">Een 2D-matrixcode die grote hoeveelheden gegevens codeert in een klein gebied. Veel gebruikt in elektronica, gezondheidszorg en postdiensten.</string>
 	<string name="format_description_dx_film_edge">Een barcode gedrukt langs de rand van fotografische film. Codeert filmtype, gevoeligheid (ISO) en het aantal opnamen.</string>
+	<string name="format_description_telepen">Een lineaire barcode met ASCII- en numerieke modi, vaak gebruikt in bibliotheken, gezondheidszorg en inventarissystemen.</string>
+	<string name="format_description_telepen_alpha">Telepen Alpha codeert ASCII-tekst in een compacte lineaire barcode.</string>
+	<string name="format_description_telepen_numeric">Telepen Numeric codeert cijferparen in een compacte lineaire barcode.</string>
 	<string name="format_description_ean8">Een compacte 8-cijferige barcode voor kleine detailhandelsartikelen waar een volledige EAN-13 niet past.</string>
 	<string name="format_description_ean13">De standaard 13-cijferige detailhandels-barcode die wereldwijd wordt gebruikt. De meeste producten die in winkels worden verkocht, dragen een EAN-13 op hun verpakking.</string>
 	<string name="format_description_itf">Interleaved 2 of 5, een uitsluitend numerieke lineaire barcode die paren van cijfers codeert. Vaak gebruikt op buitenkartons en in magazijnlogistiek.</string>

@@ -308,6 +308,9 @@
 	<string name="format_description_databar_exp_stk">DataBar Kiterjesztett Halmozott, a DataBar Kiterjesztett kétsorú változata. Kesken y címkékhez tervezték.</string>
 	<string name="format_description_data_matrix">Egy 2D mátrix vonalkód, amely nagy mennyiségű adatot kódol kis területen. Széles körben alkalmazzák az elektronikában, az egészségügyben és a postai szolgáltatásokban.</string>
 	<string name="format_description_dx_film_edge">Egy vonalkód, amelyet fotófilm szélén nyomtatnak. A film típusát, sebességét (ISO) és az expozíciók számát kódolja.</string>
+	<string name="format_description_telepen">Lineáris vonalkód ASCII és numerikus módokkal, amelyet gyakran használnak könyvtárakban, egészségügyben és leltárrendszerekben.</string>
+	<string name="format_description_telepen_alpha">A Telepen Alpha ASCII szöveget kódol kompakt lineáris vonalkódba.</string>
+	<string name="format_description_telepen_numeric">A Telepen Numeric számjegypárokat kódol kompakt lineáris vonalkódba.</string>
 	<string name="format_description_ean8">Kompakt 8 jegyű vonalkód kis kiskereskedelmi cikkekhez, ahol a teljes EAN-13 nem férne el.</string>
 	<string name="format_description_ean13">A világszerte használt szabványos 13 jegyű kiskereskedelmi vonalkód. A legtöbb üzletekben kapható termék csomagolásán EAN-13 található.</string>
 	<string name="format_description_itf">Interleaved 2 of 5, egy csak numerikus lineáris vonalkód, amely számjegypárokat kódol. Gyakran alkalmazzák külső kartonokon és raktári logisztikában.</string>

@@ -4,7 +4,7 @@
 采用ZXing-C++（“Zebra Crossing”）条形码扫描库。
 支持的条形码格式包括：AZTEC、CODABAR、CODE 39、CODE 93、CODE 128、
 DATA MATRIX、EAN 8、EAN 13、ITF、PDF417、QR CODE、RSS 14、RSS 扩展、
-UPC A、UPC E 以及 UPC EAN 增强版。
+Telepen, UPC A、UPC E 以及 UPC EAN 增强版。
 
 该项目为开源项目：
 https://github.com/markusfisch/BinaryEye

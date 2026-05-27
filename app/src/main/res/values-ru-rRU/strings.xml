@@ -314,6 +314,9 @@
 	<string name="format_description_databar_exp_stk">DataBar Expanded Stacked, двухстрочная версия DataBar Expanded. Предназначен для узких этикеток.</string>
 	<string name="format_description_data_matrix">Двумерный матричный штрих-код, кодирующий большие объёмы данных на малой площади. Широко применяется в электронике, здравоохранении и почтовых службах.</string>
 	<string name="format_description_dx_film_edge">Штрих-код, печатаемый вдоль края фотографической плёнки. Кодирует тип плёнки, светочувствительность (ISO) и количество кадров.</string>
+	<string name="format_description_telepen">Линейный штрихкод с режимами ASCII и числовым режимом, часто используемый в библиотеках, здравоохранении и системах учёта.</string>
+	<string name="format_description_telepen_alpha">Telepen Alpha кодирует текст ASCII в компактный линейный штрихкод.</string>
+	<string name="format_description_telepen_numeric">Telepen Numeric кодирует пары цифр в компактный линейный штрихкод.</string>
 	<string name="format_description_ean8">Компактный 8-значный штрих-код для небольших розничных товаров, на которых не помещается полный EAN-13.</string>
 	<string name="format_description_ean13">Стандартный 13-значный розничный штрих-код, используемый по всему миру. Большинство товаров в магазинах имеют EAN-13 на упаковке.</string>
 	<string name="format_description_itf">Interleaved 2 of 5 — линейный штрих-код только для цифр, кодирующий пары цифр. Часто используется на транспортных коробках и в складской логистике.</string>

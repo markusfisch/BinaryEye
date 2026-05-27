@@ -308,6 +308,9 @@
 	<string name="format_description_databar_exp_stk">DataBar Erweitert Gestapelt, eine zweizeilige Version von DataBar Erweitert. Entwickelt für schmale Etiketten.</string>
 	<string name="format_description_data_matrix">Ein 2D-Matrixcode, der große Datenmengen auf kleiner Fläche kodiert. Weit verbreitet in Elektronik, Gesundheitswesen und Postdiensten.</string>
 	<string name="format_description_dx_film_edge">Ein Barcode am Rand von Fotofilm. Kodiert Filmtyp, Empfindlichkeit (ISO) und Anzahl der Aufnahmen.</string>
+	<string name="format_description_telepen">Ein linearer Barcode mit ASCII- und Zahlenmodus, der häufig in Bibliotheken, im Gesundheitswesen und in Inventarsystemen verwendet wird.</string>
+	<string name="format_description_telepen_alpha">Telepen Alpha codiert ASCII-Text in einem kompakten linearen Barcode.</string>
+	<string name="format_description_telepen_numeric">Telepen Numeric codiert Ziffernpaare in einem kompakten linearen Barcode.</string>
 	<string name="format_description_ean8">Ein kompakter 8-stelliger Barcode für kleine Einzelhandelsartikel, auf denen kein vollständiger EAN-13 passt.</string>
 	<string name="format_description_ean13">Der weltweit verwendete 13-stellige Einzelhandels-Barcode. Die meisten im Handel erhältlichen Produkte tragen einen EAN-13 auf ihrer Verpackung.</string>
 	<string name="format_description_itf">Interleaved 2 of 5, ein rein numerischer linearer Barcode, der Ziffernpaare kodiert. Häufig verwendet auf Außenkartons und in der Lagerlogistik.</string>
