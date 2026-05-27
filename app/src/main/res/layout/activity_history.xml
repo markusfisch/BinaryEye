@@ -3,7 +3,6 @@
 		android:id="@+id/scans"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:choiceMode="multipleChoice"
 		android:clipToPadding="false"
 		android:divider="?attr/colorOutlineVariant"
 		android:dividerHeight="1px"/>
