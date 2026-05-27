@@ -8,8 +8,8 @@ android {
 		minSdk 21
 		targetSdk sdk_version
 
-		versionCode 169
-		versionName '1.73.0'
+		versionCode 170
+		versionName '1.73.1'
 	}
 
 	signingConfigs {

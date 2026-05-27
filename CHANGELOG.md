@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.73.1
+* Update ZXingCpp and support Telepen format
+* Update vdstools
+* Fix stale history row highlighting
+
 ## 1.73.0
 * Support Material You and Dynamic Colors
 * Strip common tracking parameters before opening scanned URLs

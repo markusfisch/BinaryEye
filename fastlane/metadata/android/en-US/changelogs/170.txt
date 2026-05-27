@@ -1,0 +1,4 @@
+* Update ZXingCpp and support Telepen format
+* Update vdstools
+* Fix stale history row highlighting
+
