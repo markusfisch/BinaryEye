@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 	<string name="welcome">Benvenuto!</string>
 	<string name="mode_expert">Avanzato</string>
 	<string name="mode_expert_description">Voglio controllare il contenuto letto e aprirlo manualmente.</string>
@@ -10,11 +9,19 @@
 	<string name="compose_barcode">Crea codice a barre</string>
 	<string name="decode_barcode">Decodifica codice a barre</string>
 	<string name="content">Contenuto</string>
+	<string name="section_parsed_data">Dati analizzati</string>
+	<string name="section_raw_barcode_content">Contenuto codice a barre</string>
+	<string name="section_raw_barcode_content_editable">Contenuto codice a barre (modificabile)</string>
+	<string name="section_format_details">Formato: %1$s</string>
+	<string name="section_hex_dump">Dump esadecimale</string>
 	<string name="binary_data">(dati binari)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d carattere, %1$s</item>
-		<item quantity="many"/>
 		<item quantity="other">%2$d caratteri, %1$s</item>
+	</plurals>
+	<plurals name="character_count">
+		<item quantity="one">%d carattere</item>
+		<item quantity="other">%d caratteri</item>
 	</plurals>
 	<string name="error_correction_level">Livello correzione errori</string>
 	<string name="error_correction_level_l" formatted="false">Basso (correzione ~7%)</string>
@@ -143,8 +150,8 @@
 	<string name="ignore_code_remove_confirm">Vuoi rimuovere questo codice ignorato?</string>
 	<string name="open_immediately">Apri subito</string>
 	<string name="open_immediately_summary">Salta l\'ispezione e apri i contenuti immediatamente. Se abilitato può aprire contenuti dannosi.</string>
-	<string name="strip_tracking_params">Rimuovi parametri di tracciamento</string>
-	<string name="strip_tracking_params_summary">Rimuove i parametri di tracciamento noti (utm_*, fbclid, …) dagli URL prima dell\'apertura.</string>
+	<string name="strip_tracking_params">Rimuovi parametri tracciamento</string>
+	<string name="strip_tracking_params_summary">Rimuovi parametri tracciamento noti (utm_*, fbclid, …) dagli URL prima dell\'apertura.</string>
 	<string name="copy_immediately">Copia negli Appunti</string>
 	<string name="copy_immediately_summary">Copia automaticamente i contenuti scansionati negli Appunti. Nota che altre app potrebbero leggere gli Appunti in secondo piano.</string>
 	<string name="show_meta_data">Visualizza metadati</string>
@@ -165,7 +172,6 @@
 	<string name="automated_actions_empty">Ancora nessuna azione automatizzata</string>
 	<plurals name="automated_actions_count">
 		<item quantity="one">%d azione automatizzata</item>
-		<item quantity="many">%d azioni automatizzate</item>
 		<item quantity="other"></item>
 	</plurals>
 	<string name="automated_action_add">Aggiungi azione</string>
@@ -294,6 +300,15 @@
 	<string name="scheme">Schema</string>
 	<string name="host">Host</string>
 	<string name="query">Richiesta</string>
+	<string name="parsed_type_json">JSON</string>
+	<string name="parsed_type_international_driver_license">Patente di guida internazionale</string>
+	<string name="parsed_type_digital_seal">Sigillo digitale</string>
+	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
+	<string name="parsed_type_email">Email</string>
+	<string name="parsed_type_url">URL</string>
+	<string name="parsed_type_contact_card">Scheda contatto</string>
+	<string name="parsed_type_calendar_event">Evento calendario</string>
+	<string name="parsed_type_wifi_network">Rete Wi-Fi</string>
 	<string name="format_description_aztec">Un codice a barre matriciale 2D leggibile senza zona silenziosa intorno. Spesso usato per biglietti di trasporto e carte d\'imbarco.</string>
 	<string name="format_description_codabar">Un codice a barre lineare usato in biblioteche, banche del sangue e bolle di accompagnamento FedEx dal 1972. Codifica cifre numeriche e alcuni caratteri speciali.</string>
 	<string name="format_description_code39">Un codice a barre lineare a lunghezza variabile che codifica lettere maiuscole, cifre e alcuni simboli. Ampiamente usato nell\'automotive e nella difesa.</string>
@@ -400,26 +415,8 @@
 	<string name="vds_document_type">Tipo documento</string>
 	<string name="vds_issuing_country">Paese emittente</string>
 	<string name="vds_signing_date">Data firma</string>
-	<string name="section_parsed_data">Dati analizzati</string>
-	<string name="section_raw_barcode_content">Contenuto codice a barre</string>
-	<string name="section_raw_barcode_content_editable">Contenuto codice a barre (modificabile)</string>
-	<string name="section_format_details">Formato: %1$s</string>
-	<string name="section_hex_dump">Dump esadecimale</string>
-	<plurals name="character_count">
-		<item quantity="one">%d carattere</item>
-		<item quantity="other">%d caratteri</item>
-	</plurals>
-	<string name="parsed_type_json">JSON</string>
-	<string name="parsed_type_international_driver_license">Patente di guida internazionale</string>
-	<string name="parsed_type_digital_seal">Sigillo digitale</string>
-	<string name="parsed_type_sepa_epc_qr">SEPA EPC QR</string>
-	<string name="parsed_type_email">Email</string>
-	<string name="parsed_type_url">URL</string>
-	<string name="parsed_type_contact_card">Scheda contatto</string>
-	<string name="parsed_type_calendar_event">Evento calendario</string>
-	<string name="parsed_type_wifi_network">Rete Wi-Fi</string>
 	<string name="formatted_json">JSON formattato</string>
 	<string name="appearance_category">Aspetto</string>
 	<string name="dynamic_colors">Colori dinamici</string>
-	<string name="dynamic_colors_summary">Usa i colori di sistema per il tema dell\'app. Richiede Android 12 o versioni successive.</string>
+	<string name="dynamic_colors_summary">Usa colori di sistema per il tema dell\'app. Richiede Android 12 o versioni successive.</string>
 </resources>
