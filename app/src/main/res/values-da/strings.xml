@@ -191,6 +191,7 @@
 	<string name="send_scan_active_summary">Aktiver for at videresende scanninger til en given URL.</string>
 	<string name="send_scan_url">URL at videresende til</string>
 	<string name="send_scan_type">Forespørgsels type</string>
+	<string name="send_scan_device_id">Scanner-/enheds-id</string>
 	<string name="send_type_get_add_content">GET og tilføj blot indhold</string>
 	<string name="send_type_get_query_string">GET med komplet forespørgselsstreng</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>

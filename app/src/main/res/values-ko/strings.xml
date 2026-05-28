@@ -189,6 +189,7 @@
 	<string name="send_scan_active_summary">Enable to forward scans to a the given URL.</string>
 	<string name="send_scan_url">전달 할 URL</string>
 	<string name="send_scan_type">요청 유형</string>
+	<string name="send_scan_device_id">스캐너/기기 ID</string>
 	<string name="send_type_get_add_content">GET 및 간단히 콘텐츠 추가</string>
 	<string name="send_type_get_query_string">전체 쿼리 문자열이 포함된 GET</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>

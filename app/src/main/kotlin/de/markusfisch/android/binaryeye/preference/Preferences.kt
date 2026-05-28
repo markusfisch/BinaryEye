@@ -206,6 +206,11 @@ class Preferences {
 			apply(SEND_SCAN_TYPE, value)
 			field = value
 		}
+	var sendScanDeviceId: String = ""
+		set(value) {
+			apply(SEND_SCAN_DEVICE_ID, value)
+			field = value
+		}
 	var sendScanBluetooth = false
 		set(value) {
 			apply(SEND_SCAN_BLUETOOTH, value)
@@ -384,6 +389,7 @@ class Preferences {
 		json.put(SEND_SCAN_ACTIVE, p, defaults.sendScanActive)
 		json.put(SEND_SCAN_URL, p, defaults.sendScanUrl)
 		json.put(SEND_SCAN_TYPE, p, defaults.sendScanType)
+		json.put(SEND_SCAN_DEVICE_ID, p, defaults.sendScanDeviceId)
 		json.put(SEND_SCAN_BLUETOOTH, p, defaults.sendScanBluetooth)
 		json.put(SEND_SCAN_BLUETOOTH_HOST, p, defaults.sendScanBluetoothHost)
 		json.put(CUSTOM_LOCALE, p, defaults.customLocale)
@@ -481,6 +487,7 @@ class Preferences {
 				putBoolean(SEND_SCAN_ACTIVE, json)
 				putString(SEND_SCAN_URL, json)
 				putString(SEND_SCAN_TYPE, json)
+				putString(SEND_SCAN_DEVICE_ID, json)
 				putBoolean(SEND_SCAN_BLUETOOTH, json)
 				putString(SEND_SCAN_BLUETOOTH_HOST, json)
 				putString(CUSTOM_LOCALE, json)
@@ -617,6 +624,9 @@ class Preferences {
 		}
 		preferences.getString(SEND_SCAN_TYPE, sendScanType)?.also {
 			sendScanType = it
+		}
+		preferences.getString(SEND_SCAN_DEVICE_ID, sendScanDeviceId)?.also {
+			sendScanDeviceId = it
 		}
 		sendScanBluetooth = preferences.getBoolean(
 			SEND_SCAN_BLUETOOTH,
@@ -795,6 +805,7 @@ class Preferences {
 		putBoolean(SEND_SCAN_ACTIVE, defaults.sendScanActive)
 		putString(SEND_SCAN_URL, defaults.sendScanUrl)
 		putString(SEND_SCAN_TYPE, defaults.sendScanType)
+		putString(SEND_SCAN_DEVICE_ID, defaults.sendScanDeviceId)
 		putBoolean(SEND_SCAN_BLUETOOTH, defaults.sendScanBluetooth)
 		putString(SEND_SCAN_BLUETOOTH_HOST, defaults.sendScanBluetoothHost)
 		putString(CUSTOM_LOCALE, defaults.customLocale)
@@ -900,6 +911,7 @@ class Preferences {
 		private const val SEND_SCAN_ACTIVE = "send_scan_active"
 		private const val SEND_SCAN_URL = "send_scan_url"
 		private const val SEND_SCAN_TYPE = "send_scan_type"
+		private const val SEND_SCAN_DEVICE_ID = "send_scan_device_id"
 		private const val SEND_SCAN_BLUETOOTH = "send_scan_bluetooth"
 		private const val SEND_SCAN_BLUETOOTH_HOST = "send_scan_bluetooth_host"
 		private const val CUSTOM_LOCALE = "custom_locale"

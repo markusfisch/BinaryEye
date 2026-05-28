@@ -191,6 +191,7 @@
 	<string name="send_scan_active_summary">Enable to forward scans to a the given URL</string>
 	<string name="send_scan_url">প্রতিটি পাঠোদ্ধার ইউআরএল-এ পাঠাও</string>
 	<string name="send_scan_type">প্রতি পাঠোদ্ধারের জন্য অনুরোধ</string>
+	<string name="send_scan_device_id">স্ক্যানার/ডিভাইস আইডি</string>
 	<string name="send_type_get_add_content">গেট(GET) দিয়ে তথ্য যোগ করো</string>
 	<string name="send_type_get_query_string">সম্পূর্ণ কুয়েরি স্ট্রিং দিয়ে গেট(GET) করো</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>

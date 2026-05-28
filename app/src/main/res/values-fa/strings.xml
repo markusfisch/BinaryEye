@@ -191,6 +191,7 @@
 	<string name="send_scan_active_summary">برای هدایت پویش‌ها به نشانی مشخص شده، آن را به کار بیاندازید.</string>
 	<string name="send_scan_url">نشانی برای هدایت به آن</string>
 	<string name="send_scan_type">گونهٔ درخواست</string>
+	<string name="send_scan_device_id">شناسهٔ پویشگر/دستگاه</string>
 	<string name="send_type_get_add_content">GET و به سادگی محتوا را اضافه کنید</string>
 	<string name="send_type_get_query_string">GET با رشته پرس‌وجو کامل</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded ارسال</string>

@@ -113,6 +113,9 @@
 			android:entries="@array/send_type_names"
 			android:entryValues="@array/send_type_values"
 			android:defaultValue="0"/>
+		<EditTextPreference
+			android:key="send_scan_device_id"
+			android:title="@string/send_scan_device_id"/>
 		<androidx.preference.SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="send_scan_bluetooth"

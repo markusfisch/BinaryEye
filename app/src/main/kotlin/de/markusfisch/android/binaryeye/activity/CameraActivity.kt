@@ -48,7 +48,6 @@ import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.automation.runAutomatedActions
 import de.markusfisch.android.binaryeye.bluetooth.sendBluetoothAsync
 import de.markusfisch.android.binaryeye.content.copyToClipboard
-import de.markusfisch.android.binaryeye.content.openUrl
 import de.markusfisch.android.binaryeye.content.startIntentOrToast
 import de.markusfisch.android.binaryeye.database.toScan
 import de.markusfisch.android.binaryeye.graphics.FrameMetrics
@@ -1041,16 +1040,7 @@ fun Activity.showResult(
 		scan.id = db.insertScan(scan)
 	}
 	if (prefs.sendScanActive && prefs.sendScanUrl.isNotEmpty()) {
-		if (prefs.sendScanType == "4") {
-			openUrl(
-				prefs.sendScanUrl + scan.text.urlEncode()
-			)
-			return
-		}
-		scan.sendAsync(
-			prefs.sendScanUrl,
-			prefs.sendScanType
-		) { code, body ->
+		sendAsync(scan) { code, body ->
 			if (code == null || code < 200 || code > 299) {
 				errorFeedback()
 			}

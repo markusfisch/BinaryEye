@@ -48,11 +48,14 @@ class UrlDialogFragment : PreferenceDialogFragmentCompat() {
 		}
 		textView ?: return
 		textView.text = "…"
-		Scan(
-			"test",
-			null,
-			BarcodeFormat.None
-		).sendAsync(url, prefs.sendScanType) { code, body ->
+		textView.context.sendAsync(
+			Scan(
+				"test",
+				null,
+				BarcodeFormat.None
+			),
+			url
+		) { code, body ->
 			textView.text = when {
 				code != null -> "$code"
 				body != null -> body

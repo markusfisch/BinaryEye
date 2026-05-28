@@ -189,6 +189,7 @@
 	<string name="send_scan_active_summary">啟用以將掃描轉發到指定 URL</string>
 	<string name="send_scan_url">將每個掃描結果傳送到 URL</string>
 	<string name="send_scan_type">每次掃描的請求類型</string>
+	<string name="send_scan_device_id">掃描器/裝置 ID</string>
 	<string name="send_type_get_add_content">GET 簡單附加資料</string>
 	<string name="send_type_get_query_string">GET 完整查詢資料</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>

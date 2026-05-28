@@ -189,6 +189,7 @@
 	<string name="send_scan_active_summary">指定されたURLにスキャンしたデータを転送します</string>
 	<string name="send_scan_url">スキャンしたデータを次のURLから開く</string>
 	<string name="send_scan_type">リクエスト方式</string>
+	<string name="send_scan_device_id">スキャナー/デバイスID</string>
 	<string name="send_type_get_add_content">GET でコンテンツを付加</string>
 	<string name="send_type_get_query_string">GET で文字列のコンテンツを付加</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>

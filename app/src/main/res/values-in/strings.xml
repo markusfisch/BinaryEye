@@ -189,6 +189,7 @@
 	<string name="send_scan_active_summary">Aktifkan penerusan pemindaian ke URL berikut</string>
 	<string name="send_scan_url">Kirim setiap pindaian ke URL</string>
 	<string name="send_scan_type">Tipe permintaan untuk setiap pindaian</string>
+	<string name="send_scan_device_id">ID pemindai/perangkat</string>
 	<string name="send_type_get_add_content">GET dan tambahkan konten</string>
 	<string name="send_type_get_query_string">GET dengan kueri lema lengkap</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>

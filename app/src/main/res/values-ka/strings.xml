@@ -191,6 +191,7 @@
 	<string name="send_scan_active_summary">Enable to forward scans to a the given URL</string>
 	<string name="send_scan_url">ყოველი სკანირებული შტრიხ-კოდის ბმულის საშუალებით გახსნა</string>
 	<string name="send_scan_type">მოთხოვნის ტიპი ყოველი სკანირებული შტრიხ-კოდისთვის</string>
+	<string name="send_scan_device_id">სკანერის/მოწყობილობის ID</string>
 	<string name="send_type_get_add_content">GET კონტენტის დამატებით</string>
 	<string name="send_type_get_query_string">GET მოთხოვნის სრული პარამეტრებით</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>

@@ -239,6 +239,7 @@
 	<string name="send_scan_active_summary">Iespējojiet, lai pārsūtītu skenējumus uz noteiktu URL.</string>
 	<string name="send_scan_url">URL pārsūtīšanai</string>
 	<string name="send_scan_type">Pieprasījuma tips</string>
+	<string name="send_scan_device_id">Skenera/ierīces ID</string>
 	<string name="send_type_get_add_content">GET un vienkārši pievienot saturu</string>
 	<string name="send_type_get_query_string">GET ar pilnu vaicājuma virkni</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>

@@ -191,6 +191,7 @@
 	<string name="send_scan_active_summary">Ative para encaminhar conteúdo digitalizado à URL definida.</string>
 	<string name="send_scan_url">Defina a URL para qual encaminhar</string>
 	<string name="send_scan_type">Tipo de solicitação</string>
+	<string name="send_scan_device_id">ID do scanner/dispositivo</string>
 	<string name="send_type_get_add_content">GET e somente adicionar o conteúdo</string>
 	<string name="send_type_get_query_string">GET com sequência completa de consulta</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>

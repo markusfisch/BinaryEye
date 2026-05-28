@@ -191,6 +191,7 @@
 	<string name="send_scan_active_summary">Taramaları belirtilen URL\'ye göndermeyi etkinleştir</string>
 	<string name="send_scan_url">Her taramayı URL\'ye gönder</string>
 	<string name="send_scan_type">Her tarama için isteğin türü</string>
+	<string name="send_scan_device_id">Tarayıcı/cihaz kimliği</string>
 	<string name="send_type_get_add_content">GET ve basitçe içeriği ekle</string>
 	<string name="send_type_get_query_string">GET ile tam sorgu dizgesi</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>

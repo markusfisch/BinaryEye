@@ -211,6 +211,7 @@
 	<string name="send_scan_active_summary">Umożliwia przekazywanie skanów na podany adres URL.</string>
 	<string name="send_scan_url">Wyślij każdy skan na adres URL</string>
 	<string name="send_scan_type">Rodzaj requestu dla każdego skanu</string>
+	<string name="send_scan_device_id">ID skanera/urządzenia</string>
 	<string name="send_type_get_add_content">GET i po prostu dodaj zawartość</string>
 	<string name="send_type_get_query_string">GET z kompletnym query</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>

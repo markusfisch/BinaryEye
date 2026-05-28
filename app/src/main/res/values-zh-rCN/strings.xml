@@ -189,6 +189,7 @@
 	<string name="send_scan_active_summary">启用以转发扫描结果至指定的 URL。</string>
 	<string name="send_scan_url">转发 URL</string>
 	<string name="send_scan_type">请求类型</string>
+	<string name="send_scan_device_id">扫描器/设备 ID</string>
 	<string name="send_type_get_add_content">GET 简单附加数据</string>
 	<string name="send_type_get_query_string">GET 完整查询数据</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>

@@ -9,6 +9,7 @@ import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
+import androidx.preference.EditTextPreference
 import androidx.preference.ListPreference
 import androidx.preference.MultiSelectListPreference
 import androidx.preference.Preference
@@ -248,6 +249,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 			IGNORE_CODES -> return updateIgnoreCodesSummary(preference)
 		}
 		when (preference) {
+			is EditTextPreference -> preference.summary = preference.text
 			is UrlPreference -> preference.summary = preference.getUrl()
 			is ListPreference -> preference.setSummary(preference.entry)
 			is MultiSelectListPreference -> preference.summary =
@@ -297,6 +299,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		setIcon("send_scan_active", R.drawable.ic_action_forward)
 		setIcon("send_scan_url", R.drawable.ic_action_link)
 		setIcon("send_scan_type", R.drawable.ic_action_link)
+		setIcon("send_scan_device_id", R.drawable.ic_label)
 		setIcon("send_scan_bluetooth", R.drawable.ic_action_bluetooth)
 		setIcon("send_scan_bluetooth_host", R.drawable.ic_action_bluetooth)
 		setIcon("open_immediately", R.drawable.ic_action_open)

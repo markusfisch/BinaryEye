@@ -203,6 +203,7 @@
 	<string name="send_scan_active_summary">قم بالتمكين لإعادة توجيه عمليات المسح إلى رابط معين.</string>
 	<string name="send_scan_url">الرابط المراد إعادة التوجيه إليه</string>
 	<string name="send_scan_type">نوع الطلب</string>
+	<string name="send_scan_device_id">معرّف الماسح/الجهاز</string>
     <string name="send_type_get_add_content">نوع GET وأضفه ببساطة</string>
     <string name="send_type_get_query_string">نوع GET مع سلسلة الاستعلام الكاملة</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
