@@ -40,7 +40,7 @@ class NetworkSuggestionsActivity : AbstractBaseActivity() {
 		listView.emptyView = findViewById(R.id.no_suggestions)
 		listView.adapter = suggestionArrayAdapter
 		listView.setOnScrollListener(systemBarListViewScrollListener)
-		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
+		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets(bottom = false)
 		listView.setPaddingFromWindowInsets()
 
 		findViewById<View>(R.id.remove).setOnClickListener {

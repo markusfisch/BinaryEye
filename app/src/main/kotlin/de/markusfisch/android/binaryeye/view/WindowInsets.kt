@@ -43,17 +43,22 @@ fun setPaddingFromWindowInsets(
 	}
 }
 
-fun View.setPaddingFromWindowInsets() {
-	doOnApplyWindowInsets { v, insets -> v.setPadding(insets) }
+fun View.setPaddingFromWindowInsets(bottom: Boolean = true) {
+	doOnApplyWindowInsets { v, insets, windowInsets ->
+		if (!bottom) {
+			insets.bottom = getImeBottomInsetWithoutSystemBars(windowInsets)
+		}
+		v.setPadding(insets)
+	}
 }
 
 // A slight variation of the idea from Google's Chris Banes to avoid
 // adding the toolbar height for every view that needs to be inset.
 // For the original post see here:
 // https://medium.com/androiddevelopers/windowinsets-listeners-to-layouts-8f9ccc8fa4d1
-fun View.doOnApplyWindowInsets(f: (View, Rect) -> Unit) {
+fun View.doOnApplyWindowInsets(f: (View, Rect, WindowInsetsCompat) -> Unit) {
 	ViewCompat.setOnApplyWindowInsetsListener(this) { v, insets ->
-		f(v, insetsWithToolbar(insets))
+		f(v, insetsWithToolbar(insets), insets)
 		insets
 	}
 	// It's important to explicitly request the insets (again) in
@@ -69,6 +74,11 @@ private fun insetsWithToolbar(insets: WindowInsetsCompat? = null) = Rect(
 	insets?.systemWindowInsetRight ?: 0,
 	insets?.systemWindowInsetBottom ?: 0
 )
+
+private fun getImeBottomInsetWithoutSystemBars(insets: WindowInsetsCompat) =
+	(insets.getInsets(WindowInsetsCompat.Type.ime()).bottom -
+			insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom)
+		.coerceAtLeast(0)
 
 private fun View.requestApplyInsetsWhenAttached() {
 	if (isAttachedToWindow) {

@@ -120,8 +120,8 @@ class BarcodeActivity : AbstractBaseActivity() {
 			}
 		}
 
-		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
-		imageView.doOnApplyWindowInsets { _, insets ->
+		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets(bottom = false)
+		imageView.doOnApplyWindowInsets { _, insets, _ ->
 			imageView.insets.set(insets)
 		}
 	}

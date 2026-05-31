@@ -45,7 +45,7 @@ class ProfilesActivity : AbstractBaseActivity() {
 			addProfile()
 		}
 
-		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
+		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets(bottom = false)
 		listView.setPaddingFromWindowInsets()
 	}
 

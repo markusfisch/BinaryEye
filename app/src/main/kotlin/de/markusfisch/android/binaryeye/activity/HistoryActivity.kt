@@ -176,7 +176,7 @@ class HistoryActivity : AbstractBaseActivity() {
 
 		progressView = findViewById(R.id.progress_view)
 
-		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
+		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets(bottom = false)
 		listView.setPaddingFromWindowInsets()
 	}
 

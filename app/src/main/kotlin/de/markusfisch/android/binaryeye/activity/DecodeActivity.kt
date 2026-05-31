@@ -205,7 +205,7 @@ class DecodeActivity : AbstractBaseActivity() {
 			labelView.visibility = View.GONE
 		}
 
-		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets()
+		findViewById<View>(R.id.inset_layout).setPaddingFromWindowInsets(bottom = false)
 		findViewById<View>(R.id.scroll_view).setPaddingFromWindowInsets()
 
 		initContentAndFab(justScanned)
