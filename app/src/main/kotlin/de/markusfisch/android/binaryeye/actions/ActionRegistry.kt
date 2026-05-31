@@ -1,5 +1,6 @@
 package de.markusfisch.android.binaryeye.actions
 
+import de.markusfisch.android.binaryeye.actions.fido.FidoAction
 import de.markusfisch.android.binaryeye.actions.mail.MailAction
 import de.markusfisch.android.binaryeye.actions.mail.MatMsgAction
 import de.markusfisch.android.binaryeye.actions.otpauth.OtpauthAction
@@ -17,6 +18,7 @@ object ActionRegistry {
 	private val REGISTRY: Set<Action> = setOf(
 		MailAction,
 		MatMsgAction,
+		FidoAction,
 		OtpauthAction,
 		SmsAction,
 		TelAction,

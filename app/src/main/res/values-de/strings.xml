@@ -136,7 +136,7 @@
 	</plurals>
 	<string name="ignore_code_add">Code hinzufügen</string>
 	<string name="ignore_code_edit">Code bearbeiten</string>
-	<string name="ignore_code_regex_hint">z.B. ^FIDO://.*</string>
+	<string name="ignore_code_regex_hint">z.B. (?i)^fido:/.*</string>
 	<string name="ignore_code_regex_required">Regex erforderlich</string>
 	<string name="ignore_code_regex_invalid">Ungültiger Regex</string>
 	<string name="ignore_code_remove_confirm">Diesen ignorierten Code entfernen?</string>

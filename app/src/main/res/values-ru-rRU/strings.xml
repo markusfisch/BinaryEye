@@ -140,7 +140,7 @@
 	</plurals>
 	<string name="ignore_code_add">Добавить код</string>
 	<string name="ignore_code_edit">Изменить код</string>
-	<string name="ignore_code_regex_hint">например ^FIDO://.*</string>
+	<string name="ignore_code_regex_hint">например (?i)^fido:/.*</string>
 	<string name="ignore_code_regex_required">Требуется регулярное выражение</string>
 	<string name="ignore_code_regex_invalid">Недействительное регулярное выражение</string>
 	<string name="ignore_code_remove_confirm">Удалить этот игнорируемый код?</string>

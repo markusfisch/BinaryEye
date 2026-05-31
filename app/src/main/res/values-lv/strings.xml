@@ -38,7 +38,7 @@
 	<string name="profile_current">Pašreizējais profils</string>
 	<string name="current_profile">Profils: %s</string>
 	<string name="barcode_formats">Svītrkoda formāti</string>
-	<string name="ignore_code_regex_hint">piem. ^FIDO://.*</string>
+	<string name="ignore_code_regex_hint">piem. (?i)^fido:/.*</string>
 	<string name="open_immediately">Nekavējoties atvērt saturu</string>
 	<string name="show_meta_data">Rādīt metadatus</string>
 	<string name="show_checksum">Rādīt kontrolsummu</string>

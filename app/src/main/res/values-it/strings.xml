@@ -144,7 +144,7 @@
 	</plurals>
 	<string name="ignore_code_add">Aggiungi codice</string>
 	<string name="ignore_code_edit">Modifica codice</string>
-	<string name="ignore_code_regex_hint">es. ^FIDO://.*</string>
+	<string name="ignore_code_regex_hint">es. (?i)^fido:/.*</string>
 	<string name="ignore_code_regex_required">Richeisto regex</string>
 	<string name="ignore_code_regex_invalid">Regex non valido</string>
 	<string name="ignore_code_remove_confirm">Vuoi rimuovere questo codice ignorato?</string>

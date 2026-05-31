@@ -924,7 +924,7 @@ class Preferences {
 		private const val PREVIEW_SCALE = "preview_scale"
 		private const val AUTOMATED_ACTIONS = "automated_actions"
 		private const val DYNAMIC_COLORS = "dynamic_colors"
-		private const val DEFAULT_IGNORE_CODE_PATTERN = "^FIDO://.*"
+		private const val DEFAULT_IGNORE_CODE_PATTERN = "(?i)^fido:/.*"
 	}
 }
 

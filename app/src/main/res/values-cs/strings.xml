@@ -140,7 +140,7 @@
 	</plurals>
 	<string name="ignore_code_add">Přidat kód</string>
 	<string name="ignore_code_edit">Upravit kód</string>
-	<string name="ignore_code_regex_hint">např. ^FIDO://.*</string>
+	<string name="ignore_code_regex_hint">např. (?i)^fido:/.*</string>
 	<string name="ignore_code_regex_required">Vyžadován regulární výraz</string>
 	<string name="ignore_code_regex_invalid">Neplatný regulární výraz</string>
 	<string name="ignore_code_remove_confirm">Odstranit tento ignorovaný kód?</string>
