@@ -300,8 +300,12 @@ class DecodeActivity : AbstractBaseActivity() {
 	}
 
 	private fun updateViews(text: String, bytes: ByteArray) {
-		dataView.fillDataView(text, bytes, text != scan.text)
-		stampView.setTrackingLink(bytes, format)
+		dataView.fillDataView(
+			text,
+			bytes,
+			text != scan.text,
+			stampView.setTrackingLink(bytes, format)
+		)
 		characterCountView.text = resources.getQuantityString(
 			R.plurals.character_count,
 			bytes.size,
@@ -367,7 +371,8 @@ class DecodeActivity : AbstractBaseActivity() {
 	private fun LinearLayout.fillDataView(
 		text: String,
 		bytes: ByteArray,
-		isEditing: Boolean
+		isEditing: Boolean,
+		isParsed: Boolean
 	) {
 		val items = mutableListOf<Field>()
 		when (prefs.showChecksum) {
@@ -377,7 +382,9 @@ class DecodeActivity : AbstractBaseActivity() {
 			"SHA256" -> items.add(Field(R.string.sha256, bytes.sha256().toHexString().fold()))
 		}
 		val count = items.count()
-		val parsedDataTitleResId = parseData(items, text, bytes)
+		val parsedDataTitleResId = if (isParsed) 0 else {
+			parseData(items, text, bytes)
+		}
 		if (items.count() > count) {
 			lastParsedDataItems = items
 			lastParsedDataTitleResId = parsedDataTitleResId
@@ -926,30 +933,35 @@ private fun hexDump(bytes: ByteArray, charsPerLine: Int = 33): String {
 
 private fun Int.positiveToString() = if (this > -1) this.toString() else ""
 
-private fun TextView.setTrackingLink(bytes: ByteArray, format: String) {
-	val trackingLink = generateDpTrackingLink(bytes, format)
-	if (trackingLink != null) {
+private fun TextView.setTrackingLink(
+	bytes: ByteArray,
+	format: String
+): Boolean {
+	val trackingLink = bytes.generateDpTrackingLink(format)
+	return if (trackingLink != null) {
 		visibility = View.VISIBLE
 		text = trackingLink.fromHtml()
 		isClickable = true
 		movementMethod = LinkMovementMethod.getInstance()
+		true
 	} else {
 		visibility = View.GONE
+		false
 	}
 }
 
-private fun generateDpTrackingLink(bytes: ByteArray, format: String): String? {
+private fun ByteArray.generateDpTrackingLink(format: String): String? {
 	// Check for Deutsche Post Matrixcode stamp.
 	var isStamp = false
-	var rawData = bytes
+	var rawData = this
 	if (format == ZxingCpp.BarcodeFormat.DataMatrix.name &&
-		bytes.toString(Charsets.ISO_8859_1).startsWith("DEA5")
+		toString(Charsets.ISO_8859_1).startsWith("DEA5")
 	) {
-		if (bytes.size == 47) {
+		if (size == 47) {
 			isStamp = true
-		} else if (bytes.size > 47) {
+		} else if (size > 47) {
 			// Transform back to original data.
-			rawData = bytes.toString(Charsets.UTF_8).toByteArray(
+			rawData = toString(Charsets.UTF_8).toByteArray(
 				Charsets.ISO_8859_1
 			)
 			if (rawData.size == 47) {
