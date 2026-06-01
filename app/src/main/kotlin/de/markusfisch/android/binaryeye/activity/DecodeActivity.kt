@@ -10,11 +10,9 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.DocumentsContract
 import android.text.Editable
-import android.text.Html
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextWatcher
-import android.text.method.LinkMovementMethod
 import android.text.style.TypefaceSpan
 import android.view.Menu
 import android.view.MenuInflater
@@ -54,6 +52,7 @@ import de.markusfisch.android.binaryeye.content.SealParser
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.epcQrToRes
 import de.markusfisch.android.binaryeye.content.idlToRes
+import de.markusfisch.android.binaryeye.content.openUrl
 import de.markusfisch.android.binaryeye.content.shareAsFile
 import de.markusfisch.android.binaryeye.content.shareText
 import de.markusfisch.android.binaryeye.content.toBarcode
@@ -408,8 +407,8 @@ class DecodeActivity : AbstractBaseActivity() {
 			items.add(
 				Field(
 					getString(R.string.tracking_number),
-					trackingLink.fromHtml(),
-					true
+					trackingLink.label,
+					trackingLink.link,
 				)
 			)
 			return R.string.parsed_type_deutsche_post
@@ -623,6 +622,9 @@ class DecodeActivity : AbstractBaseActivity() {
 				}
 				setBackgroundResource(R.drawable.list_selector)
 				setOnClickListener {
+					item.link?.let {
+						openUrl(it)
+					}
 					copyToClipboard(text.toString())
 				}
 			}
@@ -644,10 +646,6 @@ class DecodeActivity : AbstractBaseActivity() {
 					this,
 					android.R.style.TextAppearance_Medium
 				)
-				if (item.isLink) {
-					isClickable = true
-					movementMethod = LinkMovementMethod.getInstance()
-				}
 				setTextColor(
 					ColorStateList.valueOf(
 						ctx.obtainStyledAttributes(
@@ -882,7 +880,7 @@ class DecodeActivity : AbstractBaseActivity() {
 private data class Field(
 	val key: Any,
 	val value: CharSequence?,
-	val isLink: Boolean = false
+	val link: String? = null
 )
 
 private inline fun <T : View> T.showIf(
@@ -943,7 +941,12 @@ private fun hexDump(bytes: ByteArray, charsPerLine: Int = 33): String {
 
 private fun Int.positiveToString() = if (this > -1) this.toString() else ""
 
-private fun ByteArray.generateDpTrackingLink(format: String): String? {
+private data class TrackingLink(
+	val label: String,
+	val link: String
+)
+
+private fun ByteArray.generateDpTrackingLink(format: String): TrackingLink? {
 	// Check for Deutsche Post Matrixcode stamp.
 	var isStamp = false
 	var rawData = this
@@ -983,7 +986,10 @@ private fun ByteArray.generateDpTrackingLink(format: String): String? {
 		"%X",
 		crc4(hexString.toByteArray(Charsets.ISO_8859_1))
 	)
-	return "<a href=\"https://www.deutschepost.de/de/s/sendungsverfolgung.html?piececode=$trackingNumber\">$trackingNumber</a>"
+	return TrackingLink(
+		trackingNumber,
+		"https://www.deutschepost.de/de/s/sendungsverfolgung.html?piececode=$trackingNumber",
+	)
 }
 
 // CRC-4 with polynomial x^4 + x + 1.
@@ -1008,15 +1014,6 @@ private fun crc4(input: ByteArray): Int {
 	}
 	crc = crc and 0xF
 	return crc
-}
-
-private fun String.fromHtml() = if (
-	Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-) {
-	Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY)
-} else {
-	@Suppress("DEPRECATION")
-	Html.fromHtml(this)
 }
 
 private fun ByteArray.md5(): ByteArray = MessageDigest.getInstance(
