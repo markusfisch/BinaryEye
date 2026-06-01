@@ -247,8 +247,8 @@ class DetectorView : View {
 		viewWidth = right - left
 		viewHeight = bottom - top
 		center.set(
-			left + (viewWidth / 2),
-			top + (viewHeight / 2)
+			viewWidth / 2,
+			viewHeight / 2
 		)
 		minY = padding * 2
 		maxY = viewHeight - minY
