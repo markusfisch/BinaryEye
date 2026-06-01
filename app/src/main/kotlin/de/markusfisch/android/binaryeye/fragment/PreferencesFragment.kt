@@ -5,10 +5,15 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
+import android.database.Cursor
+import android.net.Uri
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
+import android.provider.OpenableColumns
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.core.net.toUri
 import androidx.preference.EditTextPreference
 import androidx.preference.ListPreference
 import androidx.preference.MultiSelectListPreference
@@ -27,6 +32,7 @@ import de.markusfisch.android.binaryeye.app.hasBluetoothPermission
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.bluetooth.setBluetoothHosts
 import de.markusfisch.android.binaryeye.media.beepConfirm
+import de.markusfisch.android.binaryeye.preference.Preferences
 import de.markusfisch.android.binaryeye.preference.UrlPreference
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.view.systemBarRecyclerViewScrollListener
@@ -34,6 +40,13 @@ import de.markusfisch.android.binaryeye.widget.toast
 
 class PreferencesFragment : PreferenceFragmentCompat() {
 	private var lastProfile: String? = null
+	private val pickBeepTone = registerForActivityResult(
+		ActivityResultContracts.OpenDocument()
+	) { uri ->
+		if (uri != null) {
+			setCustomBeepTone(uri)
+		}
+	}
 
 	private val changeListener = object : OnSharedPreferenceChangeListener {
 		override fun onSharedPreferenceChanged(
@@ -87,6 +100,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		setSummaries(preferenceScreen)
 		setIcons()
 
+		wireBeepTonePicker()
 		wireProfiles()
 		wireAutomatedActions()
 		wireIgnoreCodes()
@@ -103,6 +117,27 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 			onPreferenceClickListener = Preference.OnPreferenceClickListener {
 				startActivity(Intent(activity, ProfilesActivity::class.java))
 				true
+			}
+		}
+	}
+
+	private fun wireBeepTonePicker() {
+		findPreference<ListPreference>(BEEP_TONE_NAME)?.apply {
+			onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _, newValue ->
+				val toneName = newValue as? String ?: return@OnPreferenceChangeListener false
+				if (toneName == Preferences.CUSTOM_BEEP_TONE_NAME) {
+					pickBeepTone.launch(arrayOf("audio/*"))
+					false
+				} else {
+					if (prefs.usesCustomBeepTone()) {
+						clearCustomBeepTone()
+					}
+					prefs.beepToneName = toneName
+					value = toneName
+					setSummary(this)
+					activity?.beepConfirm()
+					false
+				}
 			}
 		}
 	}
@@ -158,7 +193,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 				// adding network suggestions on Q as well, so we
 				// need to keep this option.
 				setOnPreferenceClickListener {
-					context?.askToClearNetworkSuggestions()
+					context.askToClearNetworkSuggestions()
 					true
 				}
 			} else {
@@ -247,6 +282,10 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		when (preference.key) {
 			AUTOMATED_ACTIONS -> return updateAutomatedActionsSummary(preference)
 			IGNORE_CODES -> return updateIgnoreCodesSummary(preference)
+			BEEP_TONE_NAME -> {
+				setBeepToneSummary(preference)
+				return
+			}
 		}
 		when (preference) {
 			is EditTextPreference -> preference.summary = preference.text
@@ -256,6 +295,21 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 				getSortedSummary(preference)
 
 			is PreferenceGroup -> setSummaries(preference)
+		}
+	}
+
+	private fun setBeepToneSummary(preference: Preference) {
+		preference.summary = if (prefs.usesCustomBeepTone()) {
+			getBeepToneLabel(prefs.beepToneUri.toUri())
+		} else {
+			findPreference<ListPreference>(BEEP_TONE_NAME)?.let {
+				val index = it.findIndexOfValue(prefs.beepToneName)
+				if (index >= 0) {
+					it.entries[index]
+				} else {
+					""
+				}
+			} ?: ""
 		}
 	}
 
@@ -351,6 +405,73 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 	private fun updateProfileSummary(preference: Preference) {
 		preference.summary = prefs.profileLabel(requireContext(), prefs.profile)
 		lastProfile = prefs.profile
+	}
+
+	private fun setCustomBeepTone(uri: Uri) {
+		val context = requireContext()
+		val resolver = context.contentResolver
+		clearCustomBeepTone()
+		try {
+			resolver.takePersistableUriPermission(
+				uri,
+				Intent.FLAG_GRANT_READ_URI_PERMISSION
+			)
+		} catch (e: SecurityException) {
+			val message = e.message
+			if (!message.isNullOrEmpty()) {
+				context.toast(message)
+			}
+			return
+		}
+		prefs.beepToneUri = uri.toString()
+		prefs.beepToneName = Preferences.CUSTOM_BEEP_TONE_NAME
+		findPreference<ListPreference>(BEEP_TONE_NAME)?.apply {
+			value = Preferences.CUSTOM_BEEP_TONE_NAME
+			setSummary(this)
+		}
+		activity?.beepConfirm()
+	}
+
+	private fun clearCustomBeepTone(releaseSelection: Boolean = true) {
+		if (releaseSelection) {
+			releaseBeepTonePermission(prefs.beepToneUri)
+		}
+		prefs.beepToneUri = ""
+	}
+
+	private fun releaseBeepTonePermission(uriString: String) {
+		if (uriString.isEmpty()) {
+			return
+		}
+		try {
+			requireContext().contentResolver.releasePersistableUriPermission(
+				uriString.toUri(),
+				Intent.FLAG_GRANT_READ_URI_PERMISSION
+			)
+		} catch (_: SecurityException) {
+		}
+	}
+
+	private fun getBeepToneLabel(uri: Uri): String {
+		var cursor: Cursor? = null
+		return try {
+			cursor = requireContext().contentResolver.query(
+				uri,
+				arrayOf(OpenableColumns.DISPLAY_NAME),
+				null,
+				null,
+				null
+			)
+			if (cursor?.moveToFirst() == true) {
+				cursor.getString(0)
+			} else {
+				uri.lastPathSegment ?: uri.toString()
+			}
+		} catch (_: Exception) {
+			uri.lastPathSegment ?: uri.toString()
+		} finally {
+			cursor?.close()
+		}
 	}
 
 	companion object {

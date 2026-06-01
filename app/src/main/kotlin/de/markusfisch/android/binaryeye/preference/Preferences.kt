@@ -129,6 +129,11 @@ class Preferences {
 			apply(BEEP_STREAM_NAME, value)
 			field = value
 		}
+	var beepToneUri = ""
+		set(value) {
+			apply(BEEP_TONE_URI, value)
+			field = value
+		}
 	var useHistory = false
 		set(value) {
 			apply(USE_HISTORY, value)
@@ -373,6 +378,7 @@ class Preferences {
 		json.put(BEEP, p, defaults.beep)
 		json.put(BEEP_TONE_NAME, p, defaults.beepToneName)
 		json.put(BEEP_STREAM_NAME, p, defaults.beepStreamName)
+		json.put(BEEP_TONE_URI, p, defaults.beepToneUri)
 		json.put(USE_HISTORY, p, defaults.useHistory)
 		json.put(IGNORE_DUPLICATES_NAME, p, defaults.ignoreDuplicatesName)
 		json.put(IGNORE_CODES, p, ignoreCodesToJsonArray(defaults.ignoreCodes))
@@ -471,6 +477,7 @@ class Preferences {
 				putBoolean(BEEP, json)
 				putString(BEEP_TONE_NAME, json)
 				putString(BEEP_STREAM_NAME, json)
+				putString(BEEP_TONE_URI, json)
 				putBoolean(USE_HISTORY, json)
 				putString(IGNORE_DUPLICATES_NAME, json)
 				putString(IGNORE_CODES, json)
@@ -561,6 +568,9 @@ class Preferences {
 		}
 		preferences.getString(BEEP_STREAM_NAME, beepStreamName)?.also {
 			beepStreamName = it
+		}
+		preferences.getString(BEEP_TONE_URI, beepToneUri)?.also {
+			beepToneUri = it
 		}
 		useHistory = preferences.getBoolean(USE_HISTORY, useHistory)
 
@@ -709,6 +719,9 @@ class Preferences {
 		else -> android.media.AudioManager.STREAM_MUSIC
 	}
 
+	fun usesCustomBeepTone() = beepToneName == CUSTOM_BEEP_TONE_NAME &&
+			beepToneUri.isNotEmpty()
+
 	fun ignoreDuplicates() = when (ignoreDuplicatesName) {
 		"ignore_consecutive_duplicates" -> IgnoreDuplicates.Consecutive
 		"ignore_any_duplicates" -> IgnoreDuplicates.Any
@@ -789,6 +802,7 @@ class Preferences {
 		putBoolean(BEEP, defaults.beep)
 		putString(BEEP_TONE_NAME, defaults.beepToneName)
 		putString(BEEP_STREAM_NAME, defaults.beepStreamName)
+		putString(BEEP_TONE_URI, defaults.beepToneUri)
 		putBoolean(USE_HISTORY, defaults.useHistory)
 		putString(IGNORE_DUPLICATES_NAME, defaults.ignoreDuplicatesName)
 		putString(IGNORE_CODES, ignoreCodesToJsonArray(defaults.ignoreCodes))
@@ -895,6 +909,7 @@ class Preferences {
 		private const val BEEP = "beep"
 		private const val BEEP_TONE_NAME = "beep_tone_name"
 		private const val BEEP_STREAM_NAME = "beep_stream_name"
+		private const val BEEP_TONE_URI = "beep_tone_uri"
 		private const val USE_HISTORY = "use_history"
 		private const val IGNORE_DUPLICATES_NAME = "ignore_duplicates_name"
 		private const val IGNORE_CODES = "ignore_codes"
@@ -925,6 +940,7 @@ class Preferences {
 		private const val AUTOMATED_ACTIONS = "automated_actions"
 		private const val DYNAMIC_COLORS = "dynamic_colors"
 		private const val DEFAULT_IGNORE_CODE_PATTERN = "(?i)^fido:/.*"
+		const val CUSTOM_BEEP_TONE_NAME = "tone_custom_file"
 	}
 }
 

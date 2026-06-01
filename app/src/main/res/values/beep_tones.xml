@@ -5,6 +5,7 @@
 		<item>@string/tone_prop_ack</item>
 		<item>@string/tone_prop_beep</item>
 		<item>@string/tone_prop_beep2</item>
+		<item>@string/pick_file</item>
 	</string-array>
 	<string-array name="beep_tones_values">
 		<item>tone_cdma_confirm</item>
@@ -12,5 +13,6 @@
 		<item>tone_prop_ack</item>
 		<item>tone_prop_beep</item>
 		<item>tone_prop_beep2</item>
+		<item>tone_custom_file</item>
 	</string-array>
 </resources>
