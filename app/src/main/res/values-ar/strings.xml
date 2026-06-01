@@ -33,6 +33,7 @@
 	<string name="sequence_size">حجم التسلسل</string>
 	<string name="sequence_index">رقم التسلسل</string>
 	<string name="sequence_id">معرف التسلسل</string>
+	<string name="tracking_number">رقم التتبع</string>
 	<string name="gtin_issue_number">رقم الإصدار</string>
 	<string name="gtin_country">بلد التصنيع المحتمل</string>
 	<string name="gtin_price">السعر المقترح</string>

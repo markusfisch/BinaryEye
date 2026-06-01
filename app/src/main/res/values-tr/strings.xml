@@ -29,6 +29,7 @@
 	<string name="sequence_size">Dizi boyutu</string>
 	<string name="sequence_index">Dizi indeksi</string>
 	<string name="sequence_id">Dizi kimliği</string>
+	<string name="tracking_number">Takip numarası</string>
 	<string name="gtin_issue_number">Basım sayısı</string>
 	<string name="gtin_country">Olası üretim yeri</string>
 	<string name="gtin_price">Önerilen fiyat</string>

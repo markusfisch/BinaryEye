@@ -29,6 +29,7 @@
 	<string name="sequence_size">Sekvens størrelse</string>
 	<string name="sequence_index">Sekvens indeks</string>
 	<string name="sequence_id">Sekvens ID</string>
+	<string name="tracking_number">Sporingsnummer</string>
 	<string name="gtin_issue_number">Udstedelsesnummer</string>
 	<string name="gtin_country">Muligt fremstillingsland</string>
 	<string name="gtin_price">Vejledende pris</string>

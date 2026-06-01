@@ -54,6 +54,7 @@
 	<string name="sequence_size">Rozmiar sekwencji</string>
 	<string name="sequence_index">Indeks sekwencji</string>
 	<string name="sequence_id">Identyfikator sekwencji</string>
+	<string name="tracking_number">Numer śledzenia</string>
 	<string name="export_csv_comma">CSV z przecinkami</string>
 	<string name="export_csv_semicolon">CSV ze średnikami</string>
 	<string name="shortcut_encode">Stwórz kod kreskowy</string>

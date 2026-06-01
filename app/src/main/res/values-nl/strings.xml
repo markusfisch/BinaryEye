@@ -29,6 +29,7 @@
 	<string name="sequence_size">Sequentiegrootte</string>
 	<string name="sequence_index">Volgorde index</string>
 	<string name="sequence_id">Sequentie-ID</string>
+	<string name="tracking_number">Trackingnummer</string>
 	<string name="gtin_issue_number">Uitgiftenummer</string>
 	<string name="gtin_country">Mogelijk land van fabricage</string>
 	<string name="gtin_price">Adviesprijs</string>

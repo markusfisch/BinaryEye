@@ -26,13 +26,6 @@
 				android:orientation="vertical"
 				android:layout_marginBottom="16dp"/>
 			<TextView
-				android:id="@+id/stamp"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="16dp"
-				android:textSize="12sp"
-				android:typeface="monospace"/>
-			<TextView
 				style="@style/SecondaryText"
 				android:id="@+id/label_headline"
 				android:layout_width="match_parent"

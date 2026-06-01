@@ -29,6 +29,7 @@
 	<string name="sequence_size">სიას ზომა</string>
 	<string name="sequence_index">სამიზეისის ინდექსი</string>
 	<string name="sequence_id">მიმდინარე ნამდვილი ID</string>
+	<string name="tracking_number">ტრეკინგის ნომერი</string>
 	<string name="gtin_issue_number">გამოშვების ნომერი</string>
 	<string name="gtin_country">შესაძლო მწარმოებელი ქვეყანა</string>
 	<string name="gtin_price">დაახლოებითი ფასი</string>

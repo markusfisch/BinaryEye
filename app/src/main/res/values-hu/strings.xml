@@ -29,6 +29,7 @@
 	<string name="sequence_size">Sorozat mérete</string>
 	<string name="sequence_index">Sorrend index</string>
 	<string name="sequence_id">Sorozat azonosító</string>
+	<string name="tracking_number">Nyomkövetési szám</string>
 	<string name="gtin_issue_number">Hibaszám</string>
 	<string name="gtin_country">Gyártó lehetséges országa</string>
 	<string name="gtin_price">Ajánlott ár</string>

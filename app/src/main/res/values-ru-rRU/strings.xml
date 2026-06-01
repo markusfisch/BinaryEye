@@ -31,6 +31,7 @@
 	<string name="sequence_size">Размер последовательности</string>
 	<string name="sequence_index">Индекс последовательности</string>
 	<string name="sequence_id">Идентификатор последовательности</string>
+	<string name="tracking_number">Номер отслеживания</string>
 	<string name="gtin_issue_number">Номер выпуска</string>
 	<string name="gtin_country">Возможная страна изготовления</string>
 	<string name="gtin_price">Предположительная цена</string>

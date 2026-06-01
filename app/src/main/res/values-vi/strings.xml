@@ -28,6 +28,7 @@
 	<string name="sequence_size">Kích thước chuỗi</string>
 	<string name="sequence_index">Chỉ mục chuỗi</string>
 	<string name="sequence_id">ID chuỗi</string>
+	<string name="tracking_number">Số theo dõi</string>
 	<string name="gtin_issue_number">Số</string>
 	<string name="gtin_country">Có thể được sản xuất ở nước</string>
 	<string name="gtin_price">Giá được gợi ý</string>

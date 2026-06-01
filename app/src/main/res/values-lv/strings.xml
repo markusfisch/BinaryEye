@@ -112,6 +112,7 @@
 	<string name="sequence_size">Secības lielums</string>
 	<string name="sequence_index">Secības indekss</string>
 	<string name="sequence_id">Secības ID</string>
+	<string name="tracking_number">Izsekošanas numurs</string>
 	<string name="gtin_issue_number">Izdevuma numurs</string>
 	<string name="gtin_country">Iespējamā ražošanas valsts</string>
 	<string name="qr_data_mask">Datu maska</string>

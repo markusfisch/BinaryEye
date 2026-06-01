@@ -29,6 +29,7 @@
 	<string name="sequence_size">ধারার আকার</string>
 	<string name="sequence_index">ক্রমিক সূচী</string>
 	<string name="sequence_id">ক্রম আইডি</string>
+	<string name="tracking_number">ট্র্যাকিং নম্বর</string>
 	<string name="gtin_issue_number">সমস্যা ক্রম</string>
 	<string name="gtin_country">তৈরির সম্ভাব্য দেশ</string>
 	<string name="gtin_price">প্রস্তসবিত দাম</string>

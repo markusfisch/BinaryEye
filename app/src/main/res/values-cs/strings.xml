@@ -31,6 +31,7 @@
 	<string name="sequence_size">Velikost sekvence</string>
 	<string name="sequence_index">Index sekvence</string>
 	<string name="sequence_id">ID sekvence</string>
+	<string name="tracking_number">Sledovací číslo</string>
 	<string name="gtin_issue_number">Číslo edice</string>
 	<string name="gtin_country">Možná země původu</string>
 	<string name="gtin_price">Doporučená cena</string>

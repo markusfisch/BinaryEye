@@ -31,6 +31,7 @@
 	<string name="sequence_size">Розмір послідовності</string>
 	<string name="sequence_index">Індекс послідовності</string>
 	<string name="sequence_id">ID послідовності</string>
+	<string name="tracking_number">Номер відстеження</string>
 	<string name="gtin_issue_number">Номер випуску</string>
 	<string name="gtin_country">Можлива країна-виробник</string>
 	<string name="gtin_price">Рекомендована ціна</string>

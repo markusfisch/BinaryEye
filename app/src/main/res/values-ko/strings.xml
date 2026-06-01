@@ -28,6 +28,7 @@
 	<string name="sequence_size">시퀀스 크기</string>
 	<string name="sequence_index">시퀀스 인덱스</string>
 	<string name="sequence_id">시퀀스 ID</string>
+	<string name="tracking_number">추적 번호</string>
 	<string name="gtin_issue_number">이슈번호</string>
 	<string name="gtin_country">제조 국가 가능성</string>
 	<string name="gtin_price">제안 가격</string>

@@ -28,6 +28,7 @@
 	<string name="sequence_size">Ukuran sekuens</string>
 	<string name="sequence_index">Indeks sekuens</string>
 	<string name="sequence_id">ID Sekuens</string>
+	<string name="tracking_number">Nomor pelacakan</string>
 	<string name="gtin_issue_number">Nomor pindaian</string>
 	<string name="gtin_country">Kemungkinan negara pembuat</string>
 	<string name="gtin_price">Harga yang disarankan</string>

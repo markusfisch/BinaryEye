@@ -28,6 +28,7 @@
 	<string name="sequence_size">序列大小</string>
 	<string name="sequence_index">序列索引</string>
 	<string name="sequence_id">序列 ID</string>
+	<string name="tracking_number">追蹤號碼</string>
 	<string name="gtin_issue_number">發行編號</string>
 	<string name="gtin_country">可能製作國家</string>
 	<string name="gtin_price">建議價格</string>

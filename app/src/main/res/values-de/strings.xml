@@ -29,6 +29,7 @@
 	<string name="sequence_size">Sequenzgröße</string>
 	<string name="sequence_index">Sequenzindex</string>
 	<string name="sequence_id">Sequenz-ID</string>
+	<string name="tracking_number">Sendungsnummer</string>
 	<string name="gtin_issue_number">Ausgabe Nummer</string>
 	<string name="gtin_country">Mögliches Ursprungsland</string>
 	<string name="gtin_price">Preisvorschlag</string>

@@ -28,6 +28,7 @@
 	<string name="sequence_size">配列寸法</string>
 	<string name="sequence_index">配列番号</string>
 	<string name="sequence_id">配列ID</string>
+	<string name="tracking_number">追跡番号</string>
 	<string name="gtin_issue_number">発行番号</string>
 	<string name="gtin_country">製造国</string>
 	<string name="gtin_price">価格</string>

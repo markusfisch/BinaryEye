@@ -93,7 +93,6 @@ class DecodeActivity : AbstractBaseActivity() {
 	private lateinit var hexView: TextView
 	private lateinit var formatDescriptionView: TextView
 	private lateinit var labelHeadlineView: TextView
-	private lateinit var stampView: TextView
 	private lateinit var recreationView: ImageView
 	private lateinit var labelView: EditText
 	private lateinit var fab: FloatingActionButton
@@ -162,7 +161,6 @@ class DecodeActivity : AbstractBaseActivity() {
 		hexView = findViewById(R.id.hex)
 		formatDescriptionView = findViewById(R.id.format_description)
 		labelHeadlineView = findViewById(R.id.label_headline)
-		stampView = findViewById(R.id.stamp)
 		recreationView = findViewById(R.id.recreation)
 		labelView = findViewById(R.id.label)
 		fab = findViewById(R.id.open)
@@ -300,12 +298,7 @@ class DecodeActivity : AbstractBaseActivity() {
 	}
 
 	private fun updateViews(text: String, bytes: ByteArray) {
-		dataView.fillDataView(
-			text,
-			bytes,
-			text != scan.text,
-			stampView.setTrackingLink(bytes, format)
-		)
+		dataView.fillDataView(text, bytes, text != scan.text)
 		characterCountView.text = resources.getQuantityString(
 			R.plurals.character_count,
 			bytes.size,
@@ -371,8 +364,7 @@ class DecodeActivity : AbstractBaseActivity() {
 	private fun LinearLayout.fillDataView(
 		text: String,
 		bytes: ByteArray,
-		isEditing: Boolean,
-		isParsed: Boolean
+		isEditing: Boolean
 	) {
 		val items = mutableListOf<Field>()
 		when (prefs.showChecksum) {
@@ -382,9 +374,7 @@ class DecodeActivity : AbstractBaseActivity() {
 			"SHA256" -> items.add(Field(R.string.sha256, bytes.sha256().toHexString().fold()))
 		}
 		val count = items.count()
-		val parsedDataTitleResId = if (isParsed) 0 else {
-			parseData(items, text, bytes)
-		}
+		val parsedDataTitleResId = parseData(items, text, bytes)
 		if (items.count() > count) {
 			lastParsedDataItems = items
 			lastParsedDataTitleResId = parsedDataTitleResId
@@ -412,6 +402,18 @@ class DecodeActivity : AbstractBaseActivity() {
 		bytes: ByteArray
 	): Int {
 		val ctx = this
+
+		val trackingLink = bytes.generateDpTrackingLink(format)
+		if (trackingLink != null) {
+			items.add(
+				Field(
+					getString(R.string.tracking_number),
+					trackingLink.fromHtml(),
+					true
+				)
+			)
+			return R.string.parsed_type_deutsche_post
+		}
 
 		try {
 			items.add(Field(R.string.formatted_json, JSONObject(text).toString(2)))
@@ -642,6 +644,10 @@ class DecodeActivity : AbstractBaseActivity() {
 					this,
 					android.R.style.TextAppearance_Medium
 				)
+				if (item.isLink) {
+					isClickable = true
+					movementMethod = LinkMovementMethod.getInstance()
+				}
 				setTextColor(
 					ColorStateList.valueOf(
 						ctx.obtainStyledAttributes(
@@ -873,7 +879,11 @@ class DecodeActivity : AbstractBaseActivity() {
 	}
 }
 
-private data class Field(val key: Any, val value: CharSequence?)
+private data class Field(
+	val key: Any,
+	val value: CharSequence?,
+	val isLink: Boolean = false
+)
 
 private inline fun <T : View> T.showIf(
 	visible: Boolean,
@@ -933,23 +943,6 @@ private fun hexDump(bytes: ByteArray, charsPerLine: Int = 33): String {
 
 private fun Int.positiveToString() = if (this > -1) this.toString() else ""
 
-private fun TextView.setTrackingLink(
-	bytes: ByteArray,
-	format: String
-): Boolean {
-	val trackingLink = bytes.generateDpTrackingLink(format)
-	return if (trackingLink != null) {
-		visibility = View.VISIBLE
-		text = trackingLink.fromHtml()
-		isClickable = true
-		movementMethod = LinkMovementMethod.getInstance()
-		true
-	} else {
-		visibility = View.GONE
-		false
-	}
-}
-
 private fun ByteArray.generateDpTrackingLink(format: String): String? {
 	// Check for Deutsche Post Matrixcode stamp.
 	var isStamp = false
@@ -990,7 +983,7 @@ private fun ByteArray.generateDpTrackingLink(format: String): String? {
 		"%X",
 		crc4(hexString.toByteArray(Charsets.ISO_8859_1))
 	)
-	return "<a href=\"https://www.deutschepost.de/de/s/sendungsverfolgung.html?piececode=$trackingNumber\">Deutsche Post: $trackingNumber</a>"
+	return "<a href=\"https://www.deutschepost.de/de/s/sendungsverfolgung.html?piececode=$trackingNumber\">$trackingNumber</a>"
 }
 
 // CRC-4 with polynomial x^4 + x + 1.
