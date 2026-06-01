@@ -39,7 +39,7 @@ class DetectorView : View {
 	private val overlayColor = ColorUtils.setAlphaComponent(
 		MaterialColors.getColor(
 			context,
-			com.google.android.material.R.attr.colorSecondaryContainer,
+			com.google.android.material.R.attr.colorOnSurface,
 			Color.WHITE
 		),
 		0x99
