@@ -129,18 +129,18 @@
 	<string name="ignore_any_duplicates">Ignore any duplicates</string>
 	<string name="accept_duplicates">Accepteer duplicaten</string>
 	<string name="ignore_codes">Codes uitsluiten van geschiedenis</string>
-	<string name="ignore_codes_none">No ignored codes</string>
-	<string name="ignore_codes_empty">No ignored codes yet</string>
+	<string name="ignore_codes_none">Geen genegeerde codes</string>
+	<string name="ignore_codes_empty">Nog geen genegeerde codes</string>
 	<plurals name="ignore_codes_count">
-		<item quantity="one">%d ignored code</item>
-		<item quantity="other">%d ignored codes</item>
+		<item quantity="one">%d genegeerde code</item>
+		<item quantity="other">%d genegeerde codes</item>
 	</plurals>
-	<string name="ignore_code_add">Add code</string>
-	<string name="ignore_code_edit">Edit code</string>
-	<string name="ignore_code_regex_hint">e.g. (?i)^fido:/.*</string>
-	<string name="ignore_code_regex_required">Regex required</string>
-	<string name="ignore_code_regex_invalid">Invalid regex</string>
-	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
+	<string name="ignore_code_add">Code toevoegen</string>
+	<string name="ignore_code_edit">Code bewerken</string>
+	<string name="ignore_code_regex_hint">bijv. (?i)^fido:/.*</string>
+	<string name="ignore_code_regex_required">Reguliere expressie vereist</string>
+	<string name="ignore_code_regex_invalid">Ongeldige reguliere expressie</string>
+	<string name="ignore_code_remove_confirm">Deze genegeerde code verwijderen?</string>
 	<string name="open_immediately">Inhoud direct tonen, zonder inspectie</string>
 	<string name="open_immediately_summary">Sla inspectie over en open meteen de inhoud. Indien geactiveerd, kan schadelijke inhoud worden geopend.</string>
 	<string name="strip_tracking_params">Trackingparameters verwijderen</string>
@@ -169,7 +169,7 @@
 	</plurals>
 	<string name="automated_action_add">Actie toevoegen</string>
 	<string name="automated_action_edit">Actie bewerken</string>
-	<string name="automated_action_regex">Regex</string>
+	<string name="automated_action_regex">Reguliere expressie</string>
 	<string name="automated_action_regex_hint">bijv. ^https?://.*</string>
 	<string name="automated_action_regex_required">Regex vereist</string>
 	<string name="automated_action_regex_invalid">Ongeldige regex</string>
@@ -198,7 +198,7 @@
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">Openen in externe browser</string>
-	<string name="test_url">Test URL</string>
+	<string name="test_url">URL testen</string>
 	<string name="send_scan_bluetooth">Stuur scans door met Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Enable to forwards scans to a given Bluetooth host.</string>
 	<string name="send_scan_bluetooth_host">Host</string>
@@ -240,12 +240,11 @@
 	<string name="vevent_failed">Kan niet in kalender gezet</string>
 	<string name="otpauth_add">2FA toevoegen</string>
 	<string name="otp_account">Account</string>
-	<string name="otp_issuer">Issuer</string>
-	<string name="otp_algorithm">Algorithm</string>
-	<string name="otp_digits">Digits</string>
-	<string name="otp_period">Period (s)</string>
-	<string name="otp_counter">Counter</string>
-	<string name="parsed_type_otp">One-Time Password</string>
+	<string name="otp_issuer">Uitgever</string>
+	<string name="otp_algorithm">Algoritme</string>
+	<string name="otp_digits">Cijfers</string>
+	<string name="otp_period">Periode (s)</string>
+	<string name="otp_counter">Teller</string>
 	<string name="search_web">Zoeken op internet</string>
 	<string name="search_scan">Scan op internet zoeken</string>
 	<string name="add_to_history">Toevoegen aan geschiedenis</string>
@@ -286,7 +285,7 @@
 	<string name="email_body">Bericht</string>
 	<string name="scheme">Regeling</string>
 	<string name="host">Host</string>
-	<string name="query">Query</string>
+	<string name="query">Zoekopdracht</string>
 	<string name="automated_action_type_custom_intent">Aangepaste intent</string>
 	<string name="automated_action_intent_uri_template">Intent-URI-sjabloon</string>
 	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
@@ -412,6 +411,7 @@
 		<item quantity="one">%d teken</item>
 		<item quantity="other">%d tekens</item>
 	</plurals>
+	<string name="parsed_type_otp">Eenmalig wachtwoord</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Internationaal rijbewijs</string>
 	<string name="parsed_type_digital_seal">Digitaal zegel</string>

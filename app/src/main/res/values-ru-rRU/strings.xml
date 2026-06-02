@@ -251,7 +251,6 @@
 	<string name="otp_digits">Цифры</string>
 	<string name="otp_period">Период (s)</string>
 	<string name="otp_counter">Счетчик</string>
-	<string name="parsed_type_otp">Одноразовый пароль</string>
 	<string name="search_web">Поиск в сети</string>
 	<string name="search_scan">Поиск сканирования</string>
 	<string name="add_to_history">Добавить в историю</string>
@@ -420,6 +419,7 @@
 		<item quantity="many">%d символов</item>
 		<item quantity="other">%d символов</item>
 	</plurals>
+	<string name="parsed_type_otp">Одноразовый пароль</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Международное водительское удостоверение</string>
 	<string name="parsed_type_digital_seal">Цифровая печать</string>

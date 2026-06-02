@@ -129,18 +129,18 @@
 	<string name="ignore_any_duplicates">Quaisquer duplicatas</string>
 	<string name="accept_duplicates">Aceitar duplicatas</string>
 	<string name="ignore_codes">Códigos para excluir do histórico</string>
-	<string name="ignore_codes_none">No ignored codes</string>
-	<string name="ignore_codes_empty">No ignored codes yet</string>
+	<string name="ignore_codes_none">Nenhum código ignorado</string>
+	<string name="ignore_codes_empty">Nenhum código ignorado ainda</string>
 	<plurals name="ignore_codes_count">
-		<item quantity="one">%d ignored code</item>
-		<item quantity="other">%d ignored codes</item>
+		<item quantity="one">%d código ignorado</item>
+		<item quantity="other">%d códigos ignorados</item>
 	</plurals>
-	<string name="ignore_code_add">Add code</string>
-	<string name="ignore_code_edit">Edit code</string>
-	<string name="ignore_code_regex_hint">e.g. (?i)^fido:/.*</string>
-	<string name="ignore_code_regex_required">Regex required</string>
-	<string name="ignore_code_regex_invalid">Invalid regex</string>
-	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
+	<string name="ignore_code_add">Adicionar código</string>
+	<string name="ignore_code_edit">Editar código</string>
+	<string name="ignore_code_regex_hint">ex.: (?i)^fido:/.*</string>
+	<string name="ignore_code_regex_required">Expressão regular obrigatória</string>
+	<string name="ignore_code_regex_invalid">Expressão regular inválida</string>
+	<string name="ignore_code_remove_confirm">Remover este código ignorado?</string>
 	<string name="open_immediately">Abrir imediatamente</string>
 	<string name="open_immediately_summary">Pular a inspeção e abrir um conteúdo instantaneamente. Pode abrir conteúdo malicioso se ativado.</string>
 	<string name="strip_tracking_params">Remover parâmetros de rastreamento</string>
@@ -169,7 +169,7 @@
 	</plurals>
 	<string name="automated_action_add">Adicionar ação</string>
 	<string name="automated_action_edit">Editar ação</string>
-	<string name="automated_action_regex">Regex</string>
+	<string name="automated_action_regex">Expressão regular</string>
 	<string name="automated_action_regex_hint">ex.: ^https?://.*</string>
 	<string name="automated_action_regex_required">Regex obrigatório</string>
 	<string name="automated_action_regex_invalid">Regex inválido</string>
@@ -239,13 +239,12 @@
 	<string name="vevent_add">Adicionar ao calendário</string>
 	<string name="vevent_failed">Não foi possível adicionar ao calendário</string>
 	<string name="otpauth_add">Adicionar 2FA</string>
-	<string name="otp_account">Account</string>
-	<string name="otp_issuer">Issuer</string>
-	<string name="otp_algorithm">Algorithm</string>
-	<string name="otp_digits">Digits</string>
-	<string name="otp_period">Period (s)</string>
-	<string name="otp_counter">Counter</string>
-	<string name="parsed_type_otp">One-Time Password</string>
+	<string name="otp_account">Conta</string>
+	<string name="otp_issuer">Emissor</string>
+	<string name="otp_algorithm">Algoritmo</string>
+	<string name="otp_digits">Dígitos</string>
+	<string name="otp_period">Período (s)</string>
+	<string name="otp_counter">Contador</string>
 	<string name="search_web">Buscar na web</string>
 	<string name="search_scan">Buscar digitalização</string>
 	<string name="add_to_history">Adicionar ao histórico</string>
@@ -412,6 +411,7 @@
 		<item quantity="one">%d caractere</item>
 		<item quantity="other">%d caracteres</item>
 	</plurals>
+	<string name="parsed_type_otp">Senha de uso único</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Carteira Internacional de Habilitação</string>
 	<string name="parsed_type_digital_seal">Selo digital</string>

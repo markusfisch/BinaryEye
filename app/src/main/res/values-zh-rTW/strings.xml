@@ -128,18 +128,18 @@
 	<string name="ignore_any_duplicates">略過任何重複項目</string>
 	<string name="accept_duplicates">接受重複</string>
 	<string name="ignore_codes">從歷史記錄排除的代碼</string>
-	<string name="ignore_codes_none">No ignored codes</string>
-	<string name="ignore_codes_empty">No ignored codes yet</string>
+	<string name="ignore_codes_none">沒有忽略的代碼</string>
+	<string name="ignore_codes_empty">尚無忽略的代碼</string>
 	<plurals name="ignore_codes_count">
-		<item quantity="one">%d ignored code</item>
-		<item quantity="other">%d ignored codes</item>
+		<item quantity="one">%d 個忽略的代碼</item>
+		<item quantity="other">%d 個忽略的代碼</item>
 	</plurals>
-	<string name="ignore_code_add">Add code</string>
-	<string name="ignore_code_edit">Edit code</string>
-	<string name="ignore_code_regex_hint">e.g. (?i)^fido:/.*</string>
-	<string name="ignore_code_regex_required">Regex required</string>
-	<string name="ignore_code_regex_invalid">Invalid regex</string>
-	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
+	<string name="ignore_code_add">新增代碼</string>
+	<string name="ignore_code_edit">編輯代碼</string>
+	<string name="ignore_code_regex_hint">例如 (?i)^fido:/.*</string>
+	<string name="ignore_code_regex_required">需要正規表示式</string>
+	<string name="ignore_code_regex_invalid">正規表示式無效</string>
+	<string name="ignore_code_remove_confirm">要移除此忽略的代碼嗎？</string>
 	<string name="open_immediately">立即開啟</string>
 	<string name="open_immediately_summary">跳過檢查並立即開啟。可能會開啟有害內容</string>
 	<string name="strip_tracking_params">移除追蹤參數</string>
@@ -148,7 +148,7 @@
 	<string name="copy_immediately_summary">自動將掃描內容複製到剪貼簿。請注意，其他應用程式可能會在背景監控剪貼簿</string>
 	<string name="show_meta_data">顯示中繼資料</string>
 	<string name="show_meta_data_summary">顯示已掃描條碼的額外資訊</string>
-	<string name="show_hex_dump">顯示 Hex dump</string>
+	<string name="show_hex_dump">顯示十六進位傾印</string>
 	<string name="show_hex_dump_summary">顯示已掃描條碼的十六進位轉儲資訊</string>
 	<string name="show_checksum">顯示校驗和</string>
 	<string name="no_checksum">無檢查碼</string>
@@ -237,13 +237,12 @@
 	<string name="vevent_add">加入日曆</string>
 	<string name="vevent_failed">無法加入日曆</string>
 	<string name="otpauth_add">加入雙重驗證 (2FA)</string>
-	<string name="otp_account">Account</string>
-	<string name="otp_issuer">Issuer</string>
-	<string name="otp_algorithm">Algorithm</string>
-	<string name="otp_digits">Digits</string>
-	<string name="otp_period">Period (s)</string>
-	<string name="otp_counter">Counter</string>
-	<string name="parsed_type_otp">One-Time Password</string>
+	<string name="otp_account">帳戶</string>
+	<string name="otp_issuer">發行者</string>
+	<string name="otp_algorithm">演算法</string>
+	<string name="otp_digits">位數</string>
+	<string name="otp_period">週期 (秒)</string>
+	<string name="otp_counter">計數器</string>
 	<string name="search_web">在網路上搜尋</string>
 	<string name="search_scan">搜尋掃描記錄</string>
 	<string name="add_to_history">儲存記錄</string>
@@ -410,6 +409,7 @@
 		<item quantity="one">%d 個字元</item>
 		<item quantity="other">%d 個字元</item>
 	</plurals>
+	<string name="parsed_type_otp">一次性密碼</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">國際駕駛執照</string>
 	<string name="parsed_type_digital_seal">數位印章</string>

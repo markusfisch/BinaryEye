@@ -251,7 +251,6 @@
 	<string name="otp_digits">Цифри</string>
 	<string name="otp_period">Період (s)</string>
 	<string name="otp_counter">Лічильник</string>
-	<string name="parsed_type_otp">Одноразовий пароль</string>
 	<string name="search_web">Шукати в мережі</string>
 	<string name="search_scan">Шукати сканування</string>
 	<string name="add_to_history">Додати до історії</string>
@@ -420,6 +419,7 @@
 		<item quantity="many">%d символів</item>
 		<item quantity="other">%d символів</item>
 	</plurals>
+	<string name="parsed_type_otp">Одноразовий пароль</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Міжнародне водійське посвідчення</string>
 	<string name="parsed_type_digital_seal">Цифрова печатка</string>

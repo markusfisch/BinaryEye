@@ -246,7 +246,6 @@
 	<string name="otp_digits">Chiffres</string>
 	<string name="otp_period">Période(s)</string>
 	<string name="otp_counter">Compteur</string>
-	<string name="parsed_type_otp">Mot de passe à usage unique</string>
 	<string name="search_web">Rechercher sur internet</string>
 	<string name="search_scan">Rechercher un scan</string>
 	<string name="add_to_history">Ajouter à l\'historique</string>
@@ -413,6 +412,7 @@
 		<item quantity="one">%d caractère</item>
 		<item quantity="other">%d caractères</item>
 	</plurals>
+	<string name="parsed_type_otp">Mot de passe à usage unique</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Permis de conduire international</string>
 	<string name="parsed_type_digital_seal">Sceau numérique</string>

@@ -34,7 +34,7 @@
 	<string name="gtin_price">Giá được gợi ý</string>
 	<string name="gtin_add_on">Phần mở rộng UPC EAN</string>
 	<string name="barcode_version_number">Phiên bản</string>
-	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
+	<string name="qr_version_and_modules">%1$s (%2$d mô-đun)</string>
 	<string name="qr_data_mask">Mặt nạ dữ liệu</string>
 	<string name="toggle_flash">Bật/tắt đèn</string>
 	<string name="share">Chia sẻ</string>
@@ -128,18 +128,18 @@
 	<string name="ignore_any_duplicates">Ignore any duplicates</string>
 	<string name="accept_duplicates">Chấp nhận bản sao</string>
 	<string name="ignore_codes">Mã loại trừ khỏi lịch sử</string>
-	<string name="ignore_codes_none">No ignored codes</string>
-	<string name="ignore_codes_empty">No ignored codes yet</string>
+	<string name="ignore_codes_none">Không có mã bị bỏ qua</string>
+	<string name="ignore_codes_empty">Chưa có mã bị bỏ qua</string>
 	<plurals name="ignore_codes_count">
-		<item quantity="one">%d ignored code</item>
-		<item quantity="other">%d ignored codes</item>
+		<item quantity="one">%d mã bị bỏ qua</item>
+		<item quantity="other">%d mã bị bỏ qua</item>
 	</plurals>
-	<string name="ignore_code_add">Add code</string>
-	<string name="ignore_code_edit">Edit code</string>
-	<string name="ignore_code_regex_hint">e.g. (?i)^fido:/.*</string>
-	<string name="ignore_code_regex_required">Regex required</string>
-	<string name="ignore_code_regex_invalid">Invalid regex</string>
-	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
+	<string name="ignore_code_add">Thêm mã</string>
+	<string name="ignore_code_edit">Sửa mã</string>
+	<string name="ignore_code_regex_hint">ví dụ (?i)^fido:/.*</string>
+	<string name="ignore_code_regex_required">Cần biểu thức chính quy</string>
+	<string name="ignore_code_regex_invalid">Biểu thức chính quy không hợp lệ</string>
+	<string name="ignore_code_remove_confirm">Xóa mã bị bỏ qua này?</string>
 	<string name="open_immediately">Mở ngay</string>
 	<string name="open_immediately_summary">Bỏ qua kiểm tra và mở ngay nội dung. Có thể mở nội dung nguy hiểm nếu kích hoạt.</string>
 	<string name="strip_tracking_params">Xóa tham số theo dõi</string>
@@ -237,13 +237,12 @@
 	<string name="vevent_add">Thêm vào lịch</string>
 	<string name="vevent_failed">Không thể thêm vào lịch</string>
 	<string name="otpauth_add">Thêm xác thực hai bước</string>
-	<string name="otp_account">Account</string>
-	<string name="otp_issuer">Issuer</string>
-	<string name="otp_algorithm">Algorithm</string>
-	<string name="otp_digits">Digits</string>
-	<string name="otp_period">Period (s)</string>
-	<string name="otp_counter">Counter</string>
-	<string name="parsed_type_otp">One-Time Password</string>
+	<string name="otp_account">Tài khoản</string>
+	<string name="otp_issuer">Bên phát hành</string>
+	<string name="otp_algorithm">Thuật toán</string>
+	<string name="otp_digits">Chữ số</string>
+	<string name="otp_period">Chu kỳ (giây)</string>
+	<string name="otp_counter">Bộ đếm</string>
 	<string name="search_web">Tìm kiếm web</string>
 	<string name="search_scan">Tìm kiếm lần quét</string>
 	<string name="add_to_history">Thêm vào lịch sử</string>
@@ -410,6 +409,7 @@
 		<item quantity="one">%d ký tự</item>
 		<item quantity="other">%d ký tự</item>
 	</plurals>
+	<string name="parsed_type_otp">Mật khẩu dùng một lần</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Giấy phép lái xe quốc tế</string>
 	<string name="parsed_type_digital_seal">Dấu số</string>

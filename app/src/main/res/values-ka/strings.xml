@@ -15,11 +15,11 @@
 		<item quantity="one">%2$d სიმბოლო, %1$s</item>
 		<item quantity="other">%2$d სიმბოლო, %1$s</item>
 	</plurals>
-	<string name="error_correction_level">შეცდომების კორექციის დონე</string>
-	<string name="error_correction_level_l" formatted="false">Low (~7% correction)</string>
-	<string name="error_correction_level_m" formatted="false">Medium (~15% correction)</string>
-	<string name="error_correction_level_q" formatted="false">Quartile (~25% correction)</string>
-	<string name="error_correction_level_h" formatted="false">High (~30% correction)</string>
+	<string name="error_correction_level">შეცდომების შესწორების დონე</string>
+	<string name="error_correction_level_l" formatted="false">დაბალი (~7% შესწორება)</string>
+	<string name="error_correction_level_m" formatted="false">საშუალო (~15% შესწორება)</string>
+	<string name="error_correction_level_q" formatted="false">კვარტილი (~25% შესწორება)</string>
+	<string name="error_correction_level_h" formatted="false">მაღალი (~30% შესწორება)</string>
 	<string name="label">წარწერა</string>
 	<string name="colors">წინა და ფონი</string>
 	<string name="colors_black_on_white">შავი თეთრზე</string>
@@ -35,7 +35,7 @@
 	<string name="gtin_price">დაახლოებითი ფასი</string>
 	<string name="gtin_add_on">UPC EAN გაფართოება</string>
 	<string name="barcode_version_number">ვერსია</string>
-	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
+	<string name="qr_version_and_modules">%1$s (%2$d მოდული)</string>
 	<string name="qr_data_mask">მონაცემთა მასკა</string>
 	<string name="toggle_flash">განათების ჩართვა</string>
 	<string name="share">გაზიარება</string>
@@ -129,18 +129,18 @@
 	<string name="ignore_any_duplicates">Ignore any duplicates</string>
 	<string name="accept_duplicates">დუპლიკატების მიღება</string>
 	<string name="ignore_codes">ისტორიიდან გამოსარიცხი კოდები</string>
-	<string name="ignore_codes_none">No ignored codes</string>
-	<string name="ignore_codes_empty">No ignored codes yet</string>
+	<string name="ignore_codes_none">იგნორირებული კოდები არ არის</string>
+	<string name="ignore_codes_empty">ჯერ იგნორირებული კოდები არ არის</string>
 	<plurals name="ignore_codes_count">
-		<item quantity="one">%d ignored code</item>
-		<item quantity="other">%d ignored codes</item>
+		<item quantity="one">%d იგნორირებული კოდი</item>
+		<item quantity="other">%d იგნორირებული კოდი</item>
 	</plurals>
-	<string name="ignore_code_add">Add code</string>
-	<string name="ignore_code_edit">Edit code</string>
-	<string name="ignore_code_regex_hint">e.g. (?i)^fido:/.*</string>
-	<string name="ignore_code_regex_required">Regex required</string>
-	<string name="ignore_code_regex_invalid">Invalid regex</string>
-	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
+	<string name="ignore_code_add">კოდის დამატება</string>
+	<string name="ignore_code_edit">კოდის რედაქტირება</string>
+	<string name="ignore_code_regex_hint">მაგ. (?i)^fido:/.*</string>
+	<string name="ignore_code_regex_required">საჭიროა რეგულარული გამოსახულება</string>
+	<string name="ignore_code_regex_invalid">არასწორი რეგულარული გამოსახულება</string>
+	<string name="ignore_code_remove_confirm">წავშალო ეს იგნორირებული კოდი?</string>
 	<string name="open_immediately">შემოწმების გამოტოვება და მყისიერი გახსნა</string>
 	<string name="open_immediately_summary">შემოწმების გამოტოვება და მყისიერი გახსნა. შესაძლოა გამოიწვიოს არასასარგებლო კონტენტის ჩვენება.</string>
 	<string name="strip_tracking_params">თვალთვალის პარამეტრების წაშლა</string>
@@ -183,12 +183,12 @@
 	<string name="automated_action_list_intent">URL გახსნა: %s</string>
 	<string name="automated_action_list_intent_empty">URL გახსნა</string>
 	<string name="clear_network_suggestions">ქსელის შეთანხმებების წაშლა</string>
-	<string name="clear_network_suggestions_summary">Remove network suggestions that were previously added with this app.</string>
+	<string name="clear_network_suggestions_summary">წაშლის ქსელის შეთავაზებებს, რომლებიც ადრე ამ აპით დაემატა.</string>
 	<string name="really_remove_all_networks">ნამდვილად ამოიღოს ყველა ქსელი?</string>
-	<string name="clear_network_suggestions_success">Network suggestions cleared</string>
+	<string name="clear_network_suggestions_success">ქსელის შეთავაზებები წაიშალა</string>
 	<string name="clear_network_suggestions_nothing_to_remove">არაფერი წასაშლელი არ არის</string>
 	<string name="send_category">გადაგზავნა</string>
-	<string name="send_scan_active">Forward scans</string>
+	<string name="send_scan_active">სკანების გადაგზავნა</string>
 	<string name="send_scan_active_summary">Enable to forward scans to a the given URL</string>
 	<string name="send_scan_url">ყოველი სკანირებული შტრიხ-კოდის ბმულის საშუალებით გახსნა</string>
 	<string name="send_scan_type">მოთხოვნის ტიპი ყოველი სკანირებული შტრიხ-კოდისთვის</string>
@@ -197,9 +197,9 @@
 	<string name="send_type_get_query_string">GET მოთხოვნის სრული პარამეტრებით</string>
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
-	<string name="send_type_external_browser">Open in external browser</string>
-	<string name="test_url">Test URL</string>
-	<string name="send_scan_bluetooth">Forward scans with Bluetooth</string>
+	<string name="send_type_external_browser">გარე ბრაუზერში გახსნა</string>
+	<string name="test_url">URL-ის ტესტი</string>
+	<string name="send_scan_bluetooth">სკანების გადაგზავნა Bluetooth-ით</string>
 	<string name="send_scan_bluetooth_summary">Enable to forwards scans to a given Bluetooth host.</string>
 	<string name="send_scan_bluetooth_host">ჰოსტი</string>
 	<string name="no_bluetooth_hosts_paired">პარიები არ არის შემერთებული</string>
@@ -239,13 +239,12 @@
 	<string name="vevent_add">კალენდარში დამატება</string>
 	<string name="vevent_failed">კალენდარში დამატება ვერ მოხერხდა</string>
 	<string name="otpauth_add">დავამატოთ 2FA</string>
-	<string name="otp_account">Account</string>
-	<string name="otp_issuer">Issuer</string>
-	<string name="otp_algorithm">Algorithm</string>
-	<string name="otp_digits">Digits</string>
-	<string name="otp_period">Period (s)</string>
-	<string name="otp_counter">Counter</string>
-	<string name="parsed_type_otp">One-Time Password</string>
+	<string name="otp_account">ანგარიში</string>
+	<string name="otp_issuer">გამომცემი</string>
+	<string name="otp_algorithm">ალგორითმი</string>
+	<string name="otp_digits">ციფრები</string>
+	<string name="otp_period">პერიოდი (წმ)</string>
+	<string name="otp_counter">მთვლელი</string>
 	<string name="search_web">ქსელში მოძებნა</string>
 	<string name="search_scan">სკანირების ძიება</string>
 	<string name="add_to_history">დაამატე ისტორიაში</string>
@@ -386,23 +385,23 @@
 	<string name="epc_reference">გადახდის მითითება</string>
 	<string name="epc_text">გადახდის ტექსტი</string>
 	<string name="epc_information">ინფორმაცია</string>
-	<string name="idb_verification">Verification</string>
-	<string name="idb_certificate_reference">Certificate Reference</string>
-	<string name="idb_signer_certificate_subject">Signer Certificate Subject</string>
-	<string name="idb_signer_certificate_issuer">Signer Certificate Issuer</string>
-	<string name="idb_signature_verification">Signature Verification</string>
-	<string name="idb_verification_unsigned">Unsigned</string>
-	<string name="idb_verification_missing_signer_certificate">Missing signer certificate</string>
-	<string name="idb_verification_invalid_signer_certificate">Invalid signer certificate</string>
-	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">Signer certificate issuer not found in master list</string>
-	<string name="idb_verification_verified">Verified</string>
-	<string name="idb_verification_signature_invalid">Signature invalid</string>
-	<string name="idb_verification_error">Verification error</string>
-	<string name="idb_yes">Yes</string>
-	<string name="idb_no">No</string>
-	<string name="vds_document_type">Document Type</string>
-	<string name="vds_issuing_country">Issuing Country</string>
-	<string name="vds_signing_date">Signing Date</string>
+	<string name="idb_verification">გადამოწმება</string>
+	<string name="idb_certificate_reference">სერტიფიკატის მითითება</string>
+	<string name="idb_signer_certificate_subject">ხელმომწერის სერტიფიკატის სუბიექტი</string>
+	<string name="idb_signer_certificate_issuer">ხელმომწერის სერტიფიკატის გამცემი</string>
+	<string name="idb_signature_verification">ხელმოწერის გადამოწმება</string>
+	<string name="idb_verification_unsigned">ხელმოუწერელი</string>
+	<string name="idb_verification_missing_signer_certificate">ხელმომწერის სერტიფიკატი აკლია</string>
+	<string name="idb_verification_invalid_signer_certificate">ხელმომწერის სერტიფიკატი არასწორია</string>
+	<string name="idb_verification_signer_certificate_issuer_not_found_in_master_list">ხელმომწერის სერტიფიკატის გამცემი მთავარ სიაში ვერ მოიძებნა</string>
+	<string name="idb_verification_verified">გადამოწმებულია</string>
+	<string name="idb_verification_signature_invalid">ხელმოწერა არასწორია</string>
+	<string name="idb_verification_error">გადამოწმების შეცდომა</string>
+	<string name="idb_yes">დიახ</string>
+	<string name="idb_no">არა</string>
+	<string name="vds_document_type">დოკუმენტის ტიპი</string>
+	<string name="vds_issuing_country">გამცემი ქვეყანა</string>
+	<string name="vds_signing_date">ხელმოწერის თარიღი</string>
 	<string name="section_parsed_data">დამუშავებული მონაცემები</string>
 	<string name="section_raw_barcode_content">შტრიხკოდის შიგთავსი</string>
 	<string name="section_raw_barcode_content_editable">შტრიხკოდის შიგთავსი (რედაქტირებადი)</string>
@@ -412,6 +411,7 @@
 		<item quantity="one">%d სიმბოლო</item>
 		<item quantity="other">%d სიმბოლო</item>
 	</plurals>
+	<string name="parsed_type_otp">ერთჯერადი პაროლი</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">საერთაშორისო მართვის მოწმობა</string>
 	<string name="parsed_type_digital_seal">ციფრული ბეჭედი</string>

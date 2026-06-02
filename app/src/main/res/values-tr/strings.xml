@@ -129,18 +129,18 @@
 	<string name="ignore_any_duplicates">Ignore any duplicates</string>
 	<string name="accept_duplicates">Yinelenenleri kabul et</string>
 	<string name="ignore_codes">Geçmişten hariç tutulacak kodlar</string>
-	<string name="ignore_codes_none">No ignored codes</string>
-	<string name="ignore_codes_empty">No ignored codes yet</string>
+	<string name="ignore_codes_none">Yok sayılan kod yok</string>
+	<string name="ignore_codes_empty">Henüz yok sayılan kod yok</string>
 	<plurals name="ignore_codes_count">
-		<item quantity="one">%d ignored code</item>
-		<item quantity="other">%d ignored codes</item>
+		<item quantity="one">%d yok sayılan kod</item>
+		<item quantity="other">%d yok sayılan kod</item>
 	</plurals>
-	<string name="ignore_code_add">Add code</string>
-	<string name="ignore_code_edit">Edit code</string>
-	<string name="ignore_code_regex_hint">e.g. (?i)^fido:/.*</string>
-	<string name="ignore_code_regex_required">Regex required</string>
-	<string name="ignore_code_regex_invalid">Invalid regex</string>
-	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
+	<string name="ignore_code_add">Kod ekle</string>
+	<string name="ignore_code_edit">Kodu düzenle</string>
+	<string name="ignore_code_regex_hint">örn. (?i)^fido:/.*</string>
+	<string name="ignore_code_regex_required">Düzenli ifade gerekli</string>
+	<string name="ignore_code_regex_invalid">Geçersiz düzenli ifade</string>
+	<string name="ignore_code_remove_confirm">Bu yok sayılan kod kaldırılsın mı?</string>
 	<string name="open_immediately">Hemen aç</string>
 	<string name="open_immediately_summary">İncelemeyi atla ve içeriği hemen aç. Eğer etkinse zararlı içerik açılabilir.</string>
 	<string name="strip_tracking_params">Takip parametrelerini kaldır</string>
@@ -239,13 +239,12 @@
 	<string name="vevent_add">Takvime ekle</string>
 	<string name="vevent_failed">Takvime eklenemedi</string>
 	<string name="otpauth_add">2FA\'ya ekle</string>
-	<string name="otp_account">Account</string>
-	<string name="otp_issuer">Issuer</string>
-	<string name="otp_algorithm">Algorithm</string>
-	<string name="otp_digits">Digits</string>
-	<string name="otp_period">Period (s)</string>
-	<string name="otp_counter">Counter</string>
-	<string name="parsed_type_otp">One-Time Password</string>
+	<string name="otp_account">Hesap</string>
+	<string name="otp_issuer">Veren</string>
+	<string name="otp_algorithm">Algoritma</string>
+	<string name="otp_digits">Basamaklar</string>
+	<string name="otp_period">Süre (sn)</string>
+	<string name="otp_counter">Sayaç</string>
 	<string name="search_web">Web\'i ara</string>
 	<string name="search_scan">Taramayı ara</string>
 	<string name="add_to_history">Geçmişe ekle</string>
@@ -412,6 +411,7 @@
 		<item quantity="one">%d karakter</item>
 		<item quantity="other">%d karakter</item>
 	</plurals>
+	<string name="parsed_type_otp">Tek kullanımlık parola</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Uluslararası sürücü belgesi</string>
 	<string name="parsed_type_digital_seal">Dijital mühür</string>

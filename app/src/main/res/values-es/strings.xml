@@ -130,18 +130,18 @@
 	<string name="ignore_any_duplicates">Ignore any duplicates</string>
 	<string name="accept_duplicates">Aceptar duplicados</string>
 	<string name="ignore_codes">Códigos que excluir del historial</string>
-	<string name="ignore_codes_none">No ignored codes</string>
-	<string name="ignore_codes_empty">No ignored codes yet</string>
+	<string name="ignore_codes_none">No hay códigos ignorados</string>
+	<string name="ignore_codes_empty">Aún no hay códigos ignorados</string>
 	<plurals name="ignore_codes_count">
-		<item quantity="one">%d ignored code</item>
-		<item quantity="other">%d ignored codes</item>
+		<item quantity="one">%d código ignorado</item>
+		<item quantity="other">%d códigos ignorados</item>
 	</plurals>
-	<string name="ignore_code_add">Add code</string>
-	<string name="ignore_code_edit">Edit code</string>
-	<string name="ignore_code_regex_hint">e.g. (?i)^fido:/.*</string>
-	<string name="ignore_code_regex_required">Regex required</string>
-	<string name="ignore_code_regex_invalid">Invalid regex</string>
-	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
+	<string name="ignore_code_add">Añadir código</string>
+	<string name="ignore_code_edit">Editar código</string>
+	<string name="ignore_code_regex_hint">p. ej. (?i)^fido:/.*</string>
+	<string name="ignore_code_regex_required">Se requiere expresión regular</string>
+	<string name="ignore_code_regex_invalid">Expresión regular no válida</string>
+	<string name="ignore_code_remove_confirm">¿Eliminar este código ignorado?</string>
 	<string name="open_immediately">Abrir inmediatamente</string>
 	<string name="open_immediately_summary">Omite la inspección y abre el contenido inmediatamente. Podría abrir contenido dañino si está activado.</string>
 	<string name="strip_tracking_params">Eliminar parámetros de seguimiento</string>
@@ -240,13 +240,12 @@
 	<string name="vevent_add">Añadir al calendario</string>
 	<string name="vevent_failed">No se pudo añadir al calendario</string>
 	<string name="otpauth_add">Añadir 2FA</string>
-	<string name="otp_account">Account</string>
-	<string name="otp_issuer">Issuer</string>
-	<string name="otp_algorithm">Algorithm</string>
-	<string name="otp_digits">Digits</string>
-	<string name="otp_period">Period (s)</string>
-	<string name="otp_counter">Counter</string>
-	<string name="parsed_type_otp">One-Time Password</string>
+	<string name="otp_account">Cuenta</string>
+	<string name="otp_issuer">Emisor</string>
+	<string name="otp_algorithm">Algoritmo</string>
+	<string name="otp_digits">Dígitos</string>
+	<string name="otp_period">Periodo (s)</string>
+	<string name="otp_counter">Contador</string>
 	<string name="search_web">Buscar en la web</string>
 	<string name="search_scan">Buscar escaneo</string>
 	<string name="add_to_history">Añadir al historial</string>
@@ -413,6 +412,7 @@
 		<item quantity="one">%d carácter</item>
 		<item quantity="other">%d caracteres</item>
 	</plurals>
+	<string name="parsed_type_otp">Contraseña de un solo uso</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Permiso de conducir internacional</string>
 	<string name="parsed_type_digital_seal">Sello digital</string>

@@ -12,13 +12,13 @@
 	<string name="content">내용</string>
 	<string name="binary_data">(이진 데이터)</string>
 	<plurals name="barcode_info">
-		<item quantity="other">%2$d characters, %1$s</item>
+		<item quantity="other">%2$d자, %1$s</item>
 	</plurals>
-	<string name="error_correction_level">Error correction level</string>
-	<string name="error_correction_level_l" formatted="false">Low (~7% correction)</string>
-	<string name="error_correction_level_m" formatted="false">Medium (~15% correction)</string>
-	<string name="error_correction_level_q" formatted="false">Quartile (~25% correction)</string>
-	<string name="error_correction_level_h" formatted="false">High (~30% correction)</string>
+	<string name="error_correction_level">오류 정정 수준</string>
+	<string name="error_correction_level_l" formatted="false">낮음 (~7% 정정)</string>
+	<string name="error_correction_level_m" formatted="false">중간 (~15% 정정)</string>
+	<string name="error_correction_level_q" formatted="false">사분위 (~25% 정정)</string>
+	<string name="error_correction_level_h" formatted="false">높음 (~30% 정정)</string>
 	<string name="label">라벨</string>
 	<string name="colors">전경과 배경</string>
 	<string name="colors_black_on_white">흰색에 검정색</string>
@@ -34,7 +34,7 @@
 	<string name="gtin_price">제안 가격</string>
 	<string name="gtin_add_on">UPC EAN 확장</string>
 	<string name="barcode_version_number">버전</string>
-	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
+	<string name="qr_version_and_modules">%1$s (%2$d 모듈)</string>
 	<string name="qr_data_mask">데이터 마스크</string>
 	<string name="toggle_flash">플래시 전환</string>
 	<string name="share">공유</string>
@@ -44,7 +44,7 @@
 	<string name="copy_as_deeplink">딥링크로 복사</string>
 	<string name="copied_to_clipboard">클립보드에 복사되었습니다</string>
 	<string name="copy_password">클립보드에 비밀번호 복사</string>
-	<string name="open_url">Open url</string>
+	<string name="open_url">URL 열기</string>
 	<string name="cannot_resolve_action">어떤 앱도 열 수 없습니다</string>
 	<string name="pick_search_engine">검색 엔진을 선택하세요</string>
 	<string name="format">형식</string>
@@ -76,7 +76,7 @@
 	<string name="two_seconds">두 초</string>
 	<string name="five_seconds">다섯 초</string>
 	<string name="history">역사</string>
-	<string name="preferences">Preferences</string>
+	<string name="preferences">설정</string>
 	<string name="scan_category">스캔</string>
 	<string name="content_category">콘텐츠</string>
 	<string name="locale_category">언어</string>
@@ -124,22 +124,22 @@
 	<string name="use_history">스캔 기록 저장</string>
 	<string name="use_history_summary">기기에 인식된 코드를 저장합니다.</string>
 	<string name="ignore_duplicates">중복 무시</string>
-	<string name="ignore_consecutive_duplicates">Ignore duplicates</string>
-	<string name="ignore_any_duplicates">Ignore any duplicates</string>
+	<string name="ignore_consecutive_duplicates">연속 중복</string>
+	<string name="ignore_any_duplicates">모든 중복</string>
 	<string name="accept_duplicates">중복 허용</string>
 	<string name="ignore_codes">기록에서 제외할 코드</string>
-	<string name="ignore_codes_none">No ignored codes</string>
-	<string name="ignore_codes_empty">No ignored codes yet</string>
+	<string name="ignore_codes_none">무시된 코드 없음</string>
+	<string name="ignore_codes_empty">아직 무시된 코드 없음</string>
 	<plurals name="ignore_codes_count">
-		<item quantity="one">%d ignored code</item>
-		<item quantity="other">%d ignored codes</item>
+		<item quantity="one">%d개의 무시된 코드</item>
+		<item quantity="other">%d개의 무시된 코드</item>
 	</plurals>
-	<string name="ignore_code_add">Add code</string>
-	<string name="ignore_code_edit">Edit code</string>
-	<string name="ignore_code_regex_hint">e.g. (?i)^fido:/.*</string>
-	<string name="ignore_code_regex_required">Regex required</string>
-	<string name="ignore_code_regex_invalid">Invalid regex</string>
-	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
+	<string name="ignore_code_add">코드 추가</string>
+	<string name="ignore_code_edit">코드 편집</string>
+	<string name="ignore_code_regex_hint">예: (?i)^fido:/.*</string>
+	<string name="ignore_code_regex_required">정규식 필요</string>
+	<string name="ignore_code_regex_invalid">잘못된 정규식</string>
+	<string name="ignore_code_remove_confirm">이 무시된 코드를 삭제할까요?</string>
 	<string name="open_immediately">즉시 열기</string>
 	<string name="open_immediately_summary">검사를 건너뛰고 즉시 내용물을 엽니다. 활성화된 경우 유해한 내용물을 열 수 있습니다.</string>
 	<string name="strip_tracking_params">추적 매개변수 제거</string>
@@ -187,7 +187,7 @@
 	<string name="clear_network_suggestions_nothing_to_remove">삭제할 항목이 없습니다</string>
 	<string name="send_category">전달</string>
 	<string name="send_scan_active">전달 스캔</string>
-	<string name="send_scan_active_summary">Enable to forward scans to a the given URL.</string>
+	<string name="send_scan_active_summary">스캔을 지정한 URL로 전달합니다.</string>
 	<string name="send_scan_url">전달 할 URL</string>
 	<string name="send_scan_type">요청 유형</string>
 	<string name="send_scan_device_id">스캐너/기기 ID</string>
@@ -198,12 +198,12 @@
 	<string name="send_type_external_browser">외부 브라우저에서 열기</string>
 	<string name="test_url">테스트 URL</string>
 	<string name="send_scan_bluetooth">블루투스로 스캔 전송</string>
-	<string name="send_scan_bluetooth_summary">Enable to forwards scans to a given Bluetooth host.</string>
+	<string name="send_scan_bluetooth_summary">스캔을 지정한 Bluetooth 호스트로 전달합니다.</string>
 	<string name="send_scan_bluetooth_host">호스트</string>
 	<string name="no_bluetooth_hosts_paired">연결된 호스트가 없습니다</string>
-	<string name="bluetooth_connect_fail">Could not connect to bluetooth device.</string>
-	<string name="bluetooth_send_fail">Could not send to bluetooth device.</string>
-	<string name="bluetooth_send_success">Successful bluetooth send.</string>
+	<string name="bluetooth_connect_fail">Bluetooth 장치에 연결할 수 없습니다.</string>
+	<string name="bluetooth_send_fail">Bluetooth 장치로 보낼 수 없습니다.</string>
+	<string name="bluetooth_send_success">Bluetooth 전송에 성공했습니다.</string>
 	<string name="generation_category">세대</string>
 	<string name="brighten_screen">화면 밝기 높이기</string>
 	<string name="brighten_screen_summary">화면에서 바코드를 스캔하기 위해 밝기를 최대로 설정합니다.</string>
@@ -220,12 +220,12 @@
 	<string name="pick_list_separator">리스트 항목을 어떻게 구분하시겠습니까?</string>
 	<string name="separator_line_break">줄 바꿈</string>
 	<string name="separator_ruler">자</string>
-	<string name="save_as_file_name">Save as in Downloads file?</string>
+	<string name="save_as_file_name">다운로드 폴더에 파일로 저장할까요?</string>
 	<string name="file_name">파일 이름</string>
 	<string name="error_saving_file">파일을 저장할 수 없습니다</string>
-	<string name="connect_to_wifi">Connect to WiFi</string>
-	<string name="wifi_config_failed">Could not configure WiFi</string>
-	<string name="wifi_added">WiFi added</string>
+	<string name="connect_to_wifi">Wi-Fi에 연결</string>
+	<string name="wifi_config_failed">Wi-Fi를 구성할 수 없습니다</string>
+	<string name="wifi_added">Wi-Fi가 추가됨</string>
 	<string name="sms_send">문자 보내기</string>
 	<string name="sms_error">문자 메시지를 보낼 수 없습니다</string>
 	<string name="tel_dial">번호 누르기</string>
@@ -237,13 +237,12 @@
 	<string name="vevent_add">일정에 추가</string>
 	<string name="vevent_failed">캘린더에 추가할 수 없습니다</string>
 	<string name="otpauth_add">2FA 추가</string>
-	<string name="otp_account">Account</string>
-	<string name="otp_issuer">Issuer</string>
-	<string name="otp_algorithm">Algorithm</string>
-	<string name="otp_digits">Digits</string>
-	<string name="otp_period">Period (s)</string>
-	<string name="otp_counter">Counter</string>
-	<string name="parsed_type_otp">One-Time Password</string>
+	<string name="otp_account">계정</string>
+	<string name="otp_issuer">발급자</string>
+	<string name="otp_algorithm">알고리즘</string>
+	<string name="otp_digits">자릿수</string>
+	<string name="otp_period">기간 (초)</string>
+	<string name="otp_counter">카운터</string>
 	<string name="search_web">웹 검색</string>
 	<string name="search_scan">검색 스캔</string>
 	<string name="add_to_history">히스토리에 추가</string>
@@ -261,7 +260,7 @@
 	<string name="toggle_free_rotation">자유 회전 전환</string>
 	<string name="pick_file">파일 선택</string>
 	<string name="pick_image_file">이미지 파일 선택</string>
-	<string name="pick_code_to_scan">Pick code to scan</string>
+	<string name="pick_code_to_scan">스캔할 코드 선택</string>
 	<string name="shortcut_decode">바코드를 스캔합니다</string>
 	<string name="shortcut_encode">바코드 만들기</string>
 	<string name="shortcut_history">연혁</string>
@@ -309,7 +308,7 @@
 	<string name="format_description_data_matrix">작은 영역에 많은 양의 데이터를 인코딩하는 2D 매트릭스 바코드입니다. 전자 제품, 의료, 우편 서비스에서 널리 사용됩니다.</string>
 	<string name="format_description_dx_film_edge">사진 필름의 가장자리에 인쇄된 바코드입니다. 필름 유형, 감도(ISO), 노출 수를 인코딩합니다.</string>
 	<string name="format_description_telepen">ASCII 및 숫자 모드를 지원하는 1차원 바코드로, 도서관, 의료, 재고 관리 시스템에서 자주 사용됩니다.</string>
-	<string name="format_description_telepen_alpha">Telepen Alpha는 ASCII 텍스트를 compact한 1차원 바코드로 인코딩합니다.</string>
+	<string name="format_description_telepen_alpha">Telepen Alpha는 ASCII 텍스트를 간결한 1D 바코드로 인코딩합니다.</string>
 	<string name="format_description_telepen_numeric">Telepen Numeric은 숫자 쌍을 compact한 1차원 바코드로 인코딩합니다.</string>
 	<string name="format_description_ean8">전체 EAN-13이 맞지 않는 소형 소매 품목을 위한 컴팩트한 8자리 바코드입니다.</string>
 	<string name="format_description_ean13">전 세계에서 사용되는 표준 13자리 소매 바코드입니다. 매장에서 판매되는 대부분의 제품 포장에 EAN-13이 있습니다.</string>
@@ -410,6 +409,7 @@
 		<item quantity="one">%d자</item>
 		<item quantity="other">%d자</item>
 	</plurals>
+	<string name="parsed_type_otp">일회용 비밀번호</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">국제 운전 면허증</string>
 	<string name="parsed_type_digital_seal">디지털 봉인</string>

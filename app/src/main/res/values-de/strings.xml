@@ -169,7 +169,7 @@
 	</plurals>
 	<string name="automated_action_add">Aktion hinzufügen</string>
 	<string name="automated_action_edit">Aktion bearbeiten</string>
-	<string name="automated_action_regex">Regex</string>
+	<string name="automated_action_regex">Regulärer Ausdruck</string>
 	<string name="automated_action_regex_hint">z.B. ^https?://.*</string>
 	<string name="automated_action_regex_required">Regex erforderlich</string>
 	<string name="automated_action_regex_invalid">Ungültiger Regex</string>
@@ -198,7 +198,7 @@
 	<string name="send_type_post_form">POST application/x-www-form-urlencoded</string>
 	<string name="send_type_post_json">POST application/json</string>
 	<string name="send_type_external_browser">In externem Browser öffnen</string>
-	<string name="test_url">Test URL</string>
+	<string name="test_url">URL testen</string>
 	<string name="send_scan_bluetooth">Scans per Bluetooth weiterleiten</string>
 	<string name="send_scan_bluetooth_summary">Aktivieren Sie diese Option, um Scans an das angegebene Bluetooth-Gerät weiterzuleiten.</string>
 	<string name="send_scan_bluetooth_host">Gerät</string>
@@ -206,7 +206,7 @@
 	<string name="bluetooth_connect_fail">Es kann leider keine Verbindung zum Bluetooth-Gerät hergestellt werden</string>
 	<string name="bluetooth_send_fail">Senden zum Bluetooth-Gerät fehlgeschlagen</string>
 	<string name="bluetooth_send_success">Erfolgreich zum Bluetooth-Gerät gesendet</string>
-	<string name="generation_category">Generation</string>
+	<string name="generation_category">Erstellung</string>
 	<string name="brighten_screen">Bildschirm aufhellen</string>
 	<string name="brighten_screen_summary">Helligkeit auf Maximum stellen um das Scannen eines Barcodes vom Bildschirm zu verbessern.</string>
 	<string name="really_remove_scan">Code wirklich entfernen?</string>
@@ -239,13 +239,12 @@
 	<string name="vevent_add">Zum Kalender hinzufügen</string>
 	<string name="vevent_failed">Konnte nicht zum Kalender hinzufügen</string>
 	<string name="otpauth_add">2FA hinzufügen</string>
-	<string name="otp_account">Account</string>
-	<string name="otp_issuer">Issuer</string>
-	<string name="otp_algorithm">Algorithm</string>
-	<string name="otp_digits">Digits</string>
-	<string name="otp_period">Period (s)</string>
-	<string name="otp_counter">Counter</string>
-	<string name="parsed_type_otp">One-Time Password</string>
+	<string name="otp_account">Konto</string>
+	<string name="otp_issuer">Aussteller</string>
+	<string name="otp_algorithm">Algorithmus</string>
+	<string name="otp_digits">Ziffern</string>
+	<string name="otp_period">Zeitraum (s)</string>
+	<string name="otp_counter">Zähler</string>
 	<string name="search_web">Suche im Internet</string>
 	<string name="search_scan">Code suchen</string>
 	<string name="add_to_history">Zu gespeicherten Codes hinzufügen</string>
@@ -286,7 +285,7 @@
 	<string name="email_body">Nachricht</string>
 	<string name="scheme">Schema</string>
 	<string name="host">Host</string>
-	<string name="query">Query</string>
+	<string name="query">Abfrage</string>
 	<string name="automated_action_type_custom_intent">Benutzerdefinierter Intent</string>
 	<string name="automated_action_intent_uri_template">Intent-URI-Vorlage</string>
 	<string name="automated_action_intent_uri_hint">intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={RESULT};end</string>
@@ -412,6 +411,7 @@
 		<item quantity="one">%d Zeichen</item>
 		<item quantity="other">%d Zeichen</item>
 	</plurals>
+	<string name="parsed_type_otp">Einmalpasswort</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Internationaler Führerschein</string>
 	<string name="parsed_type_digital_seal">Digitales Siegel</string>

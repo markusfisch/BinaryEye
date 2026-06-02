@@ -35,7 +35,7 @@
 	<string name="gtin_price">Ajánlott ár</string>
 	<string name="gtin_add_on">UPC EAN kiterjesztés</string>
 	<string name="barcode_version_number">Verzió</string>
-	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
+	<string name="qr_version_and_modules">%1$s (%2$d modul)</string>
 	<string name="qr_data_mask">Adatmaszk</string>
 	<string name="toggle_flash">Vaku be- vagy kikapcsolása</string>
 	<string name="share">Megosztás</string>
@@ -129,18 +129,18 @@
 	<string name="ignore_any_duplicates">Ignore any duplicates</string>
 	<string name="accept_duplicates">Ismétlődések elfogadása</string>
 	<string name="ignore_codes">Az előzményekből kizárt kódok</string>
-	<string name="ignore_codes_none">No ignored codes</string>
-	<string name="ignore_codes_empty">No ignored codes yet</string>
+	<string name="ignore_codes_none">Nincsenek mellőzött kódok</string>
+	<string name="ignore_codes_empty">Még nincsenek mellőzött kódok</string>
 	<plurals name="ignore_codes_count">
-		<item quantity="one">%d ignored code</item>
-		<item quantity="other">%d ignored codes</item>
+		<item quantity="one">%d mellőzött kód</item>
+		<item quantity="other">%d mellőzött kód</item>
 	</plurals>
-	<string name="ignore_code_add">Add code</string>
-	<string name="ignore_code_edit">Edit code</string>
-	<string name="ignore_code_regex_hint">e.g. (?i)^fido:/.*</string>
-	<string name="ignore_code_regex_required">Regex required</string>
-	<string name="ignore_code_regex_invalid">Invalid regex</string>
-	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
+	<string name="ignore_code_add">Kód hozzáadása</string>
+	<string name="ignore_code_edit">Kód szerkesztése</string>
+	<string name="ignore_code_regex_hint">pl. (?i)^fido:/.*</string>
+	<string name="ignore_code_regex_required">Reguláris kifejezés szükséges</string>
+	<string name="ignore_code_regex_invalid">Érvénytelen reguláris kifejezés</string>
+	<string name="ignore_code_remove_confirm">Eltávolítja ezt a mellőzött kódot?</string>
 	<string name="open_immediately">Vizsgálat kihagyása és a tartalom azonnali megnyitása</string>
 	<string name="open_immediately_summary">Vizsgálat kihagyása és a tartalom azonnali megnyitása. Ártalmas tartalmat is megnyithat, ha engedélyezve van.</string>
 	<string name="strip_tracking_params">Nyomkövetési paraméterek eltávolítása</string>
@@ -239,13 +239,12 @@
 	<string name="vevent_add">Hozzáadás a naptárhoz</string>
 	<string name="vevent_failed">Nem sikerült hozzáadni a naptárhoz</string>
 	<string name="otpauth_add">Kétlépcsős hitelesítés hozzáadása</string>
-	<string name="otp_account">Account</string>
-	<string name="otp_issuer">Issuer</string>
-	<string name="otp_algorithm">Algorithm</string>
-	<string name="otp_digits">Digits</string>
-	<string name="otp_period">Period (s)</string>
-	<string name="otp_counter">Counter</string>
-	<string name="parsed_type_otp">One-Time Password</string>
+	<string name="otp_account">Fiók</string>
+	<string name="otp_issuer">Kibocsátó</string>
+	<string name="otp_algorithm">Algoritmus</string>
+	<string name="otp_digits">Számjegyek</string>
+	<string name="otp_period">Időszak (s)</string>
+	<string name="otp_counter">Számláló</string>
 	<string name="search_web">Keresés a weben</string>
 	<string name="search_scan">Beolvasás keresése</string>
 	<string name="add_to_history">Hozzáadás a történethez</string>
@@ -412,6 +411,7 @@
 		<item quantity="one">%d karakter</item>
 		<item quantity="other">%d karakter</item>
 	</plurals>
+	<string name="parsed_type_otp">Egyszer használatos jelszó</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Nemzetközi vezetői engedély</string>
 	<string name="parsed_type_digital_seal">Digitális pecsét</string>

@@ -129,18 +129,18 @@
 	<string name="ignore_any_duplicates">Ignore any duplicates</string>
 	<string name="accept_duplicates">Приемане на дубликати</string>
 	<string name="ignore_codes">Кодове за изключване от историята</string>
-	<string name="ignore_codes_none">No ignored codes</string>
-	<string name="ignore_codes_empty">No ignored codes yet</string>
+	<string name="ignore_codes_none">Няма игнорирани кодове</string>
+	<string name="ignore_codes_empty">Все още няма игнорирани кодове</string>
 	<plurals name="ignore_codes_count">
-		<item quantity="one">%d ignored code</item>
-		<item quantity="other">%d ignored codes</item>
+		<item quantity="one">%d игнориран код</item>
+		<item quantity="other">%d игнорирани кода</item>
 	</plurals>
-	<string name="ignore_code_add">Add code</string>
-	<string name="ignore_code_edit">Edit code</string>
-	<string name="ignore_code_regex_hint">e.g. (?i)^fido:/.*</string>
-	<string name="ignore_code_regex_required">Regex required</string>
-	<string name="ignore_code_regex_invalid">Invalid regex</string>
-	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
+	<string name="ignore_code_add">Добавяне на код</string>
+	<string name="ignore_code_edit">Редактиране на код</string>
+	<string name="ignore_code_regex_hint">напр. (?i)^fido:/.*</string>
+	<string name="ignore_code_regex_required">Изисква се регулярен израз</string>
+	<string name="ignore_code_regex_invalid">Невалиден регулярен израз</string>
+	<string name="ignore_code_remove_confirm">Премахване на този игнориран код?</string>
 	<string name="open_immediately">Отваряй внезапно</string>
 	<string name="open_immediately_summary">Пропуска проверката и внезапно отваря съдържанието. Може да отвори вредно съдържание, ако е активирано.</string>
 	<string name="strip_tracking_params">Премахване на проследяващи параметри</string>
@@ -239,13 +239,12 @@
 	<string name="vevent_add">Добавяне към календара</string>
 	<string name="vevent_failed">Неуспешно добавяне към календара</string>
 	<string name="otpauth_add">Добави 2FA</string>
-	<string name="otp_account">Account</string>
-	<string name="otp_issuer">Issuer</string>
-	<string name="otp_algorithm">Algorithm</string>
-	<string name="otp_digits">Digits</string>
-	<string name="otp_period">Period (s)</string>
-	<string name="otp_counter">Counter</string>
-	<string name="parsed_type_otp">One-Time Password</string>
+	<string name="otp_account">Акаунт</string>
+	<string name="otp_issuer">Издател</string>
+	<string name="otp_algorithm">Алгоритъм</string>
+	<string name="otp_digits">Цифри</string>
+	<string name="otp_period">Период (сек.)</string>
+	<string name="otp_counter">Брояч</string>
 	<string name="search_web">Търси в мрежата</string>
 	<string name="search_scan">Търсещо сканиране</string>
 	<string name="add_to_history">Добави към историята</string>
@@ -412,6 +411,7 @@
 		<item quantity="one">%d знак</item>
 		<item quantity="other">%d знака</item>
 	</plurals>
+	<string name="parsed_type_otp">Еднократна парола</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Международна шофьорска книжка</string>
 	<string name="parsed_type_digital_seal">Цифров печат</string>

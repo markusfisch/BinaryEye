@@ -34,7 +34,7 @@
 	<string name="gtin_price">価格</string>
 	<string name="gtin_add_on">UPC/EAN 拡張型</string>
 	<string name="barcode_version_number">バージョン</string>
-	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
+	<string name="qr_version_and_modules">%1$s (%2$d モジュール)</string>
 	<string name="qr_data_mask">データマスク</string>
 	<string name="toggle_flash">フラッシュの切り替え</string>
 	<string name="share">共有</string>
@@ -128,18 +128,18 @@
 	<string name="ignore_any_duplicates">Ignore any duplicates</string>
 	<string name="accept_duplicates">重複を許可</string>
 	<string name="ignore_codes">履歴から除外するコード</string>
-	<string name="ignore_codes_none">No ignored codes</string>
-	<string name="ignore_codes_empty">No ignored codes yet</string>
+	<string name="ignore_codes_none">無視するコードはありません</string>
+	<string name="ignore_codes_empty">まだ無視するコードはありません</string>
 	<plurals name="ignore_codes_count">
-		<item quantity="one">%d ignored code</item>
-		<item quantity="other">%d ignored codes</item>
+		<item quantity="one">%d 個の無視するコード</item>
+		<item quantity="other">%d 個の無視するコード</item>
 	</plurals>
-	<string name="ignore_code_add">Add code</string>
-	<string name="ignore_code_edit">Edit code</string>
-	<string name="ignore_code_regex_hint">e.g. (?i)^fido:/.*</string>
-	<string name="ignore_code_regex_required">Regex required</string>
-	<string name="ignore_code_regex_invalid">Invalid regex</string>
-	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
+	<string name="ignore_code_add">コードを追加</string>
+	<string name="ignore_code_edit">コードを編集</string>
+	<string name="ignore_code_regex_hint">例: (?i)^fido:/.*</string>
+	<string name="ignore_code_regex_required">正規表現が必要です</string>
+	<string name="ignore_code_regex_invalid">無効な正規表現</string>
+	<string name="ignore_code_remove_confirm">この無視するコードを削除しますか？</string>
 	<string name="open_immediately">すぐにコンテンツを開く</string>
 	<string name="open_immediately_summary">確認画面なしでコンテンツをすぐに開くようにします。有害なコンテンツを開いてしまうリスクがあります。</string>
 	<string name="strip_tracking_params">トラッキングパラメータを除去</string>
@@ -237,13 +237,12 @@
 	<string name="vevent_add">カレンダーに追加</string>
 	<string name="vevent_failed">カレンダーに追加できませんでした</string>
 	<string name="otpauth_add">二段階認証を追加</string>
-	<string name="otp_account">Account</string>
-	<string name="otp_issuer">Issuer</string>
-	<string name="otp_algorithm">Algorithm</string>
-	<string name="otp_digits">Digits</string>
-	<string name="otp_period">Period (s)</string>
-	<string name="otp_counter">Counter</string>
-	<string name="parsed_type_otp">One-Time Password</string>
+	<string name="otp_account">アカウント</string>
+	<string name="otp_issuer">発行者</string>
+	<string name="otp_algorithm">アルゴリズム</string>
+	<string name="otp_digits">桁数</string>
+	<string name="otp_period">期間 (秒)</string>
+	<string name="otp_counter">カウンター</string>
 	<string name="search_web">ウェブで検索</string>
 	<string name="search_scan">スキャン結果を検索</string>
 	<string name="add_to_history">履歴に追加</string>
@@ -410,6 +409,7 @@
 		<item quantity="one">%d 文字</item>
 		<item quantity="other">%d 文字</item>
 	</plurals>
+	<string name="parsed_type_otp">ワンタイムパスワード</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">国際運転免許証</string>
 	<string name="parsed_type_digital_seal">デジタルシール</string>

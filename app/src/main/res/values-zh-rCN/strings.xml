@@ -34,7 +34,7 @@
 	<string name="gtin_price">建议价格</string>
 	<string name="gtin_add_on">UPC EAN 扩展</string>
 	<string name="barcode_version_number">版本</string>
-	<string name="qr_version_and_modules">%1$s (%2$d modules)</string>
+	<string name="qr_version_and_modules">%1$s (%2$d 模块)</string>
 	<string name="qr_data_mask">数据蒙版</string>
 	<string name="toggle_flash">开关闪光灯</string>
 	<string name="share">分享</string>
@@ -128,18 +128,18 @@
 	<string name="ignore_any_duplicates">Ignore any duplicates</string>
 	<string name="accept_duplicates">接受重复项</string>
 	<string name="ignore_codes">从历史记录中排除的代码</string>
-	<string name="ignore_codes_none">No ignored codes</string>
-	<string name="ignore_codes_empty">No ignored codes yet</string>
+	<string name="ignore_codes_none">没有忽略的代码</string>
+	<string name="ignore_codes_empty">尚无忽略的代码</string>
 	<plurals name="ignore_codes_count">
-		<item quantity="one">%d ignored code</item>
-		<item quantity="other">%d ignored codes</item>
+		<item quantity="one">%d 个忽略的代码</item>
+		<item quantity="other">%d 个忽略的代码</item>
 	</plurals>
-	<string name="ignore_code_add">Add code</string>
-	<string name="ignore_code_edit">Edit code</string>
-	<string name="ignore_code_regex_hint">e.g. (?i)^fido:/.*</string>
-	<string name="ignore_code_regex_required">Regex required</string>
-	<string name="ignore_code_regex_invalid">Invalid regex</string>
-	<string name="ignore_code_remove_confirm">Remove this ignored code?</string>
+	<string name="ignore_code_add">添加代码</string>
+	<string name="ignore_code_edit">编辑代码</string>
+	<string name="ignore_code_regex_hint">例如 (?i)^fido:/.*</string>
+	<string name="ignore_code_regex_required">需要正则表达式</string>
+	<string name="ignore_code_regex_invalid">正则表达式无效</string>
+	<string name="ignore_code_remove_confirm">要移除此忽略的代码吗？</string>
 	<string name="open_immediately">不检查内容立即打开链接</string>
 	<string name="open_immediately_summary">跳过检查并立即打开内容。如果启用，可能会打开有害内容。</string>
 	<string name="strip_tracking_params">去除追踪参数</string>
@@ -237,13 +237,12 @@
 	<string name="vevent_add">添加到日历</string>
 	<string name="vevent_failed">无法添加到日历</string>
 	<string name="otpauth_add">添加两步验证</string>
-	<string name="otp_account">Account</string>
-	<string name="otp_issuer">Issuer</string>
-	<string name="otp_algorithm">Algorithm</string>
-	<string name="otp_digits">Digits</string>
-	<string name="otp_period">Period (s)</string>
-	<string name="otp_counter">Counter</string>
-	<string name="parsed_type_otp">One-Time Password</string>
+	<string name="otp_account">账户</string>
+	<string name="otp_issuer">发行者</string>
+	<string name="otp_algorithm">算法</string>
+	<string name="otp_digits">位数</string>
+	<string name="otp_period">周期 (秒)</string>
+	<string name="otp_counter">计数器</string>
 	<string name="search_web">在互联网中搜索</string>
 	<string name="search_scan">搜索扫描记录</string>
 	<string name="add_to_history">添加到历史记录</string>
@@ -410,6 +409,7 @@
 		<item quantity="one">%d 个字符</item>
 		<item quantity="other">%d 个字符</item>
 	</plurals>
+	<string name="parsed_type_otp">一次性密码</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">国际驾驶执照</string>
 	<string name="parsed_type_digital_seal">数字印章</string>

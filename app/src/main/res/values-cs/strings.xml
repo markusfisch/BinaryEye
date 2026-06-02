@@ -251,7 +251,6 @@
 	<string name="otp_digits">Číslice</string>
 	<string name="otp_period">Perioda (s)</string>
 	<string name="otp_counter">Počítadlo</string>
-	<string name="parsed_type_otp">Jednorázové heslo</string>
 	<string name="search_web">Vyhledat na webu</string>
 	<string name="search_scan">Vyhledat sken</string>
 	<string name="add_to_history">Přidat do historie</string>
@@ -420,6 +419,7 @@
 		<item quantity="many">%d znaků</item>
 		<item quantity="other">%d znaků</item>
 	</plurals>
+	<string name="parsed_type_otp">Jednorázové heslo</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Mezinárodní řidičský průkaz</string>
 	<string name="parsed_type_digital_seal">Digitální pečeť</string>

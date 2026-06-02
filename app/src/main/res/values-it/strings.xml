@@ -260,7 +260,6 @@
 	<string name="otp_digits">Cifre</string>
 	<string name="otp_period">Periodo (s)</string>
 	<string name="otp_counter">Contatore</string>
-	<string name="parsed_type_otp">Password mono uso</string>
 	<string name="search_web">Cerca nel web</string>
 	<string name="search_scan">Cerca scansione</string>
 	<string name="add_to_history">Aggiungi alla cronologia</string>
@@ -302,6 +301,7 @@
 	<string name="scheme">Schema</string>
 	<string name="host">Host</string>
 	<string name="query">Richiesta</string>
+	<string name="parsed_type_otp">Password mono uso</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Patente di guida internazionale</string>
 	<string name="parsed_type_digital_seal">Sigillo digitale</string>
