@@ -37,7 +37,7 @@
 	<string name="sequence_size">Dimensione sequenza</string>
 	<string name="sequence_index">Indice sequenza</string>
 	<string name="sequence_id">ID sequenza</string>
-	<string name="tracking_number">Numero di tracciamento</string>
+	<string name="tracking_number">Numero tracciamento</string>
 	<string name="gtin_issue_number">Numero edizione</string>
 	<string name="gtin_country">Probabile nazione fabbricazione</string>
 	<string name="gtin_price">Prezzo consigliato</string>
