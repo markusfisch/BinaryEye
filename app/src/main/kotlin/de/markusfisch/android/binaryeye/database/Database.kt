@@ -6,6 +6,9 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.content.ParsedContentType
+import de.markusfisch.android.binaryeye.content.parseData
+import de.markusfisch.android.binaryeye.content.parsedContentTypeFromName
 import de.markusfisch.android.binaryeye.preference.Preferences
 import de.markusfisch.android.binaryeye.zxingcpp.migrateBarcodeFormatName
 import de.markusfisch.android.binaryeye.zxingcpp.oldToNewFormatNames
@@ -13,9 +16,12 @@ import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 
 class Database {
 	private lateinit var db: SQLiteDatabase
+	private lateinit var context: Context
 
 	fun open(context: Context) {
+		this.context = context.applicationContext
 		db = OpenHelper(context).writableDatabase
+		fillMissingContentTypes()
 	}
 
 	fun getScans(query: String? = null): Cursor = db.rawQuery(
@@ -25,6 +31,7 @@ class Database {
 			$SCANS_DATETIME,
 			$SCANS_NAME,
 			$SCANS_TEXT,
+			$SCANS_CONTENT_TYPE,
 			$SCANS_FORMAT
 			FROM $SCANS
 			${getWhereClause(query)}
@@ -49,7 +56,8 @@ class Database {
 			$SCANS_GTIN_COUNTRY,
 			$SCANS_GTIN_ADD_ON,
 			$SCANS_GTIN_PRICE,
-			$SCANS_GTIN_ISSUE_NUMBER
+			$SCANS_GTIN_ISSUE_NUMBER,
+			$SCANS_CONTENT_TYPE
 			FROM $SCANS
 			${getWhereClause(query)}
 			ORDER BY $SCANS_PINNED DESC, $SCANS_DATETIME DESC
@@ -93,7 +101,8 @@ class Database {
 			$SCANS_GTIN_COUNTRY,
 			$SCANS_GTIN_ADD_ON,
 			$SCANS_GTIN_PRICE,
-			$SCANS_GTIN_ISSUE_NUMBER
+			$SCANS_GTIN_ISSUE_NUMBER,
+			$SCANS_CONTENT_TYPE
 			FROM $SCANS
 			WHERE $SCANS_ID IN (${ids.joinToString(",")})
 			ORDER BY $SCANS_PINNED DESC, $SCANS_DATETIME DESC
@@ -121,7 +130,8 @@ class Database {
 			$SCANS_GTIN_COUNTRY,
 			$SCANS_GTIN_ADD_ON,
 			$SCANS_GTIN_PRICE,
-			$SCANS_GTIN_ISSUE_NUMBER
+			$SCANS_GTIN_ISSUE_NUMBER,
+			$SCANS_CONTENT_TYPE
 			FROM $SCANS
 			WHERE $SCANS_ID = ?
 		""".trimMargin(), arrayOf("$id")
@@ -151,7 +161,8 @@ class Database {
 				it.getString(SCANS_DATETIME),
 				it.getLong(SCANS_ID),
 				it.getString(SCANS_NAME),
-				it.getInt(SCANS_PINNED) != 0
+				it.getInt(SCANS_PINNED) != 0,
+				parsedContentTypeFromName(it.getString(SCANS_CONTENT_TYPE))
 			)
 		} else {
 			null
@@ -208,6 +219,10 @@ class Database {
 				scan.price?.let { put(SCANS_GTIN_PRICE, it) }
 				scan.issueNumber?.let { put(SCANS_GTIN_ISSUE_NUMBER, it) }
 				put(SCANS_PINNED, if (scan.pinned) 1 else 0)
+				put(
+					SCANS_CONTENT_TYPE,
+					getContentType(scan.text, scan.raw, scan.format.name).name
+				)
 			}
 		)
 	}
@@ -279,8 +294,52 @@ class Database {
 		db.update(SCANS, cv, "$SCANS_ID = ?", arrayOf("$id"))
 	}
 
+	private fun fillMissingContentTypes() {
+		Thread {
+			db.rawQuery(
+				"""SELECT
+					$SCANS_ID,
+					$SCANS_TEXT,
+					$SCANS_RAW,
+					$SCANS_FORMAT
+					FROM $SCANS
+					WHERE $SCANS_CONTENT_TYPE IS NULL
+				""".trimMargin(),
+				null
+			).use {
+				while (it.moveToNext()) {
+					val id = it.getLong(SCANS_ID)
+					val type = getContentType(
+						it.getString(SCANS_TEXT),
+						it.getBlob(SCANS_RAW),
+						it.getString(SCANS_FORMAT)
+					)
+					db.update(
+						SCANS,
+						ContentValues().apply {
+							put(SCANS_CONTENT_TYPE, type.name)
+						},
+						"$SCANS_ID = ?",
+						arrayOf("$id")
+					)
+				}
+			}
+		}.start()
+	}
+
+	private fun getContentType(
+		text: String,
+		raw: ByteArray?,
+		format: String
+	) = parseData(
+		context,
+		text,
+		raw ?: text.toByteArray(),
+		format
+	).type
+
 	private class OpenHelper(context: Context) :
-		SQLiteOpenHelper(context, FILE_NAME, null, 10) {
+		SQLiteOpenHelper(context, FILE_NAME, null, 11) {
 		override fun onCreate(db: SQLiteDatabase) {
 			db.createScans()
 		}
@@ -317,6 +376,9 @@ class Database {
 			if (oldVersion < 10) {
 				db.addPinnedColumn()
 			}
+			if (oldVersion < 11) {
+				db.addContentTypeColumn()
+			}
 		}
 	}
 
@@ -351,6 +413,7 @@ class Database {
 		const val SCANS_GTIN_PRICE = "gtin_price"
 		const val SCANS_GTIN_ISSUE_NUMBER = "gtin_issue_number"
 		const val SCANS_PINNED = "pinned"
+		const val SCANS_CONTENT_TYPE = "content_type"
 
 		private fun SQLiteDatabase.createScans() {
 			execSQL("DROP TABLE IF EXISTS $SCANS".trimMargin())
@@ -375,7 +438,8 @@ class Database {
 					$SCANS_GTIN_ADD_ON TEXT,
 					$SCANS_GTIN_PRICE TEXT,
 					$SCANS_GTIN_ISSUE_NUMBER TEXT,
-					$SCANS_PINNED INTEGER NOT NULL DEFAULT 0
+					$SCANS_PINNED INTEGER NOT NULL DEFAULT 0,
+					$SCANS_CONTENT_TYPE TEXT NOT NULL DEFAULT '${ParsedContentType.UNKNOWN.name}'
 				)""".trimMargin()
 			)
 		}
@@ -445,6 +509,10 @@ class Database {
 			execSQL(
 				"ALTER TABLE $SCANS ADD COLUMN $SCANS_PINNED INTEGER NOT NULL DEFAULT 0"
 			)
+		}
+
+		private fun SQLiteDatabase.addContentTypeColumn() {
+			execSQL("ALTER TABLE $SCANS ADD COLUMN $SCANS_CONTENT_TYPE TEXT")
 		}
 	}
 }

@@ -12,6 +12,8 @@ import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.content.ParsedContentType
+import de.markusfisch.android.binaryeye.content.parsedContentTypeFromName
 import de.markusfisch.android.binaryeye.database.Database
 import java.text.DateFormat
 import java.text.ParseException
@@ -29,6 +31,7 @@ class ScansAdapter(
 	private val timeIndex = cursor.getColumnIndex(Database.SCANS_DATETIME)
 	private val nameIndex = cursor.getColumnIndex(Database.SCANS_NAME)
 	private val textIndex = cursor.getColumnIndex(Database.SCANS_TEXT)
+	private val contentTypeIndex = cursor.getColumnIndex(Database.SCANS_CONTENT_TYPE)
 	private val formatIndex = cursor.getColumnIndex(Database.SCANS_FORMAT)
 	private val selections = mutableMapOf<Long, Int>()
 	fun select(view: View, id: Long, position: Int) {
@@ -113,7 +116,7 @@ class ScansAdapter(
 				}
 
 				text.isNullOrEmpty() -> context.getString(
-					R.string.binary_data
+					cursor.getString(contentTypeIndex).toBinaryDataStringResId()
 				)
 
 				else -> text
@@ -200,6 +203,15 @@ fun Context.setupFormatSpinner(spinner: Spinner): List<String> {
 
 fun String.prettifyFormatName() = replace("_", " ")
 	.replace(formatWordBoundary, " ")
+
+private fun String?.toBinaryDataStringResId(): Int {
+	val type = parsedContentTypeFromName(this)
+	return if (type == ParsedContentType.UNKNOWN) {
+		R.string.binary_data
+	} else {
+		type.resId
+	}
+}
 
 fun String.toFormatDescriptionResId(): Int = when (this) {
 	"Aztec" -> R.string.format_description_aztec

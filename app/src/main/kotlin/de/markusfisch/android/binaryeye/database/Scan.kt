@@ -2,6 +2,8 @@ package de.markusfisch.android.binaryeye.database
 
 import android.os.Bundle
 import android.text.format.DateFormat
+import de.markusfisch.android.binaryeye.content.ParsedContentType
+import de.markusfisch.android.binaryeye.content.parsedContentTypeFromName
 import de.markusfisch.android.binaryeye.zxingcpp.migrateBarcodeFormatName
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import de.markusfisch.android.zxingcpp.ZxingCpp.BitMatrix
@@ -27,7 +29,8 @@ data class Scan(
 	val dateTime: String = getDateTime(),
 	var id: Long = 0L,
 	val label: String? = null,
-	val pinned: Boolean = false
+	val pinned: Boolean = false,
+	val contentType: ParsedContentType = ParsedContentType.UNKNOWN
 ) {
 	// Needs to be overwritten manually, as ByteArray is an array and
 	// this isn't handled well by Kotlin.
@@ -59,7 +62,8 @@ data class Scan(
 				price == other.price &&
 				issueNumber == other.issueNumber &&
 				label == other.label &&
-				pinned == other.pinned
+				pinned == other.pinned &&
+				contentType == other.contentType
 	}
 
 	// Needs to be overwritten manually, as ByteArray is an array and
@@ -82,6 +86,7 @@ data class Scan(
 		result = 31 * result + (issueNumber?.hashCode() ?: 0)
 		result = 31 * result + (label?.hashCode() ?: 0)
 		result = 31 * result + pinned.hashCode()
+		result = 31 * result + contentType.hashCode()
 		return result
 	}
 
@@ -133,6 +138,7 @@ fun Scan.toBundle() = Bundle().apply {
 	putLong(SCAN_ID, id)
 	putString(SCAN_LABEL, label)
 	putBoolean(SCAN_PINNED, pinned)
+	putString(SCAN_CONTENT_TYPE, contentType.name)
 }
 
 fun Bundle.toScan(): Scan? {
@@ -159,7 +165,8 @@ fun Bundle.toScan(): Scan? {
 			dateTime = getString(SCAN_DATE_TIME) ?: getDateTime(),
 			id = getLong(SCAN_ID, 0L),
 			label = getString(SCAN_LABEL),
-			pinned = getBoolean(SCAN_PINNED, false)
+			pinned = getBoolean(SCAN_PINNED, false),
+			contentType = parsedContentTypeFromName(getString(SCAN_CONTENT_TYPE))
 		)
 	} catch (_: IllegalArgumentException) {
 		null
@@ -207,3 +214,4 @@ private const val SCAN_DATE_TIME = "date_time"
 private const val SCAN_ID = "id"
 private const val SCAN_LABEL = "label"
 private const val SCAN_PINNED = "pinned"
+private const val SCAN_CONTENT_TYPE = "content_type"
