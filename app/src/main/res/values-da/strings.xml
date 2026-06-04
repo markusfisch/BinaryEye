@@ -403,7 +403,7 @@
 	<string name="vds_document_type">Dokumenttype</string>
 	<string name="vds_issuing_country">Udstedende land</string>
 	<string name="vds_signing_date">Signeringsdato</string>
-	<string name="section_parsed_data">Fortolkede data</string>
+	<string name="section_parsed_data">Kodede data</string>
 	<string name="section_raw_barcode_content">Stregkodeindhold</string>
 	<string name="section_raw_barcode_content_editable">Stregkodeindhold (redigerbart)</string>
 	<string name="section_format_details">Format: %1$s</string>

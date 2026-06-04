@@ -403,7 +403,7 @@
 	<string name="vds_document_type">Belge türü</string>
 	<string name="vds_issuing_country">Düzenleyen ülke</string>
 	<string name="vds_signing_date">İmza tarihi</string>
-	<string name="section_parsed_data">Ayrıştırılmış veriler</string>
+	<string name="section_parsed_data">Kodlanmış veriler</string>
 	<string name="section_raw_barcode_content">Barkod içeriği</string>
 	<string name="section_raw_barcode_content_editable">Barkod içeriği (düzenlenebilir)</string>
 	<string name="section_format_details">Biçim: %1$s</string>

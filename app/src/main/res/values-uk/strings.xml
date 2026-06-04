@@ -409,7 +409,7 @@
 	<string name="vds_document_type">Тип документа</string>
 	<string name="vds_issuing_country">Країна видачі</string>
 	<string name="vds_signing_date">Дата підпису</string>
-	<string name="section_parsed_data">Проаналізовані дані</string>
+	<string name="section_parsed_data">Закодовані дані</string>
 	<string name="section_raw_barcode_content">Вміст штрих коду</string>
 	<string name="section_raw_barcode_content_editable">Вміст штрих коду (можна редагувати)</string>
 	<string name="section_format_details">Формат: %1$s</string>

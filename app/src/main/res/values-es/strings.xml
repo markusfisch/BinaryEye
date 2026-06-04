@@ -404,7 +404,7 @@
 	<string name="vds_document_type">Tipo de documento</string>
 	<string name="vds_issuing_country">País emisor</string>
 	<string name="vds_signing_date">Fecha de firma</string>
-	<string name="section_parsed_data">Datos analizados</string>
+	<string name="section_parsed_data">Datos codificados</string>
 	<string name="section_raw_barcode_content">Contenido del código de barras</string>
 	<string name="section_raw_barcode_content_editable">Contenido del código de barras (editable)</string>
 	<string name="section_format_details">Formato: %1$s</string>

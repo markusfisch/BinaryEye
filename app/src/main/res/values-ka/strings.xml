@@ -403,7 +403,7 @@
 	<string name="vds_document_type">დოკუმენტის ტიპი</string>
 	<string name="vds_issuing_country">გამცემი ქვეყანა</string>
 	<string name="vds_signing_date">ხელმოწერის თარიღი</string>
-	<string name="section_parsed_data">დამუშავებული მონაცემები</string>
+	<string name="section_parsed_data">კოდირებული მონაცემები</string>
 	<string name="section_raw_barcode_content">შტრიხკოდის შიგთავსი</string>
 	<string name="section_raw_barcode_content_editable">შტრიხკოდის შიგთავსი (რედაქტირებადი)</string>
 	<string name="section_format_details">ფორმატი: %1$s</string>

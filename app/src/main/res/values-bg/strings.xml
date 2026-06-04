@@ -403,7 +403,7 @@
 	<string name="vds_document_type">Тип документ</string>
 	<string name="vds_issuing_country">Издаваща държава</string>
 	<string name="vds_signing_date">Дата на подписване</string>
-	<string name="section_parsed_data">Парсирани данни</string>
+	<string name="section_parsed_data">Кодирани данни</string>
 	<string name="section_raw_barcode_content">Съдържание на баркода</string>
 	<string name="section_raw_barcode_content_editable">Съдържание на баркода (редактируемо)</string>
 	<string name="section_format_details">Формат: %1$s</string>

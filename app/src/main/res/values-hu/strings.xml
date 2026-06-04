@@ -403,7 +403,7 @@
 	<string name="vds_document_type">Dokumentumtípus</string>
 	<string name="vds_issuing_country">Kibocsátó ország</string>
 	<string name="vds_signing_date">Aláírás dátuma</string>
-	<string name="section_parsed_data">Értelmezett adatok</string>
+	<string name="section_parsed_data">Kódolt adatok</string>
 	<string name="section_raw_barcode_content">Vonalkódtartalom</string>
 	<string name="section_raw_barcode_content_editable">Vonalkódtartalom (szerkeszthető)</string>
 	<string name="section_format_details">Formátum: %1$s</string>

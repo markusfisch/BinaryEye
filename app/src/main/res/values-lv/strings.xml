@@ -94,7 +94,7 @@
 	<string name="automated_action_url_hint">https://piemērs.lv/?q={RESULT}</string>
 	<string name="mode_expert_description">Vēlos pārbaudīt nolasīto saturu un atvērt to manuāli.</string>
 	<string name="camera_error">Nevar piekļūt kamerai, lūdzu, mēģiniet vēlreiz</string>
-	<string name="section_parsed_data">Atpazītie dati</string>
+	<string name="section_parsed_data">Kodētie dati</string>
 	<string name="section_raw_barcode_content">Svītrkoda saturs</string>
 	<string name="section_raw_barcode_content_editable">Svītrkoda saturs (rediģējams)</string>
 	<string name="section_format_details">Formāts: %1$s</string>

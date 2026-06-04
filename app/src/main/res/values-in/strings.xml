@@ -401,7 +401,7 @@
 	<string name="vds_document_type">Jenis dokumen</string>
 	<string name="vds_issuing_country">Negara penerbit</string>
 	<string name="vds_signing_date">Tanggal penandatanganan</string>
-	<string name="section_parsed_data">Data terurai</string>
+	<string name="section_parsed_data">Data terenkode</string>
 	<string name="section_raw_barcode_content">Konten barcode</string>
 	<string name="section_raw_barcode_content_editable">Konten barcode (dapat diedit)</string>
 	<string name="section_format_details">Format: %1$s</string>

@@ -401,7 +401,7 @@
 	<string name="vds_document_type">Loại tài liệu</string>
 	<string name="vds_issuing_country">Quốc gia cấp</string>
 	<string name="vds_signing_date">Ngày ký</string>
-	<string name="section_parsed_data">Dữ liệu đã phân tích</string>
+	<string name="section_parsed_data">Dữ liệu đã mã hóa</string>
 	<string name="section_raw_barcode_content">Nội dung mã vạch</string>
 	<string name="section_raw_barcode_content_editable">Nội dung mã vạch (có thể chỉnh sửa)</string>
 	<string name="section_format_details">Định dạng: %1$s</string>

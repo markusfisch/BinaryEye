@@ -401,7 +401,7 @@
 	<string name="vds_document_type">文件類型</string>
 	<string name="vds_issuing_country">簽發國家</string>
 	<string name="vds_signing_date">簽署日期</string>
-	<string name="section_parsed_data">解析後的資料</string>
+	<string name="section_parsed_data">編碼資料</string>
 	<string name="section_raw_barcode_content">條碼內容</string>
 	<string name="section_raw_barcode_content_editable">條碼內容（可編輯）</string>
 	<string name="section_format_details">格式：%1$s</string>

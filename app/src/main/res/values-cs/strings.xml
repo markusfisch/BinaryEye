@@ -409,7 +409,7 @@
 	<string name="vds_document_type">Typ dokumentu</string>
 	<string name="vds_issuing_country">Vydávající země</string>
 	<string name="vds_signing_date">Datum podpisu</string>
-	<string name="section_parsed_data">Zpracovaná data</string>
+	<string name="section_parsed_data">Kódovaná data</string>
 	<string name="section_raw_barcode_content">Obsah čárového kódu</string>
 	<string name="section_raw_barcode_content_editable">Obsah čárového kódu (upravitelné)</string>
 	<string name="section_format_details">Formát: %1$s</string>

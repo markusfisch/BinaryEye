@@ -401,7 +401,7 @@
 	<string name="vds_document_type">문서 유형</string>
 	<string name="vds_issuing_country">발행 국가</string>
 	<string name="vds_signing_date">서명 날짜</string>
-	<string name="section_parsed_data">분석된 데이터</string>
+	<string name="section_parsed_data">인코딩된 데이터</string>
 	<string name="section_raw_barcode_content">바코드 내용</string>
 	<string name="section_raw_barcode_content_editable">바코드 내용(편집 가능)</string>
 	<string name="section_format_details">형식: %1$s</string>

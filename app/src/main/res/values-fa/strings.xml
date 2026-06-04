@@ -403,7 +403,7 @@
 	<string name="vds_document_type">نوع سند</string>
 	<string name="vds_issuing_country">کشور صادرکننده</string>
 	<string name="vds_signing_date">تاریخ امضا</string>
-	<string name="section_parsed_data">داده‌های تجزیه‌شده</string>
+	<string name="section_parsed_data">داده‌های کدگذاری‌شده</string>
 	<string name="section_raw_barcode_content">محتوای بارکد</string>
 	<string name="section_raw_barcode_content_editable">محتوای بارکد (قابل ویرایش)</string>
 	<string name="section_format_details">قالب: %1$s</string>

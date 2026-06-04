@@ -409,7 +409,7 @@
 	<string name="vds_document_type">Typ dokumentu</string>
 	<string name="vds_issuing_country">Kraj wydający</string>
 	<string name="vds_signing_date">Data podpisu</string>
-	<string name="section_parsed_data">Przeanalizowane dane</string>
+	<string name="section_parsed_data">Zakodowane dane</string>
 	<string name="section_raw_barcode_content">Zawartość kodu kreskowego</string>
 	<string name="section_raw_barcode_content_editable">Zawartość kodu kreskowego (edytowalna)</string>
 	<string name="section_format_details">Format: %1$s</string>

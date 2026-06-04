@@ -415,7 +415,7 @@
 	<string name="vds_document_type">نوع المستند</string>
 	<string name="vds_issuing_country">بلد الإصدار</string>
 	<string name="vds_signing_date">تاريخ التوقيع</string>
-	<string name="section_parsed_data">البيانات المحللة</string>
+	<string name="section_parsed_data">البيانات المرمزة</string>
 	<string name="section_raw_barcode_content">محتوى الباركود</string>
 	<string name="section_raw_barcode_content_editable">محتوى الباركود (قابل للتحرير)</string>
 	<string name="section_format_details">التنسيق: %1$s</string>

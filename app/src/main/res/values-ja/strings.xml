@@ -401,7 +401,7 @@
 	<string name="vds_document_type">文書の種類</string>
 	<string name="vds_issuing_country">発行国</string>
 	<string name="vds_signing_date">署名日</string>
-	<string name="section_parsed_data">解析データ</string>
+	<string name="section_parsed_data">エンコードデータ</string>
 	<string name="section_raw_barcode_content">バーコード内容</string>
 	<string name="section_raw_barcode_content_editable">バーコード内容（編集可）</string>
 	<string name="section_format_details">形式: %1$s</string>

@@ -403,7 +403,7 @@
 	<string name="vds_document_type">নথির ধরন</string>
 	<string name="vds_issuing_country">ইস্যুকারী দেশ</string>
 	<string name="vds_signing_date">স্বাক্ষরের তারিখ</string>
-	<string name="section_parsed_data">পার্স করা ডেটা</string>
+	<string name="section_parsed_data">এনকোড করা ডেটা</string>
 	<string name="section_raw_barcode_content">বারকোড কনটেন্ট</string>
 	<string name="section_raw_barcode_content_editable">বারকোড কনটেন্ট (সম্পাদনাযোগ্য)</string>
 	<string name="section_format_details">ফরম্যাট: %1$s</string>

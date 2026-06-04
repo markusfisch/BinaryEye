@@ -9,7 +9,7 @@
 	<string name="compose_barcode">Crea codice a barre</string>
 	<string name="decode_barcode">Decodifica codice a barre</string>
 	<string name="content">Contenuto</string>
-	<string name="section_parsed_data">Dati analizzati</string>
+	<string name="section_parsed_data">Dati codificati</string>
 	<string name="section_raw_barcode_content">Contenuto codice a barre</string>
 	<string name="section_raw_barcode_content_editable">Contenuto codice a barre (modificabile)</string>
 	<string name="section_format_details">Formato: %1$s</string>
