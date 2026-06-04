@@ -660,6 +660,15 @@ class DecodeActivity : AbstractBaseActivity() {
 					)
 				)
 				this.text = text
+				if (item.link != null) {
+					setCompoundDrawablesWithIntrinsicBounds(
+						0,
+						0,
+						R.drawable.ic_action_open,
+						0
+					)
+					compoundDrawablePadding = spaceBetween / 2
+				}
 			}
 
 			val alpha = if (dimmed) 0.5f else 1f
