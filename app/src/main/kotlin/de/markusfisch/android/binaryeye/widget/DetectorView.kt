@@ -208,7 +208,7 @@ class DetectorView : View {
 		val mn = min(center.x, center.y) * .8f
 		handlePos.set(
 			(center.x + mn).roundToInt(),
-			(center.y + mn).roundToInt()
+			min((center.y + mn).roundToInt(), handleHome.y)
 		)
 		handleActive = true
 	}
