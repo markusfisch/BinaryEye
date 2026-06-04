@@ -347,6 +347,9 @@ class DecodeActivity : AbstractBaseActivity() {
 		hexView.showIf(prefs.showHexDump) { v ->
 			hexHeadlineView.visibility = View.VISIBLE
 			v.text = hexDump(bytes)
+			v.setOnClickListener {
+				copyToClipboard(bytes.toHexString())
+			}
 		}
 		if (!prefs.showHexDump) {
 			hexHeadlineView.visibility = View.GONE
