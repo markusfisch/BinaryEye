@@ -370,10 +370,10 @@ class DecodeActivity : AbstractBaseActivity() {
 		val items = mutableListOf<Field>()
 		val parsedDataTitleResId = parseData(items, text, bytes)
 		when (prefs.showChecksum) {
-			"CRC4" -> items.add(Field(R.string.crc4, String.format("%X", crc4(bytes))))
-			"MD5" -> items.add(Field(R.string.md5, bytes.md5().toHexString().fold()))
-			"SHA1" -> items.add(Field(R.string.sha1, bytes.sha1().toHexString().fold()))
-			"SHA256" -> items.add(Field(R.string.sha256, bytes.sha256().toHexString().fold()))
+			"CRC4" -> items.addField(R.string.crc4, String.format("%X", crc4(bytes)))
+			"MD5" -> items.addField(R.string.md5, bytes.md5().toHexString().fold())
+			"SHA1" -> items.addField(R.string.sha1, bytes.sha1().toHexString().fold())
+			"SHA256" -> items.addField(R.string.sha256, bytes.sha256().toHexString().fold())
 		}
 		if (parsedDataTitleResId != 0) {
 			items.add(
@@ -405,22 +405,18 @@ class DecodeActivity : AbstractBaseActivity() {
 
 		val trackingLink = bytes.generateDpTrackingLink(format)
 		if (trackingLink != null) {
-			items.add(
-				Field(
-					getString(R.string.tracking_number),
-					trackingLink.label,
-					trackingLink.link,
-				)
+			items.addField(
+				getString(R.string.tracking_number),
+				trackingLink.label,
+				trackingLink.link,
 			)
 			return R.string.parsed_type_deutsche_post
 		}
 
 		try {
-			items.add(
-				Field(
-					R.string.formatted_json,
-					JSONObject(text).toString(2)
-				)
+			items.addField(
+				R.string.formatted_json,
+				JSONObject(text).toString(2)
 			)
 			return R.string.parsed_type_json
 		} catch (_: JSONException) {
@@ -428,16 +424,16 @@ class DecodeActivity : AbstractBaseActivity() {
 		}
 
 		IdlParser.parse(String(bytes))?.let {
-			items.add(Field("IIN", it.iin))
+			items.addField("IIN", it.iin)
 			it.elements.forEach { (id, value) ->
-				items.add(Field(ctx.idlToRes(id), value))
+				items.addField(ctx.idlToRes(id), value)
 			}
 			return R.string.parsed_type_international_driver_license
 		}
 
 		SealParser.parse(ctx, bytes)?.let { sealFields ->
 			sealFields.forEach { vf ->
-				items.add(Field(vf.name, vf.value))
+				items.addField(vf.name, vf.value)
 			}
 			return R.string.parsed_type_digital_seal
 		}
@@ -451,16 +447,16 @@ class DecodeActivity : AbstractBaseActivity() {
 
 		when (action) {
 			is MatMsgAction -> MatMsg(text).run {
-				items.add(Field(R.string.email_to, to))
-				items.add(Field(R.string.email_subject, sub))
-				items.add(Field(R.string.email_body, body))
+				items.addField(R.string.email_to, to)
+				items.addField(R.string.email_subject, sub)
+				items.addField(R.string.email_body, body)
 				return R.string.parsed_type_email
 			}
 
 			is VCardAction,
 			is VEventAction -> VTypeParser.parseMap(text).let { parsedMap ->
 				parsedMap.forEach { item ->
-					items.add(Field(item.key, item.value.joinToString("\n") { it.value }))
+					items.addField(item.key, item.value.joinToString("\n") { it.value })
 				}
 				return if (action is VCardAction) {
 					R.string.parsed_type_contact_card
@@ -471,9 +467,9 @@ class DecodeActivity : AbstractBaseActivity() {
 
 			is WebAction -> try {
 				text.toUri().run {
-					items.add(Field(R.string.scheme, scheme))
-					items.add(Field(R.string.host, host))
-					items.add(Field(R.string.query, query))
+					items.addField(R.string.scheme, scheme)
+					items.addField(R.string.host, host)
+					items.addField(R.string.query, query)
 				}
 				return R.string.parsed_type_url
 			} catch (_: Exception) {
@@ -497,15 +493,15 @@ class DecodeActivity : AbstractBaseActivity() {
 						label
 					}
 					val issuer = getQueryParameter("issuer") ?: issuerFromLabel
-					items.add(Field(R.string.entry_type, host?.uppercase()))
-					items.add(Field(R.string.otp_account, account))
-					items.add(Field(R.string.otp_issuer, issuer))
-					items.add(Field(R.string.otp_algorithm, getQueryParameter("algorithm")))
-					items.add(Field(R.string.otp_digits, getQueryParameter("digits")))
+					items.addField(R.string.entry_type, host?.uppercase())
+					items.addField(R.string.otp_account, account)
+					items.addField(R.string.otp_issuer, issuer)
+					items.addField(R.string.otp_algorithm, getQueryParameter("algorithm"))
+					items.addField(R.string.otp_digits, getQueryParameter("digits"))
 					if (host == "totp") {
-						items.add(Field(R.string.otp_period, getQueryParameter("period")))
+						items.addField(R.string.otp_period, getQueryParameter("period"))
 					} else {
-						items.add(Field(R.string.otp_counter, getQueryParameter("counter")))
+						items.addField(R.string.otp_counter, getQueryParameter("counter"))
 					}
 				}
 				return R.string.parsed_type_otp
@@ -514,15 +510,15 @@ class DecodeActivity : AbstractBaseActivity() {
 			}
 
 			is WifiAction -> WifiConnector.parseMap(text)?.let { wifiData ->
-				items.add(Field(R.string.entry_type, getString(R.string.wifi_network)))
-				items.add(Field(R.string.wifi_ssid, wifiData["S"]))
-				items.add(Field(R.string.wifi_password, wifiData["P"]))
-				items.add(Field(R.string.wifi_type, wifiData["T"]))
-				items.add(Field(R.string.wifi_hidden, wifiData["H"]))
-				items.add(Field(R.string.wifi_eap, wifiData["E"]))
-				items.add(Field(R.string.wifi_identity, wifiData["I"]))
-				items.add(Field(R.string.wifi_anonymous_identity, wifiData["A"]))
-				items.add(Field(R.string.wifi_phase2, wifiData["PH2"]))
+				items.addField(R.string.entry_type, getString(R.string.wifi_network))
+				items.addField(R.string.wifi_ssid, wifiData["S"])
+				items.addField(R.string.wifi_password, wifiData["P"])
+				items.addField(R.string.wifi_type, wifiData["T"])
+				items.addField(R.string.wifi_hidden, wifiData["H"])
+				items.addField(R.string.wifi_eap, wifiData["E"])
+				items.addField(R.string.wifi_identity, wifiData["I"])
+				items.addField(R.string.wifi_anonymous_identity, wifiData["A"])
+				items.addField(R.string.wifi_phase2, wifiData["PH2"])
 				return R.string.parsed_type_wifi_network
 			}
 		}
@@ -550,12 +546,12 @@ class DecodeActivity : AbstractBaseActivity() {
 			} else {
 				scan.version
 			}
-			items.add(Field(R.string.barcode_version_number, versionString))
+			items.addField(R.string.barcode_version_number, versionString)
 		}
 		if (scan.format == ZxingCpp.BarcodeFormat.QRCode &&
 			scan.dataMask > -1
 		) {
-			items.add(Field(R.string.qr_data_mask, scan.dataMask.toString()))
+			items.addField(R.string.qr_data_mask, scan.dataMask.toString())
 		}
 		fillTable(items)
 	}
@@ -891,6 +887,14 @@ private data class Field(
 	val value: CharSequence?,
 	val link: String? = null
 )
+
+private fun MutableList<Field>.addField(
+	key: Any,
+	value: CharSequence?,
+	link: String? = null
+) {
+	add(Field(key, value, link))
+}
 
 private inline fun <T : View> T.showIf(
 	visible: Boolean,
