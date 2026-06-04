@@ -10,6 +10,7 @@
 	<string name="compose_barcode">বারকোড বানাও</string>
 	<string name="decode_barcode">বারকোডের পাঠোদ্ধার</string>
 	<string name="content">তথ্য</string>
+	<string name="section_meta">মেটাডেটা</string>
 	<string name="binary_data">(বাইনারি তথ্য)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$dটি অক্ষর, %1$s</item>

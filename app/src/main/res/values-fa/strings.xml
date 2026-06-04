@@ -10,6 +10,7 @@
 	<string name="compose_barcode">ایجاد بارکد</string>
 	<string name="decode_barcode">رمزگشایی بارکد</string>
 	<string name="content">محتویات</string>
+	<string name="section_meta">فراداده</string>
 	<string name="binary_data">(دادهٔ دودویی)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d نویسه، %1$s</item>

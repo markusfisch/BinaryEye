@@ -13,6 +13,7 @@
 	<string name="section_raw_barcode_content">Barcode content</string>
 	<string name="section_raw_barcode_content_editable">Barcode content (editable)</string>
 	<string name="section_format_details">Format: %1$s</string>
+	<string name="section_meta">Meta data</string>
 	<string name="section_hex_dump">Hex dump</string>
 	<string name="binary_data">(binary data)</string>
 	<plurals name="barcode_info">

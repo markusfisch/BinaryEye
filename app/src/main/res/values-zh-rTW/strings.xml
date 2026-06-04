@@ -10,6 +10,7 @@
 	<string name="compose_barcode">製作條碼</string>
 	<string name="decode_barcode">解析條碼</string>
 	<string name="content">内容</string>
+	<string name="section_meta">中繼資料</string>
 	<string name="binary_data">(二進位資料)</string>
 	<plurals name="barcode_info">
 		<item quantity="other">%2$d 個字元，%1$s</item>

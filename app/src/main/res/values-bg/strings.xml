@@ -10,6 +10,7 @@
 	<string name="compose_barcode">Създаване на баркод</string>
 	<string name="decode_barcode">Декодиране на баркод</string>
 	<string name="content">Съдържание</string>
+	<string name="section_meta">Метаданни</string>
 	<string name="binary_data">(бинарни данни)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d символ, %1$s</item>

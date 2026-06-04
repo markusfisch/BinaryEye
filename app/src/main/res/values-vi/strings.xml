@@ -10,6 +10,7 @@
 	<string name="compose_barcode">Tạo mã vạch</string>
 	<string name="decode_barcode">Giải mã vạch</string>
 	<string name="content">Nội dung</string>
+	<string name="section_meta">Siêu dữ liệu</string>
 	<string name="binary_data">(thông tin dạng nhị phân)</string>
 	<plurals name="barcode_info">
 		<item quantity="other">%2$d ký tự, %1$s</item>

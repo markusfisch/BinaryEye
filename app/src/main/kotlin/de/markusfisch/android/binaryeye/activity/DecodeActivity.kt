@@ -87,8 +87,9 @@ class DecodeActivity : AbstractBaseActivity() {
 	private lateinit var dataHeadlineView: TextView
 	private lateinit var formatHeadlineView: TextView
 	private lateinit var dataView: LinearLayout
-	private lateinit var hexHeadlineView: TextView
+	private lateinit var metaHeadlineView: TextView
 	private lateinit var metaView: TableLayout
+	private lateinit var hexHeadlineView: TextView
 	private lateinit var hexView: TextView
 	private lateinit var formatDescriptionView: TextView
 	private lateinit var labelHeadlineView: TextView
@@ -154,8 +155,9 @@ class DecodeActivity : AbstractBaseActivity() {
 		dataHeadlineView = findViewById(R.id.data_headline)
 		formatHeadlineView = findViewById(R.id.format_headline)
 		dataView = findViewById(R.id.data)
-		hexHeadlineView = findViewById(R.id.hex_headline)
+		metaHeadlineView = findViewById(R.id.meta_headline)
 		metaView = findViewById(R.id.meta)
+		hexHeadlineView = findViewById(R.id.hex_headline)
 		hexView = findViewById(R.id.hex)
 		formatDescriptionView = findViewById(R.id.format_description)
 		labelHeadlineView = findViewById(R.id.label_headline)
@@ -187,6 +189,7 @@ class DecodeActivity : AbstractBaseActivity() {
 		} else {
 			formatHeadlineView.visibility = View.GONE
 			formatDescriptionView.visibility = View.GONE
+			metaHeadlineView.visibility = View.GONE
 			metaView.visibility = View.GONE
 		}
 
@@ -553,7 +556,11 @@ class DecodeActivity : AbstractBaseActivity() {
 		) {
 			items.addField(R.string.qr_data_mask, scan.dataMask.toString())
 		}
-		fillTable(items)
+		val itemsWithValues = items.filter { !it.value.isNullOrBlank() }
+		if (!itemsWithValues.isEmpty()) {
+			metaHeadlineView.visibility = View.VISIBLE
+			fillTable(itemsWithValues)
+		}
 	}
 
 	private fun TableLayout.fillTable(items: List<Field>) {
@@ -563,26 +570,24 @@ class DecodeActivity : AbstractBaseActivity() {
 			val spaceBetween = (16f * dp).roundToInt()
 			items.forEach { item ->
 				val text = item.value
-				if (!text.isNullOrBlank()) {
-					val tr = TableRow(ctx)
-					val keyView = TextView(ctx).apply {
-						when (val key = item.key) {
-							is Int -> setText(key)
-							is String -> this.text = key
-							else -> this.text = key.toString()
-						}
+				val tr = TableRow(ctx)
+				val keyView = TextView(ctx).apply {
+					when (val key = item.key) {
+						is Int -> setText(key)
+						is String -> this.text = key
+						else -> this.text = key.toString()
 					}
-					val valueView = TextView(ctx).apply {
-						setPadding(spaceBetween, 0, 0, 0)
-						this.text = text
-						setOnClickListener {
-							copyToClipboard(text.toString())
-						}
-					}
-					tr.addView(keyView)
-					tr.addView(valueView)
-					addView(tr)
 				}
+				val valueView = TextView(ctx).apply {
+					setPadding(spaceBetween, 0, 0, 0)
+					this.text = text
+					setOnClickListener {
+						copyToClipboard(text.toString())
+					}
+				}
+				tr.addView(keyView)
+				tr.addView(valueView)
+				addView(tr)
 			}
 			View.VISIBLE
 		}

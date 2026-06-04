@@ -7,6 +7,7 @@
 	<string name="mode_simple_description">Chcę tylko skanować kody kreskowe i otwierać je natychmiast.</string>
 	<string name="open_url">Otwórz URL</string>
 	<string name="content">Zawartość</string>
+	<string name="section_meta">Metadane</string>
 	<string name="copied_to_clipboard">Skopiowano do schowka</string>
 	<string name="copy_to_clipboard">Skopiuj do schowka</string>
 	<string name="copy_as_deeplink">Kopiuj jako link bezpośredni</string>

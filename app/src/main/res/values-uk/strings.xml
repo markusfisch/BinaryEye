@@ -10,6 +10,7 @@
 	<string name="compose_barcode">Скласти штрихкод</string>
 	<string name="decode_barcode">Розшифрувати штрих-код</string>
 	<string name="content">Вміст</string>
+	<string name="section_meta">Метадані</string>
 	<string name="binary_data">(двійкові дані)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d символ, %1$s</item>

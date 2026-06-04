@@ -10,6 +10,7 @@
 	<string name="compose_barcode">إنشاء رمز Bardcode</string>
 	<string name="decode_barcode">فك رمز Barcode</string>
 	<string name="content">المحتوى</string>
+	<string name="section_meta">البيانات الوصفية</string>
 	<string name="binary_data">(بيانات ثنائية)</string>
 	<plurals name="barcode_info">
 		<item quantity="zero">%2$d حروف، %1$s</item>

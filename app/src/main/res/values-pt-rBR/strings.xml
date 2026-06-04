@@ -10,6 +10,7 @@
 	<string name="compose_barcode">Compor código de barras</string>
 	<string name="decode_barcode">Decodificar código de barras</string>
 	<string name="content">Conteúdo</string>
+	<string name="section_meta">Metadados</string>
 	<string name="binary_data">(dados em binário)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d caractere, %1$s</item>

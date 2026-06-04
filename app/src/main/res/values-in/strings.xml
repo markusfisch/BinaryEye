@@ -10,6 +10,7 @@
 	<string name="compose_barcode">Buat barcode</string>
 	<string name="decode_barcode">Dekode barcode</string>
 	<string name="content">Konten</string>
+	<string name="section_meta">Metadata</string>
 	<string name="binary_data">(data biner)</string>
 	<plurals name="barcode_info">
 		<item quantity="other">%1$s, %2$d karakter</item>

@@ -10,6 +10,7 @@
 	<string name="compose_barcode">Opret stregkode</string>
 	<string name="decode_barcode">Afkod stregkode</string>
 	<string name="content">Indhold</string>
+	<string name="section_meta">Metadata</string>
 	<string name="binary_data">(binære data)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d karakter, %1$s</item>

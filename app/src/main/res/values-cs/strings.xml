@@ -10,6 +10,7 @@
 	<string name="compose_barcode">Vytvořit čárový kód</string>
 	<string name="decode_barcode">Dekódovat čárový kód</string>
 	<string name="content">Obsah</string>
+	<string name="section_meta">Metadata</string>
 	<string name="binary_data">(binární data)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d znak, %1$s</item>

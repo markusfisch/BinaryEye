@@ -4,6 +4,7 @@
 	<string name="mode_expert">Paplašināts</string>
 	<string name="mode_simple">Vienkāršs</string>
 	<string name="content">Saturs</string>
+	<string name="section_meta">Metadati</string>
 	<string name="label">Apzīmējums</string>
 	<string name="barcode_version_number">Versija</string>
 	<string name="share">Kopīgot</string>

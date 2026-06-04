@@ -93,6 +93,15 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="8dp"/>
+			<TextView
+				style="@style/SecondaryText"
+				android:id="@+id/meta_headline"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="8dp"
+				android:textStyle="bold"
+				android:text="@string/section_meta"
+				android:visibility="gone"/>
 			<TableLayout
 				android:id="@+id/meta"
 				android:layout_width="match_parent"

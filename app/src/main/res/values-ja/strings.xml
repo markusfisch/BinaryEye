@@ -10,6 +10,7 @@
 	<string name="compose_barcode">バーコードを作成</string>
 	<string name="decode_barcode">バーコードを復号</string>
 	<string name="content">内容</string>
+	<string name="section_meta">メタデータ</string>
 	<string name="binary_data">(バイナリデータ)</string>
 	<plurals name="barcode_info">
 		<item quantity="other">%2$d 文字, %1$s</item>

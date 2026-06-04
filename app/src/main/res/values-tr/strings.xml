@@ -10,6 +10,7 @@
 	<string name="compose_barcode">Barkod oluştur</string>
 	<string name="decode_barcode">Barkod çöz</string>
 	<string name="content">İçerik</string>
+	<string name="section_meta">Meta veri</string>
 	<string name="binary_data">(ikili veri)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d karakter, %1$s</item>

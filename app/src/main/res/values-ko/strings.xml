@@ -10,6 +10,7 @@
 	<string name="compose_barcode">바코드 작성</string>
 	<string name="decode_barcode">바코드 디코딩</string>
 	<string name="content">내용</string>
+	<string name="section_meta">메타데이터</string>
 	<string name="binary_data">(이진 데이터)</string>
 	<plurals name="barcode_info">
 		<item quantity="other">%2$d자, %1$s</item>

@@ -10,6 +10,7 @@
 	<string name="compose_barcode">Vonalkód létrehozása</string>
 	<string name="decode_barcode">Vonalkód visszafejtése</string>
 	<string name="content">Tartalom</string>
+	<string name="section_meta">Metaadatok</string>
 	<string name="binary_data">(bináris adat)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d karakter, %1$s</item>

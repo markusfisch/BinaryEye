@@ -10,6 +10,7 @@
 	<string name="compose_barcode">შტრიხ-კოდის შექმნა</string>
 	<string name="decode_barcode">შტრიხ-კოდის დეკოდირება</string>
 	<string name="content">ტექსტი</string>
+	<string name="section_meta">მეტამონაცემები</string>
 	<string name="binary_data">(ორობითი მონაცემები)</string>
 	<plurals name="barcode_info">
 		<item quantity="one">%2$d სიმბოლო, %1$s</item>
