@@ -22,6 +22,14 @@
 		android:layout_alignParentTop="true"
 		android:layout_toEndOf="@+id/format_icon"
 		android:layout_marginStart="32dp"/>
+	<TextView
+		style="@style/SecondaryText"
+		android:id="@+id/format"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/meta"
+		android:layout_toEndOf="@+id/format_icon"
+		android:layout_marginStart="32dp"/>
 	<ImageButton
 		android:id="@+id/pin"
 		android:layout_width="48dp"
@@ -41,7 +49,7 @@
 		android:id="@+id/content"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_below="@+id/meta"
+		android:layout_below="@+id/format"
 		android:layout_toEndOf="@+id/format_icon"
 		android:layout_toStartOf="@+id/pin"
 		android:layout_marginStart="32dp"

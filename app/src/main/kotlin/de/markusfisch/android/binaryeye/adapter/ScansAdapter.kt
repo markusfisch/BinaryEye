@@ -13,6 +13,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.content.ParsedContentType
+import de.markusfisch.android.binaryeye.content.getContentPreview
 import de.markusfisch.android.binaryeye.content.parsedContentTypeFromName
 import de.markusfisch.android.binaryeye.database.Database
 import java.text.DateFormat
@@ -31,6 +32,7 @@ class ScansAdapter(
 	private val timeIndex = cursor.getColumnIndex(Database.SCANS_DATETIME)
 	private val nameIndex = cursor.getColumnIndex(Database.SCANS_NAME)
 	private val textIndex = cursor.getColumnIndex(Database.SCANS_TEXT)
+	private val rawIndex = cursor.getColumnIndex(Database.SCANS_RAW)
 	private val contentTypeIndex = cursor.getColumnIndex(Database.SCANS_CONTENT_TYPE)
 	private val formatIndex = cursor.getColumnIndex(Database.SCANS_FORMAT)
 	private val selections = mutableMapOf<Long, Int>()
@@ -99,15 +101,19 @@ class ScansAdapter(
 		val id = cursor.getLong(idIndex)
 		val pinned = cursor.getInt(pinnedIndex) != 0
 		val format = cursor.getString(formatIndex)
+		val contentType = parsedContentTypeFromName(
+			cursor.getString(contentTypeIndex)
+		)
 		getViewHolder(view).apply {
-			metaView.text = context.getString(
-				R.string.scan_meta_data,
-				formatDateTime(cursor.getString(timeIndex)),
-				format.prettifyFormatName()
+			metaView.text = formatDateTime(cursor.getString(timeIndex))
+			formatView.text = format.prettifyFormatName().withContentType(
+				context,
+				contentType
 			)
 			formatIconView.setImageResource(format.toBarcodeIcon())
 			val name = cursor.getString(nameIndex)
 			val text = cursor.getString(textIndex)
+			val raw = cursor.getBlob(rawIndex)
 			var icon = 0
 			contentView.text = when {
 				name?.isNotEmpty() == true -> {
@@ -115,8 +121,11 @@ class ScansAdapter(
 					name
 				}
 
-				text.isNullOrEmpty() -> context.getString(
-					cursor.getString(contentTypeIndex).toBinaryDataStringResId()
+				text.isNullOrEmpty() -> getContentPreview(
+					context,
+					text ?: "",
+					raw ?: ByteArray(0),
+					format
 				)
 
 				else -> text
@@ -161,6 +170,7 @@ class ScansAdapter(
 	): ViewHolder = view.tag as ViewHolder? ?: ViewHolder(
 		view.findViewById(R.id.format_icon),
 		view.findViewById(R.id.meta),
+		view.findViewById(R.id.format),
 		view.findViewById(R.id.content),
 		view.findViewById(R.id.pin)
 	).also {
@@ -170,6 +180,7 @@ class ScansAdapter(
 	private data class ViewHolder(
 		val formatIconView: ImageView,
 		val metaView: TextView,
+		val formatView: TextView,
 		val contentView: TextView,
 		val pinView: ImageButton
 	)
@@ -204,13 +215,17 @@ fun Context.setupFormatSpinner(spinner: Spinner): List<String> {
 fun String.prettifyFormatName() = replace("_", " ")
 	.replace(formatWordBoundary, " ")
 
-private fun String?.toBinaryDataStringResId(): Int {
-	val type = parsedContentTypeFromName(this)
-	return if (type == ParsedContentType.UNKNOWN) {
-		R.string.binary_data
-	} else {
-		type.resId
-	}
+private fun String.withContentType(
+	context: Context,
+	type: ParsedContentType
+) = if (type == ParsedContentType.UNKNOWN) {
+	this
+} else {
+	context.getString(
+		R.string.scan_meta_data,
+		this,
+		context.getString(type.resId)
+	)
 }
 
 fun String.toFormatDescriptionResId(): Int = when (this) {

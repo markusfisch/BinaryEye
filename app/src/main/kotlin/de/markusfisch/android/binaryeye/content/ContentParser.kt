@@ -185,6 +185,51 @@ fun parsedContentTypeFromName(
 	ParsedContentType.UNKNOWN
 }
 
+fun getContentPreview(
+	context: Context,
+	text: String,
+	bytes: ByteArray,
+	format: String,
+	action: Action = ActionRegistry.getAction(bytes)
+): CharSequence {
+	val parsedData = parseData(context, text, bytes, format, action)
+	return when (parsedData.type) {
+		ParsedContentType.UNKNOWN -> text.ifEmpty {
+			bytes.toHexString()
+		}
+
+		ParsedContentType.URL -> parsedData.valueFor(R.string.host)
+			?: text
+
+		ParsedContentType.WIFI_NETWORK -> parsedData.valueFor(R.string.wifi_ssid)
+			?: parsedData.firstValue()
+			?: text
+
+		ParsedContentType.EMAIL -> parsedData.valueFor(R.string.email_to)
+			?: parsedData.valueFor(R.string.email_subject)
+			?: parsedData.firstValue()
+			?: text
+
+		ParsedContentType.OTP -> parsedData.valueFor(R.string.otp_account)
+			?: parsedData.firstValue()
+			?: text
+
+		else -> parsedData.firstValue() ?: text
+	}
+}
+
+private fun ParsedData.valueFor(key: Int): CharSequence? =
+	fields.firstValue { it.key == key }
+
+private fun ParsedData.firstValue(): CharSequence? =
+	fields.firstValue()
+
+private fun List<ParsedField>.firstValue(
+	predicate: (ParsedField) -> Boolean = { true }
+): CharSequence? = firstOrNull {
+	predicate(it) && !it.value.isNullOrBlank()
+}?.value
+
 private fun MutableList<ParsedField>.addField(
 	key: Any,
 	value: CharSequence?,

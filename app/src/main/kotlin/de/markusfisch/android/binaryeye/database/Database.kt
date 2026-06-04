@@ -31,6 +31,7 @@ class Database {
 			$SCANS_DATETIME,
 			$SCANS_NAME,
 			$SCANS_TEXT,
+			$SCANS_RAW,
 			$SCANS_CONTENT_TYPE,
 			$SCANS_FORMAT
 			FROM $SCANS
