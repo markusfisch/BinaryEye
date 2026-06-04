@@ -427,6 +427,7 @@
 		<item quantity="many">%d حرفًا</item>
 		<item quantity="other">%d أحرف</item>
 	</plurals>
+	<string name="parsed_type">نوع المحتوى</string>
 	<string name="parsed_type_otp">كلمة مرور لمرة واحدة</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">رخصة قيادة دولية</string>

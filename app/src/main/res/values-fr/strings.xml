@@ -412,6 +412,7 @@
 		<item quantity="one">%d caractère</item>
 		<item quantity="other">%d caractères</item>
 	</plurals>
+	<string name="parsed_type">Type de contenu</string>
 	<string name="parsed_type_otp">Mot de passe à usage unique</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Permis de conduire international</string>

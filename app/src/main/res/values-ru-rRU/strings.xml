@@ -419,6 +419,7 @@
 		<item quantity="many">%d символов</item>
 		<item quantity="other">%d символов</item>
 	</plurals>
+	<string name="parsed_type">Тип содержимого</string>
 	<string name="parsed_type_otp">Одноразовый пароль</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Международное водительское удостоверение</string>

@@ -411,6 +411,7 @@
 		<item quantity="one">%d نویسه</item>
 		<item quantity="other">%d نویسه</item>
 	</plurals>
+	<string name="parsed_type">نوع محتوا</string>
 	<string name="parsed_type_otp">رمز یک‌بارمصرف</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">گواهینامه بین‌المللی رانندگی</string>

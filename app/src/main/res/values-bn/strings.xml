@@ -411,6 +411,7 @@
 		<item quantity="one">%d অক্ষর</item>
 		<item quantity="other">%d অক্ষর</item>
 	</plurals>
+	<string name="parsed_type">বিষয়বস্তুর ধরন</string>
 	<string name="parsed_type_otp">এককালীন পাসওয়ার্ড</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">আন্তর্জাতিক ড্রাইভার লাইসেন্স</string>

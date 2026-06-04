@@ -112,7 +112,6 @@ class DecodeActivity : AbstractBaseActivity() {
 	private var isBinary = false
 	private var originalBytes: ByteArray = ByteArray(0)
 	private var lastParsedDataItems: List<Field> = emptyList()
-	private var lastParsedDataTitleResId = 0
 	private var showingDimmed = false
 	private var label: String? = null
 	private var recreationSize = 0
@@ -369,33 +368,32 @@ class DecodeActivity : AbstractBaseActivity() {
 		isEditing: Boolean
 	) {
 		val items = mutableListOf<Field>()
+		val parsedDataTitleResId = parseData(items, text, bytes)
 		when (prefs.showChecksum) {
 			"CRC4" -> items.add(Field(R.string.crc4, String.format("%X", crc4(bytes))))
 			"MD5" -> items.add(Field(R.string.md5, bytes.md5().toHexString().fold()))
 			"SHA1" -> items.add(Field(R.string.sha1, bytes.sha1().toHexString().fold()))
 			"SHA256" -> items.add(Field(R.string.sha256, bytes.sha256().toHexString().fold()))
 		}
-		val count = items.count()
-		val parsedDataTitleResId = parseData(items, text, bytes)
-		if (items.count() > count) {
+		if (parsedDataTitleResId != 0) {
+			items.add(
+				0,
+				Field(
+					R.string.parsed_type,
+					getString(parsedDataTitleResId)
+				)
+			)
 			lastParsedDataItems = items
-			lastParsedDataTitleResId = parsedDataTitleResId
-				.takeIf { it != 0 } ?: R.string.section_parsed_data
-			fillDataItems(items, false, lastParsedDataTitleResId)
+			fillDataItems(items, false)
 			return
 		}
 		if (isEditing && lastParsedDataItems.isNotEmpty()) {
 			if (!showingDimmed) {
-				fillDataItems(lastParsedDataItems, true, lastParsedDataTitleResId)
+				fillDataItems(lastParsedDataItems, true)
 			}
 			return
 		}
-		val titleResId = if (items.isNotEmpty()) {
-			R.string.section_parsed_data
-		} else {
-			0
-		}
-		fillDataItems(items, false, titleResId)
+		fillDataItems(items, false)
 	}
 
 	private fun parseData(
@@ -418,7 +416,12 @@ class DecodeActivity : AbstractBaseActivity() {
 		}
 
 		try {
-			items.add(Field(R.string.formatted_json, JSONObject(text).toString(2)))
+			items.add(
+				Field(
+					R.string.formatted_json,
+					JSONObject(text).toString(2)
+				)
+			)
 			return R.string.parsed_type_json
 		} catch (_: JSONException) {
 			// Ignore
@@ -591,8 +594,7 @@ class DecodeActivity : AbstractBaseActivity() {
 
 	private fun LinearLayout.fillDataItems(
 		items: List<Field>,
-		dimmed: Boolean,
-		titleResId: Int
+		dimmed: Boolean
 	) {
 		showingDimmed = dimmed
 		removeAllViews()
@@ -601,12 +603,7 @@ class DecodeActivity : AbstractBaseActivity() {
 			visibility = View.GONE
 			return
 		}
-		if (titleResId != 0) {
-			dataHeadlineView.setText(titleResId)
-			dataHeadlineView.visibility = View.VISIBLE
-		} else {
-			dataHeadlineView.visibility = View.GONE
-		}
+		dataHeadlineView.visibility = View.VISIBLE
 		val ctx = context
 		val spaceBetween = (16f * dp).roundToInt()
 		for (item in items) {

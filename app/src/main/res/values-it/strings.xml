@@ -301,6 +301,7 @@
 	<string name="scheme">Schema</string>
 	<string name="host">Host</string>
 	<string name="query">Richiesta</string>
+	<string name="parsed_type">Tipo di contenuto</string>
 	<string name="parsed_type_otp">Password mono uso</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Patente di guida internazionale</string>

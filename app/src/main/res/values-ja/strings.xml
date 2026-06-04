@@ -409,6 +409,7 @@
 		<item quantity="one">%d 文字</item>
 		<item quantity="other">%d 文字</item>
 	</plurals>
+	<string name="parsed_type">コンテンツの種類</string>
 	<string name="parsed_type_otp">ワンタイムパスワード</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">国際運転免許証</string>

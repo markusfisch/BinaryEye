@@ -411,6 +411,7 @@
 		<item quantity="one">%d სიმბოლო</item>
 		<item quantity="other">%d სიმბოლო</item>
 	</plurals>
+	<string name="parsed_type">შიგთავსის ტიპი</string>
 	<string name="parsed_type_otp">ერთჯერადი პაროლი</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">საერთაშორისო მართვის მოწმობა</string>

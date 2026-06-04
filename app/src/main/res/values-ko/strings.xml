@@ -409,6 +409,7 @@
 		<item quantity="one">%d자</item>
 		<item quantity="other">%d자</item>
 	</plurals>
+	<string name="parsed_type">콘텐츠 유형</string>
 	<string name="parsed_type_otp">일회용 비밀번호</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">국제 운전 면허증</string>

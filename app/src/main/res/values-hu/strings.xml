@@ -411,6 +411,7 @@
 		<item quantity="one">%d karakter</item>
 		<item quantity="other">%d karakter</item>
 	</plurals>
+	<string name="parsed_type">Tartalomtípus</string>
 	<string name="parsed_type_otp">Egyszer használatos jelszó</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Nemzetközi vezetői engedély</string>

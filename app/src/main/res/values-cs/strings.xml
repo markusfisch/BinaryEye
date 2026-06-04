@@ -419,6 +419,7 @@
 		<item quantity="many">%d znaků</item>
 		<item quantity="other">%d znaků</item>
 	</plurals>
+	<string name="parsed_type">Typ obsahu</string>
 	<string name="parsed_type_otp">Jednorázové heslo</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Mezinárodní řidičský průkaz</string>

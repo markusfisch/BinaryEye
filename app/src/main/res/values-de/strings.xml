@@ -411,6 +411,7 @@
 		<item quantity="one">%d Zeichen</item>
 		<item quantity="other">%d Zeichen</item>
 	</plurals>
+	<string name="parsed_type">Inhaltstyp</string>
 	<string name="parsed_type_otp">Einmalpasswort</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Internationaler Führerschein</string>

@@ -419,6 +419,7 @@
 		<item quantity="many">%d символів</item>
 		<item quantity="other">%d символів</item>
 	</plurals>
+	<string name="parsed_type">Тип вмісту</string>
 	<string name="parsed_type_otp">Одноразовий пароль</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Міжнародне водійське посвідчення</string>

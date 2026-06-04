@@ -18,6 +18,7 @@
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="8dp"
 				android:textStyle="bold"
+				android:text="@string/section_parsed_data"
 				android:visibility="gone"/>
 			<LinearLayout
 				android:id="@+id/data"

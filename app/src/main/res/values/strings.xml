@@ -301,6 +301,7 @@
 	<string name="scheme">Scheme</string>
 	<string name="host">Host</string>
 	<string name="query">Query</string>
+	<string name="parsed_type">Content Type</string>
 	<string name="parsed_type_otp">One-Time Password</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">International Driver License</string>

@@ -306,6 +306,7 @@
 	<string name="background_request_failed">Fona pieprasījums neizdevās</string>
 	<string name="email_body">Ziņojums</string>
 	<string name="scheme">Shēma</string>
+	<string name="parsed_type">Satura tips</string>
 	<string name="parsed_type_otp">Vienreizējā parole</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">Starptautiska vadītāja apliecība</string>

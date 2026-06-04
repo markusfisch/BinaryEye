@@ -409,6 +409,7 @@
 		<item quantity="one">%d 個字元</item>
 		<item quantity="other">%d 個字元</item>
 	</plurals>
+	<string name="parsed_type">內容類型</string>
 	<string name="parsed_type_otp">一次性密碼</string>
 	<string name="parsed_type_json">JSON</string>
 	<string name="parsed_type_international_driver_license">國際駕駛執照</string>
