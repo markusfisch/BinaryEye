@@ -81,6 +81,7 @@ import java.security.MessageDigest
 import kotlin.math.roundToInt
 
 class DecodeActivity : AbstractBaseActivity() {
+	private lateinit var labelHeadlineView: TextView
 	private lateinit var contentView: EditText
 	private lateinit var contentHeadlineView: TextView
 	private lateinit var characterCountView: TextView
@@ -92,7 +93,6 @@ class DecodeActivity : AbstractBaseActivity() {
 	private lateinit var hexHeadlineView: TextView
 	private lateinit var hexView: TextView
 	private lateinit var formatDescriptionView: TextView
-	private lateinit var labelHeadlineView: TextView
 	private lateinit var recreationView: ImageView
 	private lateinit var labelView: EditText
 	private lateinit var fab: FloatingActionButton
@@ -149,6 +149,7 @@ class DecodeActivity : AbstractBaseActivity() {
 		format = scan.format.name
 		recreationSize = (200f * dp).roundToInt()
 
+		labelHeadlineView = findViewById(R.id.label_headline)
 		contentView = findViewById(R.id.content)
 		contentHeadlineView = findViewById(R.id.content_headline)
 		characterCountView = findViewById(R.id.character_count)
@@ -160,7 +161,6 @@ class DecodeActivity : AbstractBaseActivity() {
 		hexHeadlineView = findViewById(R.id.hex_headline)
 		hexView = findViewById(R.id.hex)
 		formatDescriptionView = findViewById(R.id.format_description)
-		labelHeadlineView = findViewById(R.id.label_headline)
 		recreationView = findViewById(R.id.recreation)
 		labelView = findViewById(R.id.label)
 		fab = findViewById(R.id.open)

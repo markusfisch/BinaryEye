@@ -13,21 +13,6 @@
 			android:padding="16dp">
 			<TextView
 				style="@style/SecondaryText"
-				android:id="@+id/data_headline"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="8dp"
-				android:textStyle="bold"
-				android:text="@string/section_parsed_data"
-				android:visibility="gone"/>
-			<LinearLayout
-				android:id="@+id/data"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="vertical"
-				android:layout_marginBottom="16dp"/>
-			<TextView
-				style="@style/SecondaryText"
 				android:id="@+id/label_headline"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -46,6 +31,21 @@
 				android:importantForAutofill="no"
 				android:inputType="text"
 				tools:ignore="UnusedAttribute"/>
+			<TextView
+				style="@style/SecondaryText"
+				android:id="@+id/data_headline"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="8dp"
+				android:textStyle="bold"
+				android:text="@string/section_parsed_data"
+				android:visibility="gone"/>
+			<LinearLayout
+				android:id="@+id/data"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:layout_marginBottom="16dp"/>
 			<TextView
 				style="@style/SecondaryText"
 				android:id="@+id/content_headline"
