@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.74.0
+* Add an option to choose a custom beep tone
+* Add an option to set a custom scanner ID
+* Improve display of content type
+* Support fido:/ URIs
+* Update Italian and French translations
+* Update ZXingCpp
+* Fix FAB and crop handle positioning
+* Fix splash screen for some Android versions
+
 ## 1.73.1
 * Update ZXingCpp and support Telepen format
 * Update vdstools

@@ -1,0 +1,9 @@
+* Add an option to choose a custom beep tone
+* Add an option to set a custom scanner ID
+* Improve display of content type
+* Support fido:/ URIs
+* Update Italian and French translations
+* Update ZXingCpp
+* Fix FAB and crop handle positioning
+* Fix splash screen for some Android versions
+
