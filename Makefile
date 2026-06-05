@@ -5,10 +5,10 @@ all: debug install start
 debug:
 	./gradlew assembleDebug
 
-release: lint
+release: lint test
 	./gradlew assembleRelease
 
-bundle: lint
+bundle: lint test
 	./gradlew bundleRelease
 
 lint:
