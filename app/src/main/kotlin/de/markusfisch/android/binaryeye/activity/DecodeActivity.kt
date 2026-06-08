@@ -53,6 +53,7 @@ import de.markusfisch.android.binaryeye.io.askForFileName
 import de.markusfisch.android.binaryeye.io.toSaveResult
 import de.markusfisch.android.binaryeye.io.writeExternalFile
 import de.markusfisch.android.binaryeye.net.createEncodeDeeplink
+import de.markusfisch.android.binaryeye.os.showWhenLocked
 import de.markusfisch.android.binaryeye.view.hideSoftKeyboard
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.toast
@@ -122,6 +123,9 @@ class DecodeActivity : AbstractBaseActivity() {
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
+		if (intent.getBooleanExtra(SHOW_WHEN_LOCKED, false)) {
+			showWhenLocked()
+		}
 		setScreenContentView(R.layout.activity_decode)
 		setTitle(R.string.content)
 
@@ -734,12 +738,18 @@ class DecodeActivity : AbstractBaseActivity() {
 		private const val SCAN_BUNDLE = "scan_bundle"
 		private const val OPEN_DOCUMENT = 1
 		private const val SCHEME_FILE = "file://"
+		private const val SHOW_WHEN_LOCKED = "show_when_locked"
 
-		fun newIntent(context: Context, scan: Scan): Intent {
+		fun newIntent(
+			context: Context,
+			scan: Scan,
+			showWhenLocked: Boolean = false
+		): Intent {
 			val args = Bundle()
 			args.putBundle(SCAN_BUNDLE, scan.toBundle())
 			return Intent(context, DecodeActivity::class.java).apply {
 				putExtra(DECODED_SCAN, true)
+				putExtra(SHOW_WHEN_LOCKED, showWhenLocked)
 				putExtras(args)
 			}
 		}

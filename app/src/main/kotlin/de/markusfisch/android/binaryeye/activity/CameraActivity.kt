@@ -60,6 +60,7 @@ import de.markusfisch.android.binaryeye.media.releaseToneGenerators
 import de.markusfisch.android.binaryeye.net.isScanDeeplink
 import de.markusfisch.android.binaryeye.net.sendAsync
 import de.markusfisch.android.binaryeye.net.urlEncode
+import de.markusfisch.android.binaryeye.os.showWhenLocked
 import de.markusfisch.android.binaryeye.preference.Preferences
 import de.markusfisch.android.binaryeye.view.errorFeedback
 import de.markusfisch.android.binaryeye.view.initBars
@@ -190,6 +191,7 @@ class CameraActivity : AppCompatActivity() {
 
 	override fun onCreate(state: Bundle?) {
 		super.onCreate(state)
+		showWhenLocked()
 		setContentView(R.layout.activity_camera)
 
 		// Necessary to get the right translation after setting a
@@ -1081,7 +1083,7 @@ fun Activity.showResult(
 		return
 	}
 	if (!bulkMode) {
-		startActivity(DecodeActivity.newIntent(this, scan))
+		startActivity(DecodeActivity.newIntent(this, scan, showWhenLocked = true))
 	}
 }
 
