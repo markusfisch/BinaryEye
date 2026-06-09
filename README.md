@@ -187,7 +187,7 @@ In order to set up Bluetooth forwarding to a computer:
 
 1. Pair your devices (phone and pc) if not paired already
 2. Download and run a companion app:
-	- Windows: https://github.com/KamaleiZestri/BinaryReceptorWindows
+	- Windows: https://github.com/KamaleiZestri/BinaryReceptor
 	- Linux: https://github.com/sean666888/bin_eye_bt_receiver
 3. In the settings of Binary Eye, enable "Forward scans with Bluetooth"
 	and select the appropriate target host device that is running the
