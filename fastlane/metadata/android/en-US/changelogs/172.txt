@@ -1,0 +1,3 @@
+* Allow scanning while device is locked
+* Fix rendering bug for some GPUs
+

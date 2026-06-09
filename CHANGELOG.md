@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.74.1
+* Allow scanning while device is locked
+* Fix rendering bug for some GPUs
+
 ## 1.74.0
 * Add an option to choose a custom beep tone
 * Add an option to set a custom scanner ID
