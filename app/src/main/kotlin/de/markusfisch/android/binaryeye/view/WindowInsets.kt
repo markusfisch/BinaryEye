@@ -48,7 +48,18 @@ fun setPaddingFromWindowInsets(
 fun View.setPaddingFromWindowInsets(bottom: Boolean = true) {
 	doOnApplyWindowInsets { v, insets, windowInsets ->
 		if (!bottom) {
-			insets.bottom = getImeBottomInsetWithoutSystemBars(windowInsets)
+			// On SDK 35+ the window is edge-to-edge and the parent isn't
+			// resized for the soft keyboard, so lift this view by the IME
+			// inset (above the navigation bar) here. On older versions the
+			// parent's fitsSystemWindows already shrinks this view above the
+			// keyboard, so adding the IME inset again would lift it twice.
+			insets.bottom = if (
+				Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM
+			) {
+				getImeBottomInsetWithoutSystemBars(windowInsets)
+			} else {
+				0
+			}
 		}
 		v.setPadding(insets)
 	}
