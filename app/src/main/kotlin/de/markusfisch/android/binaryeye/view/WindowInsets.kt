@@ -20,23 +20,25 @@ fun setPaddingFromWindowInsets(
 	if (Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM) {
 		return
 	}
+	// Capture the bare toolbar height so the listener can recompute the
+	// padded height from scratch every time. Applying the insets only
+	// once (or adding them incrementally) leaves the layout stuck with
+	// stale values when the first callback reports wrong insets, which
+	// is why some devices only settled after several rotations.
+	val baseToolbarHeight = toolbarHeight
 	mainLayout.setOnApplyWindowInsetsListener { _, insets ->
 		val systemBarInsets = insets.getInsets(
 			WindowInsets.Type.systemBars()
 		)
 
 		val statusBarTop = systemBarInsets.top
-		if (toolbar.paddingTop == 0 && statusBarTop > 0) {
-			toolbar.setPadding(0, statusBarTop, 0, 0)
-			toolbar.layoutParams.height += statusBarTop
-		}
+		toolbar.setPadding(0, statusBarTop, 0, 0)
+		toolbar.layoutParams.height = baseToolbarHeight + statusBarTop
 
 		val navBarBottom = systemBarInsets.bottom
-		if (navBarBottom > 0) {
-			mainLayout.setPadding(0, 0, 0, navBarBottom);
-			navbar?.apply {
-				layoutParams.height = navBarBottom
-			}
+		mainLayout.setPadding(0, 0, 0, navBarBottom)
+		navbar?.apply {
+			layoutParams.height = navBarBottom
 		}
 
 		insets
