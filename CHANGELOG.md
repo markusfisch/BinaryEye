@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.74.2
+* Fix layout for some Android versions
+
 ## 1.74.1
 * Allow scanning while device is locked
 * Fix rendering bug for some GPUs

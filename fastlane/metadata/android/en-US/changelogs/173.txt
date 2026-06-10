@@ -1,0 +1,2 @@
+* Fix layout for some Android versions
+
