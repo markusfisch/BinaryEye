@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.74.3
+* Fix layout for Material You
+
 ## 1.74.2
 * Fix layout for some Android versions
 
