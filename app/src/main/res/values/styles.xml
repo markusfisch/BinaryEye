@@ -1,6 +1,6 @@
 <resources>
 	<style name="AppTheme" parent="Theme.Material3.Dark.NoActionBar">
-		<item name="android:windowBackground">@drawable/background_window</item>
+		<item name="android:windowBackground">?attr/colorSurface</item>
 		<item name="android:statusBarColor">@android:color/transparent</item>
 		<item name="android:navigationBarColor">@android:color/transparent</item>
 		<item name="colorPrimary">@color/legacy_accent</item>
@@ -27,10 +27,7 @@
 		<item name="windowActionModeOverlay">true</item>
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
 	</style>
-	<style name="SplashTheme" parent="@style/AppTheme">
-		<item name="android:windowBackground">@drawable/background_splash</item>
-	</style>
-	<style name="AppToolbar" parent="Widget.Material3.Toolbar">
+<style name="AppToolbar" parent="Widget.Material3.Toolbar">
 		<item name="android:background">@android:color/transparent</item>
 		<item name="background">@android:color/transparent</item>
 		<item name="titleTextColor">?attr/colorOnSurface</item>
