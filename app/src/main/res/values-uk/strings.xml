@@ -64,6 +64,10 @@
 	<string name="view_barcode">Переглянути штрих-код</string>
 	<string name="info">Інфо</string>
 	<string name="switch_camera">Переключити камеру</string>
+	<string name="default_camera">Камера за замовчуванням</string>
+	<string name="default_camera_back">Задня камера (за замовчуванням)</string>
+	<string name="default_camera_front">Передня камера</string>
+	<string name="default_camera_other">Інша камера</string>
 	<string name="bulk_mode">Сканувати безперервно</string>
 	<string name="bulk_mode_summary">Завжди починати безперервне сканування.</string>
 	<string name="bulk_mode_delay">Затримка між безперервним скануванням</string>

@@ -62,6 +62,10 @@
 	<string name="view_barcode">বারকোড দেখো</string>
 	<string name="info">তথ্য</string>
 	<string name="switch_camera">ক্যামেরা পাল্টাও</string>
+	<string name="default_camera">ডিফল্ট ক্যামেরা</string>
+	<string name="default_camera_back">পেছনের ক্যামেরা (ডিফল্ট)</string>
+	<string name="default_camera_front">সামনের ক্যামেরা</string>
+	<string name="default_camera_other">অন্য ক্যামেরা</string>
 	<string name="bulk_mode">ধারাবাহিকভাবে খুঁজো</string>
 	<string name="bulk_mode_summary">শুরুতে সবসময় ধারাবাহিকভাবে খুঁজো</string>
 	<string name="bulk_mode_delay">একটি অবিরত স্ক্যান মধ্যে বিলম্ব</string>

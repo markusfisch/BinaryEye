@@ -62,6 +62,10 @@
 	<string name="view_barcode">შტრიხ-კოდის ნახვა</string>
 	<string name="info">ინფორმაცია</string>
 	<string name="switch_camera">კამერის გადართვა</string>
+	<string name="default_camera">ნაგულისხმევი კამერა</string>
+	<string name="default_camera_back">უკანა კამერა (ნაგულისხმევი)</string>
+	<string name="default_camera_front">წინა კამერა</string>
+	<string name="default_camera_other">სხვა კამერა</string>
 	<string name="bulk_mode">სკანირება უწყვეტად</string>
 	<string name="bulk_mode_summary">ყოველთვის დაიწყეთ სკანირება უწყვეტად.</string>
 	<string name="bulk_mode_delay">განაგრძეთ გადანომრვას შორის შეზღუდვა</string>

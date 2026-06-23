@@ -66,6 +66,10 @@
 	<string name="view_barcode">عرض رمز Barcode</string>
 	<string name="info">معلومات</string>
 	<string name="switch_camera">تبديل الكاميرا</string>
+	<string name="default_camera">الكاميرا الافتراضية</string>
+	<string name="default_camera_back">الكاميرا الخلفية (الافتراضية)</string>
+	<string name="default_camera_front">الكاميرا الأمامية</string>
+	<string name="default_camera_other">كاميرا أخرى</string>
 	<string name="bulk_mode">المسح بشكل مستمر</string>
 	<string name="bulk_mode_summary">ابدأ المسح دائمًا بشكل مستمر.</string>
 	<string name="bulk_mode_delay">الفارق الزمني بين عمليات المسح المستمرة</string>

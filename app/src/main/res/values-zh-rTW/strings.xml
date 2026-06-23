@@ -61,6 +61,10 @@
 	<string name="view_barcode">檢視條碼</string>
 	<string name="info">關於</string>
 	<string name="switch_camera">切換相機</string>
+	<string name="default_camera">預設相機</string>
+	<string name="default_camera_back">後置相機（預設）</string>
+	<string name="default_camera_front">前置相機</string>
+	<string name="default_camera_other">其他相機</string>
 	<string name="bulk_mode">連續掃描</string>
 	<string name="bulk_mode_summary">始終開啟連續掃描</string>
 	<string name="bulk_mode_delay">連續掃描間的延遲</string>

@@ -61,6 +61,10 @@
 	<string name="view_barcode">Lihat barcode</string>
 	<string name="info">Informazioni</string>
 	<string name="switch_camera">Ganti kamera</string>
+	<string name="default_camera">Kamera default</string>
+	<string name="default_camera_back">Kamera belakang (default)</string>
+	<string name="default_camera_front">Kamera depan</string>
+	<string name="default_camera_other">Kamera lain</string>
 	<string name="bulk_mode">Pindai tanpa henti</string>
 	<string name="bulk_mode_summary">Selalu mulai pemindaian tanpa henti.</string>
 	<string name="bulk_mode_delay">Tundaan antara pemindaian tanpa henti</string>

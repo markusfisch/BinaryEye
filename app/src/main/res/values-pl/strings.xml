@@ -96,6 +96,10 @@
 	<string name="show_meta_data">Pokazuj metadane</string>
 	<string name="show_meta_data_summary">Pokaż dodatkowe dane o zeskanowanym kodzie kreskowym.</string>
 	<string name="switch_camera">Przełącz aparat</string>
+	<string name="default_camera">Domyślny aparat</string>
+	<string name="default_camera_back">Tylny aparat (domyślny)</string>
+	<string name="default_camera_front">Przedni aparat</string>
+	<string name="default_camera_other">Inny aparat</string>
 	<string name="bulk_mode">Skanuj w sposób ciągły</string>
 	<string name="bulk_mode_summary">Zawsze rozpoczynaj skanowanie w sposób ciągły.</string>
 	<string name="bulk_mode_delay">Opóźnienie między kolejnymi skanami</string>

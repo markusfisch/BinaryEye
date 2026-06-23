@@ -62,6 +62,10 @@
 	<string name="view_barcode">Vis stregkode</string>
 	<string name="info">Info</string>
 	<string name="switch_camera">Skift kamera</string>
+	<string name="default_camera">Standardkamera</string>
+	<string name="default_camera_back">Bagkamera (standard)</string>
+	<string name="default_camera_front">Frontkamera</string>
+	<string name="default_camera_other">Andet kamera</string>
 	<string name="bulk_mode">Scan kontinuerligt</string>
 	<string name="bulk_mode_summary">Begynd altid ved at scanne kontinuerligt.</string>
 	<string name="bulk_mode_delay">Forsinkelse mellem kontinuerlige scanninger</string>

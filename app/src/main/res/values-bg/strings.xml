@@ -62,6 +62,10 @@
 	<string name="view_barcode">Вижте баркода</string>
 	<string name="info">Информация</string>
 	<string name="switch_camera">Превключване на камерата</string>
+	<string name="default_camera">Камера по подразбиране</string>
+	<string name="default_camera_back">Задна камера (по подразбиране)</string>
+	<string name="default_camera_front">Предна камера</string>
+	<string name="default_camera_other">Друга камера</string>
 	<string name="bulk_mode">Сканирайте непрекъснато</string>
 	<string name="bulk_mode_summary">Винаги започвай непрекъснато сканиране.</string>
 	<string name="bulk_mode_delay">Забавяне между непрекъснатите сканирания</string>

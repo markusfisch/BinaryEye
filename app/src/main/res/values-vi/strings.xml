@@ -61,6 +61,10 @@
 	<string name="view_barcode">Xem mã vạch</string>
 	<string name="info">Thông tin</string>
 	<string name="switch_camera">Đổi camera</string>
+	<string name="default_camera">Camera mặc định</string>
+	<string name="default_camera_back">Camera sau (mặc định)</string>
+	<string name="default_camera_front">Camera trước</string>
+	<string name="default_camera_other">Camera khác</string>
 	<string name="bulk_mode">Quét liên tục</string>
 	<string name="bulk_mode_summary">Luôn quét liên tục.</string>
 	<string name="bulk_mode_delay">Thời gian giữa các lần quét</string>

@@ -20,7 +20,6 @@ import android.widget.SeekBar
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.Camera
-import androidx.camera.core.CameraSelector
 import androidx.camera.core.FocusMeteringAction
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
@@ -47,6 +46,8 @@ import de.markusfisch.android.binaryeye.app.hasCameraPermission
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.automation.runAutomatedActions
 import de.markusfisch.android.binaryeye.bluetooth.sendBluetoothAsync
+import de.markusfisch.android.binaryeye.camera.availableDefaultCameras
+import de.markusfisch.android.binaryeye.camera.cameraSelector
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.startIntentOrToast
 import de.markusfisch.android.binaryeye.database.toScan
@@ -112,7 +113,7 @@ class CameraActivity : AppCompatActivity() {
 	private var returnResult = false
 	private var returnUrlTemplate: String? = null
 	private var finishAfterShowingResult = false
-	private var frontFacing = false
+	private var selectedCamera = prefs.defaultCamera
 	private var bulkMode = prefs.bulkMode
 	private var restrictFormat: String? = null
 	private var searchTerm: Regex? = null
@@ -343,7 +344,7 @@ class CameraActivity : AppCompatActivity() {
 	override fun onRestoreInstanceState(savedState: Bundle) {
 		super.onRestoreInstanceState(savedState)
 		zoomBar.progress = savedState.getInt(ZOOM_LEVEL)
-		frontFacing = savedState.getBoolean(FRONT_FACING)
+		selectedCamera = savedState.getString(SELECTED_CAMERA, selectedCamera)
 		bulkMode = savedState.getBoolean(BULK_MODE)
 		restrictFormat = savedState.getString(RESTRICT_FORMAT)
 		searchTerm = savedState.getString(SEARCH_TERM)?.toRegex()
@@ -351,7 +352,7 @@ class CameraActivity : AppCompatActivity() {
 
 	override fun onSaveInstanceState(outState: Bundle) {
 		outState.putInt(ZOOM_LEVEL, zoomBar.progress)
-		outState.putBoolean(FRONT_FACING, frontFacing)
+		outState.putString(SELECTED_CAMERA, selectedCamera)
 		outState.putBoolean(BULK_MODE, bulkMode)
 		outState.putString(RESTRICT_FORMAT, restrictFormat)
 		outState.putString(SEARCH_TERM, searchTerm?.toString())
@@ -450,7 +451,10 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun switchCamera() {
-		frontFacing = frontFacing xor true
+		val cameras = availableDefaultCameras(this)
+		selectedCamera = cameras[
+			(cameras.indexOf(selectedCamera) + 1).mod(cameras.size)
+		]
 		bindCameraUseCases()
 	}
 
@@ -738,15 +742,17 @@ class CameraActivity : AppCompatActivity() {
 				analyzeImage(image)
 			}
 
-			val cameraSelector = CameraSelector.Builder()
-				.requireLensFacing(
-					if (frontFacing) {
-						CameraSelector.LENS_FACING_FRONT
-					} else {
-						CameraSelector.LENS_FACING_BACK
-					}
-				)
-				.build()
+			var cameraSelector = cameraSelector(selectedCamera)
+			if (!provider.hasCamera(cameraSelector)) {
+				selectedCamera = prefs.defaultCamera
+				cameraSelector = cameraSelector(selectedCamera)
+			}
+			if (!provider.hasCamera(cameraSelector)) {
+				selectedCamera = availableDefaultCameras(this)
+					.firstOrNull { provider.hasCamera(cameraSelector(it)) }
+					?: selectedCamera
+				cameraSelector = cameraSelector(selectedCamera)
+			}
 
 			try {
 				provider.unbindAll()
@@ -1017,7 +1023,7 @@ class CameraActivity : AppCompatActivity() {
 		private const val PICK_FILE_RESULT_CODE = 1
 		private const val INITIAL_ZOOM = 0
 		private const val ZOOM_LEVEL = "zoom"
-		private const val FRONT_FACING = "front_facing"
+		private const val SELECTED_CAMERA = "selected_camera"
 		private const val BULK_MODE = "bulk_mode"
 		private const val RESTRICT_FORMAT = "restrict_format"
 		private const val SEARCH_TERM = "search_term"

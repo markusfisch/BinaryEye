@@ -62,6 +62,10 @@
 	<string name="view_barcode">Ver código de barras</string>
 	<string name="info">Informações</string>
 	<string name="switch_camera">Trocar câmera</string>
+	<string name="default_camera">Câmera padrão</string>
+	<string name="default_camera_back">Câmera traseira (padrão)</string>
+	<string name="default_camera_front">Câmera frontal</string>
+	<string name="default_camera_other">Outra câmera</string>
 	<string name="bulk_mode">Digitalizar continuamente</string>
 	<string name="bulk_mode_summary">Sempre iniciar digitalizando continuamente.</string>
 	<string name="bulk_mode_delay">Espera entre digitalizações contínuas</string>

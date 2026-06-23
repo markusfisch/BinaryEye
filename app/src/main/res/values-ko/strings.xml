@@ -61,6 +61,10 @@
 	<string name="view_barcode">보기 바코드</string>
 	<string name="info">정보</string>
 	<string name="switch_camera">카메라 전환</string>
+	<string name="default_camera">기본 카메라</string>
+	<string name="default_camera_back">후면 카메라(기본)</string>
+	<string name="default_camera_front">전면 카메라</string>
+	<string name="default_camera_other">다른 카메라</string>
 	<string name="bulk_mode">지속적으로 스캔</string>
 	<string name="bulk_mode_summary">항상 지속적으로 스캔을 시작합니다.</string>
 	<string name="bulk_mode_delay">연속 스캔 간의 지연</string>

@@ -128,6 +128,10 @@
 	<string name="error_no_content">Trūkst satura</string>
 	<string name="error_encoding_barcode">Svītrkodu nevar izveidot</string>
 	<string name="switch_camera">Pārslēgt kameru</string>
+	<string name="default_camera">Noklusējuma kamera</string>
+	<string name="default_camera_back">Aizmugurējā kamera (noklusējuma)</string>
+	<string name="default_camera_front">Priekšējā kamera</string>
+	<string name="default_camera_other">Cita kamera</string>
 	<string name="bulk_mode">Skenēt nepārtraukti</string>
 	<string name="bulk_mode_summary">Vienmēr sākt nepārtrauktu skenēšanu.</string>
 	<string name="bulk_mode_delay">Aizture starp nepārtrauktām skenēšanām</string>

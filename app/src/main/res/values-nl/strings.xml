@@ -62,6 +62,10 @@
 	<string name="view_barcode">Barcode bekijken</string>
 	<string name="info">Informatie</string>
 	<string name="switch_camera">Camera wisselen</string>
+	<string name="default_camera">Standaardcamera</string>
+	<string name="default_camera_back">Camera achter (standaard)</string>
+	<string name="default_camera_front">Camera voor</string>
+	<string name="default_camera_other">Andere camera</string>
 	<string name="bulk_mode">Continu scannen</string>
 	<string name="bulk_mode_summary">Begin altijd continu te scannen</string>
 	<string name="bulk_mode_delay">Vertraging tussen ononderbroken scans</string>
