@@ -207,6 +207,8 @@
 	<string name="send_scan_bluetooth">Send scanninger med Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Enable to forwards scans to a given Bluetooth host.</string>
 	<string name="send_scan_bluetooth_host">Vært</string>
+	<string name="send_scan_kde_connect">Send scanninger med KDE Connect</string>
+	<string name="send_scan_kde_connect_summary">Aktivér for at skrive scanninger på en parret KDE Connect-enhed.</string>
 	<string name="no_bluetooth_hosts_paired">Ingen værter parret</string>
 	<string name="bluetooth_connect_fail">Could not connect to bluetooth device.</string>
 	<string name="bluetooth_send_fail">Could not send to bluetooth device.</string>

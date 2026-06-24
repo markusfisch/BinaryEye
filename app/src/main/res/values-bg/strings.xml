@@ -207,6 +207,8 @@
 	<string name="send_scan_bluetooth">Препращане на сканиранията с Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Активиране на препращане на сканирания към даден Bluetooth хост.</string>
 	<string name="send_scan_bluetooth_host">Хост</string>
+	<string name="send_scan_kde_connect">Препращане на сканиранията с KDE Connect</string>
+	<string name="send_scan_kde_connect_summary">Активиране на въвеждане на сканиранията на сдвоено устройство KDE Connect.</string>
 	<string name="no_bluetooth_hosts_paired">Няма сдвоени хостове</string>
 	<string name="bluetooth_connect_fail">Неуспешно свързване с Bluetooth устройство.</string>
 	<string name="bluetooth_send_fail">Неуспешно изпращане до Bluetooth устройство.</string>

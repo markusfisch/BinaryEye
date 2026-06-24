@@ -213,6 +213,8 @@
 	<string name="send_scan_bluetooth">Отправлять сканирования по bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Пересылать сканированные данные на указанный узел bluetooth.</string>
 	<string name="send_scan_bluetooth_host">Узел</string>
+	<string name="send_scan_kde_connect">Отправлять сканирования через KDE Connect</string>
+	<string name="send_scan_kde_connect_summary">Включите, чтобы вводить сканирования на сопряжённом устройстве KDE Connect.</string>
 	<string name="no_bluetooth_hosts_paired">Нет сопряжённых узлов</string>
 	<string name="bluetooth_connect_fail">Невозможно подключиться к bluetooth-устройству.</string>
 	<string name="bluetooth_send_fail">Невозможно отправить на bluetooth-устройство.</string>

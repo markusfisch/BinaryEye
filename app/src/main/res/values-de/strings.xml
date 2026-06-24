@@ -207,6 +207,8 @@
 	<string name="send_scan_bluetooth">Scans per Bluetooth weiterleiten</string>
 	<string name="send_scan_bluetooth_summary">Aktivieren Sie diese Option, um Scans an das angegebene Bluetooth-Gerät weiterzuleiten.</string>
 	<string name="send_scan_bluetooth_host">Gerät</string>
+	<string name="send_scan_kde_connect">Scans mit KDE Connect weiterleiten</string>
+	<string name="send_scan_kde_connect_summary">Aktivieren Sie diese Option, um Scans auf einem gekoppelten KDE-Connect-Gerät einzugeben.</string>
 	<string name="no_bluetooth_hosts_paired">Keine Geräte verbunden</string>
 	<string name="bluetooth_connect_fail">Es kann leider keine Verbindung zum Bluetooth-Gerät hergestellt werden</string>
 	<string name="bluetooth_send_fail">Senden zum Bluetooth-Gerät fehlgeschlagen</string>

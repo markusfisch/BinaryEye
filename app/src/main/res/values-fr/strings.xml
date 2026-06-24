@@ -208,6 +208,8 @@
 	<string name="send_scan_bluetooth">Partager les scans par Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Partager les scans à un hôte Bluetooth donné.</string>
 	<string name="send_scan_bluetooth_host">Hôte</string>
+	<string name="send_scan_kde_connect">Partager les scans avec KDE Connect</string>
+	<string name="send_scan_kde_connect_summary">Activez cette option pour saisir les scans sur un appareil KDE Connect appairé.</string>
 	<string name="no_bluetooth_hosts_paired">Aucun hôte appairé</string>
 	<string name="bluetooth_connect_fail">Impossible de se connecter à l\'appareil Bluetooth.</string>
 	<string name="bluetooth_send_fail">Impossible d\'envoyer à l\'appareil Bluetooth.</string>

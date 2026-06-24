@@ -231,6 +231,11 @@ class Preferences {
 			apply(SEND_SCAN_BLUETOOTH_HOST, value)
 			field = value
 		}
+	var sendScanKdeConnect = false
+		set(value) {
+			apply(SEND_SCAN_KDE_CONNECT, value)
+			field = value
+		}
 	var customLocale: String = ""
 		set(value) {
 			// Make sure this setting is written immediately because
@@ -404,6 +409,7 @@ class Preferences {
 		json.put(SEND_SCAN_DEVICE_ID, p, defaults.sendScanDeviceId)
 		json.put(SEND_SCAN_BLUETOOTH, p, defaults.sendScanBluetooth)
 		json.put(SEND_SCAN_BLUETOOTH_HOST, p, defaults.sendScanBluetoothHost)
+		json.put(SEND_SCAN_KDE_CONNECT, p, defaults.sendScanKdeConnect)
 		json.put(CUSTOM_LOCALE, p, defaults.customLocale)
 		json.put(INDEX_OF_LAST_SELECTED_FORMAT, p, defaults.indexOfLastSelectedFormat)
 		json.put(INDEX_OF_LAST_SELECTED_EC_LEVEL, p, defaults.indexOfLastSelectedEcLevel)
@@ -504,6 +510,7 @@ class Preferences {
 				putString(SEND_SCAN_DEVICE_ID, json)
 				putBoolean(SEND_SCAN_BLUETOOTH, json)
 				putString(SEND_SCAN_BLUETOOTH_HOST, json)
+				putBoolean(SEND_SCAN_KDE_CONNECT, json)
 				putString(CUSTOM_LOCALE, json)
 				putInt(INDEX_OF_LAST_SELECTED_FORMAT, json)
 				putInt(INDEX_OF_LAST_SELECTED_EC_LEVEL, json)
@@ -658,6 +665,10 @@ class Preferences {
 		)?.also {
 			sendScanBluetoothHost = it
 		}
+		sendScanKdeConnect = preferences.getBoolean(
+			SEND_SCAN_KDE_CONNECT,
+			sendScanKdeConnect
+		)
 		preferences.getString(CUSTOM_LOCALE, customLocale)?.also {
 			customLocale = it
 		}
@@ -833,6 +844,7 @@ class Preferences {
 		putString(SEND_SCAN_DEVICE_ID, defaults.sendScanDeviceId)
 		putBoolean(SEND_SCAN_BLUETOOTH, defaults.sendScanBluetooth)
 		putString(SEND_SCAN_BLUETOOTH_HOST, defaults.sendScanBluetoothHost)
+		putBoolean(SEND_SCAN_KDE_CONNECT, defaults.sendScanKdeConnect)
 		putString(CUSTOM_LOCALE, defaults.customLocale)
 		putInt(INDEX_OF_LAST_SELECTED_FORMAT, defaults.indexOfLastSelectedFormat)
 		putInt(INDEX_OF_LAST_SELECTED_EC_LEVEL, defaults.indexOfLastSelectedEcLevel)
@@ -941,6 +953,7 @@ class Preferences {
 		private const val SEND_SCAN_DEVICE_ID = "send_scan_device_id"
 		private const val SEND_SCAN_BLUETOOTH = "send_scan_bluetooth"
 		private const val SEND_SCAN_BLUETOOTH_HOST = "send_scan_bluetooth_host"
+		private const val SEND_SCAN_KDE_CONNECT = "send_scan_kde_connect"
 		private const val CUSTOM_LOCALE = "custom_locale"
 		private const val INDEX_OF_LAST_SELECTED_FORMAT = "index_of_last_selected_format"
 		private const val INDEX_OF_LAST_SELECTED_EC_LEVEL = "index_of_last_selected_ec_level"

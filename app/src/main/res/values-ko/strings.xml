@@ -205,6 +205,8 @@
 	<string name="send_scan_bluetooth">블루투스로 스캔 전송</string>
 	<string name="send_scan_bluetooth_summary">스캔을 지정한 Bluetooth 호스트로 전달합니다.</string>
 	<string name="send_scan_bluetooth_host">호스트</string>
+	<string name="send_scan_kde_connect">KDE Connect로 스캔 전송</string>
+	<string name="send_scan_kde_connect_summary">페어링된 KDE Connect 장치에 스캔을 입력합니다.</string>
 	<string name="no_bluetooth_hosts_paired">연결된 호스트가 없습니다</string>
 	<string name="bluetooth_connect_fail">Bluetooth 장치에 연결할 수 없습니다.</string>
 	<string name="bluetooth_send_fail">Bluetooth 장치로 보낼 수 없습니다.</string>

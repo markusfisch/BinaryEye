@@ -205,6 +205,8 @@
 	<string name="send_scan_bluetooth">Bluetooth でスキャンを転送</string>
 	<string name="send_scan_bluetooth_summary">Enable to forwards scans to a given Bluetooth host.</string>
 	<string name="send_scan_bluetooth_host">ホスト</string>
+	<string name="send_scan_kde_connect">KDE Connect でスキャンを転送</string>
+	<string name="send_scan_kde_connect_summary">ペアリング済みの KDE Connect デバイスでスキャン内容を入力します。</string>
 	<string name="no_bluetooth_hosts_paired">ホストがペアリングされていません</string>
 	<string name="bluetooth_connect_fail">Could not connect to bluetooth device.</string>
 	<string name="bluetooth_send_fail">Could not send to bluetooth device.</string>

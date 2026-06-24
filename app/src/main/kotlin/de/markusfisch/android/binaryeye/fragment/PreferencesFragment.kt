@@ -373,6 +373,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		setIcon("send_scan_device_id", R.drawable.ic_label)
 		setIcon(SEND_SCAN_BLUETOOTH, R.drawable.ic_action_bluetooth)
 		setIcon(SEND_SCAN_BLUETOOTH_HOST, R.drawable.ic_action_bluetooth)
+		setIcon(SEND_SCAN_KDE_CONNECT, R.drawable.ic_action_forward)
 		setIcon("open_immediately", R.drawable.ic_action_open)
 		setIcon("strip_tracking_params", R.drawable.ic_action_remove)
 		setIcon("show_meta_data", R.drawable.ic_action_info)
@@ -503,6 +504,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		private const val IGNORE_CODES = "ignore_codes"
 		private const val SEND_SCAN_BLUETOOTH = "send_scan_bluetooth"
 		private const val SEND_SCAN_BLUETOOTH_HOST = "send_scan_bluetooth_host"
+		private const val SEND_SCAN_KDE_CONNECT = "send_scan_kde_connect"
 	}
 }
 

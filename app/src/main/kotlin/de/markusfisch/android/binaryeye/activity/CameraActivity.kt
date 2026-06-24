@@ -57,6 +57,7 @@ import de.markusfisch.android.binaryeye.graphics.mapViewYToFrame
 import de.markusfisch.android.binaryeye.graphics.setCovered
 import de.markusfisch.android.binaryeye.graphics.setFrameRoi
 import de.markusfisch.android.binaryeye.graphics.setFrameToView
+import de.markusfisch.android.binaryeye.kdeconnect.sendToKdeConnect
 import de.markusfisch.android.binaryeye.media.releaseToneGenerators
 import de.markusfisch.android.binaryeye.net.isScanDeeplink
 import de.markusfisch.android.binaryeye.net.sendAsync
@@ -1084,6 +1085,9 @@ fun Activity.showResult(
 				}
 			)
 		}
+	}
+	if (prefs.sendScanKdeConnect && !bulkMode) {
+		sendToKdeConnect(scan)
 	}
 	if (runAutomatedActions(scan)) {
 		return

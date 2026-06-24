@@ -207,6 +207,8 @@
 	<string name="send_scan_bluetooth">انتقال اسکن ها با بلوتوث</string>
 	<string name="send_scan_bluetooth_summary">برای ارسال اسکن‌ها به میزبان Bluetooth مشخص فعال کنید.</string>
 	<string name="send_scan_bluetooth_host">میزبان</string>
+	<string name="send_scan_kde_connect">انتقال اسکن‌ها با KDE Connect</string>
+	<string name="send_scan_kde_connect_summary">برای تایپ اسکن‌ها روی دستگاه KDE Connect جفت‌شده فعال کنید.</string>
 	<string name="no_bluetooth_hosts_paired">میزبان های جفت نشده</string>
 	<string name="bluetooth_connect_fail">اتصال به دستگاه Bluetooth ممکن نشد.</string>
 	<string name="bluetooth_send_fail">ارسال به دستگاه Bluetooth ممکن نشد.</string>

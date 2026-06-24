@@ -205,6 +205,8 @@
 	<string name="send_scan_bluetooth">透過藍牙轉發掃描</string>
 	<string name="send_scan_bluetooth_summary">啟用以將掃描轉發到指定藍牙裝置</string>
 	<string name="send_scan_bluetooth_host">主機</string>
+	<string name="send_scan_kde_connect">透過 KDE Connect 轉發掃描</string>
+	<string name="send_scan_kde_connect_summary">啟用以在已配對的 KDE Connect 裝置上輸入掃描內容。</string>
 	<string name="no_bluetooth_hosts_paired">沒有配對主機</string>
 	<string name="bluetooth_connect_fail">無法連線到藍牙裝置</string>
 	<string name="bluetooth_send_fail">無法傳送到藍牙裝置</string>

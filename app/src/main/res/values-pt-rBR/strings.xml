@@ -207,6 +207,8 @@
 	<string name="send_scan_bluetooth">Encaminhar digitalizações com Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Ative para encaminhar digitalizações a um determinado host Bluetooth.</string>
 	<string name="send_scan_bluetooth_host">Anfitrião</string>
+	<string name="send_scan_kde_connect">Encaminhar digitalizações com KDE Connect</string>
+	<string name="send_scan_kde_connect_summary">Ative para digitar digitalizações em um dispositivo KDE Connect pareado.</string>
 	<string name="no_bluetooth_hosts_paired">Nenhum Host Pareado</string>
 	<string name="bluetooth_connect_fail">Não foi possível conectar com o dispositivo Bluetooth.</string>
 	<string name="bluetooth_send_fail">Não foi possível enviar para o dispositivo Bluetooth.</string>

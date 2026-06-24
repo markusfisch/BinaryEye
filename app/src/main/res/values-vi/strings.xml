@@ -205,6 +205,8 @@
 	<string name="send_scan_bluetooth">Chuyển tiếp quét với Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Enable to forwards scans to a given Bluetooth host.</string>
 	<string name="send_scan_bluetooth_host">Máy chủ</string>
+	<string name="send_scan_kde_connect">Chuyển tiếp quét bằng KDE Connect</string>
+	<string name="send_scan_kde_connect_summary">Bật để nhập nội dung quét trên thiết bị KDE Connect đã ghép đôi.</string>
 	<string name="no_bluetooth_hosts_paired">Không có Host nào được kết nối</string>
 	<string name="bluetooth_connect_fail">Could not connect to bluetooth device.</string>
 	<string name="bluetooth_send_fail">Could not send to bluetooth device.</string>

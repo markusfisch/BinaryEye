@@ -213,6 +213,8 @@
 	<string name="send_scan_bluetooth">Přesměrovat skeny přes Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Skeny se přesměrují na daného hostitele Bluetooth.</string>
 	<string name="send_scan_bluetooth_host">Hostitel</string>
+	<string name="send_scan_kde_connect">Přesměrovat skeny přes KDE Connect</string>
+	<string name="send_scan_kde_connect_summary">Zapnout psaní skenů na spárovaném zařízení KDE Connect.</string>
 	<string name="no_bluetooth_hosts_paired">Není spárován žádný hostitel</string>
 	<string name="bluetooth_connect_fail">Nelze se připojit k zařízení Bluetooth.</string>
 	<string name="bluetooth_send_fail">Nelze odesílat na zařízení Bluetooth.</string>

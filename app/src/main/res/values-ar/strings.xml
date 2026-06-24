@@ -219,6 +219,8 @@
 	<string name="send_scan_bluetooth">إرسال عمليات المسح عبر بلوتوث</string>
 	<string name="send_scan_bluetooth_summary">تمكين إرسال عمليات المسح إلى مضيف بلوتوث معين.</string>
 	<string name="send_scan_bluetooth_host">المضيف</string>
+	<string name="send_scan_kde_connect">إرسال عمليات المسح عبر KDE Connect</string>
+	<string name="send_scan_kde_connect_summary">فعّل لكتابة عمليات المسح على جهاز KDE Connect مقترن.</string>
 	<string name="no_bluetooth_hosts_paired">لا يوجد اقتران مع مضيفين</string>
 	<string name="bluetooth_connect_fail">تعذر الاتصال بجهاز بلوتوث.</string>
 	<string name="bluetooth_send_fail">تعذر الإرسال إلى جهاز بلوتوث.</string>

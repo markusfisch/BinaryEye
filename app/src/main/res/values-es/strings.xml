@@ -208,6 +208,8 @@
 	<string name="send_scan_bluetooth">Enviar escaneos con Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Habilita el envío de escaneos a un host Bluetooth.</string>
 	<string name="send_scan_bluetooth_host">Anfitrión</string>
+	<string name="send_scan_kde_connect">Enviar escaneos con KDE Connect</string>
+	<string name="send_scan_kde_connect_summary">Activa esta opción para escribir escaneos en un dispositivo KDE Connect emparejado.</string>
 	<string name="no_bluetooth_hosts_paired">Ningún host emparejado</string>
 	<string name="bluetooth_connect_fail">No se pudo conectar a un dispositivo bluetooth.</string>
 	<string name="bluetooth_send_fail">No se pudo enviar a un dispositivo bluetooth.</string>

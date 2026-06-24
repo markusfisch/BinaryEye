@@ -205,6 +205,8 @@
 	<string name="send_scan_bluetooth">Reenviar exploraciones con Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Enable to forwards scans to a given Bluetooth host.</string>
 	<string name="send_scan_bluetooth_host">مضيف</string>
+	<string name="send_scan_kde_connect">Teruskan pemindaian dengan KDE Connect</string>
+	<string name="send_scan_kde_connect_summary">Aktifkan untuk mengetik hasil pemindaian pada perangkat KDE Connect yang dipasangkan.</string>
 	<string name="no_bluetooth_hosts_paired">No Hosts Paired</string>
 	<string name="bluetooth_connect_fail">Could not connect to bluetooth device.</string>
 	<string name="bluetooth_send_fail">Could not send to bluetooth device.</string>
