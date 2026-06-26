@@ -1,0 +1,3 @@
+* Forward scans with KDE Connect
+* Add default camera preference
+

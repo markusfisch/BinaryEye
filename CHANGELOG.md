@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.75.0
+* Forward scans with KDE Connect
+* Add default camera preference
+
 ## 1.74.3
 * Fix layout for Material You
 
