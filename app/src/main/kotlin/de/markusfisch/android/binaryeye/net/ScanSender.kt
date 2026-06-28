@@ -50,7 +50,7 @@ private fun Scan.send(
 	extras: Map<String, String>
 ): Response? = when (type) {
 	SEND_TYPE_GET_ADD_CONTENT -> request(
-		buildUrl(url, text.urlEncode())
+		url + text.urlEncode()
 	)
 
 	SEND_TYPE_GET_QUERY_STRING -> request(
