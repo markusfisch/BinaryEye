@@ -1086,8 +1086,11 @@ fun Activity.showResult(
 			)
 		}
 	}
-	if (prefs.sendScanKdeConnect && !bulkMode) {
+	if (prefs.sendScanKdeConnect &&
+		!bulkMode &&
 		sendToKdeConnect(scan)
+	) {
+		return
 	}
 	if (runAutomatedActions(scan)) {
 		return
