@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.75.1
+* Update ZXingCpp
+* Keep KDE Connect device picker visible
+* Fix URL scan concatenation
+
 ## 1.75.0
 * Forward scans with KDE Connect
 * Add default camera preference
