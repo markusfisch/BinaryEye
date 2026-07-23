@@ -61,6 +61,10 @@
 	<string name="view_barcode">查看条码</string>
 	<string name="info">关于</string>
 	<string name="switch_camera">切换摄像头</string>
+	<string name="default_camera">默认摄像头</string>
+	<string name="default_camera_back">后置摄像头（默认）</string>
+	<string name="default_camera_front">前置摄像头</string>
+	<string name="default_camera_other">其他摄像头</string>
 	<string name="bulk_mode">连续扫描</string>
 	<string name="bulk_mode_summary">始终开启连续扫描。</string>
 	<string name="bulk_mode_delay">连续扫描之间的延迟</string>

@@ -63,6 +63,10 @@
 	<string name="view_barcode">Ver código de barras</string>
 	<string name="info">Información</string>
 	<string name="switch_camera">Cambiar cámara</string>
+	<string name="default_camera">Cámara predeterminada</string>
+	<string name="default_camera_back">Cámara trasera (predeterminada)</string>
+	<string name="default_camera_front">Cámara frontal</string>
+	<string name="default_camera_other">Otra cámara</string>
 	<string name="bulk_mode">Escaneo continuo</string>
 	<string name="bulk_mode_summary">Iniciar siempre en modo de escaneo continuo</string>
 	<string name="bulk_mode_delay">Demora entre escaneos continuos</string>

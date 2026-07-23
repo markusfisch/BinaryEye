@@ -72,6 +72,10 @@
 	<string name="switch_camera">Switch camera</string>
 	<string name="bulk_mode">Scan continuously</string>
 	<string name="bulk_mode_summary">Always start scanning continuously.</string>
+	<string name="default_camera">Default camera</string>
+	<string name="default_camera_back">Back camera (default)</string>
+	<string name="default_camera_front">Front camera</string>
+	<string name="default_camera_other">Other camera</string>
 	<string name="bulk_mode_delay">Delay between continuous scans</string>
 	<string name="restrict_format">Restrict format</string>
 	<string name="remove_restriction">Remove restriction</string>

@@ -31,6 +31,8 @@ import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
 import de.markusfisch.android.binaryeye.app.hasBluetoothPermission
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.bluetooth.setBluetoothHosts
+import de.markusfisch.android.binaryeye.camera.availableDefaultCameras
+import de.markusfisch.android.binaryeye.camera.defaultCameraEntries
 import de.markusfisch.android.binaryeye.media.beepConfirm
 import de.markusfisch.android.binaryeye.preference.Preferences
 import de.markusfisch.android.binaryeye.preference.UrlPreference
@@ -101,6 +103,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		setIcons()
 
 		wireBeepTonePicker()
+		setDefaultCameras()
 		wireProfiles()
 		wireAutomatedActions()
 		wireIgnoreCodes()
@@ -139,6 +142,19 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 					false
 				}
 			}
+		}
+	}
+
+	private fun setDefaultCameras() {
+		findPreference<ListPreference>(DEFAULT_CAMERA)?.apply {
+			val values = availableDefaultCameras(requireContext())
+			entries = defaultCameraEntries(requireContext(), values)
+			entryValues = values.toTypedArray()
+			if (!values.contains(value)) {
+				value = values.firstOrNull()
+			}
+			isVisible = values.size > 1
+			setSummary(this)
 		}
 	}
 
@@ -340,6 +356,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		setIcon("auto_rotate", R.drawable.ic_action_down)
 		setIcon("try_harder", R.drawable.ic_action_search)
 		setIcon("bulk_mode", R.drawable.ic_action_bulk_mode)
+		setIcon(DEFAULT_CAMERA, R.drawable.ic_action_switch_camera)
 		setIcon("bulk_mode_delay", R.drawable.ic_action_delay)
 		setIcon("show_toast_in_bulk_mode", R.drawable.ic_action_toast)
 		setIcon("vibrate", R.drawable.ic_action_vibrate)
@@ -482,6 +499,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		private const val CLEAR_NETWORK_SUGGESTIONS = "clear_network_suggestions"
 		private const val CUSTOM_LOCALE = "custom_locale"
 		private const val DYNAMIC_COLORS = "dynamic_colors"
+		private const val DEFAULT_CAMERA = "default_camera"
 		private const val IGNORE_CODES = "ignore_codes"
 		private const val SEND_SCAN_BLUETOOTH = "send_scan_bluetooth"
 		private const val SEND_SCAN_BLUETOOTH_HOST = "send_scan_bluetooth_host"

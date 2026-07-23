@@ -62,6 +62,10 @@
 	<string name="view_barcode">Vonalkód megtekintése</string>
 	<string name="info">Információ</string>
 	<string name="switch_camera">Kamera átkapcsolása</string>
+	<string name="default_camera">Alapértelmezett kamera</string>
+	<string name="default_camera_back">Hátlapi kamera (alapértelmezett)</string>
+	<string name="default_camera_front">Előlapi kamera</string>
+	<string name="default_camera_other">Másik kamera</string>
 	<string name="bulk_mode">Beolvasás folyamatosan</string>
 	<string name="bulk_mode_summary">Mindig folyamatos beolvasást indítson.</string>
 	<string name="bulk_mode_delay">Folyamatos beolvasások közti késleltetés</string>

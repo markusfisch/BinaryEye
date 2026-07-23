@@ -62,6 +62,10 @@
 	<string name="view_barcode">نمایش بارکد</string>
 	<string name="info">اطّلاعات</string>
 	<string name="switch_camera">تغییر دوربین</string>
+	<string name="default_camera">دوربین پیش‌فرض</string>
+	<string name="default_camera_back">دوربین پشت (پیش‌فرض)</string>
+	<string name="default_camera_front">دوربین جلو</string>
+	<string name="default_camera_other">دوربین دیگر</string>
 	<string name="bulk_mode">به طور مداوم پویش کن</string>
 	<string name="bulk_mode_summary">همیشه پویش را به طور مداوم شروع می‌کند.</string>
 	<string name="bulk_mode_delay">تأخیر بین پویش‌های مداوم</string>

@@ -99,6 +99,11 @@ class Preferences {
 			apply(BULK_MODE, value)
 			field = value
 		}
+	var defaultCamera = "back"
+		set(value) {
+			apply(DEFAULT_CAMERA, value)
+			field = value
+		}
 	var bulkModeDelay = "500"
 		set(value) {
 			apply(BULK_MODE_DELAY, value)
@@ -372,6 +377,7 @@ class Preferences {
 		json.put(AUTO_ROTATE, p, defaults.autoRotate)
 		json.put(TRY_HARDER, p, defaults.tryHarder)
 		json.put(BULK_MODE, p, defaults.bulkMode)
+		json.put(DEFAULT_CAMERA, p, defaults.defaultCamera)
 		json.put(BULK_MODE_DELAY, p, defaults.bulkModeDelay)
 		json.put(SHOW_TOAST_IN_BULK_MODE, p, defaults.showToastInBulkMode)
 		json.put(VIBRATE, p, defaults.vibrate)
@@ -471,6 +477,7 @@ class Preferences {
 				putBoolean(AUTO_ROTATE, json)
 				putBoolean(TRY_HARDER, json)
 				putBoolean(BULK_MODE, json)
+				putString(DEFAULT_CAMERA, json)
 				putString(BULK_MODE_DELAY, json)
 				putBoolean(SHOW_TOAST_IN_BULK_MODE, json)
 				putBoolean(VIBRATE, json)
@@ -553,6 +560,9 @@ class Preferences {
 		autoRotate = preferences.getBoolean(AUTO_ROTATE, autoRotate)
 		tryHarder = preferences.getBoolean(TRY_HARDER, tryHarder)
 		bulkMode = preferences.getBoolean(BULK_MODE, bulkMode)
+		preferences.getString(DEFAULT_CAMERA, defaultCamera)?.also {
+			defaultCamera = it
+		}
 		bulkModeDelay = preferences.getString(
 			BULK_MODE_DELAY,
 			bulkModeDelay
@@ -796,6 +806,7 @@ class Preferences {
 		putBoolean(AUTO_ROTATE, defaults.autoRotate)
 		putBoolean(TRY_HARDER, defaults.tryHarder)
 		putBoolean(BULK_MODE, defaults.bulkMode)
+		putString(DEFAULT_CAMERA, defaults.defaultCamera)
 		putString(BULK_MODE_DELAY, defaults.bulkModeDelay)
 		putBoolean(SHOW_TOAST_IN_BULK_MODE, defaults.showToastInBulkMode)
 		putBoolean(VIBRATE, defaults.vibrate)
@@ -903,6 +914,7 @@ class Preferences {
 		private const val AUTO_ROTATE = "auto_rotate"
 		private const val TRY_HARDER = "try_harder"
 		private const val BULK_MODE = "bulk_mode"
+		private const val DEFAULT_CAMERA = "default_camera"
 		private const val BULK_MODE_DELAY = "bulk_mode_delay"
 		private const val SHOW_TOAST_IN_BULK_MODE = "show_toast_in_bulk_mode"
 		private const val VIBRATE = "vibrate"

@@ -70,6 +70,10 @@
 	<string name="view_barcode">Visualizza codice a barre</string>
 	<string name="info">Info</string>
 	<string name="switch_camera">Cambia fotocamera</string>
+	<string name="default_camera">Fotocamera predefinita</string>
+	<string name="default_camera_back">Fotocamera posteriore (predefinita)</string>
+	<string name="default_camera_front">Fotocamera anteriore</string>
+	<string name="default_camera_other">Altra fotocamera</string>
 	<string name="bulk_mode">Scansione continua</string>
 	<string name="bulk_mode_summary">Avvia sempre la scansione in modo continuo.</string>
 	<string name="bulk_mode_delay">Ritardo tra scansioni continue</string>

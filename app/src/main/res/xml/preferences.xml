@@ -45,6 +45,10 @@
 			android:title="@string/bulk_mode"
 			android:summary="@string/bulk_mode_summary"/>
 		<ListPreference
+			android:key="default_camera"
+			android:title="@string/default_camera"
+			android:defaultValue="back"/>
+		<ListPreference
 			android:key="bulk_mode_delay"
 			android:title="@string/bulk_mode_delay"
 			android:entries="@array/bulk_mode_delays_names"

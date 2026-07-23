@@ -62,6 +62,10 @@
 	<string name="view_barcode">Barcode ansehen</string>
 	<string name="info">Info</string>
 	<string name="switch_camera">Kamera wechseln</string>
+	<string name="default_camera">Standardkamera</string>
+	<string name="default_camera_back">Rückkamera (Standard)</string>
+	<string name="default_camera_front">Frontkamera</string>
+	<string name="default_camera_other">Andere Kamera</string>
 	<string name="bulk_mode">Fortlaufend Scannen</string>
 	<string name="bulk_mode_summary">Immer mit fortlaufendem Scannen starten.</string>
 	<string name="bulk_mode_delay">Pause zwischen fortlaufenden Scans</string>

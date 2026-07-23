@@ -62,6 +62,10 @@
 	<string name="view_barcode">Barkodu gör</string>
 	<string name="info">Bilgi</string>
 	<string name="switch_camera">Kamerayı değiştir</string>
+	<string name="default_camera">Varsayılan kamera</string>
+	<string name="default_camera_back">Arka kamera (varsayılan)</string>
+	<string name="default_camera_front">Ön kamera</string>
+	<string name="default_camera_other">Diğer kamera</string>
 	<string name="bulk_mode">Sürekli tara</string>
 	<string name="bulk_mode_summary">Her zaman sürekli taramaya başla.</string>
 	<string name="bulk_mode_delay">Sürekli taramalar arasındaki gecikme</string>
