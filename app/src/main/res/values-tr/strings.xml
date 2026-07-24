@@ -207,6 +207,8 @@
 	<string name="send_scan_bluetooth">Taramaları Bluetooth ile ilet</string>
 	<string name="send_scan_bluetooth_summary">Taramaları belirtilen bir Bluetooth aygıtına iletmeyi etkinleştirin</string>
 	<string name="send_scan_bluetooth_host">Aygıt</string>
+	<string name="send_scan_kde_connect">Taramaları KDE Connect ile ilet</string>
+	<string name="send_scan_kde_connect_summary">Taramaları eşleştirilmiş bir KDE Connect aygıtında yazmayı etkinleştirin.</string>
 	<string name="no_bluetooth_hosts_paired">Eşleştirilen Aygıt Yok</string>
 	<string name="bluetooth_connect_fail">Bluetooth aygıtına bağlanılamadı.</string>
 	<string name="bluetooth_send_fail">Bluetooth aygıtına gönderilemedi.</string>

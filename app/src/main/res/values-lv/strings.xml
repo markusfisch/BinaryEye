@@ -255,6 +255,8 @@
 	<string name="send_scan_bluetooth">Pārsūtīt skenējumus ar Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Iespējojiet, lai pārsūtītu skenējumus uz noteiktu Bluetooth resursdatoru.</string>
 	<string name="send_scan_bluetooth_host">Resursdators</string>
+	<string name="send_scan_kde_connect">Pārsūtīt skenējumus ar KDE Connect</string>
+	<string name="send_scan_kde_connect_summary">Iespējojiet, lai rakstītu skenējumus pārī savienotā KDE Connect ierīcē.</string>
 	<string name="no_bluetooth_hosts_paired">Nav sapārotu resursdatoru</string>
 	<string name="bluetooth_connect_fail">Neizdevās izveidot savienojumu ar Bluetooth ierīci.</string>
 	<string name="bluetooth_send_fail">Neizdevās nosūtīt uz Bluetooth ierīci.</string>

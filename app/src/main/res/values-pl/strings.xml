@@ -226,6 +226,8 @@
 	<string name="send_scan_bluetooth">Przekazuj skany za pomocą Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Enable to forwards scans to a given Bluetooth host.</string>
 	<string name="send_scan_bluetooth_host">Gospodarz</string>
+	<string name="send_scan_kde_connect">Przekazuj skany za pomocą KDE Connect</string>
+	<string name="send_scan_kde_connect_summary">Włącz, aby wpisywać skany na sparowanym urządzeniu KDE Connect.</string>
 	<string name="no_bluetooth_hosts_paired">Brak sparowanych hostów</string>
 	<string name="bluetooth_connect_fail">Could not connect to bluetooth device.</string>
 	<string name="bluetooth_send_fail">Could not send to bluetooth device.</string>

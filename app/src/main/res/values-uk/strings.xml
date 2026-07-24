@@ -213,6 +213,8 @@
 	<string name="send_scan_bluetooth">Пересилати сканування через Bluetooth</string>
 	<string name="send_scan_bluetooth_summary">Увімкнути пересилання сканованих даних на вказаний хост Bluetooth.</string>
 	<string name="send_scan_bluetooth_host">Хост</string>
+	<string name="send_scan_kde_connect">Пересилати сканування через KDE Connect</string>
+	<string name="send_scan_kde_connect_summary">Увімкніть, щоб вводити сканування на сполученому пристрої KDE Connect.</string>
 	<string name="no_bluetooth_hosts_paired">Немає хостів у сполучених</string>
 	<string name="bluetooth_connect_fail">Неможливо підключитися до пристрою Bluetooth.</string>
 	<string name="bluetooth_send_fail">Неможливо надіслати на пристрій Bluetooth.</string>

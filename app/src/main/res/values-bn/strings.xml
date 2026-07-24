@@ -207,6 +207,8 @@
 	<string name="send_scan_bluetooth">ব্লুটুথ দিয়ে স্ক্যান ফরোয়ার্ড করুন</string>
 	<string name="send_scan_bluetooth_summary">Enable to forwards scans to a given Bluetooth host.</string>
 	<string name="send_scan_bluetooth_host">হোস্ট</string>
+	<string name="send_scan_kde_connect">KDE Connect দিয়ে স্ক্যান ফরোয়ার্ড করুন</string>
+	<string name="send_scan_kde_connect_summary">জোড়া দেওয়া KDE Connect ডিভাইসে স্ক্যান টাইপ করতে সক্রিয় করুন।</string>
 	<string name="no_bluetooth_hosts_paired">কোন হোস্ট পেয়ার করা হয়নি</string>
 	<string name="bluetooth_connect_fail">Could not connect to bluetooth device.</string>
 	<string name="bluetooth_send_fail">Could not send to bluetooth device.</string>

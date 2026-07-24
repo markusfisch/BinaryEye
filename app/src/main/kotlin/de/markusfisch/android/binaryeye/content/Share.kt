@@ -37,6 +37,8 @@ fun Context.startIntent(intent: Intent): Boolean = try {
 	true
 } catch (_: ActivityNotFoundException) {
 	false
+} catch (_: SecurityException) {
+	false
 }
 
 fun Context.openUrl(url: String, silent: Boolean = false): Boolean {

@@ -131,6 +131,11 @@
 			android:entries="@array/bluetooth_host_names"
 			android:entryValues="@array/bluetooth_host_values"
 			android:defaultValue="@string/no_bluetooth_hosts_paired_value"/>
+		<androidx.preference.SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="send_scan_kde_connect"
+			android:title="@string/send_scan_kde_connect"
+			android:summary="@string/send_scan_kde_connect_summary"/>
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/content_category">
 		<androidx.preference.SwitchPreferenceCompat
