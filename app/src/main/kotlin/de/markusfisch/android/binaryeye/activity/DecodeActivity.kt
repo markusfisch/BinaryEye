@@ -228,6 +228,7 @@ class DecodeActivity : AbstractBaseActivity() {
 			contentView.setText(String(originalBytes).foldNonAlNum())
 			contentView.isEnabled = false
 			fab.setImageResource(R.drawable.ic_action_save)
+			fab.tooltipText = getString(R.string.save_as_file_name)
 			fab.setOnClickListener {
 				askForFileNameAndSave(originalBytes)
 			}
@@ -285,7 +286,9 @@ class DecodeActivity : AbstractBaseActivity() {
 				true
 			}
 		} else {
-			fab.tooltipText = getString(action.titleResId)
+			if (!isBinary) {
+				fab.tooltipText = getString(action.titleResId)
+			}
 		}
 	}
 
