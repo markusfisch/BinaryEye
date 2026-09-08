@@ -494,10 +494,12 @@ class DecodeActivity : AbstractBaseActivity() {
 						copyToClipboard(text.toString())
 					} else {
 						MaterialAlertDialogBuilder(ctx)
-							.setItems(arrayOf(
-								getString(R.string.copy_to_clipboard),
-								getString(R.string.open_url)
-							)) { _, which ->
+							.setItems(
+								arrayOf(
+									getString(R.string.copy_to_clipboard),
+									getString(R.string.open_url)
+								)
+							) { _, which ->
 								if (which == 0) {
 									copyToClipboard(text.toString())
 								} else {
