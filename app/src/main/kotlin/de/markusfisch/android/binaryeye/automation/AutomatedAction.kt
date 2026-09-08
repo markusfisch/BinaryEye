@@ -45,7 +45,7 @@ data class AutomatedAction(
 				return null
 			}
 			val type = when (obj.optString(KEY_TYPE, "")) {
-				"custom_intent" -> Type.CustomIntent
+				"customintent" -> Type.CustomIntent
 				"intent" -> Type.Intent
 				"html" -> return null
 				else -> Type.Intent
