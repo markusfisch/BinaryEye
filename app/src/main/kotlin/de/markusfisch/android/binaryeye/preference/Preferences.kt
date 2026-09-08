@@ -149,7 +149,7 @@ class Preferences {
 			apply(IGNORE_DUPLICATES_NAME, value)
 			field = value
 		}
-	var ignoreCodes = mutableListOf(IgnoreCode(DEFAULT_IGNORE_CODE_PATTERN))
+	var ignoreCodes = DEFAULT_IGNORE_LIST
 		private set
 	var copyImmediately = false
 		set(value) {
@@ -609,9 +609,7 @@ class Preferences {
 		ignoreCodes = ignoreCodesFromJsonArray(
 			preferences.getString(
 				IGNORE_CODES,
-				ignoreCodesToJsonArray(
-					listOf(IgnoreCode(DEFAULT_IGNORE_CODE_PATTERN))
-				)
+				ignoreCodesToJsonArray(DEFAULT_IGNORE_LIST)
 			) ?: "[]"
 		)
 		copyImmediately = preferences.getBoolean(
@@ -964,7 +962,10 @@ class Preferences {
 		private const val PREVIEW_SCALE = "preview_scale"
 		private const val AUTOMATED_ACTIONS = "automated_actions"
 		private const val DYNAMIC_COLORS = "dynamic_colors"
-		private const val DEFAULT_IGNORE_CODE_PATTERN = "(?i)^fido:/.*"
+		private val DEFAULT_IGNORE_LIST = mutableListOf(
+			IgnoreCode("(?i)^fido:/.*"),
+			IgnoreCode("(?i)^otpauth:/.*"),
+		)
 		const val CUSTOM_BEEP_TONE_NAME = "tone_custom_file"
 	}
 }
