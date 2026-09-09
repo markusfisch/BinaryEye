@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.75.4
+* Fix persisting custom intents
+* Add otpauth to default list of ignored codes
+* Update Italian language
+* Update vdstools
+
 ## 1.75.3
 * Show scan count in history
 * Offer copy and open actions for tracking links

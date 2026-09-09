@@ -1,0 +1,5 @@
+* Fix persisting custom intents
+* Add otpauth to default list of ignored codes
+* Update Italian language
+* Update vdstools
+
