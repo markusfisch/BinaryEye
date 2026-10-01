@@ -218,6 +218,11 @@ class CameraActivity : AppCompatActivity() {
 		}
 	}
 
+	override fun onNewIntent(intent: Intent) {
+		super.onNewIntent(intent)
+		setIntent(intent)
+	}
+
 	override fun onDestroy() {
 		super.onDestroy()
 		analyzerExecutor.shutdown()
@@ -306,6 +311,9 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun setReturnTarget(intent: Intent?) {
+		returnResult = false
+		returnUrlTemplate = null
+		finishAfterShowingResult = false
 		when {
 			intent?.action == "com.google.zxing.client.android.SCAN" -> {
 				returnResult = true
