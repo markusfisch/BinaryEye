@@ -1,0 +1,2 @@
+* Refresh scan callback on new intents
+

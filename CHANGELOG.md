@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.75.5
+* Refresh scan callback on new intents
+
 ## 1.75.4
 * Fix persisting custom intents
 * Add otpauth to default list of ignored codes
