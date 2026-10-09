@@ -34,7 +34,8 @@ enum class ParsedContentType(
 	OTP(R.string.parsed_type_otp),
 	CONTACT_CARD(R.string.parsed_type_contact_card),
 	CALENDAR_EVENT(R.string.parsed_type_calendar_event),
-	WIFI_NETWORK(R.string.parsed_type_wifi_network);
+	WIFI_NETWORK(R.string.parsed_type_wifi_network),
+	GS1_DATA(R.string.parsed_type_gs1_data);
 }
 
 data class ParsedData(
@@ -64,6 +65,17 @@ fun parseData(
 			it.link,
 		)
 		return ParsedData(ParsedContentType.DEUTSCHE_POST, fields)
+	}
+
+	Gs1MedicationParser.parse(text, format)?.let { medication ->
+		fields.addField(R.string.gs1_gtin, medication.gtin)
+		fields.addField(R.string.gs1_expiry, medication.expiry)
+		fields.addField(R.string.gs1_batch, medication.batch)
+		fields.addField(R.string.gs1_serial, medication.serial)
+		medication.nationalIdentifiers.forEach { (ai, value) ->
+			fields.addField(R.string.gs1_national_id, "AI $ai: $value")
+		}
+		return ParsedData(ParsedContentType.GS1_DATA, fields)
 	}
 
 	try {
@@ -215,6 +227,9 @@ fun getContentPreview(
 
 		ParsedContentType.OTP -> parsedData.valueFor(R.string.otp_account)
 			?: parsedData.firstValue()
+			?: text
+
+		ParsedContentType.GS1_DATA -> parsedData.valueFor(R.string.gs1_gtin)
 			?: text
 
 		else -> parsedData.firstValue() ?: text

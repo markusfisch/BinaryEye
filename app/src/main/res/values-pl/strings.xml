@@ -443,6 +443,12 @@
 	<string name="parsed_type_contact_card">Karta kontaktu</string>
 	<string name="parsed_type_calendar_event">Wydarzenie kalendarza</string>
 	<string name="parsed_type_wifi_network">Sieć Wi-Fi</string>
+	<string name="parsed_type_gs1_data">Dane GS1 (Data Matrix)</string>
+	<string name="gs1_gtin">GTIN</string>
+	<string name="gs1_expiry">Termin ważności</string>
+	<string name="gs1_batch">Numer serii</string>
+	<string name="gs1_serial">Numer seryjny</string>
+	<string name="gs1_national_id">Krajowy numer identyfikacyjny</string>
 	<string name="formatted_json">Sformatowany JSON</string>
 	<string name="appearance_category">Wygląd</string>
 	<string name="dynamic_colors">Dynamiczne kolory</string>

@@ -323,6 +323,12 @@
 	<string name="parsed_type_contact_card">Contact Card</string>
 	<string name="parsed_type_calendar_event">Calendar Event</string>
 	<string name="parsed_type_wifi_network">Wi-Fi network</string>
+	<string name="parsed_type_gs1_data">GS1 Data Matrix</string>
+	<string name="gs1_gtin">GTIN</string>
+	<string name="gs1_expiry">Expiry date</string>
+	<string name="gs1_batch">Batch / lot</string>
+	<string name="gs1_serial">Serial number</string>
+	<string name="gs1_national_id">National identifier</string>
 	<string name="format_description_aztec">A 2D matrix barcode that can be read without a quiet zone around it. Often used in transport tickets and boarding passes.</string>
 	<string name="format_description_codabar">A linear barcode used in libraries, blood banks, and FedEx air bills since 1972. Encodes numeric digits and a few special characters.</string>
 	<string name="format_description_code39">A variable-length linear barcode encoding uppercase letters, digits, and a few symbols. Widely used in automotive and defense.</string>
