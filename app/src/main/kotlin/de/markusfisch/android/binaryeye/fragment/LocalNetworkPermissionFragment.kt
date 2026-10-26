@@ -34,9 +34,11 @@ fun FragmentActivity.withLocalNetworkPermission(callback: (Boolean) -> Unit) {
 
 class LocalNetworkPermissionFragment : Fragment() {
 	private val callbacks = mutableListOf<(Boolean) -> Unit>()
+	private var permissionDenied = false
 	private val launcher = registerForActivityResult(
 		ActivityResultContracts.RequestPermission()
 	) { granted ->
+		permissionDenied = !granted
 		val pending = callbacks.toList()
 		callbacks.clear()
 		pending.forEach { it(granted) }
@@ -44,6 +46,10 @@ class LocalNetworkPermissionFragment : Fragment() {
 
 	@RequiresApi(37)
 	fun request(callback: (Boolean) -> Unit) {
+		if (permissionDenied) {
+			callback(false)
+			return
+		}
 		callbacks.add(callback)
 		if (callbacks.size == 1) {
 			launcher.launch(Manifest.permission.ACCESS_LOCAL_NETWORK)

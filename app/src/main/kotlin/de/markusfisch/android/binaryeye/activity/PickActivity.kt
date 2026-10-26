@@ -270,13 +270,9 @@ class PickActivity : AppCompatActivity() {
 		if (r != null && prefs.sendScanActive &&
 			prefs.sendScanUrl.isNotEmpty() && prefs.sendScanType != "4"
 		) {
-			withLocalNetworkPermission { granted ->
-				if (granted) {
-					showResult(r)
-					finish()
-				} else {
-					toast(R.string.background_request_failed)
-				}
+			withLocalNetworkPermission {
+				showResult(r)
+				finish()
 			}
 			return
 		}

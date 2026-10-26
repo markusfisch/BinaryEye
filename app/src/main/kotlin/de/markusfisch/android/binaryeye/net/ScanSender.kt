@@ -37,11 +37,8 @@ fun FragmentActivity.sendAsync(
 		openUrl(buildUrl(url, scan.asUrlArguments(extras)))
 		return
 	}
-	withLocalNetworkPermission { granted ->
-		if (!granted) {
-			callback(null, null)
-			return@withLocalNetworkPermission
-		}
+	withLocalNetworkPermission {
+		// Public destinations remain accessible if permission is denied.
 		CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
 			val response = scan.send(url, type, extras) ?: return@launch
 			withContext(Dispatchers.Main) {
