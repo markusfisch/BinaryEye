@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.applyLocale
 import de.markusfisch.android.binaryeye.app.prefs
+import de.markusfisch.android.binaryeye.fragment.withLocalNetworkPermission
 import de.markusfisch.android.binaryeye.graphics.crop
 import de.markusfisch.android.binaryeye.graphics.fixTransparency
 import de.markusfisch.android.binaryeye.graphics.loadImageUri
@@ -264,6 +265,21 @@ class PickActivity : AppCompatActivity() {
 
 	private fun showResult() {
 		val r = result
+		// Keep this activity alive while permission is requested, so the
+		// pending scan can be forwarded before finishing.
+		if (r != null && prefs.sendScanActive &&
+			prefs.sendScanUrl.isNotEmpty() && prefs.sendScanType != "4"
+		) {
+			withLocalNetworkPermission { granted ->
+				if (granted) {
+					showResult(r)
+					finish()
+				} else {
+					toast(R.string.background_request_failed)
+				}
+			}
+			return
+		}
 		if (r != null) {
 			showResult(r)
 			finish()

@@ -48,7 +48,7 @@ class UrlDialogFragment : PreferenceDialogFragmentCompat() {
 		}
 		textView ?: return
 		textView.text = "…"
-		textView.context.sendAsync(
+		requireActivity().sendAsync(
 			Scan(
 				"test",
 				null,

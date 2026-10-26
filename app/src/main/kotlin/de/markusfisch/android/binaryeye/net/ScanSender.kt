@@ -1,9 +1,10 @@
 package de.markusfisch.android.binaryeye.net
 
-import android.content.Context
+import androidx.fragment.app.FragmentActivity
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.content.openUrl
 import de.markusfisch.android.binaryeye.database.Scan
+import de.markusfisch.android.binaryeye.fragment.withLocalNetworkPermission
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,7 +24,7 @@ private const val SEND_TYPE_POST_FORM = "2"
 private const val SEND_TYPE_POST_JSON = "3"
 private const val SEND_TYPE_EXTERNAL_BROWSER = "4"
 
-fun Context.sendAsync(
+fun FragmentActivity.sendAsync(
 	scan: Scan,
 	url: String = prefs.sendScanUrl,
 	type: String = prefs.sendScanType,
@@ -36,10 +37,16 @@ fun Context.sendAsync(
 		openUrl(buildUrl(url, scan.asUrlArguments(extras)))
 		return
 	}
-	CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
-		val response = scan.send(url, type, extras) ?: return@launch
-		withContext(Dispatchers.Main) {
-			callback(response.code, response.body)
+	withLocalNetworkPermission { granted ->
+		if (!granted) {
+			callback(null, null)
+			return@withLocalNetworkPermission
+		}
+		CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
+			val response = scan.send(url, type, extras) ?: return@launch
+			withContext(Dispatchers.Main) {
+				callback(response.code, response.body)
+			}
 		}
 	}
 }

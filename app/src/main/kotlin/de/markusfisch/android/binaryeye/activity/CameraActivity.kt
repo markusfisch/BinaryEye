@@ -1,7 +1,6 @@
 package de.markusfisch.android.binaryeye.activity
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -33,6 +32,7 @@ import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.core.net.toUri
+import androidx.fragment.app.FragmentActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import de.markusfisch.android.binaryeye.R
@@ -1043,7 +1043,7 @@ fun Set<String>.toFormatSet(): Set<BarcodeFormat> = map {
 	BarcodeFormat.valueOf(it.migrateBarcodeFormatName())
 }.toSet()
 
-fun Activity.showResult(
+fun FragmentActivity.showResult(
 	result: Result,
 	bulkMode: Boolean = false,
 ) {
