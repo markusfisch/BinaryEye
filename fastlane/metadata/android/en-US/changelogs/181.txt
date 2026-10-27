@@ -1,0 +1,3 @@
+* Request local network access for scan forwarding
+* Update vdstools and Bouncy Castle
+
