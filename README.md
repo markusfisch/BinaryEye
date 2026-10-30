@@ -99,6 +99,11 @@ argument with a (URL encoded) URI template. For example:
 
 [http://markusfisch.de/BinaryEye?ret=http%3A%2F%2Fexample.com%2F%3Fresult%3D{RESULT}](http://markusfisch.de/BinaryEye?ret=http%3A%2F%2Fexample.com%2F%3Fresult%3D{RESULT})
 
+To keep scanning without returning to the calling app after the first scan,
+add `continuous=true` (for example, `binaryeye://scan?continuous=true`).
+This enables continuous scanning for the current session. The `ret` parameter
+is ignored in this mode; scanned results are not sent back to the web page.
+
 Supported symbols are:
 
 * `RESULT` - scanned content
