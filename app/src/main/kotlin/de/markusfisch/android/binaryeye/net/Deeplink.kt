@@ -12,6 +12,10 @@ fun isScanDeeplink(text: String) = listOf(
 	"https://$HOSTNAME/BinaryEye"
 ).any { text.startsWith(it) }
 
+fun isContinuousScanDeeplink(text: String) =
+	isScanDeeplink(text) &&
+		Uri.parse(text).getQueryParameter("continuous") == "true"
+
 fun isEncodeDeeplink(text: String) = listOf(
 	"$SCHEME://$ENCODE_PATH",
 	"http://$HOSTNAME/$ENCODE_PATH",
