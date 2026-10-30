@@ -59,6 +59,7 @@ import de.markusfisch.android.binaryeye.graphics.setFrameRoi
 import de.markusfisch.android.binaryeye.graphics.setFrameToView
 import de.markusfisch.android.binaryeye.kdeconnect.sendToKdeConnect
 import de.markusfisch.android.binaryeye.media.releaseToneGenerators
+import de.markusfisch.android.binaryeye.net.isContinuousScanDeeplink
 import de.markusfisch.android.binaryeye.net.isScanDeeplink
 import de.markusfisch.android.binaryeye.net.sendAsync
 import de.markusfisch.android.binaryeye.net.urlEncode
@@ -320,8 +321,14 @@ class CameraActivity : AppCompatActivity() {
 			}
 
 			intent?.dataString?.let(::isScanDeeplink) == true -> {
-				finishAfterShowingResult = true
-				returnUrlTemplate = intent.data?.getQueryParameter("ret")
+				if (intent.dataString?.let(::isContinuousScanDeeplink) == true) {
+					bulkMode = true
+					invalidateOptionsMenu()
+					ignoreNext = null
+				} else {
+					finishAfterShowingResult = true
+					returnUrlTemplate = intent.data?.getQueryParameter("ret")
+				}
 			}
 		}
 	}
