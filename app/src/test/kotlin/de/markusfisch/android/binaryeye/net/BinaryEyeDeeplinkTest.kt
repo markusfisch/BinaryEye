@@ -31,6 +31,16 @@ class BinaryEyeDeeplinkTest {
     }
 
     @Test
+    fun isContinuousScanDeeplinkTests() {
+        assertEquals(true, isContinuousScanDeeplink("binaryeye://scan?continuous=true"))
+        assertEquals(true, isContinuousScanDeeplink("https://markusfisch.de/BinaryEye?continuous=true"))
+        assertEquals(false, isContinuousScanDeeplink("binaryeye://scan"))
+        assertEquals(false, isContinuousScanDeeplink("binaryeye://scan?continuous=false"))
+        assertEquals(false, isContinuousScanDeeplink("binaryeye://scan?continuous=1"))
+        assertEquals(false, isContinuousScanDeeplink("binaryeye://encode?continuous=true"))
+    }
+
+    @Test
     fun isEncodeDeeplinkTests() {
         // Test for binaryeye://encode
         assertEquals(true, isEncodeDeeplink("binaryeye://encode"))
