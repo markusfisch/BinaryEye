@@ -103,7 +103,7 @@ private fun Scan.asUrlArguments(
 	"${k}=${v.urlEncode()}"
 }.joinToString("&")
 
-private fun Scan.asJson(
+internal fun Scan.asJson(
 	extras: Map<String, String>
 ) = JSONObject().apply {
 	getMap(extras).forEach { (k, v) -> put(k, v) }
@@ -130,12 +130,16 @@ private fun Map<String, String?>.filterNullValues() =
 
 private fun request(
 	url: String,
+	followRedirects: Boolean = true,
+	readTimeout: Int = 0,
 	writer: ((HttpURLConnection) -> Any)? = null
 ): Response {
 	var con: HttpURLConnection? = null
 	return try {
 		con = URL(url).openConnection() as HttpURLConnection
 		con.connectTimeout = 5000
+		con.readTimeout = readTimeout
+		con.instanceFollowRedirects = followRedirects
 		writer?.invoke(con)
 		val body = con.inputStream.readHead()
 		Response(con.responseCode, body)
@@ -167,4 +171,20 @@ private fun InputStream.readHead(): String {
 	return sb.toString()
 }
 
-private data class Response(val code: Int?, val body: String?)
+internal data class Response(val code: Int?, val body: String?)
+
+internal fun postScanCallback(
+	url: String,
+	payload: String,
+	readTimeout: Int = 10000
+): Response = try {
+	request(url, followRedirects = false, readTimeout = readTimeout) { con ->
+		con.requestMethod = "POST"
+		con.doOutput = true
+		con.useCaches = false
+		con.setRequestProperty("Content-Type", "application/json; charset=utf-8")
+		con.outputStream.use { it.write(payload.toByteArray(Charsets.UTF_8)) }
+	}
+} catch (e: SecurityException) {
+	Response(null, e.message)
+}

@@ -438,4 +438,6 @@
 	<string name="dynamic_colors">Dinamikus színek</string>
 	<string name="dynamic_colors_summary">Rendszerszínek használata az alkalmazás témájához. Android 12 vagy újabb szükséges.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">Beolvasás befejezése</string>
+	<string name="send_again">Újraküldés</string>
 </resources>

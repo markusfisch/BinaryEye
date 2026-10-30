@@ -448,4 +448,6 @@
 	<string name="dynamic_colors">Динамические цвета</string>
 	<string name="dynamic_colors_summary">Использовать системные цвета для темы приложения. Требуется Android 12 или новее.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">Завершить сканирование</string>
+	<string name="send_again">Отправить повторно</string>
 </resources>

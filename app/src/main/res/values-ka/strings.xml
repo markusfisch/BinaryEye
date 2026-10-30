@@ -438,4 +438,6 @@
 	<string name="dynamic_colors">დინამიური ფერები</string>
 	<string name="dynamic_colors_summary">გამოიყენეთ სისტემის ფერები აპლიკაციის თემისთვის. საჭიროა Android 12 ან უფრო ახალი.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">სკანირების დასრულება</string>
+	<string name="send_again">ხელახლა გაგზავნა</string>
 </resources>

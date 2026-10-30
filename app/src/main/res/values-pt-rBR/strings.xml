@@ -438,4 +438,6 @@
 	<string name="dynamic_colors">Cores dinâmicas</string>
 	<string name="dynamic_colors_summary">Usar as cores do sistema para o tema do aplicativo. Requer Android 12 ou posterior.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">Finalizar leitura</string>
+	<string name="send_again">Enviar novamente</string>
 </resources>

@@ -17,6 +17,8 @@ import android.view.ViewConfiguration
 import android.widget.EditText
 import android.widget.SeekBar
 import android.widget.Spinner
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.Camera
 import androidx.camera.core.FocusMeteringAction
@@ -33,6 +35,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.core.net.toUri
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import de.markusfisch.android.binaryeye.R
@@ -51,6 +54,7 @@ import de.markusfisch.android.binaryeye.camera.cameraSelector
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.startIntentOrToast
 import de.markusfisch.android.binaryeye.database.toScan
+import de.markusfisch.android.binaryeye.fragment.withLocalNetworkPermission
 import de.markusfisch.android.binaryeye.graphics.FrameMetrics
 import de.markusfisch.android.binaryeye.graphics.mapPosition
 import de.markusfisch.android.binaryeye.graphics.mapViewYToFrame
@@ -59,6 +63,9 @@ import de.markusfisch.android.binaryeye.graphics.setFrameRoi
 import de.markusfisch.android.binaryeye.graphics.setFrameToView
 import de.markusfisch.android.binaryeye.kdeconnect.sendToKdeConnect
 import de.markusfisch.android.binaryeye.media.releaseToneGenerators
+import de.markusfisch.android.binaryeye.net.ContinuousScanSession
+import de.markusfisch.android.binaryeye.net.isHttpCallback
+import de.markusfisch.android.binaryeye.net.isContinuousScanDeeplink
 import de.markusfisch.android.binaryeye.net.isScanDeeplink
 import de.markusfisch.android.binaryeye.net.sendAsync
 import de.markusfisch.android.binaryeye.net.urlEncode
@@ -113,6 +120,17 @@ class CameraActivity : AppCompatActivity() {
 	private var decoding = true
 	private var returnResult = false
 	private var returnUrlTemplate: String? = null
+	private var continuousScan = false
+	private var callbackUrl: String? = null
+	private lateinit var callbackSession: ContinuousScanSession
+	private var callbackDialog: AlertDialog? = null
+	@Volatile
+	private var callbackDelay = false
+	private val continuousBack = object : OnBackPressedCallback(false) {
+		override fun handleOnBackPressed() {
+			finishContinuousScan()
+		}
+	}
 	private var finishAfterShowingResult = false
 	private var selectedCamera = prefs.defaultCamera
 	private var bulkMode = prefs.bulkMode
@@ -210,6 +228,13 @@ class CameraActivity : AppCompatActivity() {
 		initPreviewView()
 		initZoomBar()
 		initDetectorView()
+		callbackSession = ViewModelProvider(this)[ContinuousScanSession::class.java]
+		setReturnTarget(intent)
+		if (!callbackSession.configured) {
+			callbackSession.configure(callbackUrl, state?.getBundle(CALLBACK_STATE))
+		}
+		onBackPressedDispatcher.addCallback(this, continuousBack)
+		callbackSession.state.observe(this) { updateCallbackState() }
 
 		if (intent?.action == Intent.ACTION_SEND &&
 			intent.type?.startsWith("text/") == true
@@ -220,11 +245,18 @@ class CameraActivity : AppCompatActivity() {
 
 	override fun onNewIntent(intent: Intent) {
 		super.onNewIntent(intent)
+		if (callbackSession.blocked) {
+			toast(R.string.background_request_failed)
+			return
+		}
 		setIntent(intent)
+		setReturnTarget(intent)
+		callbackSession.configure(callbackUrl)
 	}
 
 	override fun onDestroy() {
 		super.onDestroy()
+		callbackDialog?.dismiss()
 		analyzerExecutor.shutdown()
 		releaseToneGenerators()
 	}
@@ -241,6 +273,7 @@ class CameraActivity : AppCompatActivity() {
 		}
 		System.gc()
 		setReturnTarget(intent)
+		updateCallbackState()
 		// Avoid asking multiple times when the user has denied access
 		// for this session. Otherwise ActivityCompat.requestPermissions()
 		// will trigger onResume() again and again.
@@ -314,15 +347,96 @@ class CameraActivity : AppCompatActivity() {
 		returnResult = false
 		returnUrlTemplate = null
 		finishAfterShowingResult = false
+		val wasContinuous = continuousScan
+		continuousScan = false
+		callbackUrl = null
 		when {
 			intent?.action == "com.google.zxing.client.android.SCAN" -> {
 				returnResult = true
 			}
 
 			intent?.dataString?.let(::isScanDeeplink) == true -> {
-				finishAfterShowingResult = true
-				returnUrlTemplate = intent.data?.getQueryParameter("ret")
+				if (intent.dataString?.let(::isContinuousScanDeeplink) == true) {
+					continuousScan = true
+					bulkMode = true
+					callbackUrl = intent.data?.getQueryParameter("callback")
+					returnUrlTemplate = intent.data?.getQueryParameter("ret")
+					invalidateOptionsMenu()
+				} else {
+					finishAfterShowingResult = true
+					returnUrlTemplate = intent.data?.getQueryParameter("ret")
+				}
 			}
+		}
+		if (wasContinuous && !continuousScan) {
+			bulkMode = prefs.bulkMode
+		}
+	}
+
+	private fun finishContinuousScan() {
+		if (callbackSession.state.value == ContinuousScanSession.State.SENDING) {
+			return
+		}
+		returnUrlTemplate?.let {
+			startIntentOrToast(Intent(Intent.ACTION_VIEW, it.toUri()))
+		}
+		finish()
+	}
+
+	private fun updateCallbackState() {
+		continuousBack.isEnabled = continuousScan
+		invalidateOptionsMenu()
+		if (callbackDialog?.isShowing == true || callbackUrl == null || isFinishing) {
+			return
+		}
+		when (callbackSession.state.value) {
+			ContinuousScanSession.State.APPROVAL -> {
+				val valid = isHttpCallback(callbackUrl!!)
+				callbackDialog = MaterialAlertDialogBuilder(this)
+					.setTitle(if (valid) {
+						R.string.send_scan_active
+					} else {
+						R.string.background_request_failed
+					})
+					.setMessage(callbackUrl)
+					.setCancelable(false)
+					.setPositiveButton(android.R.string.ok) { _, _ ->
+						if (valid) {
+							withLocalNetworkPermission { callbackSession.approve() }
+						} else {
+							finishContinuousScan()
+						}
+					}
+					.setNegativeButton(android.R.string.cancel) { _, _ -> finishContinuousScan() }
+					.show()
+			}
+
+			ContinuousScanSession.State.FAILED -> {
+				errorFeedback()
+				callbackDialog = MaterialAlertDialogBuilder(this)
+					.setTitle(R.string.background_request_failed)
+					.setMessage(listOfNotNull(
+						callbackSession.lastText,
+						callbackSession.error
+					).joinToString("\n\n"))
+					.setCancelable(false)
+					.setPositiveButton(R.string.send_again) { _, _ -> callbackSession.retry() }
+					.setNegativeButton(android.R.string.cancel) { _, _ -> finishContinuousScan() }
+					.show()
+			}
+
+			ContinuousScanSession.State.READY -> {
+				if (prefs.ignoreDuplicates() != Preferences.Companion.IgnoreDuplicates.Never) {
+					ignoreNext = callbackSession.lastText
+				}
+				callbackDelay = true
+				detectorView.postDelayed({
+					callbackDelay = false
+					decoding = true
+				}, prefs.bulkModeDelay.toLong())
+			}
+
+			else -> {}
 		}
 	}
 
@@ -360,6 +474,7 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	override fun onSaveInstanceState(outState: Bundle) {
+		outState.putBundle(CALLBACK_STATE, callbackSession.saveState())
 		outState.putInt(ZOOM_LEVEL, zoomBar.progress)
 		outState.putString(SELECTED_CAMERA, selectedCamera)
 		outState.putBoolean(BULK_MODE, bulkMode)
@@ -380,6 +495,14 @@ class CameraActivity : AppCompatActivity() {
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
 		menuInflater.inflate(R.menu.activity_camera, menu)
 		menu.findItem(R.id.bulk_mode).isChecked = bulkMode
+		menu.findItem(R.id.bulk_mode).isEnabled = !continuousScan
+		if (continuousScan) {
+			menu.add(Menu.NONE, DONE, Menu.NONE, R.string.finish_scanning)
+				.apply {
+					isEnabled = callbackSession.state.value != ContinuousScanSession.State.SENDING
+					setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM)
+				}
+		}
 		menu.findItem(R.id.profile).title = getString(
 			R.string.current_profile,
 			prefs.profileLabel(this, prefs.profile)
@@ -389,6 +512,11 @@ class CameraActivity : AppCompatActivity() {
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return when (item.itemId) {
+			DONE -> {
+				finishContinuousScan()
+				true
+			}
+
 			R.id.create -> {
 				createBarcode()
 				true
@@ -774,7 +902,13 @@ class CameraActivity : AppCompatActivity() {
 				preview.surfaceProvider = cameraView.surfaceProvider
 				this.preview = preview
 				this.imageAnalysis = imageAnalysis
-				ignoreNext = null
+				ignoreNext = if (callbackUrl != null &&
+					prefs.ignoreDuplicates() != Preferences.Companion.IgnoreDuplicates.Never
+				) {
+					callbackSession.lastText
+				} else {
+					null
+				}
 				decoding = true
 				useLocalAverage = false
 				updateZoomState()
@@ -789,7 +923,7 @@ class CameraActivity : AppCompatActivity() {
 
 	private fun analyzeImage(image: ImageProxy) {
 		try {
-			if (!decoding) {
+			if (!decoding || callbackSession.blocked || callbackDelay) {
 				return
 			}
 			val frameMetrics = FrameMetrics(
@@ -951,6 +1085,9 @@ class CameraActivity : AppCompatActivity() {
 		frameMapping: CameraFrameMapping
 	) {
 		cameraView.post {
+			if (isFinishing || isDestroyed) {
+				return@post
+			}
 			detectorView.update(
 				frameMapping.matrix.mapPosition(
 					result.position,
@@ -958,7 +1095,15 @@ class CameraActivity : AppCompatActivity() {
 				)
 			)
 			scanFeedback()
-			val returnUri = returnUrlTemplate?.let {
+			if (continuousScan && callbackUrl != null) {
+				showResult(result, true)
+				if (prefs.showToastInBulkMode) {
+					toast(result.text)
+				}
+				callbackSession.submit(result.toScan())
+				return@post
+			}
+			val returnUri = returnUrlTemplate?.takeUnless { continuousScan }?.let {
 				try {
 					completeUrl(it, result)
 				} catch (e: Exception) {
@@ -1029,6 +1174,8 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	companion object {
+		private const val DONE = -1
+		private const val CALLBACK_STATE = "callback_state"
 		private const val PICK_FILE_RESULT_CODE = 1
 		private const val INITIAL_ZOOM = 0
 		private const val ZOOM_LEVEL = "zoom"

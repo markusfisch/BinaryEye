@@ -448,4 +448,6 @@
 	<string name="dynamic_colors">Динамічні кольори</string>
 	<string name="dynamic_colors_summary">Використовувати системні кольори для теми додатку. Потрібен Android 12 або новіший.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">Завершити сканування</string>
+	<string name="send_again">Надіслати знову</string>
 </resources>

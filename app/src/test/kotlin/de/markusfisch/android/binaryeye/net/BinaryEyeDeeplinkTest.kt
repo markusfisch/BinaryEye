@@ -31,6 +31,29 @@ class BinaryEyeDeeplinkTest {
     }
 
     @Test
+    fun isContinuousScanDeeplinkTests() {
+        assertEquals(true, isContinuousScanDeeplink("binaryeye://scan?continuous=true"))
+        assertEquals(true, isContinuousScanDeeplink("https://markusfisch.de/BinaryEye?continuous=true"))
+        assertEquals(false, isContinuousScanDeeplink("binaryeye://scan"))
+        assertEquals(false, isContinuousScanDeeplink("binaryeye://scan?continuous=false"))
+        assertEquals(false, isContinuousScanDeeplink("binaryeye://scan?continuous=1"))
+        assertEquals(false, isContinuousScanDeeplink("binaryeye://encode?continuous=true"))
+    }
+
+    @Test
+    fun acceptsOnlyHttpCallbackEndpoints() {
+        assertEquals(true, isHttpCallback("https://example.com/scan?session=123"))
+        assertEquals(true, isHttpCallback("http://192.168.1.2:8080/scan"))
+        assertEquals(false, isHttpCallback("javascript:alert(1)"))
+        assertEquals(false, isHttpCallback("binaryeye://scan"))
+        assertEquals(false, isHttpCallback("https:///scan"))
+        assertEquals(false, isHttpCallback("https://user:password@example.com/scan"))
+        assertEquals(false, isHttpCallback("https://example.com/scan#fragment"))
+        assertEquals(false, isHttpCallback("https://example.com:99999/scan"))
+        assertEquals(false, isHttpCallback(""))
+    }
+
+    @Test
     fun isEncodeDeeplinkTests() {
         // Test for binaryeye://encode
         assertEquals(true, isEncodeDeeplink("binaryeye://encode"))

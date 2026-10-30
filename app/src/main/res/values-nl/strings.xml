@@ -438,4 +438,6 @@
 	<string name="dynamic_colors">Dynamische kleuren</string>
 	<string name="dynamic_colors_summary">Systeemkleuren gebruiken voor het app-thema. Vereist Android 12 of hoger.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">Scannen beëindigen</string>
+	<string name="send_again">Opnieuw verzenden</string>
 </resources>

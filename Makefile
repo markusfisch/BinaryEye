@@ -28,6 +28,11 @@ testscan:
 		-c android.intent.category.BROWSABLE \
 		-d 'binaryeye://scan/?ret=http%3A%2F%2Fmarkusfisch.de%2F%3Fresult%3D{RESULT}'
 
+testscancont:
+	adb shell am start -a android.intent.action.VIEW \
+		-c android.intent.category.BROWSABLE \
+		-d 'binaryeye://scan?continuous=true&callback=https%3A%2F%2Fmarkusfisch.de%2Fscans%3Fsession%3D123&ret=https%3A%2F%2Fmarkusfisch.de%2Fresults%3Fsession%3D123'
+
 testencode:
 	adb shell am start -a android.intent.action.VIEW \
 		-c android.intent.category.BROWSABLE \

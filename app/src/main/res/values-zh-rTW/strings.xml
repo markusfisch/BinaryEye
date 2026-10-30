@@ -436,4 +436,6 @@
 	<string name="dynamic_colors">動態顏色</string>
 	<string name="dynamic_colors_summary">使用系統顏色作為應用程式主題。需要 Android 12 或更新版本。</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">結束掃描</string>
+	<string name="send_again">重新傳送</string>
 </resources>

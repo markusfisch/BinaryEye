@@ -438,4 +438,6 @@
 	<string name="dynamic_colors">Dynamiske farver</string>
 	<string name="dynamic_colors_summary">Brug systemfarver til appens tema. Kræver Android 12 eller nyere.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">Afslut scanning</string>
+	<string name="send_again">Send igen</string>
 </resources>

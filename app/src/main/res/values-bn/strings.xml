@@ -438,4 +438,6 @@
 	<string name="dynamic_colors">ডাইনামিক রং</string>
 	<string name="dynamic_colors_summary">অ্যাপের থিমের জন্য সিস্টেম রং ব্যবহার করুন। Android 12 বা তার পরবর্তী সংস্করণ প্রয়োজন।</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">স্ক্যান শেষ করুন</string>
+	<string name="send_again">আবার পাঠান</string>
 </resources>

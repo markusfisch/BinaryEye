@@ -438,4 +438,6 @@
 	<string name="dynamic_colors">رنگ‌های پویا</string>
 	<string name="dynamic_colors_summary">استفاده از رنگ‌های سیستم برای پوسته برنامه. نیاز به Android 12 یا بالاتر دارد.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">پایان اسکن</string>
+	<string name="send_again">ارسال دوباره</string>
 </resources>

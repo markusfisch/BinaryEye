@@ -438,4 +438,6 @@
 	<string name="dynamic_colors">Dinamik renkler</string>
 	<string name="dynamic_colors_summary">Uygulama teması için sistem renklerini kullan. Android 12 veya daha yeni gerektirir.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">Taramayı bitir</string>
+	<string name="send_again">Yeniden gönder</string>
 </resources>

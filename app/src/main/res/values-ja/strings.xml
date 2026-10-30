@@ -436,4 +436,6 @@
 	<string name="dynamic_colors">ダイナミックカラー</string>
 	<string name="dynamic_colors_summary">アプリのテーマにシステムカラーを使用します。Android 12以降が必要です。</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">スキャンを終了</string>
+	<string name="send_again">再送信</string>
 </resources>

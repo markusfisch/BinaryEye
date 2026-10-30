@@ -436,4 +436,6 @@
 	<string name="dynamic_colors">Màu động</string>
 	<string name="dynamic_colors_summary">Sử dụng màu hệ thống cho giao diện ứng dụng. Yêu cầu Android 12 trở lên.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">Kết thúc quét</string>
+	<string name="send_again">Gửi lại</string>
 </resources>
