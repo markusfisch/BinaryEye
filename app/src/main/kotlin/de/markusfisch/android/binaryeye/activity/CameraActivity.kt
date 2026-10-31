@@ -79,6 +79,7 @@ import de.markusfisch.android.binaryeye.widget.DetectorView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.binaryeye.zxingcpp.migrateBarcodeFormatName
 import de.markusfisch.android.zxingcpp.ZxingCpp
+import de.markusfisch.android.binaryeye.decoder.DevelopmentDecoder
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
 import de.markusfisch.android.zxingcpp.ZxingCpp.Binarizer
 import de.markusfisch.android.zxingcpp.ZxingCpp.ReaderOptions
@@ -96,6 +97,7 @@ import kotlin.math.roundToInt
 class CameraActivity : AppCompatActivity() {
 	private val analyzerExecutor: ExecutorService =
 		Executors.newSingleThreadExecutor()
+	private val developmentDecoder = DevelopmentDecoder()
 	private val readerOptions = ReaderOptions(
 		tryHarder = prefs.tryHarder,
 		tryRotate = prefs.autoRotate,
@@ -257,6 +259,7 @@ class CameraActivity : AppCompatActivity() {
 	override fun onDestroy() {
 		super.onDestroy()
 		callbackDialog?.dismiss()
+		analyzerExecutor.execute { developmentDecoder.close() }
 		analyzerExecutor.shutdown()
 		releaseToneGenerators()
 	}
@@ -934,7 +937,7 @@ class CameraActivity : AppCompatActivity() {
 			val frameMapping = getFrameMapping(frameMetrics) ?: return
 			useLocalAverage = useLocalAverage xor true
 			val yPlane = image.planes[0]
-			ZxingCpp.readYBuffer(
+			val decoded = ZxingCpp.readYBuffer(
 				yPlane.buffer,
 				yPlane.rowStride,
 				frameMapping.frameRoi,
@@ -949,7 +952,11 @@ class CameraActivity : AppCompatActivity() {
 					tryHarder = prefs.tryHarder
 					tryRotate = prefs.autoRotate
 				}
-			)?.firstOrNull()?.let { result ->
+			)?.firstOrNull() ?: developmentDecoder.read(
+				yPlane.buffer, yPlane.rowStride, frameMapping.frameRoi,
+				frameMetrics.orientation, readerOptions
+			)
+			decoded?.let { result ->
 				handleDecodeResult(result, frameMapping)
 			}
 		} finally {
