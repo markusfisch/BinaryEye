@@ -1,0 +1,2 @@
+* Support continuous scan deep links
+

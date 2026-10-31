@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.75.7
+* Support continuous scan deep links
+
 ## 1.75.6
 * Request local network access for scan forwarding
 * Update vdstools and Bouncy Castle
