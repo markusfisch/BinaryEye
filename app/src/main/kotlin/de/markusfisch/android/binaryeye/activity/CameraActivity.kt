@@ -800,11 +800,7 @@ class CameraActivity : AppCompatActivity() {
 				progress: Int,
 				fromUser: Boolean
 			) {
-				val maxRatio = camera?.cameraInfo?.zoomState?.value
-					?.maxZoomRatio ?: return
-				camera?.cameraControl?.setZoomRatio(
-					1f + progress / 100f * (maxRatio - 1f)
-				)
+				applyZoom(progress)
 			}
 
 			override fun onStartTrackingTouch(seekBar: SeekBar) {
@@ -820,6 +816,15 @@ class CameraActivity : AppCompatActivity() {
 		prefs.preferences.edit {
 			putInt(ZOOM_LEVEL, zoomBar.progress)
 		}
+	}
+
+	private fun applyZoom(progress: Int) {
+		val camera = camera ?: return
+		val maxRatio = camera.cameraInfo.zoomState.value
+			?.maxZoomRatio ?: return
+		camera.cameraControl.setZoomRatio(
+			1f + progress / 100f * (maxRatio - 1f)
+		)
 	}
 
 	private fun restoreZoomBarSettings() {
@@ -912,6 +917,7 @@ class CameraActivity : AppCompatActivity() {
 				decoding = true
 				useLocalAverage = false
 				updateZoomState()
+				applyZoom(zoomBar.progress)
 				updateFlashFab(camera?.cameraInfo?.hasFlashUnit() ?: false)
 				updateCameraViewSnapshot()
 			} catch (_: Exception) {
