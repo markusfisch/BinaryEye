@@ -62,6 +62,8 @@
 	<string name="info">关于</string>
 	<string name="switch_camera">切换摄像头</string>
 	<string name="default_camera">默认摄像头</string>
+	<string name="camera_intent">用作相机应用</string>
+	<string name="camera_intent_summary">为相机快捷方式（例如按两次电源键）提供 Binary Eye 选项。可用性取决于设备。适用于所有配置。</string>
 	<string name="default_camera_back">后置摄像头（默认）</string>
 	<string name="default_camera_front">前置摄像头</string>
 	<string name="default_camera_other">其他摄像头</string>

@@ -71,6 +71,8 @@
 	<string name="info">Info</string>
 	<string name="switch_camera">Cambia fotocamera</string>
 	<string name="default_camera">Fotocamera predefinita</string>
+	<string name="camera_intent">Usa come app fotocamera</string>
+	<string name="camera_intent_summary">Proponi Binary Eye per le scorciatoie della fotocamera, come premere due volte il pulsante di accensione. La disponibilità dipende dal dispositivo. Si applica a tutti i profili.</string>
 	<string name="default_camera_back">Fotocamera posteriore (predefinita)</string>
 	<string name="default_camera_front">Fotocamera anteriore</string>
 	<string name="default_camera_other">Altra fotocamera</string>

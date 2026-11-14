@@ -63,6 +63,8 @@
 	<string name="info">Информация</string>
 	<string name="switch_camera">Превключване на камерата</string>
 	<string name="default_camera">Камера по подразбиране</string>
+	<string name="camera_intent">Използване като приложение за камера</string>
+	<string name="camera_intent_summary">Предлага Binary Eye за преки пътища към камерата, като двойно натискане на бутона за включване. Наличността зависи от устройството. Важи за всички профили.</string>
 	<string name="default_camera_back">Задна камера (по подразбиране)</string>
 	<string name="default_camera_front">Предна камера</string>
 	<string name="default_camera_other">Друга камера</string>

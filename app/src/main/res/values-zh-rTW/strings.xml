@@ -62,6 +62,8 @@
 	<string name="info">關於</string>
 	<string name="switch_camera">切換相機</string>
 	<string name="default_camera">預設相機</string>
+	<string name="camera_intent">用作相機應用程式</string>
+	<string name="camera_intent_summary">為相機捷徑（例如按兩次電源鍵）提供 Binary Eye 選項。可用性取決於裝置。適用於所有設定檔。</string>
 	<string name="default_camera_back">後置相機（預設）</string>
 	<string name="default_camera_front">前置相機</string>
 	<string name="default_camera_other">其他相機</string>

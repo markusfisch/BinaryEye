@@ -67,6 +67,8 @@
 	<string name="info">معلومات</string>
 	<string name="switch_camera">تبديل الكاميرا</string>
 	<string name="default_camera">الكاميرا الافتراضية</string>
+	<string name="camera_intent">استخدام كتطبيق كاميرا</string>
+	<string name="camera_intent_summary">إتاحة Binary Eye لاختصارات الكاميرا، مثل الضغط مرتين على زر التشغيل. يعتمد التوفر على الجهاز. ينطبق على جميع الملفات الشخصية.</string>
 	<string name="default_camera_back">الكاميرا الخلفية (الافتراضية)</string>
 	<string name="default_camera_front">الكاميرا الأمامية</string>
 	<string name="default_camera_other">كاميرا أخرى</string>

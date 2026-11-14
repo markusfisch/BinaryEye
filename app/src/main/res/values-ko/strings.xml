@@ -62,6 +62,8 @@
 	<string name="info">정보</string>
 	<string name="switch_camera">카메라 전환</string>
 	<string name="default_camera">기본 카메라</string>
+	<string name="camera_intent">카메라 앱으로 사용</string>
+	<string name="camera_intent_summary">전원 버튼 두 번 누르기 등의 카메라 바로가기에 Binary Eye를 표시합니다. 사용 가능 여부는 기기에 따라 다릅니다. 모든 프로필에 적용됩니다.</string>
 	<string name="default_camera_back">후면 카메라(기본)</string>
 	<string name="default_camera_front">전면 카메라</string>
 	<string name="default_camera_other">다른 카메라</string>

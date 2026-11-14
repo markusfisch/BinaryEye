@@ -64,6 +64,8 @@
 	<string name="info">Información</string>
 	<string name="switch_camera">Cambiar cámara</string>
 	<string name="default_camera">Cámara predeterminada</string>
+	<string name="camera_intent">Usar como aplicación de cámara</string>
+	<string name="camera_intent_summary">Ofrecer Binary Eye para accesos directos a la cámara, como pulsar dos veces el botón de encendido. La disponibilidad depende del dispositivo. Se aplica a todos los perfiles.</string>
 	<string name="default_camera_back">Cámara trasera (predeterminada)</string>
 	<string name="default_camera_front">Cámara frontal</string>
 	<string name="default_camera_other">Otra cámara</string>

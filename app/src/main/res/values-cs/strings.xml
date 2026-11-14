@@ -65,6 +65,8 @@
 	<string name="info">Informace</string>
 	<string name="switch_camera">Přepnout kameru</string>
 	<string name="default_camera">Výchozí kamera</string>
+	<string name="camera_intent">Použít jako aplikaci fotoaparátu</string>
+	<string name="camera_intent_summary">Nabízet Binary Eye pro zkratky fotoaparátu, například dvojí stisknutí vypínače. Dostupnost závisí na zařízení. Platí pro všechny profily.</string>
 	<string name="default_camera_back">Zadní kamera (výchozí)</string>
 	<string name="default_camera_front">Přední kamera</string>
 	<string name="default_camera_other">Jiná kamera</string>

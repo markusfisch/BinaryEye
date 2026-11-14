@@ -64,6 +64,8 @@
 	<string name="info">Informations</string>
 	<string name="switch_camera">Changer de caméra</string>
 	<string name="default_camera">Appareil photo par défaut</string>
+	<string name="camera_intent">Utiliser comme application appareil photo</string>
+	<string name="camera_intent_summary">Proposer Binary Eye pour les raccourcis de l’appareil photo, comme une double pression sur le bouton Marche/Arrêt. La disponibilité dépend de l’appareil. S’applique à tous les profils.</string>
 	<string name="default_camera_back">Caméra arrière (par défaut)</string>
 	<string name="default_camera_front">Caméra avant</string>
 	<string name="default_camera_other">Autre caméra</string>

@@ -65,6 +65,8 @@
 	<string name="info">Инфо</string>
 	<string name="switch_camera">Переключить камеру</string>
 	<string name="default_camera">Камера по умолчанию</string>
+	<string name="camera_intent">Использовать как приложение камеры</string>
+	<string name="camera_intent_summary">Предлагать Binary Eye для быстрого запуска камеры, например двойным нажатием кнопки питания. Доступность зависит от устройства. Применяется ко всем профилям.</string>
 	<string name="default_camera_back">Задняя камера (по умолчанию)</string>
 	<string name="default_camera_front">Передняя камера</string>
 	<string name="default_camera_other">Другая камера</string>

@@ -63,6 +63,8 @@
 	<string name="info">Informatie</string>
 	<string name="switch_camera">Camera wisselen</string>
 	<string name="default_camera">Standaardcamera</string>
+	<string name="camera_intent">Als camera-app gebruiken</string>
+	<string name="camera_intent_summary">Bied Binary Eye aan voor camerasnelkoppelingen, zoals tweemaal op de aan/uit-knop drukken. Beschikbaarheid hangt af van het apparaat. Geldt voor alle profielen.</string>
 	<string name="default_camera_back">Camera achter (standaard)</string>
 	<string name="default_camera_front">Camera voor</string>
 	<string name="default_camera_other">Andere camera</string>

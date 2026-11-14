@@ -73,6 +73,8 @@
 	<string name="bulk_mode">Scan continuously</string>
 	<string name="bulk_mode_summary">Always start scanning continuously.</string>
 	<string name="default_camera">Default camera</string>
+	<string name="camera_intent">Use as camera app</string>
+	<string name="camera_intent_summary">Offer Binary Eye for camera shortcuts, such as pressing the power button twice. Availability depends on the device. Applies to all profiles.</string>
 	<string name="default_camera_back">Back camera (default)</string>
 	<string name="default_camera_front">Front camera</string>
 	<string name="default_camera_other">Other camera</string>

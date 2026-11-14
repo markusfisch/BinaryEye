@@ -63,6 +63,8 @@
 	<string name="info">Info</string>
 	<string name="switch_camera">Skift kamera</string>
 	<string name="default_camera">Standardkamera</string>
+	<string name="camera_intent">Brug som kameraapp</string>
+	<string name="camera_intent_summary">Tilbyd Binary Eye til kameragenveje, såsom dobbelttryk på tænd/sluk-knappen. Tilgængeligheden afhænger af enheden. Gælder alle profiler.</string>
 	<string name="default_camera_back">Bagkamera (standard)</string>
 	<string name="default_camera_front">Frontkamera</string>
 	<string name="default_camera_other">Andet kamera</string>
