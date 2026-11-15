@@ -121,7 +121,8 @@ class ScansAdapter(
 					name
 				}
 
-				text.isNullOrEmpty() -> getContentPreview(
+				text.isNullOrEmpty() ||
+					contentType == ParsedContentType.GS1_DATA -> getContentPreview(
 					context,
 					text ?: "",
 					raw ?: ByteArray(0),
