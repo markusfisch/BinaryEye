@@ -41,6 +41,15 @@ class ContentParserTest {
 	}
 
 	@Test
+	fun parsesLegacyHumanReadableValuesWithoutRawBytes() {
+		val text = hri.replace("LOT-7", "LOT(A)")
+		val parsed = parseData(context, text, ByteArray(0), "DataMatrix")
+
+		assertEquals(ParsedContentType.GS1_DATA, parsed.type)
+		assertEquals("LOT(A)", parsed.fields.first { it.key == R.string.gs1_batch }.value)
+	}
+
+	@Test
 	fun usesEditedBytesInsteadOfOriginalScanData() {
 		val edited = hri.replace("LOT-7", "EDITED")
 		val parsed = parseData(context, edited, edited.toByteArray(), "DataMatrix")

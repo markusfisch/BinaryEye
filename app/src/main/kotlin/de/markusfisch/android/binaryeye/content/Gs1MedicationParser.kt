@@ -13,7 +13,7 @@ data class Gs1Medication(
 
 /** Parses plain or human-readable GS1 data in medicine Data Matrix codes. */
 object Gs1MedicationParser {
-	private val element = Regex("\\((\\d{2,4})\\)([^()\\u001d]*)")
+	private val element = Regex("\\(([0-9]{2,4})\\)")
 	private const val GROUP_SEPARATOR = '\u001d'
 
 	fun parse(text: String, format: String): Gs1Medication? = parse(
@@ -42,25 +42,24 @@ object Gs1MedicationParser {
 
 	private fun parseHumanReadableElements(content: String): Map<String, String>? {
 		val matches = element.findAll(content).toList()
-		if (matches.isEmpty() ||
-			content.substring(0, matches.first().range.first).isNotEmpty()
-		) {
+		if (matches.isEmpty() || matches.first().range.first != 0) {
 			return null
 		}
-		if (matches.zipWithNext().any { (first, second) ->
-			content.substring(first.range.last + 1, second.range.first)
-				.any { it != GROUP_SEPARATOR }
-		}) {
-			return null
+		val elements = mutableMapOf<String, String>()
+		for ((index, match) in matches.withIndex()) {
+			val ai = match.groupValues[1]
+			if (ai in elements) {
+				return null
+			}
+			val end = matches.getOrNull(index + 1)?.range?.first ?: content.length
+			val value = content.substring(match.range.last + 1, end)
+				.trimEnd(GROUP_SEPARATOR)
+			if (GROUP_SEPARATOR in value) {
+				return null
+			}
+			elements[ai] = value
 		}
-		if (content.substring(matches.last().range.last + 1).isNotEmpty()) {
-			return null
-		}
-
-		return matches.associate { match ->
-			match.groupValues[1] to match.groupValues[2]
-		}
-			.takeIf { it.size == matches.size }
+		return elements
 	}
 
 	private fun parsePlainElements(content: String): Map<String, String>? {

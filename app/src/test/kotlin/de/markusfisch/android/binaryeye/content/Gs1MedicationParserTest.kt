@@ -173,6 +173,41 @@ class Gs1MedicationParserTest {
 		assertNull(parse("(01)09506000134352(17)261231(10)LOT(10)OTHER(21)SERIAL"))
 	}
 
+	@Test
+	fun preservesLiteralParenthesesInHumanReadableValues() {
+		val plain = "01095060001343521726123110LOT(A)\u001d21SER(B)\u001d710PZN(C)"
+		val hri = "(01)09506000134352(17)261231(10)LOT(A)(21)SER(B)(710)PZN(C)"
+		val expected = Gs1Medication(
+			"09506000134352",
+			"2026-12-31",
+			"LOT(A)",
+			"SER(B)",
+			mapOf("710" to "PZN(C)")
+		)
+
+		assertEquals(expected, parse(plain))
+		assertEquals(expected, parse(hri))
+	}
+
+	@Test
+	fun acceptsSeparatorsAfterHumanReadableElements() {
+		val hri = "(01)09506000134352\u001d(17)261231\u001d" +
+			"(10)LOT(A)\u001d(21)SERIAL\u001d"
+
+		assertEquals(
+			Gs1Medication("09506000134352", "2026-12-31", "LOT(A)", "SERIAL"),
+			parse(hri)
+		)
+	}
+
+	@Test
+	fun rejectsStrayTextAndSeparatorsInsideHumanReadableValues() {
+		val hri = "(01)09506000134352(17)261231(10)LOT(21)SERIAL"
+
+		assertNull(parse("STRAY" + hri))
+		assertNull(parse(hri.replace("LOT", "LO\u001dT")))
+	}
+
 	private fun parse(
 		text: String,
 		format: String = "DataMatrix",
