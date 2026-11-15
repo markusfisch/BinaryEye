@@ -73,7 +73,7 @@ fun parseData(
 	} else {
 		null
 	}
-	medication?.let {
+	if (medication != null) {
 		fields.addField(R.string.gs1_gtin, medication.gtin)
 		fields.addField(R.string.gs1_expiry, medication.expiry)
 		fields.addField(R.string.gs1_batch, medication.batch)
