@@ -116,6 +116,63 @@ class Gs1MedicationParserTest {
 		)
 	}
 
+	@Test
+	fun skipsAdditionalElementsWithoutLosingMedicationFields() {
+		val text = "01095060001343521126010117261231" +
+			"31020004004101234567890123" +
+			"240PRODUCT\u001d241CUSTOMER\u001d" +
+			"10LOT-7\u001d21SERIAL-9\u001d" +
+			"91" + "A".repeat(30) + "\u001d710PZN-123"
+
+		assertEquals(
+			Gs1Medication(
+				"09506000134352",
+				"2026-12-31",
+				"LOT-7",
+				"SERIAL-9",
+				mapOf("710" to "PZN-123")
+			),
+			parse(text)
+		)
+	}
+
+	@Test
+	fun validatesVariableFieldsInBothRepresentations() {
+		for (ai in listOf("10", "21", "710", "711", "712", "713", "714", "715")) {
+			for (value in listOf("", "A".repeat(21))) {
+				val elements = linkedMapOf(
+					"01" to "09506000134352",
+					"17" to "261231",
+					"10" to "LOT-7",
+					"21" to "SERIAL-9"
+				)
+				elements[ai] = value
+				val plain = elements.entries.joinToString("\u001d") { (key, data) ->
+					key + data
+				}
+				val hri = elements.entries.joinToString("") { (key, data) ->
+					"($key)$data"
+				}
+				assertNull("AI $ai, length ${value.length}, plain", parse(plain))
+				assertNull("AI $ai, length ${value.length}, HRI", parse(hri))
+			}
+		}
+	}
+
+	@Test
+	fun rejectsTruncatedOrSeparatedPredefinedElements() {
+		val text = "01095060001343521726123110LOT-7\u001d21SERIAL-9\u001d"
+
+		assertNull(parse(text + "112601"))
+		assertNull(parse(text + "1126\u001d0101"))
+	}
+
+	@Test
+	fun rejectsDuplicateMedicationElements() {
+		assertNull(parse("01095060001343521726123110LOT\u001d10OTHER\u001d21SERIAL"))
+		assertNull(parse("(01)09506000134352(17)261231(10)LOT(10)OTHER(21)SERIAL"))
+	}
+
 	private fun parse(
 		text: String,
 		format: String = "DataMatrix",

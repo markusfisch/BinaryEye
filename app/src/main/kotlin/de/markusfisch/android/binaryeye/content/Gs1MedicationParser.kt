@@ -27,7 +27,9 @@ object Gs1MedicationParser {
 		format: String,
 		currentYear: Int
 	): Gs1Medication? {
-		if (format != "DataMatrix") return null
+		if (format != "DataMatrix") {
+			return null
+		}
 
 		val content = text.removePrefix("]d2")
 		val elements = if (content.startsWith('(')) {
@@ -51,7 +53,9 @@ object Gs1MedicationParser {
 		}) {
 			return null
 		}
-		if (content.substring(matches.last().range.last + 1).isNotEmpty()) return null
+		if (content.substring(matches.last().range.last + 1).isNotEmpty()) {
+			return null
+		}
 
 		return matches.associate { match ->
 			match.groupValues[1] to match.groupValues[2]
@@ -67,7 +71,9 @@ object Gs1MedicationParser {
 				offset++
 				continue
 			}
-			if (offset + 2 > content.length) return null
+			if (offset + 2 > content.length) {
+				return null
+			}
 			val aiLength = if (content.startsWith("71", offset) &&
 				content.getOrNull(offset + 2)?.let { it in '0'..'5' } == true
 			) {
@@ -75,28 +81,37 @@ object Gs1MedicationParser {
 			} else {
 				2
 			}
-			if (offset + aiLength > content.length) return null
+			if (offset + aiLength > content.length) {
+				return null
+			}
 			val ai = content.substring(offset, offset + aiLength)
-			if (!ai.isAsciiDigits() || ai in elements) return null
+			if (!ai.isAsciiDigits() || ai in elements) {
+				return null
+			}
 			offset += aiLength
 
-			val length = when (ai) {
-				"01" -> 14
-				"17" -> 6
-				"10", "21" -> null
-				in nationalReimbursementAis -> null
-				else -> return if (hasMedicineIdentifiers(elements)) elements else null
-			}
+			// GS1 General Specifications, table 7-6: predefined lengths
+			// include the AI and depend only on its first two digits.
+			// All other element strings end at a separator or end of input.
+			val length = predefinedLength(ai.take(2))?.minus(aiLength)
 			val end = if (length != null) {
-				if (offset + length > content.length) return null
+				if (offset + length > content.length) {
+					return null
+				}
 				offset + length
 			} else {
 				val separator = content.indexOf(GROUP_SEPARATOR, offset)
 				if (separator < 0) content.length else separator
 			}
 			val value = content.substring(offset, end)
-			if (value.isEmpty() || (length == null && value.length > 20)) return null
-			elements[ai] = value
+			if (value.isEmpty() || GROUP_SEPARATOR in value) {
+				return null
+			}
+			if (ai == "01" || ai == "17" || ai == "10" || ai == "21" ||
+				ai in nationalReimbursementAis
+			) {
+				elements[ai] = value
+			}
 			offset = end
 		}
 		return elements
@@ -106,14 +121,18 @@ object Gs1MedicationParser {
 		elements: Map<String, String>,
 		currentYear: Int
 	): Gs1Medication? {
+		if (elements.any { (ai, value) ->
+			(ai == "10" || ai == "21" || ai in nationalReimbursementAis) &&
+				(value.isEmpty() || value.length > 20)
+		}) {
+			return null
+		}
 		val gtin = elements["01"]?.takeIf(::isValidGtin)
 			?: return null
 
 		val expiry = elements["17"]?.let { formatExpiry(it, currentYear) } ?: return null
-		val batch = elements["10"]?.takeIf { it.isNotEmpty() && it.length <= 20 }
-			?: return null
-		val serial = elements["21"]?.takeIf { it.isNotEmpty() && it.length <= 20 }
-			?: return null
+		val batch = elements["10"] ?: return null
+		val serial = elements["21"] ?: return null
 		return Gs1Medication(
 			gtin,
 			expiry,
@@ -127,11 +146,21 @@ object Gs1MedicationParser {
 		"710", "711", "712", "713", "714", "715"
 	)
 
-	private fun hasMedicineIdentifiers(elements: Map<String, String>) =
-		elements.keys.containsAll(setOf("01", "17", "10", "21"))
+	private fun predefinedLength(prefix: String): Int? = when (prefix) {
+		"00" -> 20
+		"01", "02", "03" -> 16
+		"04" -> 18
+		in "11".."19" -> 8
+		"20" -> 4
+		in "31".."36" -> 10
+		"41" -> 16
+		else -> null
+	}
 
 	private fun isValidGtin(value: String): Boolean {
-		if (value.length != 14 || !value.isAsciiDigits()) return false
+		if (value.length != 14 || !value.isAsciiDigits()) {
+			return false
+		}
 		val sum = value.dropLast(1).reversed().mapIndexed { index, digit ->
 			(digit - '0') * if (index % 2 == 0) 3 else 1
 		}.sum()
@@ -139,7 +168,9 @@ object Gs1MedicationParser {
 	}
 
 	private fun formatExpiry(value: String, currentYear: Int): String? {
-		if (value.length != 6 || !value.isAsciiDigits()) return null
+		if (value.length != 6 || !value.isAsciiDigits()) {
+			return null
+		}
 		val shortYear = value.substring(0, 2).toInt()
 		var year = currentYear / 100 * 100 + shortYear
 		if (year < currentYear - 49) {
@@ -149,8 +180,12 @@ object Gs1MedicationParser {
 		}
 		val month = value.substring(2, 4).toInt()
 		val day = value.substring(4, 6).toInt()
-		if (month !in 1..12 || day !in 0..31) return null
-		if (day != 0 && day > daysInMonth(year, month)) return null
+		if (month !in 1..12 || day !in 0..31) {
+			return null
+		}
+		if (day != 0 && day > daysInMonth(year, month)) {
+			return null
+		}
 		val actualDay = if (day == 0) daysInMonth(year, month) else day
 		return String.format(Locale.ROOT, "%04d-%02d-%02d", year, month, actualDay)
 	}
