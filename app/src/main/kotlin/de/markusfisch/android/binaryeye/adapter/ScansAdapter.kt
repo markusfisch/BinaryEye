@@ -14,6 +14,7 @@ import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.content.ParsedContentType
 import de.markusfisch.android.binaryeye.content.getContentPreview
+import de.markusfisch.android.binaryeye.content.parseData
 import de.markusfisch.android.binaryeye.content.parsedContentTypeFromName
 import de.markusfisch.android.binaryeye.database.Database
 import java.text.DateFormat
@@ -101,9 +102,24 @@ class ScansAdapter(
 		val id = cursor.getLong(idIndex)
 		val pinned = cursor.getInt(pinnedIndex) != 0
 		val format = cursor.getString(formatIndex)
-		val contentType = parsedContentTypeFromName(
+		val storedContentType = parsedContentTypeFromName(
 			cursor.getString(contentTypeIndex)
 		)
+		val text = cursor.getString(textIndex)
+		val raw = cursor.getBlob(rawIndex) ?: ByteArray(0)
+		val parsedData = if (format == "DataMatrix" &&
+			(storedContentType == ParsedContentType.UNKNOWN ||
+				storedContentType == ParsedContentType.GS1_DATA)
+		) {
+			parseData(context, text ?: "", raw, format)
+		} else {
+			null
+		}
+		val contentType = if (parsedData?.type == ParsedContentType.GS1_DATA) {
+			ParsedContentType.GS1_DATA
+		} else {
+			storedContentType
+		}
 		getViewHolder(view).apply {
 			metaView.text = formatDateTime(cursor.getString(timeIndex))
 			formatView.text = format.prettifyFormatName().withContentType(
@@ -112,8 +128,6 @@ class ScansAdapter(
 			)
 			formatIconView.setImageResource(format.toBarcodeIcon())
 			val name = cursor.getString(nameIndex)
-			val text = cursor.getString(textIndex)
-			val raw = cursor.getBlob(rawIndex)
 			var icon = 0
 			contentView.text = when {
 				name?.isNotEmpty() == true -> {
@@ -122,12 +136,13 @@ class ScansAdapter(
 				}
 
 				text.isNullOrEmpty() ||
-					contentType == ParsedContentType.GS1_DATA -> getContentPreview(
-					context,
-					text ?: "",
-					raw ?: ByteArray(0),
-					format
-				)
+					contentType == ParsedContentType.GS1_DATA ->
+					parsedData?.getContentPreview(text ?: "", raw) ?: getContentPreview(
+						context,
+						text ?: "",
+						raw,
+						format
+					)
 
 				else -> text
 			}

@@ -214,32 +214,37 @@ fun getContentPreview(
 	action: Action = ActionRegistry.getAction(bytes)
 ): CharSequence {
 	val parsedData = parseData(context, text, bytes, format, action)
-	return when (parsedData.type) {
-		ParsedContentType.UNKNOWN -> text.ifEmpty {
-			bytes.toHexString()
-		}
+	return parsedData.getContentPreview(text, bytes)
+}
 
-		ParsedContentType.URL -> parsedData.valueFor(R.string.host)
-			?: text
-
-		ParsedContentType.WIFI_NETWORK -> parsedData.valueFor(R.string.wifi_ssid)
-			?: parsedData.firstValue()
-			?: text
-
-		ParsedContentType.EMAIL -> parsedData.valueFor(R.string.email_to)
-			?: parsedData.valueFor(R.string.email_subject)
-			?: parsedData.firstValue()
-			?: text
-
-		ParsedContentType.OTP -> parsedData.valueFor(R.string.otp_account)
-			?: parsedData.firstValue()
-			?: text
-
-		ParsedContentType.GS1_DATA -> parsedData.valueFor(R.string.gs1_gtin)
-			?: text
-
-		else -> parsedData.firstValue() ?: text
+internal fun ParsedData.getContentPreview(
+	text: String,
+	bytes: ByteArray
+): CharSequence = when (type) {
+	ParsedContentType.UNKNOWN -> text.ifEmpty {
+		bytes.toHexString()
 	}
+
+	ParsedContentType.URL -> valueFor(R.string.host)
+		?: text
+
+	ParsedContentType.WIFI_NETWORK -> valueFor(R.string.wifi_ssid)
+		?: firstValue()
+		?: text
+
+	ParsedContentType.EMAIL -> valueFor(R.string.email_to)
+		?: valueFor(R.string.email_subject)
+		?: firstValue()
+		?: text
+
+	ParsedContentType.OTP -> valueFor(R.string.otp_account)
+		?: firstValue()
+		?: text
+
+	ParsedContentType.GS1_DATA -> valueFor(R.string.gs1_gtin)
+		?: text
+
+	else -> firstValue() ?: text
 }
 
 private fun ParsedData.valueFor(key: Int): CharSequence? =

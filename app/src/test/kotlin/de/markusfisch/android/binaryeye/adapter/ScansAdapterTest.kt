@@ -34,12 +34,31 @@ class ScansAdapterTest {
 	}
 
 	@Test
-	fun keepsLabelsAheadOfGs1Preview() {
-		cursor(hri, ParsedContentType.GS1_DATA, "My medicine").use { cursor ->
-			val adapter = ScansAdapter(context, cursor) { _, _ -> }
-			val view = bind(adapter, cursor)
+	fun recognizesGs1InLegacyUnknownHistoryEntries() {
+		for (text in listOf(plain, hri)) {
+			cursor(text, ParsedContentType.UNKNOWN).use { cursor ->
+				val adapter = ScansAdapter(context, cursor) { _, _ -> }
+				val view = bind(adapter, cursor)
 
-			assertEquals("My medicine", view.findViewById<TextView>(R.id.content).text.toString())
+				assertEquals("09506000134352", view.findViewById<TextView>(R.id.content).text.toString())
+				assertEquals(
+					context.getString(R.string.scan_meta_data, "Data Matrix", context.getString(R.string.parsed_type_gs1_data)),
+					view.findViewById<TextView>(R.id.format).text.toString()
+				)
+				assertEquals(text, adapter.getContent(0))
+			}
+		}
+	}
+
+	@Test
+	fun keepsLabelsAheadOfGs1Preview() {
+		for (type in listOf(ParsedContentType.GS1_DATA, ParsedContentType.UNKNOWN)) {
+			cursor(hri, type, "My medicine").use { cursor ->
+				val adapter = ScansAdapter(context, cursor) { _, _ -> }
+				val view = bind(adapter, cursor)
+
+				assertEquals("My medicine", view.findViewById<TextView>(R.id.content).text.toString())
+			}
 		}
 	}
 
