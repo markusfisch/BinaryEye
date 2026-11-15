@@ -14,6 +14,8 @@ data class Gs1Medication(
 /** Parses plain or human-readable GS1 data in medicine Data Matrix codes. */
 object Gs1MedicationParser {
 	private val element = Regex("\\(([0-9]{2,4})\\)")
+	// GS1 AI encodable character set 82, with at most 20 characters.
+	private val variableValue = Regex("[!\"%-?A-Z_a-z]{1,20}")
 	private const val GROUP_SEPARATOR = '\u001d'
 
 	fun parse(text: String, format: String): Gs1Medication? = parse(
@@ -122,7 +124,7 @@ object Gs1MedicationParser {
 	): Gs1Medication? {
 		if (elements.any { (ai, value) ->
 			(ai == "10" || ai == "21" || ai in nationalReimbursementAis) &&
-				(value.isEmpty() || value.length > 20)
+				!variableValue.matches(value)
 		}) {
 			return null
 		}

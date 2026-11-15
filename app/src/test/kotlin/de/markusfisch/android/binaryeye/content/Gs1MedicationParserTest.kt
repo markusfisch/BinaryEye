@@ -2,6 +2,7 @@ package de.markusfisch.android.binaryeye.content
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
+import org.junit.Assert.assertNotNull
 import org.junit.Test
 
 class Gs1MedicationParserTest {
@@ -206,6 +207,56 @@ class Gs1MedicationParserTest {
 
 		assertNull(parse("STRAY" + hri))
 		assertNull(parse(hri.replace("LOT", "LO\u001dT")))
+	}
+
+	@Test
+	fun rejectsInvalidCharactersInVariableMedicationFields() {
+		val invalidValues = listOf(
+			" ", "LOT 7", "\t", "\n", "\r", "\u0000", "\u007f",
+			"#", "$", "@", "[", "\\", "]", "^", "`", "{", "|", "}", "~",
+			"Ä", "\u00a0", "\u200b"
+		)
+		for (ai in listOf("10", "21", "710", "711", "712", "713", "714", "715")) {
+			for (value in invalidValues) {
+				for (humanReadable in listOf(false, true)) {
+					assertNull(
+						"AI $ai, value $value, HRI $humanReadable",
+						parse(medicationData(ai, value, humanReadable))
+					)
+				}
+			}
+		}
+	}
+
+	@Test
+	fun acceptsEveryGs1CharacterAndMaximumLengthValues() {
+		val characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
+			"abcdefghijklmnopqrstuvwxyz!\"%&'()*+,-./:;<=>?_"
+		for (ai in listOf("10", "21", "710", "711", "712", "713", "714", "715")) {
+			for (value in characters.map { it.toString() } + "A".repeat(20)) {
+				for (humanReadable in listOf(false, true)) {
+					assertNotNull(
+						"AI $ai, value $value, HRI $humanReadable",
+						parse(medicationData(ai, value, humanReadable))
+					)
+				}
+			}
+		}
+	}
+
+	private fun medicationData(ai: String, value: String, humanReadable: Boolean): String {
+		val elements = linkedMapOf(
+			"01" to "09506000134352",
+			"17" to "261231",
+			"10" to "LOT-7",
+			"21" to "SERIAL-9"
+		)
+		elements[ai] = value
+		return if (humanReadable) {
+			elements.entries.joinToString("") { (key, data) -> "($key)$data" }
+		} else {
+			elements.entries.joinToString("\u001d") { (key, data) -> key + data }
+		}
 	}
 
 	private fun parse(
