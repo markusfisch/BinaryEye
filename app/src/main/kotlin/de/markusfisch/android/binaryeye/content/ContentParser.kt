@@ -241,9 +241,6 @@ internal fun ParsedData.getContentPreview(
 		?: firstValue()
 		?: text
 
-	ParsedContentType.GS1_DATA -> valueFor(R.string.gs1_gtin)
-		?: text
-
 	else -> firstValue() ?: text
 }
 
