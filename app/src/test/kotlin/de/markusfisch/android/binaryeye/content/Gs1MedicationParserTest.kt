@@ -33,6 +33,17 @@ class Gs1MedicationParserTest {
 	}
 
 	@Test
+	fun parsesItalianAndCostaRicanNationalIdentifiers() {
+		for (ai in listOf("716", "717")) {
+			for (humanReadable in listOf(false, true)) {
+				val parsed = parse(medicationData(ai, "123456789", humanReadable))
+
+				assertEquals(mapOf(ai to "123456789"), parsed?.nationalIdentifiers)
+			}
+		}
+	}
+
+	@Test
 	fun parsesHumanReadableGs1Data() {
 		val text = "(01)09506000134352(17)261231(10)LOT-7(21)SERIAL-9"
 
@@ -139,7 +150,7 @@ class Gs1MedicationParserTest {
 
 	@Test
 	fun validatesVariableFieldsInBothRepresentations() {
-		for (ai in listOf("10", "21", "710", "711", "712", "713", "714", "715")) {
+		for (ai in listOf("10", "21", "710", "711", "712", "713", "714", "715", "716", "717")) {
 			for (value in listOf("", "A".repeat(21))) {
 				val elements = linkedMapOf(
 					"01" to "09506000134352",
@@ -216,7 +227,7 @@ class Gs1MedicationParserTest {
 			"#", "$", "@", "[", "\\", "]", "^", "`", "{", "|", "}", "~",
 			"Ä", "\u00a0", "\u200b"
 		)
-		for (ai in listOf("10", "21", "710", "711", "712", "713", "714", "715")) {
+		for (ai in listOf("10", "21", "710", "711", "712", "713", "714", "715", "716", "717")) {
 			for (value in invalidValues) {
 				for (humanReadable in listOf(false, true)) {
 					assertNull(
@@ -232,7 +243,7 @@ class Gs1MedicationParserTest {
 	fun acceptsEveryGs1CharacterAndMaximumLengthValues() {
 		val characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
 			"abcdefghijklmnopqrstuvwxyz!\"%&'()*+,-./:;<=>?_"
-		for (ai in listOf("10", "21", "710", "711", "712", "713", "714", "715")) {
+		for (ai in listOf("10", "21", "710", "711", "712", "713", "714", "715", "716", "717")) {
 			for (value in characters.map { it.toString() } + "A".repeat(20)) {
 				for (humanReadable in listOf(false, true)) {
 					assertNotNull(

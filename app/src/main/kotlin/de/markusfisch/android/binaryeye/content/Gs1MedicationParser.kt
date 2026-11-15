@@ -76,7 +76,7 @@ object Gs1MedicationParser {
 				return null
 			}
 			val aiLength = if (content.startsWith("71", offset) &&
-				content.getOrNull(offset + 2)?.let { it in '0'..'5' } == true
+				content.getOrNull(offset + 2)?.let { it in '0'..'7' } == true
 			) {
 				3
 			} else {
@@ -144,7 +144,7 @@ object Gs1MedicationParser {
 	}
 
 	private val nationalReimbursementAis = setOf(
-		"710", "711", "712", "713", "714", "715"
+		"710", "711", "712", "713", "714", "715", "716", "717"
 	)
 
 	private fun predefinedLength(prefix: String): Int? = when (prefix) {
