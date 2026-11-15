@@ -434,6 +434,12 @@
 	<string name="parsed_type_contact_card">Tarjeta de contacto</string>
 	<string name="parsed_type_calendar_event">Evento del calendario</string>
 	<string name="parsed_type_wifi_network">Red Wi-Fi</string>
+	<string name="parsed_type_gs1_data">Datos GS1 del medicamento</string>
+	<string name="gs1_gtin">GTIN</string>
+	<string name="gs1_expiry">Fecha de caducidad</string>
+	<string name="gs1_batch">Número de lote</string>
+	<string name="gs1_serial">Número de serie</string>
+	<string name="gs1_national_id">Identificador nacional</string>
 	<string name="formatted_json">JSON formateado</string>
 	<string name="appearance_category">Apariencia</string>
 	<string name="dynamic_colors">Colores dinámicos</string>

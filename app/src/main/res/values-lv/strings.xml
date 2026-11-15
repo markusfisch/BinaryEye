@@ -329,6 +329,12 @@
 	<string name="parsed_type_contact_card">Kontakta kartīte</string>
 	<string name="parsed_type_calendar_event">Kalendāra notikums</string>
 	<string name="parsed_type_wifi_network">Wi-Fi tīkls</string>
+	<string name="parsed_type_gs1_data">GS1 zāļu dati</string>
+	<string name="gs1_gtin">GTIN</string>
+	<string name="gs1_expiry">Derīguma termiņš</string>
+	<string name="gs1_batch">Sērijas numurs</string>
+	<string name="gs1_serial">Individuālais sērijas numurs</string>
+	<string name="gs1_national_id">Valsts identifikators</string>
 	<string name="format_description_aztec">2D matricas svītrkods, ko var nolasīt bez klusās zonas ap to. Bieži tiek izmantots transporta biļetēs un iekāpšanas kartēs.</string>
 	<string name="format_description_codabar">Lineārs svītrkods, ko kopš 1972. gada izmanto bibliotēkās, asins bankās un FedEx aviopavadzīmēs. Kodē ciparus un dažas speciālās rakstzīmes.</string>
 	<string name="format_description_code39">Mainīga garuma lineārs svītrkods, kas kodē lielos burtus, ciparus un dažus simbolus. Plaši izmantots autobūvē un aizsardzības nozarē.</string>

@@ -323,7 +323,7 @@
 	<string name="parsed_type_contact_card">Contact Card</string>
 	<string name="parsed_type_calendar_event">Calendar Event</string>
 	<string name="parsed_type_wifi_network">Wi-Fi network</string>
-	<string name="parsed_type_gs1_data">GS1 Data Matrix</string>
+	<string name="parsed_type_gs1_data">GS1 medication data</string>
 	<string name="gs1_gtin">GTIN</string>
 	<string name="gs1_expiry">Expiry date</string>
 	<string name="gs1_batch">Batch / lot</string>

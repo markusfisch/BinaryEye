@@ -443,7 +443,7 @@
 	<string name="parsed_type_contact_card">Karta kontaktu</string>
 	<string name="parsed_type_calendar_event">Wydarzenie kalendarza</string>
 	<string name="parsed_type_wifi_network">Sieć Wi-Fi</string>
-	<string name="parsed_type_gs1_data">Dane GS1 (Data Matrix)</string>
+	<string name="parsed_type_gs1_data">Dane GS1 leku</string>
 	<string name="gs1_gtin">GTIN</string>
 	<string name="gs1_expiry">Termin ważności</string>
 	<string name="gs1_batch">Numer serii</string>

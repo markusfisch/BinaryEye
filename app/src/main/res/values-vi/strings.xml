@@ -431,6 +431,12 @@
 	<string name="parsed_type_contact_card">Thẻ liên hệ</string>
 	<string name="parsed_type_calendar_event">Sự kiện lịch</string>
 	<string name="parsed_type_wifi_network">Mạng Wi-Fi</string>
+	<string name="parsed_type_gs1_data">Dữ liệu thuốc GS1</string>
+	<string name="gs1_gtin">GTIN</string>
+	<string name="gs1_expiry">Ngày hết hạn</string>
+	<string name="gs1_batch">Số lô</string>
+	<string name="gs1_serial">Số sê-ri</string>
+	<string name="gs1_national_id">Mã định danh quốc gia</string>
 	<string name="formatted_json">JSON đã định dạng</string>
 	<string name="appearance_category">Giao diện</string>
 	<string name="dynamic_colors">Màu động</string>

@@ -323,6 +323,12 @@
 	<string name="parsed_type_contact_card">Scheda contatto</string>
 	<string name="parsed_type_calendar_event">Evento calendario</string>
 	<string name="parsed_type_wifi_network">Rete Wi-Fi</string>
+	<string name="parsed_type_gs1_data">Dati GS1 del medicinale</string>
+	<string name="gs1_gtin">GTIN</string>
+	<string name="gs1_expiry">Data di scadenza</string>
+	<string name="gs1_batch">Numero di lotto</string>
+	<string name="gs1_serial">Numero di serie</string>
+	<string name="gs1_national_id">Identificativo nazionale</string>
 	<string name="format_description_aztec">Un codice a barre matriciale 2D leggibile senza zona silenziosa intorno. Spesso usato per biglietti di trasporto e carte d\'imbarco.</string>
 	<string name="format_description_codabar">Un codice a barre lineare usato in biblioteche, banche del sangue e bolle di accompagnamento FedEx dal 1972. Codifica cifre numeriche e alcuni caratteri speciali.</string>
 	<string name="format_description_code39">Un codice a barre lineare a lunghezza variabile che codifica lettere maiuscole, cifre e alcuni simboli. Ampiamente usato nell\'automotive e nella difesa.</string>

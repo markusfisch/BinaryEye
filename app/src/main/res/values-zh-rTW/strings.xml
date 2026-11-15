@@ -431,6 +431,12 @@
 	<string name="parsed_type_contact_card">聯絡人卡片</string>
 	<string name="parsed_type_calendar_event">行事曆事件</string>
 	<string name="parsed_type_wifi_network">Wi-Fi 網路</string>
+	<string name="parsed_type_gs1_data">GS1 藥品資料</string>
+	<string name="gs1_gtin">GTIN</string>
+	<string name="gs1_expiry">有效期限</string>
+	<string name="gs1_batch">批號</string>
+	<string name="gs1_serial">序號</string>
+	<string name="gs1_national_id">國家識別碼</string>
 	<string name="formatted_json">格式化的 JSON</string>
 	<string name="appearance_category">外觀</string>
 	<string name="dynamic_colors">動態顏色</string>
