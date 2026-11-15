@@ -67,12 +67,7 @@ fun parseData(
 		return ParsedData(ParsedContentType.DEUTSCHE_POST, fields)
 	}
 
-	val medication = if (format == "DataMatrix") {
-		Gs1MedicationParser.parse(bytes.toString(Charsets.ISO_8859_1), format)
-			?: Gs1MedicationParser.parse(text, format)
-	} else {
-		null
-	}
+	val medication = Gs1MedicationParser.parse(text, bytes, format)
 	if (medication != null) {
 		fields.addField(R.string.gs1_gtin, medication.gtin)
 		fields.addField(R.string.gs1_expiry, medication.expiry)

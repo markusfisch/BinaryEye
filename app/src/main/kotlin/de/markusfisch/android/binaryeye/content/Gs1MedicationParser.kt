@@ -18,6 +18,14 @@ object Gs1MedicationParser {
 	private val variableValue = Regex("[!\"%-?A-Z_a-z]{1,20}")
 	private const val GROUP_SEPARATOR = '\u001d'
 
+	fun parse(text: String, bytes: ByteArray, format: String): Gs1Medication? {
+		if (format != "DataMatrix") {
+			return null
+		}
+		return parse(bytes.toString(Charsets.ISO_8859_1), format)
+			?: parse(text, format)
+	}
+
 	fun parse(text: String, format: String): Gs1Medication? = parse(
 		text,
 		format,

@@ -12,9 +12,9 @@ import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
 import de.markusfisch.android.binaryeye.R
+import de.markusfisch.android.binaryeye.content.Gs1MedicationParser
 import de.markusfisch.android.binaryeye.content.ParsedContentType
 import de.markusfisch.android.binaryeye.content.getContentPreview
-import de.markusfisch.android.binaryeye.content.parseData
 import de.markusfisch.android.binaryeye.content.parsedContentTypeFromName
 import de.markusfisch.android.binaryeye.database.Database
 import java.text.DateFormat
@@ -107,15 +107,14 @@ class ScansAdapter(
 		)
 		val text = cursor.getString(textIndex)
 		val raw = cursor.getBlob(rawIndex) ?: ByteArray(0)
-		val parsedData = if (format == "DataMatrix" &&
-			(storedContentType == ParsedContentType.UNKNOWN ||
-				storedContentType == ParsedContentType.GS1_DATA)
+		val medication = if (storedContentType == ParsedContentType.UNKNOWN ||
+			storedContentType == ParsedContentType.GS1_DATA
 		) {
-			parseData(context, text ?: "", raw, format)
+			Gs1MedicationParser.parse(text ?: "", raw, format)
 		} else {
 			null
 		}
-		val contentType = if (parsedData?.type == ParsedContentType.GS1_DATA) {
+		val contentType = if (medication != null) {
 			ParsedContentType.GS1_DATA
 		} else {
 			storedContentType
@@ -135,9 +134,11 @@ class ScansAdapter(
 					name
 				}
 
+				medication != null -> medication.gtin
+
 				text.isNullOrEmpty() ||
 					contentType == ParsedContentType.GS1_DATA ->
-					parsedData?.getContentPreview(text ?: "", raw) ?: getContentPreview(
+					getContentPreview(
 						context,
 						text ?: "",
 						raw,

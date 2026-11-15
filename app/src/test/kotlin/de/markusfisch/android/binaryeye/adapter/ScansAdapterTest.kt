@@ -23,7 +23,7 @@ class ScansAdapterTest {
 	@Test
 	fun showsGtinForGs1TextAndPreservesStoredContent() {
 		for (text in listOf(plain, hri)) {
-			cursor(text, ParsedContentType.GS1_DATA).use { cursor ->
+			cursor(text, ParsedContentType.GS1_DATA, raw = text.toByteArray()).use { cursor ->
 				val adapter = ScansAdapter(context, cursor) { _, _ -> }
 				val view = bind(adapter, cursor)
 
@@ -36,7 +36,7 @@ class ScansAdapterTest {
 	@Test
 	fun recognizesGs1InLegacyUnknownHistoryEntries() {
 		for (text in listOf(plain, hri)) {
-			cursor(text, ParsedContentType.UNKNOWN).use { cursor ->
+			cursor(text, ParsedContentType.UNKNOWN, raw = ByteArray(0)).use { cursor ->
 				val adapter = ScansAdapter(context, cursor) { _, _ -> }
 				val view = bind(adapter, cursor)
 
