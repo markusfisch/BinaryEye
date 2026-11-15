@@ -40,7 +40,6 @@ import de.markusfisch.android.binaryeye.widget.ConfinedScalingImageView
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.zxingcpp.ZxingCpp
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
-import de.markusfisch.android.zxingcpp.ZxingCpp.TextMode
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -583,8 +582,7 @@ private fun readAndAddToHistory(
 			tryInvert = true,
 			tryDownscale = true,
 			maxNumberOfSymbols = 1,
-			formats = setOf(format),
-			textMode = TextMode.PLAIN
+			formats = setOf(format)
 		)
 	)?.first {
 		val scan = it.toScan()

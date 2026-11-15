@@ -32,7 +32,6 @@ import de.markusfisch.android.zxingcpp.ZxingCpp
 import de.markusfisch.android.zxingcpp.ZxingCpp.Binarizer
 import de.markusfisch.android.zxingcpp.ZxingCpp.ReaderOptions
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
-import de.markusfisch.android.zxingcpp.ZxingCpp.TextMode
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -52,8 +51,7 @@ class PickActivity : AppCompatActivity() {
 		tryInvert = true,
 		tryDownscale = true,
 		maxNumberOfSymbols = 1,
-		formats = prefs.barcodeFormats.toFormatSet(),
-		textMode = TextMode.PLAIN
+		formats = prefs.barcodeFormats.toFormatSet()
 	)
 
 	private var cropImageView: CropImageView? = null
