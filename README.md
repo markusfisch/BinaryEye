@@ -105,6 +105,75 @@ Supported symbols are:
 * `RESULT_BYTES` - raw result as a hex string
 * `FORMAT` - barcode format
 
+#### Continuous scanning
+
+Add `continuous=true` to keep scanning after each barcode. This applies only
+to the current session and does not change the continuous-scanning preference.
+
+| Parameter | Meaning in continuous mode |
+| --- | --- |
+| `continuous=true` | Keep the scanner open after each scan. |
+| `callback` | Optional URL-encoded HTTP(S) endpoint receiving one JSON POST per scan. |
+| `ret` | Optional URL-encoded URI opened when scanning ends, without substituting scan placeholders. |
+
+For example (both nested URLs must be URL-encoded):
+
+```text
+binaryeye://scan?continuous=true&callback=https%3A%2F%2Fexample.com%2Fscans%3Fsession%3D123&ret=https%3A%2F%2Fexample.com%2Fresults%3Fsession%3D123
+```
+
+Binary Eye asks for confirmation of the callback destination before scanning.
+Use HTTPS for remote endpoints. Credentials in the URL's user-info component
+and URL fragments are not supported. Authentication or a session identifier can
+be supplied through the endpoint's query parameters. The requests do not share
+the browser's cookies or execute JavaScript, so the endpoint must accept POST
+requests directly; an ordinary results page is not sufficient.
+
+Each request has `Content-Type: application/json; charset=utf-8`. The JSON uses
+the same fields as JSON scan forwarding, with an additional `scanId` UUID:
+
+```json
+{
+  "content": "Hello world",
+  "raw": "48656c6c6f20776f726c64",
+  "format": "QRCode",
+  "scanId": "e1577ea7-f5ee-4ee3-905b-77134d58343d"
+}
+```
+
+`content` is the decoded text (empty for binary content), `raw` contains the
+raw bytes in hexadecimal, and `format` is the barcode format. Additional fields
+include `timestamp`, `sequenceSize`, `sequenceIndex`, `sequenceId`, and optional
+barcode metadata such as `errorCorrectionLevel` and `version`. All field values
+are strings; unavailable optional fields are omitted. The callback does not
+include the device ID from forwarding preferences.
+
+The next scan is enabled only after a **2xx** response. Redirects are not
+followed. Other status codes, connection failures, and timeouts pause scanning
+and display an error. Choose **Send again** to retry the pending result or
+**Cancel** to end the session without delivering it. Requests use a five-second
+connection timeout and a ten-second read timeout. Pending results survive
+screen rotation and are included in Android's saved instance state; this is
+not a durable offline delivery queue.
+
+Retries preserve the JSON body and `scanId`. Since a timeout can occur after
+the server has accepted a request, receivers should deduplicate by `scanId`.
+Sending individual scans avoids accumulating a batch in a return URL.
+
+Choose **Finish scanning** or press Back to end the session and open `ret`, if
+provided. While a request is in progress, wait for its response before ending
+the session. `ret` is a navigation target, not a delivery confirmation; after
+cancelling a failed request, that scan may be missing from the results page.
+The server can associate scans with a session using a query parameter in
+`callback`, as in the example above.
+
+Without `callback`, continuous scanning uses the existing history and
+forwarding settings, and no results are delivered automatically to the caller.
+Existing forwarding and automation settings also remain active when a callback
+is supplied. No forwarding configuration is required for callbacks. Without
+`continuous=true`, the existing single-scan behavior is unchanged and `callback`
+is ignored.
+
 ### Encoding
 
 1. [binaryeye://encode](binaryeye://encode)

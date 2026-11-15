@@ -63,6 +63,8 @@
 	<string name="info">Információ</string>
 	<string name="switch_camera">Kamera átkapcsolása</string>
 	<string name="default_camera">Alapértelmezett kamera</string>
+	<string name="camera_intent">Használat kameraalkalmazásként</string>
+	<string name="camera_intent_summary">A Binary Eye felajánlása a kamera gyorsindításához, például a bekapcsológomb kétszeri megnyomásakor. Az elérhetőség az eszköztől függ. Minden profilra érvényes.</string>
 	<string name="default_camera_back">Hátlapi kamera (alapértelmezett)</string>
 	<string name="default_camera_front">Előlapi kamera</string>
 	<string name="default_camera_other">Másik kamera</string>
@@ -444,4 +446,6 @@
 	<string name="dynamic_colors">Dinamikus színek</string>
 	<string name="dynamic_colors_summary">Rendszerszínek használata az alkalmazás témájához. Android 12 vagy újabb szükséges.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">Beolvasás befejezése</string>
+	<string name="send_again">Újraküldés</string>
 </resources>

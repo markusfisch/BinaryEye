@@ -1,6 +1,7 @@
 package de.markusfisch.android.binaryeye.net
 
 import android.net.Uri
+import androidx.core.net.toUri
 
 private const val SCHEME = "binaryeye"
 private const val HOSTNAME = "markusfisch.de"
@@ -11,6 +12,19 @@ fun isScanDeeplink(text: String) = listOf(
 	"http://$HOSTNAME/BinaryEye",
 	"https://$HOSTNAME/BinaryEye"
 ).any { text.startsWith(it) }
+
+fun isContinuousScanDeeplink(text: String) =
+	isScanDeeplink(text) &&
+		text.toUri().getQueryParameter("continuous") == "true"
+
+fun isHttpCallback(url: String): Boolean = try {
+	val uri = java.net.URI(url)
+	(uri.scheme == "https" || uri.scheme == "http") &&
+		!uri.host.isNullOrEmpty() && uri.rawUserInfo == null &&
+		uri.rawFragment == null && (uri.port == -1 || uri.port in 1..65535)
+} catch (_: java.net.URISyntaxException) {
+	false
+}
 
 fun isEncodeDeeplink(text: String) = listOf(
 	"$SCHEME://$ENCODE_PATH",

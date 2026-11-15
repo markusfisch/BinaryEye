@@ -65,6 +65,8 @@
 	<string name="info">Інфо</string>
 	<string name="switch_camera">Переключити камеру</string>
 	<string name="default_camera">Камера за замовчуванням</string>
+	<string name="camera_intent">Використовувати як застосунок камери</string>
+	<string name="camera_intent_summary">Пропонувати Binary Eye для швидкого запуску камери, наприклад подвійним натисканням кнопки живлення. Доступність залежить від пристрою. Застосовується до всіх профілів.</string>
 	<string name="default_camera_back">Задня камера (за замовчуванням)</string>
 	<string name="default_camera_front">Передня камера</string>
 	<string name="default_camera_other">Інша камера</string>
@@ -454,4 +456,6 @@
 	<string name="dynamic_colors">Динамічні кольори</string>
 	<string name="dynamic_colors_summary">Використовувати системні кольори для теми додатку. Потрібен Android 12 або новіший.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">Завершити сканування</string>
+	<string name="send_again">Надіслати знову</string>
 </resources>

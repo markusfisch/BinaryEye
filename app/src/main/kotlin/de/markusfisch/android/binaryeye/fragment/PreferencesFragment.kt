@@ -1,10 +1,12 @@
 package de.markusfisch.android.binaryeye.fragment
 
 import android.app.Activity
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
+import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
 import android.net.wifi.WifiManager
@@ -20,6 +22,7 @@ import androidx.preference.MultiSelectListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceGroup
+import androidx.preference.SwitchPreferenceCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.activity.AutomatedActionsActivity
@@ -104,6 +107,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 
 		wireBeepTonePicker()
 		setDefaultCameras()
+		wireCameraIntent()
 		wireProfiles()
 		wireAutomatedActions()
 		wireIgnoreCodes()
@@ -111,6 +115,31 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		wireClearNetworkPreferences()
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
 			findPreference<PreferenceGroup>("appearance_category")?.isVisible = false
+		}
+	}
+
+	private fun wireCameraIntent() {
+		findPreference<SwitchPreferenceCompat>(CAMERA_INTENT)?.apply {
+			val context = requireContext()
+			val manager = context.packageManager
+			val component = ComponentName(
+				context,
+				"de.markusfisch.android.binaryeye.activity.CameraIntentActivity"
+			)
+			isChecked = manager.getComponentEnabledSetting(component) ==
+				PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+			onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _, value ->
+				manager.setComponentEnabledSetting(
+					component,
+					if (value == true) {
+						PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+					} else {
+						PackageManager.COMPONENT_ENABLED_STATE_DISABLED
+					},
+					PackageManager.DONT_KILL_APP
+				)
+				true
+			}
 		}
 	}
 
@@ -357,6 +386,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		setIcon("try_harder", R.drawable.ic_action_search)
 		setIcon("bulk_mode", R.drawable.ic_action_bulk_mode)
 		setIcon(DEFAULT_CAMERA, R.drawable.ic_action_switch_camera)
+		setIcon(CAMERA_INTENT, R.drawable.ic_action_switch_camera)
 		setIcon("bulk_mode_delay", R.drawable.ic_action_delay)
 		setIcon("show_toast_in_bulk_mode", R.drawable.ic_action_toast)
 		setIcon("vibrate", R.drawable.ic_action_vibrate)
@@ -501,6 +531,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 		private const val CUSTOM_LOCALE = "custom_locale"
 		private const val DYNAMIC_COLORS = "dynamic_colors"
 		private const val DEFAULT_CAMERA = "default_camera"
+		private const val CAMERA_INTENT = "camera_intent"
 		private const val IGNORE_CODES = "ignore_codes"
 		private const val SEND_SCAN_BLUETOOTH = "send_scan_bluetooth"
 		private const val SEND_SCAN_BLUETOOTH_HOST = "send_scan_bluetooth_host"

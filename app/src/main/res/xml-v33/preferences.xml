@@ -44,6 +44,11 @@
 			android:key="bulk_mode"
 			android:title="@string/bulk_mode"
 			android:summary="@string/bulk_mode_summary"/>
+		<androidx.preference.SwitchPreferenceCompat
+			android:key="camera_intent"
+			android:persistent="false"
+			android:title="@string/camera_intent"
+			android:summary="@string/camera_intent_summary"/>
 		<ListPreference
 			android:key="default_camera"
 			android:title="@string/default_camera"

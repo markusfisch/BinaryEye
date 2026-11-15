@@ -63,6 +63,8 @@
 	<string name="info">Info</string>
 	<string name="switch_camera">Kamera wechseln</string>
 	<string name="default_camera">Standardkamera</string>
+	<string name="camera_intent">Als Kamera-App verwenden</string>
+	<string name="camera_intent_summary">Binary Eye für Kamera-Schnellstarts anbieten, etwa durch zweimaliges Drücken der Ein-/Aus-Taste. Verfügbarkeit hängt vom Gerät ab. Gilt für alle Profile.</string>
 	<string name="default_camera_back">Rückkamera (Standard)</string>
 	<string name="default_camera_front">Frontkamera</string>
 	<string name="default_camera_other">Andere Kamera</string>
@@ -444,4 +446,6 @@
 	<string name="dynamic_colors">Dynamische Farben</string>
 	<string name="dynamic_colors_summary">Systemfarben für das App-Design verwenden. Erfordert Android 12 oder höher.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">Scannen beenden</string>
+	<string name="send_again">Erneut senden</string>
 </resources>

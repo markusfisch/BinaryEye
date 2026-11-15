@@ -64,6 +64,8 @@
 	<string name="info">Información</string>
 	<string name="switch_camera">Cambiar cámara</string>
 	<string name="default_camera">Cámara predeterminada</string>
+	<string name="camera_intent">Usar como aplicación de cámara</string>
+	<string name="camera_intent_summary">Ofrecer Binary Eye para accesos directos a la cámara, como pulsar dos veces el botón de encendido. La disponibilidad depende del dispositivo. Se aplica a todos los perfiles.</string>
 	<string name="default_camera_back">Cámara trasera (predeterminada)</string>
 	<string name="default_camera_front">Cámara frontal</string>
 	<string name="default_camera_other">Otra cámara</string>
@@ -445,4 +447,6 @@
 	<string name="dynamic_colors">Colores dinámicos</string>
 	<string name="dynamic_colors_summary">Usar los colores del sistema para el tema de la aplicación. Requiere Android 12 o posterior.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">Finalizar escaneo</string>
+	<string name="send_again">Enviar de nuevo</string>
 </resources>

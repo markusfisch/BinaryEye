@@ -64,6 +64,8 @@
 	<string name="info">Informations</string>
 	<string name="switch_camera">Changer de caméra</string>
 	<string name="default_camera">Appareil photo par défaut</string>
+	<string name="camera_intent">Utiliser comme application appareil photo</string>
+	<string name="camera_intent_summary">Proposer Binary Eye pour les raccourcis de l’appareil photo, comme une double pression sur le bouton Marche/Arrêt. La disponibilité dépend de l’appareil. S’applique à tous les profils.</string>
 	<string name="default_camera_back">Caméra arrière (par défaut)</string>
 	<string name="default_camera_front">Caméra avant</string>
 	<string name="default_camera_other">Autre caméra</string>
@@ -445,4 +447,6 @@
 	<string name="dynamic_colors">Couleurs dynamiques</string>
 	<string name="dynamic_colors_summary">Utiliser les couleurs du système pour le thème de l\'application. Nécessite Android 12 ou version ultérieure.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">Terminer la lecture</string>
+	<string name="send_again">Renvoyer</string>
 </resources>

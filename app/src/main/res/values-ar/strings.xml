@@ -67,6 +67,8 @@
 	<string name="info">معلومات</string>
 	<string name="switch_camera">تبديل الكاميرا</string>
 	<string name="default_camera">الكاميرا الافتراضية</string>
+	<string name="camera_intent">استخدام كتطبيق كاميرا</string>
+	<string name="camera_intent_summary">إتاحة Binary Eye لاختصارات الكاميرا، مثل الضغط مرتين على زر التشغيل. يعتمد التوفر على الجهاز. ينطبق على جميع الملفات الشخصية.</string>
 	<string name="default_camera_back">الكاميرا الخلفية (الافتراضية)</string>
 	<string name="default_camera_front">الكاميرا الأمامية</string>
 	<string name="default_camera_other">كاميرا أخرى</string>
@@ -464,4 +466,6 @@
 	<string name="dynamic_colors">الألوان الديناميكية</string>
 	<string name="dynamic_colors_summary">استخدام ألوان النظام لسمة التطبيق. يتطلب Android 12 أو أحدث.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">إنهاء المسح</string>
+	<string name="send_again">إرسال مرة أخرى</string>
 </resources>

@@ -62,6 +62,8 @@
 	<string name="info">Informazioni</string>
 	<string name="switch_camera">Ganti kamera</string>
 	<string name="default_camera">Kamera default</string>
+	<string name="camera_intent">Gunakan sebagai aplikasi kamera</string>
+	<string name="camera_intent_summary">Tawarkan Binary Eye untuk pintasan kamera, seperti menekan tombol daya dua kali. Ketersediaan bergantung pada perangkat. Berlaku untuk semua profil.</string>
 	<string name="default_camera_back">Kamera belakang (default)</string>
 	<string name="default_camera_front">Kamera depan</string>
 	<string name="default_camera_other">Kamera lain</string>
@@ -442,4 +444,6 @@
 	<string name="dynamic_colors">Warna dinamis</string>
 	<string name="dynamic_colors_summary">Gunakan warna sistem untuk tema aplikasi. Memerlukan Android 12 atau lebih tinggi.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">Selesaikan pemindaian</string>
+	<string name="send_again">Kirim ulang</string>
 </resources>

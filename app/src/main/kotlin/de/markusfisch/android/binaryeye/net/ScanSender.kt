@@ -1,9 +1,10 @@
 package de.markusfisch.android.binaryeye.net
 
-import android.content.Context
+import androidx.fragment.app.FragmentActivity
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.content.openUrl
 import de.markusfisch.android.binaryeye.database.Scan
+import de.markusfisch.android.binaryeye.fragment.withLocalNetworkPermission
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,7 +24,7 @@ private const val SEND_TYPE_POST_FORM = "2"
 private const val SEND_TYPE_POST_JSON = "3"
 private const val SEND_TYPE_EXTERNAL_BROWSER = "4"
 
-fun Context.sendAsync(
+fun FragmentActivity.sendAsync(
 	scan: Scan,
 	url: String = prefs.sendScanUrl,
 	type: String = prefs.sendScanType,
@@ -36,10 +37,13 @@ fun Context.sendAsync(
 		openUrl(buildUrl(url, scan.asUrlArguments(extras)))
 		return
 	}
-	CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
-		val response = scan.send(url, type, extras) ?: return@launch
-		withContext(Dispatchers.Main) {
-			callback(response.code, response.body)
+	withLocalNetworkPermission {
+		// Public destinations remain accessible if permission is denied.
+		CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
+			val response = scan.send(url, type, extras) ?: return@launch
+			withContext(Dispatchers.Main) {
+				callback(response.code, response.body)
+			}
 		}
 	}
 }
@@ -99,7 +103,7 @@ private fun Scan.asUrlArguments(
 	"${k}=${v.urlEncode()}"
 }.joinToString("&")
 
-private fun Scan.asJson(
+internal fun Scan.asJson(
 	extras: Map<String, String>
 ) = JSONObject().apply {
 	getMap(extras).forEach { (k, v) -> put(k, v) }
@@ -126,12 +130,16 @@ private fun Map<String, String?>.filterNullValues() =
 
 private fun request(
 	url: String,
+	followRedirects: Boolean = true,
+	readTimeout: Int = 0,
 	writer: ((HttpURLConnection) -> Any)? = null
 ): Response {
 	var con: HttpURLConnection? = null
 	return try {
 		con = URL(url).openConnection() as HttpURLConnection
 		con.connectTimeout = 5000
+		con.readTimeout = readTimeout
+		con.instanceFollowRedirects = followRedirects
 		writer?.invoke(con)
 		val body = con.inputStream.readHead()
 		Response(con.responseCode, body)
@@ -163,4 +171,20 @@ private fun InputStream.readHead(): String {
 	return sb.toString()
 }
 
-private data class Response(val code: Int?, val body: String?)
+internal data class Response(val code: Int?, val body: String?)
+
+internal fun postScanCallback(
+	url: String,
+	payload: String,
+	readTimeout: Int = 10000
+): Response = try {
+	request(url, followRedirects = false, readTimeout = readTimeout) { con ->
+		con.requestMethod = "POST"
+		con.doOutput = true
+		con.useCaches = false
+		con.setRequestProperty("Content-Type", "application/json; charset=utf-8")
+		con.outputStream.use { it.write(payload.toByteArray(Charsets.UTF_8)) }
+	}
+} catch (e: SecurityException) {
+	Response(null, e.message)
+}

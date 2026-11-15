@@ -134,6 +134,8 @@
 	<string name="error_encoding_barcode">Svītrkodu nevar izveidot</string>
 	<string name="switch_camera">Pārslēgt kameru</string>
 	<string name="default_camera">Noklusējuma kamera</string>
+	<string name="camera_intent">Izmantot kā kameras lietotni</string>
+	<string name="camera_intent_summary">Piedāvāt Binary Eye kameras saīsnēm, piemēram, divreiz nospiežot ieslēgšanas pogu. Pieejamība ir atkarīga no ierīces. Attiecas uz visiem profiliem.</string>
 	<string name="default_camera_back">Aizmugurējā kamera (noklusējuma)</string>
 	<string name="default_camera_front">Priekšējā kamera</string>
 	<string name="default_camera_other">Cita kamera</string>
@@ -449,4 +451,6 @@
 	<string name="dynamic_colors">Dinamiskas krāsas</string>
 	<string name="dynamic_colors_summary">Izmantot sistēmas krāsas lietotnes motīvam. Nepieciešams Android 12 vai jaunāks.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">Beigt skenēšanu</string>
+	<string name="send_again">Sūtīt vēlreiz</string>
 </resources>

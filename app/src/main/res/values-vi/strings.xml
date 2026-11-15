@@ -62,6 +62,8 @@
 	<string name="info">Thông tin</string>
 	<string name="switch_camera">Đổi camera</string>
 	<string name="default_camera">Camera mặc định</string>
+	<string name="camera_intent">Dùng làm ứng dụng máy ảnh</string>
+	<string name="camera_intent_summary">Đề xuất Binary Eye cho các phím tắt máy ảnh, chẳng hạn như nhấn nút nguồn hai lần. Khả năng sử dụng tùy thuộc vào thiết bị. Áp dụng cho mọi hồ sơ.</string>
 	<string name="default_camera_back">Camera sau (mặc định)</string>
 	<string name="default_camera_front">Camera trước</string>
 	<string name="default_camera_other">Camera khác</string>
@@ -442,4 +444,6 @@
 	<string name="dynamic_colors">Màu động</string>
 	<string name="dynamic_colors_summary">Sử dụng màu hệ thống cho giao diện ứng dụng. Yêu cầu Android 12 trở lên.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">Kết thúc quét</string>
+	<string name="send_again">Gửi lại</string>
 </resources>

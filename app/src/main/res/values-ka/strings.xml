@@ -63,6 +63,8 @@
 	<string name="info">ინფორმაცია</string>
 	<string name="switch_camera">კამერის გადართვა</string>
 	<string name="default_camera">ნაგულისხმევი კამერა</string>
+	<string name="camera_intent">კამერის აპად გამოყენება</string>
+	<string name="camera_intent_summary">Binary Eye-ის შეთავაზება კამერის მალსახმობებისთვის, მაგალითად ჩართვის ღილაკზე ორჯერ დაჭერისას. ხელმისაწვდომობა დამოკიდებულია მოწყობილობაზე. ვრცელდება ყველა პროფილზე.</string>
 	<string name="default_camera_back">უკანა კამერა (ნაგულისხმევი)</string>
 	<string name="default_camera_front">წინა კამერა</string>
 	<string name="default_camera_other">სხვა კამერა</string>
@@ -444,4 +446,6 @@
 	<string name="dynamic_colors">დინამიური ფერები</string>
 	<string name="dynamic_colors_summary">გამოიყენეთ სისტემის ფერები აპლიკაციის თემისთვის. საჭიროა Android 12 ან უფრო ახალი.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">სკანირების დასრულება</string>
+	<string name="send_again">ხელახლა გაგზავნა</string>
 </resources>

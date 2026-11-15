@@ -103,6 +103,8 @@
 	<string name="show_meta_data_summary">Pokaż dodatkowe dane o zeskanowanym kodzie kreskowym.</string>
 	<string name="switch_camera">Przełącz aparat</string>
 	<string name="default_camera">Domyślny aparat</string>
+	<string name="camera_intent">Używaj jako aplikacji aparatu</string>
+	<string name="camera_intent_summary">Udostępniaj Binary Eye dla skrótów aparatu, takich jak dwukrotne naciśnięcie przycisku zasilania. Dostępność zależy od urządzenia. Dotyczy wszystkich profili.</string>
 	<string name="default_camera_back">Tylny aparat (domyślny)</string>
 	<string name="default_camera_front">Przedni aparat</string>
 	<string name="default_camera_other">Inny aparat</string>
@@ -454,4 +456,6 @@
 	<string name="dynamic_colors">Dynamiczne kolory</string>
 	<string name="dynamic_colors_summary">Używaj kolorów systemu dla motywu aplikacji. Wymaga systemu Android 12 lub nowszego.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">Zakończ skanowanie</string>
+	<string name="send_again">Wyślij ponownie</string>
 </resources>

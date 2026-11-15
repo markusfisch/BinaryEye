@@ -73,6 +73,8 @@
 	<string name="bulk_mode">Scan continuously</string>
 	<string name="bulk_mode_summary">Always start scanning continuously.</string>
 	<string name="default_camera">Default camera</string>
+	<string name="camera_intent">Use as camera app</string>
+	<string name="camera_intent_summary">Offer Binary Eye for camera shortcuts, such as pressing the power button twice. Availability depends on the device. Applies to all profiles.</string>
 	<string name="default_camera_back">Back camera (default)</string>
 	<string name="default_camera_front">Front camera</string>
 	<string name="default_camera_other">Other camera</string>
@@ -443,4 +445,6 @@
 	<string name="dynamic_colors">Dynamic colors</string>
 	<string name="dynamic_colors_summary">Use system colors for the app theme. Requires Android 12 or later.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">Finish scanning</string>
+	<string name="send_again">Send again</string>
 </resources>

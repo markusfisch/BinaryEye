@@ -63,6 +63,8 @@
 	<string name="info">اطّلاعات</string>
 	<string name="switch_camera">تغییر دوربین</string>
 	<string name="default_camera">دوربین پیش‌فرض</string>
+	<string name="camera_intent">استفاده به‌عنوان برنامهٔ دوربین</string>
+	<string name="camera_intent_summary">ارائهٔ Binary Eye برای میان‌برهای دوربین، مانند دو بار فشردن دکمهٔ روشن/خاموش. دسترس‌پذیری به دستگاه بستگی دارد. برای همهٔ نمایه‌ها اعمال می‌شود.</string>
 	<string name="default_camera_back">دوربین پشت (پیش‌فرض)</string>
 	<string name="default_camera_front">دوربین جلو</string>
 	<string name="default_camera_other">دوربین دیگر</string>
@@ -444,4 +446,6 @@
 	<string name="dynamic_colors">رنگ‌های پویا</string>
 	<string name="dynamic_colors_summary">استفاده از رنگ‌های سیستم برای پوسته برنامه. نیاز به Android 12 یا بالاتر دارد.</string>
 	<string name="automated_action_list_format">%1$s (%2$s)</string>
+	<string name="finish_scanning">پایان اسکن</string>
+	<string name="send_again">ارسال دوباره</string>
 </resources>
