@@ -455,6 +455,12 @@
 	<string name="parsed_type_contact_card">بطاقة جهة اتصال</string>
 	<string name="parsed_type_calendar_event">حدث تقويمي</string>
 	<string name="parsed_type_wifi_network">شبكة واي فاي</string>
+	<string name="parsed_type_gs1_data">بيانات الدواء GS1</string>
+	<string name="gs1_gtin">GTIN</string>
+	<string name="gs1_expiry">تاريخ انتهاء الصلاحية</string>
+	<string name="gs1_batch">رقم التشغيلة</string>
+	<string name="gs1_serial">الرقم التسلسلي</string>
+	<string name="gs1_national_id">المعرّف الوطني</string>
 	<string name="formatted_json">JSON منسق</string>
 	<string name="appearance_category">المظهر</string>
 	<string name="dynamic_colors">الألوان الديناميكية</string>

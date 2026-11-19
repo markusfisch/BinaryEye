@@ -435,6 +435,12 @@
 	<string name="parsed_type_contact_card">Карта за контакт</string>
 	<string name="parsed_type_calendar_event">Събитие в календара</string>
 	<string name="parsed_type_wifi_network">Wi-Fi мрежа</string>
+	<string name="parsed_type_gs1_data">GS1 данни за лекарство</string>
+	<string name="gs1_gtin">GTIN</string>
+	<string name="gs1_expiry">Срок на годност</string>
+	<string name="gs1_batch">Номер на партида</string>
+	<string name="gs1_serial">Сериен номер</string>
+	<string name="gs1_national_id">Национален идентификатор</string>
 	<string name="formatted_json">Форматиран JSON</string>
 	<string name="appearance_category">Външен вид</string>
 	<string name="dynamic_colors">Динамични цветове</string>

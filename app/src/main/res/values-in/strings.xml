@@ -433,6 +433,12 @@
 	<string name="parsed_type_contact_card">Kartu kontak</string>
 	<string name="parsed_type_calendar_event">Acara kalender</string>
 	<string name="parsed_type_wifi_network">Jaringan Wi-Fi</string>
+	<string name="parsed_type_gs1_data">Data obat GS1</string>
+	<string name="gs1_gtin">GTIN</string>
+	<string name="gs1_expiry">Tanggal kedaluwarsa</string>
+	<string name="gs1_batch">Nomor bets</string>
+	<string name="gs1_serial">Nomor seri</string>
+	<string name="gs1_national_id">Pengenal nasional</string>
 	<string name="formatted_json">JSON terformat</string>
 	<string name="appearance_category">Tampilan</string>
 	<string name="dynamic_colors">Warna dinamis</string>

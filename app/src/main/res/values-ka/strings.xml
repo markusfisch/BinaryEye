@@ -435,6 +435,12 @@
 	<string name="parsed_type_contact_card">საკონტაქტო ბარათი</string>
 	<string name="parsed_type_calendar_event">კალენდრის მოვლენა</string>
 	<string name="parsed_type_wifi_network">Wi-Fi ქსელი</string>
+	<string name="parsed_type_gs1_data">მედიკამენტის GS1 მონაცემები</string>
+	<string name="gs1_gtin">GTIN</string>
+	<string name="gs1_expiry">ვარგისიანობის ვადა</string>
+	<string name="gs1_batch">პარტიის ნომერი</string>
+	<string name="gs1_serial">სერიული ნომერი</string>
+	<string name="gs1_national_id">ეროვნული იდენტიფიკატორი</string>
 	<string name="formatted_json">დაფორმატებული JSON</string>
 	<string name="appearance_category">გარეგნობა</string>
 	<string name="dynamic_colors">დინამიური ფერები</string>

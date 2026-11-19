@@ -34,7 +34,8 @@ enum class ParsedContentType(
 	OTP(R.string.parsed_type_otp),
 	CONTACT_CARD(R.string.parsed_type_contact_card),
 	CALENDAR_EVENT(R.string.parsed_type_calendar_event),
-	WIFI_NETWORK(R.string.parsed_type_wifi_network);
+	WIFI_NETWORK(R.string.parsed_type_wifi_network),
+	GS1_DATA(R.string.parsed_type_gs1_data);
 }
 
 data class ParsedData(
@@ -64,6 +65,18 @@ fun parseData(
 			it.link,
 		)
 		return ParsedData(ParsedContentType.DEUTSCHE_POST, fields)
+	}
+
+	val medication = Gs1MedicationParser.parse(text, bytes, format)
+	if (medication != null) {
+		fields.addField(R.string.gs1_gtin, medication.gtin)
+		fields.addField(R.string.gs1_expiry, medication.expiry)
+		fields.addField(R.string.gs1_batch, medication.batch)
+		fields.addField(R.string.gs1_serial, medication.serial)
+		medication.nationalIdentifiers.forEach { (ai, value) ->
+			fields.addField(R.string.gs1_national_id, "AI $ai: $value")
+		}
+		return ParsedData(ParsedContentType.GS1_DATA, fields)
 	}
 
 	try {
@@ -196,29 +209,34 @@ fun getContentPreview(
 	action: Action = ActionRegistry.getAction(bytes)
 ): CharSequence {
 	val parsedData = parseData(context, text, bytes, format, action)
-	return when (parsedData.type) {
-		ParsedContentType.UNKNOWN -> text.ifEmpty {
-			bytes.toHexString()
-		}
+	return parsedData.getContentPreview(text, bytes)
+}
 
-		ParsedContentType.URL -> parsedData.valueFor(R.string.host)
-			?: text
-
-		ParsedContentType.WIFI_NETWORK -> parsedData.valueFor(R.string.wifi_ssid)
-			?: parsedData.firstValue()
-			?: text
-
-		ParsedContentType.EMAIL -> parsedData.valueFor(R.string.email_to)
-			?: parsedData.valueFor(R.string.email_subject)
-			?: parsedData.firstValue()
-			?: text
-
-		ParsedContentType.OTP -> parsedData.valueFor(R.string.otp_account)
-			?: parsedData.firstValue()
-			?: text
-
-		else -> parsedData.firstValue() ?: text
+internal fun ParsedData.getContentPreview(
+	text: String,
+	bytes: ByteArray
+): CharSequence = when (type) {
+	ParsedContentType.UNKNOWN -> text.ifEmpty {
+		bytes.toHexString()
 	}
+
+	ParsedContentType.URL -> valueFor(R.string.host)
+		?: text
+
+	ParsedContentType.WIFI_NETWORK -> valueFor(R.string.wifi_ssid)
+		?: firstValue()
+		?: text
+
+	ParsedContentType.EMAIL -> valueFor(R.string.email_to)
+		?: valueFor(R.string.email_subject)
+		?: firstValue()
+		?: text
+
+	ParsedContentType.OTP -> valueFor(R.string.otp_account)
+		?: firstValue()
+		?: text
+
+	else -> firstValue() ?: text
 }
 
 private fun ParsedData.valueFor(key: Int): CharSequence? =

@@ -28,6 +28,10 @@ android {
 		test.java.srcDirs += 'src/test/kotlin'
 	}
 
+	testOptions {
+		unitTests.includeAndroidResources = true
+	}
+
 	buildTypes {
 		debug {
 			applicationIdSuffix '.debug'

@@ -435,6 +435,12 @@
 	<string name="parsed_type_contact_card">Kişi kartı</string>
 	<string name="parsed_type_calendar_event">Takvim etkinliği</string>
 	<string name="parsed_type_wifi_network">Wi-Fi ağı</string>
+	<string name="parsed_type_gs1_data">GS1 ilaç verileri</string>
+	<string name="gs1_gtin">GTIN</string>
+	<string name="gs1_expiry">Son kullanma tarihi</string>
+	<string name="gs1_batch">Parti numarası</string>
+	<string name="gs1_serial">Seri numarası</string>
+	<string name="gs1_national_id">Ulusal tanımlayıcı</string>
 	<string name="formatted_json">Biçimlendirilmiş JSON</string>
 	<string name="appearance_category">Görünüm</string>
 	<string name="dynamic_colors">Dinamik renkler</string>
