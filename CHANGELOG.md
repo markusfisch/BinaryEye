@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.76.1
+* Make Wi-Fi hardware optional
+
 ## 1.76.0
 * Add GS1 medication parsing support
 * Add opt-in support for camera shortcuts

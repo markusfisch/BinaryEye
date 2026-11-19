@@ -1,0 +1,2 @@
+* Make Wi-Fi hardware optional
+
