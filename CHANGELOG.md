@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.76.0
+* Add GS1 medication parsing support
+* Add opt-in support for camera shortcuts
+
 ## 1.75.7
 * Support continuous scan deep links
 

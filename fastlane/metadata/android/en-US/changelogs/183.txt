@@ -1,0 +1,3 @@
+* Add GS1 medication parsing support
+* Add opt-in support for camera shortcuts
+
