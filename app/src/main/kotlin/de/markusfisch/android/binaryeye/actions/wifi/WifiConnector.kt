@@ -2,6 +2,7 @@ package de.markusfisch.android.binaryeye.actions.wifi
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.wifi.WifiConfiguration
 import android.net.wifi.WifiEnterpriseConfig
 import android.net.wifi.WifiManager
@@ -58,6 +59,10 @@ object WifiConnector {
 	}
 
 	fun addNetwork(context: Context, config: Any): Boolean {
+		if (!context.packageManager.hasSystemFeature(PackageManager.FEATURE_WIFI)) {
+			return false
+		}
+
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
 			config is WifiNetworkSuggestion.Builder
 		) {
@@ -67,7 +72,7 @@ object WifiConnector {
 
 		val wifiManager = context.applicationContext.getSystemService(
 			Context.WIFI_SERVICE
-		) as WifiManager
+		) as? WifiManager ?: return false
 		// WifiConfiguration is deprecated in Android Q.
 		@Suppress("DEPRECATION")
 		return (config is WifiConfiguration &&

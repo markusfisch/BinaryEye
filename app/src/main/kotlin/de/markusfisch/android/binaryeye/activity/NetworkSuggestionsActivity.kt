@@ -24,7 +24,11 @@ class NetworkSuggestionsActivity : AbstractBaseActivity() {
 
 		val wm = applicationContext.getSystemService(
 			Context.WIFI_SERVICE
-		) as WifiManager
+		) as? WifiManager
+		if (wm == null) {
+			finish()
+			return
+		}
 		val suggestionArrayAdapter = ArrayAdapter(
 			this,
 			android.R.layout.simple_list_item_checked,

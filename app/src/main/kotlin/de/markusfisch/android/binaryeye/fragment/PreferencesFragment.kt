@@ -223,7 +223,9 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 
 	private fun wireClearNetworkPreferences() {
 		findPreference<Preference>(CLEAR_NETWORK_SUGGESTIONS)?.apply {
-			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
+			if (!context.packageManager.hasSystemFeature(PackageManager.FEATURE_WIFI)) {
+				isVisible = false
+			} else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
 				// From R+ we can query past network suggestions and
 				// make them editable.
 				setOnPreferenceClickListener {
@@ -552,7 +554,7 @@ private fun Activity.restartApp() {
 }
 
 @RequiresApi(Build.VERSION_CODES.Q)
-private fun Context.removeAllNetworkSuggestions(): Int =
+private fun Context.removeAllNetworkSuggestions(): Int? =
 	(applicationContext.getSystemService(
 		Context.WIFI_SERVICE
-	) as WifiManager).removeNetworkSuggestions(listOf())
+	) as? WifiManager)?.removeNetworkSuggestions(listOf())
