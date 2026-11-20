@@ -73,20 +73,14 @@ private fun Cursor.toCsvRecord(
 	indices: List<Int>,
 	delimiter: String,
 	deviation: Pair<Int, String>?
-): ByteArray {
-	val sb = StringBuilder()
-	indices.forEach {
-		val value = if (deviation?.first == it) {
-			deviation.second
-		} else {
-			this.getString(it)
-		}
-		sb.append(value?.quoteAndEscape() ?: "")
-		sb.append(delimiter)
+): ByteArray = indices.joinToString(delimiter, postfix = "\n") {
+	val value = if (deviation?.first == it) {
+		deviation.second
+	} else {
+		getString(it)
 	}
-	sb.append("\n")
-	return sb.toString().toByteArray()
-}
+	value?.quoteAndEscape() ?: ""
+}.toByteArray()
 
 private fun String.quoteAndEscape(): String {
 	val first = firstOrNull()
@@ -100,6 +94,6 @@ private fun String.quoteAndEscape(): String {
 	} else {
 		""
 	}
-	val escaped = replace("\n", " ").replace("\"", "\"\"")
+	val escaped = replace("\"", "\"\"")
 	return "\"$prefix$escaped\""
 }
