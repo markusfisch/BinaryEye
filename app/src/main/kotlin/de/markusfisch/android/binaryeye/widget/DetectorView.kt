@@ -178,7 +178,12 @@ class DetectorView : View {
 			MotionEvent.ACTION_CANCEL -> {
 				if (handleGrabbed) {
 					snap(x, y)
+					if (handleActive) {
+						updateClipRect()
+						invalidate()
+					}
 					handleGrabbed = false
+					onRoiChanged?.invoke()
 				}
 				false
 			}

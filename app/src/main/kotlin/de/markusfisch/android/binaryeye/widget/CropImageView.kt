@@ -12,6 +12,9 @@ class CropImageView(context: Context, attr: AttributeSet) :
 	var onScan: (() -> Unit)? = null
 
 	private val lastMappedRect = RectF()
+	private var lastRotation = Float.NaN
+	private var lastPivotX = Float.NaN
+	private var lastPivotY = Float.NaN
 	private val onScanRunnable = Runnable { onScan?.invoke() }
 
 	fun getBoundsRect() = Rect(
@@ -24,10 +27,18 @@ class CropImageView(context: Context, attr: AttributeSet) :
 	override fun onDraw(canvas: Canvas) {
 		super.onDraw(canvas)
 		val mr = mappedRect ?: return
-		if (mr != lastMappedRect) {
+		val rotation = imageRotation
+		val x = pivotX
+		val y = pivotY
+		if (mr != lastMappedRect || rotation != lastRotation ||
+			x != lastPivotX || y != lastPivotY
+		) {
 			removeCallbacks(onScanRunnable)
 			postDelayed(onScanRunnable, 300)
 			lastMappedRect.set(mr)
+			lastRotation = rotation
+			lastPivotX = x
+			lastPivotY = y
 		}
 	}
 }

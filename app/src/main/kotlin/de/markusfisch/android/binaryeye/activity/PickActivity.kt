@@ -43,22 +43,15 @@ import kotlin.math.min
 import kotlin.math.roundToInt
 
 class PickActivity : AppCompatActivity() {
-	private val matrix = Matrix()
 	private val parentJob = Job()
 	private val scope = CoroutineScope(Dispatchers.IO + parentJob)
-	private val options = ReaderOptions(
-		tryHarder = true,
-		tryRotate = true,
-		tryInvert = true,
-		tryDownscale = true,
-		maxNumberOfSymbols = 1,
-		formats = prefs.barcodeFormats.toFormatSet()
-	)
+	private val formats = prefs.barcodeFormats.toFormatSet()
+	private var scanJob: Job? = null
 
 	private var cropImageView: CropImageView? = null
 	private var detectorView: DetectorView? = null
 	private var freeRotationItem: MenuItem? = null
-	private var result: Result? = null
+	private var result: Pair<Crop, Result>? = null
 
 	override fun attachBaseContext(base: Context?) {
 		base?.applyLocale(prefs.customLocale)
@@ -130,21 +123,33 @@ class PickActivity : AppCompatActivity() {
 		null
 	}
 
+	private data class Crop(
+		val roi: Rect,
+		val image: RectF,
+		val rotation: Float,
+		val pivotX: Float,
+		val pivotY: Float
+	)
+
+	private fun DetectorView.currentCrop(): Crop? {
+		val civ = cropImageView ?: return null
+		val image = civ.mappedRect ?: return null
+		return Crop(
+			if (roi.width() < 1) civ.getBoundsRect() else Rect(roi),
+			RectF(image),
+			civ.imageRotation,
+			civ.pivotX,
+			civ.pivotY
+		)
+	}
+
 	private fun scanWithinBounds(bitmap: Bitmap) {
 		val dv = detectorView ?: return
-		val civ = cropImageView ?: return
-		val viewRoi = Rect(
-			if (dv.roi.width() < 1) {
-				civ.getBoundsRect()
-			} else {
-				dv.roi
-			}
-		)
-		val mappedRect = RectF(civ.mappedRect)
-		val imageRotation = civ.imageRotation
-		val pivotX = civ.pivotX
-		val pivotY = civ.pivotY
-		scope.launch {
+		val crop = dv.currentCrop() ?: return
+		val (viewRoi, mappedRect, imageRotation, pivotX, pivotY) = crop
+		result = null
+		scanJob?.cancel()
+		scanJob = scope.launch {
 			val cropped = bitmap.crop(
 				getNormalizedRoi(mappedRect, viewRoi),
 				imageRotation,
@@ -157,7 +162,7 @@ class PickActivity : AppCompatActivity() {
 				min(viewRoi.right, mappedRect.right.roundToInt()),
 				min(viewRoi.bottom, mappedRect.bottom.roundToInt())
 			)
-			matrix.apply {
+			val matrix = Matrix().apply {
 				setScale(
 					croppedInView.width().toFloat() / cropped.width,
 					croppedInView.height().toFloat() / cropped.height
@@ -167,12 +172,12 @@ class PickActivity : AppCompatActivity() {
 					croppedInView.top.toFloat()
 				)
 			}
-			cropped.decode()?.first()?.let {
+			cropped.decode()?.firstOrNull()?.let {
 				withContext(Dispatchers.Main) {
-					if (isFinishing) {
+					if (isFinishing || crop != dv.currentCrop()) {
 						return@withContext
 					}
-					result = it
+					result = crop to it
 					scanFeedback()
 					dv.update(
 						matrix.mapPosition(
@@ -187,23 +192,23 @@ class PickActivity : AppCompatActivity() {
 
 	// By default, ZXing uses LOCAL_AVERAGE, but this does not work
 	// well with inverted barcodes on low-contrast backgrounds.
-	private fun Bitmap.decode() = ZxingCpp.readBitmap(
-		this,
-		0, 0,
-		width, height,
-		0,
-		options.apply {
-			binarizer = Binarizer.LOCAL_AVERAGE
-		}
-	) ?: ZxingCpp.readBitmap(
-		this,
-		0, 0,
-		width, height,
-		0,
-		options.apply {
-			binarizer = Binarizer.GLOBAL_HISTOGRAM
-		}
-	)
+	private fun Bitmap.decode() = run {
+		val options = ReaderOptions(
+			tryHarder = true,
+			tryRotate = true,
+			tryInvert = true,
+			tryDownscale = true,
+			maxNumberOfSymbols = 1,
+			formats = formats
+		)
+		ZxingCpp.readBitmap(
+			this, 0, 0, width, height, 0,
+			options.apply { binarizer = Binarizer.LOCAL_AVERAGE }
+		) ?: ZxingCpp.readBitmap(
+			this, 0, 0, width, height, 0,
+			options.apply { binarizer = Binarizer.GLOBAL_HISTOGRAM }
+		)
+	}
 
 	override fun onDestroy() {
 		super.onDestroy()
@@ -264,7 +269,7 @@ class PickActivity : AppCompatActivity() {
 	}
 
 	private fun showResult() {
-		val r = result
+		val r = result?.takeIf { (crop, _) -> crop == detectorView?.currentCrop() }?.second
 		// Keep this activity alive while permission is requested, so the
 		// pending scan can be forwarded before finishing.
 		if (r != null && prefs.sendScanActive &&
