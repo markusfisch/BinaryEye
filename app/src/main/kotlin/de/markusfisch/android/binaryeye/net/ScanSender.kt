@@ -10,13 +10,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
-import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
-import java.net.ProtocolException
 import java.net.URL
+
+private const val READ_TIMEOUT_MS = 10_000
+private const val RESPONSE_PREVIEW_LENGTH = 240
 
 private const val SEND_TYPE_GET_ADD_CONTENT = "0"
 private const val SEND_TYPE_GET_QUERY_STRING = "1"
@@ -131,7 +132,8 @@ private fun Map<String, String?>.filterNullValues() =
 private fun request(
 	url: String,
 	followRedirects: Boolean = true,
-	readTimeout: Int = 0,
+	readTimeout: Int = READ_TIMEOUT_MS,
+	readSuccessBody: Boolean = true,
 	writer: ((HttpURLConnection) -> Any)? = null
 ): Response {
 	var con: HttpURLConnection? = null
@@ -141,34 +143,40 @@ private fun request(
 		con.readTimeout = readTimeout
 		con.instanceFollowRedirects = followRedirects
 		writer?.invoke(con)
-		val body = con.inputStream.readHead()
-		Response(con.responseCode, body)
-	} catch (e: ProtocolException) {
-		Response(null, e.message)
-	} catch (e: IOException) {
-		try {
-			val body = con?.errorStream?.readHead() ?: e.message
-			Response(con?.responseCode, body)
-		} catch (e: IOException) {
-			Response(null, e.message)
+		val code = con.responseCode
+		if (code == -1) {
+			return Response(null, null)
 		}
+		val body = try {
+			when {
+				code >= 400 -> con.errorStream?.readHead(readTimeout)
+				code in 200..299 && !readSuccessBody -> null
+				else -> con.inputStream.readHead(readTimeout)
+			}
+		} catch (e: IOException) {
+			e.message
+		}
+		Response(code, body)
+	} catch (e: IOException) {
+		Response(null, e.message)
 	} finally {
 		con?.disconnect()
 	}
 }
 
-private fun InputStream.readHead(): String {
-	val sb = StringBuilder()
-	val br = BufferedReader(InputStreamReader(this))
-	var line = br.readLine()
-	var i = 0
-	while (line != null && sb.length < 240) {
-		sb.append(line)
-		line = br.readLine()
-		++i
+private fun InputStream.readHead(timeout: Int): String = InputStreamReader(this).use { reader ->
+	val deadline = System.nanoTime() + timeout * 1_000_000L
+	val preview = StringBuilder()
+	repeat(RESPONSE_PREVIEW_LENGTH) {
+		val character = reader.read()
+		if (character == -1 || System.nanoTime() - deadline >= 0) {
+			return@use preview.toString()
+		}
+		if (character != '\r'.code && character != '\n'.code) {
+			preview.append(character.toChar())
+		}
 	}
-	br.close()
-	return sb.toString()
+	preview.toString()
 }
 
 internal data class Response(val code: Int?, val body: String?)
@@ -176,9 +184,14 @@ internal data class Response(val code: Int?, val body: String?)
 internal fun postScanCallback(
 	url: String,
 	payload: String,
-	readTimeout: Int = 10000
+	readTimeout: Int = READ_TIMEOUT_MS
 ): Response = try {
-	request(url, followRedirects = false, readTimeout = readTimeout) { con ->
+	request(
+		url,
+		followRedirects = false,
+		readTimeout = readTimeout,
+		readSuccessBody = false
+	) { con ->
 		con.requestMethod = "POST"
 		con.doOutput = true
 		con.useCaches = false

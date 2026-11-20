@@ -58,6 +58,29 @@ class ScanCallbackTest {
 	}
 
 	@Test
+	fun ignoresSuccessfulResponseBody() {
+		server.createContext("/body") { exchange ->
+			exchange.requestBody.use { it.readBytes() }
+			val body = "unused".toByteArray()
+			exchange.sendResponseHeaders(200, body.size.toLong())
+			exchange.responseBody.use { it.write(body) }
+		}
+		assertEquals(Response(200, null), postScanCallback(url.replace("/scan", "/body"), "{}"))
+	}
+
+	@Test
+	fun truncatesLongErrorLine() {
+		server.createContext("/error") { exchange ->
+			exchange.requestBody.use { it.readBytes() }
+			val body = "x".repeat(1000).toByteArray()
+			exchange.sendResponseHeaders(400, body.size.toLong())
+			exchange.responseBody.use { it.write(body) }
+		}
+		val response = postScanCallback(url.replace("/scan", "/error"), "{}")
+		assertEquals(Response(400, "x".repeat(240)), response)
+	}
+
+	@Test
 	fun doesNotFollowRedirects() {
 		responseCode = 302
 		assertEquals(302, postScanCallback(url, "{}").code)
