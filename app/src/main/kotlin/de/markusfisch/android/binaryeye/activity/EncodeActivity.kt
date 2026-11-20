@@ -16,6 +16,8 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.net.toUri
+import androidx.core.widget.doAfterTextChanged
+import androidx.lifecycle.lifecycleScope
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.adapter.prettifyFormatName
 import de.markusfisch.android.binaryeye.adapter.toFormatDescriptionResId
@@ -26,8 +28,12 @@ import de.markusfisch.android.binaryeye.view.hideSoftKeyboard
 import de.markusfisch.android.binaryeye.view.setPaddingFromWindowInsets
 import de.markusfisch.android.binaryeye.widget.toast
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.IOException
 import java.io.InputStream
-import kotlin.math.min
 
 class EncodeActivity : AbstractBaseActivity() {
 	private lateinit var formatView: Spinner
@@ -70,6 +76,7 @@ class EncodeActivity : AbstractBaseActivity() {
 	)
 
 	private var bytes: ByteArray? = null
+	private var fileImport: Job? = null
 
 	override fun onActivityResult(
 		requestCode: Int,
@@ -85,10 +92,27 @@ class EncodeActivity : AbstractBaseActivity() {
 				) {
 					hideSoftKeyboard(contentView)
 					val uri = resultData.data ?: return
-					bytes = contentResolver?.openInputStream(uri)?.use {
-						it.readBytesMax(4096)
-					} ?: return
-					setEncodeByteArray()
+					fileImport?.cancel()
+					fileImport = lifecycleScope.launch {
+						val imported = withContext(Dispatchers.IO) {
+							try {
+								contentResolver.openInputStream(uri)?.use {
+									it.readBytesMax(4096)
+								}
+							} catch (_: IOException) {
+								null
+							} catch (_: SecurityException) {
+								null
+							}
+						}
+						fileImport = null
+						if (imported == null) {
+							toast(R.string.error_no_content)
+						} else {
+							bytes = imported
+							setEncodeByteArray()
+						}
+					}
 				}
 			}
 		}
@@ -177,7 +201,9 @@ class EncodeActivity : AbstractBaseActivity() {
 		addQuietZoneSwitch = findViewById(R.id.add_quiet_zone)
 		addQuietZoneSwitch.isChecked = prefs.addQuietZone
 
-		contentView = findViewById(R.id.content)
+		contentView = findViewById<EditText>(R.id.content).apply {
+			doAfterTextChanged { fileImport?.cancel() }
+		}
 		unescapeCheckBox = findViewById(R.id.unescape)
 		unescapeCheckBox.isChecked = prefs.expandEscapeSequences
 
@@ -238,6 +264,7 @@ class EncodeActivity : AbstractBaseActivity() {
 				contentView.text?.isNotEmpty() == true
 
 		if (hasTextContent || hasRawContent) {
+			fileImport?.cancel()
 			bytes = null
 			contentView.isEnabled = true
 			contentView.hint = null
@@ -281,6 +308,9 @@ class EncodeActivity : AbstractBaseActivity() {
 	}
 
 	private fun Context.encode() {
+		if (fileImport?.isActive == true) {
+			return
+		}
 		hideSoftKeyboard(contentView)
 		val content = getContent() ?: return
 		contentView.post {
@@ -456,15 +486,13 @@ private fun Spinner.setEntries(resId: Int) = ArrayAdapter.createFromResource(
 
 private fun InputStream.readBytesMax(max: Int): ByteArray {
 	var offset = 0
-	var remaining = min(available(), max)
-	val result = ByteArray(remaining)
-	while (remaining > 0) {
-		val read = read(result, offset, remaining)
+	val result = ByteArray(max)
+	while (offset < max) {
+		val read = read(result, offset, max - offset)
 		if (read < 0) {
 			break
 		}
-		remaining -= read
 		offset += read
 	}
-	return result
+	return result.copyOf(offset)
 }
