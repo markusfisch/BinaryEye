@@ -184,7 +184,7 @@ class Database {
 			}
 
 			Preferences.Companion.IgnoreDuplicates.Any -> {
-				val id = getIdOfScanByContent(scan.text, scan.format)
+				val id = getIdOfScanByContent(scan.text, scan.raw, scan.format)
 				if (id > 0L) {
 					return id
 				}
@@ -258,20 +258,33 @@ class Database {
 
 	private fun getIdOfScanByContent(
 		content: String,
+		raw: ByteArray?,
 		format: BarcodeFormat
-	): Long = db.rawQuery(
-		"""SELECT
+	): Long {
+		val arguments = mutableListOf(content, format.name)
+		val rawCondition = when {
+			content.isNotEmpty() -> ""
+			raw == null -> "AND $SCANS_RAW IS NULL"
+			else -> {
+				arguments.add(raw.toHexString().uppercase())
+				"AND $SCANS_RAW IS NOT NULL AND hex($SCANS_RAW) = ?"
+			}
+		}
+		return db.rawQuery(
+			"""SELECT
 				$SCANS_ID
 				FROM $SCANS
 				WHERE $SCANS_TEXT = ?
 					AND $SCANS_FORMAT = ?
+					$rawCondition
 				LIMIT 1
-			""".trimMargin(), arrayOf(content, format.name)
-	).use {
-		if (it.moveToFirst()) {
-			it.getLong(SCANS_ID)
-		} else {
-			0L
+			""".trimMargin(), arguments.toTypedArray()
+		).use {
+			if (it.moveToFirst()) {
+				it.getLong(SCANS_ID)
+			} else {
+				0L
+			}
 		}
 	}
 
