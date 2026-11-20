@@ -88,8 +88,18 @@ private fun Cursor.toCsvRecord(
 	return sb.toString().toByteArray()
 }
 
-private fun String.quoteAndEscape() = "\"${
-	this
-		.replace("\n", " ")
-		.replace("\"", "\"\"")
-}\""
+private fun String.quoteAndEscape(): String {
+	val first = firstOrNull()
+	val formulaStart = trimStart().firstOrNull()
+	val prefix = if (first == '\t' || first == '\r' || first == '\n' ||
+		formulaStart == '=' || formulaStart == '+' || formulaStart == '-' ||
+		formulaStart == '@' || formulaStart == '＝' || formulaStart == '＋' ||
+		formulaStart == '－' || formulaStart == '＠'
+	) {
+		"'"
+	} else {
+		""
+	}
+	val escaped = replace("\n", " ").replace("\"", "\"\"")
+	return "\"$prefix$escaped\""
+}
