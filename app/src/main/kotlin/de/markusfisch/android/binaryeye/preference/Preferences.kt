@@ -536,6 +536,7 @@ class Preferences {
 	}
 
 	fun update() {
+		val defaults = Preferences()
 		preferences.getStringSet(BARCODE_FORMATS, barcodeFormats)?.let {
 			barcodeFormats = addFormatsOnUpdate(
 				migrateCode39ToCode39Std(
@@ -592,7 +593,7 @@ class Preferences {
 		preferences.getString(BEEP_TONE_URI, beepToneUri)?.also {
 			beepToneUri = it
 		}
-		useHistory = preferences.getBoolean(USE_HISTORY, useHistory)
+		useHistory = preferences.getBoolean(USE_HISTORY, defaults.useHistory)
 
 		// Map old setting to new one if it wasn't on default value.
 		val ignoreConsecutiveDuplicates = "ignore_consecutive_duplicates"
@@ -643,7 +644,6 @@ class Preferences {
 		preferences.getString(OPEN_WITH_URL, openWithUrl)?.also {
 			openWithUrl = it
 		}
-		val defaults = Preferences()
 		sendScanActive = preferences.getBoolean(
 			SEND_SCAN_ACTIVE,
 			defaults.sendScanActive

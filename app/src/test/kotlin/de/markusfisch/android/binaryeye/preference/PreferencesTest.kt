@@ -31,6 +31,20 @@ class PreferencesTest {
 	}
 
 	@Test
+	fun historyDoesNotCarryOverBetweenProfiles() {
+		val context = RuntimeEnvironment.getApplication()
+		val prefs = Preferences().apply { init(context) }
+		prefs.load(context, "with_history")
+		prefs.useHistory = true
+
+		prefs.load(context, "empty")
+		assertFalse(prefs.useHistory)
+
+		prefs.load(context, "with_history")
+		assertTrue(prefs.useHistory)
+	}
+
+	@Test
 	fun forwardingDoesNotCarryOverBetweenProfiles() {
 		val context = RuntimeEnvironment.getApplication()
 		val prefs = Preferences().apply { init(context) }
