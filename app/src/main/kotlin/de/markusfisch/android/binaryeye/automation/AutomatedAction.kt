@@ -1,5 +1,6 @@
 package de.markusfisch.android.binaryeye.automation
 
+import android.net.Uri
 import de.markusfisch.android.binaryeye.database.Scan
 import de.markusfisch.android.binaryeye.net.urlEncode
 import org.json.JSONArray
@@ -87,25 +88,15 @@ data class AutomatedAction(
 	}
 }
 
-fun String.buildUrl(scan: Scan): String {
-	return buildTemplate(scan, encodeResult = true)
-}
+fun String.buildUrl(scan: Scan) = buildTemplate(scan) { it.urlEncode() }
 
-fun String.buildTemplate(scan: Scan, encodeResult: Boolean): String {
+internal fun String.buildIntentUri(scan: Scan) = buildTemplate(scan) { Uri.encode(it) }
+
+private fun String.buildTemplate(scan: Scan, encode: (String) -> String): String {
 	val text = scan.text
 	val raw = scan.raw ?: text.toByteArray()
-	val result = if (encodeResult) {
-		text.urlEncode()
-	} else {
-		text
-	}
-	val format = if (encodeResult) {
-		scan.format.name.urlEncode()
-	} else {
-		scan.format.name
-	}
 	return this
-		.replace("{RESULT}", result)
+		.replace("{RESULT}", encode(text))
 		.replace("{RESULT_BYTES}", raw.toHexString())
-		.replace("{FORMAT}", format)
+		.replace("{FORMAT}", encode(scan.format.name))
 }

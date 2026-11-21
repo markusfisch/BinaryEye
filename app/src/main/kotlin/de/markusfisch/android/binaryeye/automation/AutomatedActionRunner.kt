@@ -48,7 +48,7 @@ private fun Context.execCustomIntent(
 		toast(R.string.automated_action_intent_uri_required)
 		return false
 	}
-	val intentUri = template.buildTemplate(scan, encodeResult = false)
+	val intentUri = template.buildIntentUri(scan)
 	val intent = try {
 		Intent.parseUri(intentUri, Intent.URI_INTENT_SCHEME)
 	} catch (_: Exception) {
