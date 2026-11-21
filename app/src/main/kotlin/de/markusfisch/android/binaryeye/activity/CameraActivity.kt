@@ -1195,11 +1195,16 @@ class CameraActivity : AppCompatActivity() {
 	}
 
 	private fun importProfile(text: String): Boolean {
-		val name = prefs.importProfile(this, text) ?: return false
+		val profile = prefs.parseProfileImport(text) ?: return false
 		MaterialAlertDialogBuilder(this)
-			.setMessage(getString(R.string.profile_import_set_default, name))
+			.setTitle(getString(R.string.current_profile, profile.name))
+			.setMessage(R.string.profile_import_set_default)
 			.setPositiveButton(android.R.string.ok) { _, _ ->
-				switchProfile(name)
+				if (prefs.importProfile(this, profile)) {
+					switchProfile(profile.name)
+				} else {
+					toast(R.string.profile_invalid_name)
+				}
 			}
 			.setNegativeButton(android.R.string.cancel, null)
 			.setOnDismissListener {

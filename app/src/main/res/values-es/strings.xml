@@ -104,7 +104,7 @@
 	<string name="profile_current">Perfil actual</string>
 	<string name="profile_remove_confirm">¿Eliminar este perfil?</string>
 	<string name="profile_share_qr">Compartir perfil como código QR</string>
-	<string name="profile_import_set_default">Perfil \"%s\" importado. ¿Establecer como perfil activo?</string>
+	<string name="profile_import_set_default">¿Importar y activar este perfil?</string>
 	<string name="current_profile">Perfil: %s</string>
 	<string name="custom_locale">Idioma personalizado</string>
 	<string name="follow_system_settings">Seguir los ajustes del sistema</string>

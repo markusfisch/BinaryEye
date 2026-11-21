@@ -107,7 +107,7 @@
 	<string name="profile_current">Aktuální profil</string>
 	<string name="profile_remove_confirm">Odebrat tento profil?</string>
 	<string name="profile_share_qr">Sdílet profil jako QR kód</string>
-	<string name="profile_import_set_default">Profil „%s“ byl importován. Chcete jej nastavit jako aktivní profil?</string>
+	<string name="profile_import_set_default">Importovat a aktivovat tento profil?</string>
 	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Nastavit jazyk</string>
 	<string name="follow_system_settings">Podle systému</string>

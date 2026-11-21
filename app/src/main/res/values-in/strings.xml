@@ -102,7 +102,7 @@
 	<string name="profile_current">Profil saat ini</string>
 	<string name="profile_remove_confirm">Hapus profil ini?</string>
 	<string name="profile_share_qr">Bagikan profil sebagai kode QR</string>
-	<string name="profile_import_set_default">Profil \"%s\" diimpor. Jadikan sebagai profil aktif?</string>
+	<string name="profile_import_set_default">Impor dan aktifkan profil ini?</string>
 	<string name="current_profile">Profil: %s</string>
 	<string name="custom_locale">Bahasa lainnya</string>
 	<string name="follow_system_settings">Ikuti pengaturan sistem</string>

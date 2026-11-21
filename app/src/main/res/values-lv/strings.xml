@@ -160,7 +160,7 @@
 	<string name="profile_invalid_name">Nederīgs profila nosaukums</string>
 	<string name="profile_empty">Vēl nav profilu</string>
 	<string name="profile_share_qr">Kopīgot profilu kā QR kodu</string>
-	<string name="profile_import_set_default">Profils \"%s\" importēts. Vai iestatīt to kā aktīvo profilu?</string>
+	<string name="profile_import_set_default">Vai importēt un aktivizēt šo profilu?</string>
 	<string name="custom_locale">Pielāgota valoda</string>
 	<string name="follow_system_settings">Sekot sistēmas iestatījumiem</string>
 	<string name="show_crop_handle">Rādīt apgriešanas ierobežotāju</string>

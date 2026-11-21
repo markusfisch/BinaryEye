@@ -102,7 +102,7 @@
 	<string name="profile_current">現在のプロファイル</string>
 	<string name="profile_remove_confirm">このプロファイルを削除しますか？</string>
 	<string name="profile_share_qr">プロファイルをQRコードとして共有</string>
-	<string name="profile_import_set_default">プロファイル\"%s\"をインポートしました。アクティブなプロファイルとして設定しますか？</string>
+	<string name="profile_import_set_default">このプロファイルをインポートして有効にしますか？</string>
 	<string name="current_profile">プロファイル: %s</string>
 	<string name="custom_locale">言語の変更</string>
 	<string name="follow_system_settings">システム設定に従う</string>

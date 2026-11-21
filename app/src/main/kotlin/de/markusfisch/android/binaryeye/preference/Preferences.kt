@@ -423,7 +423,9 @@ class Preferences {
 		return json.toString()
 	}
 
-	fun importProfile(context: Context, text: String): String? {
+	internal data class ProfileImport(val name: String, val settings: JSONObject)
+
+	internal fun parseProfileImport(text: String): ProfileImport? {
 		val json = try {
 			JSONObject(text)
 		} catch (_: Exception) {
@@ -451,16 +453,21 @@ class Preferences {
 		} else {
 			sanitized
 		}
-		if (!addProfile(name)) {
-			return null
-		}
+		return ProfileImport(name, json)
+	}
 
+	internal fun importProfile(context: Context, profile: ProfileImport): Boolean {
+		val (name, json) = profile
+		if (name in profiles || name == "${context.packageName}_preferences") {
+			return false
+		}
 		val target = context.getSharedPreferences(
 			name,
 			Context.MODE_PRIVATE
 		)
 		try {
 			target.edit {
+				clear()
 				val formatsArray = json.optJSONArray(BARCODE_FORMATS)
 				if (formatsArray != null) {
 					val formats = mutableSetOf<String>()
@@ -522,14 +529,10 @@ class Preferences {
 				putString(AUTOMATED_ACTIONS, json)
 			}
 		} catch (_: Exception) {
-			removeProfile(name)
-			target.edit {
-				clear()
-			}
-			return null
+			return false
 		}
 
-		return name
+		return addProfile(name)
 	}
 
 	fun update() {
