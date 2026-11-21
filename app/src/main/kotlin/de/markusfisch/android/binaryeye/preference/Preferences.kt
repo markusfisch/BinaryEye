@@ -640,32 +640,33 @@ class Preferences {
 		preferences.getString(OPEN_WITH_URL, openWithUrl)?.also {
 			openWithUrl = it
 		}
+		val defaults = Preferences()
 		sendScanActive = preferences.getBoolean(
 			SEND_SCAN_ACTIVE,
-			sendScanActive
+			defaults.sendScanActive
 		)
-		preferences.getString(SEND_SCAN_URL, sendScanUrl)?.also {
+		preferences.getString(SEND_SCAN_URL, defaults.sendScanUrl)?.also {
 			sendScanUrl = it
 		}
-		preferences.getString(SEND_SCAN_TYPE, sendScanType)?.also {
+		preferences.getString(SEND_SCAN_TYPE, defaults.sendScanType)?.also {
 			sendScanType = it
 		}
-		preferences.getString(SEND_SCAN_DEVICE_ID, sendScanDeviceId)?.also {
+		preferences.getString(SEND_SCAN_DEVICE_ID, defaults.sendScanDeviceId)?.also {
 			sendScanDeviceId = it
 		}
 		sendScanBluetooth = preferences.getBoolean(
 			SEND_SCAN_BLUETOOTH,
-			sendScanBluetooth
+			defaults.sendScanBluetooth
 		)
 		preferences.getString(
 			SEND_SCAN_BLUETOOTH_HOST,
-			sendScanBluetoothHost
+			defaults.sendScanBluetoothHost
 		)?.also {
 			sendScanBluetoothHost = it
 		}
 		sendScanKdeConnect = preferences.getBoolean(
 			SEND_SCAN_KDE_CONNECT,
-			sendScanKdeConnect
+			defaults.sendScanKdeConnect
 		)
 		preferences.getString(CUSTOM_LOCALE, customLocale)?.also {
 			customLocale = it
