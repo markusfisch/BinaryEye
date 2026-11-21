@@ -132,6 +132,7 @@ class HistoryActivity : AbstractBaseActivity() {
 	}
 
 	private var scansAdapter: ScansAdapter? = null
+	private var updateJob: Job? = null
 	private var listViewState: Parcelable? = null
 	private var actionMode: ActionMode? = null
 	private var filter: String? = null
@@ -273,47 +274,51 @@ class HistoryActivity : AbstractBaseActivity() {
 
 	private fun update(query: String? = null) {
 		query?.let { filter = it }
-		scope.launch {
-			val cursor = db.getScans(filter)
-			withContext(Dispatchers.Main) {
-				val ac = this@HistoryActivity
-				ac.title = resources.getQuantityString(
-					R.plurals.scan_count,
-					cursor.count,
-					cursor.count
-				)
-				val hasScans = cursor.count > 0
-				if (filter == null) {
-					if (!hasScans) {
-						listView.emptyView = useHistorySwitch
-					}
-					ac.invalidateOptionsMenu()
+		val currentFilter = filter
+		updateJob?.cancel()
+		updateJob = scope.launch {
+			val cursor = db.getScans(currentFilter)
+			var installed = false
+			try {
+				val count = cursor.count
+				withContext(Dispatchers.Main) {
+					showScans(cursor, count, currentFilter == null)
+					installed = true
 				}
-				enableMenuItems(hasScans)
-				fab.visibility = if (hasScans) {
-					View.VISIBLE
-				} else {
-					View.GONE
+			} finally {
+				if (!installed) {
+					cursor.close()
 				}
-				cursor.let { cursor ->
-					// Close previous cursor.
-					scansAdapter?.also { it.changeCursor(null) }
-					scansAdapter = ScansAdapter(ac, cursor) { id, pinned ->
-						if (actionMode == null) {
-							scope.launch {
-								db.setPinned(id, pinned)
-								withContext(Dispatchers.Main) {
-									update()
-								}
-							}
-						}
-					}
-					listView.adapter = scansAdapter
-					listViewState?.also {
-						listView.onRestoreInstanceState(it)
+			}
+		}
+	}
+
+	private fun showScans(cursor: Cursor, count: Int, unfiltered: Boolean) {
+		title = resources.getQuantityString(R.plurals.scan_count, count, count)
+		val hasScans = count > 0
+		if (unfiltered) {
+			if (!hasScans) {
+				listView.emptyView = useHistorySwitch
+			}
+			invalidateOptionsMenu()
+		}
+		enableMenuItems(hasScans)
+		fab.visibility = if (hasScans) View.VISIBLE else View.GONE
+
+		scansAdapter?.changeCursor(null)
+		scansAdapter = ScansAdapter(this, cursor) { id, pinned ->
+			if (actionMode == null) {
+				scope.launch {
+					db.setPinned(id, pinned)
+					withContext(Dispatchers.Main) {
+						update()
 					}
 				}
 			}
+		}
+		listView.adapter = scansAdapter
+		listViewState?.also {
+			listView.onRestoreInstanceState(it)
 		}
 	}
 
