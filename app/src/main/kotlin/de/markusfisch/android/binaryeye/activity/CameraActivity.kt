@@ -55,6 +55,8 @@ import de.markusfisch.android.binaryeye.camera.availableDefaultCameras
 import de.markusfisch.android.binaryeye.camera.cameraSelector
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.startIntentOrToast
+import de.markusfisch.android.binaryeye.database.ScanContent
+import de.markusfisch.android.binaryeye.database.scanText
 import de.markusfisch.android.binaryeye.database.toScan
 import de.markusfisch.android.binaryeye.fragment.withLocalNetworkPermission
 import de.markusfisch.android.binaryeye.graphics.FrameMetrics
@@ -142,7 +144,8 @@ class CameraActivity : AppCompatActivity() {
 	private var bulkMode = prefs.bulkMode
 	private var restrictFormat: String? = null
 	private var searchTerm: Regex? = null
-	private var ignoreNext: String? = null
+	@Volatile
+	private var ignoreNext: ScanContent? = null
 	private var requestCameraPermission = true
 	private var useLocalAverage = false
 
@@ -434,7 +437,7 @@ class CameraActivity : AppCompatActivity() {
 
 			ContinuousScanSession.State.READY -> {
 				if (prefs.ignoreDuplicates() != Preferences.Companion.IgnoreDuplicates.Never) {
-					ignoreNext = callbackSession.lastText
+					ignoreNext = callbackSession.lastScan
 				}
 				callbackDelay = true
 				detectorView.postDelayed({
@@ -937,7 +940,7 @@ class CameraActivity : AppCompatActivity() {
 				ignoreNext = if (callbackUrl != null &&
 					prefs.ignoreDuplicates() != Preferences.Companion.IgnoreDuplicates.Never
 				) {
-					callbackSession.lastText
+					callbackSession.lastScan
 				} else {
 					null
 				}
@@ -994,16 +997,16 @@ class CameraActivity : AppCompatActivity() {
 		result: Result,
 		frameMapping: CameraFrameMapping
 	) {
-		val text = result.text
-		if (text == ignoreNext) {
+		if (ignoreNext?.matches(result.scanText, result.format.name, result.rawBytes) == true) {
 			return
 		}
+		val text = result.text
 		val term = searchTerm
 		if (term != null &&
 			!text.matches(term) &&
 			!text.contains(term)
 		) {
-			ignoreNext = text
+			ignoreNext = result.scanContent()
 			cameraView.post {
 				errorFeedback()
 				toast(R.string.does_not_match_search_term)
@@ -1175,7 +1178,7 @@ class CameraActivity : AppCompatActivity() {
 				when (prefs.ignoreDuplicates()) {
 					Preferences.Companion.IgnoreDuplicates.Consecutive,
 					Preferences.Companion.IgnoreDuplicates.Any -> {
-						ignoreNext = result.text
+						ignoreNext = result.scanContent()
 					}
 
 					else -> {
@@ -1288,6 +1291,8 @@ fun FragmentActivity.showResult(
 		startActivity(DecodeActivity.newIntent(this, scan, showWhenLocked = true))
 	}
 }
+
+private fun Result.scanContent() = ScanContent(scanText, format.name, rawBytes)
 
 private fun getReturnIntent(result: Result) = Intent().apply {
 	putExtra("SCAN_RESULT", result.text)

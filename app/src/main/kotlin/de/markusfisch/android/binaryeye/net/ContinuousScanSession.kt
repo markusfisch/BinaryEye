@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import de.markusfisch.android.binaryeye.database.Scan
+import de.markusfisch.android.binaryeye.database.ScanContent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -22,8 +23,10 @@ class ContinuousScanSession : ViewModel() {
 		private set
 	var error: String? = null
 		private set
-	var lastText: String? = null
+	internal var lastScan: ScanContent? = null
 		private set
+	val lastText: String?
+		get() = lastScan?.text
 	private var payload: String? = null
 	private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
@@ -34,7 +37,9 @@ class ContinuousScanSession : ViewModel() {
 	fun configure(url: String?, savedState: Bundle? = null) {
 		configured = true
 		this.url = url
-		lastText = savedState?.getString("lastText")
+		lastScan = savedState?.getString("lastText")?.let {
+			ScanContent(it, savedState.getString("lastFormat"), savedState.getByteArray("lastRaw"))
+		}
 		payload = savedState?.getString("payload")
 		setState(when {
 			url == null -> State.READY
@@ -52,7 +57,7 @@ class ContinuousScanSession : ViewModel() {
 		if (blocked) {
 			return
 		}
-		lastText = scan.text
+		lastScan = ScanContent(scan.text, scan.format.name, scan.raw)
 		payload = scan.asJson(mapOf("scanId" to UUID.randomUUID().toString()))
 			.toString()
 		retry()
@@ -86,6 +91,8 @@ class ContinuousScanSession : ViewModel() {
 		putBoolean("approved", state.value != State.APPROVAL)
 		putString("payload", payload)
 		putString("lastText", lastText)
+		putString("lastFormat", lastScan?.format)
+		putByteArray("lastRaw", lastScan?.raw)
 	}
 
 	private fun setState(value: State) {

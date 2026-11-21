@@ -140,6 +140,23 @@ class ScanCallbackTest {
 		assertEquals(ContinuousScanSession.State.READY, completed.state.value)
 	}
 
+	@Test
+	fun distinguishesBinaryScansAfterRestoration() {
+		val session = ContinuousScanSession()
+		session.configure(url)
+		session.approve()
+		responseCode = 204
+		session.submit(Scan("", byteArrayOf(0, 1), BarcodeFormat.QRCode))
+		awaitState(session, ContinuousScanSession.State.READY)
+
+		val restored = ContinuousScanSession()
+		restored.configure(url, session.saveState())
+		val lastScan = requireNotNull(restored.lastScan)
+		assertTrue(lastScan.matches("", "QRCode", byteArrayOf(0, 1)))
+		assertFalse(lastScan.matches("", "QRCode", byteArrayOf(0, 2)))
+		assertFalse(lastScan.matches("", "DataMatrix", byteArrayOf(0, 1)))
+	}
+
 	private fun awaitState(
 		session: ContinuousScanSession,
 		state: ContinuousScanSession.State

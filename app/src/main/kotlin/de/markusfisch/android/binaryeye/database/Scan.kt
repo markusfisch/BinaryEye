@@ -92,15 +92,30 @@ data class Scan(
 
 }
 
+internal val Result.scanText: String
+	get() = when (contentType) {
+		ContentType.GS1,
+		ContentType.ISO15434,
+		ContentType.TEXT -> text
+
+		else -> "" // Show as binary.
+	}
+
+internal class ScanContent(
+	val text: String,
+	val format: String?,
+	raw: ByteArray?
+) {
+	val raw = raw.takeIf { text.isEmpty() }
+
+	fun matches(text: String, format: String, raw: ByteArray?): Boolean =
+		this.text == text && this.format == format &&
+			(text.isNotEmpty() || this.raw.contentEquals(raw))
+}
+
 fun Result.toScan(): Scan {
 	return Scan(
-		when (contentType) {
-			ContentType.GS1,
-			ContentType.ISO15434,
-			ContentType.TEXT -> text
-
-			else -> "" // Show as binary.
-		},
+		scanText,
 		rawBytes,
 		format,
 		ecLevel,
