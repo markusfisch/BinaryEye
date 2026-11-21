@@ -138,7 +138,11 @@ private fun request(
 ): Response {
 	var con: HttpURLConnection? = null
 	return try {
-		con = URL(url).openConnection() as HttpURLConnection
+		val target = URL(url)
+		if (target.protocol != "http" && target.protocol != "https") {
+			return Response(null, null)
+		}
+		con = target.openConnection() as HttpURLConnection
 		con.connectTimeout = 5000
 		con.readTimeout = readTimeout
 		con.instanceFollowRedirects = followRedirects
