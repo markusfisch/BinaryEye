@@ -12,8 +12,9 @@ import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.widget.toast
 import java.io.File
-import java.io.FileOutputStream
 import java.io.IOException
+import java.util.UUID
+import java.util.concurrent.TimeUnit
 
 fun Context.startIntentOrToast(intent: Intent): Boolean = if (
 	!startIntent(intent)
@@ -72,14 +73,6 @@ fun Context.shareText(text: String, mimeType: String = "text/plain") {
 	})
 }
 
-private var lastShareFile: File? = null
-fun wipeLastShareFile() {
-	lastShareFile?.let {
-		it.delete()
-		lastShareFile = null
-	}
-}
-
 fun <T> Context.shareAsFile(content: T, fileName: String) {
 	val (bytes, mimeType) = when (content) {
 		is ByteArray -> Pair(
@@ -96,18 +89,29 @@ fun <T> Context.shareAsFile(content: T, fileName: String) {
 			"Unsupported content text for shareAsFile()"
 		)
 	}
-	wipeLastShareFile()
-	val file = File(externalCacheDir, fileName)
-	try {
-		FileOutputStream(file).use {
-			it.write(bytes)
+	val shares = File(cacheDir, "shared-files")
+	val cutoff = System.currentTimeMillis() - TimeUnit.DAYS.toMillis(1)
+	shares.listFiles()?.forEach { directory ->
+		if (directory.lastModified() < cutoff) {
+			directory.deleteRecursively()
 		}
+	}
+	val directory = File(shares, UUID.randomUUID().toString())
+	val file = File(directory, fileName)
+	try {
+		if (!directory.mkdirs()) {
+			throw IOException()
+		}
+		file.writeBytes(bytes)
 	} catch (_: IOException) {
+		directory.deleteRecursively()
 		toast(R.string.error_saving_file)
 		return
 	}
-	lastShareFile = file
-	shareFile(file, mimeType)
+	val uri = FileProvider.getUriForFile(
+		this, BuildConfig.APPLICATION_ID + ".provider", file
+	)
+	shareUri(uri, mimeType)
 }
 
 fun Context.shareFile(file: File, mimeType: String) {

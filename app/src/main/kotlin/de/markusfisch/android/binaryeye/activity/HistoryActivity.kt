@@ -29,7 +29,6 @@ import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.content.copyToClipboard
 import de.markusfisch.android.binaryeye.content.shareAsFile
 import de.markusfisch.android.binaryeye.content.shareText
-import de.markusfisch.android.binaryeye.content.wipeLastShareFile
 import de.markusfisch.android.binaryeye.database.Database
 import de.markusfisch.android.binaryeye.database.exportCsv
 import de.markusfisch.android.binaryeye.database.exportJson
@@ -184,7 +183,6 @@ class HistoryActivity : AbstractBaseActivity() {
 		super.onDestroy()
 		scansAdapter?.changeCursor(null)
 		parentJob.cancel()
-		wipeLastShareFile()
 	}
 
 	override fun onResume() {
