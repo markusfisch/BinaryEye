@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.graphics.Matrix
 import android.graphics.Rect
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -32,10 +31,13 @@ import androidx.camera.core.resolutionselector.ResolutionStrategy
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
+import androidx.core.content.IntentCompat
 import androidx.core.content.edit
 import androidx.core.net.toUri
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.withResumed
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import de.markusfisch.android.binaryeye.R
@@ -84,8 +86,11 @@ import de.markusfisch.android.zxingcpp.ZxingCpp.Binarizer
 import de.markusfisch.android.zxingcpp.ZxingCpp.ReaderOptions
 import de.markusfisch.android.zxingcpp.ZxingCpp.Result
 import de.markusfisch.android.zxingcpp.ZxingCpp.TextMode
-import java.io.FileInputStream
-import java.util.Scanner
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.IOException
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.math.abs
@@ -114,6 +119,7 @@ class CameraActivity : AppCompatActivity() {
 	private var camera: Camera? = null
 	private var preview: Preview? = null
 	private var imageAnalysis: ImageAnalysis? = null
+	private var sharedTextImport: Job? = null
 	private var currentProfile = prefs.profile
 	private var shouldStoreSettings = true
 	private var formatsToRead = setOf<BarcodeFormat>()
@@ -236,11 +242,7 @@ class CameraActivity : AppCompatActivity() {
 		onBackPressedDispatcher.addCallback(this, continuousBack)
 		callbackSession.state.observe(this) { updateCallbackState() }
 
-		if (intent?.action == Intent.ACTION_SEND &&
-			intent.type?.startsWith("text/") == true
-		) {
-			handleSendText(intent)
-		}
+		handleSendText(intent)
 	}
 
 	override fun onNewIntent(intent: Intent) {
@@ -249,9 +251,11 @@ class CameraActivity : AppCompatActivity() {
 			toast(R.string.background_request_failed)
 			return
 		}
+		sharedTextImport?.cancel()
 		setIntent(intent)
 		setReturnTarget(intent)
 		callbackSession.configure(callbackUrl)
+		handleSendText(intent)
 	}
 
 	override fun onDestroy() {
@@ -263,6 +267,9 @@ class CameraActivity : AppCompatActivity() {
 
 	override fun onResume() {
 		super.onResume()
+		if (isFinishing || sharedTextImport?.isActive == true) {
+			return
+		}
 		if (firstStart()) {
 			startActivity(Intent(this, WelcomeActivity::class.java))
 			return
@@ -681,47 +688,67 @@ class CameraActivity : AppCompatActivity() {
 		refreshIfProfileChanged()
 	}
 
-	private fun handleSendText(intent: Intent) {
+	private fun handleSendText(intent: Intent?) {
+		if (intent?.action != Intent.ACTION_SEND ||
+			intent.type?.startsWith("text/") != true
+		) {
+			return
+		}
 		val text = intent.getStringExtra(Intent.EXTRA_TEXT)
-
-		if (text?.isEmpty() == false) {
-			startActivity(EncodeActivity.newIntent(this, text).apply {
-				addFlags(
-					Intent.FLAG_ACTIVITY_NO_HISTORY or
-							Intent.FLAG_ACTIVITY_CLEAR_TASK or
-							Intent.FLAG_ACTIVITY_NEW_TASK
-				)
-			})
-			finish()
+		if (!text.isNullOrEmpty()) {
+			composeSharedText(text)
 			return
 		}
 
-		// Read text from file.
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-			@Suppress("DEPRECATION")
-			intent.getParcelableExtra(Intent.EXTRA_STREAM) as Uri?
-		} else {
-			intent.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
-		}?.let { textUri ->
-			val file = contentResolver.openFileDescriptor(textUri, "r")
-			if (file != null) {
-				val fs = FileInputStream(file.fileDescriptor)
-				val scn = Scanner(fs).useDelimiter("\\A")
-				if (scn.hasNext()) {
-					startActivity(
-						EncodeActivity.newIntent(this, scn.next()).apply {
-							addFlags(
-								Intent.FLAG_ACTIVITY_NO_HISTORY or
-										Intent.FLAG_ACTIVITY_CLEAR_TASK or
-										Intent.FLAG_ACTIVITY_NEW_TASK
-							)
-						}
-					)
-					finish()
+		val uri = IntentCompat.getParcelableExtra(
+			intent, Intent.EXTRA_STREAM, Uri::class.java
+		) ?: return
+		sharedTextImport = lifecycleScope.launch {
+			val imported = withContext(Dispatchers.IO) { readSharedText(uri) }
+			lifecycle.withResumed {
+				if (isFinishing) {
+					return@withResumed
 				}
-				file.close()
+				if (imported.isNullOrEmpty()) {
+					toast(R.string.error_no_content)
+					finish()
+				} else {
+					composeSharedText(imported)
+				}
 			}
 		}
+	}
+
+	private fun readSharedText(uri: Uri): String? = try {
+		contentResolver.openInputStream(uri)?.bufferedReader()?.use { reader ->
+			val buffer = CharArray(MAX_SHARED_TEXT_LENGTH + 1)
+			var length = 0
+			while (length < buffer.size) {
+				val count = reader.read(buffer, length, buffer.size - length)
+				if (count < 0) {
+					break
+				}
+				length += count
+			}
+			if (length <= MAX_SHARED_TEXT_LENGTH) String(buffer, 0, length) else null
+		}
+	} catch (_: IOException) {
+		null
+	} catch (_: SecurityException) {
+		null
+	} catch (_: IllegalArgumentException) {
+		null
+	}
+
+	private fun composeSharedText(text: String) {
+		startActivity(EncodeActivity.newIntent(this, text).apply {
+			addFlags(
+				Intent.FLAG_ACTIVITY_NO_HISTORY or
+					Intent.FLAG_ACTIVITY_CLEAR_TASK or
+					Intent.FLAG_ACTIVITY_NEW_TASK
+			)
+		})
+		finish()
 	}
 
 	private fun initPreviewView() {
@@ -1181,6 +1208,7 @@ class CameraActivity : AppCompatActivity() {
 
 	companion object {
 		private const val DONE = -1
+		private const val MAX_SHARED_TEXT_LENGTH = 64 * 1024
 		private const val CALLBACK_STATE = "callback_state"
 		private const val PICK_FILE_RESULT_CODE = 1
 		private const val INITIAL_ZOOM = 0

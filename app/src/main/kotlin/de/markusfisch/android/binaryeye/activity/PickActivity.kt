@@ -7,18 +7,18 @@ import android.graphics.Matrix
 import android.graphics.Rect
 import android.graphics.RectF
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.IntentCompat
+import androidx.lifecycle.lifecycleScope
 import de.markusfisch.android.binaryeye.R
 import de.markusfisch.android.binaryeye.app.applyLocale
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.fragment.withLocalNetworkPermission
 import de.markusfisch.android.binaryeye.graphics.crop
-import de.markusfisch.android.binaryeye.graphics.fixTransparency
 import de.markusfisch.android.binaryeye.graphics.loadImageUri
 import de.markusfisch.android.binaryeye.graphics.mapPosition
 import de.markusfisch.android.binaryeye.media.releaseToneGenerators
@@ -71,20 +71,32 @@ class PickActivity : AppCompatActivity() {
 			colorSystemAndToolBars(this@PickActivity)
 		}
 
-		val bitmap = getBitmapFromIntent()?.fixTransparency()
-		if (bitmap == null) {
-			applicationContext.toast(R.string.error_no_content)
-			finish()
-			// This is why cropImageView and detectorView aren't lateinit.
-			// If they were, a kotlin.UninitializedPropertyAccessException
-			// would happen here.
-			return
+		detectorView = (findViewById(R.id.detector_view) as DetectorView).apply {
+			setPaddingFromWindowInsets()
+			cropHandleName = "picker_crop_handle"
 		}
 
+		val uri = getImageUri()
+		lifecycleScope.launch {
+			val bitmap = withContext(Dispatchers.IO) {
+				uri?.let { loadImageUri(it) }
+			}
+			if (isFinishing) {
+				return@launch
+			}
+			if (bitmap == null) {
+				applicationContext.toast(R.string.error_no_content)
+				finish()
+			} else {
+				initImageViews(bitmap)
+			}
+		}
+	}
+
+	private fun initImageViews(bitmap: Bitmap) {
 		cropImageView = (findViewById(R.id.image) as CropImageView).apply {
 			restrictTranslation = false
 			freeRotation = prefs.freeRotation
-			setImageBitmap(bitmap)
 			onScan = {
 				scanWithinBounds(bitmap)
 			}
@@ -94,14 +106,12 @@ class PickActivity : AppCompatActivity() {
 					max(bitmap.width, bitmap.height).toFloat()
 				)
 			}
+			setImageBitmap(bitmap)
+			requestLayout()
 		}
 
-		detectorView = (findViewById(R.id.detector_view) as DetectorView).apply {
-			onRoiChanged = {
-				scanWithinBounds(bitmap)
-			}
-			setPaddingFromWindowInsets()
-			cropHandleName = "picker_crop_handle"
+		detectorView?.onRoiChanged = {
+			scanWithinBounds(bitmap)
 		}
 
 		findViewById<View>(R.id.scan).setOnClickListener {
@@ -109,18 +119,17 @@ class PickActivity : AppCompatActivity() {
 		}
 	}
 
-	private fun getBitmapFromIntent(): Bitmap? = if (
-		intent?.action == Intent.ACTION_SEND &&
-		intent.type?.startsWith("image/") == true
-	) {
-		loadSentImage(intent)
-	} else if (
-		intent?.action == Intent.ACTION_VIEW &&
-		intent.type?.startsWith("image/") == true
-	) {
-		loadImageToOpen(intent)
-	} else {
-		null
+	private fun getImageUri(): Uri? {
+		if (intent.type?.startsWith("image/") != true) {
+			return null
+		}
+		return when (intent.action) {
+			Intent.ACTION_SEND -> IntentCompat.getParcelableExtra(
+				intent, Intent.EXTRA_STREAM, Uri::class.java
+			)
+			Intent.ACTION_VIEW -> intent.data
+			else -> null
+		}
 	}
 
 	private data class Crop(
@@ -258,16 +267,6 @@ class PickActivity : AppCompatActivity() {
 		civ.imageRotation = (civ.imageRotation + 90) % 360
 	}
 
-	private fun loadSentImage(intent: Intent): Bitmap? {
-		val uri = intent.getUriExtra() ?: return null
-		return contentResolver.loadImageUri(uri)
-	}
-
-	private fun loadImageToOpen(intent: Intent): Bitmap? {
-		val uri = intent.data ?: return null
-		return contentResolver.loadImageUri(uri)
-	}
-
 	private fun showResult() {
 		val r = result?.takeIf { (crop, _) -> crop == detectorView?.currentCrop() }?.second
 		// Keep this activity alive while permission is requested, so the
@@ -299,13 +298,4 @@ private fun getNormalizedRoi(imageRect: RectF, roi: Rect): RectF {
 		(roi.right - imageRect.left) / w,
 		(roi.bottom - imageRect.top) / h
 	)
-}
-
-private fun Intent.getUriExtra(): Uri? = if (
-	Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU
-) {
-	@Suppress("DEPRECATION")
-	getParcelableExtra(Intent.EXTRA_STREAM)
-} else {
-	getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
 }

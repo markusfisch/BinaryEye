@@ -1,39 +1,72 @@
 package de.markusfisch.android.binaryeye.graphics
 
-import android.content.ContentResolver
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.graphics.RectF
 import android.net.Uri
+import java.io.File
 import java.io.IOException
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
 
-fun ContentResolver.loadImageUri(uri: Uri): Bitmap? = try {
-	val options = BitmapFactory.Options()
-	openInputStream(uri)?.use {
-		options.inJustDecodeBounds = true
-		BitmapFactory.decodeStream(it, null, options)
-		options.inSampleSize = calculateInSampleSize(
-			options.outWidth,
-			options.outHeight
-		)
-		options.inJustDecodeBounds = false
-	}
-	openInputStream(uri)?.use {
-		BitmapFactory.decodeStream(it, null, options)
+private const val IMAGE_TARGET_SIZE = 1024
+private const val MAX_IMAGE_FILE_SIZE = 64 * 1024 * 1024
+
+fun Context.loadImageUri(uri: Uri): Bitmap? = try {
+	val file = File.createTempFile("image-import-", null, cacheDir)
+	try {
+		if (copyImageUri(uri, file)) file.decodeSampledImage() else null
+	} finally {
+		file.delete()
 	}
 } catch (_: IOException) {
 	null
+} catch (_: SecurityException) {
+	null
+} catch (_: IllegalArgumentException) {
+	null
+} catch (_: OutOfMemoryError) {
+	null
+}
+
+private fun Context.copyImageUri(uri: Uri, file: File): Boolean {
+	val stream = contentResolver.openInputStream(uri) ?: return false
+	return stream.use { input ->
+		file.outputStream().use { output ->
+			val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
+			var remaining = MAX_IMAGE_FILE_SIZE
+			while (remaining > 0) {
+				val count = input.read(buffer, 0, min(buffer.size, remaining))
+				if (count < 0) {
+					return true
+				}
+				output.write(buffer, 0, count)
+				remaining -= count
+			}
+			input.read() < 0
+		}
+	}
+}
+
+private fun File.decodeSampledImage(): Bitmap? {
+	val options = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+	BitmapFactory.decodeFile(path, options)
+	if (options.outWidth <= 0 || options.outHeight <= 0) {
+		return null
+	}
+	options.inSampleSize = calculateInSampleSize(options.outWidth, options.outHeight)
+	options.inJustDecodeBounds = false
+	return BitmapFactory.decodeFile(path, options)?.fixTransparency()
 }
 
 private fun calculateInSampleSize(
 	width: Int,
 	height: Int,
-	reqWidth: Int = 1024,
-	reqHeight: Int = 1024
+	reqWidth: Int = IMAGE_TARGET_SIZE,
+	reqHeight: Int = IMAGE_TARGET_SIZE
 ): Int {
 	var inSampleSize = 1
 	if (height > reqHeight || width > reqWidth) {
