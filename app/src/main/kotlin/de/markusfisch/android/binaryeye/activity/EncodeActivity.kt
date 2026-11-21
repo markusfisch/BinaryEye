@@ -76,6 +76,7 @@ class EncodeActivity : AbstractBaseActivity() {
 	)
 
 	private var bytes: ByteArray? = null
+	private var bytesFromFile = false
 	private var fileImport: Job? = null
 
 	override fun onActivityResult(
@@ -109,8 +110,7 @@ class EncodeActivity : AbstractBaseActivity() {
 						if (imported == null) {
 							toast(R.string.error_no_content)
 						} else {
-							bytes = imported
-							setEncodeByteArray()
+							setEncodeByteArray(imported, fromFile = true)
 						}
 					}
 				}
@@ -207,7 +207,12 @@ class EncodeActivity : AbstractBaseActivity() {
 		unescapeCheckBox = findViewById(R.id.unescape)
 		unescapeCheckBox.isChecked = prefs.expandEscapeSequences
 
-		applyIntent(state == null)
+		val imported = state?.getByteArray(IMPORTED_BYTES)
+		if (imported == null) {
+			applyIntent(state == null)
+		} else {
+			setEncodeByteArray(imported, fromFile = true)
+		}
 
 		findViewById<View>(R.id.encode).setOnClickListener {
 			it.context.encode()
@@ -246,6 +251,13 @@ class EncodeActivity : AbstractBaseActivity() {
 		}
 	}
 
+	override fun onSaveInstanceState(outState: Bundle) {
+		super.onSaveInstanceState(outState)
+		if (bytesFromFile) {
+			outState.putByteArray(IMPORTED_BYTES, bytes)
+		}
+	}
+
 	override fun onPause() {
 		super.onPause()
 		prefs.indexOfLastSelectedFormat = formatView.selectedItemPosition
@@ -266,6 +278,7 @@ class EncodeActivity : AbstractBaseActivity() {
 		if (hasTextContent || hasRawContent) {
 			fileImport?.cancel()
 			bytes = null
+			bytesFromFile = false
 			contentView.isEnabled = true
 			contentView.hint = null
 			unescapeCheckBox.isEnabled = true
@@ -279,9 +292,8 @@ class EncodeActivity : AbstractBaseActivity() {
 		}
 		if (hasRawContent) {
 			args.getByteArray(CONTENT_RAW)?.let {
-				bytes = it
 				complete = it.isNotEmpty()
-				setEncodeByteArray()
+				setEncodeByteArray(it)
 			}
 		}
 
@@ -360,7 +372,9 @@ class EncodeActivity : AbstractBaseActivity() {
 		}
 	}
 
-	private fun setEncodeByteArray() {
+	private fun setEncodeByteArray(content: ByteArray, fromFile: Boolean = false) {
+		bytes = content
+		bytesFromFile = fromFile
 		contentView.text = null
 		contentView.hint = getString(R.string.binary_data)
 		contentView.isEnabled = false
@@ -392,6 +406,7 @@ class EncodeActivity : AbstractBaseActivity() {
 	companion object {
 		private const val CONTENT_TEXT = "content_text"
 		private const val CONTENT_RAW = "content_raw"
+		private const val IMPORTED_BYTES = "imported_bytes"
 		private const val FORMAT = "format"
 		private const val EXECUTE = "execute"
 		private const val PICK_FILE_RESULT_CODE = 1
