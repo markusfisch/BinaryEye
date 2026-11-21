@@ -8,6 +8,8 @@ import de.markusfisch.android.binaryeye.database.Scan
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import java.io.IOException
 import java.io.OutputStreamWriter
@@ -18,15 +20,14 @@ fun Scan.sendBluetoothAsync(
 	callback: (Boolean, Boolean) -> Unit
 ) {
 	CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
-		val connected = if (isConnected) {
-			true
-		} else {
-			connect(host, true)
-		}
-		val sent = if (connected) {
-			send(text, host)
-		} else {
-			false
+		val (connected, sent) = connectionLock.withLock {
+			if (connectedHost != host) {
+				close()
+			}
+			val connected = connectedHost == host ||
+				connect(host) || connect(host)
+			connected to (connected && (send(text) ||
+				(connect(host) && send(text))))
 		}
 		withContext(Dispatchers.Main) {
 			callback(connected, sent)
@@ -59,41 +60,31 @@ private val uuid = UUID.fromString(
 	"8a8478c9-2ca8-404b-a0de-101f34ab71ae"
 )
 
-private var isConnected = false
+private val connectionLock = Mutex()
+private var connectedHost: String? = null
 
-private fun connect(deviceName: String, onceMore: Boolean): Boolean = try {
-	val device = findByName(deviceName) ?: throw RuntimeException(
-		"Bluetooth device not found"
-	)
-	socket = device.createRfcommSocketToServiceRecord(uuid)
-	socket?.connect()
-	writer = socket?.outputStream?.writer()
-	isConnected = true
-	true
-} catch (_: Exception) {
-	if (onceMore) {
-		connect(deviceName, false)
-	} else {
-		close()
-	}
-	false
-}
-
-private fun send(message: String, host: String): Boolean = try {
-	writer?.apply {
-		write(message)
-		write("\n")
-		flush()
-	}
+private fun connect(host: String): Boolean = try {
+	val device = findByName(host) ?: throw IOException("Bluetooth device not found")
+	val connection = device.createRfcommSocketToServiceRecord(uuid)
+	socket = connection
+	connection.connect()
+	writer = connection.outputStream.writer()
+	connectedHost = host
 	true
 } catch (_: Exception) {
 	close()
+	false
+}
 
-	if (connect(host, false)) {
-		send(message, host)
-	} else {
-		false
-	}
+private fun send(message: String): Boolean = try {
+	val output = checkNotNull(writer)
+	output.write(message)
+	output.write("\n")
+	output.flush()
+	true
+} catch (_: Exception) {
+	close()
+	false
 }
 
 private fun close() {
@@ -110,7 +101,7 @@ private fun close() {
 	}
 	writer = null
 	socket = null
-	isConnected = false
+	connectedHost = null
 }
 
 private fun findByName(findableName: String): BluetoothDevice? {
