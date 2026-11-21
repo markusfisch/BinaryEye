@@ -45,6 +45,24 @@ class PreferencesTest {
 	}
 
 	@Test
+	fun invalidBulkModeDelayUsesDefault() {
+		val context = RuntimeEnvironment.getApplication()
+		val prefs = Preferences().apply { init(context) }
+		val settings = context.getSharedPreferences("invalid_delay", 0)
+		settings.edit().putString("bulk_mode_delay", "-1").apply()
+
+		prefs.load(context, "invalid_delay")
+		assertEquals(500, prefs.bulkModeDelay)
+
+		val profile = checkNotNull(prefs.parseProfileImport(
+			"""{"type":"binaryeye_profile","name":"delay","bulk_mode_delay":"invalid"}"""
+		))
+		assertTrue(prefs.importProfile(context, profile))
+		val importedSettings = context.getSharedPreferences(profile.name, 0)
+		assertEquals("500", importedSettings.getString("bulk_mode_delay", null))
+	}
+
+	@Test
 	fun forwardingDoesNotCarryOverBetweenProfiles() {
 		val context = RuntimeEnvironment.getApplication()
 		val prefs = Preferences().apply { init(context) }

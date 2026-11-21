@@ -104,9 +104,9 @@ class Preferences {
 			apply(DEFAULT_CAMERA, value)
 			field = value
 		}
-	var bulkModeDelay = "500"
-		set(value) {
-			apply(BULK_MODE_DELAY, value)
+	var bulkModeDelay = DEFAULT_BULK_MODE_DELAY
+		private set(value) {
+			apply(BULK_MODE_DELAY, value.toString())
 			field = value
 		}
 	var showToastInBulkMode = true
@@ -383,7 +383,7 @@ class Preferences {
 		json.put(TRY_HARDER, p, defaults.tryHarder)
 		json.put(BULK_MODE, p, defaults.bulkMode)
 		json.put(DEFAULT_CAMERA, p, defaults.defaultCamera)
-		json.put(BULK_MODE_DELAY, p, defaults.bulkModeDelay)
+		json.put(BULK_MODE_DELAY, p, defaults.bulkModeDelay.toString())
 		json.put(SHOW_TOAST_IN_BULK_MODE, p, defaults.showToastInBulkMode)
 		json.put(VIBRATE, p, defaults.vibrate)
 		json.put(BEEP, p, defaults.beep)
@@ -491,7 +491,12 @@ class Preferences {
 				putBoolean(TRY_HARDER, json)
 				putBoolean(BULK_MODE, json)
 				putString(DEFAULT_CAMERA, json)
-				putString(BULK_MODE_DELAY, json)
+				if (json.has(BULK_MODE_DELAY)) {
+					putString(
+						BULK_MODE_DELAY,
+						parseBulkModeDelay(json.optString(BULK_MODE_DELAY)).toString()
+					)
+				}
 				putBoolean(SHOW_TOAST_IN_BULK_MODE, json)
 				putBoolean(VIBRATE, json)
 				putBoolean(BEEP, json)
@@ -574,10 +579,7 @@ class Preferences {
 		preferences.getString(DEFAULT_CAMERA, defaultCamera)?.also {
 			defaultCamera = it
 		}
-		bulkModeDelay = preferences.getString(
-			BULK_MODE_DELAY,
-			bulkModeDelay
-		) ?: bulkModeDelay
+		bulkModeDelay = parseBulkModeDelay(preferences.getString(BULK_MODE_DELAY, null))
 		showToastInBulkMode = preferences.getBoolean(
 			SHOW_TOAST_IN_BULK_MODE,
 			showToastInBulkMode
@@ -820,7 +822,7 @@ class Preferences {
 		putBoolean(TRY_HARDER, defaults.tryHarder)
 		putBoolean(BULK_MODE, defaults.bulkMode)
 		putString(DEFAULT_CAMERA, defaults.defaultCamera)
-		putString(BULK_MODE_DELAY, defaults.bulkModeDelay)
+		putString(BULK_MODE_DELAY, defaults.bulkModeDelay.toString())
 		putBoolean(SHOW_TOAST_IN_BULK_MODE, defaults.showToastInBulkMode)
 		putBoolean(VIBRATE, defaults.vibrate)
 		putBoolean(BEEP, defaults.beep)
@@ -872,6 +874,9 @@ class Preferences {
 		putBoolean(EXPAND_ESCAPE_SEQUENCES, false)
 		putBoolean(BRIGHTEN_SCREEN, true)
 	}
+
+	private fun parseBulkModeDelay(value: String?): Int =
+		value?.toIntOrNull()?.takeIf { it >= 0 } ?: DEFAULT_BULK_MODE_DELAY
 
 	private fun apply(label: String, value: Boolean) {
 		preferences.edit {
@@ -930,6 +935,7 @@ class Preferences {
 		private const val BULK_MODE = "bulk_mode"
 		private const val DEFAULT_CAMERA = "default_camera"
 		private const val BULK_MODE_DELAY = "bulk_mode_delay"
+		private const val DEFAULT_BULK_MODE_DELAY = 500
 		private const val SHOW_TOAST_IN_BULK_MODE = "show_toast_in_bulk_mode"
 		private const val VIBRATE = "vibrate"
 		private const val BEEP = "beep"
