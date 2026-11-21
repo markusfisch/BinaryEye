@@ -4,15 +4,19 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import de.markusfisch.android.binaryeye.app.prefs
 import de.markusfisch.android.binaryeye.content.ParsedContentType
 import de.markusfisch.android.binaryeye.content.parseData
 import de.markusfisch.android.binaryeye.content.parsedContentTypeFromName
+import de.markusfisch.android.binaryeye.io.writeExternalFile
 import de.markusfisch.android.binaryeye.preference.Preferences
 import de.markusfisch.android.binaryeye.zxingcpp.migrateBarcodeFormatName
 import de.markusfisch.android.binaryeye.zxingcpp.oldToNewFormatNames
 import de.markusfisch.android.zxingcpp.ZxingCpp.BarcodeFormat
+import java.io.File
+import java.io.IOException
 
 class Database {
 	private lateinit var db: SQLiteDatabase
@@ -22,6 +26,22 @@ class Database {
 		this.context = context.applicationContext
 		db = OpenHelper(context).writableDatabase
 		fillMissingContentTypes()
+	}
+
+	fun exportDatabase(fileName: String): Boolean = try {
+		val snapshot = File.createTempFile("history-export-", ".db", context.cacheDir)
+		try {
+			copyDatabaseSnapshot(db.path, snapshot)
+			context.writeExternalFile(fileName, "application/vnd.sqlite3") { output ->
+				snapshot.inputStream().use { it.copyTo(output) }
+			}
+		} finally {
+			SQLiteDatabase.deleteDatabase(snapshot)
+		}
+	} catch (_: IOException) {
+		false
+	} catch (_: SQLiteException) {
+		false
 	}
 
 	fun getScans(query: String? = null): Cursor = db.rawQuery(

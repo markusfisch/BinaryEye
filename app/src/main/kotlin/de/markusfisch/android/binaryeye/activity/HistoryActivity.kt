@@ -32,7 +32,6 @@ import de.markusfisch.android.binaryeye.content.shareText
 import de.markusfisch.android.binaryeye.content.wipeLastShareFile
 import de.markusfisch.android.binaryeye.database.Database
 import de.markusfisch.android.binaryeye.database.exportCsv
-import de.markusfisch.android.binaryeye.database.exportDatabase
 import de.markusfisch.android.binaryeye.database.exportJson
 import de.markusfisch.android.binaryeye.io.askForFileName
 import de.markusfisch.android.binaryeye.io.toSaveResult
@@ -436,7 +435,7 @@ class HistoryActivity : AbstractBaseActivity() {
 					)
 				} ?: return@useVisibility
 				val message = when (delimiter) {
-					"db" -> ac.exportDatabase(name)
+					"db" -> db.exportDatabase(name)
 					else -> db.getScansDetailed(filter).use {
 						when (delimiter) {
 							"json" -> ac.exportJson(name, it)
