@@ -111,7 +111,7 @@
 	<string name="profile_current">Profilo attuale</string>
 	<string name="profile_remove_confirm">Vuoi rimuovere questo profilo?</string>
 	<string name="profile_share_qr">Condividi profilo come codice QR</string>
-	<string name="profile_import_set_default">Importare e attivare questo profilo?</string>
+	<string name="profile_import_set_default">Vuoi importare e attivare questo profilo?</string>
 	<string name="current_profile">Profilo: %s</string>
 	<string name="custom_locale">Lingua personalizzata</string>
 	<string name="follow_system_settings">Usa impostazioni di sistema</string>
